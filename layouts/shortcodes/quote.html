@@ -1,0 +1,33 @@
+{{- $from := .Get "from" -}}
+{{- $cite := .Get "cite" -}}
+{{- $title := .Get "title" -}}
+{{- $needsCaption := (or $from $cite $title) -}}
+{{- $hasTitleOrCite := (or $cite $title) -}}
+{{- $hasAuthorAndSource := (and $from $hasTitleOrCite) -}}
+{{- $hasCiteOrTitle := (or $cite $title) -}}
+{{- $hasCiteAndTitle := (and $cite $title) -}}
+
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    {{ with $cite }}cite="{{ . }}"{{ end -}}>
+      {{ .Inner }}
+  </blockquote>
+  {{- if $needsCaption -}}
+  <figcaption class="align-right">
+    &mdash;
+    {{ with $from }}{{ . }}{{ end -}}
+    {{- if $hasCiteOrTitle -}}
+      {{- if $hasAuthorAndSource -}}, {{ end -}}
+      {{- if $hasCiteAndTitle -}}
+        <a href="{{ $cite }}">{{ $title }}</a>
+      {{- else if $cite -}}
+        {{- $url := urls.Parse $cite -}}
+        via
+        <a href="{{ $cite }}">{{ $url.Host }}</a>
+      {{- else if $title -}}
+        {{ $title }}
+      {{- end -}}
+    {{- end }}
+  </figcaption>
+  {{- end -}}
+</figure>
