@@ -25,12 +25,17 @@
 <p>I could use a format similar to my <a href="/post/2007/12/python-loves-blogger-part-1/">Python blog files</a>. I won&rsquo;t really need PageTemplate if I do that, though. Not for the content file, anyways. That&rsquo;s okay, though. The Maruku filter was more of a proof-of-concept, anyways. PageTemplate will be useful for fitting the generated content into an actual template, though.</p>
 <p>That means I&rsquo;m starting over on my content files.</p>
 <p>Given a content file that looks like this:</p>
-<pre tabindex="0"><code>title: A Simple Page
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >title: A Simple Page
 --
-This page intentionally left blank.
-</code></pre><p>I want an object that makes the title available in some way (simple Hash style access is fine), and makes the HTML-formatted content available. After a few minutes of fiddling and poking around, I end up with tests and application code.</p>
+This page intentionally left blank.</code></pre>
+</figure><p>I want an object that makes the title available in some way (simple Hash style access is fine), and makes the HTML-formatted content available. After a few minutes of fiddling and poking around, I end up with tests and application code.</p>
 <h4 id="article-test-code">Article Test Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;SiteTemplate&#39;</span>
@@ -43,9 +48,11 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_equal</span><span class="p">(</span><span class="s1">&#39;A Simple Page&#39;</span><span class="p">,</span> <span class="n">article</span><span class="o">.</span><span class="n">metadata</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">content</span> <span class="o">=~</span> <span class="sr">%r{&lt;p&gt;This page intentionally left blank.&lt;/p&gt;}</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="the-application-code">The Application Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="the-application-code">The Application Code</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;maruku&#39;</span>
@@ -87,12 +94,14 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="vi">@content</span> <span class="o">=</span> <span class="no">Maruku</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>It&rsquo;s a really simple, slow parser, but it works. I won&rsquo;t try to optimize it before I&rsquo;ve actually figured out what it&rsquo;s supposed to be doing.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>It&rsquo;s a really simple, slow parser, but it works. I won&rsquo;t try to optimize it before I&rsquo;ve actually figured out what it&rsquo;s supposed to be doing.</p>
 <h3 id="the-template">The Template</h3>
 <p>The next target is stuffing this content into a template. That&rsquo;s <em>easy</em>. Here&rsquo;s the template:</p>
 <h4 id="simplehtml-template-file">simple.html Template File</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>[%var title%]<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -100,10 +109,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>[%var title%]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">        [%var content%]
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>I could assemble my page manually if I felt like it. As a matter of fact, let&rsquo;s do that in one of the tests.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>I could assemble my page manually if I felt like it. As a matter of fact, let&rsquo;s do that in one of the tests.</p>
 <h4 id="manual-page-generation-test">Manual Page Generation Test</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_manual_page_generation</span><span class="p">()</span>
@@ -115,10 +126,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">template</span><span class="o">[</span><span class="s1">&#39;content&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">content</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;title&gt;A Simple Page&lt;/title&gt;}</span><span class="p">,</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Do I really want to manually apply even that little bit of code, though? No, I don&rsquo;t.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Do I really want to manually apply even that little bit of code, though? No, I don&rsquo;t.</p>
 <h4 id="automatic-page-generation-test">Automatic Page Generation Test</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_standard_page_generation</span>
 </span></span><span class="line"><span class="cl">        <span class="n">article_file</span> <span class="o">=</span> <span class="s1">&#39;simple.txt&#39;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;simple.html&#39;</span>
@@ -126,9 +139,11 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;title&gt;A Simple Page&lt;/title&gt;}</span><span class="p">,</span> <span class="n">html_page</span><span class="o">.</span><span class="n">to_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;p&gt;This page}</span><span class="p">,</span> <span class="n">html_page</span><span class="o">.</span><span class="n">to_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="automatic-page-generation-code">Automatic Page Generation Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="automatic-page-generation-code">Automatic Page Generation Code</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HTML_Page</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">opts</span> <span class="o">=</span> <span class="p">{})</span>
@@ -142,11 +157,13 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="vi">@template</span><span class="o">[</span><span class="s1">&#39;content&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@article</span><span class="o">.</span><span class="n">content</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="vi">@template</span><span class="o">.</span><span class="n">output</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h3 id="saving-a-file">Saving a File</h3>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h3 id="saving-a-file">Saving a File</h3>
 <p>Okay, now I have article files with content and metadata being consumed, formatted, and handed off to PageTemplate for wrapping into a pretty HTML page. The only thing remaining at this stage is to actually <em>write</em> the file.</p>
 <h4 id="test-writes">Test Writes</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">
@@ -168,10 +185,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;p&gt;This page}</span><span class="p">,</span> <span class="n">saved_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="no">FileUtils</span><span class="o">::</span><span class="n">rm_rf</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="code-to-make-the-writes-happen">Code to Make the Writes Happen</h4>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="code-to-make-the-writes-happen">Code to Make the Writes Happen</h4>
 <p>Oh heck, just take the whole thing. This is what my <code>SiteTemplate.rb</code> file looks like right now.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
@@ -238,8 +257,8 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="no">FileUtils</span><span class="o">::</span><span class="n">mkdir_p</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vi">@output_file</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">print</span> <span class="n">to_html</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h3 id="wrapup">Wrapup</h3>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h3 id="wrapup">Wrapup</h3>
 <p>This stage is done. We&rsquo;ve taken some article files that look a lot like my blog files and turned them into fully-fleshed HTML files. They will fit into a PageTemplate that&rsquo;s been defined by the site maintainer, guaranteeing a standard look for the site.</p>
 <p>My next post on this topic will deal with putting an <code>HTML_Page</code> into the context of a larger site.</p>]]></content:encoded>
 </item>
@@ -260,7 +279,9 @@ This page intentionally left blank.
 <p>I am going to start small, by teaching SiteTemplate about <a href="https://github.com/bhollis/maruku">Maruku</a>.</p>
 <p>It took me a bit of time to get that much done, because I needed to relearn how PageTemplate initializes. <em>Note to self: don&rsquo;t ever go a full year without using your own library.</em></p>
 <p>The test is simple: create a template using the Maruku filter. Compare the output of that template with the text minus PageTemplate directives and fed into Maruku. The test passes if they look alike, or close enough.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
@@ -280,9 +301,11 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">    <span class="n">assert_equal</span><span class="p">(</span><span class="n">maruku_doc</span><span class="o">.</span><span class="n">to_html</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;Check if Maruku filter ran successfully&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Then the code I needed to make that test pass:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Then the code I needed to make that test pass:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Utility for generating a static site with PageTemplate</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
@@ -297,8 +320,8 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">      <span class="k">end</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I cut corners by adding the <code>maruku</code> filter method to PageTemplate&rsquo;s DefaultPreprocessor. PageTemplate&rsquo;s internals need a little work, since this isn&rsquo;t the prettiest way a person might want to add filters. It works well, but it&rsquo;s not pretty.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I cut corners by adding the <code>maruku</code> filter method to PageTemplate&rsquo;s DefaultPreprocessor. PageTemplate&rsquo;s internals need a little work, since this isn&rsquo;t the prettiest way a person might want to add filters. It works well, but it&rsquo;s not pretty.</p>
 <p>That works well enough. Next time I&rsquo;ll try a template filter, which puts the Maruku output into a template file of my choosing. That way we get the standard look for pages.</p>]]></content:encoded>
 </item>
 <item>
@@ -367,14 +390,15 @@ version of the setup usage file in the archive. Enjoy.</p>
   <pubDate>Sun, 02 Jun 2002 00:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2002/06/pagetemplate/</guid>
-  <description>[!WARNING] Haven’t touched PageTemplate in ages. This stuff is only here for the historical record.
+  <description>WARNING
+Haven’t touched PageTemplate in ages. This stuff is only here for the historical record.
 Introduction PageTemplate was a Ruby package which allowed you to utilize text templates for your Web projects. It was mainly intended for use in a CGI environment, but designed to be helpful in a broad range of similar applications. It was inspired by, yet almost entirely unlike, the HTML::Template package available for Perl. It has many features in common with other templating engines:</description>
    <category>post</category> 
    <category>post</category> 
    <category>pagetemplate</category>  <category>coolnamehere</category> 
   <content:encoded><![CDATA[<blockquote>
-<p>[!WARNING]
-Haven&rsquo;t touched PageTemplate in ages. This stuff is only here for the historical record.</p>
+<p><strong>WARNING</strong></p>
+<p>Haven&rsquo;t touched PageTemplate in ages. This stuff is only here for the historical record.</p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
 <p>PageTemplate was a <a href="/card/ruby/">Ruby</a> package which allowed you to utilize text templates for your Web projects. It was mainly intended for use in a CGI environment, but designed to be helpful in a broad range of similar applications. It was inspired by, yet almost entirely unlike, the <a href="http://html-template.sourceforge.net/">HTML::Template</a> package available for Perl. It has many features in common with other templating engines:</p>
@@ -525,27 +549,35 @@ Syntax [%if condition %] chunk [%end if %] Here is an example of if in use.
 when some condition is true. PageTemplate will skip the block and move
 on if the condition is false.</p>
 <h3 id="syntax">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition %]
 </span></span><span class="line"><span class="cl">  chunk
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>Here is an example of <code>if</code> in use.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if pageowner %]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>Here is an example of <code>if</code> in use.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if pageowner %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;admin.cgi&#34;</span><span class="p">&gt;</span>Admin View<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>In this example, if the application tells PageTemplate that <code>pageowner</code>
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>In this example, if the application tells PageTemplate that <code>pageowner</code>
 is true, PageTemplate inserts a link to an administrative page.
 Otherwise, nothing happens here.</p>
 <h2 id="else">Else</h2>
 <p>The <code>else</code> directive adds extra power to <code>if</code>, by indicating a chunk of
 content to use when a condition is not true.</p>
 <h3 id="syntax-1">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if value%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if value%]
 </span></span><span class="line"><span class="cl">  chunk
 </span></span><span class="line"><span class="cl">[%else%]
 </span></span><span class="line"><span class="cl">  alternate chunk
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if login%]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h3 id="example">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if login%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Welcome back, [%var login %]!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;logout.cgi&#34;</span><span class="p">&gt;</span>Log Out<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
@@ -554,8 +586,8 @@ content to use when a condition is not true.</p>
 </span></span><span class="line"><span class="cl">  Password: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;passwd&#34;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Login!&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>This is the situation where I use <code>else</code> directives the most. If the
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>This is the situation where I use <code>else</code> directives the most. If the
 visitor is logged in to a Web application, she is shown a brief
 welcoming message. If not, then she will see a login form.</p>
 <p>This example also shows a convenient approach to <code>if</code> conditions. We
@@ -575,7 +607,9 @@ Features</a> page for doing
 multiple tests on the same variable.</p>
 </aside>
 <h3 id="syntax-2">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition1 %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition1 %]
 </span></span><span class="line"><span class="cl">  Block 1
 </span></span><span class="line"><span class="cl">[%elsif condition2 %]
 </span></span><span class="line"><span class="cl">  Block 2
@@ -584,29 +618,35 @@ multiple tests on the same variable.</p>
 </span></span><span class="line"><span class="cl">  Block n
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl">  Else Block
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h3 id="example-1">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if cart.items %]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h3 id="example-1">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if cart.items %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have [%var cart.count %] items in your cart.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%elsif cart.empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Your cart is empty.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have no cart. <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;register.rb&#34;</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> and get one!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h2 id="unless">Unless</h2>
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h2 id="unless">Unless</h2>
 <p>Sometimes you want to ask if something is false. For example, you may
 want to show a login form in one spot if the user is not logged in, but
 nothing at all if he is logged in. That is exactly the sort of thing
 <code>unless</code> was intended for.</p>
 <h3 id="syntax-3">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless condition %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless condition %]
 </span></span><span class="line"><span class="cl">  Block
-</span></span><span class="line"><span class="cl">[%end unless %]
-</span></span></code></pre></div><h3 id="example-2">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless user.has_donated %]
+</span></span><span class="line"><span class="cl">[%end unless %]</span></span></code></pre>
+</figure><h3 id="example-2">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless user.has_donated %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;pay_up.cgi&#34;</span><span class="p">&gt;</span>Donate money, chump!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end unless %]
-</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="cl">[%end unless %]</span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: PageTemplate - Loop</title>
@@ -629,28 +669,34 @@ chunk repeatedly for a list of items. It can grab values from the item
 to be inserted in <code>value</code> directives within the chunk. If there is no
 list of items, the <code>in</code> chunk is skipped.</p>
 <h4 id="syntax">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of
 looking at each item in a list back in the misty days of 2002. However,
 the steadily increasing power of <code>in</code> combined with a few suggestions
 led to the addition of <code>loop</code> as a directive for loops. Makes sense. I
 even use it myself most of the time. Still, I hate it when documented
 features disappear without warning, so <code>in</code> was never removed. Here’s
 what <code>in</code> looks like.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
-</span></span><span class="line"><span class="cl">[%end in %]
-</span></span></code></pre></div><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no
+</span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
+</figure><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no
 difference in usage beyond a couple characters’ worth of typing.</p>
 <h4 id="example">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var title %]&#34; by [%var author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop %]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="local-values">“Local” Values</h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="local-values">“Local” Values</h3>
 <p>PageTemplate works a little magic with <code>value</code> directives when stepping
 through a <code>loop</code>. First it examines the list item to see if it has a
 value for the variable named. If it can’t find one there, it checks its
@@ -667,31 +713,37 @@ in the innermost list (the books) for a name, then the next list out
 directive provides a block of content to display if the list you are looking at
 is empty.</p>
 <h4 id="syntax-1">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
 </span></span><span class="line"><span class="cl">  handle list items
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl">  handle empty list
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><h4 id="example-1">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><h4 id="example-1">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var title %]&#34; by [%var author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>There are no books to display<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop %]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>{{&lt; note title=&ldquo;Alternate <code>no</code> syntax&rdquo; &gt;}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>{{&lt; note title=&ldquo;Alternate <code>no</code> syntax&rdquo; &gt;}}
 This is another idea that seemed good at the time. Back when all you had
 for loops was the <code>in</code> directive, we used <code>no</code> as the directive for
 empty loops. It’s still available, but I highly discourage using it.
 <code>no</code> just isn’t as clear in its intent as <code>empty</code>. But hey, I’m not
 going to stop you if that’s what you really want to do.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
 </span></span><span class="line"><span class="cl">  Handle list item
 </span></span><span class="line"><span class="cl">[%no %]
 </span></span><span class="line"><span class="cl">  Handle empty list
-</span></span><span class="line"><span class="cl">[%end in %]
-</span></span></code></pre></div><p>{{&lt; /note &gt;}}</p>
+</span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
+</figure><p>{{&lt; /note &gt;}}</p>
 <h2 id="iterators">Iterators</h2>
 <p>You are normally dealing with a hidden unnamed <code>this_step</code> variable in
 loops. Most of the time this is no problem, but sometimes your template
@@ -704,18 +756,22 @@ global values.</p>
 <h3 id="basic-iterators">Basic Iterators</h3>
 <p>Basic iterators provide an explicit name for your loop variable.</p>
 <h4 id="syntax-2">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST ITERATOR %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST ITERATOR %]
 </span></span><span class="line"><span class="cl">... [%var iterator.trait %]
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><h4 id="example-2">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><h4 id="example-2">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books book %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var book.title %]&#34; by [%var book.author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>No books to list<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="multiple-iterators">Multiple Iterators</h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="multiple-iterators">Multiple Iterators</h3>
 <p>It’s usually easy enough to handle loops. You just step through and use
 the variable names you’ve been given by the programmer. It’s not always
 that easy. Sometimes you get complex lists with no convenient names
@@ -726,26 +782,34 @@ the author’s name. Hey, don’t blame me. I didn’t write that code.</p>
 <p>Multiple iterators provide a way for you to make sense out of a
 confusing situation like that.</p>
 <h4 id="syntax-3">Syntax</h4>
-<pre tabindex="0"><code>[%loop LIST ITERATOR_1 ITERATor_2 ... iterator_n %]
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >[%loop LIST ITERATOR_1 ITERATor_2 ... iterator_n %]
   Handle list items
-[%end loop %]
-</code></pre><h4 id="example-3">Example</h4>
-<pre tabindex="0"><code>#!html
+[%end loop %]</code></pre>
+</figure><h4 id="example-3">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!html
 &lt;ul&gt;
 [%loop books title author %]
   &lt;li&gt;&#34;[%var title]&#34; by [%var author%]&lt;/li&gt;
 [%empty %]
   &lt;li&gt;No books to list&lt;/li&gt;
 [%end loop%]
-&lt;/ul&gt;
-</code></pre><h2 id="metavariables">Metavariables</h2>
+&lt;/ul&gt;</code></pre>
+</figure><h2 id="metavariables">Metavariables</h2>
 <p>Metavariables are a really snazzy addition to <code>loop</code> which make
 formatting and organizing list displays much easier, without any work by
 you or the programmers.</p>
 <h3 id="first"><code>FIRST</code></h3>
 <p>True if you are on the first trip through the loop.</p>
 <h4 id="example-4">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -763,11 +827,13 @@ you or the programmers.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="last"><code>LAST</code></h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="last"><code>LAST</code></h3>
 <p>True if you are on the last trip through the loop.</p>
 <h4 id="example-5">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -785,12 +851,14 @@ you or the programmers.</p>
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="odd"><code>ODD</code></h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="odd"><code>ODD</code></h3>
 <p>True if you are on an odd-numbered trip through the loop (the first trip
 is odd).</p>
 <h4 id="example-6">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -811,12 +879,14 @@ is odd).</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><h3 id="index"><code>INDEX</code></h3>
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><h3 id="index"><code>INDEX</code></h3>
 <p>Counts the number of trips you’ve made through the loop (starts at
 zero).</p>
 <h4 id="example-7">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -839,13 +909,15 @@ zero).</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><h4 id="lists-and-wysiwyg-editors">Lists and WYSIWYG Editors</h4>
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><h4 id="lists-and-wysiwyg-editors">Lists and WYSIWYG Editors</h4>
 <p>Here’s a specific problem that might pop up when you are using a WYSIWYG
 editor. Let’s say you’re embedding a list into a table, so that each
 item in the list gets one table row. Dreamweaver is probably not going
 to enjoy code like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -868,12 +940,14 @@ to enjoy code like this:</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at
 invalid locations for XHTML, and they may not be allowed by your editor.</p>
 <p>It turns out that the solution is simple, though maybe a little awkward.
 Wrap the offending directives in HTML comments, like this example shows:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- [%loop books title author%] --&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- [%loop books title author%] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%if __FIRST__ %] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -896,8 +970,8 @@ Wrap the offending directives in HTML comments, like this example shows:</p>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end if %] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%empty%] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end loop%] --&gt;</span>
-</span></span></code></pre></div><p>Your fancy editor should be able to handle this, and PageTemplate should
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end loop%] --&gt;</span></span></span></code></pre>
+</figure><p>Your fancy editor should be able to handle this, and PageTemplate should
 be able to understand it just fine. The only side effect is that you
 will have some empty comments in your final page.</p>
 <p>The other solution is to use {{&lt; tag &ldquo;vim&rdquo;&gt;}}, {{&lt; tag &ldquo;emacs&rdquo; &gt;}}, or some
@@ -926,10 +1000,12 @@ to have filtering as an independent action. All the contents of a
 <code>filter</code> block are passed through the named filter during output.</p>
 <h3 id="syntax">Syntax</h3>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%filter :escapeHTML %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%filter :escapeHTML %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">blink</span><span class="p">&gt;</span>Some browsers still allow this?<span class="p">&lt;/</span><span class="nt">blink</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end]
-</span></span></code></pre></div><h2 id="include">Include</h2>
+</span></span><span class="line"><span class="cl">[%end]</span></span></code></pre>
+</figure><h2 id="include">Include</h2>
 <p><code>include</code> is somewhat tricky. The idea is easy enough. You want to
 include the same template fragment in several other templates. A login
 form, a stats view, whatever. <code>include</code> lets you do that in one of two
@@ -939,9 +1015,11 @@ is where you request that a specific file be processed. Okay, that
 wasn’t so hard after all.</p>
 <h3 id="syntax-1">Syntax</h3>
 <h3 id="example-1">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%include login_form %]
-</span></span><span class="line"><span class="cl">[%include fragments/login_form.tmpl %]
-</span></span></code></pre></div><h2 id="define">Define</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%include login_form %]
+</span></span><span class="line"><span class="cl">[%include fragments/login_form.tmpl %]</span></span></code></pre>
+</figure><h2 id="define">Define</h2>
 <p>Occasionally you will have information that the developer doesn’t. No, I
 don’t mean the name of the great Mexican restaurant on the north side of
 town. Wait a minute. Sure, why not? You know the name of this great
@@ -960,32 +1038,38 @@ code. It’s kind of a shortcut and only good for simple string values,
 but every once in a while a shortcut is exactly what you need.</p>
 <h3 id="syntax-2">Syntax</h3>
 <h3 id="example-2">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%define restaurant Jalisco %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%define restaurant Jalisco %]
 </span></span><span class="line"><span class="cl">[%define dish Enchilada Combo %]
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>I really enjoy the [%var dish %] at [%var restaurant%]<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="case">Case</h2>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>I really enjoy the [%var dish %] at [%var restaurant%]<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h2 id="case">Case</h2>
 <p>The <code>case</code> directive is a special extra directive which allows you to
 show different content based on the value of a single variable.</p>
 <h3 id="syntax-3">Syntax</h3>
 <h3 id="example-3">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%case role %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%case role %]
 </span></span><span class="line"><span class="cl">[%when admin %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;abuse.cgi&#34;</span><span class="p">&gt;</span>Abuse Users<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%when user %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;beg.cgi&#34;</span><span class="p">&gt;</span>Beg For Mercy From Admin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;register.cgi&#34;</span><span class="p">&gt;</span>Register To Get Love And Abuse From Admin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end %]
-</span></span></code></pre></div><p>You must make sure the developer includes the <code>PageTemplate/case.rb</code>
+</span></span><span class="line"><span class="cl">[%end %]</span></span></code></pre>
+</figure><p>You must make sure the developer includes the <code>PageTemplate/case.rb</code>
 library in his code to use the <code>case</code> directive.</p>
 <h2 id="comments">Comments</h2>
 <p>Comments are useful if you want to make notes to yourself as the
 template designer, but you don’t want those comments showing up in the
 final template output.</p>
 <h3 id="syntax-4">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%-- Random Commentary %]
-</span></span></code></pre></div><h2 id="alternate-syntax">Alternate Syntax</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%-- Random Commentary %]</span></span></code></pre>
+</figure><h2 id="alternate-syntax">Alternate Syntax</h2>
 <p>One of PageTemplate’s features is the ability to come up with your own
 directive syntax. If you feel that the default syntax is less than
 ideal, discuss a new system with your developers. If you are the lone
@@ -1058,20 +1142,32 @@ require &#39;PageTemplate&#39; You’ll need a PageTemplate object to hold value
 <h2 id="using-pagetemplate-in-your-ruby-code">Using PageTemplate In Your Ruby Code</h2>
 <p>This is a <em>very</em> quick overview, because I just spent hours going over the designer documents and I’m a little tired.</p>
 <p>First, of course, you’ll want to <a href="/post/2002/07/pagetemplate-getting-it/">install</a> the PageTemplate package. Once that’s done, <code>require</code> the package.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
-</span></span></code></pre></div><p>You’ll need a PageTemplate object to hold values and parse template files.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
-</span></span></code></pre></div><p>At some point, you will want the PageTemplate object to load a template text file, bristling with directives. The template file should be readable by the script, and the path must be either absolute or relative to the script’s working directory.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/var/www/templates/template.txt&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>To assign a value for use by PageTemplate, use hash-style assignment, with the name to be used by the template as the key, and the value assigned as — well — the value. The only rule is that the value must evaluate to a String. Either it <em>is</em> a String or it has a <code>to_s</code> method). Page designers would probably be grateful if the key was a string, too. Much easier to type it into a text template that way.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;My PageTemplate Script&#39;</span>
-</span></span></code></pre></div><p>The easiest way to handle flags used in <code>if</code> directives is to take advantage of Ruby’s boolean values.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;flag&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;shovel&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
-</span></span></code></pre></div><p>You can use the truth of a regular variable or loop variable in an <code>if</code> directive, but remember that Ruby is more specific about <code>false</code> than other languages you might be used to. For example, the number zero is not false. It’s just zero. Same with empty strings. If you want a variable to be interpreted as <code>false</code>, you should explicitly set it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span></span></span></code></pre>
+</figure><p>You’ll need a PageTemplate object to hold values and parse template files.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">()</span></span></span></code></pre>
+</figure><p>At some point, you will want the PageTemplate object to load a template text file, bristling with directives. The template file should be readable by the script, and the path must be either absolute or relative to the script’s working directory.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/var/www/templates/template.txt&#39;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>To assign a value for use by PageTemplate, use hash-style assignment, with the name to be used by the template as the key, and the value assigned as — well — the value. The only rule is that the value must evaluate to a String. Either it <em>is</em> a String or it has a <code>to_s</code> method). Page designers would probably be grateful if the key was a string, too. Much easier to type it into a text template that way.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;My PageTemplate Script&#39;</span></span></span></code></pre>
+</figure><p>The easiest way to handle flags used in <code>if</code> directives is to take advantage of Ruby’s boolean values.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;flag&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;shovel&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span></span></span></code></pre>
+</figure><p>You can use the truth of a regular variable or loop variable in an <code>if</code> directive, but remember that Ruby is more specific about <code>false</code> than other languages you might be used to. For example, the number zero is not false. It’s just zero. Same with empty strings. If you want a variable to be interpreted as <code>false</code>, you should explicitly set it.</p>
 <p>PageTemplate uses arrays of objects for lists. Each object provides a local namespace which lasts only for the current iteration through the chunk of content. Otherwise, you’d have to manually set loop variables, and I don’t like that idea!</p>
 <p>The classic approach is to borrow from <a href="http://html-template.sourceforge.net/">HTML::Template</a> and use a list of hashes for your namespaces.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">listing</span> <span class="o">=</span> <span class="o">[</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">listing</span> <span class="o">=</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Swordfishtrombones&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;artist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Tom Waits&#39;</span> <span class="p">},</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Dirt Track Date&#39;</span><span class="p">,</span>
@@ -1079,9 +1175,11 @@ require &#39;PageTemplate&#39; You’ll need a PageTemplate object to hold value
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The Craft&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;artist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Blackalicious&#39;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;albums&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span>
-</span></span></code></pre></div><p>What about nested lists? They are handled the same way. One of the keys in your item hash points to another array of hashes, which will be used for the inner loop.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">favorites</span> <span class="o">=</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;albums&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span></span></span></code></pre>
+</figure><p>What about nested lists? They are handled the same way. One of the keys in your item hash points to another array of hashes, which will be used for the inner loop.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">favorites</span> <span class="o">=</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s2">&#34;topic&#34;</span>  <span class="o">=&gt;</span> <span class="s2">&#34;Interesting Comic Books&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;items&#34;</span>    <span class="o">=&gt;</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;title&#34;</span>   <span class="o">=&gt;</span> <span class="s2">&#34;Dropsie Avenue&#34;</span><span class="p">,</span>
@@ -1104,37 +1202,49 @@ require &#39;PageTemplate&#39; You’ll need a PageTemplate object to hold value
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;title&#34;</span>   <span class="o">=&gt;</span> <span class="s2">&#34;Swordfishtrombones&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;creator&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;Tom Waits&#34;</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="o">]</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">]</span>
-</span></span></code></pre></div><p>Using objects in a list requires a little more research, but it’s still a practical solution. Say you’re trying to figure out how to use PageTemplate in an image gallery. You might have an Image class with accessors that look something like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Image</span>
+</span></span><span class="line"><span class="cl"><span class="o">]</span></span></span></code></pre>
+</figure><p>Using objects in a list requires a little more research, but it’s still a practical solution. Say you’re trying to figure out how to use PageTemplate in an image gallery. You might have an Image class with accessors that look something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Image</span>
 </span></span><span class="line"><span class="cl">  <span class="kp">attr_reader</span> <span class="ss">:url</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:width</span><span class="p">,</span> <span class="ss">:caption</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>You can build your template armed with this knowledge.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop images %]
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>You can build your template armed with this knowledge.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop images %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;[%var url%]&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">=</span><span class="s">&#34;[%var height%]&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;[%var width%]&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">alt</span><span class="o">=</span><span class="s">&#34;[%var caption %]&#34;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>[%var caption %]<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><p>Then, rather than waste precious minutes altering class <code>Image</code> to respond to hash-based access, you can assign a list of <code>Image</code> objects to the template list.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">galleryPage</span><span class="o">[</span><span class="s1">&#39;images&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">gallery</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">images</span>
-</span></span></code></pre></div><p>This approach definitely encourages maintaining a consistent interface. I wouldn’t want to go altering my template files (or telling the designer to alter her files) every time I get a bright idea for how <code>Image</code> should work.</p>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><p>Then, rather than waste precious minutes altering class <code>Image</code> to respond to hash-based access, you can assign a list of <code>Image</code> objects to the template list.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">galleryPage</span><span class="o">[</span><span class="s1">&#39;images&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">gallery</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">images</span></span></span></code></pre>
+</figure><p>This approach definitely encourages maintaining a consistent interface. I wouldn’t want to go altering my template files (or telling the designer to alter her files) every time I get a bright idea for how <code>Image</code> should work.</p>
 <p>You can also refer to public methods of the object in your template, but that’s still a bit shaky. The methods have to accept calls with no arguments or blocks (Ex: <code>image.thumbnail()</code> would be referenced as <code>[%var thumbnail%]</code>).</p>
 <p>Once you’ve told your PageTemplate object which file to load and what values to remember, you’ll probably want to display the neat custom page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">output</span>
-</span></span></code></pre></div><p>Of course, if you do things this way you’ll have to remember all of the HTTP header information. Life will be much easier for you if you just use the functionality provided by the standard CGI module for ruby.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">cgi</span><span class="o">.</span><span class="n">out</span> <span class="p">{</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span> <span class="p">}</span>
-</span></span></code></pre></div><p>I’m not a <a href="http://rubyonrails.com/">Rails</a> person, so I really don’t know how well PageTemplate works with Rails these days. Definitely send reports if you have any troubles, though. See <a href="/post/2002/06/pagetemplate/">pagetemplate</a> for links to bug filing and the forum.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">output</span></span></span></code></pre>
+</figure><p>Of course, if you do things this way you’ll have to remember all of the HTTP header information. Life will be much easier for you if you just use the functionality provided by the standard CGI module for ruby.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">cgi</span><span class="o">.</span><span class="n">out</span> <span class="p">{</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>I’m not a <a href="http://rubyonrails.com/">Rails</a> person, so I really don’t know how well PageTemplate works with Rails these days. Definitely send reports if you have any troubles, though. See <a href="/post/2002/06/pagetemplate/">pagetemplate</a> for links to bug filing and the forum.</p>
 <h3 id="caching-templates">Caching Templates</h3>
 <p>PageTemplate has some support for saving template information to disk. This means that your application needs less time to prepare its templates. You still need to provide a Namespace when you need output, though.</p>
 <p>Two steps are required to take advantage of PageTemplate’s cache capabilities. First, make sure that your script has write permissions to the directory or directories that contain your template source. Next, call the PageTemplate constructor with the <code>use_cache</code> flag set to <code>true</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;use_cache&#39;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><h3 id="creating-your-own-syntax">Creating Your Own Syntax</h3>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="creating-your-own-syntax">Creating Your Own Syntax</h3>
 <p>For now, use the source as your guides.</p>
 ]]></content:encoded>
 </item>

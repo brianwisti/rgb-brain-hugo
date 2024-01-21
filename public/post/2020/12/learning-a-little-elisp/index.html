@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/12/learning-a-little-elisp/">Learning a little elisp</a></li>
@@ -305,8 +310,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Expect side notes about <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, since that’s the flavor I use lately.</p>
 <h2 id="lets-get-started">Let’s get started</h2>
 <p>I looked up &ldquo;Hello World in ELisp&rdquo; and found something like this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hey World!&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="elisp-evaluation">ELisp evaluation</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hey World!&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="elisp-evaluation">ELisp evaluation</h3>
 <p>Want to write some Emacs Lisp? Here you go.</p>
 <ul>
 <li>open Emacs</li>
@@ -340,95 +347,135 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li>Learn things!</li>
 </ul>
 <blockquote>
-<p>[!NOTE]
-Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!</p>
+<p><strong>NOTE</strong></p>
+<p>Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!</p>
 </blockquote>
 <h3 id="elisp-in-org-babel">ELisp in Org Babel</h3>
 <p>This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my <a href="/config/">config</a> smarter.  For example, only tangle a section if it’s relevant for that machine.</p>
 <p>And, of course, really handy for blogging about ELisp.</p>
 <blockquote>
-<p>[!NOTE]
-Configuration of Org and Babel is traditionally an elaborate ritual.  In Doom, it’s enough for this post to enable <code>org</code>.</p>
+<p><strong>NOTE</strong></p>
+<p>Configuration of Org and Babel is traditionally an elaborate ritual.  In Doom, it’s enough for this post to enable <code>org</code>.</p>
 <p>Somewhere in my <code>init.el</code> I have these lines.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="nb">:lang</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">org</span> <span class="nv">+roam</span> <span class="nv">+hugo</span><span class="p">)</span>
-</span></span></code></pre></div><p>Okay, I added <code>+hugo</code> since I’m using <code>ox-hugo</code> to integrate with my workflow. And <code>+roam</code> because <a href="https://www.orgroam.com/">org-roam</a> is kinda cool.  But not relevant for today.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="nb">:lang</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">org</span> <span class="nv">+roam</span> <span class="nv">+hugo</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Okay, I added <code>+hugo</code> since I’m using <code>ox-hugo</code> to integrate with my workflow. And <code>+roam</code> because <a href="https://www.orgroam.com/">org-roam</a> is kinda cool.  But not relevant for today.</p>
 </blockquote>
 <p>I need a code block written in a language that Babel knows.  It should not
 surprise us that Babel knows ELisp.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+begin_src elisp
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+begin_src elisp
 </span></span><span class="line"><span class="cl">(message &#34;Hey World!&#34;)
-</span></span><span class="line"><span class="cl">#+end_src
-</span></span></code></pre></div><p>I press <kbd>C-c C-c</kbd> with <em>point</em> over the code block.</p>
+</span></span><span class="line"><span class="cl">#+end_src</span></span></code></pre>
+</figure><p>I press <kbd>C-c C-c</kbd> with <em>point</em> over the code block.</p>
 <blockquote>
-<p>[!NOTE]
-Or <kbd>ENTER</kbd> in Doom.</p>
+<p><strong>NOTE</strong></p>
+<p>Or <kbd>ENTER</kbd> in Doom.</p>
 </blockquote>
 <p>Suddenly: a <code>#+RESULTS:</code> block!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+RESULTS:
-</span></span><span class="line"><span class="cl">: Hey World!
-</span></span></code></pre></div><p>I can also write my ELisp inline:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">src_elisp{(sqrt (* 37 37))}, right?
-</span></span></code></pre></div><p>Written like this, Babel replaces my code with its result when <code>ox-hugo</code> exports the post.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+RESULTS:
+</span></span><span class="line"><span class="cl">: Hey World!</span></span></code></pre>
+</figure><p>I can also write my ELisp inline:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">src_elisp{(sqrt (* 37 37))}, right?</span></span></code></pre>
+</figure><p>Written like this, Babel replaces my code with its result when <code>ox-hugo</code> exports the post.</p>
 <p>All right. That’s the very basics of evaluating ELisp in Emacs generally and Org mode in particular.</p>
 <p>Let’s get back to the code, please. How do I do variables?</p>
 <h2 id="displaying-a-variable">Displaying a variable</h2>
 <p>Let’s see. <code>setq</code> to set a variable for my name. identifiers can be pretty much whatever. I’ll use lowercase letters and a hyphen.</p>
 <p>Looks like <code>format</code> can smush it into a string for <code>message</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">my-name</span> <span class="s">&#34;Brian&#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">my-name</span> <span class="s">&#34;Brian&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;hello %s&#34;</span> <span class="nv">my-name</span><span class="p">))</span>
-</span></span></code></pre></div><p><code>format</code> does its work and hands the result back to <code>message</code>, which displays the result.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">hello Brian
-</span></span></code></pre></div><p>Thing is, now <code>my-name</code> is floating around forever what with being a global variable.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="nv">my-name</span><span class="p">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Brian
-</span></span></code></pre></div><p>What if I used a local variable instead?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">new-name</span> <span class="s">&#34;Whozzomongo&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">message</span> <span class="nv">new-name</span><span class="p">))</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Whozzomongo
-</span></span></code></pre></div><p>But back out here it doesn’t exist.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">new-name</span><span class="p">)</span>
-</span></span></code></pre></div><p>You don’t see anything out here, but when I tried to <kbd>C-c C-c</kbd> that, Emacs complained:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Symbol’s function definition is void: new-name
-</span></span></code></pre></div><p>I consider that a good thing. Global variables make me nervous, especially in long-running applications.</p>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;hello %s&#34;</span> <span class="nv">my-name</span><span class="p">))</span></span></span></code></pre>
+</figure><p><code>format</code> does its work and hands the result back to <code>message</code>, which displays the result.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">hello Brian</span></span></code></pre>
+</figure><p>Thing is, now <code>my-name</code> is floating around forever what with being a global variable.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="nv">my-name</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Brian</span></span></code></pre>
+</figure><p>What if I used a local variable instead?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">new-name</span> <span class="s">&#34;Whozzomongo&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">message</span> <span class="nv">new-name</span><span class="p">))</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Whozzomongo</span></span></code></pre>
+</figure><p>But back out here it doesn’t exist.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">new-name</span><span class="p">)</span></span></span></code></pre>
+</figure><p>You don’t see anything out here, but when I tried to <kbd>C-c C-c</kbd> that, Emacs complained:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Symbol’s function definition is void: new-name</span></span></code></pre>
+</figure><p>I consider that a good thing. Global variables make me nervous, especially in long-running applications.</p>
 <p>So I know how to set global or local variables.  I know how to display them.</p>
 <p>How to get them from the user?</p>
 <h2 id="getting-user-input">Getting user input</h2>
 <p><a href="http://www.ergoemacs.org/emacs/elisp%5Fidioms%5Fprompting%5Finput.html">Xah Lee</a> gives a nice rundown on how to get user input. <code>read-string</code> is the one I want.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-string</span> <span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p><code>read-string</code> returns whatever I answer.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Waffle Smasher The Magnificent Pineapple
-</span></span></code></pre></div><p>Let’s make a question prompt.  The inside-out approach of nested evaluation confuses me a bit, so I’ll happily let Emacs indent things however it wants.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-string</span> <span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p><code>read-string</code> returns whatever I answer.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Waffle Smasher The Magnificent Pineapple</span></span></code></pre>
+</figure><p>Let’s make a question prompt.  The inside-out approach of nested evaluation confuses me a bit, so I’ll happily let Emacs indent things however it wants.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span>
 </span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">let</span>
 </span></span><span class="line"><span class="cl">     <span class="p">((</span><span class="nv">question</span> <span class="s">&#34;What&#39;s your name?&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Go to bed, %s!&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nf">message</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question</span><span class="p">)))))</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Go to bed, Dude!
-</span></span></code></pre></div><p>I did some things.  <code>read-string</code> puts the cursor right after the <code>question</code> prompt.  So to help myself while I’m figuring all this out, I created some local variables.  <code>question</code> holds the question to be answered. <code>message</code> holds the —</p>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question</span><span class="p">)))))</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Go to bed, Dude!</span></span></code></pre>
+</figure><p>I did some things.  <code>read-string</code> puts the cursor right after the <code>question</code> prompt.  So to help myself while I’m figuring all this out, I created some local variables.  <code>question</code> holds the question to be answered. <code>message</code> holds the —</p>
 <p>Wait, there’s already a global <em>standard</em> function called <code>message</code>!</p>
 <p>It’s cool.  By the time I need the function, <code>let</code> is done and my variable
 doesn’t exist.  Still.  I shouldn’t make this a habit.</p>
 <h2 id="wrapping-it-in-a-function">Wrapping it in a function</h2>
 <p>I wasn’t planning on looking at functions today, but I’m more than halfway there already.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">ask-and-respond</span> <span class="p">(</span><span class="nv">question-for-user</span> <span class="nv">our-response</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">ask-and-respond</span> <span class="p">(</span><span class="nv">question-for-user</span> <span class="nv">our-response</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Ask the user a question and show them a response.&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
 </span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nv">our-response</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question-for-user</span><span class="p">)))))</span>
-</span></span></code></pre></div><p>Use the <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/defun.html#defun">defun</a> macro to <em>define functions</em>. It’s similar enough to function definitions in other languages.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">NAME</span> <span class="p">(</span><span class="nv">ARGUMENTS</span><span class="err">…</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question-for-user</span><span class="p">)))))</span></span></span></code></pre>
+</figure><p>Use the <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/defun.html#defun">defun</a> macro to <em>define functions</em>. It’s similar enough to function definitions in other languages.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">NAME</span> <span class="p">(</span><span class="nv">ARGUMENTS</span><span class="err">…</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;A docstring&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">THE</span> <span class="nv">CODE</span><span class="p">)</span>
-</span></span></code></pre></div><p>Though there are some differences right off the bat.  <code>ask-and-respond</code> needs user input.  ELisp requires I mark those as interactive_.</p>
+</span></span><span class="line"><span class="cl">  <span class="nv">THE</span> <span class="nv">CODE</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Though there are some differences right off the bat.  <code>ask-and-respond</code> needs user input.  ELisp requires I mark those as interactive_.</p>
 <p>Other than <em>that</em> it’s similar enough to function definitions in other languages.</p>
 <p>I already know how to call a function.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ask-and-respond</span> <span class="s">&#34;What&#39;s your name?&#34;</span> <span class="s">&#34;Goodnight, %s!&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Goodnight, Brian!
-</span></span></code></pre></div><p>Okay, time to take my own hint.  Good night!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ask-and-respond</span> <span class="s">&#34;What&#39;s your name?&#34;</span> <span class="s">&#34;Goodnight, %s!&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Goodnight, Brian!</span></span></code></pre>
+</figure><p>Okay, time to take my own hint.  Good night!</p>
   
 
 

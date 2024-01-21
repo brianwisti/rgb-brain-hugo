@@ -141,8 +141,8 @@ However, the Parrot distribution also ships with an extra language: NQP.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -255,11 +255,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/12/nqp-not-quite-perl/">NQP - Not Quite Perl</a></li>
@@ -315,7 +320,10 @@ find directions for installing in <a href="/post/2009/07/parrot-babysteps-01-get
 you do not yet have Parrot installed.</p>
 <h2 id="example">Example</h2>
 <p>Let&rsquo;s just do a brutally fast NQP example.</p>
-<pre tabindex="0"><code>#!/usr/local/bin/parrot-nqp
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!/usr/local/bin/parrot-nqp
 
 my $name := get_input(&#34;What is your name?&#34;);
 say(&#34;Hello $name&#34;);
@@ -344,18 +352,21 @@ sub get_input($prompt) {
     };
 
     return $name
-}
-</code></pre><p>We see that NQP variables look a little like Perl variables, and familiar
+}</code></pre>
+</figure><p>We see that NQP variables look a little like Perl variables, and familiar
 control structures like <code>if</code> and <code>while</code> are supported. Another bit of niftiness
 is that inline PIR is supported.</p>
-<pre tabindex="0"><code>$ parrot-nqp hello.nqp
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot-nqp hello.nqp
 What is your name? Brian
 Hello Brian
 Are you in a good mood?[y/n] waffles
 Sorry, I&#39;m not too bright. Please answer &#39;y&#39; or &#39;n&#39;.
 Are you in a good mood?[y/n] y
-Glad to hear it! Must be all the Parrot hacking.
-</code></pre><p>Mind you, NQP is not really great for casual scripting. It&rsquo;s intended to be
+Glad to hear it! Must be all the Parrot hacking.</code></pre>
+</figure><p>Mind you, NQP is not really great for casual scripting. It&rsquo;s intended to be
 a higher level bootstrap language that makes it easier to define grammars.
 I wouldn&rsquo;t go complaining to anybody that it&rsquo;s missing Feature X. Unless you
 know how to implement it. Maybe. If you want Feature X, it might be better

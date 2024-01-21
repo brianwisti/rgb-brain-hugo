@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/12/finding-and-removing-duplicate-files/">Finding and Removing Duplicate Files</a></li>
@@ -295,16 +300,21 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 size and <a href="http://en.wikipedia.org/wiki/MD5#MD5_hashes">MD5 hash</a>, and display the resulting list. It wasn’t foolproof, but it showed some thought. After spending a little too much time on the post, I realized I had never checked <a href="http://www.cpan.org/">CPAN</a>. Of course there is already a module to handle that exact task.</p>
 <h2 id="the-problem">The Problem</h2>
 <p>So here is my problem. I have — let’s see —</p>
-<pre tabindex="0"><code>$ find ~/Sync -type f | wc -l
-    44388
-</code></pre><p>I have 44,388 files in my Sync folder.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ find ~/Sync -type f | wc -l
+    44388</code></pre>
+</figure><p>I have 44,388 files in my Sync folder.</p>
 <p>I organized my home machines recently. When I say &ldquo;organized&rdquo; I mean that everything got swept into my <code>~/Sync</code> folder to deal with later. The refuse of several years squirreling files into random locations is now sitting in that single folder.</p>
 <p>Well, now it is time to clean that single folder up. I want to find and delete duplicate files. I planned to focus on image files, but File::Find::Duplicates makes it easier to find <em>all</em> duplicates.</p>
 <h2 id="the-solution">The Solution</h2>
 <p><a href="https://metacpan.org/pod/File::Find::Duplicates">File::Find::Duplicates</a> exports a <code>find_duplicate_files</code> subroutine, which finds the duplicate files in a list of folders.</p>
 <p>First tell me how many sets of duplicates I have.</p>
 <p><strong><code>count-dupes.pl</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Duplicates</span><span class="p">;</span>
@@ -313,13 +323,18 @@ size and <a href="http://en.wikipedia.org/wiki/MD5#MD5_hashes">MD5 hash</a>, and
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@dupes</span>      <span class="o">=</span> <span class="n">find_duplicate_files</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$dupe_count</span> <span class="o">=</span> <span class="nv">@dupes</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Found $dupe_count sets of duplicates in $root&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>This will tell me how much work is ahead of me.</p>
-<pre tabindex="0"><code>$ perl count-dupes.pl
-Found 3465 sets of duplicates in /Users/brian/Sync
-</code></pre><p>Removing the files was easy, but it rattled my nerves.</p>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Found $dupe_count sets of duplicates in $root&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This will tell me how much work is ahead of me.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl count-dupes.pl
+Found 3465 sets of duplicates in /Users/brian/Sync</code></pre>
+</figure><p>Removing the files was easy, but it rattled my nerves.</p>
 <p><strong><code>remove-dupes.pl</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Carp</span> <span class="sx">qw(croak)</span><span class="p">;</span>
@@ -345,18 +360,26 @@ Found 3465 sets of duplicates in /Users/brian/Sync
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Deleted $deleted files.&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>I fought the temptation to add progress bars or anything like that. Focus on getting the job done. I can add work if I end up revisiting this task later.</p>
-<pre tabindex="0"><code>$ perl remove-dupes.pl
-Deleted 3509 files.
-</code></pre><p>I removed a lot of files. Are there still any duplicates?</p>
-<pre tabindex="0"><code>$ perl count-dupes.pl
-Found 0 sets of duplicates in /Users/brian/Sync
-</code></pre><p>Thing is, I suspect that my <code>Sync</code> directory contains many empty subdirectories.</p>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Deleted $deleted files.&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I fought the temptation to add progress bars or anything like that. Focus on getting the job done. I can add work if I end up revisiting this task later.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl remove-dupes.pl
+Deleted 3509 files.</code></pre>
+</figure><p>I removed a lot of files. Are there still any duplicates?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl count-dupes.pl
+Found 0 sets of duplicates in /Users/brian/Sync</code></pre>
+</figure><p>Thing is, I suspect that my <code>Sync</code> directory contains many empty subdirectories.</p>
 <h2 id="about-those-directories">About Those Directories</h2>
 <p><a href="https://metacpan.org/pod/File::Find::Rule::DirectoryEmpty">File::Find::Rule::DirectoryEmpty</a> helps with exactly that problem. It extends the useful <a href="https://metacpan.org/pod/File::Find::Rule">File::Find::Rule</a> module to simplify finding files with characteristics you define.</p>
 <p><strong><code>find-leaves.pl</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Rule::DirectoryEmpty</span><span class="p">;</span>
@@ -366,13 +389,18 @@ Found 0 sets of duplicates in /Users/brian/Sync
 </span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">directoryempty</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">in</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$empty_count</span> <span class="o">=</span> <span class="nv">@empties</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$empty_count empty directories&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ perl find-leaves.pl
-2904 empty directories
-</code></pre><p>Yow. I can delete those directories, but then there could be parent directories that are now empty, and then grandparent directories, and then —</p>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$empty_count empty directories&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl find-leaves.pl
+2904 empty directories</code></pre>
+</figure><p>Yow. I can delete those directories, but then there could be parent directories that are now empty, and then grandparent directories, and then —</p>
 <p>You know what? Just keep looking and deleting until there no more empty directories.</p>
 <p><strong><code>remove-leaves.pl</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Carp</span> <span class="sx">qw(croak)</span><span class="p">;</span>
@@ -393,19 +421,25 @@ Found 0 sets of duplicates in /Users/brian/Sync
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$deleted empty folders deleted&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>I like a little logging on each pass so that I know what my program is seeing.</p>
-<pre tabindex="0"><code>$ perl remove-leaves.pl
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$deleted empty folders deleted&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I like a little logging on each pass so that I know what my program is seeing.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl remove-leaves.pl
 Found 2904 empty directories
 Found 529 empty directories
 Found 29 empty directories
 Found 5 empty directories
-3467 empty folders deleted
-</code></pre><p>I might dig in later to <em>actually</em> organize the remaining files. I may even automate it with some Perl. This is good enough for today, though.</p>
+3467 empty folders deleted</code></pre>
+</figure><p>I might dig in later to <em>actually</em> organize the remaining files. I may even automate it with some Perl. This is good enough for today, though.</p>
 <h2 id="done">Done</h2>
-<pre tabindex="0"><code>$ find ~/Sync/ -type f | wc -l
-   40880
-</code></pre><p>Now I have 40,880 files in my <code>~/Sync</code> folder. Maybe I should have counted directories too.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ find ~/Sync/ -type f | wc -l
+   40880</code></pre>
+</figure><p>Now I have 40,880 files in my <code>~/Sync</code> folder. Maybe I should have counted directories too.</p>
   
 
 

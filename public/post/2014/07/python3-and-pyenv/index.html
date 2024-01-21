@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/07/python3-and-pyenv/">Python3 and pyvenv</a></li>
@@ -290,18 +295,24 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>One of the interesting things about Python is how it handles personal workspaces. Popular tools in other languages, such as <a href="http://rbenv.org/">rbenv</a> for <a href="/card/ruby/">card/Ruby</a> and <a href="http://perlbrew.pl/">perlbrew</a> for <a href="/card/perl/">card/Perl</a>, focus on a complete localized installation for any version you care to use. Python tools assume a system standard version, and focus on making a snapshot for your projects. That works <em>sort of</em> like <a href="http://bundler.io/">Bundler</a>. Once you have your snapshot loaded, you use <a href="http://pip.readthedocs.org/">pip</a> to install the exact libraries needed by your projects. That works very much like Bundler.</p>
 <p>The tool of choice for making virtual environments in Python 3 is <a href="https://docs.python.org/dev/library/venv.html">pyvenv</a>. pyvenv actually comes with the standard installation of Python 3.3 or greater. That is good news. Python 2&rsquo;s <a href="http://virtualenv.readthedocs.org/">virtualenv</a> was not hard to install, but it was not available by default. You still had to <em>install</em> it.</p>
 <p>There is already an excellent <a href="https://packaging.python.org/en/latest/tutorial.html#creating-and-using-virtual-environments">introduction</a> to using pyvenv. That tells most of what you need to know.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pyvenv my-project
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pyvenv my-project
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">source</span> my-project/bin/activate
 </span></span><span class="line"><span class="cl"><span class="go">(my-project) $
-</span></span></span></code></pre></div><p>Now <code>my-project</code> holds the default Python interpreter until you exit that particular shell or activate a different virtual environment.</p>
+</span></span></span></code></pre>
+</figure><p>Now <code>my-project</code> holds the default Python interpreter until you exit that particular shell or activate a different virtual environment.</p>
 <p>That is good enough to get started, but I often have several projects going. Each project gets its own virtual environment. Having my environment files just sitting there in my project folder bothers me, though.</p>
 <p>I like things tidy, so I use <a href="http://virtualenvwrapper.readthedocs.org/en/latest/index.html">virtualenvwrapper</a>. virtualenvwrapper creates a single folder to hold your virtual environments and provides you with a couple of shell commands to manage those environments. It&rsquo;s easy if you&rsquo;re only using a single system Python. Just follow their installation <a href="http://virtualenvwrapper.readthedocs.org/en/latest/install.html">instructions</a>. After that, <code>mkvirtualenv</code> and <code>workon</code> are your friends.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> mkvirtualenv mypy3
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> mkvirtualenv mypy3
 </span></span><span class="line"><span class="cl"><span class="go">(mypy3) $
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">#</span> later, in another shell
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> workon mypy3
 </span></span><span class="line"><span class="cl"><span class="go">(mypy3) $
-</span></span></span></code></pre></div><p>What if I wanted to use both Python 2 and Python 3 virtual environments? Well, the virtual environments I already had set up for work function without any problem. Thank goodness. If I wanted to do new Python 2 work - well, that may be a good time to pull up a <em>real</em> virtual environment with a tool like <a href="http://www.vagrantup.com/">Vagrant</a>. I may come back to that later.</p>
+</span></span></span></code></pre>
+</figure><p>What if I wanted to use both Python 2 and Python 3 virtual environments? Well, the virtual environments I already had set up for work function without any problem. Thank goodness. If I wanted to do new Python 2 work - well, that may be a good time to pull up a <em>real</em> virtual environment with a tool like <a href="http://www.vagrantup.com/">Vagrant</a>. I may come back to that later.</p>
   
 
 

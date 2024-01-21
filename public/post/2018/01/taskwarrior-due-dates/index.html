@@ -133,8 +133,8 @@ I checked out some library books again. Time to correctly record their due date 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/01/taskwarrior-due-dates/">Taskwarrior Due Dates</a></li>
@@ -301,10 +306,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Thing is, Taskwarrior supports assigning due dates directly.</p>
 <h3 id="add-a-due-date">Add a due date</h3>
 <p>Give a task a due date with <code>due:</code> and a date. Taskwarrior lets you describe dates in <a href="https://taskwarrior.org/docs/named_dates.html">many ways</a>. When in doubt, use <code>yyyy-mm-dd</code>.</p>
-<pre tabindex="0"><code>$ task add return to library due:2018-01-20
-Created task 55.
-</code></pre><p>The <code>next</code> report has a new column, but my library task gets lost in the shuffle.</p>
-<pre tabindex="0"><code>$ task
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add return to library due:2018-01-20
+Created task 55.</code></pre>
+</figure><p>The <code>next</code> report has a new column, but my library task gets lost in the shuffle.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task
 [task next]
 
 ID Age   P Project      Tag              Due Description                                     Urg
@@ -343,40 +354,58 @@ ID Age   P Project      Tag              Due Description                        
 42 4d      lyricsvideos learn music          processing visualization timed by libROSA       1.92
 36 5d                   blog taskwarrior     custom priority report                          0.93
 
-30 tasks
-</code></pre><p>Where is it? Oh there it is.</p>
+30 tasks</code></pre>
+</figure><p>Where is it? Oh there it is.</p>
 <h3 id="list-tasks-with-a-due-date">List tasks with a due date</h3>
 <p>Fortunately, Taskwarrior lets me use filters. <code>due.any:</code> filters tasks to those which have an assigned due date.</p>
-<pre tabindex="0"><code>$ task due.any:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task due.any:
 [task next ( due.any: )]
 
 ID Age   Due Description       Urg 
-53 12min 2w  return to library  2.4
-</code></pre><h2 id="waiting-tasks">Waiting tasks</h2>
+53 12min 2w  return to library  2.4</code></pre>
+</figure><h2 id="waiting-tasks">Waiting tasks</h2>
 <p>A friend and I chatted a minute ago. We plan to meet up on Thursday. Why not add that as a task, since I have this blog post open?</p>
-<pre tabindex="0"><code>$ task add meet rainy due:thursday
-</code></pre><p>Taking advantage of Taskwarrior’s <a href="https://taskwarrior.org/docs/named_dates.html">date flexibility</a> is often quicker than remembering a calendar date.</p>
-<pre tabindex="0"><code>$ task due.any:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add meet rainy due:thursday</code></pre>
+</figure><p>Taking advantage of Taskwarrior’s <a href="https://taskwarrior.org/docs/named_dates.html">date flexibility</a> is often quicker than remembering a calendar date.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task due.any:
 [task next ( due.any: )]
 
 ID Age   Due Description       Urg 
 54 26s   2d  meet rainy        7.83
-53 14min 2w  return to library  2.4
-</code></pre><p>I don’t need a big urgent reminder for that one though. Just remind me on Thursday that we’re meeting Thursday.</p>
-<pre tabindex="0"><code>$ task 54 modify wait:due
+53 14min 2w  return to library  2.4</code></pre>
+</figure><p>I don’t need a big urgent reminder for that one though. Just remind me on Thursday that we’re meeting Thursday.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 54 modify wait:due
 Modifying task 54 &#39;meet rainy&#39;.
-Modified 1 task.
-</code></pre><p>Now it doesn’t show up in my due list or in my regular task list. I assume it will appear on Thursday morning.</p>
+Modified 1 task.</code></pre>
+</figure><p>Now it doesn’t show up in my due list or in my regular task list. I assume it will appear on Thursday morning.</p>
 <p>Of course there’s a report available to see only waiting tasks.</p>
-<pre tabindex="0"><code>$ task waiting
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task waiting
 
 ID Age  Wait       Remaining Due        Description
 54 7min 2018-01-04        2d 2018-01-04 meet rainy 
 
-1 task
-</code></pre><h2 id="scheduled-tasks">Scheduled tasks</h2>
+1 task</code></pre>
+</figure><h2 id="scheduled-tasks">Scheduled tasks</h2>
 <p>As long as I’m sitting here: how about a credit card bill?</p>
-<pre tabindex="0"><code>$ task add credit card +pay due:2018-01-22
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add credit card &#43;pay due:2018-01-22
 Created task 56.
 $ task due.any:
 [task next ( due.any: )]
@@ -385,34 +414,46 @@ ID Age  Tag Due Description       Urg
 56 2min pay 2w  credit card        3.2
 53 1h       2w  return to library  2.4
 
-2 tasks
-</code></pre><p>I don’t get paid until the 15th, so there’s no point fussing about it right now.</p>
+2 tasks</code></pre>
+</figure><p>I don’t get paid until the 15th, so there’s no point fussing about it right now.</p>
 <p>What happens if I schedule the credit card for payday?</p>
-<pre tabindex="0"><code>$ task 56 modify scheduled:15th
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 56 modify scheduled:15th
 Modifying task 56 &#39;credit card&#39;.
-Modified 1 task.
-</code></pre><p>The task still shows up in <code>next</code>, which is fine. I want to stay aware of it. I can use the <code>scheduled</code> filter to see tasks which have a scheduled date.</p>
-<pre tabindex="0"><code>$ task scheduled
+Modified 1 task.</code></pre>
+</figure><p>The task still shows up in <code>next</code>, which is fine. I want to stay aware of it. I can use the <code>scheduled</code> filter to see tasks which have a scheduled date.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task scheduled
 [task next ( scheduled )]
 
 ID Age  Tag Due Description Urg 
 56 4min pay 2w  credit card  3.2
 
-1 task
-</code></pre><p>What about all the non-waiting tasks that are due this month? Time for my first
+1 task</code></pre>
+</figure><p>What about all the non-waiting tasks that are due this month? Time for my first
 <a href="https://taskwarrior.org/docs/tags.html#supported">virtual tag</a> — provided by Taskwarrior as a shorthand for specific complex queries. The <code>+MONTH</code> virtual tag filters on tasks that are due this month.</p>
-<pre tabindex="0"><code>$ task +MONTH
-[task next ( +MONTH )]
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;MONTH
+[task next ( &#43;MONTH )]
 
 ID Age  Tag Due Description       Urg 
 56 6min pay 2w  credit card        3.2
 53 1h       2w  return to library  2.4
 
-2 tasks
-</code></pre><p>This has been a quick post, but I still want something kind of cool for the opening screenshot.</p>
+2 tasks</code></pre>
+</figure><p>This has been a quick post, but I still want something kind of cool for the opening screenshot.</p>
 <p>Oh I know: how about a calendar?</p>
-<pre tabindex="0"><code>$ task calendar
-</code></pre>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task calendar</code></pre>
+</figure>
   
 
 

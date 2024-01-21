@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/">Blog Writing in Org Mode</a></li>
@@ -300,38 +305,45 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Why not use that functionality for my own site? Random Geekery is built with <a href="/card/jekyll/">Jekyll</a>, and there are already <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">instructions</a> available for using the two together. I can use those as a starting point.</p>
 <h2 id="organize-directories">Organize Directories</h2>
 <p>When I’m using Org mode to write the blog pages, Jekyll becomes an implementation detail specific to publishing the blog. One folder contains all of the Jekyll project files, and an <code>org</code> folder mirrors the content-specific structure of the <code>jekyll</code> tree.</p>
-<pre tabindex="0"><code>+jekyll
-+- css
-+- _data
-+- _drafts
-+- img
-+- _includes
-+- _layouts
-+- pages
-+- _plugins
-+- _posts
-+- _sass
-+- _scripts
-+- _site
-+org
-    +- _drafts
-    +- _posts
-    +- pages
-</code></pre><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#43;jekyll
+&#43;- css
+&#43;- _data
+&#43;- _drafts
+&#43;- img
+&#43;- _includes
+&#43;- _layouts
+&#43;- pages
+&#43;- _plugins
+&#43;- _posts
+&#43;- _sass
+&#43;- _scripts
+&#43;- _site
+&#43;org
+    &#43;- _drafts
+    &#43;- _posts
+    &#43;- pages</code></pre>
+</figure><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
 <h2 id="front-matter">Front Matter</h2>
 <p>The <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> used by Jekyll and other engines to determine content metadata requires some special handling to get exported correctly by Org mode. The most straightforward thing is to use the suggestion from the instructions mentioned earlier. Put your front matter in a HTML block right at the top of the file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: Blog Writing in Org Mode
 </span></span><span class="line"><span class="cl">layout: post
 </span></span><span class="line"><span class="cl">category: Emacs
 </span></span><span class="line"><span class="cl">tags: org jekyll
 </span></span><span class="line"><span class="cl">---
-</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span>
-</span></span></code></pre></div><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span></span></span></code></pre>
+</figure><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
 <h2 id="configure-html-export">Configure HTML Export</h2>
 <p>HTML and other output needs to be placed correctly within the Jekyll layout conventions. A proper <code>org-publish-project-alist</code> will take care of this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
 </span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span>
 </span></span><span class="line"><span class="cl">         <span class="c1">;; Location of org files</span>
@@ -356,13 +368,15 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-attachment</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;rg&#34;</span> <span class="nb">:components</span> <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span> <span class="s">&#34;org-static-randomgeekery&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">        <span class="p">))</span>
-</span></span></code></pre></div><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span></span></span></code></pre>
+</figure><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
 <h2 id="publishing-a-post">Publishing A Post</h2>
 <p>So when you’ve been editing a draft long enough and you’re ready to make it a real live post, you need to move the file from <code>_drafts</code> to <code>_posts</code>, with the publish date prefixing the filename.</p>
 <p>I could do that manually, but it’s tedious to do that for every blog post.</p>
 <p>I experiment with my rudimentary Emacs Lisp skills to create a new filename that looks about right.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Write current draft file as a Jekyll post file&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">if</span>
@@ -384,11 +398,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">        <span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;%s is not in _drafts!&#34;</span> <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">      <span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">)</span>
-</span></span></code></pre></div><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span></span></span></code></pre>
+</figure><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
 <blockquote>
-<p>[!WARNING]
-See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
+<p><strong>WARNING</strong></p>
+<p>See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
 </blockquote>
 <h2 id="followup">Followup</h2>
 <p>I wonder if maybe this isn’t the best approach, since it seems to confuse the heck out of Org mode. My lone org file just would not republish until I found <a href="http://lists.gnu.org/archive/html/emacs-orgmode/2009-05/msg00285.html">this post</a> for a similar situation. If it’s just not rebuilding, force it with a numeric argument: <kbd>C-u 0 C-c e</kbd>.</p>

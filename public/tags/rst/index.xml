@@ -46,11 +46,18 @@ pip install python-frontmatter For experimentation, I copied the build code from
   <content:encoded><![CDATA[<h2>But first a couple others as I figure this out</h2><p>Today&rsquo;s the day I learn how to create custom roles in <a href="/card/restructuredtext/">card/reStructuredText</a>. There&rsquo;s already <a href="https://docutils.sourceforge.io/docs/howto/rst-roles.html">documentation</a> on how to do this. I&rsquo;m just applying it for my specific case.</p>
 <h2 id="prologue-setup">Prologue: Setup</h2>
 <p>Install some stuff if you want to play along.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -U docutils invoke
-</span></span></code></pre></div><p>Some of the requirements are specific to my writing flow.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install python-frontmatter
-</span></span></code></pre></div><p>For experimentation, I copied the build code from my <a href="/post/2021/08/trying-a-thing-with-neovim/">Neovim rst plugin</a> into the site&rsquo;s <a href="https://www.pyinvoke.org">Invoke</a> task file. Easier than updating remote plugins and restarting the editor with every change.</p>
-<div class="highlight" title="tasks.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Site generation tasks for randomgeekery.org&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -U docutils invoke</span></span></code></pre>
+</figure><p>Some of the requirements are specific to my writing flow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install python-frontmatter</span></span></code></pre>
+</figure><p>For experimentation, I copied the build code from my <a href="/post/2021/08/trying-a-thing-with-neovim/">Neovim rst plugin</a> into the site&rsquo;s <a href="https://www.pyinvoke.org">Invoke</a> task file. Easier than updating remote plugins and restarting the editor with every change.</p>
+<figure class="highlight">
+  <figcaption><tt>tasks.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Site generation tasks for randomgeekery.org&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -90,45 +97,66 @@ pip install python-frontmatter For experimentation, I copied the build code from
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rst</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Transform a single reStructuredText file.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">convert_rst_file_for_hugo</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-</span></span></code></pre></div><p>Then I use Invoke to do the transform:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv content/draft/creating-a-restructuredtext-kbd-role/index.rst.txt
+</span></span><span class="line"><span class="cl">    <span class="n">convert_rst_file_for_hugo</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Then I use Invoke to do the transform:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv content/draft/creating-a-restructuredtext-kbd-role/index.rst.txt
 </span></span><span class="line"><span class="cl"><span class="go">🖍 content/draft/creating-a-restructuredtext-kbd-role/index.html
-</span></span></span></code></pre></div><p>Some variation of this is bound to work for you.</p>
+</span></span></span></code></pre>
+</figure><p>Some variation of this is bound to work for you.</p>
 <p>Let&rsquo;s get started!</p>
 <h2 id="what-even-is-a-role">What even is a role?</h2>
 <p>First, we need the background. There&rsquo;s this thing called <em>interpreted text</em>. It&rsquo;s a reserved bit of functionality for specially marked text. Folks coming to reStructuredText from Markdown mostly know it as the weird reason they have to use double backticks for <code>code</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="nv">`interpreted text`</span><span class="err">
-</span></span></span></code></pre></div><p>Interpreted text has all sorts of fancy potential. I mainly know it for the fact that rst links use it. Unless told otherwise, <a href="https://docutils.sourceforge.io/">Docutils</a> treats interpreted text as a citation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>interpreted text<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>It assumes any interpreted text is <code>:title-reference:</code> — that is, it references the title of a book, movie, song, or other publication.  The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><code>cite</code></a> element is a perfectly reasonable choice for that.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="nv">`interpreted text`</span></span></span></code></pre>
+</figure><p>Interpreted text has all sorts of fancy potential. I mainly know it for the fact that rst links use it. Unless told otherwise, <a href="https://docutils.sourceforge.io/">Docutils</a> treats interpreted text as a citation.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>interpreted text<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>It assumes any interpreted text is <code>:title-reference:</code> — that is, it references the title of a book, movie, song, or other publication.  The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><code>cite</code></a> element is a perfectly reasonable choice for that.</p>
 <p>But what if you aren&rsquo;t specifically talking about a title? <em>Roles</em> provide an explicit label for your interpreted text.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:term:</span><span class="nv">`Roles`</span><span class="err">
-</span></span></span></code></pre></div><p>What&rsquo;s a <code>:term:</code> in rst? Nothing. I made it up. Seems like a good role for when I introduce a new name and I want it to stand out.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:term:</span><span class="nv">`Roles`</span></span></span></code></pre>
+</figure><p>What&rsquo;s a <code>:term:</code> in rst? Nothing. I made it up. Seems like a good role for when I introduce a new name and I want it to stand out.</p>
 <p>I need to define the role to use it. Otherwise?</p>
 <p><img src="/post/2021/09/../../../attachments/img/2021/docutils-unknown-role.png" alt="attachments/img/2021/docutils-unknown-role.png"/>
 Docutils embeds an error message below the offending block</p>
 <p>So up at the top of my document use the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#custom-interpreted-text-roles">role directive</a> to create <code>:term:</code> and register it with the parser.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term<span class="err">
-</span></span></span></code></pre></div><p>Now that Docutils knows about the role, it can turn it into HTML.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>It still doesn&rsquo;t have any inherent <em>meaning</em>, but I can put some style rules on it so that anything I label with the <code>:term:</code> role shows up a little differently.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term</span></span></code></pre>
+</figure><p>Now that Docutils knows about the role, it can turn it into HTML.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>It still doesn&rsquo;t have any inherent <em>meaning</em>, but I can put some style rules on it so that anything I label with the <code>:term:</code> role shows up a little differently.</p>
 <h2 id="inline-roles-in-your-document">Inline roles in your document</h2>
 <p>If I want the term to stand out a little more, I can adjust my role definition.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term(strong)<span class="err">
-</span></span></span></code></pre></div><p>Now it inherits from the <code>:strong:</code> role, keeping the <code>&quot;term&quot;</code> CSS class.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>You can inherit from any role. That makes it a nice way to create aliases or slight variations to existing roles.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term(strong)</span></span></code></pre>
+</figure><p>Now it inherits from the <code>:strong:</code> role, keeping the <code>&quot;term&quot;</code> CSS class.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>You can inherit from any role. That makes it a nice way to create aliases or slight variations to existing roles.</p>
 <p>But I want to get fancy. Let&rsquo;s look at defining reStructuredText roles in Python.</p>
 <h2 id="defining-roles-in-your-code">Defining roles in your code</h2>
 <p>Defining a role has two main steps. Okay, three. Because first we need to import some libraries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
-</span></span></code></pre></div><p><em>Now</em> we create a function that knows what to do when given a role and some preprocessed parameters.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span></span></span></code></pre>
+</figure><p><em>Now</em> we create a function that knows what to do when given a role and some preprocessed parameters.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return text marked as domain terminology.&#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">...</span>
-</span></span></code></pre></div><p>That&rsquo;s quite a function signature to take in without context, so here&rsquo;s a breakdown of what got sent when Docutils saw my first <code>:term:`Roles</code>:</p>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span></span></span></code></pre>
+</figure><p>That&rsquo;s quite a function signature to take in without context, so here&rsquo;s a breakdown of what got sent when Docutils saw my first <code>:term:`Roles</code>:</p>
 <table>
 <thead>
 <tr>
@@ -182,12 +210,18 @@ Docutils embeds an error message below the offending block</p>
 <li><code>options</code> — just in case</li>
 </ul>
 <p>I chose to mirror the inline directive I made earlier, creating a <code>strong</code> node with a class of <code>&quot;term&quot;</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">term_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;term&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Anyone calling <code>role_term</code> expects a tuple with two node lists: one for content, and another holding any error nodes I may need to create. In this case the content list has my term node and the error list is empty.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span>
-</span></span></code></pre></div><p>With our role implementation defined, we register it and the name associated with it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">term_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;term&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Anyone calling <code>role_term</code> expects a tuple with two node lists: one for content, and another holding any error nodes I may need to create. In this case the content list has my term node and the error list is empty.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span></span></span></code></pre>
+</figure><p>With our role implementation defined, we register it and the name associated with it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return text marked as domain terminology.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
@@ -195,14 +229,16 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">role_term</span><span class="p">)</span>
-</span></span></code></pre></div><p>I don&rsquo;t need my inline <code>role</code> directive anymore, so I remove it. Registering <code>role_term</code> makes it available to every document processed by this particular Python script.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">role_term</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I don&rsquo;t need my inline <code>role</code> directive anymore, so I remove it. Registering <code>role_term</code> makes it available to every document processed by this particular Python script.</p>
 <p>Okay, now I basically know how to implement a reStructuredText role. Let&rsquo;s keep going.</p>
 <h3 id="tag-references"><code>:tag:</code> references</h3>
 <p>I link to tags on this site frequently. Since I&rsquo;m the main audience for this site, it&rsquo;s mostly to give me a shortcut to related content. But hey it may help <em>you</em> find related content to if you happen to click through.</p>
 <p>Couple of problems with those tag links, though. First off, they look exactly like every other link in my published HTML. It would be nice for them to stand out a bit when I&rsquo;m reading. Second, they look like every other link in my post source. It would be nice for them to stand out a bit when I&rsquo;m <em>writing</em>.</p>
 <p>So let&rsquo;s make a <code>:tag:</code> reference role.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_reference_tag</span><span class="p">(</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_reference_tag</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a reference to a site tag.&#34;&#34;&#34;</span>
@@ -213,30 +249,42 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">tag_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="n">role_reference_tag</span><span class="p">)</span>
-</span></span></code></pre></div><p>I thought about putting the <code>#</code> in CSS, but not every <code>p-category</code> is a tag. I can always change my mind later, maybe make a distinct <code>tag</code> CSS class.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="n">role_reference_tag</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I thought about putting the <code>#</code> in CSS, but not every <code>p-category</code> is a tag. I can always change my mind later, maybe make a distinct <code>tag</code> CSS class.</p>
 <p>It looks similar to <code>:term:</code>, except because I&rsquo;m referencing something I use a <code>reference</code> node and give it a link to that tag&rsquo;s page as <code>refuri</code>.  The <code>p-category</code> class is a <a href="/card/microformats/">card/microformats</a> thing for <a href="/card/indieweb/">card/IndieWeb</a>. I also decided to prefix my tag text with the traditional octothorpe used to mark tags out in the wild.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:tag:</span><span class="nv">`microformats`</span><span class="err">
-</span></span></span></code></pre></div><p>Oh yes that is <em>much</em> nicer to read than a standard reStructuredText link.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category reference external&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/microformats&#34;</span><span class="p">&gt;</span>#microformats<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>There&rsquo;s my <code>p-category</code> class, along with an unsurprising <code>reference</code> — since it&rsquo;s a clear way to indicate the reference node I used — and a slightly confusing <code>external</code> class. Pretty sure that means &ldquo;external to the document.&rdquo;</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:tag:</span><span class="nv">`microformats`</span></span></span></code></pre>
+</figure><p>Oh yes that is <em>much</em> nicer to read than a standard reStructuredText link.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category reference external&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/microformats&#34;</span><span class="p">&gt;</span>#microformats<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>There&rsquo;s my <code>p-category</code> class, along with an unsurprising <code>reference</code> — since it&rsquo;s a clear way to indicate the reference node I used — and a slightly confusing <code>external</code> class. Pretty sure that means &ldquo;external to the document.&rdquo;</p>
 <h3 id="a-kbd-role">A <code>:kbd:</code> role</h3>
 <p>Something I need rather often is a way to indicate keyboard input. <kbd>Control</kbd> <kbd>c</kbd>, stuff like that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return literal text marked as keyboard input.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">kbd_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">kbd_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;keyboard&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:kbd:</span><span class="nv">`Control c`</span><span class="err">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">tt</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;keyboard docutils literal&#34;</span><span class="p">&gt;</span>Control c<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Well that was easy. A bit verbose, but okay. That&rsquo;s not the real problem though.</p>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:kbd:</span><span class="nv">`Control c`</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">tt</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;keyboard docutils literal&#34;</span><span class="p">&gt;</span>Control c<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Well that was easy. A bit verbose, but okay. That&rsquo;s not the real problem though.</p>
 <h3 id="theres-a-perfectly-good-kbd-element">There&rsquo;s a perfectly good <code>&lt;kbd&gt;</code> element</h3>
 <p>This blog is HTML, right? Can&rsquo;t I just use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd"><code>kbd</code></a> element in my role?</p>
 <p>Yes, but kind of no. It&rsquo;s considered poor form to put raw HTML in your output nodes. Docutils writes all sorts of content, and a <code>&lt;kbd&gt;</code> would be pretty ungainly sitting in a PDF. Ideally you&rsquo;d take care of writing HTML in an HTML Writer. Unfortunately, I have no idea how to work an HTML Writer yet.</p>
 <p>But we <em>can</em> output raw HTML in a role implementation. It would be frowned on slightly less if we flagged it as a raw role.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">html</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">html</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_raw_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return literal text marked as keyboard input.&#34;&#34;&#34;</span>
@@ -249,12 +297,16 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;raw-kbd&#39;</span><span class="p">,</span> <span class="n">role_raw_kbd</span><span class="p">)</span>
-</span></span></code></pre></div><p>Better pull in the <a href="https://docs.python.org/3/library/html.html">html</a> standard library and escape that text. Otherwise I&rsquo;d feel awful silly when talking about indenting with <code>&gt;&gt;</code> in <a href="/card/vim/">card/Vim</a> or something and it breaks the whole page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:raw-kbd:</span><span class="nv">`&gt;&gt;`</span><span class="err">
-</span></span></span></code></pre></div><p>Yeah, that works. It&rsquo;s not too bad to look at while writing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span><span class="ni">&amp;lt;&amp;lt;</span><span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>And there we go. An honest to goodness <code>&lt;kbd&gt;</code> element. And <code>:raw-kbd:</code> will be easier to search for if and when I get around to custom HTML Writers.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;raw-kbd&#39;</span><span class="p">,</span> <span class="n">role_raw_kbd</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Better pull in the <a href="https://docs.python.org/3/library/html.html">html</a> standard library and escape that text. Otherwise I&rsquo;d feel awful silly when talking about indenting with <code>&gt;&gt;</code> in <a href="/card/vim/">card/Vim</a> or something and it breaks the whole page.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:raw-kbd:</span><span class="nv">`&gt;&gt;`</span></span></span></code></pre>
+</figure><p>Yeah, that works. It&rsquo;s not too bad to look at while writing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span><span class="ni">&amp;lt;&amp;lt;</span><span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>And there we go. An honest to goodness <code>&lt;kbd&gt;</code> element. And <code>:raw-kbd:</code> will be easier to search for if and when I get around to custom HTML Writers.</p>
 <p>Figuring out a role for keyboard input was the reason I started writing this post — though my favorite new role is <code>:tag:</code>. Anyways, I think this is a good spot to stop writing and start editing.</p>
 <h2 id="wrap-it-up">Wrap it up</h2>
 <p>…pardon me while I copy those role functions back into my Neovim plugin…</p>
@@ -287,21 +339,26 @@ I won’t make you wait around for a proper post. Hugo lets you use reStructured
 <p>I won&rsquo;t make you wait around for a proper post. Hugo lets you use reStructuredText.  But Hugo&rsquo;s way is slow and hard to customize. Not their fault. reStructuredText is not their focus.</p>
 <p>Still — why not format it ahead of time?</p>
 <blockquote>
-<p>[!NOTE] Answer
-Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
+<p><strong>Answer</strong></p>
+<p>Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
 </blockquote>
 <p>Shush, me.</p>
 <h3 id="the-implementation">The Implementation</h3>
 <p>Start with <code>content/whatever/index.rst.txt</code>.</p>
 <p>Make sure Hugo won&rsquo;t track <code>rst.txt</code> files by explicitly adding an item the <a href="https://gohugo.io/getting-started/configuration/#ignore-content-and-data-files-when-rendering"><code>ignoreFiles</code></a> config setting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
 <p>I tried setting <code>ignoreFiles = ['\.rst$']</code> but as far as I could tell, Hugo ignored my request to ignore the file. Looks like I&rsquo;m sticking with <code>.rst.txt</code> for now.</p>
 <p>With the code down below in my Neovim python3 — that&rsquo;s <em>python3</em> not <em>python</em> — rplugin folder, and remote plugins updated, I write <code>index.rst.txt</code> to disk.</p>
 <p>The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.</p>
 <h4 id="the-code">The Code</h4>
-<div class="highlight" title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <figcaption><tt>~/.config/nvim/rplugin/python3/rstbuild_hugo.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -336,11 +393,11 @@ Because it took a lot of work to figure this out? And most folks are perfectly h
 </span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">post</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
 <blockquote>
-<p>[!NOTE]
-<em>You</em> will, if you skim the Updates at the end.</p>
+<p><strong>NOTE</strong></p>
+<p><em>You</em> will, if you skim the Updates at the end.</p>
 </blockquote>
 <p>If you grab a copy for your own nefarious plans — a similar template could get you fast Asciidoctor transforms as well — just remember a couple things:</p>
 <ul>
@@ -384,19 +441,23 @@ I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</
 <p>Most Markdown parsers include some way to handle tables. Usually it involves
 drawing your table with ASCII characters. Something like this, from an older
 post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
 </span></span><span class="line"><span class="cl">--------------------|---------|-------------------------------------
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-create`</span>   | <span class="sb">`C-z c`</span> | Create a new screen and switch to it.
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-next`</span>     | <span class="sb">`C-z n`</span> | Cycle to the next screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-previous`</span> | <span class="sb">`C-z p`</span> | Cycle to the previous screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-kill`</span>     | <span class="sb">`C-z k`</span> | Kill the current screen
-</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings
-</span></span></code></pre></div><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
+</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings</span></span></code></pre>
+</figure><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
 <p><a href="/card/restructuredtext/">card/reStructuredText</a> and <a href="/card/asciidoctor/">card/Asciidoctor</a> both provide table-handling approaches beyond drawing ASCII, though the default <a href="https://docutils.sourceforge.io/rst.html">rst table</a> is lovely if you <em>do</em> like fiddling with columns. I looked at them for shortcode inspiration — particularly rst’s <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4">csv-table</a> and <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table">list-table</a> directives.</p>
 <h2 id="csv-tables">CSV tables</h2>
 <p>First up: CSV, &ldquo;Comma-Separated Values&rdquo;. I work a fair amount with CSV on the command line. I may want to copy and paste something into a table for a blog post every once in a while.</p>
 <p>A <code>csv-table</code> shortcode could contain any CSV data. Maybe something from the <a href="https://github.com/awesomedata/awesome-public-datasets">Awesome Public Datasets</a>? Nah, I’ll just use my <a href="https://plausible.io">https://plausible.io</a> visitor count for the last week.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">2020-05-28,66
 </span></span><span class="line"><span class="cl">2020-05-29,43
@@ -406,11 +467,14 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">2020-06-02,62
 </span></span><span class="line"><span class="cl">2020-06-03,73
 </span></span><span class="line"><span class="cl">2020-06-04,28
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
 <h3 id="just-use-transformunmarshal">Just use <code>transform.Unmarshal</code></h3>
 <p>Give <code>transform.Unmarshal</code> a formatted string, and it gives you back a data structure. CSV text becomes an array of arrays, which we turn into a table by iterating through everything with <a href="https://gohugo.io/functions/range/"><code>range</code></a>.</p>
-<div class="highlight" title="layouts/shortcodes/csv-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
@@ -420,8 +484,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Voila! Instant table!</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Voila! Instant table!</p>
 <p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
 <p>Not bad, but it could be better.</p>
 <ul>
@@ -432,12 +496,17 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <p>Give me a minute.</p>
 <h3 id="fine-tuning-the-table-with-parameters">Fine-tuning the table with parameters</h3>
 <p>I’ll add a parameter for the caption. Maybe another parameter indicating whether to expect a header row, since the first row of CSV doesn’t <em>always</em> contain column names.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
-<div class="highlight" title="layouts/shortcodes/csv/table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv/table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
@@ -459,8 +528,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><ul>
 <li>if there’s a header row, <a href="https://gohugo.io/functions/after/"><code>after</code></a> lets me skip past it when building the data rows</li>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
@@ -476,7 +545,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>No, I’m talking about something similar to the <code>csv-table</code> case: arrays of JSON objects you paste in from somewhere else to add a little information to your blog post.</p>
 <p>Heck, you don’t even need parameters. You could put caption and header details <em>in</em> the data! Might be a good idea to use a list of desired columns instead of a simple flag. That way we can pick and choose columns without editing the row objects.</p>
 <p>Suppose I extracted details for the US and a couple neighbors from <a href="https://covid19api.com/">COVID19API</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{
 </span></span><span class="line"><span class="cl">  &#34;caption&#34;: &#34;COVID-19 updates for 6 Jun 2020&#34;,
 </span></span><span class="line"><span class="cl">  &#34;headers&#34;: [
@@ -527,9 +598,12 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    }
 </span></span><span class="line"><span class="cl">  ]
 </span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
-<div class="highlight" title="layouts/shortcodes/data-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/data-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ with $table.caption }} <span class="p">&lt;</span><span class="nt">caption</span><span class="p">&gt;</span>{{ . | markdownify }}<span class="p">&lt;/</span><span class="nt">caption</span><span class="p">&gt;</span> {{ end }}
@@ -554,8 +628,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{ end }}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
 <p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
@@ -564,7 +638,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>What about that first table I mentioned? You know, the <code>elscreen</code> quick reference? <em>That</em> is the kind of table I need a shortcode for. Something like a reStructuredText <code>list-table</code>, or <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables">Asciidoctor tables</a>.</p>
 <p>I tried different approaches with <code>transform.Unmarshal</code> and mashing YAML, TOML, or JSON lists into something useful. That got frustratingly brittle. Time to step back and reevaluate. What’s the simplest structure that still does what I want?</p>
 <p>Maybe something line-oriented?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Function
 </span></span><span class="line"><span class="cl">Keys
 </span></span><span class="line"><span class="cl">Description
@@ -588,10 +664,13 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">`elscreen-help`
 </span></span><span class="line"><span class="cl">`C-z ?`
 </span></span><span class="line"><span class="cl">Show ElScreen key bindings
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
 <p>I like it. Easy to write, easy to read, and easy to parse with <a href="https://gohugo.io/functions/split/"><code>split</code></a>. Well — you need to <a href="https://gohugo.io/functions/trim/"><code>trim</code></a> a leading newline because of how <code>.Inner</code> gets handed off, but that’s the only wrinkle so far.</p>
-<div class="highlight" title="layouts/shortcodes/list-table.html"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/list-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := split (trim .Inner &#34;\n&#34;) &#34;\n\n&#34; }}
 </span></span><span class="line"><span class="cl">
@@ -617,8 +696,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl">&lt;/table&gt;
-</span></span></code></pre></div><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
+</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>
@@ -656,14 +735,18 @@ Nothing about RST limits it to technical writing — well except that most nonte
 <h3 id="how-do-i-use-rst-in-my-blog">How do I use RST in my blog?</h3>
 <p>If you already blog with <a href="/card/nikola/">card/Nikola</a> or <a href="https://getpelican.com">Pelican</a>, you are all set. Those site generators natively support reStructuredText.</p>
 <p><a href="/card/hugo/">card/Hugo</a> will build <code>.rst</code> content if you have <code>rst2html.py</code> installed.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pip install docutils
-</span></span></code></pre></div><h3 id="editor-support">Editor support</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pip install docutils</span></span></code></pre>
+</figure><h3 id="editor-support">Editor support</h3>
 <p>Emacs and Vim both include RST support built-in. Visual Studio Code users can find a [useful plugin])(<a href="https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext%29">https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext)</a>. But all you <em>need</em> is a plain text editor, preferably with automatic indentation.</p>
 <h3 id="extracting-styles">Extracting styles</h3>
 <p>The HTML generated by <code>rst2html.py</code> has its own special classes. My home-grown Hugo theme supports none of those classes, of course. I couldn&rsquo;t figure out how to export the Docutils default stylesheet this morning.</p>
 <p>So I made a document and grabbed the CSS rules from there for my own nefarious purposes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34;hey\n&#34;</span> <span class="p">|</span> rst2html.py &gt;&gt; sample.html
-</span></span></code></pre></div><h2 id="what-does-it-look-like">What does it look like?</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34;hey\n&#34;</span> <span class="p">|</span> rst2html.py &gt;&gt; sample.html</span></span></code></pre>
+</figure><h2 id="what-does-it-look-like">What does it look like?</h2>
 <p>Although RST is readable, more folks are familiar with <a href="/card/markdown/">card/Markdown</a>. I know I was more familiar with Markdown when I started this. Once you get the hang of it, you may find that RST has its charms.</p>
 <h3 id="the-basics">The basics</h3>
 <p>More than enough to write one of my blog posts.</p>
@@ -673,17 +756,21 @@ Nothing about RST limits it to technical writing — well except that most nonte
 <p>Indent your paragraph if you want a nice blockquote.</p>
 </blockquote>
 <p>You can <em>emphasize</em> text in a paragraph using asterisks. Double asterisks give <strong>more</strong> emphasis. You can wrap multiple words to <em>emphasize all of them</em>. I think doing that dilutes the effect, though. You end up with something that looks more like a conspiracy-themed newsletter. But hey. If that&rsquo;s the look you&rsquo;re going for? Have fun!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">It all starts with paragraphs. Plain text, separated by empty lines.<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">It all starts with paragraphs. Plain text, separated by empty lines.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>The text lines of a paragraph are wrapped together.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>     Indent your paragraph if you want a nice blockquote.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>You can <span class="ge">*emphasize*</span> text in a paragraph using asterisks.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Double asterisks give <span class="gs">**more**</span> emphasis.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>You can wrap multiple words to <span class="ge">*emphasize all of them*</span>.<span class="err">
-</span></span></span></code></pre></div><p>Use <code>double backticks</code> for inline literals — characters displayed in a monospace font and often used to indicate code. This is a little confusing after Mrkdown, which uses a single backtick for literals. But RST uses those for <em>interpreted text</em>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">Use <span class="s">``double backticks``</span> for inline literals — characters displayed in a monospace font and often used to indicate code. This is a little confusing after Mrkdown, which uses a single backtick for literals. But RST uses those for <span class="nv">`interpreted text`</span>.<span class="err">
-</span></span></span></code></pre></div><p>What&rsquo;s interpreted text? Well, it can mean a few things depending on the context of what&rsquo;s in and around it. You could even define your own with Python. Not today, though.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>You can wrap multiple words to <span class="ge">*emphasize all of them*</span>.</span></span></code></pre>
+</figure><p>Use <code>double backticks</code> for inline literals — characters displayed in a monospace font and often used to indicate code. This is a little confusing after Mrkdown, which uses a single backtick for literals. But RST uses those for <em>interpreted text</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">Use <span class="s">``double backticks``</span> for inline literals — characters displayed in a monospace font and often used to indicate code. This is a little confusing after Mrkdown, which uses a single backtick for literals. But RST uses those for <span class="nv">`interpreted text`</span>.</span></span></code></pre>
+</figure><p>What&rsquo;s interpreted text? Well, it can mean a few things depending on the context of what&rsquo;s in and around it. You could even define your own with Python. Not today, though.</p>
 <p><code>rst2html.py</code> transforms a lone bit of <code>interpreted text</code> to <code>&lt;cite&gt;interpreted text&lt;/cite&gt;</code>. The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite">citation</a> tag is used in HTML for referencing creative work: books, songs, blog posts.</p>
 <h4 id="bullet-lists">Bullet lists</h4>
 <p>We already know what a basic bullet list looks like.</p>
@@ -704,7 +791,9 @@ Nothing about RST limits it to technical writing — well except that most nonte
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="m">-</span> You have some lines<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="m">-</span> You have some lines<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="m">-</span> Each line starts with a special character and a space<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="m">-</span> I used <span class="s">``-``</span> but RST allows a few<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>
@@ -715,17 +804,19 @@ Nothing about RST limits it to technical writing — well except that most nonte
 </span></span><span class="line"><span class="cl"><span class="m">-</span> The important thing is to be consistent for a list or sublist<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>
 </span></span><span class="line"><span class="cl">	<span class="m">-</span> oh, and you can do sub lists with indentation!<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>	<span class="m">-</span> but you <span class="ge">*need*</span> blank lines between list levels<span class="err">
-</span></span></span></code></pre></div><h4 id="links">Links</h4>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>	- but you <span class="ge">*need*</span> blank lines between list levels</span></span></code></pre>
+</figure><h4 id="links">Links</h4>
 <p>Links can be simple URL drops, like <a href="https://beatrockmusic.bandcamp.com/">https://beatrockmusic.bandcamp.com/</a>. Or use some interpreted text for a more readable <a href="https://bambubeatrock.bandcamp.com">link</a>. I prefer <a href="https://rockyriverabeatrock.bandcamp.com">reference</a> links. It even looks nice for <a href="https://prometheusbrown.bandcamp.com/album/tag-init">long references</a>, once you get used to it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">Links can be simple URL drops, like https://beatrockmusic.bandcamp.com/.<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">Links can be simple URL drops, like https://beatrockmusic.bandcamp.com/.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Or use some interpreted text for a more readable <span class="s">`link </span><span class="si">&lt;https://bambubeatrock.bandcamp.com/&gt;</span><span class="s">`_</span>.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>I prefer reference_ links.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>If even looks nice for <span class="s">`longer references`_</span>, once you get used to it.<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="nt">_reference:</span> https://rockyriverabeatrock.bandcamp.com/<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="nt">_longer references:</span> https://prometheusbrown.bandcamp.com/album/tag-init<span class="err">
-</span></span></span></code></pre></div><p>See those last couple lines? Those define link targets. The <code>..</code> at the beginning of the line tells RST this is explicit markup. Explicit markup takes us out of the core document flow, letting us use extensions or define values.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="nt">_longer references:</span> https://prometheusbrown.bandcamp.com/album/tag-init</span></span></code></pre>
+</figure><p>See those last couple lines? Those define link targets. The <code>..</code> at the beginning of the line tells RST this is explicit markup. Explicit markup takes us out of the core document flow, letting us use extensions or define values.</p>
 <p>For today&rsquo;s goal of basic blogging, this explanation is sufficient.</p>
 <ul>
 <li><code>.. _word: URL</code> or <code>.. _long word: URL</code> defines a target</li>
@@ -737,56 +828,72 @@ Nothing about RST limits it to technical writing — well except that most nonte
 <p>We&rsquo;ve got the basics. After these next few items, I have about 80% of everything I ever wrote on this site covered.</p>
 <h4 id="headers-and-sections">Headers and sections</h4>
 <blockquote>
-<p>[!WARNING]
-Most blog generators demote your headers by at least one level. That way your post title goes at the top of the hierarchy. It also means that my level three section headers generate <code>&lt;h4&gt;</code> tags! So don&rsquo;t go overboard with subsections.</p>
+<p><strong>WARNING</strong></p>
+<p>Most blog generators demote your headers by at least one level. That way your post title goes at the top of the hierarchy. It also means that my level three section headers generate <code>&lt;h4&gt;</code> tags! So don&rsquo;t go overboard with subsections.</p>
 </blockquote>
 <p>You&rsquo;ve been looking at section headers already, so it seems silly to put examples here. Plus it messes up the document structure.</p>
 <p>You need two lines to make a section header. The text of the header itself forms the first line. Use the text of the header itself for the first line. In the second line, put enough non-alphanumeric characters to match your header&rsquo;s length. Pick any you like — well, any from the set of <code>= - : &quot; ~ ^ + * + # &lt; &gt;</code> — as long as you stay consistent.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">What does it look like?</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">What does it look like?</span>
 </span></span><span class="line"><span class="cl"><span class="gh">=======================</span>
 </span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>section 3<span class="err">
-</span></span></span></code></pre></div><p>First symbols picked, so it&rsquo;s a level one header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">A little more</span>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>section 3</span></span></code></pre>
+</figure><p>First symbols picked, so it&rsquo;s a level one header.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">A little more</span>
 </span></span><span class="line"><span class="cl"><span class="gh">-------------</span>
 </span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.1<span class="err">
-</span></span></span></code></pre></div><p>I picked a new symbol for the indicator, so this is a level two header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Headers and sections</span>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.1</span></span></code></pre>
+</figure><p>I picked a new symbol for the indicator, so this is a level two header.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Headers and sections</span>
 </span></span><span class="line"><span class="cl"><span class="gh">~~~~~~~~~~~~~~~~~~~~</span>
 </span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.1.1<span class="err">
-</span></span></span></code></pre></div><p>Another new symbol means another level, taking us to a level three header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Images and figures</span>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.1.1</span></span></code></pre>
+</figure><p>Another new symbol means another level, taking us to a level three header.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Images and figures</span>
 </span></span><span class="line"><span class="cl"><span class="gh">~~~~~~~~~~~~~~~~~~</span>
 </span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.2.2<span class="err">
-</span></span></span></code></pre></div><p>These use the same symbol I used for <em>Headers and sections</em>, so this is another level three header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Directives</span>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 3.2.2</span></span></code></pre>
+</figure><p>These use the same symbol I used for <em>Headers and sections</em>, so this is another level three header.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="gh">Directives</span>
 </span></span><span class="line"><span class="cl"><span class="gh">----------</span>
 </span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 1.2<span class="err">
-</span></span></span></code></pre></div><p>Oh hey, remember this symbol? We&rsquo;re back up to level two!</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>Section 1.2</span></span></code></pre>
+</figure><p>Oh hey, remember this symbol? We&rsquo;re back up to level two!</p>
 <p>This is the only area where RST feels significantly more cumbersome to me than Markdown or Asciidoctor. At least it&rsquo;s pretty to look at.</p>
 <h4 id="images-and-figures">Images and figures</h4>
 <p>I already have my own shortcodes for images in Hugo. Oh, and the special logic for cover pictures. Jeez I have my work cut out for me if and when I migrate to another generator.</p>
 <p>Still, images are a pretty fundamental part of blogging. It would feel strange to skip them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">image:: worst-cat.png<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">image:: worst-cat.png<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>   :alt: Text reads &#34;This is the worst cat.&#34; Photo is a baby hippo<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>   :target: https://worstcats.tumblr.com/post/97243616862/this-is-the-worst-cat<span class="err">
-</span></span></span></code></pre></div><p>Look, more explicit markup! This calls the image directive with <code>worst-cat.png</code> as an argument, and a few options specified with what RST calls a <em>field list</em>. You can make the image a link with <code>:target:</code>, which is nice.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>   <span class="nc">:target:</span> <span class="nf">https://worstcats.tumblr.com/post/97243616862/this-is-the-worst-cat</span></span></span></code></pre>
+</figure><p>Look, more explicit markup! This calls the image directive with <code>worst-cat.png</code> as an argument, and a few options specified with what RST calls a <em>field list</em>. You can make the image a link with <code>:target:</code>, which is nice.</p>
 <p>I prefer the HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure">figure</a> for my images. It allows me to add a readable caption, which is a great spot for attribution.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> worst-cat.png<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> worst-cat.png<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	:alt: Text reads &#34;This is the worst cat&#34;; Photo is a baby hippo<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>	via the <span class="s">`Worst Cats`_</span> Tumblr blog<span class="err">
-</span></span></span></code></pre></div><p>This directive is conceptually much closer to what I&rsquo;m thinking of. You even get a whole paragraph to set the caption. Text after the first paragraph becomes the legend. Interested parties can read the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure documentation</a> for more details about that.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>	via the <span class="s">`Worst Cats`_</span> Tumblr blog</span></span></code></pre>
+</figure><p>This directive is conceptually much closer to what I&rsquo;m thinking of. You even get a whole paragraph to set the caption. Text after the first paragraph becomes the legend. Interested parties can read the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure documentation</a> for more details about that.</p>
 <p><img src="/post/2020/01/../../../attachments/img/2020/worst-cat.png" alt="attachments/img/2020/worst-cat.png"/>
 via the <a href="https://worstcats.tumblr.com/post/97243616862/this-is-the-worst-cat">Worst Cats</a> Tumblr blog</p>
 <p>Unfortunately it&rsquo;s not <em>really</em> a <code>&lt;figure&gt;</code>. This is a <code>div.figure</code> holding an <code>img</code> and a <code>p.caption</code> instead of a <code>&lt;figcaption</code>. As a purist, I recognize that I must eventually fix this.</p>
 <h4 id="simple-tables">Simple Tables</h4>
 <p>Tables are very handy for summarizing information. RST allows extremely complex table formatting. Fortunately for me, I never use extremely complex table formatting. <a href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#simple-tables">simple-tables</a> work just fine.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">========= =================<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">========= =================<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Generator Supports RST<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =================<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Nikola    Yes<span class="err">
@@ -797,9 +904,11 @@ via the <a href="https://worstcats.tumblr.com/post/97243616862/this-is-the-worst
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Eleventy  ??<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Jekyll    ??<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Middleman ??<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =================<span class="err">
-</span></span></span></code></pre></div><p>Overflow is okay, as long as the table markers themselves line up. Still. It&rsquo;s untidy. Excuse me a moment.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">========= =========================<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =================</span></span></code></pre>
+</figure><p>Overflow is okay, as long as the table markers themselves line up. Still. It&rsquo;s untidy. Excuse me a moment.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl">========= =========================<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Generator Supports RST<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =========================<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Nikola    Yes<span class="err">
@@ -810,8 +919,8 @@ via the <a href="https://worstcats.tumblr.com/post/97243616862/this-is-the-worst
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Eleventy  ??<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Jekyll    ??<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>Middleman ??<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =========================<span class="err">
-</span></span></span></code></pre></div><p>That&rsquo;s better.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>========= =========================</span></span></code></pre>
+</figure><p>That&rsquo;s better.</p>
 <table>
 <thead>
 <tr>
@@ -858,33 +967,43 @@ via the <a href="https://worstcats.tumblr.com/post/97243616862/this-is-the-worst
 <h3 id="directives">Directives</h3>
 <p><a href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#directives">Directive</a> are used to extend RST. They&rsquo;re written in Python, but you don&rsquo;t need to understand Python to use them.</p>
 <p>Directives share a basic structure:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">directive-name</span><span class="p">::</span> arguments<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">directive-name</span><span class="p">::</span> arguments<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	:option-name: option-values<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>	body<span class="err">
-</span></span></span></code></pre></div><p>The details vary with every directive. Some require a body, some take no options. <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#table-of-contents">content</a> generates a full table of contents without requiring argument, options, or a body!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="ow">content</span><span class="p">::</span><span class="err">
-</span></span></span></code></pre></div><p>We&rsquo;ve already looked at a couple directives. Do I have a favorite? Strangely enough, I do.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>	body</span></span></code></pre>
+</figure><p>The details vary with every directive. Some require a body, some take no options. <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#table-of-contents">content</a> generates a full table of contents without requiring argument, options, or a body!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="ow">content</span><span class="p">::</span></span></span></code></pre>
+</figure><p>We&rsquo;ve already looked at a couple directives. Do I have a favorite? Strangely enough, I do.</p>
 <h4 id="admonitions">Admonitions</h4>
 <p>Most of this site&rsquo;s history has been me talking to myself. Sometimes I talk back. So I&rsquo;m always looking for good ways to add assorted interjections and comments. Markdown doesn&rsquo;t officially support that sort of thing, so as a result my <code>.md</code> files have nonstandard components and Hugo shortcodes to accomplish this sort of thing.</p>
 <p>Fortunately, these side notes are part of RST as <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#admonitions">admonitions</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">note</span><span class="p">::</span> Don&#39;t forget to mention admonitions!<span class="err">
-</span></span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Don&rsquo;t forget to mention admonitions!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">note</span><span class="p">::</span> Don&#39;t forget to mention admonitions!</span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Don&rsquo;t forget to mention admonitions!</p>
 </blockquote>
 <p>There are several admonition types, from the casual note to the dire alert.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span> Don&#39;t overuse admonitions!<span class="err">
-</span></span></span></code></pre></div><blockquote>
-<p>[!WARNING]
-Don&rsquo;t overuse admonitions!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span> Don&#39;t overuse admonitions!</span></span></code></pre>
+</figure><blockquote>
+<p><strong>WARNING</strong></p>
+<p>Don&rsquo;t overuse admonitions!</p>
 </blockquote>
 <p><code>note</code> and <code>warning</code> should suffice for most cases.</p>
 <h4 id="code-blocks">Code blocks</h4>
 <p>This is mostly a coding blog. Of course I&rsquo;m going to cover the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#code">code</a> directive. You give it a language and some code. <a href="https://pygments.org">Pygments</a> handles the highlighting. It handles <em>nearly</em> every language I have handed to, so it should work nice.</p>
 <p>How about a little snippet of Python?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">python</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">python</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Create a circle template from command line options&#34;&#34;&#34;</span>
@@ -901,8 +1020,10 @@ Don&rsquo;t overuse admonitions!</p>
 </span></span><span class="line"><span class="cl">        <span class="n">circle_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">circles</span>
 </span></span><span class="line"><span class="cl">        <span class="n">slice_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">slices</span>
 </span></span><span class="line"><span class="cl">        <span class="n">circle_template</span> <span class="o">=</span> <span class="n">CircleTemplate</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">circle_count</span><span class="p">,</span> <span class="n">slice_count</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">circle_template</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        circle_template.save()</span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">	<span class="s2">&#34;&#34;&#34;Create a circle template from command line options&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">	<span class="c1"># Get details from command line or use defaults</span>
 </span></span><span class="line"><span class="cl">	<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -917,19 +1038,21 @@ Don&rsquo;t overuse admonitions!</p>
 </span></span><span class="line"><span class="cl">	<span class="n">circle_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">circles</span>
 </span></span><span class="line"><span class="cl">	<span class="n">slice_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">slices</span>
 </span></span><span class="line"><span class="cl">	<span class="n">circle_template</span> <span class="o">=</span> <span class="n">CircleTemplate</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">circle_count</span><span class="p">,</span> <span class="n">slice_count</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">circle_template</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</span></span></code></pre></div><p>Oh my. I&rsquo;m closing in on two thousand words. That&rsquo;s far more than I indended. Let&rsquo;s stop here, with the majority of my regular blog-writing needs covered.</p>
+</span></span><span class="line"><span class="cl">	<span class="n">circle_template</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Oh my. I&rsquo;m closing in on two thousand words. That&rsquo;s far more than I indended. Let&rsquo;s stop here, with the majority of my regular blog-writing needs covered.</p>
 <p>Oh, fine. One little bonus section.</p>
 <h3 id="bonus-csv-tables">Bonus: CSV Tables</h3>
 <p>Hand-drawing a table can be labor-intensive — especially when you get fancy. Sometimes that is too much. Sometimes you just want to stuff values in a table.</p>
 <p><a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4">csv-table</a> serves that perfectly.</p>
 <p>Let&rsquo;s say I have a CSV list of my most important <a href="/card/taskwarrior/">Taskwarrior</a> tasks for this site. I can paste that list under a <em>csv-table</em> directive, give it a caption and the <em>header</em> text — maybe set the <code>widths</code> option to <code>auto</code>, because I dislike the default of equal-width columns.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">csv-table</span><span class="p">::</span> High priority site tasks<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">csv-table</span><span class="p">::</span> High priority site tasks<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	:header: &#34;ID&#34;, &#34;Description&#34;, &#34;Urgency&#34;<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>    227,&#34;rst basics for blogging&#34;,11.9<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    228,&#34;extract rst stylesheet&#34;,7.9<span class="err">
-</span></span></span></code></pre></div><p>And it comes out not too bad!</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    228,&#34;extract rst stylesheet&#34;,7.9</span></span></code></pre>
+</figure><p>And it comes out not too bad!</p>
 <table border="1" class="colwidths-auto docutils">
 	<caption>High priority site tasks</caption>
 	<thead valign="bottom">
@@ -953,7 +1076,9 @@ Don&rsquo;t overuse admonitions!</p>
 <p>I feel bad. A two row CSV table does not save <em>that</em> much time. Maybe if I had 20 or 30 generated rows. And while it may be easier for stuffing values into a table, CSV is not the most readable format.</p>
 <p>I can make it up to you.</p>
 <p>I <em>just</em> used <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table%22">list-table</a> while switching a recent post to reStructuredText. It was a lifesaver.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">list-table</span><span class="p">::</span> Emacs text-scale adjustment key bindings<span class="err">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">list-table</span><span class="p">::</span> Emacs text-scale adjustment key bindings<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	:header-rows: 1<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	:widths: auto<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>
@@ -968,8 +1093,8 @@ Don&rsquo;t overuse admonitions!</p>
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	  - Decrease text size by one step<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	<span class="m">-</span> - <span class="s">``(text-scale-adjust 0)``</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	  - <span class="s">``C-x C-=``</span> or <span class="s">``C-x C-0``</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>	  - Reset text size to default<span class="err">
-</span></span></span></code></pre></div><p>Use nested lists to construct your list table. Each of the top list items represent a row in your table. Each of the items in a row list is a cell in that row. Because I specified <code>:header-rows: 1</code>, the first row gives us a table header.</p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>	  - Reset text size to default</span></span></code></pre>
+</figure><p>Use nested lists to construct your list table. Each of the top list items represent a row in your table. Each of the items in a row list is a cell in that row. Because I specified <code>:header-rows: 1</code>, the first row gives us a table header.</p>
 <table border="1" class="colwidths-auto docutils">
 <caption>Emacs text scale adjustment key bindings</caption>
 <thead valign="bottom">
@@ -1023,25 +1148,33 @@ Don&rsquo;t overuse admonitions!</p>
   <content:encoded><![CDATA[<h2>I can write Jekyll posts with reStructuredText now.</h2><p>I can write <a href="/card/jekyll/">Jekyll</a> posts with <a href="/card/restructuredtext/">reStructuredText</a> now.</p>
 <p>I spent the last few days fiddling with <a href="/card/pelican/">Pelican</a> and <a href="/card/nikola/">Nikola</a> to see how much work it would take to convert my site. So far? Lots of work. I  customized the build for this silly site quite a bit.</p>
 <p>Meanwhile I decided that I <em>must</em> have reStructuredText] available for my posts. I grabbed the <a href="https://github.com/xdissent/jekyll-rst">jekyll-rst</a> Jekyll plugin and followed its directions.</p>
-<pre tabindex="0"><code>$ mkvirtualenv jekyll-rst
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkvirtualenv jekyll-rst
 $ pip install docutils pygments
 $ gem install RbST
-$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst
-</code></pre><p>Let me just build real quick to make sure this works at all.</p>
+$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst</code></pre>
+</figure><p>Let me just build real quick to make sure this works at all.</p>
 <p>Well, no.</p>
-<pre tabindex="0"><code>$ bundle exec jekyll build -D
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ bundle exec jekyll build -D
 # ...
 TypeError: Unicode-objects must be encoded before hashing
 Exiting due to error.  Use &#34;--traceback&#34; to diagnose.
 Please report errors to &lt;docutils-users@lists.sf.net&gt;.
 Include &#34;--traceback&#34; output, Docutils version (0.12 [release]),
 Python version (3.4.3), your OS type &amp; version, and the
-command line used.
-</code></pre><p>Oh I know that smell. You get that with code that isn&rsquo;t completely ready for Python 3. Here&rsquo;s the smallest change to make that error go away.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># _plugins/jekyll-rst/directives.py line 54-55</span>
+command line used.</code></pre>
+</figure><p>Oh I know that smell. You get that with code that isn&rsquo;t completely ready for Python 3. Here&rsquo;s the smallest change to make that error go away.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># _plugins/jekyll-rst/directives.py line 54-55</span>
 </span></span><span class="line"><span class="cl"><span class="n">content_text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">cache_file_name</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lexer_name</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">content_text</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
-</span></span></code></pre></div><p><em>Now</em> it builds.</p>
+</span></span><span class="line"><span class="cl"><span class="n">cache_file_name</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lexer_name</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">content_text</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span></span></span></code></pre>
+</figure><p><em>Now</em> it builds.</p>
 <p>Then I ripped out all the special options because that was easier than adjusting my stylesheets to take them into account.</p>
 <p>So. It works. Yay! I can write Jekyll posts with reStructuredText!</p>
 <p>That should keep me a little happier while I continue porting the site to another generator.</p>]]></content:encoded>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/02/stealing-a-hugo-shortcode-for-nikola/">Stealing a Hugo Shortcode for Nikola</a></li>
@@ -297,14 +302,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2020/02/../../../attachments/img/2020/cover-2020-02-12.png" alt="attachments/img/2020/cover-2020-02-12.png"/></p>
 <p>I keep waffling on whether to switch from [Hugo][hugo] to [Nikola][nikola] or some other <a href="/card/static-site-generator/">card/Static Site Generator</a>. Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.</p>
 <blockquote>
-<p>[!NOTE]
-<code>nikola check -l</code> looks for broken internal links on your build output. It found a few in the imported files. I fixed them.</p>
+<p><strong>NOTE</strong></p>
+<p><code>nikola check -l</code> looks for broken internal links on your build output. It found a few in the imported files. I fixed them.</p>
 <p>And yes. I wrote a <a href="/post/2017/04/making-a-mojo-link-checker/">post/2017/04/making-a-mojo-link-checker</a> in 2017. No, I haven’t used it since.</p>
 </blockquote>
 <h2 id="the-shortcode">The shortcode</h2>
 <p>Some posts included embedded YouTube videos. Nikola’s <a href="https://getnikola.com/handbook.html#restructuredtext-extensions">RST extensions</a> include a <a href="https://getnikola.com/handbook.html#youtube">youtube directive</a>, but I needed something for the Markdown files. Well, okay. <code>media</code> from the <a href="https://getnikola.com/handbook.html#built-in-shortcodes">built-in shortcodes</a> would work. I wanted to make a template shortcode, okay?</p>
 <p>Here’s what the <a href="https://github.com/gohugoio/hugo/blob/00297085db48cbb7949c9867012f6df38817fc29/tpl/tplimpl/embedded/templates/shortcodes/youtube.html">Hugo shortcode</a> looks like.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{- $pc := .Page.Site.Config.Privacy.YouTube -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{- $pc := .Page.Site.Config.Privacy.YouTube -}}
 </span></span><span class="line"><span class="cl">{{- if not $pc.Disable -}}
 </span></span><span class="line"><span class="cl">{{- $ytHost := cond $pc.PrivacyEnhanced  &#34;www.youtube-nocookie.com&#34; &#34;www.youtube.com&#34; -}}
 </span></span><span class="line"><span class="cl">{{- $id := .Get &#34;id&#34; | default (.Get 0) -}}
@@ -312,20 +319,25 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">&lt;div {{ with $class }}class=&#34;{{ . }}&#34;{{ else }}style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;{{ end }}&gt;
 </span></span><span class="line"><span class="cl">    &lt;iframe src=&#34;https://{{ $ytHost }}/embed/{{ $id }}{{ with .Get &#34;autoplay&#34; }}{{ if eq . &#34;true&#34; }}?autoplay=1{{ end }}{{ end }}&#34; {{ if not $class }}style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; {{ end }}allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 </span></span><span class="line"><span class="cl">&lt;/div&gt;
-</span></span><span class="line"><span class="cl">{{ end -}}
-</span></span></code></pre></div><p>I never knew about YouTube privacy configuration for the shortcode. Ah. That’s because it’s not in the <a href="https://gohugo.io/content-management/shortcodes/#youtube">shortcode documentation</a>. I like it though. I think I’ll use it.</p>
+</span></span><span class="line"><span class="cl">{{ end -}}</span></span></code></pre>
+</figure><p>I never knew about YouTube privacy configuration for the shortcode. Ah. That’s because it’s not in the <a href="https://gohugo.io/content-management/shortcodes/#youtube">shortcode documentation</a>. I like it though. I think I’ll use it.</p>
 <blockquote>
-<p>[!NOTE]
-Ah. It’s documented in <a href="https://gohugo.io/about/hugo-and-gdpr/">Hugo and the GDPR</a>.</p>
+<p><strong>NOTE</strong></p>
+<p>Ah. It’s documented in <a href="https://gohugo.io/about/hugo-and-gdpr/">Hugo and the GDPR</a>.</p>
 </blockquote>
 <p>If you want a Nikola configuration available to your shortcode, add it to <code>conf.py’s `GLOBAL_CONTEXT</code> dictionary.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Put in global_context things you want available on all your templates.</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Put in global_context things you want available on all your templates.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># It can be anything, data, functions, modules, etc.</span>
 </span></span><span class="line"><span class="cl"><span class="n">GLOBAL_CONTEXT</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;youtube_privacy_enhanced&#34;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And here’s <code>shortcodes/youtube.tmpl</code>, adapted for Mako.</p>
-<div class="highlight" title="shortcodes/youtube.tmpl"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="x">&lt;%
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And here’s <code>shortcodes/youtube.tmpl</code>, adapted for Mako.</p>
+<figure class="highlight">
+  <figcaption><tt>shortcodes/youtube.tmpl</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="x">&lt;%
 </span></span></span><span class="line"><span class="cl"><span class="x">    id = _args[0]
 </span></span></span><span class="line"><span class="cl"><span class="x">    root_url = &#34;www.youtube-nocookie.com&#34; if youtube_privacy_enhanced else &#34;www.youtube.com&#34;
 </span></span></span><span class="line"><span class="cl"><span class="x">    embed_url = f&#34;https://{root_url}/embed/{id}&#34;
@@ -336,8 +348,8 @@ Ah. It’s documented in <a href="https://gohugo.io/about/hugo-and-gdpr/">Hugo a
 </span></span></span><span class="line"><span class="cl"><span class="x">    &lt;iframe src=&#34;</span><span class="cp">${</span><span class="n">embed_url</span><span class="cp">}</span><span class="x">&#34;
 </span></span></span><span class="line"><span class="cl"><span class="x">        style=&#34;</span><span class="cp">${</span><span class="n">player_style</span><span class="cp">}</span><span class="x">&#34;
 </span></span></span><span class="line"><span class="cl"><span class="x">        allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/div&gt;
-</span></span></span></code></pre></div><p>Not much needed here. It takes the YouTube ID as an argument, picks a host based on <code>youtube_privacy_enhanced</code>, and adds some HTML.</p>
+</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/div&gt;</span></span></span></code></pre>
+</figure><p>Not much needed here. It takes the YouTube ID as an argument, picks a host based on <code>youtube_privacy_enhanced</code>, and adds some HTML.</p>
 <p><img src="/post/2020/02/attachments/img/2020/miyazaki.png" alt="Note to self: clicking play in a screenshot does nothing"/></p>
 <p>It works!</p>
 <h2 id="what-now">What Now?</h2>

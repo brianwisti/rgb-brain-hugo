@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>2005onRandom Geekery</title>
+    <link>https://randomgeekery.org/post/2005/</link>
+    <description>
+      Recent contentin2005 on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 20 Jan 2024 22:42:32 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2005/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: My Striped Scarf</title>
+  <link>https://randomgeekery.org/post/2005/08/my-striped-scarf/</link>
+  <pubDate>Mon, 15 Aug 2005 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/08/my-striped-scarf/</guid>
+  <description>Started out Knitting the “maximum scarf” from the Knit Stitch book, but I got bored and went for a modified version of “Joel’s Scarf” instead. This is sport weight yarn, 60 stitch cast on, and and only 3 colors instead of 7. It has turned out to be my most popular scarf.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>knitting</category>  <category>scarf</category>  <category>craft</category> 
+  <content:encoded><![CDATA[<p>Started out <em>Knitting</em> the &ldquo;maximum scarf&rdquo; from the Knit Stitch book, but I got bored and went for a modified version of &ldquo;Joel’s Scarf&rdquo; instead. This is sport weight yarn, 60 stitch cast on, and and only 3 colors instead of 7. It has turned out to be my most popular scarf.</p>
+<p><img src="/post/2005/08/../../../attachments/img/2005/cover-2005-08-15.jpg" alt="attachments/img/2005/cover-2005-08-15.jpg"/></p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: REBOL Babysteps - 04 Repeating Yourself</title>
+  <link>https://randomgeekery.org/post/2005/03/rebol-babysteps-04-repeating-yourself/</link>
+  <pubDate>Mon, 07 Mar 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/03/rebol-babysteps-04-repeating-yourself/</guid>
+  <description>Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with REBOL. We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rebol</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with <a href="/card/rebol/">REBOL</a>. We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.</p>
+<h2 id="simple-loops">Simple Loops</h2>
+<p>The simplest sort of repetition involves doing exactly the same thing again and again.
+The simplest sort of repetition involves doing exactly the same thing again and again.
+The simplest sort of repetition involves doing exactly the same thing again and again.
+The simplest sort of repetition –</p>
+<p>Sorry, I got carried away. Hopefully you get the idea. Sometimes all you need to do is repeat a process a set number of times.</p>
+<h3 id="loop"><code>loop</code></h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; loop 5 [
+[    print &#34;Spam!&#34;
+[    ]
+Spam!
+Spam!
+Spam!
+Spam!
+Spam!</code></pre>
+</figure><p>That’s a little boring. Let’s try something a little more involved. Maybe we could use <code>loop</code> to create a simple math quiz program.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL [
+    Title: &#34;Simple Math Quiz&#34;
+    File: %math.r
+]
+
+; Seed the randomizer with the current time to get better random values
+random/seed now
+
+correct: 0
+questions: 5
+
+loop questions [
+
+    ; Create a simple multiplication problem.
+    a: random 10
+    b: random 10
+    answer: a * b
+
+    ; Get the user&#39;s response (converting it to the right datatype)
+    response: to-integer ask [ a &#34;x&#34; b &#34;= &#34; ]
+
+    ; Evaluate the response.
+    either strict-equal? answer response [
+        correct: correct &#43; 1
+        print &#34;That&#39;s correct!&#34;
+    ] [
+        print [ &#34;Sorry, it&#39;s&#34; answer ]
+    ]
+]
+
+; Display the final results.
+print [ &#34;Out of&#34; questions &#34;questions, you answered&#34; correct &#34;correctly&#34; ]</code></pre>
+</figure><p>Nothing fancy is going on here. We just <code>loop</code> through the question and answer process a few times, keeping track of the user’s correct answers. <code>random/seed now</code> is necessary to get  something close to what we would consider random. If we don’t provide it, then we get a specific sequence whenever we call <code>random</code>. Try commenting out the <code>random/seed</code> line and run the program a few times. You’ll see what I mean.</p>
+<p>You’re right. A plain old <code>loop</code> isn’t very interesting. Let’s move on.</p>
+<h3 id="looping-forever">Looping <code>forever</code></h3>
+<p>I’m only telling you this because I can see that one or two of you really want to know. What if you want to run a loop forever? Well, you don’t want to. Maybe you want to run a loop until some signal is received, or the user wants to quit, or something sensible like that. You don’t want a loop to run forever. But that doesn’t mean you <em>can’t</em> run a loop forever. REBOL provides us with the <code>forever</code> word to let us do exactly that.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; forever [ print &#34;spam.&#34; ]
+spam.
+spam.
+spam.
+...</code></pre>
+</figure><p>And so on until you hit <code>Ctrl + C</code>, or kill the process, or do something to make the program <em>stop saying &ldquo;spam&rdquo;</em>!</p>
+<p>But please, don’t use <code>forever</code> without a mighty good reason.</p>
+<h3 id="break-out-of-a-loop"><code>break</code> out of a loop</h3>
+<p>Sometimes you’re right in the middle of a loop and you want to break out of it and get back to the rest of the program. That’s easy enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; i: 0
+== 0
+&gt;&gt; forever [
+[    prin i
+[    i: i &#43; 1
+[    if equal? i 5 [
+[        print &#34;Augh!&#34;
+[        break
+[        ]
+[    ]
+01234Augh!
+&gt;&gt;</code></pre>
+</figure><p>Oh, you noticed that <code>prin</code> in there? That’s a different way of printing. Each call to <code>prin</code> puts its output immediately after the output from the previous <code>prin</code>, rather than on a new line. It’s nothing major, but it is a nice feature to take advantage of every once in a while.</p>
+<p>Right. So we’ve covered simple loops. Now let’s start getting a little more interesting.</p>
+<h2 id="monitored-loops">Monitored Loops</h2>
+<p>Plain old repetition isn’t actually all that common. We usually want to do something a little different each time we step through the loop. REBOL gives us a few words which help us in that situation.</p>
+<h3 id="repeat"><code>repeat</code></h3>
+<p><code>repeat</code> works almost exactly the same as <code>loop</code>. The main difference is that it stores the number of trips you’ve taken through the loop in a variable that you can get to from inside the loop. The variable has a value of <code>1</code> on the first trip through, <code>2</code> on the second trip through, and so on.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; repeat count 9 [
+[    print [ &#34;3 x&#34; count &#34;is&#34; 3 * count ]
+[    ]
+3 x 1 is 3
+3 x 2 is 6
+3 x 3 is 9
+3 x 4 is 12
+3 x 5 is 15
+3 x 6 is 18
+3 x 7 is 21
+3 x 8 is 24
+3 x 9 is 27</code></pre>
+</figure><h3 id="for"><code>for</code></h3>
+<p>The next sort of repetition structure is <code>for</code>, which adds a starting point, stopping point, and step size to the <code>repeat</code> loop. <code>for</code> is useful for producing very specific loops. It might be a little wordy for simple loops which can be handled by the <code>repeat</code> word:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; for num 1 9 1 [ print [&#34;3 x&#34; num &#34;is&#34; 3 * num] ]</code></pre>
+</figure><p>We have a loop variable, <code>num</code>, which starts at <code>1</code> and goes up to <code>9</code> <code>1</code> number at a time. Of course, <code>repeat num 9</code> does exactly the same thing. <code>for</code> tends to be more useful in loops for &ldquo;real-world&rdquo; code, though, where you need more control over what’s being looped. You want some real world code? Hmm. Oh, I know. Let’s answer the age-old question, &ldquo;How much should I tip? That way we can play a little bit with some <a href="/post/2004/12/rebol-datatypes/">datatypes</a> while helping out our friends in the food service industry. Hey, what do you expect from me? I was a waiter for ten years, so this is the sort of stuff that pops into my head!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; for bill $10 $20 $1 [
+[    tip: bill * .15
+[    print [&#34;Bill:&#34; bill &#34;-- Tip:&#34; tip]
+[    ]
+Bill: $10.00 -- Tip: $1.50
+Bill: $11.00 -- Tip: $1.65
+Bill: $12.00 -- Tip: $1.80
+Bill: $13.00 -- Tip: $1.95
+Bill: $14.00 -- Tip: $2.10
+Bill: $15.00 -- Tip: $2.25
+Bill: $16.00 -- Tip: $2.40
+Bill: $17.00 -- Tip: $2.55
+Bill: $18.00 -- Tip: $2.70
+Bill: $19.00 -- Tip: $2.85
+Bill: $20.00 -- Tip: $3.00</code></pre>
+</figure><p>We can’t do <em>that</em> with a <code>repeat</code> loop. At least, I don’t think we can. We set the starting bill at <code>$10</code>, and moved up to <code>$20</code> by <code>$1</code> at a time, showing the bill and corresponding average tip. It’s still a very small thing. The fact that it recognizes the values as money and treats it appropriately is a special thrill for me. If you haven’t programmed before, then you might just assume that things are supposed to work like this. You would be right. Things <em>should</em> work like this: transparent, and the obvious stuff should do the obvious. But in C, there would be all sorts of chaos and <code>printf</code> madness and general ugliness that would get you so angry that you might not even bother leaving a tip.</p>
+<p>And that would be bad, my friends. Very bad indeed.</p>
+<p>As long as I’m looking at datatypes in <code>for</code> loops, let’s look at another example. Starting from Saturday, January 3 2009, what is the calendar date of each following Saturday until March 7 2009?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; for day 3-jan-2009 7-mar-2009 7 [ print day ]
+3-Jan-2009
+10-Jan-2009
+17-Jan-2009
+24-Jan-2009
+31-Jan-2009
+7-Feb-2009
+14-Feb-2009
+21-Feb-2009
+28-Feb-2009
+7-Mar-2009</code></pre>
+</figure><p>Start on January 3, step 7 days at a time until we reach March 7, and print the calendar date at each step. Not bad, eh? I know that these all occurred on a Saturday, but you’ll have to wait until later for me to explain it. You want a clue? Oh, all right. I used <code>day/weekday</code>, got <code>6</code>, and figured out that the sixth day of the week is Saturday.</p>
+<p>Or maybe I looked at a calendar. I’ll never tell.</p>
+<h2 id="conditional-loops">Conditional Loops</h2>
+<p>Then there are the times when you aren’t sure exactly when you’ll need to stop. You need to keep going until it’s time to stop, basically. Now, you could use a <code>forever</code> loop and <code>break</code> whenever you need to stop. But I don’t want you to do that. Why am I so opposed to an approach like that? It comes down to clarity. Somebody will be reading your code a few weeks, months, or even years after you write it. That person could be you.</p>
+<p>Don’t laugh - I’m still haunted by a script that I wrote years ago when I was first learning Perl. I thought I’d just be throwing that script away, but I still use it. I still cringe every time I have to read it, too. And yes, it had a couple of <code>forever</code>-style loops. I want to save you from the embarrassment of bad code whenever possible.</p>
+<p>But I digress. Let’s look at the conditional loops. There are two main conditional loops, <code>until</code> and <code>while</code>. The difference between the two from our perspective is when they test to see whether it’s time to quit the loop.</p>
+<h3 id="keep-going-until-something-is-true">Keep going <code>until</code> something is true</h3>
+<p>The <code>until</code> loop tests at the end of each step of the loop. If the block returns true, then it’s time to quit. How do you know if the block returns <code>true</code>? Because the block returns the value of the last statement in the block. This means that we could put a simple test as the last statement, using the guidelines from the chapter on <a href="/post/2005/02/rebol-babysteps-03-making-decisions/">selection structures</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; until [
+[    print &#34;Spam&#34;
+[    response: ask &#34;? &#34;
+[    equal? response &#34;Bloody Vikings!&#34;
+[    ]
+Spam
+? Spam
+Spam
+? Bacon Eggs and Spam
+Spam
+? I don&#39;t like Spam!
+Spam
+? Bloody Vikings!
+== true</code></pre>
+</figure><p>Because it doesn’t test until the end of the loop, <code>until</code> will step through the loop at least once.</p>
+<h3 id="keep-going-while-something-is-true">Keep going <code>while</code> something is true</h3>
+<p><code>while</code> takes a test block and a loop block. There’s all sorts of clever things we can do in the test block, but for now we’ll just put simple tests in it. If the test comes up false, then <code>while</code> doesn’t bother running through the loop. If it’s true, then it runs through the loop and tests again.</p>
+<p>Hrm, I need to think of a decent example of <code>while</code>. For now, let’s just make a variation of what we might do with an <code>until</code> loop.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; response: none
+== none
+&gt;&gt; while [ not-equal? response &#34;Bloody Vikings!&#34; ] [
+[    print &#34;Spam.&#34;
+[    response: ask &#34;? &#34;
+[    ]
+Spam.
+? flerg
+Spam.
+? flop
+Spam.
+? Bloody Vikings!
+== &#34;Bloody Vikings!&#34;</code></pre>
+</figure><p><code>while</code> will not run at all if the condition isn’t true at the start of the loop, because it tests the condition before beginning each step.</p>
+<h2 id="stepping-through-a-list">Stepping Through a List</h2>
+<p>The last form of repetition is iterating through a list. A copy of each item in the list is passed to a temporary variable that you can play with in the loop block. I will only look briefly at this form of repetition in this chapter, because list manipulation and iteration is a big topic in its own right. Nevertheless, many of you will want to do <em>something</em> with lists before I get around to writing that next chapter.</p>
+<h3 id="foreach"><code>foreach</code></h3>
+<p>The basic list iteration function is <code>foreach</code>. It takes a name, a list variable, and a block. <code>foreach</code> repeats the loop once for each item in the list. The name is set to the value of the current item in the list. It is easier to demonstrate a <code>foreach</code> loop than it is to describe one.
+Here’s a quick example.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; colors: to-list [ &#34;red&#34; &#34;green&#34; &#34;blue&#34; ]
+== make list! [&#34;red&#34; &#34;green&#34; &#34;blue&#34;]
+&gt;&gt; foreach color colors [ print color ]
+red
+green
+blue</code></pre>
+</figure><p>I would like to close this chapter with something a little meatier than that example, though. Let’s write a script that takes a list of dates and tells us how far from today each of those dates are.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL [
+    file: %days.r
+    purpose: { Simple demonstration of iterating through a list }
+]
+
+; Feel free to create your own list of days
+days: to-list [
+    23-Jan-2009 24-Feb-2009 13-Mar-2009 30-Apr-2009 31-Oct-2009 5-Jan-2010
+]
+
+foreach day days [
+    ; Determine how many days we are from &#39;day&#39;
+    day-span: day - now
+
+    ; &#39;day_span&#39; will be negative for days in the past, and we need a
+    ; positive number for our phrase below
+    absolute-span: abs day-span
+
+    ; Make sure that our phrase uses the correct form of the word &#39;day&#39;
+    day-string: either absolute-span &gt; 1 [ &#34;days&#34; ] [ &#34;day&#34; ]
+
+    either day-span &gt; 0 [
+        ; &#39;day&#39; is in the future.
+        print [ day &#34;is in&#34; day-span day-string ]
+    ] [
+        either day-span &lt; 0 [
+            ; &#39;day&#39; is in the past.
+            print [ day &#34;was&#34; absolute-span day-string &#34;ago&#34; ]
+        ] [
+            print [ day &#34;is today!&#34; ]
+        ]
+    ]
+]</code></pre>
+</figure><p>Now that we’ve written the code, let’s run the script:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >23-Jan-2009 was 32 days ago
+24-Feb-2009 is today!
+13-Mar-2009 is in 17 days
+30-Apr-2009 is in 65 days
+31-Oct-2009 is in 249 days
+5-Jan-2010 is in 315 days</code></pre>
+</figure><p>Naturally, your results may vary. In fact, they will almost definitely vary unless you read this article the day I updated it or your clock is set wrong. I encourage you to play with this script and come up with your own variations. How about a script that asks the user for a date and tells how far that day is from today? You’ll probably need to use <code>to-date</code> on the user input.</p>
+<h2 id="conclusion-and-congratulations">Conclusion and Congratulations</h2>
+<p>Completing this chapter means you have hit a significant milestone in programming by learning all of the basic elements of something called &ldquo;Structured Programming&rdquo;. It is now possible for you to build non-trivial, &ldquo;real-world&rdquo; programs using REBOL. I will try to keep this in mind when putting together future chapters in this tutorial.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Monitor Your Battery Life With REBOL</title>
+  <link>https://randomgeekery.org/post/2005/02/monitor-your-battery-life-with-rebol/</link>
+  <pubDate>Mon, 28 Feb 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/02/monitor-your-battery-life-with-rebol/</guid>
+  <description>One thing you like to keep track of on your laptop is how much juice is left in your battery. There’s nothing quite like being in the middle of some insane hacking session and watching as the computer suddenly gets tired and blacks out on you. Of course, I’ve already got a handy battery monitor in my KDE panel, but what if I’m not in KDE? Okay, okay, there are handy battery monitors for nearly every desktop environment out there.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rebol</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>One thing you like to keep track of on your laptop is how much juice is left in your battery. There’s nothing quite like being in the middle of some insane hacking session and watching as the computer suddenly gets tired and blacks out on you. Of course, I’ve already got a handy battery monitor in my <a href="https://kde.org">KDE</a> panel, but what if I’m not in KDE? Okay, okay, there are handy battery monitors for nearly every desktop environment out there. That’s not my point, though.
+My point is that I’d like to explore some basic system stuff using REBOL on an <a href="https://ubuntu.com">Ubuntu</a> 8.10 system. Got it? Okay, good. Now that we’ve settled this little detail, let’s move on.</p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>I should mention that if all you want is a command-line printout of your battery information on Linux, you can get that with the command <code>acpi -b</code>. Still, reinventing wheels can be fun. Why not give this a shot?</p>
+</blockquote>
+<h2 id="the-raw-materials">The Raw Materials</h2>
+<p>Text is like water in UNIX-type systems. It is everywhere, and nearly everything can be accessed as a text file. Linux follows this ideal by keeping system information in a number of files in the <code>/proc/</code> directory. I could probably find everything I might want to know about the system in that directory, but let’s just focus on the directories which contain battery information.</p>
+<p>Ubuntu keeps the files in <code>/proc/</code>, but other distros may keep the files in other locations, such as <code>/var/proc/</code>. Poke around on your own system to find out the specifics for your distribution.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; read %/proc/acpi/battery/
+== [%BAT0/]
+&gt;&gt; read %/proc/acpi/battery/BAT0/
+== [%alarm %state %info]</code></pre>
+</figure><p>I only have one battery, and this time I only see one folder under <code>/proc/acpi/battery</code>. There were two folders when I ran this on another machine a while back.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; print read %/proc/acpi/battery/BAT0/state
+present:                 yes
+capacity state:          ok
+charging state:          charged
+present rate:            0 mA
+remaining capacity:      4263 mAh
+present voltage:         12495 mV</code></pre>
+</figure><p>That one battery happens to be fully charged. Good thing, because it’s been sitting plugged in all day. I’m curious. Let’s see what the <code>state</code> file looks like when I unplug the computer.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; print read %/proc/acpi/battery/BAT0/state
+present:                 yes
+capacity state:          ok
+charging state:          discharging
+present rate:            0 mA
+remaining capacity:      4341 mAh
+present voltage:         12107 mV</code></pre>
+</figure><p>Okay, so it is pretty easy to tell when your computer is plugged in and when it isn’t. The <code>info</code> file contains some more useful information about the battery which will come in handy later on.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; print read %/proc/acpi/battery/BAT0/info
+present:                 yes
+design capacity:         4400 mAh
+last full capacity:      4263 mAh
+battery technology:      rechargeable
+design voltage:          10800 mV
+design capacity warning: 210 mAh
+design capacity low:     147 mAh
+capacity granularity 1:  63 mAh
+capacity granularity 2:  4053 mAh
+model number:            Primary
+serial number:
+battery type:            LION
+OEM info:                Hewlett-Packard</code></pre>
+</figure><p>What about the <code>alarm</code> file?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; print read %/proc/acpi/battery/BAT0/alarm
+alarm:                   unsupported</code></pre>
+</figure><p>Oh well, I wasn’t really sure what I’d do with that information anyhow.</p>
+<p>Now that we’ve seen what the raw information looks like, let’s work on making a useful utility which processes that information.</p>
+<h2 id="beginning-the-script">Beginning the Script</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -qs
+
+REBOL [
+    Title: &#34;Battery Monitor&#34;
+    File: %battery.r
+    Date: 24-Feb-2009
+    Author: &#34;Brian Wisti&#34;
+]
+
+battery-dir: %/proc/acpi/battery/
+
+batteries: read %/proc/acpi/battery/
+
+foreach battery batteries [
+    print battery
+    battery-state: rejoin [ battery-dir battery &#34;state&#34; ]
+    print read battery-state
+]</code></pre>
+</figure><p>We need that <code>-s</code> command line parameter in there if we want to run this script peacefully. What happens if we don’t? Every time we run the script, REBOL throws a little dialog asking us if we’re sure we want this script touching our precious files. All in all, a good thing to do, but we <em>know</em> we are okay with this script reading our files, precious or otherwise.</p>
+<p>Right. We are looking for every battery directory, and printing out its <code>state</code>. What does that look like? Not much, right now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >BAT0/
+present:                 yes
+capacity state:          ok
+charging state:          charged
+present rate:            0 mA
+remaining capacity:      4360 mAh
+present voltage:         12465 mV</code></pre>
+</figure><p>It’s time to start looking at REBOL’s <code>parse</code> rules.</p>
+<p>Tell me not to be scared.</p>
+<h3 id="playing-at-parse">Playing at Parse</h3>
+<p>Each item is on one line. The key is on the left side, then there’s a colon and some whitespace before reaching the actual value. I’d like to get at the information in this file as a hash: a dictionary datatype where values on the right are tied to keys on the left. Let’s use Parse and split along the colon character, like so.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -qs
+
+REBOL [
+    Title: &#34;Battery Monitor&#34;
+    File: %battery.r
+    Date: 24-Feb-2009
+    Author: &#34;Brian Wisti&#34;
+]
+
+battery-dir: %/proc/acpi/battery/
+
+batteries: read %/proc/acpi/battery/
+
+foreach battery batteries [
+    print battery
+    battery-state: read rejoin [ battery-dir battery &#34;state&#34; ]
+    print battery-state
+    state: make hash! parse/all battery-state &#34;:&#34;
+
+    ; Print out what we have so far for debugging purposes.
+    foreach [ key value ] state [
+        print [ key &#34;--&#34; value ]
+    ]
+]</code></pre>
+</figure><p>That doesn’t <em>quite</em> do the job we wanted, unfortunately. All of the whitespace is stuck with <code>value</code>, obscuring the actual value.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >BAT0/
+present:                 yes
+capacity state:          ok
+charging state:          discharging
+present rate:            0 mA
+remaining capacity:      4310 mAh
+present voltage:         12081 mV
+
+present --                  yes
+capacity state
+          ok
+charging state --           discharging
+present rate
+            0 mA
+remaining capacity --       4310 mAh
+present voltage
+         12081 mV
+-- none</code></pre>
+</figure><p>We want to get rid of the leading whitespace for each value.</p>
+<p>I need to think for a minute…</p>
+<p>Okay, I know how I would do this with a regular expression in <a href="/card/perl/">card/Perl</a>:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/perl</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Modern::Perl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Fatal</span> <span class="sx">qw(open close)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%state</span> <span class="o">=</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$state</span><span class="p">,</span> <span class="s">&#34;/proc/acpi/battery/BAT0/state&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$line</span> <span class="o">=</span> <span class="sr">&lt;$state&gt;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">chomp</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/:/</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$value</span> <span class="o">=~</span> <span class="sr">s{^\s*}{}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$state</span><span class="p">{</span><span class="nv">$key</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">close</span> <span class="nv">$state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print out what we have so far for debugging purposes.</span>
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$key</span> <span class="p">(</span><span class="nb">keys</span> <span class="nv">%state</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">say</span> <span class="nv">$key</span><span class="p">,</span> <span class="s">&#34; -- &#34;</span><span class="p">,</span> <span class="nv">$state</span><span class="p">{</span><span class="nv">$key</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>This obviously isn’t the only Perl solution I could have chosen, but it was the first one that came to mind. The point is that it gets the job done. It’s kind of ugly, but Perl is kind enough to let you be ugly if you’re in a hurry.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl battery.pl
+present voltage -- 12021 mV
+capacity state -- ok
+present rate -- 0 mA
+remaining capacity -- 4088 mAh
+charging state -- discharging
+present -- yes</code></pre>
+</figure><p>How do I strip the leading whitespace in Rebol? I know there’s a &ldquo;right&rdquo; way, but for now I just want to get those spaces out of there.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -qs
+
+REBOL [
+    Title: &#34;Battery Monitor&#34;
+    File: %battery.r
+    Date: 24-Feb-2009
+    Author: &#34;Brian Wisti&#34;
+]
+
+battery-dir: %/proc/acpi/battery/
+
+batteries: read %/proc/acpi/battery/
+
+foreach battery batteries [
+    battery-file: rejoin [ battery-dir battery &#34;state&#34; ]
+    state: make hash! []
+    print battery
+
+    foreach line read/lines battery-file [
+        parse line [
+            copy key thru &#34;:&#34;
+            copy value to end
+        ]
+        value: trim value
+        append state key
+        append state value
+    ]
+
+    ; Print out what we have so far for debugging purposes.
+    foreach [ key value ] state [
+        print [ key &#34;--&#34; value ]
+    ]
+]</code></pre>
+</figure><p>This is a lot longer than the Perl version, but you could argue that it’s easier to read. And I just <em>know</em> that there’s a better way to do it. Sadly, we won’t know what the better way is until we learn a little more about how Parse works.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./battery.r
+BAT0/
+present: -- yes
+capacity state: -- ok
+charging state: -- discharging
+present rate: -- 0 mA
+remaining capacity: -- 4242 mAh
+present voltage: -- 12375 mV</code></pre>
+</figure><p>Well, that colon is still in there, but at least I got rid of the leading spaces in the values.</p>
+<p>I’ll come back to that issue after I’ve learned a little bit more about Parse. For now, let’s focus on the fact that we are finally getting to the data. That means we have reached a milestone, and it also means we can stretch our legs for a minute.
+Good circulation is important, after all. Let’s refactor before we move on. I like to have my code as clean as I know how to make it each step of the way.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -qs
+
+REBOL [
+    Title: &#34;Battery Monitor&#34;
+    File: %battery.r
+    Date: 24-Feb-2009
+    Author: &#34;Brian Wisti&#34;
+]
+
+battery-dir: %/proc/acpi/battery/
+batteries: make hash! [ ]
+
+; Load battery information
+foreach battery read battery-dir [
+    battery-file: rejoin [ battery-dir battery &#34;state&#34; ]
+    state: make hash! []
+
+    foreach line read/lines battery-file [
+        parse line [
+            copy key to &#34;:&#34;
+            skip
+            copy value to end (trim value)
+        ]
+        repend state [ key value ]
+    ]
+    repend batteries [ battery state ]
+]
+
+; Print out what we have so far for debugging purposes.
+foreach [ name info ] batteries [
+    print name
+    foreach [ key value ] info [
+        print [ key &#34;--&#34; value ]
+    ]
+]</code></pre>
+</figure><p>You aren’t supposed to change the actual functionality during refactoring, because the whole idea is to make it do exactly the same thing it did before, but in a more sane style. I was hit by a lightbulb moment while refactoring the <code>parse</code> rule, though, and decided to see what would happen if <code>skip</code> would get me past that colon. Sure enough, that did the trick!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./battery.r
+BAT0/
+present -- yes
+capacity state -- ok
+charging state -- charged
+present rate -- 0 mA
+remaining capacity -- 4299 mAh
+present voltage -- 12540 mV</code></pre>
+</figure><h3 id="useful-output">Useful Output</h3>
+<p>Now let’s take this raw data and turn it into output that I can actually do something with. To do that, we need to decide what information we care about and what we don’t.</p>
+<ul>
+<li>I don’t care about batteries I don’t have. Don’t show them to me.</li>
+<li>I care about whether the computer is plugged in or not.</li>
+<li>I can’t convert remaining capacity of total capacity in my head. Just show me a percentage remaining.</li>
+<li>I <em>certainly</em> can’t convert present rate and remaining capacity. Show me a time value instead.</li>
+</ul>
+<h4 id="dont-show-batteries-i-dont-have">Don’t Show Batteries I Don’t Have</h4>
+<p>This should be the easiest step. All we need to do is check the value of the &ldquo;present&rdquo; key. Should be no problem at all.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >; Print out what we have so far for debugging purposes.
+foreach [ name info ] batteries [
+    if &#34;yes&#34; = select info &#34;present&#34; [
+        print name
+        foreach [key value] info [
+            print [ key &#34;--&#34; value ]
+        ]
+    ]
+]</code></pre>
+</figure><h4 id="show-me-if-the-computer-is-plugged-in">Show Me If The Computer Is Plugged In</h4>
+<p>We are now officially out of the &ldquo;print out what we have for debugging purposes&rdquo; stage. From here on, we will be creating the output we expect to see.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >foreach [ name info ] batteries [
+    if &#34;yes&#34; = select info &#34;present&#34; [
+        charging-state: select info &#34;charging state&#34;
+        print [ name charging-state ]
+    ]
+]</code></pre>
+</figure><p>Rather than step through and display every single item of data, we are printing one line with minimal information: the name of the battery and whether it is charging or not.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./battery.r
+BAT0/ discharging</code></pre>
+</figure><p>I like this. It is easy for me to understand this output compared to the raw files.</p>
+<h4 id="show-me-percentage-of-remaining-battery-capacity">Show Me Percentage Of Remaining Battery Capacity</h4>
+<p>I will want to know how much power is remaining if the battery is either &ldquo;charging&rdquo; or &ldquo;discharging&rdquo;. I don’t know what <code>mAh</code> is – <em>milliAmp-hours?</em>. I prefer to see this in terms of what percentage is remaining. A full battery has 100%, and an empty battery has 0%. Seems easy enough, but we don’t have the total capacity listed in the state file. To get this information, we will need to look at the <code>info</code> file.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >foreach [ name info ] batteries [
+    if &#34;yes&#34; = select info &#34;present&#34; [
+        charging-state: select info &#34;charging state&#34;
+        prin [ name charging-state ]
+        info-file: rejoin [ battery-dir name &#34;info&#34; ]
+        foreach line read/lines info-file [
+            if parse line [
+                &#34;design capacity:&#34;
+                copy capacity to end (trim capacity)
+            ] [
+                items: parse capacity none
+                cap: to-integer items/1
+                items: parse select state &#34;remaining capacity&#34; none
+                rem: to-integer items/1
+                per: to-integer (rem / cap * 100)
+                prin join &#34; &#34; [ per &#34;%&#34; ]
+                break
+            ]
+        ]
+        print []
+    ]
+]</code></pre>
+</figure><p>Now I can see the percentage remaining:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./battery.r
+$ BAT0/ discharging 91%</code></pre>
+</figure><p>Yes, that’s the output that I want, but the code is turning into something … <em>evil</em>. Or at least something <em>ugly</em>. I should consider refactoring again before I move on to the next step. I will just show you the end result of the refactoring, but these are the ideas that guided me as I looked at my code:</p>
+<ul>
+<li>Go ahead and read all the data files. It’s not like memory is an issue for an app like this.
+<ul>
+<li>Don’t forget to look for duplicate keys when assembling the hash.</li>
+</ul>
+</li>
+<li>Remove duplication where possible.</li>
+<li>Only use <code>print</code> once for each battery. Narrowing down the sources of output can make debugging and reading easier.</li>
+</ul>
+<p>And here’s the refactoring.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -s
+
+REBOL [ ]
+
+;;
+;; Function Definitions
+;;
+
+get-value: func [
+    &#34;Get numeric part of a value in the battery info hash&#34;
+    information [hash!]   &#34;A Hash containing battery data&#34;
+    key         [string!] &#34;A key to look up in the hash&#34;
+    /local value tokens numeric-value
+] [
+    value: select information key
+    tokens: parse value none
+    numeric-value: to-integer tokens/1
+    return numeric-value
+]
+
+;;
+;; Main logic starts here.
+;;
+
+battery-dir: %/proc/acpi/battery/
+batteries: make hash! [ ]
+
+; Load battery information.
+foreach battery read battery-dir [
+    state: make hash! []
+    battery-files: read rejoin [ battery-dir  battery ]
+
+    foreach file battery-files [
+        full-path: rejoin [ battery-dir battery file ]
+
+        foreach line read/lines full-path [
+            parse line [
+                copy key to &#34;:&#34;
+                skip
+                copy value to end (trim value)
+            ]
+            unless select state key [
+                repend state [ key value ]
+            ]
+        ]
+    ]
+    repend batteries [ battery state ]
+]
+
+; Display information for each battery
+foreach [ name info ] batteries [
+
+    ; ... but only if the battery is present.
+    if &#34;yes&#34; = select info &#34;present&#34; [
+        charging-state: select info &#34;charging state&#34;
+
+        capacity: get-value info &#34;design capacity&#34;
+        remaining: get-value info &#34;remaining capacity&#34;
+        percent: to-integer (remaining / capacity * 100)
+
+        battery-text: reform [
+            name
+            charging-state
+            join percent [ &#34;%&#34; ]
+        ]
+        print battery-text
+    ]
+]</code></pre>
+</figure><p>The end result is the same as before, but I’ve made the code easy to read again. This process of writing and refactoring is pretty much standard to my  development style. Well, I’m not the <em>only</em> one who writes code like this.
+Anyhow. Let’s move on, shall we?</p>
+<h4 id="show-me-estimated-time-remaining">Show Me Estimated Time Remaining</h4>
+<p>In order to calculate the time remaining before the battery runs out, we need to get the remaining charge and the rate that we’re using it up.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >        ...
+        print battery-text
+        print select info &#34;remaining capacity&#34;
+        print select info &#34;present rate&#34;
+    ]
+]</code></pre>
+</figure><p>Wow, I really don’t know what those numbers mean. We could fake it until we get a result that looks like what I see when I scrub the mouse over my KDE battery applet. I think I will do a little bit of searching on the Web, though. There is probably some sort of reference to the ACPI state files.</p>
+<p>I have a rule not to spend more than fifteen minutes looking something up online, unless the end result of such a search would be money or finding something that pleases my wife. This is neither, and I’ve just spent fifteen minutes making a few clumsy stabs at finding a reference for the ACPI state file. No luck, so let’s go with the faking it.</p>
+<p>The KDE panel says I have a little over two hours left on my laptop. With a couple of quick hacks, my script more or less agrees with KDE. There’s an occasional difference of a minute or two, but that is not an urgent issue for something like this. I would be much more concerned if this script was going to be used in a production environment, or in an environment where being off by a couple of seconds could cost somebody their life. On the other hand, what are they doing using some script they cobbled off the Web to keep their loved ones alive? And then they’ll probably get mad at <em>me</em> when it goes wrong. I swear, some people are just too strange for words.</p>
+<p>What? Oh, right. Here’s the finished version of the utility. Took me a couple of hours, but a lot of that was me learning the basics of <code>parse</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >#!/usr/local/bin/rebol -s
+
+REBOL [
+    Title: &#34;Battery Monitor&#34;
+    File: %battery.r
+    Date: 14-mar-2005
+    Author: &#34;Brian Wisti&#34;
+]
+
+;;
+;; Function Definitions
+;;
+
+get-value: func [
+    &#34;Get numeric part of a value in the battery info hash&#34;
+    information [hash!]   &#34;A Hash containing battery data&#34;
+    key         [string!] &#34;A key to look up in the hash&#34;
+    /local value tokens numeric-value
+] [
+    value: select information key
+    tokens: parse value none
+    numeric-value: to-integer tokens/1
+    return numeric-value
+]
+
+;;
+;; Main logic starts here.
+;;
+
+battery-dir: %/proc/acpi/battery/
+batteries: make hash! [ ]
+
+; Load battery information.
+foreach battery read battery-dir [
+    state: make hash! []
+    battery-files: read rejoin [ battery-dir battery ]
+
+    foreach file battery-files [
+        full-path: rejoin [ battery-dir battery file ]
+
+        foreach line read/lines full-path [
+            parse line [
+                copy key to &#34;:&#34;
+                skip
+                copy value to end (trim value)
+            ]
+            unless select state key [
+                repend state [ key value ]
+            ]
+        ]
+    ]
+    repend batteries [ battery state ]
+]
+
+; Display information for each battery
+foreach [ name info ] batteries [
+
+    ; ... but only if the battery is present.
+    if &#34;yes&#34; = select info &#34;present&#34; [
+        charging-state: select info &#34;charging state&#34;
+
+        capacity: get-value info &#34;design capacity&#34;
+        remaining: get-value info &#34;remaining capacity&#34;
+        percent: to-integer (remaining / capacity * 100)
+
+        rate: get-value info &#34;present rate&#34;
+        either rate &gt; 0 [
+            seconds: remaining / rate * 60 * 60
+            time-remaining: to-time to-integer seconds
+        ] [
+            time-remaining: &#34;--&#34;
+        ]
+
+        battery-text: reform [
+            name
+            charging-state
+            join percent [ &#34;%&#34; ]
+            time-remaining
+        ]
+        print battery-text
+    ]
+]</code></pre>
+</figure><p>Running it shows a problem on Ubuntu. The discharge rate in the state file is listed as zero, which means the script has no way to determine estimated time remaining.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >wisti grabbag $ ./battery.r
+BAT0/ discharging 82% --</code></pre>
+</figure><p>This is a known issue, but I do not yet know a way around it. I left the original code intact just in case <em>your</em> laptop does not have this problem.</p>
+<p>Now, if I wanted to make this readily accessible from the command line, which I do, then I would just copy <code>laptop.r</code> to someplace on my path. I might even rename to something like <code>check-battery</code> without the &ldquo;.r&rdquo; suffix, to make it look more like any old command. This is a common maneuver on the command line. Many of the commands you use every day in the shell are just thinly disguised scripts, written in one language or another.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >wisti grabbag $ cp battery.r ~/bin/check-battery</code></pre>
+</figure><p>And now I have one written in REBOL.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project was an exercise to see how difficult it would be to create a relatively simple utility. It was a challenge until I started getting the hang of Parse. I think Parse is easier to understand than regular expressions, but regular expressions have the advantage that they are familiar to more Linux developers. Still - get Parse out of the way, and creating useful applications in REBOL suddenly becomes very easy.</p>
+<h3 id="additional-ideas">Additional Ideas</h3>
+<p>There are a number of different things you could do to enhance or refine this script. Here are a couple of ideas.</p>
+<ul>
+<li>This script is <em>not</em> portable. It assumes that you have the same file setup as my HP notebook running me version of Ubuntu. Any differences brought on by different distributions or operating systems are unaccounted for. You might want to alter the script to look in the right places for your machine.</li>
+<li>The script is <em>not</em> robust. What happens if there’s a zero in the wrong place, or ACPI can’t figure out what the rate of discharge is? I don’t know, but it’s probably not something good. You might want to make it more robust by checking for possible errors.</li>
+<li>Hey, what about writing this as a View application? Yeah, you could make a cute little picture of a battery that empties out as the remaining power drops. Why stop there? You could implement a whole system monitor, like <a href="http://gkrellm.net/">gkrellm</a>. That might be fun.</li>
+</ul>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: REBOL Grab Bag</title>
+  <link>https://randomgeekery.org/post/2005/02/rebol-grab-bag/</link>
+  <pubDate>Mon, 28 Feb 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/02/rebol-grab-bag/</guid>
+  <description>This section contains articles on various random ideas that I had as I was learning REBOL. They didn’t really fit in the context of rebol-babysteps or any of the general REBOL pages. I suppose they are counterparts to the Moderately Interesting Ruby Exercises more than anything else. I hope they provide some general ideas and inspiration for other potential REBOLlers.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rebol</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>This section contains articles on various random ideas that I had as I was learning REBOL.
+They didn’t really fit in the context of <a href="/post/2004/12/rebol-babysteps/">rebol-babysteps</a> or any of the general <a href="/card/rebol/">REBOL</a> pages. I suppose they are counterparts to the <a href="/post/2004/09/the-mires/">Moderately Interesting Ruby Exercises</a> more than anything else. I hope they provide some general ideas and inspiration for other potential REBOLlers.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: REBOL Babysteps - 03 Making Decisions</title>
+  <link>https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/</link>
+  <pubDate>Sun, 27 Feb 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/</guid>
+  <description>In rebol-babysteps-01-getting-started I gave you a first cautious glance at the REBOL programming language. In rebol-babysteps-02-getting-started-with-view I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rebol</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>In <a href="/post/2004/12/rebol-babysteps-01-getting-started/">rebol-babysteps-01-getting-started</a> I gave you a first cautious glance at the <a href="/card/rebol/">REBOL</a> programming language. In <a href="/post/2004/12/rebol-babysteps-02-getting-started-with-view/">rebol-babysteps-02-getting-started-with-view</a> I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test. Here are a few uses for a simple selection structure.</p>
+<ul>
+<li>Tell me if a file exists.</li>
+<li>Stop me from continuing the program if I give the wrong password.</li>
+<li>Tell me if a new item on <a href="http://www.rebol.com/cgi-bin/blog.r">Carl&rsquo;s blog</a> has been posted.</li>
+</ul>
+<h2 id="simple-tests">Simple Tests</h2>
+<h3 id="if"><code>if</code></h3>
+<p>The simplest selection structure is <code>if</code>. You give it a <em>test expression</em> and a <em>block</em>. If the test expression turns out to be true, then REBOL runs the block. Otherwise, it ignores the block and moves on to the next statement.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]</code></pre>
+</figure><table>
+<thead>
+<tr>
+<th>if</th>
+<th>Test Expression</th>
+<th>Block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if</code></td>
+<td><code>equal? name &quot;Zim&quot;</code></td>
+<td><code>[ print &quot;Reporting for duty sir!&quot; ]</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can choose between using the <code>equal?</code> function or the <em>equality</em> operator.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+if name == &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]</code></pre>
+</figure><p>Those two equal signs in there combine to make a special <em>operator</em> that REBOL uses to test for strict equality &ndash; making sure that the thing on the left has exactly the same value as the thing on the right. There are a number of comparison functions and operators in REBOL. It&rsquo;s up to you whether you prefer to use the function approach or the operator approach. My own preference varies according to my mood and the things being compared. Numbers and strings often get the operator treatment, while I lean towards using the functions for more complex things. I&rsquo;ll stick to using the functions today, because that&rsquo;s the sort of mood I&rsquo;m in.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Operator</th>
+<th>Checks For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>equal?</code></td>
+<td><code>=</code></td>
+<td>Equality</td>
+</tr>
+<tr>
+<td><code>strict-equal?</code></td>
+<td><code>==</code></td>
+<td>Strict Equality</td>
+</tr>
+<tr>
+<td><code>not-equal?</code></td>
+<td><code>&lt;&gt;</code></td>
+<td>Inequality</td>
+</tr>
+<tr>
+<td><code>strict-not-equal?</code></td>
+<td><em>none</em></td>
+<td>Strict Inequality</td>
+</tr>
+<tr>
+<td><code>greater?</code></td>
+<td><code>&gt;</code></td>
+<td>Greater Than</td>
+</tr>
+<tr>
+<td><code>lesser?</code></td>
+<td><code>&lt;</code></td>
+<td>Less Than</td>
+</tr>
+<tr>
+<td><code>greater-or-equal?</code></td>
+<td><code>&gt;=</code></td>
+<td>Equality or Greater Than</td>
+</tr>
+<tr>
+<td><code>lesser-or-equal?</code></td>
+<td><code>&lt;=</code></td>
+<td>Equality or Lesser Than</td>
+</tr>
+</tbody>
+</table>
+<p><code>equal?</code> doesn&rsquo;t care about case. &ldquo;abc&rdquo; and &ldquo;ABC&rdquo; are the same, according to these tests. So are <code>1</code> and <code>1.0</code>. This is the way most of us think about comparisons, but programs sometimes need more careful comparisons in situations where case matters. One example that immediately comes to mind is login and password entry. You need to use <code>strict-equal?</code> or <code>strict-not-equal?</code> if you need an exact test.</p>
+<h3 id="either"><code>either</code></h3>
+<p>What happens if you want to do one thing if a test is true, but a <em>different</em> thing if the test is false? Let&rsquo;s say, for example, we want to print out one message if we recognize the user as a master, and print out another message if the user is not a master. Well, I suppose you could have two <code>if</code> statements, like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
+if not-equal? name &#34;Zim&#34; [ print &#34;Meow!&#34; ]</code></pre>
+</figure><p>This can obviously get ugly very quickly. REBOL gives us the <code>either</code> statement to simplify situations like this.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+either equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ] [ print &#34;Meow!&#34; ]</code></pre>
+</figure><p>The <code>either</code> command requires a test expressions and two blocks. Either the test is true and the first block is executed, or the test is false and the second block is executed. That makes sense, doesn&rsquo;t it? Here&rsquo;s how that example breaks down.</p>
+<table>
+<thead>
+<tr>
+<th><code>either</code></th>
+<th>Test</th>
+<th>Do this if True</th>
+<th>Or do this if False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>either</code></td>
+<td><code>equal? name &quot;Zim&quot;</code></td>
+<td><code>[ print &quot;Reporting for duty sir!&quot; ]</code></td>
+<td><code>[ print &quot;Meow!&quot; ]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now is a good time to point out how flexible REBOL can be. Let&rsquo;s reexamine our code and see what we are trying to do. We are printing a message, right? The only thing that is different is <em>which</em> message we are printing. We could hand the entire <code>if</code> statement directly to the print command like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+print either equal? name &#34;Zim&#34; [ &#34;Reporting for duty sir!&#34; ] [ &#34;Meow!&#34; ]</code></pre>
+</figure><p>It accomplishes the exact same thing as we did with the original <code>either</code> statement, but removes a little bit of repetition. Some folks think that steps like this do a lot to make program code more readable. Another approach might be to assign the result of the <code>either</code> statement to a variable and then print the variable. I like this approach, because my program might grow later on. I might decide that I want the program to <em>speak</em> the response rather than print it out to the screen.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+response: either equal? name &#34;Zim&#34; [ &#34;Yes master I obey!&#34; ] [ &#34;Meow!&#34; ]
+print response</code></pre>
+</figure><p>I don&rsquo;t want to overwhelm anybody right now, and you can ignore options like these until you are much more comfortable with REBOL. I just wanted you to see how REBOL will let you describe your program in the style that you like best.</p>
+<p>Yes, <code>either</code> is a variation of the <code>if/else</code> construct that you find in many other languages.</p>
+<h2 id="having-multiple-tests">Having Multiple Tests</h2>
+<h3 id="any"><code>any</code></h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+response: ask &#34;What&#39;s your favorite snack? &#34;
+if any [
+	equal? response &#34;tacos&#34;
+	equal? response &#34;waffles&#34;
+] [
+	print &#34;Me too!&#34;
+]</code></pre>
+</figure><p>There will be times that you want to check several things, and execute if any of them are true. Fortunately REBOL is there to help us with the <code>any</code> function. <code>any</code> takes a block of tests and returns true if any of those tests are true. This is another one of those definitions that just repeats the obvious, isn&rsquo;t it? Well, a lot of predefined words in REBOL work like that.</p>
+<p>Yes, this does sound like the <code>or</code> logical operator from other languages. Also known as <code>||</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>any</code> better than <code>||</code>.</p>
+<h3 id="all"><code>all</code></h3>
+<p>What if you only want to execute the block if <em>all</em> tests are true? It shouldn&rsquo;t surprise you by this point to find out that REBOL is right there waiting for us with the <code>all</code> statement.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+name: ask &#34;Name: &#34;
+password: ask &#34;Password: &#34;
+if all [
+	strict-equal? name &#34;Brian&#34;
+	strict-equal? password &#34;Pretty Please?&#34;
+] [
+	print &#34;Login accepted!&#34;
+]</code></pre>
+</figure><p>Yes, this does sound like the <code>and</code> logical operator from other languages. Also known as <code>&amp;&amp;</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>all</code> better than <code>&amp;&amp;</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now that you have worked with selection structures, you have a major building block for writing useful programs. Next time around we will take a look at a few of REBOL&rsquo;s many repetition and iteration structures. Then maybe we can sit down and write a <em>real</em> program!</p>
+<h2 id="changes">Changes</h2>
+<h3 id="24-feb-2009">24 Feb 2009</h3>
+<ul>
+<li>General cleanup</li>
+</ul>
+<h3 id="27-feb-2005">27 Feb 2005</h3>
+<ul>
+<li>Initial release into the wild.</li>
+<li>Corrected some inaccuracies about <code>equal?</code> and <code>=</code> and <code>==</code>, pointed out by <a href="http://www.compkarori.com/vanilla">Graham Chiu</a></li>
+</ul>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Perl 5 Babysteps 01 - Getting Started</title>
+  <link>https://randomgeekery.org/post/2005/01/perl-5-babysteps-01-getting-started/</link>
+  <pubDate>Tue, 04 Jan 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/01/perl-5-babysteps-01-getting-started/</guid>
+  <description>Installing Perl Okay. Everybody not on Windows, go install perlbrew.
+Done? Excellent. Here is how you install Perl 5.14.1 and make it your default Perl.
+$ perlbrew install perl-5.14.1 $ perlbrew switch perl-5.14.1 Installing Perl on Windows On Windows, the preferred option is usually to download an installation package.
+ActivePerl ActivePerl is a commercially supported version of Perl for Windows. ActivePerl can be downloaded for free. It comes with a wealth of widely used third-party libraries such as an DBI, LWP, and the XML bundle.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<h2>Installing and first steps with Perl</h2><h2 id="installing-perl">Installing Perl</h2>
+<p>Okay. Everybody not on <em>Windows</em>, go install <a href="/post/2011/09/perlbrew/">perlbrew</a>.</p>
+<p>Done? Excellent. Here is how you install Perl 5.14.1 and make it your default Perl.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew install perl-5.14.1
+$ perlbrew switch perl-5.14.1</code></pre>
+</figure><h3 id="installing-perl-on-windows">Installing Perl on Windows</h3>
+<p>On Windows, the preferred option is usually to download an installation package.</p>
+<h4 id="activeperl">ActivePerl</h4>
+<p><a href="http://activestate.com/Products/activeperl/">ActivePerl</a> is a commercially supported version of Perl for Windows. ActivePerl can be downloaded for free. It comes with a wealth of widely used third-party libraries such as an DBI, LWP, and the XML bundle. It is released by <a href="http://activestate.com">ActiveState</a>, a company based out of Canada. It is also the only readily available release of Perl 5.14 for Windows at this exact moment.</p>
+<h3 id="verify-your-perl">Verify Your Perl</h3>
+<p>We want to make sure that <code>perl</code> installed where we expected it to and that our system finds the right one.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl --version
+This is perl 5, version 14, subversion 1 (v5.14.1) built for darwin-2level
+
+Copyright 1987-2011, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using &#34;man perl&#34; or &#34;perldoc perl&#34;.  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.</code></pre>
+</figure><h2 id="using-perl-from-the-command-line">Using Perl From The Command Line</h2>
+<p>It would be unfair of me to ignore simple command-line Perl.</p>
+<h3 id="perl--e"><code>perl -E</code></h3>
+<p>Although most of my Perl time is spent on large projects, occasionally I just want a quick answer. Because I usually have a terminal open, Perl presents itself as a convenient calculator:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl -E &#39;say 3.1415926 * 5 ** 2&#39;
+78.539815</code></pre>
+</figure><p>It is almost the same on Windows, except that you need to use double quotes:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:&gt;perl -E &#34;say 3.1415926 * 5 ** 2&#34;
+78.539815</code></pre>
+</figure><p>The <code>-E</code> flag tells <code>perl</code> that the next bit is code to be executed directly. There are many flags to adjust the behavior of <code>perl</code> when you run it. <a href="http://perldoc.perl.org/perlrun.html">perlrun</a>shows all the gory details.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc perlrun</code></pre>
+</figure><p>I don’t plan on talking any more about Perl one-liners. I just thought you should know that they are available. They can be useful, but I am not the person to teach them. <a href="https://minimalperl.com">Minimal Perl</a> is a great starting point for exploring that aspect of Perl’s power.</p>
+<p>So.
+What exactly are we doing with that one line? There’s something that looks like math, and <code>say</code>. I guess it is fairly obvious what <code>say</code> is doing here: it is printing stuff out to our terminal.</p>
+<blockquote>
+<p><strong>2020-02-24</strong></p>
+<p>Reading back, and it looks like I was starting to write something about <code>perldoc</code>?</p>
+</blockquote>
+<h3 id="perldoc--f"><code>perldoc -f</code></h3>
+<p>We can ask about specific built-in functions using the <code>-f</code> parameter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc -f say
+say FILEHANDLE LIST
+say FILEHANDLE
+say LIST
+say     Just like &#34;print&#34;, but implicitly appends a newline. &#34;say LIST&#34;
+        is simply an abbreviation for &#34;{ local $\ = &#34;\n&#34;; print LIST }&#34;.
+        To use FILEHANDLE without a LIST to print the contents of $_ to
+        it, you must use a real filehandle like &#34;FH&#34;, not an indirect
+        one like $fh.
+
+        This keyword is available only when the &#34;say&#34; feature is
+        enabled; see feature. Alternately, include a &#34;use v5.10&#34; or
+        later to the current scope.
+
+        This keyword is available only when the &#34;say&#34; feature is
+        enabled; see feature. Alternately, include a &#34;use v5.10&#34; or
+        later to the current scope.</code></pre>
+</figure><aside class="admonition">
+<p>Yeah I had a bad habit of posting unfinished content in the pre-blog days.</p>
+</aside>
+<h3 id="perldoc--q"><code>perldoc -q</code></h3>
+<h2 id="creating-perl-programs">Creating Perl Programs</h2>
+<p>The tradition in programming literature is to start by creating a program that prints a simple phrase, such as &ldquo;Hello, World!&rdquo; The idea is to give you some clue how much work is involved in creating a minimal program. I am not going to argue with tradition. Not this one, at least. Type the following into your text editor:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm greeting.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Depends on features not in older Perls.</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, World!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Save the file as <code>hello.pl</code>. We will run it in a few moments &ndash; but first, let’s take a quick look at what we’ve got so far.</p>
+<h3 id="pod">POD</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm greeting.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span></span></span></code></pre>
+</figure><p>POD, or &ldquo;Plain Old Documentation&rdquo;, is the standard system for documenting Perl programs. POD directives exist within your application, but are ignored during execution. They are instead processed by the <code>perldoc</code> application. <code>perldoc</code> can convert your POD to different formats such as HTML, or simply format and display the documentation to your screen. Use POD to write about what you want <em>users</em> to know about your Perl application. A proper introduction to <code>perldoc</code> is far beyond the scope of this little tutorial, but you can see the potential usefulness of this tool from the console with a simple command:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc hello.pl</code></pre>
+</figure><p>You get a simple display showing a formatted version of the POD you wrote. There is a lot more information you can get about POD and perldoc within Perl’s own POD:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc perlpod</code></pre>
+</figure><p>There’s also an <a href="http://perldoc.perl.org/perlpod.html">HTML version</a> if <code>perldoc</code> is not available on your system or you just want to see something pretty.</p>
+<h3 id="comments">Comments</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Depends on features not in older Perls.</span></span></span></code></pre>
+</figure><p>On each line, everything from <code>#</code> to the end of the line is a <em>comment</em>. Perl ignores comments, so they allow you to communicate with other people who read your code. Comments are <em>good</em>. When you come back to look at a complex script after a few months, you might forget what some block of code does, or why you chose one solution over another. Having the comments there help to remind you what you were intending, and generally serve to make it much easier sorting everything out.</p>
+<h3 id="use"><code>use</code></h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span></span></span></code></pre>
+</figure><p>The <code>use</code> statement is incredibly powerful. It effectively changes the way Perl will behave for the duration of your program. You can get extra functionality with <code>use</code> by loading a module, or you can significantly change the rules Perl runs under by loading a <em>pragma</em>. I will be taking full advantage of the <code>use</code> statement in this tutorial, because it takes Perl from a strong shell scripting language to an incredibly powerful programming language.</p>
+<p>Oh, about that semi-colon (<code>;</code>): <code>perl</code> uses the semi-colon to separate statements. Each statement contains a particular instruction for the Perl language. You will usually - but not always - see Perl code with one statement per line, with a semi-colon at the end of each line.</p>
+<p>// Explain <code>5.14.0</code>.</p>
+<p>Let’s get back to looking at <code>hello.pl</code></p>
+<h3 id="say"><code>say</code></h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, World!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>We use <code>say</code> to print things out on a line in Perl 5.14. This time we’re asking Perl to say the phrase &ldquo;Hello World!&rdquo;&quot;.</p>
+<p>Hm. I really thought it would take more effort to explain that. Oh well, guess there’s nothing left to do but see it in action.</p>
+<h2 id="running-it">Running it</h2>
+<p>Now you would probably like to know how to actually run your program. Save the file you have been editing and switch to a command line. Make sure you are in the same directory as your script - this should be as simple as <code>cd project-directory</code>. Once you are in the right place, type the following into the command line:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl Hello, World!</code></pre>
+</figure><p>All this is kind of cool, but it would be nice to customize it a little bit. Maybe we could change the program so that it says &ldquo;Hello&rdquo; to us personally.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm greeting.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Depends on features not in older Perls.</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="s">&#34;Brian&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>We use the word <code>my</code> to declare variables. Declaration is when we tell Perl that we have a variable we plan on using. Perl 5.14 mode enforces the declaration of variables.</p>
+<p>What’s a variable? We’ll get to that in a second. I’m impatient to see a running program! Save the file, and run it again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl Hello, Brian!</code></pre>
+</figure><p>There, I feel better. Let’s move on to talking about variables.</p>
+<h3 id="variables">Variables</h3>
+<p>We stored the string &ldquo;Brian&rdquo; in the variable <code>$name</code>. You can think of a <em>variable</em> as a tag - a name we use for some value that we want the program to remember. Later, we can get that value back by referring to the tag.</p>
+<p>The <code>$</code> symbol at the beginning tells Perl what type of value this variable will be used for. The <em>type</em> of a variables gives clues for how it can be treated. Most variables in Perl break down into two broad categories.</p>
+<ol>
+<li>Individual things like strings and numbers</li>
+<li>Collections of things like lists and dictionaries</li>
+</ol>
+<p>Variables that refer to individual things are called <em>scalars</em> in Perl. They are easy to recognize, because they are prefixed by a <code>$</code> symbol.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="s">&#34;Brian&#34;</span><span class="p">;</span> <span class="c1"># I&#39;m going to use a scalar variable called &#39;name&#39;.</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># It has the value &#34;Brian&#34;.</span></span></span></code></pre>
+</figure><p><em>Strings</em> &ndash; scalar values intended to be handled like simple text &ndash; are always quoted in some way to show where the text of the string begins and where it ends. There are many ways to quote a string, but for now I will use double-quote characters. That is what quoted text looks like in American English, so it is easy for me to remember. It also provides some other conveniences when displaying variables, such as when we say <code>&quot;Hello, $name&quot;</code> later in the program.</p>
+<p>Anyways, this single line both declares the variable <code>$name</code>, letting Perl know you plan on  sing it, and assigns a value to <code>$name</code>, so that Perl will have something to remember. What happens if you skip one or both of these steps? It depends, so the best thing to do is try it and see.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm greeting.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>We’ve removed the declaration and assignment. Let’s see what happens now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl
+Global symbol &#34;$name&#34; requires explicit package name at hello.pl line 12.
+Execution of hello.pl aborted due to compilation errors.</code></pre>
+</figure><p>Because we insisted on 5.14, Perl politely informed us that it found some mention of a variable called <code>$name</code> that we never declared. This is considered rude by recent Perls, so the interpreter quit without running the program.</p>
+<p>Okay, what if we declare <code>$name</code> but never assign a value to it?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.014</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This time Perl runs, but the results are confusing.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl Hello, !</code></pre>
+</figure><p>Since <code>$name</code> has no value, Perl has nothing to put in that string. That’s exactly what it puts there: nothing.</p>
+<h3 id="use-warnings"><code>use warnings;</code></h3>
+<p>Perl generally assumes that you know what you are doing. It will not argue with you if you want to use a variable that has no value. However, that behavior is not always helpful. Using a variable without a value is usually a mistake, and it can often be a very difficult mistake to track down.</p>
+<p>This is why Perl provides the <a href="http://perldoc.perl.org/warnings.html">warnings pragma</a>. If you enable warnings, you will be told about common mistakes like these.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.014</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>That addition makes Perl much friendlier for learners or people with large, unpredictable applications.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl name.pl
+Use of uninitialized value $name in concatenation (.) or string at name.pl line 5.
+Hello, !</code></pre>
+</figure><p>The combined behavior of <code>use 5.14.0;</code> and <code>use warnings;</code> may not seem like much right now, but they are vital when working with large applications that have thousands of lines of code.</p>
+<p>With these behaviors enabled we have told Perl to behave more like a powerful application programming language with Perl’s latest features instead of as a quick and handy tool for system administrators. Decide for yourself whether that transformation is important to you, but all of my code in this tutorial will use both of these pragmas.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Perl Babysteps</title>
+  <link>https://randomgeekery.org/post/2005/01/perl-babysteps/</link>
+  <pubDate>Tue, 04 Jan 2005 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2005/01/perl-babysteps/</guid>
+  <description>Let’s admit it. Perl is everywhere. It powers most of the Internet, in one form or another. What? Your site doesn’t use Perl and CGI? Well, what about the administrative scripts that keep it running smoothly when everyone is snug in their beds? Even a fair chunk of Microsoft IIS servers rely on Perl for administrative tasks. I’m not saying that Perl is being used on every site on the Internet, including yours.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>Let’s admit it. Perl is <em>everywhere</em>. It powers most of the Internet, in one form or another. What? Your site doesn’t use Perl and CGI? Well, what about the administrative scripts that keep it running smoothly when everyone is snug in their beds? Even a fair chunk of Microsoft IIS servers rely on Perl for administrative tasks. I’m not saying that Perl is being used on every site on the Internet, including yours. I’m saying that Perl is probably being used on any random site you happen to look at on the Internet, including yours.</p>
+<p>Why not learn how to use it?</p>
+<p>This series is intended to provide the non-programmer with a gentle introduction to the Perl programing language. When you are done with it, you should feel ready to learn more. You will not be an expert, but you will be able to find the information you need to go farther. Beginners and experts alike should feel free to send me suggestions for improving this tutorial.</p>
+<p>Perl is a rich language. There are many ways to use it, and many ways to learn it. My focus is on how a beginner can use the features of Perl 5.14 to create programs.</p>
+<p>Even more specifically, how a beginner can use the features of Perl 5.14 to write the sort of code I would prefer to see people write. Hey. At least I’m honest.</p>
+<p>It is explicitly <em>not</em> a tutorial for people who need to maintain a big pile of legacy code that hides dragons and dark secrets — or for somebody who wants to whip out quick one-liners and scripts to accomplish amazing administrative tasks. See below for some of my favorite books for different approaches to learning Perl.</p>
+<h2 id="the-series">The Series</h2>
+<ol>
+<li><a href="/post/2005/01/perl-5-babysteps-01-getting-started/">perl-5-babysteps-01-getting-started</a>: Installing Perl and writing your first script</li>
+<li><a href="/post/2009/05/perl-5-babysteps-02-user-input/">perl-5-babysteps-02-user-input</a>: Getting user input from the command line</li>
+</ol>
+<h2 id="other-resources">Other Resources</h2>
+<ul>
+<li><a href="http://oreilly.com/catalog/9781449303587/">Learning Perl</a> - now in its sixth edition - is the standard for learning how to get stuff done in Perl. It is very easy to understand and gives you a broad understanding of how to speak native Perl.</li>
+<li><a href="http://manning.com/maher/">Minimal Perl</a> keeps a strong focus on the sort of Perl you would want for shell scripting and administrative tasks. Its greatest strength is that it shows you how little code you must write to accomplish big jobs.</li>
+<li><a href="http://onyxneon.com/books/modern_perl/">Modern Perl</a> emphasizes language features, libraries, and idioms that have evolved over Perl 5’s long history. It may be a little dense for a person’s first exposure to the language, but it is a great second book regardless of which one you read first.</li>
+</ul>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

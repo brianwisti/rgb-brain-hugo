@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/01/building-a-starter-blog-with-nikola/">Building a starter blog with Nikola</a></li>
@@ -300,13 +305,22 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>That focused flexibility intrigues me. <a href="/post/2019/12/removing-mmark-has-me-grumbly/">Cleaning</a> my site after Hugo <a href="https://gohugo.io/news/0.60.0-relnotes/">deprecated</a> the <a href="https://mmark.miek.nl/">mmark</a> format was a chore. My site has too many moving parts for me to casually port it, but I can still play a little.</p>
 <h2 id="setup">Setup</h2>
 <p>It’s generally a good idea to have a dedicated Python environment for each of your projects. So I’ll set something up with <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>.</p>
-<pre tabindex="0"><code>$ pyenv virtualenv 3.8.0 nikola
-$ pyenv activate nikola
-</code></pre><p>Next is Nikola itself. I’ll follow the <a href="https://getnikola.com/getting-started.html">suggestion</a> to install Nikola[Extras], which includes all sorts of niftiness.</p>
-<pre tabindex="0"><code>$ pip install --upgrade &#34;Nikola[Extras]&#34;
-</code></pre><h2 id="initialize-the-site">Initialize the site</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ pyenv virtualenv 3.8.0 nikola
+$ pyenv activate nikola</code></pre>
+</figure><p>Next is Nikola itself. I’ll follow the <a href="https://getnikola.com/getting-started.html">suggestion</a> to install Nikola[Extras], which includes all sorts of niftiness.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ pip install --upgrade &#34;Nikola[Extras]&#34;</code></pre>
+</figure><h2 id="initialize-the-site">Initialize the site</h2>
 <p>Let’s initialize an empty site.</p>
-<pre tabindex="0"><code>$ nikola init starter-blog
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola init starter-blog
 Creating Nikola Site
 ====================
 
@@ -321,11 +335,14 @@ If you do not want to answer and want to go with the defaults instead, simply re
 That&#39;s it, Nikola is now configured.  Make sure to edit conf.py to your liking.
 If you are looking for themes and addons, check out https://themes.getnikola.com/ and https://plugins.getnikola.com/.
 Have fun!
-[2020-01-04T07:08:02Z] INFO: init: Created empty site at starter-blog.
-</code></pre><p>Okay, no need to paste the entire exchange. Suffice to say that many questions are asked. And as Nikola itself mentions, we can skip those questions questions with <code>nikola init -q</code>.</p>
+[2020-01-04T07:08:02Z] INFO: init: Created empty site at starter-blog.</code></pre>
+</figure><p>Okay, no need to paste the entire exchange. Suffice to say that many questions are asked. And as Nikola itself mentions, we can skip those questions questions with <code>nikola init -q</code>.</p>
 <p>We get a configuration file written in Python and a handful of empty directories.
 I see nothing for themes, but that’s okay. Nikola starts us off with the <a href="https://themes.getnikola.com/v8/bootblog4/">bootblog4</a> theme. We can pick or make new themes later.</p>
-<pre tabindex="0"><code>$ tree
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ tree
 .
 ├── conf.py
 ├── files
@@ -334,9 +351,11 @@ I see nothing for themes, but that’s okay. Nikola starts us off with the <a hr
 ├── pages
 └── posts
 
-5 directories, 1 file
-</code></pre><p>My answers to Nikola’s setup questions sit up there near the top of <code>conf.py</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Data about this site</span>
+5 directories, 1 file</code></pre>
+</figure><p>My answers to Nikola’s setup questions sit up there near the top of <code>conf.py</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Data about this site</span>
 </span></span><span class="line"><span class="cl"><span class="n">BLOG_AUTHOR</span> <span class="o">=</span> <span class="s2">&#34;Brian Wisti&#34;</span>  <span class="c1"># (translatable)</span>
 </span></span><span class="line"><span class="cl"><span class="n">BLOG_TITLE</span> <span class="o">=</span> <span class="s2">&#34;Random Geekery&#34;</span>  <span class="c1"># (translatable)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># This is the main URL for your site. It will be used</span>
@@ -346,40 +365,50 @@ I see nothing for themes, but that’s okay. Nikola starts us off with the <a hr
 </span></span><span class="line"><span class="cl"><span class="c1"># If not set, defaults to SITE_URL</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># BASE_URL = &#34;https://randomgeekery.org/&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">BLOG_EMAIL</span> <span class="o">=</span> <span class="s2">&#34;brianwisti@pobox.com&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">BLOG_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&#34;The Random Geekery Blog, built with Nikola&#34;</span>  <span class="c1"># (translatable)</span>
-</span></span></code></pre></div><p>The rest of the file lists and explains default configuration. You could learn <em>almost</em> everything you need about Nikola from the configuration file. Nevertheless, I plan to keep the <a href="https://getnikola.com/documentation.html">documentation</a> handy.</p>
+</span></span><span class="line"><span class="cl"><span class="n">BLOG_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&#34;The Random Geekery Blog, built with Nikola&#34;</span>  <span class="c1"># (translatable)</span></span></span></code></pre>
+</figure><p>The rest of the file lists and explains default configuration. You could learn <em>almost</em> everything you need about Nikola from the configuration file. Nevertheless, I plan to keep the <a href="https://getnikola.com/documentation.html">documentation</a> handy.</p>
 <h3 id="local-development">Local Development</h3>
 <p>Nikola includes a built-in server to check your site locally. We have no content yet, but let’s take a look anyways.</p>
-<pre tabindex="0"><code>$ nikola auto --browser
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola auto --browser
 [2020-01-04T17:51:45Z] INFO: serve: Serving on http://127.0.0.1:8000/ ...
-[2020-01-04T17:51:45Z] INFO: serve: Opening http://127.0.0.1:8000/ in the default web browser...
-</code></pre><p>The <code>auto</code> command instructs Nikola to serve your site, refreshing whenever you save a change. With the <code>--browser</code> flag, it also opens a new browser tab to your development site.</p>
+[2020-01-04T17:51:45Z] INFO: serve: Opening http://127.0.0.1:8000/ in the default web browser...</code></pre>
+</figure><p>The <code>auto</code> command instructs Nikola to serve your site, refreshing whenever you save a change. With the <code>--browser</code> flag, it also opens a new browser tab to your development site.</p>
 <blockquote>
-<p>[!NOTE]
-Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run <code>nikola auto --browser</code> from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.</p>
+<p><strong>NOTE</strong></p>
+<p>Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run <code>nikola auto --browser</code> from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.</p>
 </blockquote>
 <p><code>http://127.0.0.1:8000</code> shows a basically empty front page. Nikola filled in the templates for the default theme with values from <code>conf.py</code>.</p>
 <p><img src="/post/2020/01/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/></p>
 <p>Each of the &ldquo;Archive,&rdquo; &ldquo;Tags,&rdquo; and &ldquo;RSS Feed&rdquo; links lead to summary pages with nothing listed. Since I have no content for Nikola to summarize yet, that makes sense.</p>
 <p>Following the &ldquo;Random Geekery&rdquo; link at the top takes me to the live site. I consider this incorrect behavior. We want to see how the development site works, not the live site.</p>
 <p>We can probably fix that in theme templates or with an option, but for the moment let’s just update <code>config.py</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&#34;/&#34;</span>
-</span></span></code></pre></div><p>And now the site title header links to the front page. Perfect for today.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&#34;/&#34;</span></span></span></code></pre>
+</figure><p>And now the site title header links to the front page. Perfect for today.</p>
 <p>Let’s start blogging!</p>
 <h2 id="blogging-with-nikola">Blogging with Nikola</h2>
 <p>Nikola supports an overwhelming number of options, especially when you start looking at plugins. That works great for someone like me. I constantly get new ideas not quite covered by the expected workflow, regardless of what that flow is.</p>
 <p>Of course, &ldquo;an overwhelming number of options&rsquo; is not the same as &ldquo;unopinionated.&rdquo; Unopinionated tools expect you to create your own workflow — or copy someone else’s. Despite its many options, Nikola includes a default workflow.</p>
 <h3 id="writing-a-blog-post">Writing a blog post</h3>
 <p>The <code>new_post</code> command asks you for a title and uses that to create a file from your settings.</p>
-<pre tabindex="0"><code>$ nikola new_post
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola new_post
 Creating New Post
 -----------------
 
 Title: Trying Out Nikola
 Scanning posts........done!
-[2020-01-04T20:39:06Z] INFO: new_post: Your post&#39;s text is at: posts/trying-out-nikola.rst
-</code></pre><p>Fire up an editor — or do it automatically with <code>nikola new_post -e</code> — and add something!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. title: Trying Out Nikola</span><span class="err">
+[2020-01-04T20:39:06Z] INFO: new_post: Your post&#39;s text is at: posts/trying-out-nikola.rst</code></pre>
+</figure><p>Fire up an editor — or do it automatically with <code>nikola new_post -e</code> — and add something!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. title: Trying Out Nikola</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. slug: trying-out-nikola</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. date: 2020-01-04 12:39:06 UTC-08:00</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. tags: nikola</span><span class="err">
@@ -395,62 +424,78 @@ Scanning posts........done!
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    :<span class="nx">r</span> <span class="p">!</span><span class="nx">perl</span> <span class="p">-</span><span class="nx">mText</span>::<span class="nx">Lorem</span> <span class="p">-</span><span class="nx">E</span> <span class="s1">&#39;say Text::Lorem-&gt;new-&gt;paragraphs(3)&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">...</span><span class="err">
-</span></span></span></code></pre></div><p>Unless you configure it differently, Nikola uses <a href="/card/restructuredtext/">card/reStructuredText</a> for new posts.
+</span></span><span class="line"><span class="cl"><span class="cp">...</span></span></span></code></pre>
+</figure><p>Unless you configure it differently, Nikola uses <a href="/card/restructuredtext/">card/reStructuredText</a> for new posts.
 RestructuredText, or ReST, is a formatting language similar in spirit to <a href="/card/markdown/">card/Markdown</a>. The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.</p>
 <p>Nikola reads our post’s metadata from ReST comments at the front of the file. I know I will miss something important if I tried summarizing it. Let’s just link to Nikola’s own <a href="https://getnikola.com/handbook.html#metadata-fields">metadata documentation</a>.</p>
 <p>What does the site look like now that it has a post?</p>
 <p><img src="/post/2020/01/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/></p>
 <p>This theme shows post content. I prefer showing a quick summary of posts on the front page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Show teasers (instead of full posts) in indexes? Defaults to False.</span>
-</span></span><span class="line"><span class="cl"><span class="n">INDEX_TEASERS</span> <span class="o">=</span> <span class="kc">True</span>
-</span></span></code></pre></div><p>And a comment in the post to show where the cutoff point is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. TEASER_END
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Show teasers (instead of full posts) in indexes? Defaults to False.</span>
+</span></span><span class="line"><span class="cl"><span class="n">INDEX_TEASERS</span> <span class="o">=</span> <span class="kc">True</span></span></span></code></pre>
+</figure><p>And a comment in the post to show where the cutoff point is:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. TEASER_END
 </span></span></span><span class="line"><span class="cl"><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>Delectus ut aut ea et dolore autem. Sint nihil sapiente voluptate id aut quo impedit. Aut<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>numquam delectus pariatur non accusantium. Aperiam aspernatur nemo sequi in est. Expedita<span class="err">
-</span></span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/></p>
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>numquam delectus pariatur non accusantium. Aperiam aspernatur nemo sequi in est. Expedita</span></span></code></pre>
+</figure><p><img src="/post/2020/01/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/></p>
 <p>Now the index has a summary and the main content is on the post page.
 The tag rests at the bottom, and a source link sits with the headline.</p>
 <p><img src="/post/2020/01/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/></p>
 <p>What about that &ldquo;Source&rdquo; link? Nikola lets you download the ReST source of a post. Neat, but not a feature I care about.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Copy the source files for your pages?</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Copy the source files for your pages?</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Setting it to False implies SHOW_SOURCELINK = False</span>
-</span></span><span class="line"><span class="cl"><span class="n">COPY_SOURCES</span> <span class="o">=</span> <span class="kc">False</span>
-</span></span></code></pre></div><p>Okay I need to stop. I intended to focus on the default Nikola flow. But here I am poking at <code>config.py</code>. Oh well. I gotta be me.</p>
+</span></span><span class="line"><span class="cl"><span class="n">COPY_SOURCES</span> <span class="o">=</span> <span class="kc">False</span></span></span></code></pre>
+</figure><p>Okay I need to stop. I intended to focus on the default Nikola flow. But here I am poking at <code>config.py</code>. Oh well. I gotta be me.</p>
 <p>But still let’s move on.</p>
 <p>The Archive, Tags, and RSS Feed links work, listing posts as expected. The lists aren’t very interesting with only one post though. I’ll see what I can come up with for next time. Oh and I’m not sure I can properly describe how excited I am that Archive automatically generates pages for years. I didn’t have to make a special-purpose taxonomy or anything!</p>
 <h2 id="adding-pages">Adding Pages</h2>
 <p>Anyways. Blogging is good, but a site needs more than blog posts. Let’s use <code>nikola new_post -p</code> to create a page instead of a post.</p>
-<pre tabindex="0"><code>$ nikola new_post -p
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola new_post -p
 Creating New Page
 -----------------
 
 Title: Now
 Scanning posts........done!
-[2020-01-05T09:37:40Z] INFO: new_page: Your page&#39;s text is at: pages/now.rst
-</code></pre><p>Everybody could use a <a href="/now/">now</a> page. Excuse me a moment while I edit <code>pages/now.rst</code>. Oh! Since it’s not a post, it won’t show up unless we link to it. The <code>/now</code> page is significant enough that it should go on the site menu.</p>
+[2020-01-05T09:37:40Z] INFO: new_page: Your page&#39;s text is at: pages/now.rst</code></pre>
+</figure><p>Everybody could use a <a href="/now/">now</a> page. Excuse me a moment while I edit <code>pages/now.rst</code>. Oh! Since it’s not a post, it won’t show up unless we link to it. The <code>/now</code> page is significant enough that it should go on the site menu.</p>
 <p>Back over to <code>config.py</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NAVIGATION_LINKS</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NAVIGATION_LINKS</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DEFAULT_LANG</span><span class="p">:</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/pages/now/&#34;</span><span class="p">,</span> <span class="s2">&#34;Now&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/archive.html&#34;</span><span class="p">,</span> <span class="s2">&#34;Archive&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/categories/&#34;</span><span class="p">,</span> <span class="s2">&#34;Tags&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/rss.xml&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS feed&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="p">),</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/></p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p><img src="/post/2020/01/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/></p>
 <h2 id="whats-left">What’s left?</h2>
 <p>If this was a really real site, we would build and deploy.</p>
-<pre tabindex="0"><code>$ nikola build
-$ nikola deploy
-</code></pre><p>Nikola has a <code>deploy</code> command? Well sure! You can configure multiple <a href="https://getnikola.com/handbook.html#deployment">deployment</a> options. <a href="https://rsync.samba.org/">rsync</a> — my favorite — even gets highlighted in the commented example.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DEPLOY_COMMANDS = {</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola build
+$ nikola deploy</code></pre>
+</figure><p>Nikola has a <code>deploy</code> command? Well sure! You can configure multiple <a href="https://getnikola.com/handbook.html#deployment">deployment</a> options. <a href="https://rsync.samba.org/">rsync</a> — my favorite — even gets highlighted in the commented example.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DEPLOY_COMMANDS = {</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#     &#39;default&#39;: [</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#         &#34;rsync -rav --delete output/ joe@my.site:/srv/www/site&#34;,</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#     ]</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># }</span>
-</span></span></code></pre></div><p>But I’m leaving that section of <code>config.py</code> alone for now.</p>
+</span></span><span class="line"><span class="cl"><span class="c1"># }</span></span></span></code></pre>
+</figure><p>But I’m leaving that section of <code>config.py</code> alone for now.</p>
 <p>This was fun! Will I replace Hugo with Nikola? I don’t know yet. I’d have to try importing and building the current site.</p>
 <p>That sounds like a project for another day.</p>
 

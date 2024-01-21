@@ -133,8 +133,8 @@ Today we&rsquo;re going to streamline the code somewhat by wrapping that complex
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/10/parrot-babysteps-07-writing-subroutines/">Parrot Babysteps 07 - Writing Subroutines</a></li>
@@ -311,7 +316,10 @@ powerful and worth deeper exploration on your own.</p>
 <h2 id="subroutines">Subroutines</h2>
 <p>We&rsquo;ve been working with subroutines since <a href="/post/2009/07/parrot-babysteps-01-getting-started/">parrot-babysteps-01-getting-started</a> Every Parrot application has a subroutine tagged as <code>:main</code> to show that it contains the main logic for the program. Let&rsquo;s start adding our own supplementary subroutines.</p>
 <p>Our first function will encapsulate the display of star highlights.</p>
-<pre tabindex="0"><code># example-07-01
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-01
 
 .loadlib &#39;io_ops&#39;
 
@@ -357,7 +365,7 @@ powerful and worth deeper exploration on your own.</p>
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     sol[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
@@ -380,7 +388,7 @@ powerful and worth deeper exploration on your own.</p>
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
@@ -389,10 +397,10 @@ powerful and worth deeper exploration on your own.</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -427,23 +435,32 @@ powerful and worth deeper exploration on your own.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>To create a subroutine that will get used by your <code>:main</code> sub, all
+.end</code></pre>
+</figure><p>To create a subroutine that will get used by your <code>:main</code> sub, all
 you need to do is declare a <code>.sub</code>.</p>
-<pre tabindex="0"><code>.sub say_star_details
-.end
-</code></pre><p>I like my subroutine names to clearly describe the task being accomplished,
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
+.end</code></pre>
+</figure><p>I like my subroutine names to clearly describe the task being accomplished,
 to minimize the guesswork when I come back to code later.</p>
 <p>This subroutine accepts a single parameter: a Hash describing the star to be
 printed. We learned <a href="/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">a few steps ago</a>
 that the <code>.param</code> directive declares a parameter for your subroutine.</p>
-<pre tabindex="0"><code>.sub say_star_details
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
     .param pmc star
-.end
-</code></pre><p>The subroutine body in this case is going to be a copy and paste of the
+.end</code></pre>
+</figure><p>The subroutine body in this case is going to be a copy and paste of the
 <code>DISPLAY_STAR_DETAILS</code> code chunk, along with declarations of <code>.local</code>
 variables needed to make it work.</p>
-<pre tabindex="0"><code>.sub say_star_details
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
     .param pmc star
 
     .local string star_name
@@ -461,33 +478,48 @@ variables needed to make it work.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>We no longer care about stellar distances in our main code, so we can safely
+.end</code></pre>
+</figure><p>We no longer care about stellar distances in our main code, so we can safely
 remove the <code>.local string star_distance</code> directive from <code>main</code>.</p>
 <p>Now we can rewrite our code to display Sol&rsquo;s details. Remember that subroutines
 require that their parameters be wrapped in parentheses.</p>
-<pre tabindex="0"><code># We want to show Sol&#39;s details as well as other matches.
-say_star_details(sol)
-</code></pre><p>We could have also wrapped <code>say_star_details</code> in quotes, but it&rsquo;s only required
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># We want to show Sol&#39;s details as well as other matches.
+say_star_details(sol)</code></pre>
+</figure><p>We could have also wrapped <code>say_star_details</code> in quotes, but it&rsquo;s only required
 when our subroutines have non-ASCII characters - that is, characters outside the
 range of what we consider &ldquo;normal&rdquo; characters in the United States. Still, I won&rsquo;t
 complain if you&rsquo;re devoted to good form and prefer to show those subroutine calls
 as:</p>
-<pre tabindex="0"><code>&#39;say_star_details&#39;(sol)
-</code></pre><p>The <code>DISPLAY_STAR_DETAILS</code> chunk becomes just a few lines:</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#39;say_star_details&#39;(sol)</code></pre>
+</figure><p>The <code>DISPLAY_STAR_DETAILS</code> chunk becomes just a few lines:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   say_star_details(star) # or &#39;say_star_details&#39;(star)
-  goto LOAD_NEXT_STAR
-</code></pre><p>Does it produce the same result as the code we ran before?</p>
-<pre tabindex="0"><code>$ parrot example-07-01.pir 
+  goto LOAD_NEXT_STAR</code></pre>
+</figure><p>Does it produce the same result as the code we ran before?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-07-01.pir 
 &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
 &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
 568 stars exactly matched Sol&#39;s spectrum G2V
-567 have no proper name
-</code></pre><p>It sure does. The code is still rather awkward, though. How about we add a
+567 have no proper name</code></pre>
+</figure><p>It sure does. The code is still rather awkward, though. How about we add a
 subroutine for transforming a line from the text file into star data?</p>
 <h2 id="returning-values">Returning Values</h2>
-<pre tabindex="0"><code># example-07-02
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-02
 
 .loadlib &#39;io_ops&#39;
 
@@ -542,11 +574,11 @@ subroutine for transforming a line from the text file into star data?</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     unless star_name goto LOAD_NEXT_STAR
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -582,7 +614,7 @@ subroutine for transforming a line from the text file into star data?</p>
     current_header = headers[current_index]
     current_value = values[current_index]
     star[current_header] = current_value
-    current_index += 1
+    current_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
 
@@ -592,19 +624,25 @@ subroutine for transforming a line from the text file into star data?</p>
 
 .sub say_star_details
     # ...
-.end
-</code></pre><p>The code is starting to get a little long, so I am adopting the habit
+.end</code></pre>
+</figure><p>The code is starting to get a little long, so I am adopting the habit
 of replacing subroutine blocks with <code># ...</code> when the code is unchanged from
 the previous example.</p>
 <p>Most of the code in our new <code>extract_star_details</code> subroutine looks familiar, but we do
 have one noteworthy addition:</p>
-<pre tabindex="0"><code>.return(star)
-</code></pre><p>This directive hands the Hash we&rsquo;ve just built back to whoever called the function.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.return(star)</code></pre>
+</figure><p>This directive hands the Hash we&rsquo;ve just built back to whoever called the function.</p>
 <p>Is our application cleaner? Yes, a little bit. I&rsquo;m tired of having so many unnamed
 stars, though. Let&rsquo;s add a little logic to attempt an alternate name if no proper
 name is available.</p>
 <h3 id="making-say_star_details-smarter">Making <code>say_star_details</code> Smarter</h3>
-<pre tabindex="0"><code># example-07-03
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-03
 .sub &#39;main&#39; :main
 
     load_bytecode &#39;String/Utils.pbc&#39;
@@ -653,7 +691,7 @@ name is available.</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     say_star_details(star)
     goto LOAD_NEXT_STAR
 
@@ -730,20 +768,23 @@ name is available.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>Now <em>this</em> version of the app displays everything along with some kind of
+.end</code></pre>
+</figure><p>Now <em>this</em> version of the app displays everything along with some kind of
 designation. The order I look for names is arbitrary, and is based
 roughly in order of how familiar they looked to me. The tediousness of
 determining which reference to use has been hidden away in the <code>say_star_details</code>
 subroutine, and consists of simply checking each field for a value until
 something useful is found. I knew there would be some kind of name to display,
 so I removed the name-counting functionality from <code>main</code>.</p>
-<pre tabindex="0"><code>$ parrot example-07-03.pir | more
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-07-03.pir | more
 # ... much text omitted
 &lt;Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713&gt;
 &lt;Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427&gt;
-568 stars exactly matched Sol&#39;s spectrum G2V
-</code></pre><h2 id="conclusion">Conclusion</h2>
+568 stars exactly matched Sol&#39;s spectrum G2V</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>Right. Our script has grown to the point where it shows every <code>G2V</code> star
 in the HYG database, and some of the complexity of this task has been
 tucked away behind subroutines. Is there more to be done? You bet! I would

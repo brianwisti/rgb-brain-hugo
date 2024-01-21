@@ -133,8 +133,8 @@ Loop Use the loop directive when you want PageTempate to insert the same chunk r
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetemplate-loop/">PageTemplate - Loop</a></li>
@@ -298,28 +303,34 @@ chunk repeatedly for a list of items. It can grab values from the item
 to be inserted in <code>value</code> directives within the chunk. If there is no
 list of items, the <code>in</code> chunk is skipped.</p>
 <h4 id="syntax">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of
 looking at each item in a list back in the misty days of 2002. However,
 the steadily increasing power of <code>in</code> combined with a few suggestions
 led to the addition of <code>loop</code> as a directive for loops. Makes sense. I
 even use it myself most of the time. Still, I hate it when documented
 features disappear without warning, so <code>in</code> was never removed. Here’s
 what <code>in</code> looks like.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
-</span></span><span class="line"><span class="cl">[%end in %]
-</span></span></code></pre></div><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no
+</span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
+</figure><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no
 difference in usage beyond a couple characters’ worth of typing.</p>
 <h4 id="example">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var title %]&#34; by [%var author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop %]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="local-values">“Local” Values</h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="local-values">“Local” Values</h3>
 <p>PageTemplate works a little magic with <code>value</code> directives when stepping
 through a <code>loop</code>. First it examines the list item to see if it has a
 value for the variable named. If it can’t find one there, it checks its
@@ -336,31 +347,37 @@ in the innermost list (the books) for a name, then the next list out
 directive provides a block of content to display if the list you are looking at
 is empty.</p>
 <h4 id="syntax-1">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
 </span></span><span class="line"><span class="cl">  handle list items
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl">  handle empty list
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><h4 id="example-1">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><h4 id="example-1">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var title %]&#34; by [%var author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>There are no books to display<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop %]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>{{&lt; note title=&ldquo;Alternate <code>no</code> syntax&rdquo; &gt;}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>{{&lt; note title=&ldquo;Alternate <code>no</code> syntax&rdquo; &gt;}}
 This is another idea that seemed good at the time. Back when all you had
 for loops was the <code>in</code> directive, we used <code>no</code> as the directive for
 empty loops. It’s still available, but I highly discourage using it.
 <code>no</code> just isn’t as clear in its intent as <code>empty</code>. But hey, I’m not
 going to stop you if that’s what you really want to do.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
 </span></span><span class="line"><span class="cl">  Handle list item
 </span></span><span class="line"><span class="cl">[%no %]
 </span></span><span class="line"><span class="cl">  Handle empty list
-</span></span><span class="line"><span class="cl">[%end in %]
-</span></span></code></pre></div><p>{{&lt; /note &gt;}}</p>
+</span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
+</figure><p>{{&lt; /note &gt;}}</p>
 <h2 id="iterators">Iterators</h2>
 <p>You are normally dealing with a hidden unnamed <code>this_step</code> variable in
 loops. Most of the time this is no problem, but sometimes your template
@@ -373,18 +390,22 @@ global values.</p>
 <h3 id="basic-iterators">Basic Iterators</h3>
 <p>Basic iterators provide an explicit name for your loop variable.</p>
 <h4 id="syntax-2">Syntax</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST ITERATOR %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST ITERATOR %]
 </span></span><span class="line"><span class="cl">... [%var iterator.trait %]
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><h4 id="example-2">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><h4 id="example-2">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books book %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>&#34;[%var book.title %]&#34; by [%var book.author %]<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>No books to list<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="multiple-iterators">Multiple Iterators</h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="multiple-iterators">Multiple Iterators</h3>
 <p>It’s usually easy enough to handle loops. You just step through and use
 the variable names you’ve been given by the programmer. It’s not always
 that easy. Sometimes you get complex lists with no convenient names
@@ -395,26 +416,34 @@ the author’s name. Hey, don’t blame me. I didn’t write that code.</p>
 <p>Multiple iterators provide a way for you to make sense out of a
 confusing situation like that.</p>
 <h4 id="syntax-3">Syntax</h4>
-<pre tabindex="0"><code>[%loop LIST ITERATOR_1 ITERATor_2 ... iterator_n %]
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >[%loop LIST ITERATOR_1 ITERATor_2 ... iterator_n %]
   Handle list items
-[%end loop %]
-</code></pre><h4 id="example-3">Example</h4>
-<pre tabindex="0"><code>#!html
+[%end loop %]</code></pre>
+</figure><h4 id="example-3">Example</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!html
 &lt;ul&gt;
 [%loop books title author %]
   &lt;li&gt;&#34;[%var title]&#34; by [%var author%]&lt;/li&gt;
 [%empty %]
   &lt;li&gt;No books to list&lt;/li&gt;
 [%end loop%]
-&lt;/ul&gt;
-</code></pre><h2 id="metavariables">Metavariables</h2>
+&lt;/ul&gt;</code></pre>
+</figure><h2 id="metavariables">Metavariables</h2>
 <p>Metavariables are a really snazzy addition to <code>loop</code> which make
 formatting and organizing list displays much easier, without any work by
 you or the programmers.</p>
 <h3 id="first"><code>FIRST</code></h3>
 <p>True if you are on the first trip through the loop.</p>
 <h4 id="example-4">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -432,11 +461,13 @@ you or the programmers.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="last"><code>LAST</code></h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="last"><code>LAST</code></h3>
 <p>True if you are on the last trip through the loop.</p>
 <h4 id="example-5">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -454,12 +485,14 @@ you or the programmers.</p>
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="odd"><code>ODD</code></h3>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h3 id="odd"><code>ODD</code></h3>
 <p>True if you are on an odd-numbered trip through the loop (the first trip
 is odd).</p>
 <h4 id="example-6">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -480,12 +513,14 @@ is odd).</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><h3 id="index"><code>INDEX</code></h3>
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><h3 id="index"><code>INDEX</code></h3>
 <p>Counts the number of trips you’ve made through the loop (starts at
 zero).</p>
 <h4 id="example-7">Example</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -508,13 +543,15 @@ zero).</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><h4 id="lists-and-wysiwyg-editors">Lists and WYSIWYG Editors</h4>
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><h4 id="lists-and-wysiwyg-editors">Lists and WYSIWYG Editors</h4>
 <p>Here’s a specific problem that might pop up when you are using a WYSIWYG
 editor. Let’s say you’re embedding a list into a table, so that each
 item in the list gets one table row. Dreamweaver is probably not going
 to enjoy code like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
 </span></span><span class="line"><span class="cl">[%if __FIRST__ %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -537,12 +574,14 @@ to enjoy code like this:</p>
 </span></span><span class="line"><span class="cl">[%end if %]
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop%]
-</span></span></code></pre></div><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at
+</span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
+</figure><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at
 invalid locations for XHTML, and they may not be allowed by your editor.</p>
 <p>It turns out that the solution is simple, though maybe a little awkward.
 Wrap the offending directives in HTML comments, like this example shows:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- [%loop books title author%] --&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- [%loop books title author%] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%if __FIRST__ %] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;booklist&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -565,8 +604,8 @@ Wrap the offending directives in HTML comments, like this example shows:</p>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end if %] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%empty%] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end loop%] --&gt;</span>
-</span></span></code></pre></div><p>Your fancy editor should be able to handle this, and PageTemplate should
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end loop%] --&gt;</span></span></span></code></pre>
+</figure><p>Your fancy editor should be able to handle this, and PageTemplate should
 be able to understand it just fine. The only side effect is that you
 will have some empty comments in your final page.</p>
 <p>The other solution is to use {{&lt; tag &ldquo;vim&rdquo;&gt;}}, {{&lt; tag &ldquo;emacs&rdquo; &gt;}}, or some

@@ -133,8 +133,8 @@ and author of Tapir.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/12/parrot-babysteps-08-testing-with-testmore/">Parrot Babysteps 08 - Testing With Test::More</a></li>
@@ -326,29 +331,41 @@ The other five might not have run for a number of reasons: the test script faile
 Parrot failed in some mysterious way, or you just forgot to mention that you
 removed half of your tests.</p>
 <p>We don&rsquo;t plan to have any tests yet, so let&rsquo;s be honest.</p>
-<pre tabindex="0"><code># example-08-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-01.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(0)
-.end
-</code></pre><p>The <code>.include</code> directive will insert the contents of <code>test_more.pir</code> into the
+.end</code></pre>
+</figure><p>The <code>.include</code> directive will insert the contents of <code>test_more.pir</code> into the
 subroutine, which saves us a lot of namespace wrangling. The testing starts
 when a <em>plan</em> is declared.</p>
 <p>Of course, this is <em>not</em> the most exciting test plan in the world to run.</p>
-<pre tabindex="0"><code>$ parrot example-08-01.pir
-$
-</code></pre><p>What if we lie?</p>
-<pre tabindex="0"><code># example-08-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-01.pir
+$</code></pre>
+</figure><p>What if we lie?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-02.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(10)
-.end
-</code></pre><p>Running this is a little different.</p>
-<pre tabindex="0"><code>$ parrot example-08-02.pir
-1..10
-</code></pre><p>Now Parrot is telling whoever cares that there will be ten tests in this file.
+.end</code></pre>
+</figure><p>Running this is a little different.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-02.pir
+1..10</code></pre>
+</figure><p>Now Parrot is telling whoever cares that there will be ten tests in this file.
 It&rsquo;s true that nothing exploded. For right now, you&rsquo;re going to have to trust me
 when I say that honesty is the best policy. You&rsquo;ll see later that some tools
 do care about how many tests you claim to run.</p>
@@ -356,54 +373,72 @@ do care about how many tests you claim to run.</p>
 <p>All right. Sometimes we want to make a comment in our test for the world to see.
 We could just <code>say</code> what we want to say, but Test::More provides the <code>diag</code>
 subroutine to produce those comments in a manner that will make testers happy later.</p>
-<pre tabindex="0"><code># example-08-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-03.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(10)
     diag(&#39;There are no tests. The plan is a lie.&#39;)
-.end
-</code></pre><p>What does this produce?</p>
-<pre tabindex="0"><code>$ parrot example-08-03.pir
+.end</code></pre>
+</figure><p>What does this produce?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-03.pir
 1..10
-# There are no tests. The plan is a lie.
-</code></pre><p>See the <code>#</code>? That&rsquo;s supposed to make our diagnostic comment stand out from
+# There are no tests. The plan is a lie.</code></pre>
+</figure><p>See the <code>#</code>? That&rsquo;s supposed to make our diagnostic comment stand out from
 the test results without confusing anyone. But the diagnostic makes me sad.
 Let&rsquo;s write an actual test.</p>
 <h3 id="ok"><code>ok</code></h3>
-<pre tabindex="0"><code># example-08-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-04.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(1)
     ok(1, &#39;`ok` tests for simple truth&#39;)
-.end
-</code></pre><p><code>ok</code> takes two arguments:</p>
+.end</code></pre>
+</figure><p><code>ok</code> takes two arguments:</p>
 <ul>
 <li>The value you are testing</li>
 <li>A description of the test</li>
 </ul>
 <p>The value being tested is obviously the most important part, but don&rsquo;t underestimate
 the helpfulness of those descriptions. They are a form of documentation.</p>
-<pre tabindex="0"><code>$ parrot example-08-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-04.pir
 1..1
-ok 1 - `ok` tests for simple truth
-</code></pre><p>The test in <code>ok</code> is one of simple truth as seen by Parrot. <a href="/post/2009/09/parrot-babysteps-03-simple-control-structures/">parrot-babysteps-03-simple-control-structures</a> showed us that anything which looks like <code>0</code> or an empty string is considered false by Parrot, while everything else is considered true.</p>
+ok 1 - `ok` tests for simple truth</code></pre>
+</figure><p>The test in <code>ok</code> is one of simple truth as seen by Parrot. <a href="/post/2009/09/parrot-babysteps-03-simple-control-structures/">parrot-babysteps-03-simple-control-structures</a> showed us that anything which looks like <code>0</code> or an empty string is considered false by Parrot, while everything else is considered true.</p>
 <p>What happens when we introduce a test that we know will fail?</p>
-<pre tabindex="0"><code># example-08-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-05.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(2)
     ok(1, &#39;`ok` tests for simple truth&#39;)
     ok(0, &#39;0 is false, so this should fail.&#39;)
-.end
-</code></pre><p>You updated your plan, right? Anyways, let&rsquo;s see what this produces.</p>
-<pre tabindex="0"><code>$ parrot example-08-05.pir
+.end</code></pre>
+</figure><p>You updated your plan, right? Anyways, let&rsquo;s see what this produces.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-05.pir
 1..2
 ok 1 - `ok` tests for simple truth
-not ok 2 - 0 is false, so this should fail.
-</code></pre><p>Oh hey, this is starting to get interesting! Now we can see clearly that the output
+not ok 2 - 0 is false, so this should fail.</code></pre>
+</figure><p>Oh hey, this is starting to get interesting! Now we can see clearly that the output
 from <code>ok</code> is a line split into three parts:</p>
 <ul>
 <li>The result of the test: &ldquo;<code>ok</code>&rdquo; or &ldquo;<code>not ok</code>&rdquo;</li>
@@ -418,7 +453,10 @@ example, let&rsquo;s say we have a Web site building script. It builds temporary
 cache files to save time when building subpage links, but those cache files
 need to go away when it&rsquo;s done. So we would test for existence of a cache file
 and fail if the file exists.</p>
-<pre tabindex="0"><code># example-08-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-06.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -430,26 +468,38 @@ and fail if the file exists.</p>
     plan(1)
     cache_file_exists = stat &#39;subpages.data&#39;, 0
     nok(cache_file_exists, &#39;Cache files should be cleaned up&#39;)
-.end
-</code></pre><p>The assertion may be <code>nok</code>, but the output is still <code>ok</code> or not based on whether
+.end</code></pre>
+</figure><p>The assertion may be <code>nok</code>, but the output is still <code>ok</code> or not based on whether
 the assertion was true.</p>
-<pre tabindex="0"><code>$ parrot example-08-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-06.pir
 1..1
-ok 1 - Cache files should be cleaned up
-</code></pre><p>What does it look like if we deliberately confuse things?</p>
-<pre tabindex="0"><code>$ touch subpages.data
+ok 1 - Cache files should be cleaned up</code></pre>
+</figure><p>What does it look like if we deliberately confuse things?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ touch subpages.data
 $ parrot example-08-06.pir
 1..1
-not ok 1 - Cache files should be cleaned up
-</code></pre><p>Yes. That&rsquo;s what I hoped to see. Let&rsquo;s clean up after ourselves to avoid future
+not ok 1 - Cache files should be cleaned up</code></pre>
+</figure><p>Yes. That&rsquo;s what I hoped to see. Let&rsquo;s clean up after ourselves to avoid future
 confusion.</p>
-<pre tabindex="0"><code>$ rm subpages.data
-</code></pre><h3 id="is"><code>is</code></h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ rm subpages.data</code></pre>
+</figure><h3 id="is"><code>is</code></h3>
 <p>There are many times where we want to compare two values. Let&rsquo;s continue with our Web site
 building tool. This tool sets the title of a page in metadata. We obviously want to be
 certain that it reads the metadata correctly. We would use the <code>is</code> assertion for
 that kind of test.</p>
-<pre tabindex="0"><code># example-08-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-07.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -463,13 +513,19 @@ that kind of test.</p>
     # Okay, let&#39;s pretend we got this result by running the builder.
     actual_title = &#39;08 - Test::More and Tapir&#39;
     is(actual_title, expected_title, &#39;The title should be correct.&#39;)
-.end
-</code></pre><p>Anybody know what we should see?</p>
-<pre tabindex="0"><code>$ parrot example-08-07.pir
+.end</code></pre>
+</figure><p>Anybody know what we should see?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-07.pir
 1..1
-ok 1 - The title should be correct.
-</code></pre><p>Let&rsquo;s deliberately mess things up again so we know what failure of <code>is</code> looks like.</p>
-<pre tabindex="0"><code># example-08-08.pir
+ok 1 - The title should be correct.</code></pre>
+</figure><p>Let&rsquo;s deliberately mess things up again so we know what failure of <code>is</code> looks like.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-08.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -483,14 +539,17 @@ ok 1 - The title should be correct.
     # Okay, let&#39;s pretend we got this result by running the builder.
     actual_title = &#39;I am a Walrus&#39;
     is(actual_title, expected_title, &#39;The title should be correct.&#39;)
-.end
-</code></pre><p>A failed <code>is</code> produces some useful information.</p>
-<pre tabindex="0"><code>$ parrot example-08-08.pir
+.end</code></pre>
+</figure><p>A failed <code>is</code> produces some useful information.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-08.pir
 1..1
 not ok 1 - The title should be correct.
 # Have: I am a Walrus
-# Want: 08 - Test::More and Tapir
-</code></pre><p>There&rsquo;s the test result line, which shows &rsquo;not ok&rsquo;, just like we expected.
+# Want: 08 - Test::More and Tapir</code></pre>
+</figure><p>There&rsquo;s the test result line, which shows &rsquo;not ok&rsquo;, just like we expected.
 We also have a couple of diagnostic lines describing what we want and what we
 actually have.</p>
 <p><code>ok</code> has its opposite assertion <code>nok</code>, so there must be an opposite for <code>is</code>, right?
@@ -501,7 +560,10 @@ in particular. Maybe we have a user registration process that uses social securi
 to satisfy an obscure corporate tracking requirement, but can&rsquo;t save them as-is because of
 privacy concerns. In this case we don&rsquo;t care what the stored value is. We want to be certain
 that it&rsquo;s not the social security number.</p>
-<pre tabindex="0"><code># example-08-09.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-09.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -515,12 +577,18 @@ that it&rsquo;s not the social security number.</p>
     # Okay, let&#39;s pretend we got this result via user registration
     stored_ssn = &#39;wxdfk$!&#39;
     isnt(provided_ssn, stored_ssn, &#39;SSN should not be stored as-is&#39;)
-.end
-</code></pre><p>Really, nobody should be surprised by the output at this point.</p>
-<pre tabindex="0"><code>1..1
-ok 1 - SSN should not be stored as-is
-</code></pre><p>What does a failed <code>isnt</code> look like?</p>
-<pre tabindex="0"><code># example-08-10.pir
+.end</code></pre>
+</figure><p>Really, nobody should be surprised by the output at this point.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >1..1
+ok 1 - SSN should not be stored as-is</code></pre>
+</figure><p>What does a failed <code>isnt</code> look like?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-10.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -534,16 +602,22 @@ ok 1 - SSN should not be stored as-is
     # Okay, let&#39;s pretend we got this result via user registration
     stored_ssn = provided_ssn
     isnt(provided_ssn, stored_ssn, &#39;SSN should not be stored as-is&#39;)
-.end
-</code></pre><p>The output diagnostic is once again straightforward.</p>
-<pre tabindex="0"><code>$ parrot example-08-10.pir
+.end</code></pre>
+</figure><p>The output diagnostic is once again straightforward.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-10.pir
 1..1
 not ok 1 - SSN should not be stored as-is
 # Have: 5551234567
-# Want: not 5551234567
-</code></pre><h3 id="is_deeply"><code>is_deeply</code></h3>
+# Want: not 5551234567</code></pre>
+</figure><h3 id="is_deeply"><code>is_deeply</code></h3>
 <p><code>is</code> fails us when we need to compare PMCs. Well, it <em>sort of</em> works:</p>
-<pre tabindex="0"><code># example-08-11.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-11.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -561,16 +635,22 @@ not ok 1 - SSN should not be stored as-is
     plan(1)
 
     is(expected_details, actual_details, &#39;Super Man is not Super Woman&#39;)
-.end
-</code></pre><p>The output isn&rsquo;t incredibly useful, though.</p>
-<pre tabindex="0"><code>$ parrot example-08-11.pir
+.end</code></pre>
+</figure><p>The output isn&rsquo;t incredibly useful, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-11.pir
 1..1
 not ok 1 - Super Man is not Super Woman
 # Have: Hash[0x25ee84]
-# Want: Hash[0x25ee48]
-</code></pre><p>Thankfully, we have the <code>is_deeply</code> assertion to tell use exactly how a test
+# Want: Hash[0x25ee48]</code></pre>
+</figure><p>Thankfully, we have the <code>is_deeply</code> assertion to tell use exactly how a test
 has failed.</p>
-<pre tabindex="0"><code># example-08-12.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-12.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -588,13 +668,16 @@ has failed.</p>
     plan(1)
 
     is_deeply(expected_details, actual_details, &#39;Super Man is not Super Woman&#39;)
-.end
-</code></pre><p>Now we can see exactly which value in the PMC was different.</p>
-<pre tabindex="0"><code>$ parrot example-08-12.pir
+.end</code></pre>
+</figure><p>Now we can see exactly which value in the PMC was different.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-12.pir
 1..1
 not ok 1 - Super Man is not Super Woman
-# Mismatch at [last]: expected Man, received Woman
-</code></pre><p>With <code>is_deeply</code> under our belt, we now know enough assertions to get started putting them to use in real
+# Mismatch at [last]: expected Man, received Woman</code></pre>
+</figure><p>With <code>is_deeply</code> under our belt, we now know enough assertions to get started putting them to use in real
 projects.</p>
 <h3 id="what-about-the-other-assertions-and-commands">What About The Other Assertions and Commands?</h3>
 <p>We won&rsquo;t be talking about them. I may eventually visit more as we get

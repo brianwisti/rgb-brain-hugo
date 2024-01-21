@@ -29,11 +29,14 @@ $ export MCP_LATEST=&#39;https://fastapi.metacpan.org/v1/release/_search?q=statu
 <p><a href="http://techblog.babyl.ca/">Yanick</a>&rsquo;s concerned about <a href="/card/perl/">card/Perl</a>&rsquo;s <a href="https://cpan.org">CPAN</a>.</p>
 <p>{{&lt; tweet user=&ldquo;yenzie&rdquo; id=&ldquo;1254874808774516738&rdquo; &gt;}}</p>
 <p>So I grabbed the authors of the last 5,000 releases and counted authors, using <a href="https://mojolicious.org">Mojolicious</a> and the <a href="https://metacpan.org">MetaCPAN</a> API.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">export</span> <span class="nv">MCP_LATEST</span><span class="o">=</span><span class="s1">&#39;https://fastapi.metacpan.org/v1/release/_search?q=status:latest&amp;fields=author&amp;sort=date:desc&amp;size=5000&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">export</span> <span class="nv">MCP_LATEST</span><span class="o">=</span><span class="s1">&#39;https://fastapi.metacpan.org/v1/release/_search?q=status:latest&amp;fields=author&amp;sort=date:desc&amp;size=5000&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> http <span class="nv">$MCP_LATEST</span> &gt; _search.json
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> perl -Mojo -E <span class="s1">&#39;say c(j(f(&#34;_search.json&#34;)-&gt;slurp)-&gt;{hits}{hits}-&gt;@*)-&gt;map( sub { $_-&gt;{fields}-&gt;{author} } )-&gt;uniq-&gt;size . &#34; authors made the last 5000 releases&#34;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">974 authors made the last 5000 releases
-</span></span></span></code></pre></div><p>Downloaded the file with <a href="https://httpie.org/">httPie</a> because I felt bad hammering MetaCPAN with <a href="https://mojolicious.org/perldoc/ojo#g"><code>-Mojo g()</code></a> while sorting out the rest of the &ldquo;one-liner.&rdquo;</p>
+</span></span></span></code></pre>
+</figure><p>Downloaded the file with <a href="https://httpie.org/">httPie</a> because I felt bad hammering MetaCPAN with <a href="https://mojolicious.org/perldoc/ojo#g"><code>-Mojo g()</code></a> while sorting out the rest of the &ldquo;one-liner.&rdquo;</p>
 <p>I have no idea if these results are good or bad, but I half-expected less than 100 authors.</p>
 <p>Getting useful information like spread of release dates is left as an exercise for the reader.</p>
 ]]></content:encoded>

@@ -135,8 +135,8 @@ This site isn’t quite a normal case. The Random Geekery Blog is almost six yea
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/05/chronological-taxonomy-listings-in-hugo/">Chronological Taxonomy Listings in Hugo</a></li>
@@ -299,20 +304,26 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>This site isn’t <em>quite</em> a normal case. The Random Geekery Blog is almost six years  old, and includes archived content from other sites dating back to 2000. My many obsessions have waxed and waned over the years. Presenting tags by name or by number of posts means we must dig to find out what’s relevant to me lately. I find that frustrating because of the way my brain holds information: fresh topics are near the top, and older stuff is somewhere down below when I need it.</p>
 <p>After the traditional grumbling about how this would be a two minute task with Perl, I set to the task of figuring it out. Let’s skip the bits where I messed around with <code>$.Scratch</code> and get straight to what worked in <code>layout/_default/terms.html</code>.</p>
 <p>First, I built a list of relevant information by stepping through the terms of that particular taxonomy. For each tag, category, or whatever, <a href="https://gohugo.io/functions/unix/">convert</a> the publishing date of the most recent post with that tag (or category, or whatever) to a <code>.Unix</code> timestamp.  Create a <a href="https://gohugo.io/functions/dict/">dict</a> with the term and its associated timestamp, then <a href="https://gohugo.io/functions/append/">append</a> it to a <a href="https://gohugo.io/functions/slice/">slice</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{- $stamped_terms := slice -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{- $stamped_terms := slice -}}
 </span></span><span class="line"><span class="cl">{{- range $term, $value := .Data.Terms -}}
 </span></span><span class="line"><span class="cl">  {{- $last_stamp := (index $value.Pages.ByDate.Reverse 0).Date.Unix -}}
 </span></span><span class="line"><span class="cl">  {{- $term_stamp := dict &#34;term&#34; $term &#34;stamp&#34; $last_stamp -}}
 </span></span><span class="line"><span class="cl">  {{- $stamped_terms = $stamped_terms | append $term_stamp -}}
-</span></span><span class="line"><span class="cl">{{- end -}}
-</span></span></code></pre></div><p>Momentarily setting aside concerns for <a href="https://alexwlchan.net/2019/05/falsehoods-programmers-believe-about-unix-time/">falsehoods programmers believe about UNIX time</a>, I have a list of terms and their freshest post’s timestamp. Leap seconds probably won’t be an issue here.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">map[stamp:1143504000 term:43-things]
+</span></span><span class="line"><span class="cl">{{- end -}}</span></span></code></pre>
+</figure><p>Momentarily setting aside concerns for <a href="https://alexwlchan.net/2019/05/falsehoods-programmers-believe-about-unix-time/">falsehoods programmers believe about UNIX time</a>, I have a list of terms and their freshest post’s timestamp. Leap seconds probably won’t be an issue here.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">map[stamp:1143504000 term:43-things]
 </span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">map[stamp:1526515200 term:zentangle]
-</span></span></code></pre></div><p>I <a href="https://gohugo.io/functions/sort/">sort</a> that list based on the timestamp, in descending order. Grab the term
+</span></span><span class="line"><span class="cl">map[stamp:1526515200 term:zentangle]</span></span></code></pre>
+</figure><p>I <a href="https://gohugo.io/functions/sort/">sort</a> that list based on the timestamp, in descending order. Grab the term
 from the <code>dict</code> and then it’s pretty much the same taxonomy summary I had
 before.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;dl&gt;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;dl&gt;
 </span></span><span class="line"><span class="cl"> {{ range $stamp := sort $stamped_terms &#34;stamp&#34; &#34;desc&#34; -}}
 </span></span><span class="line"><span class="cl">   {{- $key := index $stamp &#34;term&#34; -}}
 </span></span><span class="line"><span class="cl">   {{- $value := index $.Data.Terms $key -}}
@@ -332,8 +343,8 @@ before.</p>
 </span></span><span class="line"><span class="cl">     {{ end }}
 </span></span><span class="line"><span class="cl">   &lt;/dd&gt;
 </span></span><span class="line"><span class="cl"> {{ end }}
-</span></span><span class="line"><span class="cl">&lt;/dl&gt;
-</span></span></code></pre></div><p>And that’s pretty much it! Had to post in case I needed this information later.</p>
+</span></span><span class="line"><span class="cl">&lt;/dl&gt;</span></span></code></pre>
+</figure><p>And that’s pretty much it! Had to post in case I needed this information later.</p>
 
   
 

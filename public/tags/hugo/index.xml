@@ -30,7 +30,9 @@ an illustrative example</p>
 <p>{% codeblock(
 title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 ) %}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
 </span></span><span class="line"><span class="cl">{{- if isset .Attributes &#34;verbatim&#34; -}}
 </span></span><span class="line"><span class="cl">  {{- $isVerbatim = .Attributes.verbatim -}}
 </span></span><span class="line"><span class="cl">{{- end -}}
@@ -56,8 +58,8 @@ title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 </span></span><span class="line"><span class="cl">    <span class="p">&gt;&lt;</span><span class="nt">code</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;language-{{ .Type }}&#34;</span> <span class="na">data-lang</span><span class="o">=</span><span class="s">&#34;{{ .Type }}&#34;</span>
 </span></span><span class="line"><span class="cl">      <span class="p">&gt;</span>{{ .Inner }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{- end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>{% end %}</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
 <p>My render hook looks for two attributes, <code>title</code> and <code>verbatim</code>. These attributes are added after the language identifier for the fenced code block.</p>
 <p>{% codeblock(
@@ -65,8 +67,10 @@ title=&ldquo;Titled code block&rdquo;
 verbatim=false
 collapsed=false
 )%}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}
-</span></span></code></pre></div><p>{% end %}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}</span></span></code></pre>
+</figure><p>{% end %}</p>
 <p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
 <p>Most of the time when I label code samples, I use a filename or identifier, and I&rsquo;m used to seeing those in monospace. So it makes sense to have code block captions as verbatim by default. So the <code>verbatim</code> flag only matters if I set it to false, such as for explanatory captions.</p>
 <p>{% codeblock(
@@ -74,8 +78,10 @@ title=&ldquo;non-verbatim code block&rdquo;
 verbatim=false
 collapsed=false
 )%}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}
-</span></span></code></pre></div><p>{% end %}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}</span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
 ]]></content:encoded>
 </item>
@@ -100,12 +106,18 @@ histogram for post frequency by year using Nushell built-ins</p>
 <h2 id="nushell-feature-zero-showing-program-output">Nushell feature zero: showing program output</h2>
 <p>If you can&rsquo;t easily run a program and see its output, you are in a REPL, not a shell. I have not come across a command shell that fails that test yet, but I use it as an immediate reassurance that I haven&rsquo;t confused myself by launching <code>ipython</code> again.</p>
 <p>I&rsquo;m on <a href="https://gohugo.io">Hugo</a> again, which means I have the Hugo CLI. <code>hugo list all</code> prints out a <a href="/card/csv/">CSV</a> summary of your site, ready for processing by some other program.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
 <h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
 <p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv
-</code></pre><p>Of course, the result of that pipe is something a little different from other shells.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv</code></pre>
+</figure><p>Of course, the result of that pipe is something a little different from other shells.</p>
 <h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
 <p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
 <p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
@@ -115,25 +127,40 @@ histogram for post frequency by year using Nushell built-ins</p>
 <p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
 <p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | length
-</code></pre><pre tabindex="0"><code>421
-</code></pre><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | length</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >421</code></pre>
+</figure><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
 <h3 id="listing-command-categories-by-grouping">Listing command categories by grouping</h3>
 <p>All these commands are organized into categories. To see what categories, we can <code>group</code> the help table.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | group-by category
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | group-by category</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
 <h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
 <p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
 <blockquote>
-<p>[!NOTE]
-I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
+<p><strong>NOTE</strong></p>
+<p>I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
 </blockquote>
 <h3 id="viewing-only-select-columns-with-select">Viewing only select columns with <code>select</code></h3>
 <p>That&rsquo;s still a little busy. How about we <code>select</code> the name and usage? And heck — tables make for great screenshots, but let&rsquo;s try see what <code>to md</code> gives us.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats | select name usage | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats | select name usage | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>name</th>
@@ -255,14 +282,20 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>Note the pattern of commands and subcommands. The &ldquo;formats&rdquo; category includes two primary commands, <code>from</code> and <code>to</code>. Then many subcommands for converting <em>from</em> assorted formats to a table, and their counterparts for converting from a table <em>to</em> assorted formats.</p>
 <h3 id="getting-help-for-a-specific-command">Getting help for a specific command</h3>
 <p>We can ask for help with a specific command. Most shells offer this in one form or another, though they don&rsquo;t generally provide the command discovery path we just walked down.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help to md
-</code></pre><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help to md</code></pre>
+</figure><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
 <h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
 <p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
 <p>Remember Hugo? This was supposed to be a post about Hugo.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | last 5 | select title publishDate | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | last 5 | select title publishDate | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -297,21 +330,36 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>The really basic idea is that <a href="https://www.nushell.sh/book/types_of_data.html#blocks">blocks</a> run arbitrary commands on a parameter, and let us do what we like with the result.</p>
 <p>I&rsquo;m going to do sort of a <a href="https://databricks.com/glossary/what-are-dataframes">dataframe</a> type of action here. That&rsquo;s not a normal state for my brain so I need to step through this slowly.</p>
 <p><code>hugo list all</code> gave me some CSV text.</p>
-<pre tabindex="0"><code>hugo list all
-</code></pre><p><code>from csv</code> turned that text into a table.</p>
-<pre tabindex="0"><code>hugo list all | from csv
-</code></pre><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at ...
-</code></pre><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at { |it| ... }
-</code></pre><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all</code></pre>
+</figure><p><code>from csv</code> turned that text into a table.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all | from csv</code></pre>
+</figure><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at ...</code></pre>
+</figure><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at { |it| ... }</code></pre>
+</figure><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
 <p>The block returns a column with dates for every value in my table&rsquo;s <code>publishDate</code> column.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime }
-)
-</code></pre><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
+)</code></pre>
+</figure><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
 <blockquote>
 <p>[!NOTE] Where did the parentheses come from?
 That&rsquo;s how Nushell does multi-line one-liners.</p>
@@ -320,22 +368,28 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 </blockquote>
 <p>Where were we? Oh right. I have a table with more columns than I care about.</p>
 <p>I only want the post titles and the dates they were published.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at
-)
-</code></pre><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+)</code></pre>
+</figure><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at |
   last 5 |
   to md
-)
-</code></pre><p>Okay I think that covers it.</p>
+)</code></pre>
+</figure><p>Okay I think that covers it.</p>
 <table>
 <thead>
 <tr>
@@ -370,31 +424,58 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 <h2 id="nushell-feature-three-data-types">Nushell feature three: data types</h2>
 <p>My experience with data types in shells is limited and mostly unpleasant: values are strings that can be interchangeably treated as strings or numbers. Sometimes you can treat them like lists. Oops you broke something.</p>
 <p>Nushell <a href="https://www.nushell.sh/book/types_of_data.html">data type</a> support goes past that. For starters, values declared in the shell itself have the appropriate type.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">1.2 | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">float
-</code></pre><pre tabindex="0"><code class="language-nushell" data-lang="nushell">&#34;1.2&#34; | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">string
-</code></pre><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >1.2 | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >float</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >&#34;1.2&#34; | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >string</code></pre>
+</figure><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
 <p>What about conversions? In my fiddling so far, Nushell treats output from external programs like a string until you tell it otherwise, like a moment ago piping Hugo&rsquo;s output <code>from csv</code> and then the <code>publishDate</code> column <code>into datetime</code>.</p>
 <h3 id="date-math">Date math</h3>
 <p>All right. Let&rsquo;s figure this out. What datetime is it right now?</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">date now
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Mon, 04 Jul 2022 18:08:26 -0700 (now)
-</code></pre><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >date now</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Mon, 04 Jul 2022 18:08:26 -0700 (now)</code></pre>
+</figure><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
 <p>I arbitrarily picked three months as my threshold. Nushell provides numerous shorthands for durations, but so far nothing at an appropriate scale for ancient blogs. I haven&rsquo;t found a lazy way to say &ldquo;three months ago,&rdquo; but I can say &ldquo;90 days ago.&rdquo; Close enough for today.</p>
 <p>Need to make a subexpression out of <code>date now</code> so Nushell has a date it can use for the math.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(date now) - 90day
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)
-</code></pre><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(date now) - 90day</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)</code></pre>
+</figure><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   where published-at &gt; ((date now) - 90day) |
   select title published-at |
   to md
-)
-</code></pre><table>
+)</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -443,15 +524,18 @@ Just realized it&rsquo;s been about a year since I started poking at Nushell as 
 <p>It&rsquo;s not my login <code>$SHELL</code> or anything yet — still need to figure out things like <code>pyenv</code> and <code>nvm</code> — but yeah I like using Nushell.
 Especially under Windows, where I know little enough about PowerShell that I can set up Nushell on Windows Terminal and pretend it&rsquo;s a login shell.</p>
 <p>Now I just need something that would make a cool cover image screenshot.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
     hugo list all |
     from csv |
     insert year { |it| $it.publishDate | into datetime | date to-record | get year } |
     where year &gt; 1 |
     histogram year --percentage-type relative |
     sort-by year
-)
-</code></pre>]]></content:encoded>
+)</code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: [2022-06-21 Tue 15:03]</title>
@@ -466,13 +550,15 @@ Especially under Windows, where I know little enough about PowerShell that I can
   <content:encoded><![CDATA[<p>I&rsquo;m not dead yet! Site wasn&rsquo;t updating because Netlify failed with an <code>exit code 2</code>. Bit vague. Finally had a few minutes to look closer.</p>
 <p>Turns out it&rsquo;s because I&rsquo;ve been keeping up locally with <a href="/card/hugo/">card/Hugo</a> releases and syntax changes, but not telling Netlify. They need the same version of Hugo that I use.</p>
 <p>So now I&rsquo;ve got a basic <code>netlify.toml</code> based on <a href="https://docs.netlify.com/integrations/frameworks/hugo/">Netlify Hugo docs</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">build</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;hugo&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">publish</span> <span class="p">=</span> <span class="s2">&#34;public&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">environment</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.101.0&#34;</span>
-</span></span></code></pre></div><p>Looks like everything is good again.</p>]]></content:encoded>
+</span></span><span class="line"><span class="cl">  <span class="nx">HUGO_VERSION</span> <span class="p">=</span> <span class="s2">&#34;0.101.0&#34;</span></span></span></code></pre>
+</figure><p>Looks like everything is good again.</p>]]></content:encoded>
 </item>
 <item>
   <title>Post: Didn&#39;t I do this last year too?</title>
@@ -532,21 +618,26 @@ I won’t make you wait around for a proper post. Hugo lets you use reStructured
 <p>I won&rsquo;t make you wait around for a proper post. Hugo lets you use reStructuredText.  But Hugo&rsquo;s way is slow and hard to customize. Not their fault. reStructuredText is not their focus.</p>
 <p>Still — why not format it ahead of time?</p>
 <blockquote>
-<p>[!NOTE] Answer
-Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
+<p><strong>Answer</strong></p>
+<p>Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
 </blockquote>
 <p>Shush, me.</p>
 <h3 id="the-implementation">The Implementation</h3>
 <p>Start with <code>content/whatever/index.rst.txt</code>.</p>
 <p>Make sure Hugo won&rsquo;t track <code>rst.txt</code> files by explicitly adding an item the <a href="https://gohugo.io/getting-started/configuration/#ignore-content-and-data-files-when-rendering"><code>ignoreFiles</code></a> config setting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
 <p>I tried setting <code>ignoreFiles = ['\.rst$']</code> but as far as I could tell, Hugo ignored my request to ignore the file. Looks like I&rsquo;m sticking with <code>.rst.txt</code> for now.</p>
 <p>With the code down below in my Neovim python3 — that&rsquo;s <em>python3</em> not <em>python</em> — rplugin folder, and remote plugins updated, I write <code>index.rst.txt</code> to disk.</p>
 <p>The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.</p>
 <h4 id="the-code">The Code</h4>
-<div class="highlight" title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <figcaption><tt>~/.config/nvim/rplugin/python3/rstbuild_hugo.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -581,11 +672,11 @@ Because it took a lot of work to figure this out? And most folks are perfectly h
 </span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">post</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
 <blockquote>
-<p>[!NOTE]
-<em>You</em> will, if you skim the Updates at the end.</p>
+<p><strong>NOTE</strong></p>
+<p><em>You</em> will, if you skim the Updates at the end.</p>
 </blockquote>
 <p>If you grab a copy for your own nefarious plans — a similar template could get you fast Asciidoctor transforms as well — just remember a couple things:</p>
 <ul>
@@ -667,22 +758,29 @@ You know what else I can tangle? Yarn!&lt;/p&gt;
 You know what else I can tangle? Yarn!</p>
 <p>I spend a while using <a href="/card/raku/">card/Raku</a> to extract code from a <a href="/card/hugo/">card/Hugo</a> post.</p>
 <blockquote>
-<p>[!NOTE] 2020-09-03
-<a href="https://fosstodon.org/@codesections">@codesections@fosstodon.org</a> found a typo! I forgot to <em>show</em> the target file name once command line arguments are in place. It should go <code>raku tangle-fragments.raku index.md</code>.</p>
+<p><strong>2020-09-03</strong></p>
+<p><a href="https://fosstodon.org/@codesections">@codesections@fosstodon.org</a> found a typo! I forgot to <em>show</em> the target file name once command line arguments are in place. It should go <code>raku tangle-fragments.raku index.md</code>.</p>
 </blockquote>
 <p>Let&rsquo;s say I have a file.  The one you&rsquo;re reading, perhaps.  Well, its original Markdown content.</p>
 <p>It has a <a href="/card/hugo/">card/Hugo</a> shortcode in it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">print(&#34;Hello&#34;)
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>I based <code>{{&lt; code &gt;}}</code> here on a shortcode from the <a href="https://github.com/gohugoio/hugoDocs/blob/master/layouts/shortcodes/code.html">Hugo docs</a>. It presents highlighted code with additional context.</p>
-<div class="highlight" title="hello.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Really handy when you&rsquo;re writing about code.  Thing is, now I have two copies. There&rsquo;s one here in the shortcode, and another in a <code>hello.py</code> file that I&rsquo;m writing about.  I&rsquo;d prefer there was only a single copy.  That way they don&rsquo;t get out of sync.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>I based <code>{{&lt; code &gt;}}</code> here on a shortcode from the <a href="https://github.com/gohugoio/hugoDocs/blob/master/layouts/shortcodes/code.html">Hugo docs</a>. It presents highlighted code with additional context.</p>
+<figure class="highlight">
+  <figcaption><tt>hello.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Really handy when you&rsquo;re writing about code.  Thing is, now I have two copies. There&rsquo;s one here in the shortcode, and another in a <code>hello.py</code> file that I&rsquo;m writing about.  I&rsquo;d prefer there was only a single copy.  That way they don&rsquo;t get out of sync.</p>
 <p>I <em>could</em> use Hugo&rsquo;s <a href="https://gohugo.io/functions/readfile/">readFile</a> function in a new shortcode, including the contents of <code>hello.py</code> in this Markdown file.  Something like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">include</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Actual shortcode logic left as an exercise for the reader.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">include</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Actual shortcode logic left as an exercise for the reader.</p>
 </blockquote>
 <p>But that still breaks up the writing flow a little bit.  I&rsquo;m writing the code over here, and writing <em>about</em> it over there.  It&rsquo;s a tiny complaint, but working with <a href="/card/org/">card/Org</a> has spoiled me.  I get to write the code in the same document that I&rsquo;m writing about it in.  Everything stays in sync, more or less.</p>
 <p>What I want is to write about <code>hello.py</code> here, and with a command have <code>hello.py</code> appear on my filesystem, containing the Python code I&rsquo;ve been describing.</p>
@@ -694,7 +792,9 @@ throughout some kind of document.  A tool like <a href="https://www.cs.tufts.edu
 parses the document to create code files.  Could be any kind of file, really.
 The process can get fancy.</p>
 <p>But the start is not fancy: given a text file containing a <code>{{&lt; code file=&quot;(something)&quot; &gt;}}</code>, write the contents of that shortcode to the named file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">index.md</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
@@ -718,17 +818,21 @@ The process can get fancy.</p>
 </span></span><span class="line"><span class="cl">    <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I love Raku&rsquo;s approach to <a href="https://docs.raku.org/language/regexes">regular expressions</a>.  For starters, the syntax looks a bit more like describing a grammar.  I can break the funny regex characters up with spaces, and clarify them with comments.  In fact, I could someday build this up to a real <a href="https://docs.raku.org/language/grammars">grammar</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I love Raku&rsquo;s approach to <a href="https://docs.raku.org/language/regexes">regular expressions</a>.  For starters, the syntax looks a bit more like describing a grammar.  I can break the funny regex characters up with spaces, and clarify them with comments.  In fact, I could someday build this up to a real <a href="https://docs.raku.org/language/grammars">grammar</a>.</p>
 <p>Secondly, it addresses the fact that most text we look at these days contains multiple lines.  I didn&rsquo;t have to worry about any special multiline flags to get this working.</p>
 <p>Finally, getting at the named captures was — I wouldn&rsquo;t say &ldquo;obvious,&rdquo; but at least &ldquo;coherent.&rdquo; I can treat the match variable <code>$/</code> as a nested <a href="https://docs.raku.org/language/hashmap">Hash</a>. The important bits look something like this::</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">shortcode =&gt;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">shortcode =&gt;
 </span></span><span class="line"><span class="cl">  filename =&gt; ｢hello.py｣
-</span></span><span class="line"><span class="cl">  content =&gt; ｢print(&#34;Hello&#34;)｣
-</span></span></code></pre></div><p>I can grab the named capture <code>filename</code> of my matched <code>shortcode</code> regex with <code>$/&lt;shortcode&gt;&lt;filename&gt;</code> — or <code>~$&lt;shortcode&gt;&lt;filename&gt;</code>, depending on your preferred syntax.</p>
+</span></span><span class="line"><span class="cl">  content =&gt; ｢print(&#34;Hello&#34;)｣</span></span></code></pre>
+</figure><p>I can grab the named capture <code>filename</code> of my matched <code>shortcode</code> regex with <code>$/&lt;shortcode&gt;&lt;filename&gt;</code> — or <code>~$&lt;shortcode&gt;&lt;filename&gt;</code>, depending on your preferred syntax.</p>
 <p>This is all possible in languages like Perl with assorted flags, but I haven&rsquo;t seen parsing treated so well by default since maybe <a href="/card/rebol/">card/REBOL</a>.</p>
 <p>Anyways, let&rsquo;s run this thing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle.raku
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle.raku
 </span></span><span class="line"><span class="cl"><span class="go">Tangled to hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bat hello.py
 </span></span><span class="line"><span class="cl"><span class="go">───────┬──────────────────────────────────────────────────────────────────────
@@ -736,30 +840,42 @@ The process can get fancy.</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">───────┼──────────────────────────────────────────────────────────────────────
 </span></span></span><span class="line"><span class="cl"><span class="go">   1   │ print(&#34;Hello&#34;)
 </span></span></span><span class="line"><span class="cl"><span class="go">───────┴──────────────────────────────────────────────────────────────────────
-</span></span></span></code></pre></div><p>Sweet.</p>
+</span></span></span></code></pre>
+</figure><p>Sweet.</p>
 <p>Except — this Markdown file I&rsquo;m writing.  It has <em>two</em> file code blocks now.  I want to tangle both of them.</p>
 <h2 id="multiple-output-files">Multiple output files</h2>
 <p>This requires a couple changes, since I&rsquo;m writing code about Hugo shortcodes in a Hugo post.</p>
 <p>To show shortcode directives without Hugo evaluating them, they need to look like shortcode comments.  Their contents will get passed straight through as part of your post.  To show <code>{{&lt; shortcode &gt;}}</code> in a post, your Hugo content needs <code>{{&lt;/* shortcode */&gt;}}</code>.</p>
 <p>So that&rsquo;s lovely and all, but can be a headache of its own for this specific situation of extracting code from a blog post.</p>
 <p>I need to remember this commented shortcode syntax.</p>
-<div class="highlight" title="define-commented-shortcodes"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">&lt;/* </span><span class="p">&#39;;</span>
-</span></span><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">}}</span><span class="p">&#39;;</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Goodness, that looks silly.  Well, I&rsquo;m writing this blog post as a test case
+<figure class="highlight">
+  <figcaption><tt>define-commented-shortcodes</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">&lt;/* </span><span class="p">&#39;;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">}}</span><span class="p">&#39;;</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Goodness, that looks silly.  Well, I&rsquo;m writing this blog post as a test case
 for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented shortcode delimiters without Hugo and my code getting into a fierce argument.</p>
 <p>If I wasn&rsquo;t writing the code <em>in</em> this post, I could use something simpler, like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{​&lt;/* </span><span class="p">&#39;;</span>
-</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;}}</span><span class="p">&#39;;</span>
-</span></span></code></pre></div><p>But that&rsquo;s not the path I chose.  It&rsquo;s not easy to write programs that write themselves.  Sometimes you must help them along.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{​&lt;/* </span><span class="p">&#39;;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;}}</span><span class="p">&#39;;</span></span></span></code></pre>
+</figure><p>But that&rsquo;s not the path I chose.  It&rsquo;s not easy to write programs that write themselves.  Sometimes you must help them along.</p>
 </blockquote>
 <p>That way I can replace those commented shortcode delimiters with their normal counterparts when I tangle later.</p>
-<div class="highlight" title="define-commented-shortcodes"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">$block</span><span class="p">&lt;</span><span class="s">shortcode</span><span class="p">&gt;&lt;</span><span class="s">content</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <figcaption><tt>define-commented-shortcodes</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">$block</span><span class="p">&lt;</span><span class="s">shortcode</span><span class="p">&gt;&lt;</span><span class="s">content</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-opener</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$opener</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span>
-</span></span></code></pre></div><p>Now that I have that particular detail out of the way, tangle every block? Sure!  Make a regular expression match <code>:global</code> and it returns a list containing every match.</p>
-<div class="highlight" title="tangle-every-block"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span>  <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span></span></span></code></pre>
+</figure><p>Now that I have that particular detail out of the way, tangle every block? Sure!  Make a regular expression match <code>:global</code> and it returns a list containing every match.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-every-block</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span>  <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@fragments</span> <span class="o">=</span> <span class="nv">$markdown</span><span class="o">.</span><span class="nb">match</span><span class="p">(/&lt;</span><span class="nf">shortcode</span><span class="p">&gt;/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">@fragments</span> <span class="k">-&gt;</span> <span class="nv">$block</span> <span class="p">{</span>
@@ -767,9 +883,12 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">replace-commented-shortcodes</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I think that about covers it.  The shortcode recognition logic can stay the same.</p>
-<div class="highlight" title="tangle-multi.raku"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I think that about covers it.  The shortcode recognition logic can stay the same.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-multi.raku</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">index.md</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
@@ -789,9 +908,11 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span><span class="line"><span class="cl">  <span class="o">«</span><span class="n">define-commented-shortcodes</span><span class="o">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-every-block</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And it works!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-multi.raku
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And it works!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-multi.raku
 </span></span><span class="line"><span class="cl"><span class="go">Tangled to hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle.raku
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bat tangle.raku
@@ -824,52 +945,69 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span></span><span class="line"><span class="cl"><span class="go">  24   │   }
 </span></span></span><span class="line"><span class="cl"><span class="go">  25   │ }
 </span></span></span><span class="line"><span class="cl"><span class="go">  ───────┴──────────────────────────────────────────────────────────────────────
-</span></span></span></code></pre></div><p>Unfortunately, I&rsquo;m not quite done yet.</p>
+</span></span></span></code></pre>
+</figure><p>Unfortunately, I&rsquo;m not quite done yet.</p>
 <h2 id="multiple-fragments">Multiple fragments</h2>
 <p>I&rsquo;m not done yet because I don&rsquo;t like to describe my code a full file at a time.  I&rsquo;d rather talk about this bit here, explain that bit over there, then mash it all up in the end.</p>
 <p>Consistency counts, so I need to pick a syntax.  Well — you&rsquo;ve been reading along.  You can see that I already made my choice.  I got used to <code>&lt;&lt;fragment-name&gt;&gt;</code> in Babel, where the attribute is called <code>name</code>. Might as well keep doing that over here.  Oh but hang on. I want it to stand out a bit.  I&rsquo;ll use angle quotes <code>«‥»</code>.</p>
 <blockquote>
-<p>[!NOTE]
-On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovim/">card/Neovim</a>, <code>«</code> is a <a href="https://vimhelp.org/digraph.txt.html#digraph.txt">digraph</a> which can be entered via <kbd>Control-k</kbd> followed by <kbd>&lt;&lt;</kbd>.  Or if you&rsquo;ve set up a <a href="https://en.wikipedia.org/wiki/Compose_key">Compose</a> key, it&rsquo;s <kbd>Compose</kbd> followed by <kbd>&lt;&lt;</kbd> in any editor.</p>
+<p><strong>NOTE</strong></p>
+<p>On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovim/">card/Neovim</a>, <code>«</code> is a <a href="https://vimhelp.org/digraph.txt.html#digraph.txt">digraph</a> which can be entered via <kbd>Control-k</kbd> followed by <kbd>&lt;&lt;</kbd>.  Or if you&rsquo;ve set up a <a href="https://en.wikipedia.org/wiki/Compose_key">Compose</a> key, it&rsquo;s <kbd>Compose</kbd> followed by <kbd>&lt;&lt;</kbd> in any editor.</p>
 <p><code>»</code> is the same, but <kbd>&gt;&gt;</kbd> instead.</p>
 <p><em>Or</em> you can use <code>&lt;&lt;…&gt;&gt;</code> in your code and ignore my recent obsession with fancy characters.</p>
 <p>Yes, I know I could practically write it <em>all</em> with fancy characters in Raku. One step at a time.</p>
 </blockquote>
 <p>Let&rsquo;s go back to the Python code because it&rsquo;s still so small.</p>
 <p>Say I want to demonstrate the delightful <a href="/card/rich/">card/Rich</a> terminal library for Python.</p>
-<div class="highlight" title="import-libraries"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<figure class="highlight">
+  <figcaption><tt>import-libraries</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 </span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
-</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span>
-</span></span></code></pre></div><p>But before I really use it in my code, I spend 1,500 words singing its praises.</p>
+</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span></span></span></code></pre>
+</figure><p>But before I really use it in my code, I spend 1,500 words singing its praises.</p>
 <p>It&rsquo;s nice.  I like it.</p>
 <p>Okay, done singing.  Time to write the rest of the program.</p>
-<div class="highlight" title="rich-hello.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">«</span><span class="n">import</span><span class="o">-</span><span class="n">libraries</span><span class="err">»</span>
+<figure class="highlight">
+  <figcaption><tt>rich-hello.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">«</span><span class="n">import</span><span class="o">-</span><span class="n">libraries</span><span class="err">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&#34;**Hello**, *World*.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span>
-</span></span></code></pre></div><p>I identify the fragment with a <code>name</code> attribute:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;import-libraries&#34;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;python&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span></span></span></code></pre>
+</figure><p>I identify the fragment with a <code>name</code> attribute:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;import-libraries&#34;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;python&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">from rich import print
 </span></span><span class="line"><span class="cl">from rich.panel import Panel
 </span></span><span class="line"><span class="cl">from rich.markdown import Markdown
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>My <code>code</code> block references the <code>import-libraries</code> fragment by name when I&rsquo;m ready for it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;rich-hello.py&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>My <code>code</code> block references the <code>import-libraries</code> fragment by name when I&rsquo;m ready for it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;rich-hello.py&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">«import-libraries»
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">md = Markdown(&#34;**Hello**, *World*.&#34;)
 </span></span><span class="line"><span class="cl">print(Panel(md))
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>I <em>might</em> spend some time talking about the <code>code</code> shortcode in another post, but I dislike Go&rsquo;s templating enough that this does not sound like fun.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>I <em>might</em> spend some time talking about the <code>code</code> shortcode in another post, but I dislike Go&rsquo;s templating enough that this does not sound like fun.</p>
 <h3 id="rounding-up-fragments-to-tangle">Rounding up fragments to tangle</h3>
 <p>Recognizing an additional parameter doesn&rsquo;t make my regular expression <em>that</em> much more complicated, but I can see things getting  ore complex.  I could even find a better pattern later.  Let&rsquo;s give the params their own named regex for some encapsulation.</p>
-<div class="highlight" title="shortcode-params-regex"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">params</span> <span class="p">{</span><span class="sr">
+<figure class="highlight">
+  <figcaption><tt>shortcode-params-regex</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">params</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="p">&#39;</span><span class="s1">file=&#34;</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$&lt;filename&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">&#34;</span><span class="p">&#39;</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="o">||</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="p">&#39;</span><span class="s1">name=&#34;</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$&lt;fragment&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">&#34;</span><span class="p">&#39;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>That way I can drop it in <code>shortcode</code> to say &ldquo;oh and look for <code>params</code> while you&rsquo;re at it please.&rdquo;</p>
-<div class="highlight" title="nested-shortcode-regex"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="p">«</span><span class="s2">shortcode-params-regex</span><span class="p">»</span>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>That way I can drop it in <code>shortcode</code> to say &ldquo;oh and look for <code>params</code> while you&rsquo;re at it please.&rdquo;</p>
+<figure class="highlight">
+  <figcaption><tt>nested-shortcode-regex</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="p">«</span><span class="s2">shortcode-params-regex</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">
@@ -879,9 +1017,12 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="nv">$&lt;content&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr">  </span><span class="c1"># Remember everything else in the block
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="se">\n</span><span class="sr">                </span><span class="c1"># Ignore trailing newline
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="nv">$opener</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">/code</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$closer</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Okay, we recognize <code>file</code> and <code>name</code> parameters.  What do we do with them? We gather them!</p>
-<div class="highlight" title="gather-fragments-and-files"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%fragment-for</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>Okay, we recognize <code>file</code> and <code>name</code> parameters.  What do we do with them? We gather them!</p>
+<figure class="highlight">
+  <figcaption><tt>gather-fragments-and-files</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%fragment-for</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@filenames</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span> <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -898,24 +1039,33 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">&lt;</span><span class="s">filename</span><span class="p">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">@filenames</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="nv">$filename</span><span class="o">.</span><span class="kt">Str</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="tangling-my-fragments">Tangling my fragments</h3>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h3 id="tangling-my-fragments">Tangling my fragments</h3>
 <p>Let&rsquo;s see here.  I know before I can write any files, I need to make sure everything&rsquo;s tangled Trying to keep fragments easy to identify.  They sit on a line by themselves, possibly with some leading whitespace.</p>
-<div class="highlight" title="tangle-fragments"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">fragment</span> <span class="p">{</span><span class="sr"> </span><span class="ni">^^</span><span class="sr"> </span><span class="se">\h</span><span class="o">*?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">«</span><span class="p">&#34;</span><span class="sr"> </span><span class="nv">$&lt;name&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">»</span><span class="p">&#34;</span><span class="sr"> </span><span class="ni">$$</span><span class="sr"> </span><span class="p">}</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-fragments</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">fragment</span> <span class="p">{</span><span class="sr"> </span><span class="ni">^^</span><span class="sr"> </span><span class="se">\h</span><span class="o">*?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">«</span><span class="p">&#34;</span><span class="sr"> </span><span class="nv">$&lt;name&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">»</span><span class="p">&#34;</span><span class="sr"> </span><span class="ni">$$</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%tangle-for</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">«</span><span class="s2">tangle-function</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">%fragment-for</span><span class="o">.</span><span class="nb">keys</span> <span class="k">-&gt;</span> <span class="nv">$name</span> <span class="p">{</span> <span class="nf">tangle</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span> <span class="p">}</span>
-</span></span></code></pre></div><p>Raku functions are lexically scoped, which means it&rsquo;s perfectly okay to declare a function inside another function.  Though next time I revisit  his, I may want to think about a <a href="https://docs.raku.org/language/classtut">class</a> or something to hold the  complexity.</p>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">%fragment-for</span><span class="o">.</span><span class="nb">keys</span> <span class="k">-&gt;</span> <span class="nv">$name</span> <span class="p">{</span> <span class="nf">tangle</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>Raku functions are lexically scoped, which means it&rsquo;s perfectly okay to declare a function inside another function.  Though next time I revisit  his, I may want to think about a <a href="https://docs.raku.org/language/classtut">class</a> or something to hold the  complexity.</p>
 <p>But what does that function need to look like?  I&rsquo;m still not sure I got it quite right.  I mean I know the <em>basic</em> shape of it.</p>
-<div class="highlight" title="tangle-function"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">tangle</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-function</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">tangle</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-error-checking</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-text</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>It needs some error checking.  I know that much.  Oh, and if it&rsquo;s already been tangled I should avoid going through it again.</p>
-<div class="highlight" title="tangle-error-checking"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">return</span> <span class="p">&#34;&#34;</span> <span class="k">unless</span> <span class="nv">$name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>It needs some error checking.  I know that much.  Oh, and if it&rsquo;s already been tangled I should avoid going through it again.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-error-checking</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">return</span> <span class="p">&#34;&#34;</span> <span class="k">unless</span> <span class="nv">$name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
@@ -924,20 +1074,26 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">   <span class="k">my</span> <span class="nv">$content</span> <span class="o">=</span> <span class="nv">%fragment-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">};</span>
 </span></span><span class="line"><span class="cl">   <span class="k">unless</span> <span class="nv">$content</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">die</span> <span class="p">&#34;</span><span class="s2">«</span><span class="nv">$name</span><span class="s2">» is not a valid fragment</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span></code></pre></div><p>The idea of the thing is clear enough.  Find and recursively <code>tangle</code> each fragment found in this text, replacing the fragment references with their tangled text.  Once that&rsquo;s all done, cache and return the tangled text.</p>
-<div class="highlight" title="tangle-text"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">$content</span><span class="o">.</span><span class="nb">match</span><span class="p">(/</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">fragment</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nv">$match</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span></span></span></code></pre>
+</figure><p>The idea of the thing is clear enough.  Find and recursively <code>tangle</code> each fragment found in this text, replacing the fragment references with their tangled text.  Once that&rsquo;s all done, cache and return the tangled text.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-text</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">$content</span><span class="o">.</span><span class="nb">match</span><span class="p">(/</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">fragment</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nv">$match</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$fragment-ref</span> <span class="o">=</span> <span class="nv">$match</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$fragment-name</span> <span class="o">=</span> <span class="nv">$match</span><span class="p">&lt;</span><span class="s">fragment</span><span class="p">&gt;&lt;</span><span class="s">name</span><span class="p">&gt;</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">say</span> <span class="p">&#34;</span><span class="nv">$name</span><span class="s2"> ← «</span><span class="nv">$fragment-name</span><span class="s2">»</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">     <span class="nv">$content</span><span class="o">.</span><span class="nb">subst-mutate</span><span class="p">(/</span><span class="nv">$fragment-ref</span><span class="p">/</span><span class="o">,</span> <span class="nf">tangle</span><span class="p">(</span> <span class="nv">$fragment-name</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
-</span></span></code></pre></div><p>I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a <code>Match</code> and a <code>String</code>.  There <em>must</em> be better ways. But the most important thing?  I got it to work eventually.</p>
+</span></span><span class="line"><span class="cl">   <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a <code>Match</code> and a <code>String</code>.  There <em>must</em> be better ways. But the most important thing?  I got it to work eventually.</p>
 <h3 id="writing-tangled-files">Writing tangled files</h3>
 <p>After all that, writing the tangled files felt easy.</p>
-<div class="highlight" title="write-tangled-fragments"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="p">«</span><span class="s2">define-commented-shortcodes</span><span class="p">»</span>
+<figure class="highlight">
+  <figcaption><tt>write-tangled-fragments</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="p">«</span><span class="s2">define-commented-shortcodes</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">@filenames</span> <span class="k">-&gt;</span> <span class="nv">$tangle-file</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$tangle-file</span> <span class="p">}</span>
@@ -945,10 +1101,13 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">       <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span></code></pre></div><p>Then — theoretically — all these fragments I wrote will make a useful code tangler!</p>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span></span></span></code></pre>
+</figure><p>Then — theoretically — all these fragments I wrote will make a useful code tangler!</p>
 <p>Might as well make it so this script can look at more than just the file I&rsquo;m editing right now.</p>
-<div class="highlight" title="tangle-fragments.raku"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$filename</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-fragments.raku</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$filename</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">nested-shortcode-regex</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">gather-fragments-and-files</span><span class="p">»</span>
@@ -956,13 +1115,18 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-fragments</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">write-tangled-files</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Easiest <a href="https://docs.raku.org/language/create-cli">CLI</a> I ever wrote, by the way.  See?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Easiest <a href="https://docs.raku.org/language/create-cli">CLI</a> I ever wrote, by the way.  See?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku
 </span></span><span class="line"><span class="cl"><span class="go">Usage:
 </span></span></span><span class="line"><span class="cl"><span class="go">  tangle-fragments.raku &lt;filename&gt;
-</span></span></span></code></pre></div><p>Time for the real thing.  I&rsquo;m nervous.  I shouldn&rsquo;t be nervous.  I know how this story ends.  Then again I keep rewriting the middle.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku index.md
+</span></span></span></code></pre>
+</figure><p>Time for the real thing.  I&rsquo;m nervous.  I shouldn&rsquo;t be nervous.  I know how this story ends.  Then again I keep rewriting the middle.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku index.md
 </span></span><span class="line"><span class="cl"><span class="go">fragment: hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">fragment: tangle.raku
 </span></span></span><span class="line"><span class="cl"><span class="go">fragment: define-commented-shortcodes
@@ -998,14 +1162,18 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle-multi.raku
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to rich-hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle-fragments.raku
-</span></span></span></code></pre></div><p>That overwrote my test version of <code>tangle-fragments.raku</code>.  Scary.  Ran the new version to keep myself honest.  It produced the same output, and appears to have correctly tangled my fragments!</p>
-<div class="highlight" title="Generated rich-hello.py" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+</span></span></span></code></pre>
+</figure><p>That overwrote my test version of <code>tangle-fragments.raku</code>.  Scary.  Ran the new version to keep myself honest.  It produced the same output, and appears to have correctly tangled my fragments!</p>
+<figure class="highlight">
+  <figcaption><span>Generated rich-hello.py</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&#34;**Hello**, *World*.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span>
-</span></span></code></pre></div><p>Running <code>rich-hello.py</code> looks more interesting with a screenshot than a text block:</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Running <code>rich-hello.py</code> looks more interesting with a screenshot than a text block:</p>
 <p><img src="/post/2020/07/attachments/img/2020/rich-panel.png" alt="Formatted output using Rich"/></p>
 <p>Okay.  Now I&rsquo;m done.</p>
 <p>I <em>could</em> have done this in Python.  There are decent parsing libraries out there.  But Raku did this on its own, without pulling in any extra — without pulling in <em>any</em> libraries.</p>
@@ -1050,19 +1218,23 @@ I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</
 <p>Most Markdown parsers include some way to handle tables. Usually it involves
 drawing your table with ASCII characters. Something like this, from an older
 post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
 </span></span><span class="line"><span class="cl">--------------------|---------|-------------------------------------
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-create`</span>   | <span class="sb">`C-z c`</span> | Create a new screen and switch to it.
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-next`</span>     | <span class="sb">`C-z n`</span> | Cycle to the next screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-previous`</span> | <span class="sb">`C-z p`</span> | Cycle to the previous screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-kill`</span>     | <span class="sb">`C-z k`</span> | Kill the current screen
-</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings
-</span></span></code></pre></div><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
+</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings</span></span></code></pre>
+</figure><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
 <p><a href="/card/restructuredtext/">card/reStructuredText</a> and <a href="/card/asciidoctor/">card/Asciidoctor</a> both provide table-handling approaches beyond drawing ASCII, though the default <a href="https://docutils.sourceforge.io/rst.html">rst table</a> is lovely if you <em>do</em> like fiddling with columns. I looked at them for shortcode inspiration — particularly rst’s <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4">csv-table</a> and <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table">list-table</a> directives.</p>
 <h2 id="csv-tables">CSV tables</h2>
 <p>First up: CSV, &ldquo;Comma-Separated Values&rdquo;. I work a fair amount with CSV on the command line. I may want to copy and paste something into a table for a blog post every once in a while.</p>
 <p>A <code>csv-table</code> shortcode could contain any CSV data. Maybe something from the <a href="https://github.com/awesomedata/awesome-public-datasets">Awesome Public Datasets</a>? Nah, I’ll just use my <a href="https://plausible.io">https://plausible.io</a> visitor count for the last week.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">2020-05-28,66
 </span></span><span class="line"><span class="cl">2020-05-29,43
@@ -1072,11 +1244,14 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">2020-06-02,62
 </span></span><span class="line"><span class="cl">2020-06-03,73
 </span></span><span class="line"><span class="cl">2020-06-04,28
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
 <h3 id="just-use-transformunmarshal">Just use <code>transform.Unmarshal</code></h3>
 <p>Give <code>transform.Unmarshal</code> a formatted string, and it gives you back a data structure. CSV text becomes an array of arrays, which we turn into a table by iterating through everything with <a href="https://gohugo.io/functions/range/"><code>range</code></a>.</p>
-<div class="highlight" title="layouts/shortcodes/csv-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
@@ -1086,8 +1261,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Voila! Instant table!</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Voila! Instant table!</p>
 <p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
 <p>Not bad, but it could be better.</p>
 <ul>
@@ -1098,12 +1273,17 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <p>Give me a minute.</p>
 <h3 id="fine-tuning-the-table-with-parameters">Fine-tuning the table with parameters</h3>
 <p>I’ll add a parameter for the caption. Maybe another parameter indicating whether to expect a header row, since the first row of CSV doesn’t <em>always</em> contain column names.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
-<div class="highlight" title="layouts/shortcodes/csv/table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv/table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
@@ -1125,8 +1305,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><ul>
 <li>if there’s a header row, <a href="https://gohugo.io/functions/after/"><code>after</code></a> lets me skip past it when building the data rows</li>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
@@ -1142,7 +1322,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>No, I’m talking about something similar to the <code>csv-table</code> case: arrays of JSON objects you paste in from somewhere else to add a little information to your blog post.</p>
 <p>Heck, you don’t even need parameters. You could put caption and header details <em>in</em> the data! Might be a good idea to use a list of desired columns instead of a simple flag. That way we can pick and choose columns without editing the row objects.</p>
 <p>Suppose I extracted details for the US and a couple neighbors from <a href="https://covid19api.com/">COVID19API</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{
 </span></span><span class="line"><span class="cl">  &#34;caption&#34;: &#34;COVID-19 updates for 6 Jun 2020&#34;,
 </span></span><span class="line"><span class="cl">  &#34;headers&#34;: [
@@ -1193,9 +1375,12 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    }
 </span></span><span class="line"><span class="cl">  ]
 </span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
-<div class="highlight" title="layouts/shortcodes/data-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/data-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ with $table.caption }} <span class="p">&lt;</span><span class="nt">caption</span><span class="p">&gt;</span>{{ . | markdownify }}<span class="p">&lt;/</span><span class="nt">caption</span><span class="p">&gt;</span> {{ end }}
@@ -1220,8 +1405,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{ end }}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
 <p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
@@ -1230,7 +1415,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>What about that first table I mentioned? You know, the <code>elscreen</code> quick reference? <em>That</em> is the kind of table I need a shortcode for. Something like a reStructuredText <code>list-table</code>, or <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables">Asciidoctor tables</a>.</p>
 <p>I tried different approaches with <code>transform.Unmarshal</code> and mashing YAML, TOML, or JSON lists into something useful. That got frustratingly brittle. Time to step back and reevaluate. What’s the simplest structure that still does what I want?</p>
 <p>Maybe something line-oriented?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Function
 </span></span><span class="line"><span class="cl">Keys
 </span></span><span class="line"><span class="cl">Description
@@ -1254,10 +1441,13 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">`elscreen-help`
 </span></span><span class="line"><span class="cl">`C-z ?`
 </span></span><span class="line"><span class="cl">Show ElScreen key bindings
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
 <p>I like it. Easy to write, easy to read, and easy to parse with <a href="https://gohugo.io/functions/split/"><code>split</code></a>. Well — you need to <a href="https://gohugo.io/functions/trim/"><code>trim</code></a> a leading newline because of how <code>.Inner</code> gets handed off, but that’s the only wrinkle so far.</p>
-<div class="highlight" title="layouts/shortcodes/list-table.html"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/list-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := split (trim .Inner &#34;\n&#34;) &#34;\n\n&#34; }}
 </span></span><span class="line"><span class="cl">
@@ -1283,8 +1473,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl">&lt;/table&gt;
-</span></span></code></pre></div><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
+</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/02/got-different-benchmarks-from-programming-crystal/">Got different benchmarks from Programming Crystal</a></li>
@@ -297,7 +302,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>Finally reading <a href="https://pragprog.com/titles/crystal/programming-crystal/">Programming Crystal</a>, by Ivo Balbaert and <a href="http://simonstl.com/">Simon St.  Laurent</a>.  Good stuff.  The <a href="/card/crystal/">card/Crystal</a> language has advanced some since the book came out, but nearly all the code runs as-is.</p>
 <p>Something that jumped out at me was the difference between their results and mine with the <a href="https://github.com/Ivo-Balbaert/programming_crystal/blob/master/code/managing_projects/benchmarking.cr">benchmarking</a> example.  Not the raw numbers.  I&rsquo;d be a little confused if those were exactly the same.  The ratios caught my attention.</p>
 <p>Given this source:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="k">require</span> <span class="s2">&#34;benchmark&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="k">require</span> <span class="s2">&#34;benchmark&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="no">IOM</span> <span class="o">=</span> <span class="no">IO</span><span class="o">::</span><span class="n">Memory</span><span class="o">.</span><span class="n">new</span>
 </span></span><span class="line"><span class="cl">
@@ -328,27 +335,34 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">interpolation</span>
 </span></span><span class="line"><span class="cl">  <span class="no">IOM</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="mi">42</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Here&rsquo;s what we&rsquo;re told to expect.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Here&rsquo;s what we&rsquo;re told to expect.</p>
 <blockquote>
 <p>Build the code for production using <code>$ crystal build benchmarking.cr —release</code> and execute that with: <code>$ ./benchmarking</code></p>
 <p>You’ll get results like this:</p>
-<pre tabindex="0"><code>Appending    34.06M ( 29.36ns) (± 3.97%) fastest
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Appending    34.06M ( 29.36ns) (± 3.97%) fastest
 Using to_s   12.67M ( 78.92ns) (± 7.55%) 2.69× slower
-Interpolation  2.8M (356.75ns) (± 3.84%) 12.15× slower
-</code></pre></blockquote>
+Interpolation  2.8M (356.75ns) (± 3.84%) 12.15× slower</code></pre>
+</figure></blockquote>
 <p>But in Crystal 0.36.1 on Ubuntu 20.04, running on Windows WSL2:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
 </span></span><span class="line"><span class="cl">    Appending 110.36M (  9.06ns) (± 3.70%)   0.0B/op        fastest
 </span></span><span class="line"><span class="cl">   Using to_s  18.52M ( 54.00ns) (± 5.36%)  16.0B/op   5.96× slower
-</span></span><span class="line"><span class="cl">Interpolation  19.19M ( 52.12ns) (± 2.99%)  16.0B/op   5.75× slower
-</span></span></code></pre></div><p>Sure, my numbers are bigger than the book&rsquo;s.  That&rsquo;s cool.  But <code>interpolation</code> and <code>to_s</code> are so close to each other on my machine!</p>
+</span></span><span class="line"><span class="cl">Interpolation  19.19M ( 52.12ns) (± 2.99%)  16.0B/op   5.75× slower</span></span></code></pre>
+</figure><p>Sure, my numbers are bigger than the book&rsquo;s.  That&rsquo;s cool.  But <code>interpolation</code> and <code>to_s</code> are so close to each other on my machine!</p>
 <p>Maybe that&rsquo;s WSL?  After I get the day&rsquo;s tasks done, I revisit on my computer&rsquo;s Manjaro partition.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
 </span></span><span class="line"><span class="cl">    Appending 123.54M (  8.09ns) (± 2.57%)   0.0B/op        fastest
 </span></span><span class="line"><span class="cl">   Using to_s  56.57M ( 17.68ns) (± 3.49%)  16.0B/op   2.18× slower
-</span></span><span class="line"><span class="cl">Interpolation  56.55M ( 17.68ns) (± 4.32%)  16.0B/op   2.18× slower
-</span></span></code></pre></div><p>Well heck.</p>
+</span></span><span class="line"><span class="cl">Interpolation  56.55M ( 17.68ns) (± 4.32%)  16.0B/op   2.18× slower</span></span></code></pre>
+</figure><p>Well heck.</p>
 <p>It&rsquo;s faster on native Linux than WSL.  That&rsquo;s hardly surprising.  But the differences between <code>to_s</code> and <code>interpolation</code> are now negligible.  For that matter, both of them are closer to the speed of <code>append</code> than <code>to_s</code> was in the book&rsquo;s example!</p>
 <p>Is the difference because of changes in Crystal?  Some dependency, like LLVM? My computer&rsquo;s 40GB of RAM compared to whatever the authors used?  My hard drive?  GPU?  Is Mercury in retrograde?</p>
 <p><em>I don&rsquo;t know!</em> I just saw different numbers and thought it was curious.</p>

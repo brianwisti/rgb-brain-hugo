@@ -11,10 +11,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 20 Jan 2024 18:58:49 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/coolnamehere/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sat, 20 Jan 2024 22:42:33 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/coolnamehere/index.xml" rel="self" type="application/rss+xml" /><item>
   <title>Card: XML</title>
   <link>https://randomgeekery.org/card/xml/</link>
-  <pubDate>Sat, 20 Jan 2024 18:58:49 -0800</pubDate>
+  <pubDate>Sat, 20 Jan 2024 22:42:33 -0800</pubDate>
   
   <guid>https://randomgeekery.org/card/xml/</guid>
   <description>XML was the core language of Web 1.0. It formed the foundation for nearly everything you read with your browser. You might not know this, though, because of the great number of languages and acronyms you find. Web pages were written in XHTML, news feeds are written in RSS, and many applications still communicate to each other with XML-RPC.
@@ -67,37 +67,63 @@ operating system.</p>
 <p>Fresh releases of some Linux distributions have perlbrew available as a package. I only know of a couple right now, but I will expand this if I learn of more.</p>
 <h4 id="installing-perlbrew-on-fedora-linux">Installing <code>perlbrew</code> on Fedora Linux</h4>
 <p>Current versions of <a href="http://fedoraproject.org">Fedora Linux</a> already have <code>perlbrew</code> available via <a href="http://fedoraproject.org/wiki/Yum"><code>yum</code></a>.</p>
-<pre tabindex="0"><code>$ su -
-# yum install perlbrew
-</code></pre><h4 id="installing-perlbrew-on-ubuntu-1110">Installing <code>perlbrew</code> on Ubuntu 11.10</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ su -
+# yum install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-ubuntu-1110">Installing <code>perlbrew</code> on Ubuntu 11.10</h4>
 <p>If you&rsquo;re on the bleeding edge of Ubuntu development, or are reading  this after October 2011, you&rsquo;ll be happy to know that there is an <a href="https://launchpad.net/ubuntu/oneiric/&#43;package/perlbrew">Ubuntu 11.10 perlbrew package</a>.</p>
-<pre tabindex="0"><code># Ubuntu 11.10 or later only!
-$ sudo apt-get install perlbrew
-</code></pre><h4 id="installing-perlbrew-on-other-unix-like-systems">Installing <code>perlbrew</code> on other UNIX-like systems</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Ubuntu 11.10 or later only!
+$ sudo apt-get install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-other-unix-like-systems">Installing <code>perlbrew</code> on other UNIX-like systems</h4>
 <p>You will want to have a minimal development environment before you install <code>perlbrew</code>.</p>
 <h4 id="ubuntu">Ubuntu</h4>
 <p>The <code>build-essentials</code> package provides the basic command line tools you will need to build and install Perl via <code>perlbrew</code>.</p>
-<pre tabindex="0"><code>$ sudo apt-get install build-essentials
-</code></pre><p>Once <code>build-essentials</code> has been installed, you can install <code>perlbrew</code>.</p>
-<pre tabindex="0"><code>$ curl -L http://xrl.us/perlbrewinstall | bash
-</code></pre><h4 id="os-x">OS X</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install build-essentials</code></pre>
+</figure><p>Once <code>build-essentials</code> has been installed, you can install <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><h4 id="os-x">OS X</h4>
 <p>Install <a href="https://developer.apple.com/xcode/">Xcode</a>. It&rsquo;s a simple step, but tends to take a while. Xcode is actually a huge Integrated Development environment. You can try <a href="https://github.com/sorin-ionescu/gcc-without-xcode">gcc without Xcode</a> if you&rsquo;re not interested in the IDE. I have not tested it yet. I just know that it exists.</p>
 <p>Once you have your development tools installed via Xcode, run the following command from a Terminal.</p>
-<pre tabindex="0"><code>$ curl -L http://xrl.us/perlbrewinstall | bash
-</code></pre><p>The official perlbrew page and the <a href="https://metacpan.org/module/App::perlbrew">App::perlbrew documentation</a> should help you get the details about fiddly bits of installing <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><p>The official perlbrew page and the <a href="https://metacpan.org/module/App::perlbrew">App::perlbrew documentation</a> should help you get the details about fiddly bits of installing <code>perlbrew</code>.</p>
 <h3 id="initializing-perlbrew">Initializing Perlbrew</h3>
 <p>Regardless of how you installed perlbrew, now you will want to make sure it is set up for your account.</p>
-<pre tabindex="0"><code>$ perlbrew init
-</code></pre><p>You will get directions on the next step. It will probably be something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew init</code></pre>
+</figure><p>You will get directions on the next step. It will probably be something like this:</p>
 <p>Make sure you have something like the following line at the end of your  shell profile. That&rsquo;s <code>~/.bashrc</code> for me.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> /Users/brian/perl5/perlbrew/etc/bashrc
-</span></span></code></pre></div><p>Reload your settings either by opening a new Terminal or directly from
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> /Users/brian/perl5/perlbrew/etc/bashrc</span></span></code></pre>
+</figure><p>Reload your settings either by opening a new Terminal or directly from
 the shell:</p>
-<pre tabindex="0"><code>$ . ~/.bashrc
-</code></pre><p>Now you are ready to install your own Perl.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ . ~/.bashrc</code></pre>
+</figure><p>Now you are ready to install your own Perl.</p>
 <h2 id="using-perlbrew-to-install-perl">Using <code>perlbrew</code> To Install Perl</h2>
 <p>It&rsquo;s probably a good idea to see what Perl versions are available to  install.</p>
-<pre tabindex="0"><code>$ perlbrew available
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew available
    perl-5.15.3
    perl-5.14.2
    perl-5.12.4
@@ -106,16 +132,25 @@ the shell:</p>
    perl-5.6.2
    perl5.005_04
    perl5.004_05
-   perl5.003_07
-</code></pre><p>We&rsquo;re looking for the latest stable release. Stable releases use an even number for the second number (<code>perl-5.14.2</code>, <code>perl-5.12.4</code>). The development releases (<code>perl-5.15.3</code>) probably will not interest you unless you are curious about features and fixes that are being experimented with for the next stable Perl. It is very rare that I install a development Perl.</p>
+   perl5.003_07</code></pre>
+</figure><p>We&rsquo;re looking for the latest stable release. Stable releases use an even number for the second number (<code>perl-5.14.2</code>, <code>perl-5.12.4</code>). The development releases (<code>perl-5.15.3</code>) probably will not interest you unless you are curious about features and fixes that are being experimented with for the next stable Perl. It is very rare that I install a development Perl.</p>
 <p>Right now, the latest stable Perl is <code>perl-5.14.2</code>. Let&rsquo;s install it with <code>perlbrew install</code>.</p>
-<pre tabindex="0"><code>$ perlbrew install perl-5.14.2
-</code></pre><p>A little while later, it&rsquo;ll be complete. You can make this the default Perl for your account with <code>perlbrew switch</code>.</p>
-<pre tabindex="0"><code>$ perlbrew switch perl-5.14.2
-</code></pre><p>Let&rsquo;s verify just to be on the safe side.</p>
-<pre tabindex="0"><code>$ perl --version
-This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level
-</code></pre><p>There. Now we have the latest stable Perl, ready for us to use. The system Perl is completely safe.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew install perl-5.14.2</code></pre>
+</figure><p>A little while later, it&rsquo;ll be complete. You can make this the default Perl for your account with <code>perlbrew switch</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew switch perl-5.14.2</code></pre>
+</figure><p>Let&rsquo;s verify just to be on the safe side.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl --version
+This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level</code></pre>
+</figure><p>There. Now we have the latest stable Perl, ready for us to use. The system Perl is completely safe.</p>
 <p>As far as I can tell, there is no official way to carry installed Perl modules over to a new Perl installed via perlbrew. You can set the <code>$PERL5LIB</code> environment variable or rely on <code>use lib</code> if it&rsquo;s important to use specific installed libraries.</p>]]></content:encoded>
 </item>
 <item>
@@ -144,7 +179,9 @@ application to work at all. Fortunately, <a href="https://metacpan.org/module/Mo
 significantly on the boilerplate. You can cut it down even more by taking
 advantage of the features available in recent versions of Perl, and
 that is exactly what I do in my code templates.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
@@ -160,40 +197,57 @@ that is exactly what I do in my code templates.</p>
 </span></span></span><span class="line"><span class="cl"><span class="cm">
 </span></span></span><span class="line"><span class="cl"><span class="cm">MyClass
 </span></span></span><span class="line"><span class="cl"><span class="cm">
-</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
-</span></span></code></pre></div><p>Since I am not being paid by the word, I ignored most of the Perldoc
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span></span></span></code></pre>
+</figure><p>Since I am not being paid by the word, I ignored most of the Perldoc
 boilerplate that I use.</p>
 <p>That&rsquo;s it, really. You can move on if you&rsquo;re not interested in my rambling
 explanations.</p>
 <h2 id="the-rambling-explanation">The Rambling Explanation</h2>
 <p>Let&rsquo;s examine the boilerplate code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
-</span></span></code></pre></div><p>This tells <code>perl</code> that the program requires features that only become
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This tells <code>perl</code> that the program requires features that only become
 available in <a href="http://perldoc.perl.org/perl5140delta.html">Perl 5.14</a>. If I tried to load this library in an
 application using a different version of Perl, it simply would not work:</p>
-<pre tabindex="0"><code>Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
-BEGIN failed--compilation aborted at MyClass.pm line 1.
-</code></pre><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
+BEGIN failed--compilation aborted at MyClass.pm line 1.</code></pre>
+</figure><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
 haven&rsquo;t been made redundant by a change in the newest Perl.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
-</span></span></code></pre></div><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span></span></span></code></pre>
+</figure><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
 Here&rsquo;s my package. It&rsquo;s called &ldquo;MyClass&rdquo;. It has a <code>$VERSION</code> of <code>1.0</code>.
 I suppose I could use <a href="https://metacpan.org/module/MooseX::Declare">MooseX::Declare</a>, but I&rsquo;m still getting the
 hang of core <a href="https://metacpan.org/module/Moose">Moose</a> functionality.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span>
-</span></span></code></pre></div><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
 A <em>lot</em> of stuff is going on the background now, as all the Moose support
 structure is loaded and set up.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span>
-</span></span></code></pre></div><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span>
-</span></span></code></pre></div><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span></span></span></code></pre>
+</figure><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
 out of the way.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span>
-</span></span></code></pre></div><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span></span></span></code></pre>
+</figure><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
 <em>need</em> that flexibility, I should make the class a little lighter.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
 that has ended Perl modules for years. As far as I can tell, the new <code>package</code> syntax
 makes it unnecessary. Perl 5.14 doesn&rsquo;t complain about it missing.</p>]]></content:encoded>
 </item>
@@ -215,9 +269,12 @@ It is written in <a href="/card/ruby/">Ruby</a>, but is useful in far more than 
 <p>The great news is that if you have Ruby on your system, you <em>probably</em> already have Rake.
 It has been included as part of the standard Ruby distribution for a few years.</p>
 <p>It is easy to test which version of Rake you have from the command line:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake --version
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake --version
 </span></span><span class="line"><span class="cl"><span class="go">rake, version 0.9.2
-</span></span></span></code></pre></div><p>If you do not have Rake, then you just need to install a fresh release of Ruby.
+</span></span></span></code></pre>
+</figure><p>If you do not have Rake, then you just need to install a fresh release of Ruby.
 Go ahead.
 I’ll wait.</p>
 <p>Rake is driven by a <em>Rakefile</em>.
@@ -234,8 +291,11 @@ Hey.
 It works for me.
 Static HTML serves fast, and I don’t change the content on my site <em>that</em> often.</p>
 <p>I invoke a simple command to build my site before uploading it.</p>
-<pre tabindex="0"><code>$ python site-builder.py
-</code></pre><p>That is not painful, but it does get boring.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python site-builder.py</code></pre>
+</figure><p>That is not painful, but it does get boring.
 More importantly, I have been thinking about how <a href="http://beta.compass-style.org">Compass</a> would be a great thing to use for my site.
 But <code>site-builder.py</code> is an ugly, ugly piece of hackery.
 It is just coherent enough to build the site you’re reading.
@@ -246,38 +306,52 @@ That’s where Rake comes in.</p>
 Here is a dummy version of <code>site-builder.py</code> that you can use.
 No, it does not build a site.
 It <em>will</em> give you something to work with for demonstrating Rake, though.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Imaginary version of site-builder.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Imaginary version of site-builder.py</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="n">__main__</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Look at me, I&#39;m building a site!&#34;</span>
-</span></span></code></pre></div><p>First I will start by creating a Rakefile to handle my current workflow.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Rakefile for coolnamehere.com</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Look at me, I&#39;m building a site!&#34;</span></span></span></code></pre>
+</figure><p>First I will start by creating a Rakefile to handle my current workflow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Rakefile for coolnamehere.com</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>The simplest Rake <code>task</code> command takes two arguments:
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>The simplest Rake <code>task</code> command takes two arguments:
 a name for that task, and a block of actions to perform when that task is requested.
 The name can be written as a String or as a Symbol, but I usually see it written as a Symbol.</p>
 <p>The block can be any valid Ruby code.
 The <code>:html</code> block uses my shell to run the Python script that builds coolnamehere.com.
 You ask Rake to execute a particular task from the command line by using the task’s name.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><p>How do you find out what tasks are available, aside from reading the Rakefile?
+</span></span></span></code></pre>
+</figure><p>How do you find out what tasks are available, aside from reading the Rakefile?
 The -T flag will ask Rake to list all of the available tasks.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake -T
-</span></span></code></pre></div><p>Oh.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake -T</span></span></code></pre>
+</figure><p>Oh.
 Hold on a second.
 Rake will only list the tasks you have described with the <code>desc</code> command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Let us try that again.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Let us try that again.
 The <code>-T</code> flag will ask Rake to list all of the available <em>described</em> tasks.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake -T
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake -T
 </span></span><span class="line"><span class="cl"><span class="go">rake html  # Generate Web site
-</span></span></span></code></pre></div><p>A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
+</span></span></span></code></pre>
+</figure><p>A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
 That is why limiting the task list to described tasks is a good idea.</p>
 <h3 id="a-second-task">A Second Task</h3>
 <p>As I mentioned before, part of the reason I am writing a Rakefile is because I want to use Compass to define the styles for coolnamehere.
@@ -285,61 +359,80 @@ I set up a Compass project parallel to my site sources, including the blueprint 
 The Compass project is called &ldquo;style&rdquo;.
 My projects generally do not have clever names.</p>
 <p>If you <em>really</em> want to play along, here is how I set up my Compass project.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install compass
-</span></span><span class="line"><span class="cl">compass create style --using blueprint
-</span></span></code></pre></div><p>This is another straightforward task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install compass
+</span></span><span class="line"><span class="cl">compass create style --using blueprint</span></span></code></pre>
+</figure><p>This is another straightforward task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I do not expect anything exciting to happen, since I have not changed the SCSS files.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I do not expect anything exciting to happen, since I have not changed the SCSS files.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
-</span></span></span></code></pre></div><p>There is still a problem, though.
+</span></span></span></code></pre>
+</figure><p>There is still a problem, though.
 All of the stylesheets are in <code>style/stylesheets</code>,
 but the working stylesheets have been over in <code>site/inc/css</code>.
 I need Rake to copy the finished stylesheets to the expected location.
 Might as well copy the images that are sitting in the <code>style</code> project while I am at it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/css&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/images/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/images&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Rake conveniently imports the FileUtils module.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Rake conveniently imports the FileUtils module.
 This lets me use Ruby standard library methods such as <code>cp</code> to copy a list of files rather than relying on platform-specific shell commands.</p>
 <p>What does that look like in action?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/stylesheets/ie.css style/stylesheets/print.css style/stylesheets/screen.css source/inc/css
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
-</span></span></span></code></pre></div><p>Good enough.
+</span></span></span></code></pre>
+</figure><p>Good enough.
 Excuse me while I adjust my HTML template to point at the right stylesheets.</p>
 <h3 id="setting-a-dependency">Setting a Dependency</h3>
 <p>There are already awkward bits to the Rakefile as it is right now.
 I need to run two commands in order to build the site completely.
 Because <code>site-builder.py</code> also copies the site files to a new location, I must also remember to run the commands in the correct order.
 If I don’t, then the generated CSS will go into my site sources after the HTML has already been generated and copied.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">...
-</span></span></span></code></pre></div><p>What if I made <code>:css</code> a <em>dependency</em> of <code>:html</code>?
+</span></span></span></code></pre>
+</figure><p>What if I made <code>:css</code> a <em>dependency</em> of <code>:html</code>?
 Rake would make sure that the <code>:css</code> task was executed before it tried to execute the <code>:html</code> task.</p>
 <p>A little syntax trickery simplifies the task of describing a task’s dependencies.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Now instead of just a name for the task, we are giving <code>task</code> a Hash.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Now instead of just a name for the task, we are giving <code>task</code> a Hash.
 The only key of that Hash is the name of the task, and the value is a list of tasks which this one depends on.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
@@ -348,7 +441,8 @@ The only key of that Hash is the name of the task, and the value is a list of ta
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
 </span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><p>Excellent.
+</span></span></span></code></pre>
+</figure><p>Excellent.
 Now I can generate both CSS and HTML from a single Rake command.
 I am going to work a little bit on the styles, and to see if I notice any other little issues with my Rakefile.</p>
 <h3 id="setting-the-default-task">Setting The Default Task</h3>
@@ -362,11 +456,15 @@ It would be nice to use that shortcut while I am working on coolnamehere.</p>
 It looks for a task named &ldquo;default&rdquo; or <code>:default</code>.
 That makes sense.
 Let me set up a default task that depends on the <code>:html</code> task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
-</span></span></code></pre></div><p>That is all I need to do, actually.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span></span></span></code></pre>
+</figure><p>That is all I need to do, actually.
 A task can simply be a name and its dependencies.
 You do not <em>need</em> to define a block of actions for that task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
@@ -375,26 +473,33 @@ You do not <em>need</em> to define a block of actions for that task.</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
 </span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><h3 id="something-i-have-been-meaning-to-get-around-to">Something I Have Been Meaning To Get Around To</h3>
+</span></span></span></code></pre>
+</figure><h3 id="something-i-have-been-meaning-to-get-around-to">Something I Have Been Meaning To Get Around To</h3>
 <p>I have been promising myself for years that I will assemble some sort of script that would automate the process of uploading my site.
 I never get around to it, though.
 Instead I fire up NCFTP, load the &ldquo;coolnamehere&rdquo; bookmark I’ve had for years, and upload.</p>
 <p>It is time to fix that by adding an &ldquo;upload&rdquo; task.
 I will take advantage of the <a href="https://github.com/glejeune/syncftp">syncftp</a> Ruby library,
 which looks like it will handle all of the little details.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install syncftp
-</span></span></code></pre></div><p>For the first test, I will just fill in the blanks using the syncftp README as a guide.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install syncftp</span></span></code></pre>
+</figure><p>For the first test, I will just fill in the blanks using the syncftp README as a guide.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:upload</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span> <span class="o">=</span> <span class="no">SyncFTP</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;ftp.myhost.com&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:username</span> <span class="o">=&gt;</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>Here’s the complete Rakefile, with the as-yet untested &ldquo;upload&rdquo; task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
@@ -415,12 +520,14 @@ which looks like it will handle all of the little details.</p>
 </span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Well, yes.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Well, yes.
 There are differences from the <em>actual</em> Rakefile, but this gets the idea across.</p>
 <p>All that I need to do now is test it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake upload
-</span></span></code></pre></div>]]></content:encoded>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake upload</span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: Python 2 Babysteps 01 Installing Python 2</title>
@@ -457,30 +564,45 @@ I decided to focus on the official release of Python rather than get overwhelmed
 <p>Well that wasn’t hard. Okay, there were a few details if you insisted on the latest and greatest.</p>
 <h4 id="macports">MacPorts</h4>
 <p>On my home machine, I use <a href="http://macports.org">MacPorts</a> to access a large repository of open source software that can be installed on OS X. Although <a href="http://www.macports.org/install.php">installing MacPorts</a> is not difficult, it is well beyond the scope of this tutorial. I will instead show you the commands I ran from a Terminal to install Python 2.7 on that machine.</p>
-<pre tabindex="0"><code>$ sudo port install python-2.7
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo port install python-2.7
 $ sudo port select python python-2.7
 $ python -V
-Python 2.7.1
-</code></pre><p>That will do. The differences between 2.7.1 and 2.7.2 are so small that I doubt I will notice any of them.</p>
+Python 2.7.1</code></pre>
+</figure><p>That will do. The differences between 2.7.1 and 2.7.2 are so small that I doubt I will notice any of them.</p>
 <h4 id="homebrew">Homebrew</h4>
 <p>And some of you use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> to install open source software. No problem. Here are the instructions for installing and verifying a fresh Python once you <a href="https://github.com/mxcl/homebrew/wiki/Installation">install Homebrew</a>.</p>
-<pre tabindex="0"><code>$ brew install python
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install python
 $ python -V
-Python 2.7.2
-</code></pre><h3 id="linux">Linux</h3>
+Python 2.7.2</code></pre>
+</figure><h3 id="linux">Linux</h3>
 <p>Python is well supported in Linux.</p>
 <h4 id="redhat-based-distributions-fedora">Redhat-based distributions (Fedora)</h4>
 <p><a href="http://fedoraproject.org">Fedora</a> 15 ships with Python 2.7.1, and that is good enough for me. We need to install the <code>python-tools</code> package if we want IDLE, though.</p>
-<pre tabindex="0"><code>$ su -
-# yum install python-tools
-</code></pre><h4 id="debian-based-distributions-ubuntu-mint">Debian-based Distributions (Ubuntu, Mint)</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ su -
+# yum install python-tools</code></pre>
+</figure><h4 id="debian-based-distributions-ubuntu-mint">Debian-based Distributions (Ubuntu, Mint)</h4>
 <p><a href="http://ubuntu.com">Ubuntu</a> 11.04 has Python 2.7.1 installed by default, and that’s good enough for us.</p>
-<pre tabindex="0"><code>$ python -V
-Python 2.7.1+
-</code></pre><p>I am not sure what the <code>+</code> means. I assume the Ubuntu developers made some customizations to Python.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python -V
+Python 2.7.1&#43;</code></pre>
+</figure><p>I am not sure what the <code>+</code> means. I assume the Ubuntu developers made some customizations to Python.</p>
 <p>IDLE is not installed by default, though. That can be fixed.</p>
-<pre tabindex="0"><code>$ sudo apt-get install idle
-</code></pre><h4 id="others">Others</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install idle</code></pre>
+</figure><h4 id="others">Others</h4>
 <p>Check the documentation for your distribution. The odds are that you already have Python installed, or can easily install it using your distribution’s tools.</p>
 <h3 id="windows">Windows</h3>
 <p>I do not have a Windows installation handy right now, so most of this section is just going from memory. Thank goodness installation on Windows is easy.</p>
@@ -535,34 +657,55 @@ programming.</p>
 </ol>
 <p>Hmm… maybe a <em>little</em> more detail would be helpful here.</p>
 <p>The IDLE shell allows you to enter code (from simple statements to function and class definitions), and execute it immediately. Since you have the shell open already, type in this example:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello, world!&#34;
-</code></pre><p><img src="/post/2011/06/attachments/img/2011/idle.png" alt="IDLE screenshot"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello, world!&#34;</code></pre>
+</figure><p><img src="/post/2011/06/attachments/img/2011/idle.png" alt="IDLE screenshot"/></p>
 <p>The <code>&gt;&gt;&gt;</code> is the shell prompt, showing that you can type something here. You may notice that the characters you type show up in different colors as you enter them into the shell. This is called &ldquo;syntax highlighting.&rdquo; It’s basically just the environment helping you out so that you know more or less how the code will be broken down by Python (important <em>keywords</em> are one color, <em>strings</em> of text are another, etcetera).</p>
 <p>Press the ENTER key, and the shell will perform that command right away:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello, world!&#34;
-Hello, world!
-</code></pre><p>The shell allows you to define more complex things, too. Say you want to get the user’s name, and print a customized &ldquo;Hello you!&rdquo; for the user.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello, world!&#34;
+Hello, world!</code></pre>
+</figure><p>The shell allows you to define more complex things, too. Say you want to get the user’s name, and print a customized &ldquo;Hello you!&rdquo; for the user.</p>
 <p>First, you have to get their name:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; name = raw_input(&#34;Please enter your name: &#34;)
-</code></pre><p><code>raw_input()</code> is a function that displays a prompt to the user, gets some keyboard input from them, and sends what they typed back to you. I want to use that typed-in name in a moment, so I save the result in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can use it later. What’s a <em>function</em>? Basically, it’s something you feed data into, and get data out of — kind of a mini-program in your program. That’s all we need to know for right now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; name = raw_input(&#34;Please enter your name: &#34;)</code></pre>
+</figure><p><code>raw_input()</code> is a function that displays a prompt to the user, gets some keyboard input from them, and sends what they typed back to you. I want to use that typed-in name in a moment, so I save the result in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can use it later. What’s a <em>function</em>? Basically, it’s something you feed data into, and get data out of — kind of a mini-program in your program. That’s all we need to know for right now.</p>
 <p>When you press <code>[ENTER]</code> this time, you will be shown a prompt. In IDLE, this prompt shows up simply as some text printed out in the shell.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; name = raw_input(&#34;Enter your name: &#34;)
-Enter your name:
-</code></pre><p>I provide my name (&ldquo;Brian&rdquo;), and Python quietly saves that answer in the variable <code>name</code>, then waits for me to do something new. One of the things that confused me when I first tried <code>raw_input()</code> in the Python shell: how do I know that Python actually grabbed the name I gave? Well, it turns out that it’s easy enough to ask:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print name
-Brian
-</code></pre><p>When you want to get at a value that Python has stored for you, all you have to do is call it by name. In this case, I just wanted to print out the value of <code>name</code> — which was filled in when I typed my name at the prompt — and that’s exactly what I told Python to do. Pretty simple, yes?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; name = raw_input(&#34;Enter your name: &#34;)
+Enter your name:</code></pre>
+</figure><p>I provide my name (&ldquo;Brian&rdquo;), and Python quietly saves that answer in the variable <code>name</code>, then waits for me to do something new. One of the things that confused me when I first tried <code>raw_input()</code> in the Python shell: how do I know that Python actually grabbed the name I gave? Well, it turns out that it’s easy enough to ask:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print name
+Brian</code></pre>
+</figure><p>When you want to get at a value that Python has stored for you, all you have to do is call it by name. In this case, I just wanted to print out the value of <code>name</code> — which was filled in when I typed my name at the prompt — and that’s exactly what I told Python to do. Pretty simple, yes?</p>
 <p>Okay, so it has my name. What was I trying to do again? Oh yeah, the custom &ldquo;Hello&rdquo; thing. Let’s make it print &ldquo;Hello, Brian&rdquo; - or &ldquo;Craig&rdquo;, or &ldquo;Susan&rdquo;, or whatever name you gave to <code>raw_input()</code> …​ ummm …​ I lost myself again. Let me get back on track here.</p>
 <p>Wait. How are we supposed to do this? You know, take a value, and write it along with some other text?</p>
 <p>Here’s the easiest way:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello&#34;, name
-Hello Brian
-</code></pre><p>Every time you normally tell Python to print something, it will print that something out, and then start a new line. If you paste a comma onto the end of the thing you want to print, it’s just like a comma in conversation. It means that you’re pausing for air, and the sentence isn’t done yet. Instead of starting a new line, Python just inserts a space. The next thing that gets printed will show up on the same line.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello&#34;, name
+Hello Brian</code></pre>
+</figure><p>Every time you normally tell Python to print something, it will print that something out, and then start a new line. If you paste a comma onto the end of the thing you want to print, it’s just like a comma in conversation. It means that you’re pausing for air, and the sentence isn’t done yet. Instead of starting a new line, Python just inserts a space. The next thing that gets printed will show up on the same line.</p>
 <p>In this case, Python prints the phrase &ldquo;Hello&rdquo;, followed by a space, and ending with the name that was given to it by <code>raw_input</code>.</p>
 <p>You can print several things at once, too. Just put a comma in between each item to be printed.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
-Hello Brian - good to see you!
-</code></pre><p>Wow. That made me feel pretty good. It’s amazing how just a few nice words can lift your mood — even if you have to write them yourself.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
+Hello Brian - good to see you!</code></pre>
+</figure><p>Wow. That made me feel pretty good. It’s amazing how just a few nice words can lift your mood — even if you have to write them yourself.</p>
 <p>What if we wanted to be able to get that warm fuzzy feeling any time? It’s only two lines of code. We could probably enter that in the shell when we wanted some warm words. But there’s a school of programming that tells us Laziness is a virtue. Why write the same two lines again and again, when we could write them once, call it a program, and run that program anytime we felt blue?</p>
 <p>Let’s find out how to do just that.</p>
 <h2 id="how-to-make-your-own-python-program">How to Make Your Own Python Program</h2>
@@ -570,11 +713,14 @@ Hello Brian - good to see you!
 <p>Don’t get all huffy. I said the IDLE <em>shell</em> wasn’t good for programs, not that <em>IDLE</em> is no good for programs.</p>
 <p>To edit a Python script in IDLE, simply go to the &ldquo;File&rdquo; menu and select &ldquo;New Window&rdquo;. This will open a new window for editing Python stuff. This is not a shell, but a NotePad-like text editing environment.</p>
 <p>In your new window, enter this code:</p>
-<pre tabindex="0"><code># hello.py
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># hello.py
 #  Get the user&#39;s name and print a friendly hello
 name = raw_input(&#34;Please enter your name: &#34;)
-print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
-</code></pre><p>Most of it is the same as what we entered in the shell, but what’s with those first couple of lines?</p>
+print &#34;Hello&#34;, name, &#34;- good to see you!&#34;</code></pre>
+</figure><p>Most of it is the same as what we entered in the shell, but what’s with those first couple of lines?</p>
 <p>Well, they’re Python comments. Comments start from the character <code>#</code>, and extend to the end of the line that you wrote them on. Python ignores comments, which means that you can use them to explain what is going on in your code. Comments are good. When you come back to look at a complex script after several months, you might forget what some block of code does. Having the comments there to remind you will make it that much easier to sort everything out.</p>
 <p>I like to start every one of my scripts off with a quick header to describe the purpose of the program. Here is the rough template:</p>
 <p>Python docstrings would actually be better for script headers, but:</p>
@@ -582,10 +728,14 @@ print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
 <li>I haven’t described those yet</li>
 <li>I needed an excuse to show you what comments look like.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># filename</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#  A quick description of what this program does</span>
-</span></span></code></pre></div><p>Of course, your header can be as complicated as you like:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># filename</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  A quick description of what this program does</span></span></span></code></pre>
+</figure><p>Of course, your header can be as complicated as you like:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># hello.py</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  Get the user&#39;s name and print a friendly hello</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#</span>
@@ -612,27 +762,33 @@ print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
 </span></span><span class="line"><span class="cl"><span class="c1">#    Updated for Python version 2.6</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  1.2 16 June 2011</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#    Updated for Python version 2.7.2</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
-</span></span></code></pre></div><p>Just try to match the header complexity to the program. Using this header for a program that consists of two lines of code might be a <em>little</em> bit of overkill. I usually start with something like the two-line header and expand it as I see fit.</p>
+</span></span><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span></span></span></code></pre>
+</figure><p>Just try to match the header complexity to the program. Using this header for a program that consists of two lines of code might be a <em>little</em> bit of overkill. I usually start with something like the two-line header and expand it as I see fit.</p>
 <p>After you enter your script, you need to save it. That’s easy. Just go to the &ldquo;File&rdquo; menu and select &ldquo;Save As…​&rdquo; You will be shown a dialog that should look pretty familiar if you’ve ever worked with an editing program. Choose a directory to place your program, enter a name ending with <code>.py</code> to let your computer know that this is a Python file, and click &ldquo;Save&rdquo;. You have now saved your file.</p>
 <p>I bet you’re just itching to run that program! Since you’ve already got <code>hello.py</code> open, all you have to do is go to the &ldquo;Run&rdquo; menu, and select &ldquo;Run module&rdquo;. Python puts you in the IDLE shell, where you see something like this:</p>
-<pre tabindex="0"><code>Python 2.7.1 (r271:86832, Nov 27 2010, 18:30:46) [MSC v.1500 32 bit (Intel)] on win32
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Python 2.7.1 (r271:86832, Nov 27 2010, 18:30:46) [MSC v.1500 32 bit (Intel)] on win32
 Type &#34;copyright&#34;, &#34;credits&#34; or &#34;license()&#34; for more information.
 &gt;&gt;&gt; ================================ RESTART ================================
 &gt;&gt;&gt;
-Please enter your name:
-</code></pre><p>Enter your name, press ENTER, and there’s your warm fuzzy greeting!</p>
+Please enter your name:</code></pre>
+</figure><p>Enter your name, press ENTER, and there’s your warm fuzzy greeting!</p>
 <p>You may be happy with <code>hello.py</code> right now, but you will probably want to change it later: make it print out a different greeting, for example. To do that, you need to know how to open a Python file for editing.</p>
 <p>Actually, it’s pretty easy. Go to the &ldquo;File&rdquo; menu, select &ldquo;Open…​&rdquo; and select your file. IDLE automatically opens your file in an editing window, where you can edit, save, and run your program to your heart’s content.</p>
 <p>There are two more ways to run a Python program in Windows.</p>
 <p>The Python installation automatically associates the <code>py</code> extension with Python program. That tells Windows that anything ending with <code>.py</code> should be handed over to Python. That means you can just double-click on hello.py, and Python will automatically run it. Unfortunately, that’s not very helpful for most of the stuff we’ll be writing. Try it yourself. You get a DOS box prompting you for your name, but the box disappears almost as soon as you press ENTER! That is kind of annoying.</p>
 <p>But there’s another trick which we can use until we’re writing more complex applications which can keep themselves open or don’t need a DOS box. Simply open your own DOS box (&lsquo;Start MenuAccessories|Command Prompt&rsquo;), move to the directory that contains your script, and call Python yourself:</p>
-<pre tabindex="0"><code>C:&gt;cd scripts
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:&gt;cd scripts
 C:\scripts&gt;python hello.py
 Please enter your name: Brian
 Hello Brian - good to see you!
-C:\scripts&gt;
-</code></pre><p>In order for this to work, you’ll have to have your Python installation directory specified as part of your environment variable <code>PATH</code>. How you do that depends on what version of Windows (or which command line shell for Linux) you are running. Once again, I’m lazy, so I’m leaving it alone.</p>
+C:\scripts&gt;</code></pre>
+</figure><p>In order for this to work, you’ll have to have your Python installation directory specified as part of your environment variable <code>PATH</code>. How you do that depends on what version of Windows (or which command line shell for Linux) you are running. Once again, I’m lazy, so I’m leaving it alone.</p>
 <p>To be honest, I recommend you stick with IDLE interface for now. There is less to remember.</p>
 <p>Finally, you might want to know how to <em>leave</em> IDLE. The menu command &lsquo;File|Exit&rsquo; is all you need to remember. If you haven’t saved all of the files you have been editing, IDLE will check if you want to save them before you quit. Answer as you see fit, save any files you want, and you’re out of IDLE in the real world.</p>
 <p>And you know what? You know how to use the IDLE shell, as well as how to
@@ -767,12 +923,21 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 <p>The names do not mean anything to Parrot. It does not force a particular way of organizing your namespaces. Nested namespaces are a convenience so that <em>we</em> know two chunks of code are somewhat related.</p>
 <h4 id="the-namespace-directive">The <code>.namespace</code> Directive</h4>
 <p>The <code>.namespace</code> directive is used to tell Parrot that the following code belongs in a particular namespace. Its argument is a hash index specifying the name.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;]
-</code></pre><p>Use a complex key to indicate a nested namespace.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
-</code></pre><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;]</code></pre>
+</figure><p>Use a complex key to indicate a nested namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]</code></pre>
+</figure><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
 <p>It&rsquo;s time to try it out in <code>spacetrade.pir</code>. All of the code written so far is for the shell, so I can probably get away with putting my <code>.namespace</code> directive at the top of the file.</p>
-<pre tabindex="0"><code># example-0e-01/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-01/lib/spacetrade.pir
 .namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
 
 .sub &#39;main&#39; :main
@@ -780,15 +945,18 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 .end
 
 .sub run_shell
-    # ...
-</code></pre><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
+    # ...</code></pre>
+</figure><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
 <p>Back to SpaceTrade. I run <code>setup.pir test</code> out of curiosity.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. ok
 All tests successful.
 Files=1, Tests=6,  0.015 wallclock secs
-Result: PASS
-</code></pre><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
+Result: PASS</code></pre>
+</figure><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
 defined a namespace in <code>spacetrade.pir</code>? The tests should complain about missing subroutines if they are in a different namespace, right?</p>
 <p>Yes, that is right. However, the <code>.include</code> directive effectively dumps the
 code from your included file right where you put the directive. The tests exist in the <code>['SpaceTrade';'Shell']</code> namespace because we never indicated that we were moving onto a new one.</p>
@@ -797,9 +965,15 @@ that the shell subroutines work, not that namespace handling works. The
 SpaceTrade namespaces are going to get more cluttered as time goes on, though. I am going to be more explicit in the namespace handling for my tests in order to prepare for that clutter.</p>
 <h3 id="the-default-namespace">The Default Namespace</h3>
 <p>To specify that you are going back to the default namespace, hand an empty key to the <code>.namespace</code> directive.</p>
-<pre tabindex="0"><code>.namespace [ ]
-</code></pre><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
-<pre tabindex="0"><code># example-0e-02/t/01-shell-metacommands.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [ ]</code></pre>
+</figure><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-02/t/01-shell-metacommands.pir
 
 .include &#39;lib/spacetrade.pir&#39;
 
@@ -807,9 +981,12 @@ SpaceTrade namespaces are going to get more cluttered as time goes on, though. I
 
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
-    # ...
-</code></pre><p>What happens if I run the tests now?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+    # ...</code></pre>
+</figure><p>What happens if I run the tests now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. Dubious, test returned 1
 Failed 6/6 subtests
 
@@ -823,10 +1000,13 @@ Bad plan.  You planned 6 tests but ran 0.
 Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
-current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)
-</code></pre><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
+current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)</code></pre>
+</figure><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
 <p>Now I have library code tucked into a namespace and test code that doesn&rsquo;t know about the shell subroutines. A quick look at <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">07-writing-subroutines/</a> shows how to get those shell subroutines into our current namespace. The <code>get_global</code> opcode allows us to grab a variable from another namespace. We used it in to grab the <code>chomp</code> subroutine from the String::Utils namespace. Let&rsquo;s use <code>get_global</code> to make the tested subroutines available.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .namespace [ ]
@@ -849,9 +1029,12 @@ current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379
 
     commands = register_default_commands()
 
-    # ...
-</code></pre><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
-<pre tabindex="0"><code>1..6
+    # ...</code></pre>
+</figure><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >1..6
 ok 1 - :help should be a registered default command
 ok 2 - :quit should be a registered default command that returns an empty string
 ok 3 - :help should reflect registered commands
@@ -859,9 +1042,12 @@ not ok 4 - User command &#34;:dude&#34; should result in string &#34;Dude!&#34;
 # Have: Invalid command: :dude points to nonexistent sub say_dude
 # Want: Dude!
 ok 5 - Shell should warn about unknown commands
-ok 6 - Shell should warn about invalid commands
-</code></pre><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+ok 6 - Shell should warn about invalid commands</code></pre>
+</figure><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_command
     .param pmc    commands
     .param string name
@@ -880,10 +1066,13 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_COMMANDS:
     .return(commands)
-.end
-</code></pre><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
+.end</code></pre>
+</figure><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
 <p>Naturally, that means <code>evaluate_command</code> is where the changes become obvious.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub evaluate_command
     .param pmc    commands
     .param string name
@@ -917,8 +1106,8 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_OUTPUT:
     .return(output)
-.end
-</code></pre><p>We do a few simple checks when somebody tries to evaluate a command.</p>
+.end</code></pre>
+</figure><p>We do a few simple checks when somebody tries to evaluate a command.</p>
 <ul>
 <li>Do we have an entry for the command?</li>
 <li>Is there something actually <em>at</em> the entry?</li>
@@ -926,7 +1115,10 @@ ok 6 - Shell should warn about invalid commands
 </ul>
 <p>That&rsquo;s what the <code>does</code> check handles, incidentally. Right now we only know about subroutines, but later on we may get into strange creations that aren&rsquo;t subroutines but can be invoked as if they were. From what the folks on IRC <code>#parrot</code> tell me, you would ask <code>command_sub</code> if it is invokable. All I know is that it worked and that I like the folks on <code>#parrot</code> very much.</p>
 <p>We should make one more change before heading over to the tests. <code>register_default_commands</code> needs to adjust to the new way of  registering commands.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_default_commands
     .local pmc commands
     .local pmc help_command
@@ -939,18 +1131,24 @@ ok 6 - Shell should warn about invalid commands
     commands = register_command(commands, &#39;:quit&#39;, quit_command, &#39;Exit the shell&#39;)
 
     .return(commands)
-.end
-</code></pre><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
+.end</code></pre>
+</figure><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
 <p>We have to change the tests themselves now. There is actually only one test that needs to be changed. Look in <code>01-shell-metacommands.t</code> for the line that registers the <code>:dude</code> command.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 # ...
-commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
-<pre tabindex="0"><code># example-0e-04/t/01-shell-metacommands.t
+commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/t/01-shell-metacommands.t
 .local pmc my_sub
 my_sub = get_global &#39;say_dude&#39;
-commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
+commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
 <p>All right, the tests should run okay.</p>
 <p>It is possible to set and get truly global variables with <code>get_root_global</code> and <code>set_root_global</code>, but I do not recommend it. What happens if you decide that the global <code>my_config</code> should be an Array instead of a Hash? Every piece of code that uses a global variable must be updated.</p>
 <p>The same problem exists with package globals, even though it may be on a smaller scale. There&rsquo;s a solution - or at least a way to make the problem even smaller. Whenever I see data and several subroutines that need to work on that data, I start to see objects.</p>
@@ -973,21 +1171,32 @@ commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dud
 <p>I may revisit this exercise with other Ruby installations on other platforms to double-check that things work, but your results <em>should</em> be similar to mine as long as you are using Ruby 1.9.2.</p>
 <h2 id="exploration">Exploration</h2>
 <p>We will start by poking at the Ruby standard <code>csv</code> library a little bit, just to see how we use it. I already have a copy of the HYG Star Catalog from my previous efforts, but for this exercise I&rsquo;ll pretend I do not. We&rsquo;ll just download it using our favorite downloading technique. Mine is GNU <a href="http://www.gnu.org/software/wget/">wget</a>.</p>
-<pre tabindex="0"><code>$ wget http://www.astronexus.com/files/downloads/hygxyz.csv.gz
-$ tar xfvz hygxyz.csv.gz
-</code></pre><p>If we open <code>hygxyz.csv</code> in our favorite <em>Editor</em>, we will see that the file is large and bewildering.</p>
-<pre tabindex="0"><code>StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ wget http://www.astronexus.com/files/downloads/hygxyz.csv.gz
+$ tar xfvz hygxyz.csv.gz</code></pre>
+</figure><p>If we open <code>hygxyz.csv</code> in our favorite <em>Editor</em>, we will see that the file is large and bewildering.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 1,1,224700,,,,,6.079e-05,01.08901332,282.485875706215,-5.20,-1.88,,9.10,1.84501631012894,F5,0.482,282.43485,0.00449,5.36884,4.9e-08,-7.12e-06,-2.574e-06
-... and so on for 119,618 lines
-</code></pre><p>There are many fields. Some of them are strings, others are numbers. Quite a few are empty.</p>
+... and so on for 119,618 lines</code></pre>
+</figure><p>There are many fields. Some of them are strings, others are numbers. Quite a few are empty.</p>
 <h3 id="parsing-the-csv">Parsing the CSV</h3>
 <p>Let&rsquo;s start with the simplest and dumbest CSV parsing code we can manage.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;hygxyz.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span>
-</span></span></code></pre></div><p>How does that look?</p>
-<pre tabindex="0"><code>$ ruby stellar
+</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;hygxyz.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>How does that look?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby stellar
 [&#34;StarID&#34;, &#34;HIP&#34;, &#34;HD&#34;, &#34;HR&#34;, &#34;Gliese&#34;, &#34;BayerFlamsteed&#34;, &#34;ProperName&#34;, &#34;RA&#34;, &#34;Dec&#34;, &#34;Distance&#34;, &#34;PMRA&#34;,
 &#34;PMDec&#34;, &#34;RV&#34;, &#34;Mag&#34;, &#34;AbsMag&#34;, &#34;Spectrum&#34;, &#34;ColorIndex&#34;, &#34;X&#34;, &#34;Y&#34;, &#34;Z&#34;, &#34;VX&#34;, &#34;VY&#34;, &#34;VZ&#34;]
 [&#34;0&#34;, nil, nil, nil, nil, nil, &#34;Sol&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0.000004848&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;, &#34;-26.73&#34;, &#34;4.85&#34;, &#34;G2V&#34;,
@@ -1001,29 +1210,39 @@ nil, &#34;9.10&#34;, &#34;1.84501631012894&#34;, &#34;F5&#34;, &#34;0.482&#34;, 
 [&#34;3&#34;, &#34;3&#34;, &#34;224699&#34;, nil, nil, nil, nil, &#34;0.00033386&#34;, &#34;38.85928608&#34;, &#34;355.871886120996&#34;, &#34;5.24&#34;, &#34;-2.91&#34;,
 nil, &#34;6.61&#34;, &#34;-1.1464684004746&#34;, &#34;B9&#34;, &#34;-0.019&#34;, &#34;277.11358&#34;, &#34;0.02422&#34;, &#34;223.27753&#34;, &#34;3.148e-06&#34;,
 &#34;9.04e-06&#34;, &#34;-3.909e-06&#34;]
-...
-</code></pre><p>Okay, wow. That is a lot of stuff going by. I don&rsquo;t know about you, but I&rsquo;m going to hit Control-C and make an adjustment to the code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+...</code></pre>
+</figure><p>Okay, wow. That is a lot of stuff going by. I don&rsquo;t know about you, but I&rsquo;m going to hit Control-C and make an adjustment to the code.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;hygxyz.csv&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span>
-</span></span></code></pre></div><p>There. Now we will only look at the first three entries. That should be a little easier to digest. I also shuffled the filename into its own variable. That&rsquo;s just how I like to do things. I tell myself that it will be easier to read and edit later.</p>
-<pre tabindex="0"><code>$ ruby stellar
+</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>There. Now we will only look at the first three entries. That should be a little easier to digest. I also shuffled the filename into its own variable. That&rsquo;s just how I like to do things. I tell myself that it will be easier to read and edit later.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby stellar
 [&#34;StarID&#34;, &#34;HIP&#34;, &#34;HD&#34;, &#34;HR&#34;, &#34;Gliese&#34;, &#34;BayerFlamsteed&#34;, &#34;ProperName&#34;, &#34;RA&#34;, &#34;Dec&#34;, &#34;Distance&#34;, &#34;PMRA&#34;,
 &#34;PMDec&#34;, &#34;RV&#34;, &#34;Mag&#34;, &#34;AbsMag&#34;, &#34;Spectrum&#34;, &#34;ColorIndex&#34;, &#34;X&#34;, &#34;Y&#34;, &#34;Z&#34;, &#34;VX&#34;, &#34;VY&#34;, &#34;VZ&#34;]
 [&#34;0&#34;, nil, nil, nil, nil, nil, &#34;Sol&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0.000004848&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;, &#34;-26.73&#34;, &#34;4.85&#34;, &#34;G2V&#34;,
 &#34;0.656&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;, &#34;0&#34;]
 [&#34;1&#34;, &#34;1&#34;, &#34;224700&#34;, nil, nil, nil, nil, &#34;6.079e-05&#34;, &#34;01.08901332&#34;, &#34;282.485875706215&#34;, &#34;-5.20&#34;, &#34;-1.88&#34;,
 nil, &#34;9.10&#34;, &#34;1.84501631012894&#34;, &#34;F5&#34;, &#34;0.482&#34;, &#34;282.43485&#34;, &#34;0.00449&#34;, &#34;5.36884&#34;, &#34;4.9e-08&#34;, &#34;-7.12e-06&#34;,
-&#34;-2.574e-06&#34;]
-</code></pre><p>The default behavior for <code>csv</code> is reasonable. It split up the fields correctly, and set the empty fields to <code>nil</code>. Next we need to deal with the fact that the first row is supposed to be the header, providing names for
+&#34;-2.574e-06&#34;]</code></pre>
+</figure><p>The default behavior for <code>csv</code> is reasonable. It split up the fields correctly, and set the empty fields to <code>nil</code>. Next we need to deal with the fact that the first row is supposed to be the header, providing names for
 fields in the corresponding columns.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;hygxyz.csv&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span>
-</span></span></code></pre></div><p>One small change has a big impact.</p>
-<pre tabindex="0"><code>$ ruby stellar.rb
+</span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="nb">p</span> <span class="n">row</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>One small change has a big impact.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby stellar.rb
 #&lt;CSV::Row &#34;StarID&#34;:&#34;0&#34; &#34;HIP&#34;:nil &#34;HD&#34;:nil &#34;HR&#34;:nil &#34;Gliese&#34;:nil &#34;BayerFlamsteed&#34;:nil &#34;ProperName&#34;:&#34;Sol&#34;
 &#34;RA&#34;:&#34;0&#34; &#34;Dec&#34;:&#34;0&#34; &#34;Distance&#34;:&#34;0.000004848&#34; &#34;PMRA&#34;:&#34;0&#34; &#34;PMDec&#34;:&#34;0&#34; &#34;RV&#34;:&#34;0&#34; &#34;Mag&#34;:&#34;-26.73&#34; &#34;AbsMag&#34;:&#34;4.85&#34;
 &#34;Spectrum&#34;:&#34;G2V&#34; &#34;ColorIndex&#34;:&#34;0.656&#34; &#34;X&#34;:&#34;0&#34; &#34;Y&#34;:&#34;0&#34; &#34;Z&#34;:&#34;0&#34; &#34;VX&#34;:&#34;0&#34; &#34;VY&#34;:&#34;0&#34; &#34;VZ&#34;:&#34;0&#34;&gt;
@@ -1034,13 +1253,18 @@ fields in the corresponding columns.</p>
 #&lt;CSV::Row &#34;StarID&#34;:&#34;2&#34; &#34;HIP&#34;:&#34;2&#34; &#34;HD&#34;:&#34;224690&#34; &#34;HR&#34;:nil &#34;Gliese&#34;:nil &#34;BayerFlamsteed&#34;:nil &#34;ProperName&#34;:nil
 &#34;RA&#34;:&#34;0.00025315&#34; &#34;Dec&#34;:&#34;-19.49883745&#34; &#34;Distance&#34;:&#34;45.662100456621&#34; &#34;PMRA&#34;:&#34;181.21&#34; &#34;PMDec&#34;:&#34;-0.93&#34; &#34;RV&#34;:nil
 &#34;Mag&#34;:&#34;9.27&#34; &#34;AbsMag&#34;:&#34;5.97222057420059&#34; &#34;Spectrum&#34;:&#34;K3V&#34; &#34;ColorIndex&#34;:&#34;0.999&#34; &#34;X&#34;:&#34;43.04329&#34; &#34;Y&#34;:&#34;0.00285&#34;
-&#34;Z&#34;:&#34;-15.24144&#34; &#34;VX&#34;:&#34;-7.1e-08&#34; &#34;VY&#34;:&#34;4.0112e-05&#34; &#34;VZ&#34;:&#34;-1.94e-07&#34;&gt;
-</code></pre><p>Now <code>csv</code> is generating something that looks vaguely like a hash. Nice. However, every field is handled as a String when some of them are obviously numbers. The <code>converters</code> option should fix that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">converters</span><span class="p">:</span> <span class="ss">:numeric</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+&#34;Z&#34;:&#34;-15.24144&#34; &#34;VX&#34;:&#34;-7.1e-08&#34; &#34;VY&#34;:&#34;4.0112e-05&#34; &#34;VZ&#34;:&#34;-1.94e-07&#34;&gt;</code></pre>
+</figure><p>Now <code>csv</code> is generating something that looks vaguely like a hash. Nice. However, every field is handled as a String when some of them are obviously numbers. The <code>converters</code> option should fix that.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">converters</span><span class="p">:</span> <span class="ss">:numeric</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">p</span> <span class="n">row</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Setting the <code>converters</code> option to <code>:numeric</code> tells CSV to convert anything that looks like a number to a Number. That is useful for comparing values, because Ruby won&rsquo;t automatically convert a String into a Number. You must tell it to convert. Anyways - I&rsquo;m babbling. It is really amazing how hard it is to pad the content of these little essays out when you are talking about Ruby code. That&rsquo;s probably why there are so many silly cartoons and insane gibberish accompanying the best Ruby tutorials.</p>
-<pre tabindex="0"><code>$ ruby stellar.rb
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Setting the <code>converters</code> option to <code>:numeric</code> tells CSV to convert anything that looks like a number to a Number. That is useful for comparing values, because Ruby won&rsquo;t automatically convert a String into a Number. You must tell it to convert. Anyways - I&rsquo;m babbling. It is really amazing how hard it is to pad the content of these little essays out when you are talking about Ruby code. That&rsquo;s probably why there are so many silly cartoons and insane gibberish accompanying the best Ruby tutorials.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby stellar.rb
 #&lt;CSV::Row &#34;StarID&#34;:0 &#34;HIP&#34;:nil &#34;HD&#34;:nil &#34;HR&#34;:nil &#34;Gliese&#34;:nil &#34;BayerFlamsteed&#34;:nil &#34;ProperName&#34;:&#34;Sol&#34; &#34;RA&#34;:0
 &#34;Dec&#34;:0 &#34;Distance&#34;:4.848e-06 &#34;PMRA&#34;:0 &#34;PMDec&#34;:0 &#34;RV&#34;:0 &#34;Mag&#34;:-26.73 &#34;AbsMag&#34;:4.85 &#34;Spectrum&#34;:&#34;G2V&#34;
 &#34;ColorIndex&#34;:0.656 &#34;X&#34;:0 &#34;Y&#34;:0 &#34;Z&#34;:0 &#34;VX&#34;:0 &#34;VY&#34;:0 &#34;VZ&#34;:0&gt;
@@ -1051,9 +1275,11 @@ fields in the corresponding columns.</p>
 #&lt;CSV::Row &#34;StarID&#34;:2 &#34;HIP&#34;:2 &#34;HD&#34;:224690 &#34;HR&#34;:nil &#34;Gliese&#34;:nil &#34;BayerFlamsteed&#34;:nil &#34;ProperName&#34;:nil
 &#34;RA&#34;:0.00025315 &#34;Dec&#34;:-19.49883745 &#34;Distance&#34;:45.662100456621 &#34;PMRA&#34;:181.21 &#34;PMDec&#34;:-0.93 &#34;RV&#34;:nil &#34;Mag&#34;:9.27
 &#34;AbsMag&#34;:5.97222057420059 &#34;Spectrum&#34;:&#34;K3V&#34; &#34;ColorIndex&#34;:0.999 &#34;X&#34;:43.04329 &#34;Y&#34;:0.00285 &#34;Z&#34;:-15.24144
-&#34;VX&#34;:-7.1e-08 &#34;VY&#34;:4.0112e-05 &#34;VZ&#34;:-1.94e-07&gt;
-</code></pre><p>Let&rsquo;s do something with those Numbers. How about counting the number of stars within ten light years of Earth?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># count-neighbors.rb</span>
+&#34;VX&#34;:-7.1e-08 &#34;VY&#34;:4.0112e-05 &#34;VZ&#34;:-1.94e-07&gt;</code></pre>
+</figure><p>Let&rsquo;s do something with those Numbers. How about counting the number of stars within ten light years of Earth?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># count-neighbors.rb</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;hygxyz.csv&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">neighbor_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1064,37 +1290,56 @@ fields in the corresponding columns.</p>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;There are </span><span class="si">#{</span><span class="n">neighbor_count</span><span class="si">}</span><span class="s2"> stars within 10 light years of Earth.&#34;</span>
-</span></span></code></pre></div><p>How many are there?</p>
-<pre tabindex="0"><code>$ ruby count-neighbors.rb
-There are 320 stars within 10 light years of Earth.
-</code></pre><p>That&rsquo;s a lot of neighbors. It took a while to count them, though. That probably has something to do with the 20 Megabyte CSV file. We are not ready to speed things up, though. Let&rsquo;s try one more task: looking for a specific star.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># find-sol.rb</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;There are </span><span class="si">#{</span><span class="n">neighbor_count</span><span class="si">}</span><span class="s2"> stars within 10 light years of Earth.&#34;</span></span></span></code></pre>
+</figure><p>How many are there?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby count-neighbors.rb
+There are 320 stars within 10 light years of Earth.</code></pre>
+</figure><p>That&rsquo;s a lot of neighbors. It took a while to count them, though. That probably has something to do with the 20 Megabyte CSV file. We are not ready to speed things up, though. Let&rsquo;s try one more task: looking for a specific star.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># find-sol.rb</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;hygxyz.csv&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">converters</span><span class="p">:</span> <span class="ss">:numeric</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">row</span><span class="o">[</span><span class="s1">&#39;ProperName&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&#34;Sol&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">p</span> <span class="n">row</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>It better find our own Sun. It&rsquo;s the first entry, after all.</p>
-<pre tabindex="0"><code>$ ruby find-sol.rb
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>It better find our own Sun. It&rsquo;s the first entry, after all.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby find-sol.rb
 #&lt;CSV::Row &#34;StarID&#34;:0 &#34;HIP&#34;:nil &#34;HD&#34;:nil &#34;HR&#34;:nil &#34;Gliese&#34;:nil &#34;BayerFlamsteed&#34;:nil &#34;ProperName&#34;:&#34;Sol&#34; &#34;RA&#34;:0
 &#34;Dec&#34;:0 &#34;Distance&#34;:4.848e-06 &#34;PMRA&#34;:0 &#34;PMDec&#34;:0 &#34;RV&#34;:0 &#34;Mag&#34;:-26.73 &#34;AbsMag&#34;:4.85 &#34;Spectrum&#34;:&#34;G2V&#34;
-&#34;ColorIndex&#34;:0.656 &#34;X&#34;:0 &#34;Y&#34;:0 &#34;Z&#34;:0 &#34;VX&#34;:0 &#34;VY&#34;:0 &#34;VZ&#34;:0&gt;
-</code></pre><p>Sorry, I got sleepy. Is it done? I should have put a <code>break</code> in that code after printing out the star details. Of course, that is just cheating around the fact that parsing a large CSV file is <em>slow</em>. Perhaps it is time to try a database.</p>
+&#34;ColorIndex&#34;:0.656 &#34;X&#34;:0 &#34;Y&#34;:0 &#34;Z&#34;:0 &#34;VX&#34;:0 &#34;VY&#34;:0 &#34;VZ&#34;:0&gt;</code></pre>
+</figure><p>Sorry, I got sleepy. Is it done? I should have put a <code>break</code> in that code after printing out the star details. Of course, that is just cheating around the fact that parsing a large CSV file is <em>slow</em>. Perhaps it is time to try a database.</p>
 <h3 id="creating-a-database">Creating a Database</h3>
 <p>I would imagine that stuffing these values into a database should make simple questions like &ldquo;show me the star named &lsquo;Sol&rsquo;&rdquo; or &ldquo;count the stars within 10 light years&rdquo; pretty straightforward. We can use a lightweight database such as <em>inbox/SQLite</em>. There may be nearly 120,000 stars in the catalog, but that is trivial for SQLite. I have heard anecdotal reports of it being used for tables with millions of rows.</p>
 <p>First, I want to install <code>sqlite3</code>.</p>
-<pre tabindex="0"><code>$ port install sqlite3
-</code></pre><p>I&rsquo;m not doing this on my <a href="http://ubuntu.com">Ubuntu</a> Linux machine, but if I was I&rsquo;d install both the <code>sqlite3</code> shell and the development libraries.</p>
-<pre tabindex="0"><code>$ sudo apt-get install sqlite3 libsqlite3-dev
-</code></pre><h4 id="the-sequel-library">The Sequel Library</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ port install sqlite3</code></pre>
+</figure><p>I&rsquo;m not doing this on my <a href="http://ubuntu.com">Ubuntu</a> Linux machine, but if I was I&rsquo;d install both the <code>sqlite3</code> shell and the development libraries.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install sqlite3 libsqlite3-dev</code></pre>
+</figure><h4 id="the-sequel-library">The Sequel Library</h4>
 <p>I have already chosen Sequel as my preferred Ruby database library, so I need to install that. Oh, and I should also install <a href="http://rubyforge.org/projects/sqlite-ruby/">sqlite3-ruby</a>. Sequel provides a nice layer of abstraction, but it does not contain the code which actually speaks to the database.</p>
-<pre tabindex="0"><code>$ gem install sequel
-$ gem install sqlite3-ruby
-</code></pre><p>We can use the <code>create_table</code> database method described on the <a href="http://sequel.rubyforge.org/rdoc/files/doc/migration_rdoc.html">Sequel migrations</a> page to build the table, rather than relying on my rather lightweight knowledge of SQLite schema definition. The dump of star data from our earlier CSV parsing code provides the hints we need to build a usable schema.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ gem install sequel
+$ gem install sqlite3-ruby</code></pre>
+</figure><p>We can use the <code>create_table</code> database method described on the <a href="http://sequel.rubyforge.org/rdoc/files/doc/migration_rdoc.html">Sequel migrations</a> page to build the table, rather than relying on my rather lightweight knowledge of SQLite schema definition. The dump of star data from our earlier CSV parsing code provides the hints we need to build a usable schema.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;sequel&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;hygxyz.csv&#39;</span>
@@ -1136,22 +1381,31 @@ $ gem install sqlite3-ruby
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;.&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="no">DB</span><span class="o">[</span><span class="ss">:stars</span><span class="o">].</span><span class="n">insert</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span>
-</span></span></code></pre></div><p>This script will set up the database and fill it with values from the CSV file. Each row is converted to a Hash, which makes the database <code>insert</code> method happy. There is also a little check and cleanup near the beginning. This is just in case there is a typo that messes up your code later on. It doesn&rsquo;t hurt to be cautious.</p>
-<pre tabindex="0"><code>$ ruby stellar.rb
-.......
-</code></pre><p>Go take a break. Make some coffee, catch up with your family, or play one more turn of Civilization. This is going to take a while. Me, I went for some more coffee.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span></span></span></code></pre>
+</figure><p>This script will set up the database and fill it with values from the CSV file. Each row is converted to a Hash, which makes the database <code>insert</code> method happy. There is also a little check and cleanup near the beginning. This is just in case there is a typo that messes up your code later on. It doesn&rsquo;t hurt to be cautious.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby stellar.rb
+.......</code></pre>
+</figure><p>Go take a break. Make some coffee, catch up with your family, or play one more turn of Civilization. This is going to take a while. Me, I went for some more coffee.</p>
 <h3 id="searching-the-database">Searching the Database</h3>
 <p>We will look at the <a href="http://sequel.rubyforge.org/rdoc/files/doc/querying_rdoc.html">Sequel querying API</a> in a moment, but first let us make sure that the database returns plausible results to direct queries.</p>
-<pre tabindex="0"><code>$ sqlite3 hyg.db
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sqlite3 hyg.db
 sqlite&gt; select count(*) from stars where distance &lt; 10;
 320
 sqlite&gt; select * from stars where propername = &#39;Sol&#39;;
 1|0||||||Sol|0.0|0.0|4.848e-06|0.0|0.0|0.0|-26.73|4.85|G2V|0.656|0.0|0.0|0.0|0.0|0.0|0.0
-sqlite&gt; .quit
-</code></pre><p>Hopefully you noticed a big improvement in the speed of your searches by switching to a database. I sure did.</p>
+sqlite&gt; .quit</code></pre>
+</figure><p>Hopefully you noticed a big improvement in the speed of your searches by switching to a database. I sure did.</p>
 <p>What if we tried the same queries with Ruby and Sequel? Let&rsquo;s open an <code>irb</code> prompt and test it out.</p>
-<pre tabindex="0"><code>$ irb
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ irb
 ruby-1.9.2-p0 &gt; require &#39;sequel&#39;
  =&gt; true
 ruby-1.9.2-p0 &gt; DB = Sequel.sqlite(&#39;hyg.db&#39;)
@@ -1162,9 +1416,12 @@ ruby-1.9.2-p0 &gt; DB[:stars].first(ProperName: &#39;Sol&#39;)
 :Mag=&gt;-26.73, :AbsMag=&gt;4.85, :Spectrum=&gt;&#34;G2V&#34;, :ColorIndex=&gt;0.656, :X=&gt;0.0, :Y=&gt;0.0, :Z=&gt;0.0, :VX=&gt;0.0,
 :VY=&gt;0.0, :VZ=&gt;0.0}
 ruby-1.9.2-p0 &gt; DB[:stars].filter { distance &lt; 10 }.count
- =&gt; 320
-</code></pre><p>Yes indeed. That was much faster. Let&rsquo;s close with something a little bit fancier: showing a table of information about all the stars in the catalog that are G Spectrum and have a proper name, ordered by their distance from Earth.</p>
-<pre tabindex="0"><code>ruby-1.9.2-p0 &gt; DB[:stars].filter(:Spectrum.like(&#39;G%&#39;)).filter(&#39;ProperName not null&#39;).order(:Distance).each { |row|
+ =&gt; 320</code></pre>
+</figure><p>Yes indeed. That was much faster. Let&rsquo;s close with something a little bit fancier: showing a table of information about all the stars in the catalog that are G Spectrum and have a proper name, ordered by their distance from Earth.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >ruby-1.9.2-p0 &gt; DB[:stars].filter(:Spectrum.like(&#39;G%&#39;)).filter(&#39;ProperName not null&#39;).order(:Distance).each { |row|
 ruby-1.9.2-p0 &gt;     printf(&#34;%20s\t%4.2f\t%s\n&#34;, row[:ProperName], row[:Distance], row[:Spectrum])
 ruby-1.9.2-p0 ?&gt;  }
               Sol    0.00    G2V
@@ -1173,8 +1430,8 @@ Rigel Kentaurus A    1.35    G2V
  Groombridge 1830    9.16    G8Vp
      Vindemiatrix    31.35   G8IIIvar
             Nihal    48.80   G5II
-=&gt; #&lt;Sequel::SQLite::Dataset: &#34;SELECT * FROM `stars` WHERE ((Spectrum like &#39;G%&#39;) AND (ProperName not null))&#34;&gt;
-</code></pre><p>I encourage you to explore the Sequel querying API more on your own, but I need to wrap this up.</p>
+=&gt; #&lt;Sequel::SQLite::Dataset: &#34;SELECT * FROM `stars` WHERE ((Spectrum like &#39;G%&#39;) AND (ProperName not null))&#34;&gt;</code></pre>
+</figure><p>I encourage you to explore the Sequel querying API more on your own, but I need to wrap this up.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>All right. You&rsquo;ve got 119,617 stars with various characteristics, all sitting there waiting for you to think of something interesting to do with them. I just wanted to see how much easier it would be to parse a CSV in a high level language. Turns out, it&rsquo;s pretty easy. Explore the Ruby standard library and the <em>many</em> Rubygems that are available out in the big world. You&rsquo;ll probably have fun, and you&rsquo;ll almost definitely learn something.</p>]]></content:encoded>
 </item>
@@ -1185,21 +1442,22 @@ Rigel Kentaurus A    1.35    G2V
   
   <guid>https://randomgeekery.org/post/2010/09/thoughts-on-the-word-bra/</guid>
   <description>No, not the bra that provides appreciated support to countless women around the world.
-[!NOTE] Originally posted to the now-defunct Vox blog on May 4, 2007.
+NOTE
+Originally posted to the now-defunct Vox blog on May 4, 2007.
 I have been thinking about the slang word “bra,” which I already know is short for “brother” and used pretty much the same way I, as a West coast slacker, would use the word “dude.” First of all, I think it is a cool word and I would use it all the time if it didn’t sound so affected coming out of my lips.</description>
    <category>post</category> 
    <category>post</category> 
    <category>babblings</category>  <category>coolnamehere</category> 
   <content:encoded><![CDATA[<p>No, not the bra that provides appreciated support to countless women around the world.</p>
 <blockquote>
-<p>[!NOTE]
-Originally posted to the now-defunct Vox blog on May 4, 2007.</p>
+<p><strong>NOTE</strong></p>
+<p>Originally posted to the now-defunct Vox blog on May 4, 2007.</p>
 </blockquote>
 <p>I have been thinking about the slang word &ldquo;bra,&rdquo; which I already know is short for &ldquo;brother&rdquo; and used pretty much the same way I, as a West coast slacker, would use the word &ldquo;dude.&rdquo; First of all, I think it is a cool word and I would use it all the time if it didn’t sound so affected coming out of my lips. Second, where the heck did it start?</p>
 <p>The first time I heard the word &ldquo;bra&rdquo; was watching <a href="http://www.dogthebountyhunter.com">Dog the Bounty Hunter</a> a couple of years ago. Why are you looking at me like that? I enjoy cheesy, semi-moralistic entertainment as much as the next guy. I figured &ldquo;bra&rdquo; was Hawaiian surfer slang and didn’t think much more about the word’s origin.</p>
 <blockquote>
-<p>[!NOTE]
-My TV close captioning and a couple of readers point out that the spelling for the Hawaiian version is &ldquo;brah.&rdquo; I’m on a roll, though.</p>
+<p><strong>NOTE</strong></p>
+<p>My TV close captioning and a couple of readers point out that the spelling for the Hawaiian version is &ldquo;brah.&rdquo; I’m on a roll, though.</p>
 </blockquote>
 <p>Last year I heard the term again, listening to <a href="https://song.link/i/1441133613">Ob La Di Ob La Da</a> by <a href="http://www.beatles.com">The
 Beatles</a>.</p>

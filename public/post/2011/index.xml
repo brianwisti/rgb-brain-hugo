@@ -1,0 +1,1320 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>2011onRandom Geekery</title>
+    <link>https://randomgeekery.org/post/2011/</link>
+    <description>
+      Recent contentin2011 on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 20 Jan 2024 22:42:33 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2011/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: perlbrew</title>
+  <link>https://randomgeekery.org/post/2011/09/perlbrew/</link>
+  <pubDate>Mon, 05 Sep 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/09/perlbrew/</guid>
+  <description></description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>You probably already have <a href="/card/perl/">card/Perl</a> if you are running Linux or OS X. However, it is usually not the latest version of the language. I prefer to install my own copy. That way I can take advantage of new language  features. Also, the system Perl is often used in administrative scripts. There is always the chance that my experiments will mess something up. It is not easy, but I have done it before.</p>
+<p>Fortunately, there&rsquo;s <a href="https://perlbrew.pl/">perlbrew</a>. perlbrew allows you to install your own personal Perl, which doesn&rsquo;t interfere with other installed versions. Speaking of versions: <code>perlbrew</code> lets you install and switch between multiple personal Perls. When Perl 5.16 is released, upgrading will be handled by a couple of quick commands.</p>
+<aside>
+<h2>tl;dr</h2>
+<p>Not interested in reading my rambling article? That's okay.</p>
+<h3>Install Perlbrew</h3>
+<p>Make sure you have your operating system's build tools first.</p>
+<pre><code>$ curl -L http://xrl.us/perlbrewinstall | bash
+$ perlbrew init
+</code></pre>
+<p>Follow the instructions to make sure <a href="https://perlbrew.pl/">perlbrew</a> is set up right.</p>
+<h3>Install Perl</h3>
+<pre><code>$ perlbrew install perl-5.14.2
+$ perlbrew switch perl-5.14.2
+</code></pre>
+</aside>
+<h2 id="installing-perlbrew">Installing Perlbrew</h2>
+<p>There are a couple of ways to install perlbrew. Some of them only
+apply to specific platforms, while one should work on any UNIX-like
+operating system.</p>
+<p>Fortunately, all of the installation techniques are simple.</p>
+<h3 id="linux-packages">Linux Packages</h3>
+<p>Fresh releases of some Linux distributions have perlbrew available as a package. I only know of a couple right now, but I will expand this if I learn of more.</p>
+<h4 id="installing-perlbrew-on-fedora-linux">Installing <code>perlbrew</code> on Fedora Linux</h4>
+<p>Current versions of <a href="http://fedoraproject.org">Fedora Linux</a> already have <code>perlbrew</code> available via <a href="http://fedoraproject.org/wiki/Yum"><code>yum</code></a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ su -
+# yum install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-ubuntu-1110">Installing <code>perlbrew</code> on Ubuntu 11.10</h4>
+<p>If you&rsquo;re on the bleeding edge of Ubuntu development, or are reading  this after October 2011, you&rsquo;ll be happy to know that there is an <a href="https://launchpad.net/ubuntu/oneiric/&#43;package/perlbrew">Ubuntu 11.10 perlbrew package</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Ubuntu 11.10 or later only!
+$ sudo apt-get install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-other-unix-like-systems">Installing <code>perlbrew</code> on other UNIX-like systems</h4>
+<p>You will want to have a minimal development environment before you install <code>perlbrew</code>.</p>
+<h4 id="ubuntu">Ubuntu</h4>
+<p>The <code>build-essentials</code> package provides the basic command line tools you will need to build and install Perl via <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install build-essentials</code></pre>
+</figure><p>Once <code>build-essentials</code> has been installed, you can install <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><h4 id="os-x">OS X</h4>
+<p>Install <a href="https://developer.apple.com/xcode/">Xcode</a>. It&rsquo;s a simple step, but tends to take a while. Xcode is actually a huge Integrated Development environment. You can try <a href="https://github.com/sorin-ionescu/gcc-without-xcode">gcc without Xcode</a> if you&rsquo;re not interested in the IDE. I have not tested it yet. I just know that it exists.</p>
+<p>Once you have your development tools installed via Xcode, run the following command from a Terminal.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><p>The official perlbrew page and the <a href="https://metacpan.org/module/App::perlbrew">App::perlbrew documentation</a> should help you get the details about fiddly bits of installing <code>perlbrew</code>.</p>
+<h3 id="initializing-perlbrew">Initializing Perlbrew</h3>
+<p>Regardless of how you installed perlbrew, now you will want to make sure it is set up for your account.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew init</code></pre>
+</figure><p>You will get directions on the next step. It will probably be something like this:</p>
+<p>Make sure you have something like the following line at the end of your  shell profile. That&rsquo;s <code>~/.bashrc</code> for me.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> /Users/brian/perl5/perlbrew/etc/bashrc</span></span></code></pre>
+</figure><p>Reload your settings either by opening a new Terminal or directly from
+the shell:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ . ~/.bashrc</code></pre>
+</figure><p>Now you are ready to install your own Perl.</p>
+<h2 id="using-perlbrew-to-install-perl">Using <code>perlbrew</code> To Install Perl</h2>
+<p>It&rsquo;s probably a good idea to see what Perl versions are available to  install.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew available
+   perl-5.15.3
+   perl-5.14.2
+   perl-5.12.4
+   i perl-5.10.1
+   perl-5.8.9
+   perl-5.6.2
+   perl5.005_04
+   perl5.004_05
+   perl5.003_07</code></pre>
+</figure><p>We&rsquo;re looking for the latest stable release. Stable releases use an even number for the second number (<code>perl-5.14.2</code>, <code>perl-5.12.4</code>). The development releases (<code>perl-5.15.3</code>) probably will not interest you unless you are curious about features and fixes that are being experimented with for the next stable Perl. It is very rare that I install a development Perl.</p>
+<p>Right now, the latest stable Perl is <code>perl-5.14.2</code>. Let&rsquo;s install it with <code>perlbrew install</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew install perl-5.14.2</code></pre>
+</figure><p>A little while later, it&rsquo;ll be complete. You can make this the default Perl for your account with <code>perlbrew switch</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew switch perl-5.14.2</code></pre>
+</figure><p>Let&rsquo;s verify just to be on the safe side.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl --version
+This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level</code></pre>
+</figure><p>There. Now we have the latest stable Perl, ready for us to use. The system Perl is completely safe.</p>
+<p>As far as I can tell, there is no official way to carry installed Perl modules over to a new Perl installed via perlbrew. You can set the <code>$PERL5LIB</code> environment variable or rely on <code>use lib</code> if it&rsquo;s important to use specific installed libraries.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Moose</title>
+  <link>https://randomgeekery.org/post/2011/08/moose/</link>
+  <pubDate>Tue, 23 Aug 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/08/moose/</guid>
+  <description>&lt;p&gt;I have been dabbling a lot with &lt;a href=&#34;https://metacpan.org/module/Moose&#34;&gt;Moose&lt;/a&gt;, a solid framework
+for object oriented programming in &lt;a href=&#34;https://randomgeekery.org/card/perl/&#34;&gt;Perl&lt;/a&gt;. It is remarkably powerful
+and has transformed the way I look at Perl OO. It is also different
+enough from object oriented programming in other languages that I needed
+to create a section for it on &lt;a href=&#34;https://randomgeekery.org/card/coolnamehere/&#34;&gt;card/coolnamehere&lt;/a&gt;.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>I have been dabbling a lot with <a href="https://metacpan.org/module/Moose">Moose</a>, a solid framework
+for object oriented programming in <a href="/card/perl/">Perl</a>. It is remarkably powerful
+and has transformed the way I look at Perl OO. It is also different
+enough from object oriented programming in other languages that I needed
+to create a section for it on <a href="/card/coolnamehere/">card/coolnamehere</a>.</p>
+<h2 id="boilerplate">Boilerplate</h2>
+<p>Perl OO has a reputation for boilerplate: large chunks of code that
+have little relation to the task at hand, but are necessary for the
+application to work at all. Fortunately, <a href="https://metacpan.org/module/Moose">Moose</a> cuts down
+significantly on the boilerplate. You can cut it down even more by taking
+advantage of the features available in recent versions of Perl, and
+that is exactly what I do in my code templates.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Attributes and methods go here.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="cm">=head1 NAME
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">MyClass
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span></span></span></code></pre>
+</figure><p>Since I am not being paid by the word, I ignored most of the Perldoc
+boilerplate that I use.</p>
+<p>That&rsquo;s it, really. You can move on if you&rsquo;re not interested in my rambling
+explanations.</p>
+<h2 id="the-rambling-explanation">The Rambling Explanation</h2>
+<p>Let&rsquo;s examine the boilerplate code.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This tells <code>perl</code> that the program requires features that only become
+available in <a href="http://perldoc.perl.org/perl5140delta.html">Perl 5.14</a>. If I tried to load this library in an
+application using a different version of Perl, it simply would not work:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
+BEGIN failed--compilation aborted at MyClass.pm line 1.</code></pre>
+</figure><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
+haven&rsquo;t been made redundant by a change in the newest Perl.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span></span></span></code></pre>
+</figure><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
+Here&rsquo;s my package. It&rsquo;s called &ldquo;MyClass&rdquo;. It has a <code>$VERSION</code> of <code>1.0</code>.
+I suppose I could use <a href="https://metacpan.org/module/MooseX::Declare">MooseX::Declare</a>, but I&rsquo;m still getting the
+hang of core <a href="https://metacpan.org/module/Moose">Moose</a> functionality.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
+A <em>lot</em> of stuff is going on the background now, as all the Moose support
+structure is loaded and set up.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span></span></span></code></pre>
+</figure><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
+out of the way.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span></span></span></code></pre>
+</figure><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
+<em>need</em> that flexibility, I should make the class a little lighter.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
+that has ended Perl modules for years. As far as I can tell, the new <code>package</code> syntax
+makes it unnecessary. Perl 5.14 doesn&rsquo;t complain about it missing.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Rake</title>
+  <link>https://randomgeekery.org/post/2011/07/rake/</link>
+  <pubDate>Mon, 18 Jul 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/07/rake/</guid>
+  <description>Rake is a simple build program. You can use it to automate complex or repetitive tasks. It is written in Ruby, but is useful in far more than just Ruby projects.
+The great news is that if you have Ruby on your system, you probably already have Rake. It has been included as part of the standard Ruby distribution for a few years.
+It is easy to test which version of Rake you have from the command line:</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>ruby</category>  <category>site</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p><a href="https://ruby.github.io/rake/">Rake</a> is a simple build program.
+You can use it to automate complex or repetitive tasks.
+It is written in <a href="/card/ruby/">Ruby</a>, but is useful in far more than just Ruby projects.</p>
+<p>The great news is that if you have Ruby on your system, you <em>probably</em> already have Rake.
+It has been included as part of the standard Ruby distribution for a few years.</p>
+<p>It is easy to test which version of Rake you have from the command line:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake --version
+</span></span><span class="line"><span class="cl"><span class="go">rake, version 0.9.2
+</span></span></span></code></pre>
+</figure><p>If you do not have Rake, then you just need to install a fresh release of Ruby.
+Go ahead.
+I’ll wait.</p>
+<p>Rake is driven by a <em>Rakefile</em>.
+A Rakefile is a collection of Ruby instructions organized into <em>tasks</em>.</p>
+<p>This is not going to be an in-depth Rake tutorial.  I’ve noticed a lack of simple real-world Rakefile examples, aside from one excellent <a href="https://www.stuartellis.eu/articles/rake">Rake introduction</a>. I have a Rakefile I need to build.  That makes this a good opportunity for me to write a page about Rake.</p>
+<h2 id="building-a-simple-rakefile">Building a Simple Rakefile</h2>
+<p>I have a Web site. You may have noticed that.
+If you only know me from my frequent postings on social network sites like <a href="https://plurk.com">Plurk</a> or Google+.
+I assure you that I do indeed have a Web site.</p>
+<p>The thing about my Web site is that rather than use Drupal or some other convenient Content Management System,
+I use a tool that generates static HTML.
+The static HTML and associated files like images and stylesheets are then uploaded to an inexpensive Web host.
+Hey.
+It works for me.
+Static HTML serves fast, and I don’t change the content on my site <em>that</em> often.</p>
+<p>I invoke a simple command to build my site before uploading it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python site-builder.py</code></pre>
+</figure><p>That is not painful, but it does get boring.
+More importantly, I have been thinking about how <a href="http://beta.compass-style.org">Compass</a> would be a great thing to use for my site.
+But <code>site-builder.py</code> is an ugly, ugly piece of hackery.
+It is just coherent enough to build the site you’re reading.
+It is <em>certainly</em> not up to the job of driving Compass.
+That’s where Rake comes in.</p>
+<h3 id="one-task">One Task</h3>
+<p>You might want to use the exact same Rake tasks as me while you read this.
+Here is a dummy version of <code>site-builder.py</code> that you can use.
+No, it does not build a site.
+It <em>will</em> give you something to work with for demonstrating Rake, though.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Imaginary version of site-builder.py</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="n">__main__</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Look at me, I&#39;m building a site!&#34;</span></span></span></code></pre>
+</figure><p>First I will start by creating a Rakefile to handle my current workflow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Rakefile for coolnamehere.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>The simplest Rake <code>task</code> command takes two arguments:
+a name for that task, and a block of actions to perform when that task is requested.
+The name can be written as a String or as a Symbol, but I usually see it written as a Symbol.</p>
+<p>The block can be any valid Ruby code.
+The <code>:html</code> block uses my shell to run the Python script that builds coolnamehere.com.
+You ask Rake to execute a particular task from the command line by using the task’s name.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+</span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
+</span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
+</span></span></span></code></pre>
+</figure><p>How do you find out what tasks are available, aside from reading the Rakefile?
+The -T flag will ask Rake to list all of the available tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake -T</span></span></code></pre>
+</figure><p>Oh.
+Hold on a second.
+Rake will only list the tasks you have described with the <code>desc</code> command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Let us try that again.
+The <code>-T</code> flag will ask Rake to list all of the available <em>described</em> tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake -T
+</span></span><span class="line"><span class="cl"><span class="go">rake html  # Generate Web site
+</span></span></span></code></pre>
+</figure><p>A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
+That is why limiting the task list to described tasks is a good idea.</p>
+<h3 id="a-second-task">A Second Task</h3>
+<p>As I mentioned before, part of the reason I am writing a Rakefile is because I want to use Compass to define the styles for coolnamehere.
+I set up a Compass project parallel to my site sources, including the blueprint module.
+The Compass project is called &ldquo;style&rdquo;.
+My projects generally do not have clever names.</p>
+<p>If you <em>really</em> want to play along, here is how I set up my Compass project.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install compass
+</span></span><span class="line"><span class="cl">compass create style --using blueprint</span></span></code></pre>
+</figure><p>This is another straightforward task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I do not expect anything exciting to happen, since I have not changed the SCSS files.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+</span></span><span class="line"><span class="cl"><span class="go">compass compile style
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
+</span></span></span></code></pre>
+</figure><p>There is still a problem, though.
+All of the stylesheets are in <code>style/stylesheets</code>,
+but the working stylesheets have been over in <code>site/inc/css</code>.
+I need Rake to copy the finished stylesheets to the expected location.
+Might as well copy the images that are sitting in the <code>style</code> project while I am at it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/css&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/images/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/images&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Rake conveniently imports the FileUtils module.
+This lets me use Ruby standard library methods such as <code>cp</code> to copy a list of files rather than relying on platform-specific shell commands.</p>
+<p>What does that look like in action?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+</span></span><span class="line"><span class="cl"><span class="go">compass compile style
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/stylesheets/ie.css style/stylesheets/print.css style/stylesheets/screen.css source/inc/css
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
+</span></span></span></code></pre>
+</figure><p>Good enough.
+Excuse me while I adjust my HTML template to point at the right stylesheets.</p>
+<h3 id="setting-a-dependency">Setting a Dependency</h3>
+<p>There are already awkward bits to the Rakefile as it is right now.
+I need to run two commands in order to build the site completely.
+Because <code>site-builder.py</code> also copies the site files to a new location, I must also remember to run the commands in the correct order.
+If I don’t, then the generated CSS will go into my site sources after the HTML has already been generated and copied.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+</span></span><span class="line"><span class="cl"><span class="go">...
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rake html
+</span></span><span class="line"><span class="cl"><span class="go">...
+</span></span></span></code></pre>
+</figure><p>What if I made <code>:css</code> a <em>dependency</em> of <code>:html</code>?
+Rake would make sure that the <code>:css</code> task was executed before it tried to execute the <code>:html</code> task.</p>
+<p>A little syntax trickery simplifies the task of describing a task’s dependencies.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Now instead of just a name for the task, we are giving <code>task</code> a Hash.
+The only key of that Hash is the name of the task, and the value is a list of tasks which this one depends on.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+</span></span><span class="line"><span class="cl"><span class="go">compass compile style
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/stylesheets/ie.css style/stylesheets/print.css style/stylesheets/screen.css source/inc/css
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
+</span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
+</span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
+</span></span></span></code></pre>
+</figure><p>Excellent.
+Now I can generate both CSS and HTML from a single Rake command.
+I am going to work a little bit on the styles, and to see if I notice any other little issues with my Rakefile.</p>
+<h3 id="setting-the-default-task">Setting The Default Task</h3>
+<p>It has been pretty effective so far.
+Incidentally, Compass is kind of awesome.
+I highly recommend you check it out for your Web design needs.</p>
+<p>It would be nice if I could make the <code>rake</code> call a little shorter, though.
+I have a shortcut set up in <a href="/card/vim/">Vim</a> that invokes Rake with a default argument.
+It would be nice to use that shortcut while I am working on coolnamehere.</p>
+<p>Rake already has rules for default tasks, actually.
+It looks for a task named &ldquo;default&rdquo; or <code>:default</code>.
+That makes sense.
+Let me set up a default task that depends on the <code>:html</code> task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span></span></span></code></pre>
+</figure><p>That is all I need to do, actually.
+A task can simply be a name and its dependencies.
+You do not <em>need</em> to define a block of actions for that task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake
+</span></span><span class="line"><span class="cl"><span class="go">compass compile style
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/stylesheets/ie.css style/stylesheets/print.css style/stylesheets/screen.css source/inc/css
+</span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
+</span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
+</span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
+</span></span></span></code></pre>
+</figure><h3 id="something-i-have-been-meaning-to-get-around-to">Something I Have Been Meaning To Get Around To</h3>
+<p>I have been promising myself for years that I will assemble some sort of script that would automate the process of uploading my site.
+I never get around to it, though.
+Instead I fire up NCFTP, load the &ldquo;coolnamehere&rdquo; bookmark I’ve had for years, and upload.</p>
+<p>It is time to fix that by adding an &ldquo;upload&rdquo; task.
+I will take advantage of the <a href="https://github.com/glejeune/syncftp">syncftp</a> Ruby library,
+which looks like it will handle all of the little details.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install syncftp</span></span></code></pre>
+</figure><p>For the first test, I will just fill in the blanks using the syncftp README as a guide.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:upload</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ftp</span> <span class="o">=</span> <span class="no">SyncFTP</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;ftp.myhost.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:username</span> <span class="o">=&gt;</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
+<p>Here’s the complete Rakefile, with the as-yet untested &ldquo;upload&rdquo; task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/css&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/images/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/images&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:upload</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ftp</span> <span class="o">=</span> <span class="no">SyncFTP</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;ftp.myhost.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:username</span> <span class="o">=&gt;</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Well, yes.
+There are differences from the <em>actual</em> Rakefile, but this gets the idea across.</p>
+<p>All that I need to do now is test it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake upload</span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Python 2 Babysteps 01 Installing Python 2</title>
+  <link>https://randomgeekery.org/post/2011/06/python-2-babysteps-01-installing-python-2/</link>
+  <pubDate>Thu, 16 Jun 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/06/python-2-babysteps-01-installing-python-2/</guid>
+  <description>Installation You need to get Python before you can use Python. There are many versions available, such as ActivePython, Jython, and IronPython. They each offer distinct advantages. ActivePython offers commercial support. Jython runs on the Java platform, providing access to the underlying JVM and many support libraries. IronPython runs on the .NET and Mono platforms, providing access to their underlying virtual machine and support libraries.
+I decided to focus on the official release of Python rather than get overwhelmed by choice.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>python</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<h2>Think of it as Step Zero for the other Python tutorials.</h2><h2 id="installation">Installation</h2>
+<p>You need to <em>get</em> <a href="/card/python/">Python</a> before you can <em>use</em> Python. There are many versions available, such as <a href="http://www.activestate.com/activepython">ActivePython</a>, <a href="http://jython.org/">Jython</a>, and <a href="http://www.codeplex.com/wikipage?ProjectName=IronPython">IronPython</a>. They each offer distinct advantages. ActivePython offers commercial support. Jython runs on the <a href="http://www.java.com/en/">Java</a> platform, providing access to the underlying JVM and many support libraries. IronPython runs on the <a href="http://www.microsoft.com/NET/">.NET</a> and <a href="http://www.mono-project.com/Python">Mono</a> platforms, providing access to <em>their</em> underlying virtual machine and support libraries.</p>
+<p>I decided to focus on the official release of Python rather than get overwhelmed by choice. You can probably follow along if you decide to install an alternate Python. I will provide notes where I can, but cannot make any guarantees about their accuracy. Check the documentation for your Python choice.</p>
+<h3 id="why-not-python-3">Why Not Python 3?</h3>
+<p>Python 3 has been available for a while now, and is actually up to <a href="http://python.org/download/releases/3.2/">Python 3.2</a>. Why don’t I cover it in this Babystep? I would rather talk about the newest Python release. but that’s impractical. Many widely used libraries have not been updated so that they are compatible with the Python 3 series. Although the differences between Python 2 and Python 3 are small, they add up for large projects like <a href="http://djangoproject.com">Django</a>. I want you to be able to use your Python skills right away.</p>
+<p>Fortunately, the Python developers continue to support the 2.x line, and continue to release versions with fixes and new features for Python 2. If you started learning Python 2 today, it would continue to be useful for quite some time.</p>
+<h3 id="os-x">OS X</h3>
+<p>You must install the Xcode and Developer Tools to get the full usage out of Python on OS X, although I will not be spending any time in the XCode environment. The Developer Tools should have come with your installation kit. If not, they are available online.</p>
+<p>OS X 10.6 includes Python 2.6.1, which is probably good enough for our purposes. I like having the latest version of a language, though.</p>
+<h4 id="just-download-it">Just Download It</h4>
+<p>If you are using a version of OX X older than 10.6, or you don’t care about 64 bit functionality, just grab the <a href="http://python.org/ftp/python/2.7.2/python-2.7.2-macosx10.3.dmg">Mac OS X 32-bit i386/PPC</a> installer and skip to &ldquo;Installing Python From the Disk Image&rdquo;.</p>
+<p>Python uses <a href="http://www.tcl.tk/">TCL/Tk</a> for its default graphical development environment IDLE. These Python Babysteps assume that we will be using IDLE. Since there are <a href="http://www.python.org/download/mac/tcltk/">cautionary notes</a> about using IDLE with Apple’s default TCL, we will heed those notes and grab our own copy of <a href="http://www.activestate.com/activetcl">ActiveTcl</a>. We can just grab the <a href="http://www.activestate.com/activetcl/downloads">current ActiveTcl download</a>.</p>
+<p>Opening the ActiveTCL disk image in the Finder will present us with an installer called <code>ActiveTCL-8.5.pkg</code>. Double-click that package file to start the installer and accept its defaults.</p>
+<p>Right. Now you have ActiveTCL installed. Eject the ActiveTCL disk image whenever you like.</p>
+<aside class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All of this is unnecessary to play with Python in general. These steps just make it possible for us to take advantage of the full 64 bit functionality of OS X, using the latest Python release and IDLE. Feel free to skip the ActiveTCL download if you do not want to use IDLE.</p>
+</aside>
+<p>Now that we have the right TCL/Tk installed (or have decided that we don’t care), go to the download page for <a href="http://python.org/download/releases/2.7.2/">Python 2.7.2</a> and grab the <a href="http://python.org/ftp/python/2.7.2/python-2.7.2-macosx10.6.dmg">Mac OS X 64-bit/32-bit Installer</a>.</p>
+<h4 id="installing-python-from-the-disk-image">Installing Python From the Disk Image</h4>
+<p>Open the image and double click <code>Python.mpkg</code> to run the installation. The default settings should be good enough.</p>
+<p>Well that wasn’t hard. Okay, there were a few details if you insisted on the latest and greatest.</p>
+<h4 id="macports">MacPorts</h4>
+<p>On my home machine, I use <a href="http://macports.org">MacPorts</a> to access a large repository of open source software that can be installed on OS X. Although <a href="http://www.macports.org/install.php">installing MacPorts</a> is not difficult, it is well beyond the scope of this tutorial. I will instead show you the commands I ran from a Terminal to install Python 2.7 on that machine.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo port install python-2.7
+$ sudo port select python python-2.7
+$ python -V
+Python 2.7.1</code></pre>
+</figure><p>That will do. The differences between 2.7.1 and 2.7.2 are so small that I doubt I will notice any of them.</p>
+<h4 id="homebrew">Homebrew</h4>
+<p>And some of you use <a href="http://mxcl.github.com/homebrew/">Homebrew</a> to install open source software. No problem. Here are the instructions for installing and verifying a fresh Python once you <a href="https://github.com/mxcl/homebrew/wiki/Installation">install Homebrew</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install python
+$ python -V
+Python 2.7.2</code></pre>
+</figure><h3 id="linux">Linux</h3>
+<p>Python is well supported in Linux.</p>
+<h4 id="redhat-based-distributions-fedora">Redhat-based distributions (Fedora)</h4>
+<p><a href="http://fedoraproject.org">Fedora</a> 15 ships with Python 2.7.1, and that is good enough for me. We need to install the <code>python-tools</code> package if we want IDLE, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ su -
+# yum install python-tools</code></pre>
+</figure><h4 id="debian-based-distributions-ubuntu-mint">Debian-based Distributions (Ubuntu, Mint)</h4>
+<p><a href="http://ubuntu.com">Ubuntu</a> 11.04 has Python 2.7.1 installed by default, and that’s good enough for us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python -V
+Python 2.7.1&#43;</code></pre>
+</figure><p>I am not sure what the <code>+</code> means. I assume the Ubuntu developers made some customizations to Python.</p>
+<p>IDLE is not installed by default, though. That can be fixed.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install idle</code></pre>
+</figure><h4 id="others">Others</h4>
+<p>Check the documentation for your distribution. The odds are that you already have Python installed, or can easily install it using your distribution’s tools.</p>
+<h3 id="windows">Windows</h3>
+<p>I do not have a Windows installation handy right now, so most of this section is just going from memory. Thank goodness installation on Windows is easy.</p>
+<p>You can always find links to download the latest version of Python at the Python site itself:</p>
+<blockquote>
+<p><a href="http://www.python.org/download">http://www.python.org/download</a></p>
+</blockquote>
+<p>Somewhere around the top of the page is a link to the latest version. Look for the first version that doesn’t have &ldquo;alpha&rdquo;, &ldquo;beta&rdquo;, or &ldquo;release candidate&rdquo; in its name. Follow that link, which is currently:</p>
+<ul>
+<li><a href="http://python.org/ftp/python/2.7.1/python-2.7.1.msi">http://python.org/ftp/python/2.7.1/python-2.7.1.msi</a> for 32-bit   Windows, and</li>
+<li><a href="http://www.python.org/ftp/python/2.7.1/python-2.7.1.amd64.msi">http://www.python.org/ftp/python/2.7.1/python-2.7.1.amd64.msi</a> for 64-bit Windows installations</li>
+</ul>
+<p>The kind folks who run the python.org site make sure there are links to the latest Windows Python 32 bit download from their <a href="http://python.org">front page</a>. Look on the left side of the page for <em>&ldquo;Quick Links &raquo; Windows Installer&rdquo;</em>.</p>
+<p>Windows will ask you if you want to save the file or run it directly from the site. That’s up to you. If you have the disk space, and know how to find and run a file on your hard drive, I recommend you save the installer program to disk. That way you can redo an installation you messed up. On the other hand, if you don’t have much space on the computer, or you aren’t sure how to find a file once you’ve save it, you are probably better off opening the file straight from the site. I have screwed up so many installations that I pretty much automatically select &ldquo;Save&rdquo; when downloading an installer.</p>
+<p>Once you have downloaded the installer, you need to run it. If you told Windows that you wanted to open it from the current location, you can skip this step. Otherwise, you will need to find your file. You will probably find it in &ldquo;Downloads&rdquo;, within the &ldquo;My Documents&rdquo; section of the computer. Dig or search in your hard drive until you find the installer executable, named <code>Python-2.7.1.msi</code>. Double-click the icon to run the program, and you are on your way to installing Python!</p>
+<p>I’m going to skim through the next bit here, because most of the installation is   imply &ldquo;Do you want me to install Python in folder X?&rdquo; and &ldquo;Do you want me to call it Python?&rdquo; Most of the options you can safely run through by clicking &ldquo;Next&rdquo;, but stay alert for anything that you might want different from the defaults.</p>
+<p>Eventually, you are presented with a little progress bar while the installer puts all of the Python files where they belong. This is the stage where you sip some coffee (or tea, or soda) and dream about all the great things you will be able to do as a programmer.</p>
+<p>Guess what? You are now a proud owner of Python 2! All that’s left is learning how to program.</p>
+<h3 id="building-from-source">Building From Source</h3>
+<p>And if you are feeling bold, you can grab the <a href="http://python.org/ftp/python/2.7.2/Python-2.7.2.tar.bz2">source distribution</a> and build your own copy. It is not difficult, but will require installing different tools on different machines. Go right ahead and do this if you want to. The instructions within the source distribution are clear enough. I am not going to build my own copy. I have installed Python four times today, and frankly that is enough.</p>
+<p>It is time to get acquainted with this new language.</p>
+<h2 id="using-python">Using Python</h2>
+<p>There are already a lot of online tutorials for learning Python. Maybe that’s because Python is as fun to teach as it is to learn. Anyways, I am not going to try and tell you that <em>my</em> rough little Web site has the best introduction you’ll ever find.</p>
+<p>You can pick and choose from links at the Python <a href="http://wiki.python.org/moin/BeginnersGuide">BeginnersGuide wiki page</a>.</p>
+<p>That page has links to articles which discuss Python, tutorials, and comparisons to other languages. Python was largely written for educational environments: learning how to do things &ldquo;the Python way&rdquo; makes it easier to write clean, readable programs for any language. Plus, its flexibility makes it useful way past the classroom — unlike the stuff like Applesoft BASIC that <em>I</em> learned in class. There is nothing like spending years trying to forget what BASIC taught me about
+programming.</p>
+<p>Even though those links will teach you about how to program in Python, I ask you to stick with me a little bit longer. I still have to tell you how to get started with the tools that you just installed.</p>
+<p>I will be focussing on IDLE — and the simple stuff — at that. You can just as easily use PythonWin or the Python shell, which you get into from the console by typing python.</p>
+<p>IDLE is Python’s Integrated DeveLopment E&gt;nvironment. It’s just a coincidence that the acronym <em>happens</em> to spell out the last name of one of the members of a British comedy troupe — whose name just <em>happens</em> to contain the word &ldquo;Python&rdquo;. That’s right, just a coincidence. <em>Wink wink, nudge nudge</em></p>
+<p>IDLE gives you access to everything you need to write Python code in a graphical pointy-clicky environment like Windows. There’s a version of the Python shell, as well as features allowing you to write, save, and run your own Python programs with ease.</p>
+<p>You can find some information about IDLE at its <a href="http://docs.python.org/library/idle.html">documentation page</a>.</p>
+<p>In the next couple of sections, I will help you with the basics of using IDLE. We’ll use the shell for some simple code, then make and run our own little Python script. That’s right, you’ll be creating your own programs within the next few minutes.</p>
+<h2 id="how-to-use-idle">How to use IDLE</h2>
+<p>Starting IDLE under Windows is a matter of finding it in your Start menu.</p>
+<ol>
+<li>Find the Python folder in your Start menu.</li>
+<li>Find the menu item for IDLE within the Python folder.</li>
+<li>Select it.</li>
+</ol>
+<p>On Windows Vista and Windows 7, you can launch IDLE by entering &ldquo;idle&rdquo; in the Start Menu search field and selecting the program when it appears in search results.</p>
+<p>Given the wide, wild range of desktop environments available for Linux, there is no way I could simply tell you which menu option runs IDLE. Instead, you get these instructions:</p>
+<ol>
+<li>Open a terminal (XTerm, Konsole, Gnome Terminal … whatever)</li>
+<li>In the terminal, type <code>idle[ENTER]</code></li>
+</ol>
+<p>If you happen to have IDLE in your environment’s equivalent of a Start menu, then you can just use that. It’s in the &ldquo;Programming&rdquo; group on Ubuntu.</p>
+<p>IDLE will start with something that looks like some sort of command line interface (kind of like a colorful DOS box or XTerm). That is the shell, and it allows you to perform the next step:</p>
+<h3 id="using-the-idle-shell-writing-code">Using the IDLE Shell (<em>Writing Code!</em>)</h3>
+<p>Let’s see, how do we run Python code in the IDLE shell?</p>
+<ol>
+<li>Type it in and watch it go!</li>
+</ol>
+<p>Hmm… maybe a <em>little</em> more detail would be helpful here.</p>
+<p>The IDLE shell allows you to enter code (from simple statements to function and class definitions), and execute it immediately. Since you have the shell open already, type in this example:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello, world!&#34;</code></pre>
+</figure><p><img src="/post/2011/06/attachments/img/2011/idle.png" alt="IDLE screenshot"/></p>
+<p>The <code>&gt;&gt;&gt;</code> is the shell prompt, showing that you can type something here. You may notice that the characters you type show up in different colors as you enter them into the shell. This is called &ldquo;syntax highlighting.&rdquo; It’s basically just the environment helping you out so that you know more or less how the code will be broken down by Python (important <em>keywords</em> are one color, <em>strings</em> of text are another, etcetera).</p>
+<p>Press the ENTER key, and the shell will perform that command right away:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello, world!&#34;
+Hello, world!</code></pre>
+</figure><p>The shell allows you to define more complex things, too. Say you want to get the user’s name, and print a customized &ldquo;Hello you!&rdquo; for the user.</p>
+<p>First, you have to get their name:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; name = raw_input(&#34;Please enter your name: &#34;)</code></pre>
+</figure><p><code>raw_input()</code> is a function that displays a prompt to the user, gets some keyboard input from them, and sends what they typed back to you. I want to use that typed-in name in a moment, so I save the result in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can use it later. What’s a <em>function</em>? Basically, it’s something you feed data into, and get data out of — kind of a mini-program in your program. That’s all we need to know for right now.</p>
+<p>When you press <code>[ENTER]</code> this time, you will be shown a prompt. In IDLE, this prompt shows up simply as some text printed out in the shell.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; name = raw_input(&#34;Enter your name: &#34;)
+Enter your name:</code></pre>
+</figure><p>I provide my name (&ldquo;Brian&rdquo;), and Python quietly saves that answer in the variable <code>name</code>, then waits for me to do something new. One of the things that confused me when I first tried <code>raw_input()</code> in the Python shell: how do I know that Python actually grabbed the name I gave? Well, it turns out that it’s easy enough to ask:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print name
+Brian</code></pre>
+</figure><p>When you want to get at a value that Python has stored for you, all you have to do is call it by name. In this case, I just wanted to print out the value of <code>name</code> — which was filled in when I typed my name at the prompt — and that’s exactly what I told Python to do. Pretty simple, yes?</p>
+<p>Okay, so it has my name. What was I trying to do again? Oh yeah, the custom &ldquo;Hello&rdquo; thing. Let’s make it print &ldquo;Hello, Brian&rdquo; - or &ldquo;Craig&rdquo;, or &ldquo;Susan&rdquo;, or whatever name you gave to <code>raw_input()</code> …​ ummm …​ I lost myself again. Let me get back on track here.</p>
+<p>Wait. How are we supposed to do this? You know, take a value, and write it along with some other text?</p>
+<p>Here’s the easiest way:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello&#34;, name
+Hello Brian</code></pre>
+</figure><p>Every time you normally tell Python to print something, it will print that something out, and then start a new line. If you paste a comma onto the end of the thing you want to print, it’s just like a comma in conversation. It means that you’re pausing for air, and the sentence isn’t done yet. Instead of starting a new line, Python just inserts a space. The next thing that gets printed will show up on the same line.</p>
+<p>In this case, Python prints the phrase &ldquo;Hello&rdquo;, followed by a space, and ending with the name that was given to it by <code>raw_input</code>.</p>
+<p>You can print several things at once, too. Just put a comma in between each item to be printed.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
+Hello Brian - good to see you!</code></pre>
+</figure><p>Wow. That made me feel pretty good. It’s amazing how just a few nice words can lift your mood — even if you have to write them yourself.</p>
+<p>What if we wanted to be able to get that warm fuzzy feeling any time? It’s only two lines of code. We could probably enter that in the shell when we wanted some warm words. But there’s a school of programming that tells us Laziness is a virtue. Why write the same two lines again and again, when we could write them once, call it a program, and run that program anytime we felt blue?</p>
+<p>Let’s find out how to do just that.</p>
+<h2 id="how-to-make-your-own-python-program">How to Make Your Own Python Program</h2>
+<p>Even though the IDLE shell is pretty neat, and <em>very</em> useful for figuring out whether a code idea will work, it’s not any good for actual programs.</p>
+<p>Don’t get all huffy. I said the IDLE <em>shell</em> wasn’t good for programs, not that <em>IDLE</em> is no good for programs.</p>
+<p>To edit a Python script in IDLE, simply go to the &ldquo;File&rdquo; menu and select &ldquo;New Window&rdquo;. This will open a new window for editing Python stuff. This is not a shell, but a NotePad-like text editing environment.</p>
+<p>In your new window, enter this code:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># hello.py
+#  Get the user&#39;s name and print a friendly hello
+name = raw_input(&#34;Please enter your name: &#34;)
+print &#34;Hello&#34;, name, &#34;- good to see you!&#34;</code></pre>
+</figure><p>Most of it is the same as what we entered in the shell, but what’s with those first couple of lines?</p>
+<p>Well, they’re Python comments. Comments start from the character <code>#</code>, and extend to the end of the line that you wrote them on. Python ignores comments, which means that you can use them to explain what is going on in your code. Comments are good. When you come back to look at a complex script after several months, you might forget what some block of code does. Having the comments there to remind you will make it that much easier to sort everything out.</p>
+<p>I like to start every one of my scripts off with a quick header to describe the purpose of the program. Here is the rough template:</p>
+<p>Python docstrings would actually be better for script headers, but:</p>
+<ol>
+<li>I haven’t described those yet</li>
+<li>I needed an excuse to show you what comments look like.</li>
+</ol>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># filename</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  A quick description of what this program does</span></span></span></code></pre>
+</figure><p>Of course, your header can be as complicated as you like:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># hello.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Get the user&#39;s name and print a friendly hello</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AUTHOR</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Brian Wisti (brianwisti@pobox.com)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DATE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  26 December 2008</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PURPOSE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Demonstration script for my python tutorial at</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  http://www.coolnamehere.com/geekery/python/pythontut.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># USAGE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  python hello.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LICENSE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  You may copy and redistribute this program as you see fit, with no</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  restrictions.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WARRANTY</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  This program comes with NO warranty, real or implied.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># HISTORY</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.0 19 January 2001</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Initial release for Python Babysteps Tutorial</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.1 26 December 2008</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Updated for Python version 2.6</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.2 16 June 2011</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Updated for Python version 2.7.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span></span></span></code></pre>
+</figure><p>Just try to match the header complexity to the program. Using this header for a program that consists of two lines of code might be a <em>little</em> bit of overkill. I usually start with something like the two-line header and expand it as I see fit.</p>
+<p>After you enter your script, you need to save it. That’s easy. Just go to the &ldquo;File&rdquo; menu and select &ldquo;Save As…​&rdquo; You will be shown a dialog that should look pretty familiar if you’ve ever worked with an editing program. Choose a directory to place your program, enter a name ending with <code>.py</code> to let your computer know that this is a Python file, and click &ldquo;Save&rdquo;. You have now saved your file.</p>
+<p>I bet you’re just itching to run that program! Since you’ve already got <code>hello.py</code> open, all you have to do is go to the &ldquo;Run&rdquo; menu, and select &ldquo;Run module&rdquo;. Python puts you in the IDLE shell, where you see something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Python 2.7.1 (r271:86832, Nov 27 2010, 18:30:46) [MSC v.1500 32 bit (Intel)] on win32
+Type &#34;copyright&#34;, &#34;credits&#34; or &#34;license()&#34; for more information.
+&gt;&gt;&gt; ================================ RESTART ================================
+&gt;&gt;&gt;
+Please enter your name:</code></pre>
+</figure><p>Enter your name, press ENTER, and there’s your warm fuzzy greeting!</p>
+<p>You may be happy with <code>hello.py</code> right now, but you will probably want to change it later: make it print out a different greeting, for example. To do that, you need to know how to open a Python file for editing.</p>
+<p>Actually, it’s pretty easy. Go to the &ldquo;File&rdquo; menu, select &ldquo;Open…​&rdquo; and select your file. IDLE automatically opens your file in an editing window, where you can edit, save, and run your program to your heart’s content.</p>
+<p>There are two more ways to run a Python program in Windows.</p>
+<p>The Python installation automatically associates the <code>py</code> extension with Python program. That tells Windows that anything ending with <code>.py</code> should be handed over to Python. That means you can just double-click on hello.py, and Python will automatically run it. Unfortunately, that’s not very helpful for most of the stuff we’ll be writing. Try it yourself. You get a DOS box prompting you for your name, but the box disappears almost as soon as you press ENTER! That is kind of annoying.</p>
+<p>But there’s another trick which we can use until we’re writing more complex applications which can keep themselves open or don’t need a DOS box. Simply open your own DOS box (&lsquo;Start MenuAccessories|Command Prompt&rsquo;), move to the directory that contains your script, and call Python yourself:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:&gt;cd scripts
+C:\scripts&gt;python hello.py
+Please enter your name: Brian
+Hello Brian - good to see you!
+C:\scripts&gt;</code></pre>
+</figure><p>In order for this to work, you’ll have to have your Python installation directory specified as part of your environment variable <code>PATH</code>. How you do that depends on what version of Windows (or which command line shell for Linux) you are running. Once again, I’m lazy, so I’m leaving it alone.</p>
+<p>To be honest, I recommend you stick with IDLE interface for now. There is less to remember.</p>
+<p>Finally, you might want to know how to <em>leave</em> IDLE. The menu command &lsquo;File|Exit&rsquo; is all you need to remember. If you haven’t saved all of the files you have been editing, IDLE will check if you want to save them before you quit. Answer as you see fit, save any files you want, and you’re out of IDLE in the real world.</p>
+<p>And you know what? You know how to use the IDLE shell, as well as how to
+edit, save, and run your very own Python scripts. You’re a programmer
+now! Okay, there’s still plenty more to learn, but you are ready to
+start exploring.</p>
+<h2 id="what-next">What Next?</h2>
+<p>This was just the quickest introduction to Python. Hopefully you are warmed up and ready for more. Now you should start one of the recommended tutorials at the <a href="http://wiki.python.org/moin/BeginnersGuide">Python BeginnersGuide</a>.</p>
+<p>I have a few favorites of my own.</p>
+<ul>
+<li>The Official Python Tutorial
+<a href="http://docs.python.org/tutorial/">http://docs.python.org/tutorial/</a></li>
+<li>Dive Into Python
+<ul>
+<li><a href="http://www.diveintopython.net/">http://www.diveintopython.net/</a></li>
+<li><a href="http://www.diveintopython3.net/">http://www.diveintopython3.net/</a></li>
+</ul>
+</li>
+<li>How To Think Like a Computer Scientist In Python
+<a href="http://openbookproject.net/thinkcs/python/english2e/">http://openbookproject.net/thinkcs/python/english2e/</a></li>
+</ul>
+<h3 id="quick-reference-using-idle">Quick Reference: Using IDLE</h3>
+<table>
+<thead>
+<tr>
+<th>To Do This…</th>
+<th>Use This Menu Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start IDLE</td>
+<td>&ldquo;Start/Programs/Python 2.7/IDLE (Python GUI)&rdquo;</td>
+</tr>
+<tr>
+<td>Edit a New Python File</td>
+<td>&ldquo;File/New Window&rdquo;</td>
+</tr>
+<tr>
+<td>Save a New Python File</td>
+<td>&ldquo;File/Save As…&rdquo;</td>
+</tr>
+<tr>
+<td>Open a Python File</td>
+<td>&ldquo;File/Open&rdquo;</td>
+</tr>
+<tr>
+<td>Save a Python File</td>
+<td>&ldquo;File/Save&rdquo;</td>
+</tr>
+<tr>
+<td>Run your script in IDLE</td>
+<td>&ldquo;Run/Run Module&rdquo;</td>
+</tr>
+<tr>
+<td>Quit IDLE</td>
+<td>&ldquo;File/Exit&rdquo;</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Python 2.x Babysteps</title>
+  <link>https://randomgeekery.org/post/2011/06/python-2x-babysteps/</link>
+  <pubDate>Tue, 07 Jun 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/06/python-2x-babysteps/</guid>
+  <description>Introduction If you have never programmed before in your life, then do I have the perfect programming language for you. It’s called Python. It is easy to learn, flexible, and loaded with capabilities that you never thought would be so easy to use. Imagine your thrill when you write a complete program in just a few lines!
+If you have spent years programming Perl, and are just about sick of all of the weird little context dependencies (“My function does this when you hand it a single object, and that when you hand it a list, unless you are assigning the result to a list, in which case it does this other thing”), then do I have the perfect language for you.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>python</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>If you have never programmed before in your life, then do I have the perfect
+programming language for you. It&rsquo;s called <a href="/card/python/">Python</a>. It is easy to learn,
+flexible, and loaded with capabilities that you never thought would be so easy
+to use. Imagine your thrill when you write a complete program in just a few lines!</p>
+<p>If you have spent years programming Perl, and are just about sick of all of the
+weird little context dependencies (&ldquo;My function does this when you hand it a
+single object, and that when you hand it a list, unless you are assigning the
+result to a list, in which case it does this other thing&rdquo;), then do I have the
+perfect language for you. It&rsquo;s called Python. It has clear, unambigous syntax,
+and it is simple to create your own modules and objects. Imagine your thrill
+when you write a complete program in just a few lines, and somebody else can
+read it!</p>
+<p>This is a tutorial to help the non-programmer learn the basics of using
+Python. When you are done with it, you will be ready to learn this new
+language, and have no problems figuring out where to find the information you
+need to go farther.</p>
+<p>Experienced programmers may get some small value out of this, too, but you will
+get bored quickly. I am aiming for simplicity, rather than rigid accuracy.
+There is always the official <a href="http://docs.python.org/tutorial">Python tutorial</a> to provide an introduction for
+veterans.</p>
+<p>If anybody has any suggestions or comments about this tutorial, please let me know!</p>
+<p>I hope you enjoy this!</p>
+<ol>
+<li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">python-2-babysteps-01-installing-python-2</a></li>
+</ol>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: The Spreadsheet Story 1</title>
+  <link>https://randomgeekery.org/post/2011/04/the-spreadsheet-story-1/</link>
+  <pubDate>Tue, 19 Apr 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/04/the-spreadsheet-story-1/</guid>
+  <description>NOTE
+We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based marysplace-rails project.
+There is this spreadsheet project I have been working on. My wife works at a day shelter for homeless and formerly homeless women, as well as their children. At this shelter, they make use of an incentive point system. The ladies do some chore or favor, and they get points.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>google-apps-script</category>  <category>javascript</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<h2>A design experiment figuring out what a local homeless shelter needs to track chores.</h2><blockquote>
+<p><strong>NOTE</strong></p>
+<p>We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based <a href="https://github.com/brianwisti/marysplace-rails">marysplace-rails</a> project.</p>
+</blockquote>
+<p>There is this spreadsheet project I have been working on. My wife works
+at a day shelter for homeless and formerly homeless women, as well as
+their children. At this shelter, they make use of an incentive point
+system. The ladies do some chore or favor, and they get points. There
+are preset ways to get points, with default values. Helping with the
+recycling gets this number of points, while putting chairs up gets that
+number of points. The points are just defaults, though. A client can get
+more or fewer than the default points depending on the situation. The
+staff can also create new chores or reasons for awarding points pretty
+much at their whim. A couple of times a week clients get the opportunity
+to spend those points in exchange for items.</p>
+<p>It’s a very popular program. Clients are constantly looking for ways to
+get more points, and asking what their point total is. Over the years,
+some clients have accumulated tens of thousands of points.</p>
+<p>Tracking incentive points was a very tedious process involving punch
+cards, calculators, and the occasional mild profanity. I volunteered my
+geekiness to help come up with a better tracking system. I am mostly a
+Web programmer, so naturally my first impulse was a full-scale
+<a href="http://rubyonrails.org">Rails</a>, <a href="http://www.djangoproject.com">Django</a>,
+or maybe even <a href="http://www.catalystframework.org">Catalyst</a> Web
+application. Why not, right? It does sound like the perfect job for a
+<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>
+framework:</p>
+<ul>
+<li>Add and edit clients</li>
+<li>Add and edit ways to get points</li>
+<li>Log point changes for clients</li>
+<li>Get the point total for any given client</li>
+</ul>
+<p>There was just one tiny flaw in my proposal, which my wife was kind
+enough to point out: nobody would use it. The staff would prefer to keep
+things in a familiar framework, such as a spreadsheet. Spreadsheets are
+nice. They may not be the perfect choice for a database, but they do
+have a lot of built-in functionality that would take me forever to
+implement on my own.</p>
+<p>Okay, I’m flexible. I made an
+<a href="http://office.microsoft.com/en-us/excel/">Excel</a> spreadsheet. I learned
+enough Excel to add some formulas and data validation rules. I even
+learned enough
+<a href="http://en.wikipedia.org/wiki/Visual_Basic_for_Applications">VBA</a> to add
+some interactivity, reducing the tediousness a bit more. Well - reducing
+the tediousness for them. Not so much for me. Visual Basic is an
+interesting language, but I don’t care for it.</p>
+<p>What if I could use JavaScript? <a href="http://code.google.com/googleapps/appsscript/">Google Apps
+Script</a> uses JavaScript
+to add programming logic to spreadsheets and other documents. I don’t
+know if it would be any easier than using VBA in Excel, but I know it
+would be more pleasant for me personally.</p>
+<p>I have decided to go ahead and try it, now that the dust has settled on
+the Excel version. Hey — if it works well enough, they might actually
+use it. Regardless of whether it actually gets used, it’ll provide a
+reasonable example of adding niftiness to a Google Spreadsheet.
+Somebody’s bound to find that useful. Right?</p>
+<p>The important thing is that I’ll have some fun.</p>
+<h2 id="the-spreadsheet-itself">The Spreadsheet Itself</h2>
+<p>I can almost pretend this is an
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>
+application. The spreadsheet itself is the model layer, with each sheet
+representing a specific model. My knowledge of spreadsheets is
+incomplete at best, but the available formulas don’t seem to provide the
+validation constraints that I’m looking for. It looks this will be what
+those in the know call a &ldquo;fat controller&rdquo; approach, with a
+disproportionate amount of the logic going into the scripting layer.
+That scripting layer, driven by Google Apps Script, will handle lookup
+and validation details. At least, it will until I figure out more about
+how Google Spreadsheets works. The scripting layer will also provide a
+view, insulating users from the worksheets by presenting dialogs for the
+most common tasks.</p>
+<p>Yeah, I know. It’s not really MVC. I have made a terrible analogy. But
+at least my terrible analogy has helped me divide the thing into logical
+components, rather than just looking at it as a spreadsheet with some
+scripts.</p>
+<p>So. Let’s look at the worksheets. I also made mock ups of the common
+task views, just for the fun of it.</p>
+<h3 id="people">People</h3>
+<p>Presents information about the clients that take part in the incentive
+program.</p>
+<dl>
+<dt>Name Used</dt>
+<dd>The most common name used by this person. Must be unique. That’s
+generally handled by including the initial of the last name or a
+nickname.</dd>
+<dt>Full Name</dt>
+<dd>The full name of the client, if available.</dd>
+<dt>Other Names</dt>
+<dd>Nicknames and aliases are common. Use this field to list any other
+known names for the client.</dd>
+<dt>Starting Points</dt>
+<dd>How many points the client had when the spreadsheet started being
+used. Nobody wants to lose their accumulated points, and this
+provides one way to differentiate it from points gained after. Could
+also be handy for importing, such as setting up different workbooks
+for different time periods.</dd>
+<dt>Total Points</dt>
+<dd>How many points this person has, after gaining and spending is taken
+into account.</dd>
+</dl>
+<p><img src="/post/2011/04/attachments/img/2011/NewPersonDialog.png" alt="Add Person Dialog"/></p>
+<h3 id="categories">Categories</h3>
+<p>The different ways to gain and lose points. Pretty much a list of
+predefined chores and a couple of catchall buckets.</p>
+<dl>
+<dt>Name</dt>
+<dd>A unique name for this point category, like &ldquo;Wash breakfast dishes&rdquo;.</dd>
+<dt>Default Points</dt>
+<dd>Unless the user specifies otherwise, this represents the gain or
+loss in points for the client.</dd>
+</dl>
+<p><img src="/post/2011/04/attachments/img/2011/NewCategoryDialog.png" alt="Add Category Dialog"/></p>
+<h3 id="points-log">Points Log</h3>
+<p>This sheet contains records of the actual transactions which affect a
+client’s point total. It depends on the other worksheets for some of its
+information.</p>
+<dl>
+<dt>Person</dt>
+<dd>Who gets the points? <em>&lsquo;People&rsquo;!&lsquo;Name Used&rsquo;</em></dd>
+<dt>Points Category</dt>
+<dd>What are they getting the points for? <em>&lsquo;Categories&rsquo;:&lsquo;Name&rsquo;</em></dd>
+<dt>Points</dt>
+<dd>How many points are they getting? Based on <em>&lsquo;Categories&rsquo;:&lsquo;Default
+Points&rsquo;</em></dd>
+<dt>Date</dt>
+<dd>When did they do whatever it was that got (or cost) them points?</dd>
+</dl>
+<p><img src="/post/2011/04/attachments/img/2011/PointsLoggerDialog.png" alt="Points Logger Dialog"/></p>
+<h3 id="whats-missing">What’s Missing</h3>
+<p>There is no sheet to track inventory for items available in the
+incentive store. The items and their value vary too much for this to be
+a practical feature right now.</p>
+<h3 id="what-do-i-have-now">What Do I Have Now?</h3>
+<p>I have an incredibly dull spreadsheet.</p>
+<p><img src="/post/2011/04/attachments/img/2011/spreadsheet-01.png" alt="spreadsheet"/></p>
+<h2 id="whats-next">What’s Next?</h2>
+<p>I plan to spend the next few days — or weeks, depending on how much
+bloggy spreadsheet time I have — exploring Google Apps Script,
+particularly the
+<a href="http://code.google.com/googleapps/appsscript/service_spreadsheet.html">Spreadsheet</a>
+and <a href="http://code.google.com/googleapps/appsscript/service_ui.html">UI</a>
+Services, in order to implement the dialog boxes I have so lovingly
+created mockups of. I will be taking it in small steps, depending on
+what I can manage in my copious free time. My next post will cover the
+simplest dialog: creating new Categories.</p>
+<aside class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I did spent a few days exploring Google Apps Script, but decided that
+the Excel spreadsheet was working well enough that I should focus my
+effort on the
+<a href="https://github.com/brianwisti/marysplace-rails">marysplace-rails</a>
+project.</p>
+</aside>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Elaborate Answers To Simple Questions</title>
+  <link>https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/</link>
+  <pubDate>Thu, 14 Apr 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/</guid>
+  <description>Use string methods instead of importing string. Build email messages with the standard email library.
+I saw an email last night from somebody with a simple Python question.
+Hi,
+… I have some issues in my python program. I have installed python27 in C:Python27. I started learning python with small programs. I’m saving all python programs in C:ROUGH When I am executing these scripts through command prompt facing some problem with “import”.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>python</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>Use <code>string</code> methods instead of importing <code>string</code>. Build email messages
+with the standard <a href="http://docs.python.org.library.email.html">email</a>
+library.</p>
+<p>I saw an email last night from somebody with a simple
+<a href="/card/python/">Python</a> question.</p>
+<blockquote>
+<p>Hi,</p>
+<p>… I have some issues in my python program. I have installed python27
+in C:Python27. I started learning python with small programs. I’m
+saving all python programs in C:ROUGH When I am executing these
+scripts through command prompt facing some problem with &ldquo;import&rdquo;.
+Please help me out</p>
+<p>My program:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#import C:\Python27\Lib\string</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">Subject</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">),</span><span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>ERROR IS:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:\Python27&gt;python.exe c:\ROUGH\addingsubtofrm.py
+Traceback (most recent call last):
+  File &#34;c:\ROUGH\addingsubtofrm.py&#34;, line 12, in &lt;module&gt;
+    body = string.join((&#34;From: %s&#34; % From,
+AttributeError: &#39;module&#39; object has no attribute &#39;join&#39;</code></pre>
+</figure><p>…​</p>
+</blockquote>
+<p>For some reason, I do not get any error when I try to run her code with
+Python 2.7.1 on Windows XP. That’s okay, though. I can still help a
+little bit on the style.</p>
+<p>Although <code>join</code> is part of the
+<a href="http://docs.python.org/library/string.html">string</a> module, it is also
+directly attached to strings. So instead of using <code>string.join(items, separator)</code>, you could use <code>separator.join(items)</code>. That’s considered
+the standard way to join a list of items into a single string these
+days.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">Subject</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>This probably answers her question, but I am apparently in the mood to
+spend a lot of time writing about Python basics. Sounds like blog gold
+to me.</p>
+<p>There’s a problem with <code>body</code> if you want to use it for an actual email
+message. There needs to be a blank line between the headers and the
+body. One way to do that is to use <code>join</code> twice: once to build the
+header block and again to create a properly laid-out email message.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">Subject</span>
+</span></span><span class="line"><span class="cl">    <span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>The header block still looks a little clumsy. I am sure there is a
+prettier way to generate it. When I look at how the header block is
+printed, I realize that it looks a lot like a Python dictionary. Does
+the code look any clearer if I use a dictionary?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;From&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                            <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                            <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Subject&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>Well, no. Not really. I think I’m actually typing <em>more</em> than I was
+before, and it’s not really any easier to read. It’s all that <code>&quot;From: %s&quot; % headers['From']&quot;</code> nonsense.</p>
+<p><code>join</code> takes a sequence. I do not have to hand it a literal like we have
+been doing so far. Let’s build a list of header lines, and <em>then</em> join
+them.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_lines</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">header_line</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">header_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header_line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_lines</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>It is easier to read, even if it is a little longer. We are building a
+list of header lines by stepping through each of the key/value pairs
+that make up the <code>headers</code> dictionary. Oh, and don’t worry about what
+order the items are printed in. That order doesn’t matter in email
+messages.</p>
+<p>One thing — and this is a little thing — is that it takes us four lines
+of code to build the list. Like I said, it’s a little thing. But
+building lists like this is so common that Python provides powerful
+tools called <a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">list
+comprehensions</a>,
+which can reduce those four lines into one.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_lines</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>All right. Now if this were an <em>actual</em> email, there are some missing
+headers. There are probably also some details missing that are related
+to email handling. Rather than try to figure out what’s missing, I’m
+going to suggest that you use the
+<a href="http://docs.python.org.library.email.html">email</a> library that comes
+standard with Python.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">msg</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">And</span> <span class="n">what</span> <span class="n">does</span> <span class="n">the</span> <span class="n">end</span> <span class="n">result</span> <span class="n">look</span> <span class="n">like</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">```</span> <span class="n">http</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&#34;us-ascii&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">MIME</span><span class="o">-</span><span class="n">Version</span><span class="p">:</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="mi">7</span><span class="n">bit</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span><span class="p">:</span> <span class="n">yeahright</span><span class="nd">@nonotreallyawebsiteihope.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span><span class="p">:</span> <span class="n">yeahright</span><span class="nd">@nonotreallyawebsiteihope.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Subject</span><span class="p">:</span> <span class="n">Testmail</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Test</span></span></span></code></pre>
+</figure><p>There you go. If your end goal is generating emails, use the Python
+email library.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: A Glance at Client-Side Frameworks</title>
+  <link>https://randomgeekery.org/post/2011/03/a-glance-at-client-side-frameworks/</link>
+  <pubDate>Wed, 16 Mar 2011 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2011/03/a-glance-at-client-side-frameworks/</guid>
+  <description>&lt;p&gt;I was one of those lucky suckers who got a &lt;a href=&#34;http://www.google.com/chromeos/pilot-program-cr48.html&#34;&gt;Google CR-48 netbook&lt;/a&gt; a few months back.
+Although I’ve failed miserably in making it my primary machine, it has gotten me thinking a lot more about browser applications and JavaScript frameworks.
+That’s good.
+It got me out of my twelve year server-side rut.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>javascript</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I was one of those lucky suckers who got a <a href="http://www.google.com/chromeos/pilot-program-cr48.html">Google CR-48 netbook</a> a few months back.
+Although I&rsquo;ve failed miserably in making it my primary machine, it has gotten me thinking a lot more about browser applications and JavaScript frameworks.
+That&rsquo;s good.
+It got me out of my twelve year server-side rut.</p>
+<p>A lot has happened to JavaScript since I started hating it in 1998.
+It&rsquo;s a real programming language, with multiple solid implementations.
+Smart people have been making it work from the command line, while other smart people have been establishing a solid base to build browser applications on.
+I&rsquo;ve been looking at a few different frameworks, thinking that I&rsquo;ll find the One True Framework.
+No such luck.
+There are three biggies that I&rsquo;m going to end up bouncing back and forth between.</p>
+<h2 id="jquery">jQuery</h2>
+<p><a href="https://jquery.com">jQuery</a> gives me what I need to add awesome interactive features to a site <em>right now</em>.
+I would like to compare its virtue of immediate gratification to that of PHP.
+There&rsquo;s a lot of hate out there for PHP, so I won&rsquo;t.
+Except I just did.
+Oh, the inconsistency.</p>
+<h2 id="google-closure">Google Closure</h2>
+<p><a href="https://code.google.com/closure">Google Closure</a> is this massive collection that seemingly provides everything that core JavaScript is missing:
+type annotations, templating, compilation, and probably a lot of other stuff.
+Oh, and the basic framework stuff you get in toolkits like jQuery.
+It could be amazing.
+It could be terrible.
+It will take me a while to find out.
+One thing&rsquo;s for sure.
+Closure rewards the patient more than those of us who like instant gratification.</p>
+<h2 id="sproutcore">Sproutcore</h2>
+<p><a href="https://www.sproutcore.com">SproutCore</a> is somewhere in between the two.
+There&rsquo;s some instant gratification, assuming you&rsquo;re already familiar with basic MVC as seen on the Web.
+It&rsquo;s designed for building full-scale client applications, though.
+Stuff like the <a href="https://www.npr.org/webapp">NPR webapp</a>.
+Closure is as well, but it&rsquo;s not as locked into the single point of entry that SproutCore seems to be.
+It could be.
+I don&rsquo;t know.
+I&rsquo;m still learning about <a href="http://code.google.com/p/jsdoc-toolkit/">JSDoc</a> tags.</p>
+<p>SproutCore is the most interesting to me right now, probably because it&rsquo;s the newest.
+Its main disadvantage to me is that it targets HTML 5.
+My job forces me to maintain compatibility with Internet Explorer 6, which is most definitely <em>not</em> compatible with HTML 5 features.
+So I can learn SproutCore, but should not expect to use it on the clock.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>There you have it.
+Three frameworks that charm me in different ways.
+I plan to more or less learn each of them.
+All because Google sent me a netbook.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

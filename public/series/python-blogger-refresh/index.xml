@@ -37,7 +37,9 @@
 <li>Password</li>
 </ul>
 <p>Add those options in <code>main</code> with <code>parser.add_option</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
 </span></span><span class="line"><span class="cl">    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&#34;-D&#34;</span><span class="p">,</span> <span class="s2">&#34;--do-tests&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;store_true&#34;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&#34;doTests&#34;</span><span class="p">,</span>
@@ -75,9 +77,12 @@
 </span></span><span class="line"><span class="cl">        <span class="n">post</span> <span class="o">=</span> <span class="n">BlogPost</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">postFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">parsePost</span><span class="p">(</span><span class="n">postFile</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span>
-</span></span></code></pre></div><p>Let&rsquo;s see how that behaves. First I&rsquo;ll try using the old way, which is now the wrong way.</p>
-<pre tabindex="0"><code>$ python post-to-blog.py -f python-blogger-part-2-settings.mkd
+</span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Let&rsquo;s see how that behaves. First I&rsquo;ll try using the old way, which is now the wrong way.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python post-to-blog.py -f python-blogger-part-2-settings.mkd
 /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9: \
 DeprecationWarning: the sha module is deprecated; use the hashlib module instead
   import sha
@@ -94,27 +99,34 @@ Options:
                         The email of the blog owner
   -p PASSWORD, --password=PASSWORD
                         The password of the blog owner
-Author required. --help for usage
-</code></pre><p>That <code>DeprecationWarning</code> is coming from inside GData. I won&rsquo;t worry about it for the moment, but I <em>will</em> keep my eyes open for new releases.</p>
+Author required. --help for usage</code></pre>
+</figure><p>That <code>DeprecationWarning</code> is coming from inside GData. I won&rsquo;t worry about it for the moment, but I <em>will</em> keep my eyes open for new releases.</p>
 <p>Anyways, how about when running it correctly?</p>
-<pre tabindex="0"><code>$ python post-to-blog.py -f python-blogger-part-2-settings.mkd -a &#34;Brian Wisti&#34; \
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python post-to-blog.py -f python-blogger-part-2-settings.mkd -a &#34;Brian Wisti&#34; \
 -e &#34;me@here.com&#34; -p &#34;mysecretpassword&#34;
 /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9:     \
 DeprecationWarning: the sha module is deprecated; use the hashlib module instead
-  import sha
-</code></pre><p>A quick look at the drafts in my Blogspot dashboard confirms that the code works. That command line has gotten a bit long, though. How about adding a config file?</p>
+  import sha</code></pre>
+</figure><p>A quick look at the drafts in my Blogspot dashboard confirms that the code works. That command line has gotten a bit long, though. How about adding a config file?</p>
 <h3 id="from-a-config-file">From a Config File</h3>
 <p>It&rsquo;s good to have a configuration file holding most of your details. We can keep sensitive information out of the application code, and not have to remember them on the command line every time we run the script.</p>
 <p>I am going to make a separate <code>config</code> directory to hold my config. Why? This makes it easier for me to expand my definition of what a configuration <em>is</em>. If I want to use non-core Markdown extensions later - and I will - I can place them here rather than dirtying my Python <code>site-packages</code> folder. Or <code>dist-packages</code>, in Ubuntu&rsquo;s case. Why do they always have to be different?</p>
 <p>The actual config file will be a simple ini-style file spiked with <em>key</em>=<em>value</em> lines. Here&rsquo;s mine:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># config/blog.cfg</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># config/blog.cfg</span>
 </span></span><span class="line"><span class="cl"><span class="k">[connection]</span>
 </span></span><span class="line"><span class="cl"><span class="na">author</span><span class="o">=</span><span class="s">Brian Wisti</span>
 </span></span><span class="line"><span class="cl"><span class="na">email</span><span class="o">=</span><span class="s">me@here.com</span>
-</span></span><span class="line"><span class="cl"><span class="na">password</span><span class="o">=</span><span class="s">mysecretpassword</span>
-</span></span></code></pre></div><p>The <a href="http://docs.python.org/library/configparser.html">ConfigParser</a> library will be used to handle opening and reading in these options. Using both a config file and command line parsing is going to require poking a little bit at everything, so I&rsquo;m going to move along slowly.</p>
+</span></span><span class="line"><span class="cl"><span class="na">password</span><span class="o">=</span><span class="s">mysecretpassword</span></span></span></code></pre>
+</figure><p>The <a href="http://docs.python.org/library/configparser.html">ConfigParser</a> library will be used to handle opening and reading in these options. Using both a config file and command line parsing is going to require poking a little bit at everything, so I&rsquo;m going to move along slowly.</p>
 <p>In <code>main</code>, I&rsquo;ll set up the ConfigParser.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
 </span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">ConfigParser</span>
 </span></span><span class="line"><span class="cl">
@@ -165,12 +177,14 @@ DeprecationWarning: the sha module is deprecated; use the hashlib module instead
 </span></span><span class="line"><span class="cl">        <span class="n">post</span> <span class="o">=</span> <span class="n">BlogPost</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">postFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">parsePost</span><span class="p">(</span><span class="n">postFile</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span>
-</span></span></code></pre></div><p>The application reads the configuration file before handling the command line to set up the normal behavior. It still processes the command line, though. Maybe I don&rsquo;t want to keep all of my information in the config, or maybe I&rsquo;m posting to a completely different blog.</p>
+</span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span></span></span></code></pre>
+</figure><p>The application reads the configuration file before handling the command line to set up the normal behavior. It still processes the command line, though. Maybe I don&rsquo;t want to keep all of my information in the config, or maybe I&rsquo;m posting to a completely different blog.</p>
 <p>It&rsquo;s nice to get the settings both ways, but I think we can be a little nicer still.</p>
 <h3 id="interactively">Interactively</h3>
 <p>What if there&rsquo;s no config file, or the config file is incomplete, and there are still missing pieces even after parsing the command line? The behavior I would hope for in an app like this is that it would ask me to fill in the missing blanks. Might as well allow the post filename to be one of the blanks.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&#34;connection&#34;</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
@@ -183,23 +197,28 @@ DeprecationWarning: the sha module is deprecated; use the hashlib module instead
 </span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;connection&#34;</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="n">ConfigParser</span><span class="o">.</span><span class="n">NoOptionError</span><span class="p">,</span> <span class="ne">NameError</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: &#34;</span> <span class="o">%</span> <span class="n">option</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&#34;connection&#34;</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-</span></span></code></pre></div><p>Hey, it works and I don&rsquo;t even have to use a config file if I don&rsquo;t want to!</p>
+</span></span><span class="line"><span class="cl">            <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&#34;connection&#34;</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Hey, it works and I don&rsquo;t even have to use a config file if I don&rsquo;t want to!</p>
 <p>The only problem is that now I&rsquo;ve messed up the way testing behaves.</p>
-<pre tabindex="0"><code>$ python post-to-blog.py -D
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python post-to-blog.py -D
 /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:\
 9: DeprecationWarning: the sha module is deprecated; use the hashlib modu\
 le instead
   import sha
-filename:
-</code></pre><p>That&rsquo;s easy enough to fix. I&rsquo;ll just exit after running the tests. You would think I would have  noticed that before. Why would I? I never used the <code>-f</code> flag at the same time as the <code>-D</code> flag, so this issue wouldn&rsquo;t have come up.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+filename:</code></pre>
+</figure><p>That&rsquo;s easy enough to fix. I&rsquo;ll just exit after running the tests. You would think I would have  noticed that before. Why would I? I never used the <code>-f</code> flag at the same time as the <code>-D</code> flag, so this issue wouldn&rsquo;t have come up.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">doTests</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">runTests</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span></code></pre></div><p>Let&rsquo;s stop here and get ready for the next leg.</p>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span></span></span></code></pre>
+</figure><p>Let&rsquo;s stop here and get ready for the next leg.</p>
 <h3 id="what-was-accomplished">What Was Accomplished</h3>
 <p>At the start of this post, we had a script which would submit a blog posting based on a filename command parameter, using connection settings that were hard-coded into the script. After a little fiddling around, we&rsquo;ve added the ability to get all connection details from the command line, from a configuration file, from interactive input, or some combination of all three. That&rsquo;s a pretty big step in making this blog post code more useful for people who aren&rsquo;t me.</p>
 <h2 id="next-time">Next Time</h2>
@@ -207,8 +226,8 @@ filename:
 <h2 id="getting-the-code">Getting The Code</h2>
 <p>Although it&rsquo;s still small enough to reasonably paste the code into this blog posting, I think it might be a little easier for folks to work with if they just had an archive of what&rsquo;s been done so far.  I&rsquo;m going to start making it available directly from coolnamehere.</p>
 <blockquote>
-<p>[!NOTE] 2015-03-28
-Oh, <em>that&rsquo;s</em> what that zipfile was for. No, it&rsquo;s long gone now.</p>
+<p><strong>2015-03-28</strong></p>
+<p>Oh, <em>that&rsquo;s</em> what that zipfile was for. No, it&rsquo;s long gone now.</p>
 </blockquote>]]></content:encoded>
 </item>
 <item>
@@ -226,8 +245,11 @@ Oh, <em>that&rsquo;s</em> what that zipfile was for. No, it&rsquo;s long gone no
 <!--more-->
 <p>There&rsquo;s a fresh install of <a href="http://ubuntu.com">Ubuntu</a> 9.04 on my laptop and I&rsquo;ve got projects I feel like talking about. So let&rsquo;s get started.</p>
 <p>The basic flow will be the same. Given a command line that looks like this:</p>
-<pre tabindex="0"><code>$ python post-to-blog.py &lt;post.txt&gt;
-</code></pre><ol>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python post-to-blog.py &lt;post.txt&gt;</code></pre>
+</figure><ol>
 <li>Load settings</li>
 <li>Create a HTML formatted string based on the Markdown-formatted text found in <code>post.txt</code></li>
 <li>Request that Blogger store the post using post data and user settings</li>
@@ -237,7 +259,10 @@ Oh, <em>that&rsquo;s</em> what that zipfile was for. No, it&rsquo;s long gone no
 <h2 id="setup">Setup</h2>
 <p>Ubuntu 9.04 already has a copy of Python 2.6 installed. I suppose I could grab a fresh copy of the Python source and build it myself, but I don&rsquo;t really feel like it right now. Sometimes I&rsquo;m just lazy. Ubuntu&rsquo;s 2.6 will work well enough for my needs.</p>
 <p>Modules are a different matter. I want fresh copies of Python Markdown and <a href="https://github.com/google/gdata-python-client">GData</a>, rather than the somewhat dated modules that are available in the repository. There are a fair number of bug fixes and new features in the latest versions.</p>
-<pre tabindex="0"><code>$ cd ~/src
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd ~/src
 $ wget http://gdata-python-client.googlecode.com/files/gdata-1.3.3.tar.gz
 $ tar xfz gdata-1.3.3.tar.gz
 $ cd gdata-1.3.3/
@@ -246,16 +271,21 @@ $ cd ../
 $ wget http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.tar.gz
 $ tar xfvz Markdown-2.0.tar.gz
 $ cd Markdown-2.0/
-$ sudo python setup.py install
-</code></pre><h2 id="the-starting-code">The Starting Code</h2>
+$ sudo python setup.py install</code></pre>
+</figure><h2 id="the-starting-code">The Starting Code</h2>
 <p>Now that I have the most important dependencies installed, I can revisit the code from the earlier posts. There&rsquo;s no local copy of the code, so I will just copy and paste the original code, run the tests, and share the starting code. What could possibly go wrong?</p>
-<pre tabindex="0"><code>$ cd ~/Projects/python-blogger
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd ~/Projects/python-blogger
 $ python post-to-blog.py -D
 ...
-***Test Failed*** 19 failures.
-</code></pre><p>Ouch. Something has gone horribly wrong in copying and pasting the code from the posts, the module behaviors have changed, or maybe they never worked as well as I thought they did. Either way, this is bad. Let me fix these issues and then I&rsquo;ll share the <em>new</em> starting code with you.</p>
+***Test Failed*** 19 failures.</code></pre>
+</figure><p>Ouch. Something has gone horribly wrong in copying and pasting the code from the posts, the module behaviors have changed, or maybe they never worked as well as I thought they did. Either way, this is bad. Let me fix these issues and then I&rsquo;ll share the <em>new</em> starting code with you.</p>
 <h2 id="the-new-starting-code">The New Starting Code</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
@@ -394,8 +424,8 @@ $ python post-to-blog.py -D
 </span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="coming-up-next">Coming Up Next</h2>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure><h2 id="coming-up-next">Coming Up Next</h2>
 <p>These posts will be short, since I want to get <em>something</em> up while still getting things done at work. We have our starting point reestablished, and <a href="/post/2009/06/python-blogger-refresh-part-2-settings/">next time</a> we will be concentrating on loading user settings rather than embedding those details right in our code.</p>]]></content:encoded>
 </item>
 </channel>

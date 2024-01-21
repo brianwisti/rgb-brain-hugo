@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/simple-types-in-python/">Simple Types in Python</a></li>
@@ -294,8 +299,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>In this step, we will take our first look at variables and types in the <a href="/card/python/">Python</a> language. We will use variables for storing and retrieving information. We will also tiptoe into the wild and woolly world of types, which computer languages rely on for tasks such as telling the difference between numbers and words.</p>
 <p>You’re not expected to be some kind of expert to work through this tutorial. I only expect you to know how to use your development environment (such as IDLE) to work within the Python shell and create your own Python scripts. If this sounds unfamiliar to you, you’re in luck — I happen to cover exactly that in the Babysteps tutorial.</p>
 <blockquote>
-<p>[!NOTE]
-I am aiming for simplicity over rigid accuracy with this tutorial, but it sure would be appreciated if you happen to notice any unforgivable Python or general computer science errors within these pages. Being self-taught results in some really odd holes in my programming knowledge. So please, send me a quick note to sweetly and patiently point out any errors you find. Thanks!</p>
+<p><strong>NOTE</strong></p>
+<p>I am aiming for simplicity over rigid accuracy with this tutorial, but it sure would be appreciated if you happen to notice any unforgivable Python or general computer science errors within these pages. Being self-taught results in some really odd holes in my programming knowledge. So please, send me a quick note to sweetly and patiently point out any errors you find. Thanks!</p>
 </blockquote>
 <p>For the rest of us non-experts, let’s take the first steps into real, live programming!</p>
 <h2 id="variables">Variables</h2>
@@ -312,25 +317,34 @@ I am aiming for simplicity over rigid accuracy with this tutorial, but it sure w
 <p>To create a variable, make a name and assign a value to it using the
 equals <code>=</code> character. To get the value, use the variable name in a
 statement.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; number = 5
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; number = 5
 &gt;&gt;&gt; print number
-5
-</code></pre><p>You can change the value of a variable any time by using <code>=</code>.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print number
+5</code></pre>
+</figure><p>You can change the value of a variable any time by using <code>=</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print number
 5
 &gt;&gt;&gt; number = 7
 &gt;&gt;&gt; print number
-7
-</code></pre><h3 id="identifiers-aka-variable-names">Identifiers aka Variable Names</h3>
+7</code></pre>
+</figure><h3 id="identifiers-aka-variable-names">Identifiers aka Variable Names</h3>
 <p>Python gives us a lot of freedom in creating variable names, also known as <em>identifiers</em>. As long as they start with a letter or underscore (<code>_</code>), and are followed by letters, numbers, or underscores, you’re generally good to go. Case is important, so <code>number</code>, <code>NUMBER</code>, and <code>Number</code> are three different names. The biggest restriction is that you can’t use an identifier that is already used by Python. This means no variables named <code>print</code>, for example.</p>
 <p>Here is the complete list of identifiers that Python has reserved for its own purposes:</p>
-<pre tabindex="0"><code>and       del       for       is        raise
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >and       del       for       is        raise
 assert    elif      from      lambda    return
 break     else      global    not       try
 class     except    if        or        while
 continue  exec      import    pass      yield
-def       finally   in        print
-</code></pre><p>Here are a few guidelines to follow when deciding on a variable name:</p>
+def       finally   in        print</code></pre>
+</figure><p>Here are a few guidelines to follow when deciding on a variable name:</p>
 <ul>
 <li>Identifiers starting with <code>_</code> are treated differently by Python, so avoid them until you know what they’re for.</li>
 <li>Use descriptive names rather than abbreviations or inside jokes. When you are naming a variable that holds the radius of a circle, it is usually better to use <code>radius</code> than <code>r</code> or <code>halfway_there</code>  — Use a name that indicates what the variable will be used for. <code>radius</code> is much better than <code>fnord</code> for describing the radius of a circle. Plus, &ldquo;fnord&rdquo; breaks the &ldquo;no inside jokes&rdquo; guideline.</li>
@@ -369,12 +383,15 @@ def       finally   in        print
 <p>Right away, you realized that Bob is a raving lunatic — or maybe a Zen master — because <code>&quot;Brian&quot; + 5</code> just doesn’t work. You’re not supposed to combine words and numbers like that. It isn’t polite.</p>
 <p><em>Types</em> are used by programming languages to recognize when programmers are starting to sound like a raving lunatic. Every type has rules for what you can do with them. You can do numbery things to numbers (add, subtract, find the square root of, etcetera). You can do stringy things to strings of text (search, capitalize, concatenate, and so on). Capitalizing numbers is a no-no, as is finding the square root of your name. When you learn how to create your own types later on, you will also be writing the rules for how your new types can be used.</p>
 <p>An <em>exception</em> is a special type in Python that we’ll be seeing a lot of as we learn. Think back to that conversation with Bob. As soon as he asked you to add <code>5</code> to your name, a little red flag went up in your brain. This red flag told you that something was very wrong with dear old Bob. <em>Exceptions</em> are the little red flags that Python uses to tell you that something is very wrong. There are a lot of ways that things can go wrong, so there are a lot of different types of exception that we will see. Let’s see what Python does when we play the role of Bob.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; name = &#34;Brian&#34;
-&gt;&gt;&gt; print name + 5
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; name = &#34;Brian&#34;
+&gt;&gt;&gt; print name &#43; 5
 Traceback (most recent call last):
   File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
-TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects
-</code></pre><p>All of the &ldquo;File&rdquo; gibberish is called a <em>traceback</em>, showing where things went wrong. Yours will probably look a little different, but the idea is the same.</p>
+TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects</code></pre>
+</figure><p>All of the &ldquo;File&rdquo; gibberish is called a <em>traceback</em>, showing where things went wrong. Yours will probably look a little different, but the idea is the same.</p>
 <p>The last line is the exception itself. It tells us what kind of problem was found — <code>exceptions.TypeError</code> — and describes the specific issue — <code>cannot concatenate 'str' and 'int' objects</code>.</p>
 <p>We won’t really understand what to do with an exception for a while, but the basic idea is clear. Python uses exceptions to warn us that we are heading towards the path of madness.</p>
 <h3 id="numbers">Numbers</h3>
@@ -392,44 +409,62 @@ TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects
 </dl>
 <p>Amazingly enough, Python takes care of telling one from the other, and we don’t need to worry about it most of the time. Just feed it a literal, and it’ll try to do the right thing. Each of these types do have their own rules, though, and these rules will bite us if we try to treat Python numbers exactly the same as the numbers in our checkbook.</p>
 <h3 id="numeric-literals-how-to-describe-numbers">Numeric Literals: How To Describe Numbers</h3>
-<pre tabindex="0"><code>&gt;&gt;&gt; 1
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; 1
 1
 &gt;&gt;&gt; 35
 35
 &gt;&gt;&gt; 34456432
 34456432
 &gt;&gt;&gt; 355556499871154247854
-355556499871154247854L
-</code></pre><p>What? Where did that <code>L</code> come from? It turns out that computers are faster at dealing with integers if they can fit them into a small chunk of memory. That &ldquo;small chunk&rdquo; is still more than enough room for most of the numbers that you’ll deal with in your day-to-day programming. Until you start converting parsecs to inches, <code>2,147,483,647</code> should be more than enough room.</p>
+355556499871154247854L</code></pre>
+</figure><p>What? Where did that <code>L</code> come from? It turns out that computers are faster at dealing with integers if they can fit them into a small chunk of memory. That &ldquo;small chunk&rdquo; is still more than enough room for most of the numbers that you’ll deal with in your day-to-day programming. Until you start converting parsecs to inches, <code>2,147,483,647</code> should be more than enough room.</p>
 <p>When you hand it a really large literal like <code>355556499871154247854</code>, Python notices right away that it won’t fit as a regular integer, and automatically makes it a long integer. There are times when you know in advance that your number will end up being very large. Specifying long integer type is very very easy. Just paste the letter <code>L</code> to the end of your literal.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; 6209389143L
-6209389143L
-</code></pre><p>While it is technically okay to use a lowercase <code>l</code>, it is <em>much</em> harder to read when scanning program code. <code>6209389143l</code> looks too much like <code>62093891431</code>. It’s a good idea to always use the upper case <code>L</code> for specifying long integers.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; 6209389143L
+6209389143L</code></pre>
+</figure><p>While it is technically okay to use a lowercase <code>l</code>, it is <em>much</em> harder to read when scanning program code. <code>6209389143l</code> looks too much like <code>62093891431</code>. It’s a good idea to always use the upper case <code>L</code> for specifying long integers.</p>
 <p>The next type of number is floating point. You can either write floating point literals in the familiar decimal notation, or you can use something more like scientific notation.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; 1.0
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; 1.0
 1.0
-&gt;&gt;&gt; 1.234e+02
+&gt;&gt;&gt; 1.234e&#43;02
 123.40000000000001
 &gt;&gt;&gt; 1.1
-1.1000000000000001
-</code></pre><p>This is where things start to bite us if we’re not paying attention. <code>1.0</code> made sense, but what in the world went wrong with our other two numbers?</p>
+1.1000000000000001</code></pre>
+</figure><p>This is where things start to bite us if we’re not paying attention. <code>1.0</code> made sense, but what in the world went wrong with our other two numbers?</p>
 <p>It’s like this, see. Computers are basically made up of switches. On and off. <code>1</code> and <code>0</code>. That’s all a computer knows. It takes many layers of programming to translate your value into something that a computer can understand, and then more layers to turn it back into something you can understand. With integers, it’s relatively easy. It’s a simple matter for the computer to handle whole numbers. Floating point, however, is much more fluid. It takes a lot of work for the computer to translate a floating point value into a series of <code>1</code> and <code>0</code> switches. To save time and memory, it fudges the number a little bit. For most programs, it’s not a problem. It certainly hasn’t been an issue for me in <em>any</em> program I’ve written. There are also some excellent programming libraries out there when you do hit that particular wall. Everyday python does an excellent job of protecting us from all the chaos when printing a variable:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; value = 1.1
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; value = 1.1
 &gt;&gt;&gt; print value
-1.1
-</code></pre><p>Internally, it’s still <code>1.1000000000000001</code> or so, but Python realizes that human readers are not going to be interested in the extra 14 zeroes.</p>
+1.1</code></pre>
+</figure><p>Internally, it’s still <code>1.1000000000000001</code> or so, but Python realizes that human readers are not going to be interested in the extra 14 zeroes.</p>
 <p>Now, before you go storming off to Perl or C, you should learn the dark secret: this is not limited to Python. It’s something to do with computers in general, so this will come up no matter what language you use. The classier ones like Python just hide it from you when they can.</p>
 <p>Our last kind of number is the imaginary number. My own math skills haven’t progressed far enough to present anything truly useful, but I know how to write an imaginary literal.</p>
 <p>I think I just melted my brain by putting those two words together.</p>
 <p>An imaginary — uh — literal — thing — consists of a floating point number (the <em>real</em> part), a <code>+</code> character, and another floating point number followed by a <code>J</code> (the <em>imaginary</em> part). Here, just look at my example, and you math people can figure it out yourself.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; number = 1.1 + 9.87J
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; number = 1.1 &#43; 9.87J
 &gt;&gt;&gt; print number
-(1.1+9.87j)
-</code></pre><p>I guess imaginary numbers don’t make it into everyday math that much, but they do show up in my checkbook a lot. Wrong kind of &ldquo;imaginary&rdquo;, I guess.</p>
+(1.1&#43;9.87j)</code></pre>
+</figure><p>I guess imaginary numbers don’t make it into everyday math that much, but they do show up in my checkbook a lot. Wrong kind of &ldquo;imaginary&rdquo;, I guess.</p>
 <p>Now that I’ve made a complete fool of myself, let’s move along quickly to look at some things we can do to numbers.</p>
 <h3 id="numeric-operations-some-things-you-can-do-with-numbers">Numeric Operations: Some Things You Can Do With Numbers</h3>
 <p>The Python shell does make a handy calculator. You can do all of the handy four-function operations, plus we get a nifty <em>exponent</em> operator and <em>modulus</em> operator at no extra charge.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; print 2 + 2
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; print 2 &#43; 2
 4
 &gt;&gt;&gt; print 10 - 2
 8
@@ -442,10 +477,10 @@ TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects
 &gt;&gt;&gt; print 20 / 3
 6
 &gt;&gt;&gt; print 20 % 3
-2
-</code></pre><blockquote>
-<p>[!NOTE]
-Right about here I got distracted by a bright shiny object. Sorry about that!</p>
+2</code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Right about here I got distracted by a bright shiny object. Sorry about that!</p>
 </blockquote>
 
   

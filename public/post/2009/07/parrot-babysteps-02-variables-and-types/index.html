@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/07/parrot-babysteps-02-variables-and-types/">Parrot Babysteps 02 - Variables and Types</a></li>
@@ -300,8 +305,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Names become important when you&rsquo;re using variables. Good names add documentation by telling people who look at your code what a given variable is going to be used for. Parrot has two naming schemes: one for register variables, and another for everything else.</p>
 <h3 id="register-variable-names">Register Variable Names</h3>
 <p>Register variable rules are easy to remember. First comes the register being used, then one or more digits.</p>
-<pre tabindex="0"><code>&lt;register&gt;&lt;identifier&gt;
-</code></pre><p>The registers are named with a dollar sign (<code>$</code>), then an upper case letter indicating what types are held in that register:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&lt;register&gt;&lt;identifier&gt;</code></pre>
+</figure><p>The registers are named with a dollar sign (<code>$</code>), then an upper case letter indicating what types are held in that register:</p>
 <table>
 <thead>
 <tr>
@@ -329,26 +337,35 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </tbody>
 </table>
 <p>I thought that the number after the register identifier was something that tells Parrot something especially meaningful, like which slot it&rsquo;s using or something. Turns out that&rsquo;s not the case, or at least not in quite the way I thought it was.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-01.pir
 .sub main :main
   $I01 = 10
   $I1  = 20
   say $I01
   say $I1
-.end
-</code></pre><p><code>01</code> and <code>1</code> are the same number according to the numbering systems that I&rsquo;m familiar with. Look what happens when you run it, though.</p>
-<pre tabindex="0"><code>$ parrot example-02-01.pir
+.end</code></pre>
+</figure><p><code>01</code> and <code>1</code> are the same number according to the numbering systems that I&rsquo;m familiar with. Look what happens when you run it, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-01.pir
 10
-20
-</code></pre><p>So the numbers are just a sequence of characters identifying the variable for the register. They don&rsquo;t indicate order or anything else. The register takes care of storing variables and lets you use those numbers however you want. But if I see you <code>$I01</code> and <code>$I1</code> in your code without a good reason I might have to slap you. Well, no. I will be disappointed, though.</p>
+20</code></pre>
+</figure><p>So the numbers are just a sequence of characters identifying the variable for the register. They don&rsquo;t indicate order or anything else. The register takes care of storing variables and lets you use those numbers however you want. But if I see you <code>$I01</code> and <code>$I1</code> in your code without a good reason I might have to slap you. Well, no. I will be disappointed, though.</p>
 <p>I&rsquo;ve already said that I prefer <code>.local</code> variables. They&rsquo;re more explicit than using the register, and I&rsquo;ve generally found that more explicit code is easier to read and maintain. Nevertheless, register variables have a certain charm. You don&rsquo;t have to declare them, for starters. Just say &ldquo;Hey, set <code>$I1</code> to <code>10</code>&rdquo; and move on to the next instruction. You also don&rsquo;t have to spend any time coming up with a clever name. As long as <em>you</em> remember what the numbers mean and document it somewhere, it&rsquo;s all good. That makes register variables ideal for short chunks of code.</p>
 <p>It does get confusing as your program grows larger or if you are like me and can quickly forget what you were using a variable for. That&rsquo;s when <code>.local</code> variables become valuable.</p>
 <h3 id="local-variable-names"><code>.local</code> Variable Names</h3>
 <p>Local variables are more complicated than register variables, but they have additional features which make them useful. I&rsquo;ve already talked about how the names can be made meaningful. They also only exist in the subroutine where they are defined, which is a lifesaver in large programs. The format of a local variable declaration makes it easy to understand when you will be using it and what you plan to use it for.</p>
 <p>Local variables are declared with the <code>.local</code> directive, followed by a type identifier and finally the name of the variable.</p>
-<pre tabindex="0"><code>.local &lt;type-identifier&gt; &lt;name&gt;
-</code></pre><p>I briefly described the type identifiers last time, but here they are again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local &lt;type-identifier&gt; &lt;name&gt;</code></pre>
+</figure><p>I briefly described the type identifiers last time, but here they are again.</p>
 <table>
 <thead>
 <tr>
@@ -401,18 +418,27 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I break these guidelines sometimes, but at least I think about it before I do.</p>
 <h4 id="assignment">Assignment</h4>
 <p>Remember that declaring a local variable and assigning a value to it are two different actions, and require two separate instructions.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-02.pir
 .sub main :main
   .local int year
   year = 2010
   say year
-.end
-</code></pre><h2 id="const-variables"><code>.const</code> Variables</h2>
+.end</code></pre>
+</figure><h2 id="const-variables"><code>.const</code> Variables</h2>
 <p>Actually, that earlier guideline about constant variables reminded me: Parrot has a directive for declaring and assigning a value for a local constant variable. Use the <code>.const</code> directive when you want a variable that won&rsquo;t somehow change in value after you&rsquo;ve created it.</p>
-<pre tabindex="0"><code>.const &lt;type-identifier&gt; &lt;name&gt; = &lt;value&gt;
-</code></pre><p>Here&rsquo;s an example of <code>.const</code> in action: calculating the area of a circle with a radius of 10 units.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.const &lt;type-identifier&gt; &lt;name&gt; = &lt;value&gt;</code></pre>
+</figure><p>Here&rsquo;s an example of <code>.const</code> in action: calculating the area of a circle with a radius of 10 units.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-03.pir
 .sub main :main
   .const num PI     = 3.14159
@@ -428,12 +454,15 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   area *= RADIUS
   print &#34;Area: &#34;
   say area
-.end
-</code></pre><p><code>PI</code> and <code>RADIUS</code> are the constants in this program. We define them once and never need to change them again. Area, on the other hand, is a local because it needs to be touched several times to get the final value.</p>
-<pre tabindex="0"><code>$ parrot example-02-03.pir
+.end</code></pre>
+</figure><p><code>PI</code> and <code>RADIUS</code> are the constants in this program. We define them once and never need to change them again. Area, on the other hand, is a local because it needs to be touched several times to get the final value.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-03.pir
 Radius: 10
-Area: 314.159
-</code></pre><p>This is where developers experienced with other languages should see the low-level nature of PIR. Those operators correspond to opcodes, and PIR only wants to see one opcode per statement. That&rsquo;s why the formula is broken down into distinct steps.</p>
+Area: 314.159</code></pre>
+</figure><p>This is where developers experienced with other languages should see the low-level nature of PIR. Those operators correspond to opcodes, and PIR only wants to see one opcode per statement. That&rsquo;s why the formula is broken down into distinct steps.</p>
 <p>I think we&rsquo;ve got a solid grip on declaration and basic usage of both local and register variables. On to the types.</p>
 <h2 id="variable-types">Variable Types</h2>
 <p>You know what the types are: integers, numbers, strings, and polymorphic containers. You also know the rough outline of what they look like.</p>
@@ -441,7 +470,10 @@ Area: 314.159
 <p>When you need to do math, it&rsquo;s time for integers and numbers.</p>
 <h4 id="integers">Integers</h4>
 <p>Integers are whole numbers such as <code>3</code>, <code>94</code>, and <code>-48183</code>. They are signed, which means that you can create positive or negative values. Each integer takes up the same amount of memory. How much memory do they take up? Well, that depends on your system and how Parrot was compiled. 32-bit Parrot uses 4 bytes for integers, while it&rsquo;s presumably 8 bytes on 64-bit Parrot. The <a href="http://docs.parrot.org/parrot/latest/html/src/dynoplibs/sys.ops.html"><code>sysinfo</code></a>   opcode can tell us for sure.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-04.pir
 .loadlib &#39;sys_ops&#39;
 .include &#39;sysinfo.pasm&#39;
@@ -450,14 +482,20 @@ Area: 314.159
     $I0 = sysinfo .SYSINFO_PARROT_INTSIZE
     print $I0
     say &#34; bytes in an integer on this machine&#34;
-.end
-</code></pre><p>Parrot keeps only the most important opcodes in its core. A question like &ldquo;how many bytes are in an integer?&rdquo; is just not considered all that important most of the time. The <code>.loadlib</code> directive allows us to load special Parrot bytecode libraries that have been compiled so that they are more efficient on the virtual machine. The <code>.include</code> directive lets us use code that is written in PIR but has not been compiled or otherwise treated in any special way. There are fine differences between them, but I think that&rsquo;s the important one. We will often use the <code>.loadlib</code> and <code>.include</code> directives to grab functionality that is not available in core Parrot.</p>
+.end</code></pre>
+</figure><p>Parrot keeps only the most important opcodes in its core. A question like &ldquo;how many bytes are in an integer?&rdquo; is just not considered all that important most of the time. The <code>.loadlib</code> directive allows us to load special Parrot bytecode libraries that have been compiled so that they are more efficient on the virtual machine. The <code>.include</code> directive lets us use code that is written in PIR but has not been compiled or otherwise treated in any special way. There are fine differences between them, but I think that&rsquo;s the important one. We will often use the <code>.loadlib</code> and <code>.include</code> directives to grab functionality that is not available in core Parrot.</p>
 <p>What does this code tell us?</p>
-<pre tabindex="0"><code>$ parrot example-02-04.pir
-4 bytes in an integer on this machine
-</code></pre><p>I&rsquo;m using a 32-bit Parrot, which gives my integers a range of <code>-2,147,483,648</code> to <code>2,147,483,647</code>. That will be more than sufficient for our purposes, and there&rsquo;s the <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/bigint.pmc.html"><code>BigInt</code></a> PMC for those days when we need truly huge integers.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-04.pir
+4 bytes in an integer on this machine</code></pre>
+</figure><p>I&rsquo;m using a 32-bit Parrot, which gives my integers a range of <code>-2,147,483,648</code> to <code>2,147,483,647</code>. That will be more than sufficient for our purposes, and there&rsquo;s the <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/bigint.pmc.html"><code>BigInt</code></a> PMC for those days when we need truly huge integers.</p>
 <p>Most often you&rsquo;ll create integers using the 10-based system, but every once in a while it will be more informative to use base 8, base 16, or even binary. Parrot supports that.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-05.pir
 .sub main :main
     $I0 = 10   # decimal (base 10)
@@ -468,18 +506,24 @@ Area: 314.159
     say $I0
     $I0 = 0b10 # binary (base 2)
     say $I0
-.end
-</code></pre><p>Now I can see the value described by <code>10</code> in decimal, octal, hex, and binary. My life is complete.</p>
-<pre tabindex="0"><code>$ parrot example-02-05.pir
+.end</code></pre>
+</figure><p>Now I can see the value described by <code>10</code> in decimal, octal, hex, and binary. My life is complete.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-05.pir
 10
 8
 16
-2
-</code></pre><p>That wasn&rsquo;t as fulfilling as I&rsquo;d hoped. Perhaps my life is not complete after all. I might as well move on to floating point numbers.</p>
+2</code></pre>
+</figure><p>That wasn&rsquo;t as fulfilling as I&rsquo;d hoped. Perhaps my life is not complete after all. I might as well move on to floating point numbers.</p>
 <h4 id="numbers">Numbers</h4>
 <p>The Number type is used by Parrot to represent <a href="http://en.wikipedia.org/wiki/Floating_point">floating point values</a>. These are more or less the same as the decimal numbers you may be more familiar with.</p>
 <p>Like integers, numbers may be positive or negative and have a range that depends on their size. <code>sysinfo</code> can get that size for us.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-06.pir
 .loadlib &#39;sys_ops&#39;
 .include &#39;sysinfo.pasm&#39;
@@ -488,16 +532,22 @@ Area: 314.159
     $I0 = sysinfo .SYSINFO_PARROT_FLOATSIZE
     print $I0
     say &#34; bytes in a number on this machine&#34;
-.end
-</code></pre><p>Now we know how much space is used for a number in Parrot.</p>
-<pre tabindex="0"><code>$ parrot example-02-06.pir
-8 bytes in a number on this machine
-</code></pre><p>What does that mean, though? Integers are easy: 4 bytes is 32 bits is somewhere over 4 billion possible values. With numbers - well, I have no idea really. The range is &ldquo;some insanely small value&rdquo; to &ldquo;some insanely big value&rdquo;. Look at Wikipedia&rsquo;s entry on <a href="https://en.wikipedia.org/wiki/Double_precision">double precision floating point</a> if you really want to know.</p>
+.end</code></pre>
+</figure><p>Now we know how much space is used for a number in Parrot.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-06.pir
+8 bytes in a number on this machine</code></pre>
+</figure><p>What does that mean, though? Integers are easy: 4 bytes is 32 bits is somewhere over 4 billion possible values. With numbers - well, I have no idea really. The range is &ldquo;some insanely small value&rdquo; to &ldquo;some insanely big value&rdquo;. Look at Wikipedia&rsquo;s entry on <a href="https://en.wikipedia.org/wiki/Double_precision">double precision floating point</a> if you really want to know.</p>
 <p>You can use ordinary decimal values or scientific notation for number values.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 $N0 = 3.1415926
-$N1 = 6.0221415e+23
-</code></pre><p>What can you do with numbers?</p>
+$N1 = 6.0221415e&#43;23</code></pre>
+</figure><p>What can you do with numbers?</p>
 <h4 id="numeric-operators-and-opcodes">Numeric Operators and Opcodes</h4>
 <p>Operators in PIR provide a convenient and fairly readable shorthand for opcode instructions. It&rsquo;s generally easier for me to remember <code>sum = a + b</code> than <code>add sum, a, b</code>. If the second option is more readable for you, that&rsquo;s great! It&rsquo;s not for me.</p>
 <p>There are many operators, but here are what I think of as the core operators for dealing with numbers.</p>
@@ -558,7 +608,10 @@ $N1 = 6.0221415e+23
 </tbody>
 </table>
 <p>Just for laughs - and to see how the operators fill in for opcodes - let&rsquo;s rewrite the area program using opcodes and register variables instead of operators, local variables, and constants.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-07.pir
 .sub main :main
     set $N0, 3.14159
@@ -573,10 +626,13 @@ $N1 = 6.0221415e+23
     mul $N2, $N1
     print &#34;Area is &#34;
     say $N2
-.end
-</code></pre><p>Actually, this isn&rsquo;t all that hard to read. Still, the operators are more familiar to me and I&rsquo;m more comfortable with variables that have names. I&rsquo;ll continue using them. Parrot doesn&rsquo;t care.</p>
+.end</code></pre>
+</figure><p>Actually, this isn&rsquo;t all that hard to read. Still, the operators are more familiar to me and I&rsquo;m more comfortable with variables that have names. I&rsquo;ll continue using them. Parrot doesn&rsquo;t care.</p>
 <p>Let&rsquo;s have a little fun and add interaction to our original area calculator.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-08.pir
 .sub main :main
     .const num PI = 3.1415926
@@ -593,12 +649,15 @@ $N1 = 6.0221415e+23
     area *= radius
     print &#34;Area: &#34;
     say area
-.end
-</code></pre><p>For some reason, adding user interaction always makes a program seem more entertaining to me. Even a silly program that figures out something you could use a calculator for.</p>
-<pre tabindex="0"><code>$ parrot example-02-08.pir
+.end</code></pre>
+</figure><p>For some reason, adding user interaction always makes a program seem more entertaining to me. Even a silly program that figures out something you could use a calculator for.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-08.pir
 Radius: 10
-Area: 314.15926
-</code></pre><h4 id="type-conversion">Type Conversion</h4>
+Area: 314.15926</code></pre>
+</figure><h4 id="type-conversion">Type Conversion</h4>
 <p>I&rsquo;m not sure if you noticed, but I didn&rsquo;t bother converting the user input to a number before assigning it to <code>radius</code>. Oh, you noticed? You get a gold star.</p>
 <p>The <code>=</code> operator takes care of such conversions automatically, allowing you to do things like get a string of input text from the user and treat it as the radius of a circle without having an intermediate step of using a temporary string variable to hold the user input. Actually, the more I think about what it would take to convert a string to an integer or floating point number, the happier I am that Parrot does it for me. PIR isn&rsquo;t exactly a <a href="https://en.wikipedia.org/wiki/Low-level_programming_language">low level language</a>, even though it is lower than what I&rsquo;m used to.</p>
 <h4 id="opcodes-for-integers">Opcodes For Integers</h4>
@@ -613,7 +672,10 @@ Area: 314.15926
 <p>c² = a² + b²</p>
 </blockquote>
 <p>Calculating the hypotenuse is easy once we notice that there is a <code>sqrt</code> opcode for finding the square root of a number.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-09.pir
 .sub main :main
     .local num a
@@ -629,18 +691,21 @@ Area: 314.15926
     b = stdin.&#39;readline_interactive&#39;(&#39;B: &#39;)
     a_squared = a * a
     b_squared = b * b
-    c_squared = a_squared + b_squared
+    c_squared = a_squared &#43; b_squared
     c = sqrt c_squared
     print &#34;Hypotenuse: &#34;
     say c
-.end
-</code></pre><p>Don&rsquo;t look at me like that. Using a letter for a variable name makes perfect sense if you&rsquo;re writing code that follows a well-established formula.</p>
+.end</code></pre>
+</figure><p>Don&rsquo;t look at me like that. Using a letter for a variable name makes perfect sense if you&rsquo;re writing code that follows a well-established formula.</p>
 <p>I did have to add specific variables to hold the squared values, because as far as I can tell PIR does not support chained math operations. On the other hand, I did get to save a lot of effort with the <code>sqrt</code> opcode. I didn&rsquo;t even have to import a library.</p>
-<pre tabindex="0"><code>$ parrot example-02-09.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-09.pir
 A: 1
 B: 1
-Hypotenuse: 1.4142135623731
-</code></pre><p>We&rsquo;ve learned a lot about how math works in Parrot. We&rsquo;ve seen some operators and even looked at the math opcodes. Okay, a few. Okay, one. At least it&rsquo;s a start.</p>
+Hypotenuse: 1.4142135623731</code></pre>
+</figure><p>We&rsquo;ve learned a lot about how math works in Parrot. We&rsquo;ve seen some operators and even looked at the math opcodes. Okay, a few. Okay, one. At least it&rsquo;s a start.</p>
 <p>Let&rsquo;s move on from numbers to take a closer look at strings.</p>
 <h3 id="strings">Strings</h3>
 <p>We have been using <a href="http://en.wikipedia.org/wiki/String_%28computer_science%29">strings</a> since the first step, but I haven&rsquo;t spent much time describing them. That is because I have found them a little hard to explain. I can&rsquo;t stall any longer, though.</p>
@@ -655,19 +720,31 @@ Hypotenuse: 1.4142135623731
 <li>heredocs</li>
 </ul>
 <p>Single-quoted strings are simple. Parrot assumes they are <a href="http://en.wikipedia.org/wiki/ASCII">ASCII encoded</a>, and very little magic happens when processing them.</p>
-<pre tabindex="0"><code>#!parrot
-$S0 = &#39;Hello World!&#39;
-</code></pre><p>Double-quoted strings are a little more complex. Parrot assumes they are ASCII, but allows you to set the encoding yourself. Double-quoted strings also handle several backslash escapes. Encoding is easy in Parrot but I&rsquo;m having a heck of a time getting Unicode to display on my machines, so I&rsquo;ll skip encoding. I will talk about escapes in a few minutes.</p>
-<pre tabindex="0"><code>#!parrot
-$S1 = &#34;Hello World!\n&#34;
-</code></pre><p>Heredocs are multi-line, which is a great convenience for larger strings. They can act like single-quoted strings or double-quoted strings, depending on the way they are created.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
+$S0 = &#39;Hello World!&#39;</code></pre>
+</figure><p>Double-quoted strings are a little more complex. Parrot assumes they are ASCII, but allows you to set the encoding yourself. Double-quoted strings also handle several backslash escapes. Encoding is easy in Parrot but I&rsquo;m having a heck of a time getting Unicode to display on my machines, so I&rsquo;ll skip encoding. I will talk about escapes in a few minutes.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
+$S1 = &#34;Hello World!\n&#34;</code></pre>
+</figure><p>Heredocs are multi-line, which is a great convenience for larger strings. They can act like single-quoted strings or double-quoted strings, depending on the way they are created.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
   $S2 =&lt;&lt;&#34;EndS2&#34;
 Hello, World!
 Isn&#39;t it a lovely day?
-EndS2
-</code></pre><p>If you like, we can whip up some quick code to show these string quoting methods in action.</p>
-<pre tabindex="0"><code>#!parrot
+EndS2</code></pre>
+</figure><p>If you like, we can whip up some quick code to show these string quoting methods in action.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-10.pir
 .sub main :main
     $S0 = &#39;Hello World!&#39;
@@ -680,27 +757,36 @@ EndS2
     say $S0
     say $S1
     say $S2
-.end
-</code></pre><p>I don&rsquo;t think there are any surprises in this code.</p>
-<pre tabindex="0"><code>$ parrot example-02-10.pir
+.end</code></pre>
+</figure><p>I don&rsquo;t think there are any surprises in this code.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-10.pir
 Hello World!
 Hello World!
 
 Hello, World!
-Isn&#39;t it a lovely day?
-</code></pre><p>So that&rsquo;s the basics of quoting. Now what about escapes?</p>
+Isn&#39;t it a lovely day?</code></pre>
+</figure><p>So that&rsquo;s the basics of quoting. Now what about escapes?</p>
 <h4 id="backslash-escapes">Backslash Escapes</h4>
 <p>Backslash escapes make it possible for you to include normally unprintable characters in a string. For example, they allow tabs and quotation marks to be part of your string:</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-11.pir
 .sub main :main
     $S0 = &#34;Question:\tAren&#39;t you sick of \&#34;Hello World\&#34;?\n&#34;
     print $S0
-.end
-</code></pre><p>See?</p>
-<pre tabindex="0"><code>$ parrot example-02-11.pir
-Question:  Aren&#39;t you sick of &#34;Hello World&#34;?
-</code></pre><p>Here are my favorite backslash escapes:</p>
+.end</code></pre>
+</figure><p>See?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-11.pir
+Question:  Aren&#39;t you sick of &#34;Hello World&#34;?</code></pre>
+</figure><p>Here are my favorite backslash escapes:</p>
 <table>
 <thead>
 <tr>
@@ -777,7 +863,10 @@ Question:  Aren&#39;t you sick of &#34;Hello World&#34;?
 <p>You will almost definitely want to explore the <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">string opcodes</a>.</p>
 <h4 id="playing-with-string">Playing With String</h4>
 <p>We have already been doing some interesting things with strings. Well <em>I</em> think getting user input and converting it to numbers is interesting. The opcodes open up the possibilities for some more interesting statistics and transformations.</p>
-<pre tabindex="0"><code>#!parrot
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # example-02-12.pir
 .sub main :main
     .const string PROMPT = &#34;Enter some text: &#34;
@@ -800,15 +889,18 @@ Question:  Aren&#39;t you sick of &#34;Hello World&#34;?
     print &#34;Title case: &#34;
     transformed = titlecase text
     say transformed
-.end
-</code></pre><p>Granted, it doesn&rsquo;t do a whole lot.</p>
-<pre tabindex="0"><code>$ parrot example-02-12.pir
+.end</code></pre>
+</figure><p>Granted, it doesn&rsquo;t do a whole lot.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-02-12.pir
 Enter some text: BRian
 Number of characters: 5
 Uppercase: BRIAN
 Lowercase: brian
-Title case: Brian
-</code></pre><p>Still, I think this shows that there is good reason to study those <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">string opcodes</a>.</p>
+Title case: Brian</code></pre>
+</figure><p>Still, I think this shows that there is good reason to study those <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">string opcodes</a>.</p>
 <h3 id="pmcs">PMCs</h3>
 <p>Uh, no. I&rsquo;m not ready to describe polymorphic containers yet. You&rsquo;ve already been using a PMC to get user input, and that&rsquo;s quite complex enough for the moment. Eventually we&rsquo;ll explore the <a href="http://docs.parrot.org/parrot/latest/html/pmc.html">PMCs</a> - what&rsquo;s already available, how to use them, and how to define our own. Right now we&rsquo;re just getting into the basics of how to make code run. As always, I encourage you to strike out on your own and explore the Parrot documentation if you want to get ahead of what I&rsquo;ve covered. I won&rsquo;t be offended. I&rsquo;ll be quite pleased, in fact.</p>
 <h2 id="summary">Summary</h2>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/03/listing-hugo-content-extensions-with-raku/">Listing Hugo Content Extensions With Raku</a></li>
@@ -301,9 +306,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2020/03/../../../attachments/img/2020/cover-2020-03-31.jpg" alt="attachments/img/2020/cover-2020-03-31.jpg"/>
 We like quick answers to important questions</p>
 <p>How many text formatting languages have I used for my <a href="/card/hugo/">Hugo</a> site? For that matter, how many content files were written in each?</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><p>Mostly <a href="/card/markdown/">Markdown</a>, with a fair chunk of <a href="/card/restructuredtext/">reStructuredText</a> and a little bit of <a href="/card/asciidoctor/">Asciidoctor</a>. Oh and one HTML source file, originally an <a href="/post/2014/10/blog-writing-in-org-mode/">Org-Jekyll experiment</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><p>Mostly <a href="/card/markdown/">Markdown</a>, with a fair chunk of <a href="/card/restructuredtext/">reStructuredText</a> and a little bit of <a href="/card/asciidoctor/">Asciidoctor</a>. Oh and one HTML source file, originally an <a href="/post/2014/10/blog-writing-in-org-mode/">Org-Jekyll experiment</a>.</p>
 <p>Okay that’s it. That’s the post, everyone. Time to go home!</p>
 <h2 id="breaking-it-down">Breaking it down</h2>
 <p>It helps me to understand the pieces I smash together in my one-liners. Read along if you like, or move on to more interesting topics. I don’t judge.</p>
@@ -323,20 +331,25 @@ Bag(adoc(4), html, md(327), rst(109))
 <dd>Content with <code>date</code> in the future</dd>
 </dl>
 <p>What does that output look like?</p>
-<pre tabindex="0"><code>$ hugo list all
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all
 path,slug,title,date,expiryDate,publishDate,draft,permalink
 content/draft/listing-hugo-content-extensions-with-raku/index.adoc,,Listing Hugo Content Extensions With Raku,2020-03-27T22:36:13-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/listing-hugo-content-extensions-with-raku/
 content/draft/managing-music-with-beets/index.adoc,,Managing My Music With Beets,2020-03-27T10:31:41-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/managing-music-with-beets/
 content/post/2020/03/stdu-viewer/index.rst,,STDU Viewer,2020-03-26T23:42:16-07:00,0001-01-01T00:00:00Z,2020-03-26T23:42:16-07:00,false,https://randomgeekery.org/2020/03/26/stdu-viewer/
-content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/
-</code></pre><p>I could feed that to any language with a nice library for handling CSV
+content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/</code></pre>
+</figure><p>I could feed that to any language with a nice library for handling CSV
 files — which is most of them. Heck, I could feed it to Excel!</p>
 <p>Now that I think to look, there’s the <a href="https://github.com/secretGeek/awesomecsv">Awesome CSV</a> list of tools and resources.</p>
 <p>But no. Today I handed it off to the first tool that came to mind.</p>
 <h3 id="raku--e"><code>raku -e</code></h3>
 <p>Look, we’ve all been stuck at home for a bit. I need a break from Python. How about <a href="/card/perl/">Perl</a>&rsquo;s sister language, <a href="/card/raku/">Raku</a>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="nb">bag</span><span class="p">(</span><span class="nb">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">..*].</span><span class="nb">map</span><span class="p">({</span> <span class="o">.</span><span class="nb">split</span><span class="p">(&#34;</span><span class="s2">,</span><span class="p">&#34;)</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="kt">IO</span><span class="o">.</span><span class="nb">extension</span> <span class="p">}))</span><span class="o">.</span><span class="nb">say</span>
-</span></span></code></pre></div><h4 id="bagsay"><code>bag(…).say</code></h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="nb">bag</span><span class="p">(</span><span class="nb">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">..*].</span><span class="nb">map</span><span class="p">({</span> <span class="o">.</span><span class="nb">split</span><span class="p">(&#34;</span><span class="s2">,</span><span class="p">&#34;)</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="kt">IO</span><span class="o">.</span><span class="nb">extension</span> <span class="p">}))</span><span class="o">.</span><span class="nb">say</span></span></span></code></pre>
+</figure><h4 id="bagsay"><code>bag(…).say</code></h4>
 <p><a href="https://docs.raku.org/routine/bag"><code>bag</code></a> uses its arguments to create a <a href="https://docs.raku.org/type/Bag">Bag</a> — basically, a set that gives each member a &ldquo;weight&rdquo; based on integer values. <a href="https://docs.raku.org/type/Mu#method_say"><code>say</code></a> prints the <a href="https://docs.raku.org/routine/gist"><code>gist</code></a> of the Bag, telling me what I need to know. The highest level view of this one-liner is &ldquo;make a Bag and give me a general idea what it looks like.&rdquo;</p>
 <h4 id="lines1map--"><code>lines[1..*].map({ … })</code></h4>
 <p>Now I need to create that bag from <code>hugo list all</code>. <a href="https://docs.raku.org/type/IO::Handle#routine_lines"><code>lines</code></a> called as
@@ -348,23 +361,35 @@ a routine creates a list of lines from <a href="https://docs.raku.org/language/v
 <p>So the line of comma-delimited values is <a href="https://docs.raku.org/type/Str#routine_split"><code>split</code></a> into values. Each line from Hugo’s CSV gets <code>split</code> into a list of values, but I only care about the first one. The first value is the path to the content file itself.</p>
 <p>Coercing that to an <a href="https://docs.raku.org/type/IO::Path">IO::Path</a> object lets me ask for an <a href="https://docs.raku.org/type/IO::Path#method_extension"><code>extension</code></a>.</p>
 <p>The block returns that extension, so when <code>map</code> is all done it has a list of file extensions:</p>
-<pre tabindex="0"><code>(adoc adoc rst rst md md md rst ...)
-</code></pre><p>During initialization, the Bag counts how many times each extension appears in the list. Since the result of that tally is all I care about, I print it out.</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><h2 id="alternate-versions">Alternate versions</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >(adoc adoc rst rst md md md rst ...)</code></pre>
+</figure><p>During initialization, the Bag counts how many times each extension appears in the list. Since the result of that tally is all I care about, I print it out.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><h2 id="alternate-versions">Alternate versions</h2>
 <p>While I was learning more about my impulsive little invocation, I wondered about other ways to get the same information from Raku.</p>
 <h3 id="a-bit-more-perlish">A bit more Perlish</h3>
 <p>All those method dots bother you? No problem. We can use them like plain old subroutines too. Course, we have to reach for <a href="https://docs.raku.org/language/variables#$*SPEC"><code>$*SPEC</code></a>. This lower-level <a href="https://docs.raku.org/type/IO::Spec">IO::Spec</a> object understands file extensions on our platform.</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;say bag(map({ $*SPEC.extension(split(&#34;,&#34;, $_)[0]) }, lines[1..*]))&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><h3 id="using-textcsv">Using Text::CSV</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;say bag(map({ $*SPEC.extension(split(&#34;,&#34;, $_)[0]) }, lines[1..*]))&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><h3 id="using-textcsv">Using Text::CSV</h3>
 <p>I know what to expect from Hugo’s CSV output, but what if I didn’t? I’d feed the standard input handle <code>$*IN</code> to H. Merijn Brand’s <a href="https://github.com/Tux/CSV">Text::CSV</a> module.</p>
-<pre tabindex="0"><code>$ zef install Text::CSV
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ zef install Text::CSV
 $ hugo list all | raku -MText::CSV -e \
   &#39;bag(csv(in =&gt; $*IN, headers=&gt;&#34;skip&#34;, fragment=&gt;&#34;col=1&#34;).map({ .IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><p>Though if I was being <em>this</em> careful, I’d probably also move away from a one-liner. But that takes us a long ways away from my original goal of getting a quick answer to an idle question.</p>
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><p>Though if I was being <em>this</em> careful, I’d probably also move away from a one-liner. But that takes us a long ways away from my original goal of getting a quick answer to an idle question.</p>
 <p>Well, I satisfied my curiosity and understood a little more Raku. That was fun!</p>
 
   

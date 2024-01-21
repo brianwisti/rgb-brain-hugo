@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2015/">2015</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2015/07/draft-mode-in-jekyll-templates/">Draft Mode in Jekyll Templates</a></li>
@@ -293,16 +298,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">tldr</a>
-Use <code>site.show_drafts</code> in templates if the local and live versions of your <a href="/card/jekyll/">Jekyll</a> site need to be different.</p>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p>Use <code>site.show_drafts</code> in templates if the local and live versions of your <a href="/card/jekyll/">Jekyll</a> site need to be different.</p>
 </blockquote>
 <p>Yesterday I published a post about <a href="/post/2015/07/making-a-jekyll-collection/">Jekyll collections</a>.  Today I checked <a href="http://www.google.com/analytics/">Google Analytics</a> to see if anybody looked at my site. 99 visits! Hey, nice. But I also noticed several &ldquo;localhost&rdquo; entries: those times I was double-checking my page locally with <code>jekyll serve -Dw</code> counted as visits, because the browser saw the analytics code and dutifully notified Google&rsquo;s servers. So - less than 99 visits to my site. Oh well.</p>
 <p>At some point I may disconnect Analytics altogether and go back to analyzing server logs directly. That certainly solves the localhost entries. Today I only want to adjust Jekyll&rsquo;s build process so that it skips analytics code when building drafts.</p>
 <p>Turns out that the <a href="http://jekyllrb.com/docs/configuration/">configuration documentation</a> lists <code>show_drafts: null</code> down there in the default configuration. I only needed an <code>unless</code> block in my template.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="err">{</span><span class="x">% unless site.show_drafts %}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="err">{</span><span class="x">% unless site.show_drafts %}
 </span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="err">{</span><span class="x">% include analytics.html %}
-</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="err">{</span><span class="x">% endunless %}
-</span></span></span></code></pre></div><p>I added a similar block for comments, since <a href="https://disqus.com/">Disqus</a> handles those -  another external service I don&rsquo;t need in draft mode.</p>
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="err">{</span><span class="x">% endunless %}</span></span></span></code></pre>
+</figure><p>I added a similar block for comments, since <a href="https://disqus.com/">Disqus</a> handles those -  another external service I don&rsquo;t need in draft mode.</p>
 <p>You may need something more elaborate than this for your needs, such as  ad code for a live site and a placeholder image when building drafts. No matter what the details, <code>site.show_drafts</code> provides the key that you need.</p>
 
   

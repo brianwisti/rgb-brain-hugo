@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2015/">2015</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2015/09/added-suggested-posts/">Added Suggested Posts</a></li>
@@ -300,7 +305,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>This weekend I attended PNWPHP. It was great. Instead of writing about that, I started looking up how to manage Related Posts in <a href="/card/jekyll/">Jekyll</a>. There are built-in options to do that, but they never satisfied me. I found <a href="http://zhangwenli.com/">Wenli Zhang</a>&rsquo;s post &ldquo;<a href="http://zhangwenli.com/blog/2014/07/15/jekyll-related-posts-without-plugin/">Jekyll Related Posts without Plugin</a>&rdquo; and understood a little better.</p>
 <p>Okay, no. Not really. But that post led me to <a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll-plugin</a> and this <a href="https://github.com/jumanji27/related_posts-jekyll_plugin">fork by jumanji27</a> which is friendlier for current Jekyll releases.</p>
 <p>Since it&rsquo;s a little more fiddly than a regular plugin, I hand-copied the code into a file <code>_plugins/related-posts.rb</code> and added a nice little &ldquo;Suggested Posts&rdquo; footer to the post template.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">&lt;article itemscope itemtype=&#34;http://schema.org/BlogPosting&#34;&gt;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">&lt;article itemscope itemtype=&#34;http://schema.org/BlogPosting&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">  ...
 </span></span></span><span class="line"><span class="cl"><span class="x">  &lt;footer&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">    &lt;h3&gt;Suggested Posts&lt;/h3&gt;
@@ -310,14 +317,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="err">{</span><span class="x">% endfor %}
 </span></span></span><span class="line"><span class="cl"><span class="x">    &lt;/p&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">  &lt;/footer&gt;
-</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/article&gt;
-</span></span></span></code></pre></div><p>I limited it to five related posts. Some posts will have a hundred related posts due to the way I imported content from my other sites.</p>
+</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/article&gt;</span></span></span></code></pre>
+</figure><p>I limited it to five related posts. Some posts will have a hundred related posts due to the way I imported content from my other sites.</p>
 <p>Incidentally, I think this plugin does a better job picking related posts than Jekyll&rsquo;s built-in approach, though I have no idea why. Jekyll usually ended up with nothing related, and just defaulted back to the most recent posts. This works better for me.</p>
 <p>For the moment I prefer a comma-delimited dump of posts. Later I may play with some list styling. However, I did have the problem of post titles being broken up by line breaks. A little <code>white-space: nowrap</code> in the right spot fixes that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">post-link</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">post-link</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Now the text of each post link stays together.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Now the text of each post link stays together.</p>
 <p>Just wanted to share all this. Have fun!</p>
   
 

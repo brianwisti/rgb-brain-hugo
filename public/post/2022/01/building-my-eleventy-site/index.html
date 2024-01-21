@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2022/">2022</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2022/01/building-my-eleventy-site/">Building my Eleventy site</a></li>
@@ -304,7 +309,9 @@ sometimes the tools break</p>
 <p>Everybody seems to treat the <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json#scripts"><code>scripts</code></a> block of a <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json"><code>package.json</code></a> pretty
 much the same as the targets of a <code>Makefile</code> so I embraced that.</p>
 <p>Here are my core scripts / tasks:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;dev&#34;</span><span class="p">:</span> <span class="s2">&#34;npm-run-all --parallel serve watch:style&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;build:dev&#34;</span><span class="p">:</span> <span class="s2">&#34;npm-run-all --serial site:img site:style site:content&#34;</span><span class="p">,</span>
@@ -318,11 +325,11 @@ much the same as the targets of a <code>Makefile</code> so I embraced that.</p>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;site:style&#34;</span><span class="p">:</span> <span class="s2">&#34;sass ./src/assets/scss/main.scss ./dist/assets/css/main.css&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;watch:style&#34;</span><span class="p">:</span> <span class="s2">&#34;sass --watch ./src/assets/scss/main.scss ./dist/assets/css/main.css&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Build, develop, clean, upload. All the basics are there. I don&rsquo;t think <code>package.json</code> <em>really</em> has namespaces, but I use <code>:</code> to pretend.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Build, develop, clean, upload. All the basics are there. I don&rsquo;t think <code>package.json</code> <em>really</em> has namespaces, but I use <code>:</code> to pretend.</p>
 <blockquote>
-<p>[!NOTE]
-I have a few more entries but until I smooth them out a bit they&rsquo;ll just add noise. I left them out for now.</p>
+<p><strong>NOTE</strong></p>
+<p>I have a few more entries but until I smooth them out a bit they&rsquo;ll just add noise. I left them out for now.</p>
 <p><code>site:img</code> is part of that noise to be honest, but it&rsquo;s mentioned prominently in other entries. Basically I preprocess my images with <a href="https://www.11ty.dev/docs/plugins/image/">eleventy-img</a>. We&rsquo;ll talk more about that another day maybe.</p>
 </blockquote>
 <h3 id="ts-node-to-execute-typescript-code"><code>ts-node</code> to execute TypeScript code</h3>

@@ -25,7 +25,9 @@ I built up the ox-hugo capture sample to get my preferred SECTION/YEAR/MONTH/STU
    <category>emacs</category>  <category>orgmode</category> 
   <content:encoded><![CDATA[<p>Trying an experiment with setting up a <a href="https://orgmode.org/manual/Capture-templates.html">capture template</a> so <a href="https://ox-hugo.scripter.co/">ox-hugo</a> can add short notes to the site from <a href="/card/org/">card/Org</a>.</p>
 <p>I built up the <a href="https://ox-hugo.scripter.co/doc/org-capture-setup/">ox-hugo capture sample</a> to get my preferred <code>SECTION/YEAR/MONTH/STUB</code> folder layout.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">org-hugo-note-capture-template</span> <span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">org-hugo-note-capture-template</span> <span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Returns </span><span class="ss">`org-capture&#39;</span><span class="s"> template string for new site note.&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">title</span> <span class="p">(</span><span class="nf">read-from-minibuffer</span> <span class="s">&#34;Title: &#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">fname</span> <span class="p">(</span><span class="nv">org-hugo-slug</span> <span class="nv">title</span><span class="p">))</span>
@@ -40,17 +42,21 @@ I built up the ox-hugo capture sample to get my preferred SECTION/YEAR/MONTH/STU
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;:export_file_name: index&#34;</span>
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;:end:&#34;</span>
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;%?\n&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">               <span class="s">&#34;\n&#34;</span><span class="p">)))</span>
-</span></span></code></pre></div><p>Then the important bits of my capture template…</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">               <span class="s">&#34;\n&#34;</span><span class="p">)))</span></span></span></code></pre>
+</figure><p>Then the important bits of my capture template…</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-capture-templates</span>
 </span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="s">&#34;s&#34;</span> <span class="s">&#34;Site&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="s">&#34;sn&#34;</span> <span class="s">&#34;Note&#34;</span> <span class="nv">entry</span>
 </span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/org-site</span> <span class="s">&#34;Notes&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">function</span> <span class="nv">org-hugo-note-capture-template</span><span class="p">)))))</span>
-</span></span></code></pre></div><p>Eventually I got it right, and <code>C-c c s n</code> brought me to this buffer, where I&rsquo;m editing a note that&rsquo;s already longer than I usually intend these to be.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">function</span> <span class="nv">org-hugo-note-capture-template</span><span class="p">)))))</span></span></span></code></pre>
+</figure><p>Eventually I got it right, and <code>C-c c s n</code> brought me to this buffer, where I&rsquo;m editing a note that&rsquo;s already longer than I usually intend these to be.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_hugo_section: note
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
@@ -63,8 +69,8 @@ I built up the ox-hugo capture sample to get my preferred SECTION/YEAR/MONTH/STU
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_file_name: index
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Trying an experiment: setting up a [[<span class="na">https://orgmode.org/manual/Capture-templates.html</span>][<span class="nt">capture template</span>]] so [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">ox-hugo</span>]] can add short notes to the site.
-</span></span></code></pre></div><p>Still loads to figure out — for example, how will I get cover images working? But at least I proved to myself that it works.</p>
+</span></span><span class="line"><span class="cl">Trying an experiment: setting up a [[<span class="na">https://orgmode.org/manual/Capture-templates.html</span>][<span class="nt">capture template</span>]] so [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">ox-hugo</span>]] can add short notes to the site.</span></span></code></pre>
+</figure><p>Still loads to figure out — for example, how will I get cover images working? But at least I proved to myself that it works.</p>
 <p>Back to fixing the broken <a href="/card/indieweb/">card/IndieWeb</a> mentions, which is why I opened my editor a couple of hours ago.</p>
 ]]></content:encoded>
 </item>
@@ -102,50 +108,60 @@ Why? Hugo renders Org files just fine, but I wanted my config to be a bit more t
 <p>Hugo renders Org files just fine, but I wanted my config to be a bit more tightly integrated.  <code>ox-hugo</code> works well as both plain old Org and as an intermediary that exports Hugo content.  A single Org file can become as many Hugo pages as I want.</p>
 <h2 id="getting-it-to-work">Getting it to work</h2>
 <p>This week my favorite Emacs flavor is <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>.  Their <a href="https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/org">org module</a> supports <code>ox-hugo</code> as an option, so enabling that option in my init should do the trick — after a <code>doom sync</code> of course.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
 </span></span><span class="line"><span class="cl"> <span class="err">⋮</span>
 </span></span><span class="line"><span class="cl"> <span class="nb">:lang</span>
-</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span>
-</span></span></code></pre></div><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
 </span></span><span class="line"><span class="cl"><span class="cs">#+hugo_base_dir</span><span class="c">: ~/Sites/random-geekery-blog/</span>
-</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span>
-</span></span></code></pre></div><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span></span></span></code></pre>
+</figure><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
 <blockquote>
-<p>[!NOTE]
-A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
+<p><strong>NOTE</strong></p>
+<p>A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
 </blockquote>
 <p>Each top-level section will be a page in <code>/config/</code>. I show <em>which</em> page in the subtree’s <code>:properties:</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_description: Be kinda weird if I didn&#39;t manage that one in Org, yes?
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_file_name: emacs
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_hugo_weight: 5
-</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
-</span></span></code></pre></div><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
+</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span></span></span></code></pre>
+</figure><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
 <blockquote>
-<p>[!WARNING]
-If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
+<p><strong>WARNING</strong></p>
+<p>If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
 </blockquote>
 <p>Since I’m showing off <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Babel</a>’s ability to tangle, I want to show the tangle references.  <code>:noweb no-export</code> tells Babel to tangle when evaluating the block, but <em>not</em> when exporting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">text</span><span class="c"> :noweb no-export
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>&lt;&lt;zsh/set-base-path&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/define-editor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/clicolor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/add-home-bin&gt;&gt;
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
 <p>I also create a subtree for the section <code>_index.md</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_file_name: _index
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">#+begin_note
 </span></span><span class="line"><span class="cl">This is my live config, written as an [[<span class="na">https://orgmode.org/</span>][<span class="nt">Org</span>]] file and integrated with my site with [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">=ox-hugo=</span>]].
-</span></span><span class="line"><span class="cl">⋮
-</span></span></code></pre></div><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
+</span></span><span class="line"><span class="cl">⋮</span></span></code></pre>
+</figure><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
 <h2 id="the-rest-is-implementation-details">The rest is implementation details</h2>
 <p>This whole process is fiddly.  Org mode.  Literate config.  Hugo.  <code>ox-hugo</code>. That makes the whole thing fiddly^4 or something.  But these quick notes covered things that got in my way while gluing the whole thing together.  If you want to try it out, at least <em>some</em> of the fiddliness should be clearer.</p>
 ]]></content:encoded>
@@ -179,7 +195,9 @@ formatting is better, for one thing.</p>
 <h2 id="prepare-org-mode">Prepare Org mode</h2>
 <p>Babel used to be an extension to Org, but it’s been a core part of the framework for a bit now. Thing is, Babel is powerful and a little dangerous. You need to give it permission.</p>
 <p><strong><code>~/.emacs</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
@@ -188,21 +206,23 @@ formatting is better, for one thing.</p>
 </span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
 </span></span><span class="line"><span class="cl">   <span class="ss">&#39;org-babel-load-languages</span>
-</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> 
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> </span></span></code></pre>
+</figure><ul>
 <li><code>shell</code> is a general-purpose mode that covers <code>sh</code>, <code>bash</code>, <code>zsh</code>, and so on.</li>
 </ul>
 <p>Babel wants to know what languages it can load. I’m only tangling shell files, so that’s all I put in <code>org-babel-load-languages</code>.</p>
 <p>By default, Babel requests confirmation from you for every code block it handles. That’s smart, but also annoying. Disabling <code>org-confirm-babel-evaluate</code> means I’m okay with Babel executing or extracting any code it finds. It also means I need to ensure that my code blocks don’t request any dangerous actions. Leave this setting enabled if smart matters more to you than annoying.</p>
 <blockquote>
-<p>[!NOTE] Correction
-The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
+<p><strong>Correction</strong></p>
+<p>The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
 </blockquote>
 <p>Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.</p>
 <h2 id="my-literate-config">My literate config</h2>
 <p>Let’s keep my starting point really really simple. Just a little bit out of my <a href="https://www.zsh.org/">Zsh</a> config.</p>
 <p><strong><code>config.org</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
 </span></span><span class="line"><span class="cl"><span class="nb">{{{kbd(C-c C-v t)}}}</span> to tangle until I&#39;m ready to add hooks
@@ -223,18 +243,27 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
-<pre tabindex="0"><code>Tangled 2 code blocks from config.org
-</code></pre><p>So I look in my files.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Tangled 2 code blocks from config.org</code></pre>
+</figure><p>So I look in my files.</p>
 <p><strong><code>~/.zshenv</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span>
-</span></span></code></pre></div><p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Yay it worked!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span></span></span></code></pre>
+</figure><p><strong><code>~/.zshrc</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Yay it worked!</p>
 <p>There’s not much being &ldquo;tangled&rdquo; though, is there?</p>
 <p>I’ve been playing with <a href="https://antigen.sharats.me/">Antigen</a>, but I may go back to <a href="https://ohmyz.sh/">Oh My Zsh</a>. Let’s put the Antigen stuff in its own block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c">
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
@@ -251,16 +280,20 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">antigen theme gozilla
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="s">&lt;&lt;antigen&gt;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">source /home/ran</span>dom/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>C-c C-v t again, and there it is!</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>C-c C-v t again, and there it is!</p>
 <p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen use oh-my-zsh
 </span></span><span class="line"><span class="cl">
@@ -277,8 +310,8 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
 <p><strong>Emacs code extraction key bindings</strong></p>
 <table>
 <thead>
@@ -321,7 +354,8 @@ BTW the theme is the poet package, more or less.</description>
   
   <guid>https://randomgeekery.org/post/2017/07/logging-money-in-org-mode/</guid>
   <description>I am setting up Emacs card/Org to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
-[!NOTE] 2020-03-01 It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
+2020-03-01
+It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
 I only want to see how I use my money.</description>
    <category>post</category> 
    <category>post</category> 
@@ -329,8 +363,8 @@ I only want to see how I use my money.</description>
   <content:encoded><![CDATA[<p><img src="/post/2017/07/../../../attachments/img/2017/cover-2017-07-31.png" alt="attachments/img/2017/cover-2017-07-31.png"/></p>
 <p>I am setting up Emacs <a href="/card/org/">card/Org</a> to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.</p>
 <blockquote>
-<p>[!NOTE] 2020-03-01
-It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</p>
+<p><strong>2020-03-01</strong></p>
+<p>It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</p>
 </blockquote>
 <p>I only want to see how I use my money. This can eventually become part of a budget, but all I want today is the ability to make quick money notes.</p>
 <ul>
@@ -345,7 +379,9 @@ It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</
 <p>I already use <a href="http://www.howardism.org/Technical/Emacs/journaling-org.html">journaling features</a> of Emacs org mode to record tasks that I accomplish through the day. That journal could also record income and expenses. I need a new org <a href="http://orgmode.org/manual/Capture-templates.html#Capture-templates">capture template</a> and menu item for money, though.</p>
 <h2 id="adding-a-menu-entry-and-template">Adding a menu entry and template</h2>
 <p><code>org-capture-templates</code> holds templates for creating new org entries. I manually edit mine, although the recommended approach to managing those is through the Emacs Customize interface. Old habits die hard.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; Probably easier for most folks to manage this with Customize (C-c c C),</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; Probably easier for most folks to manage this with Customize (C-c c C),</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; but setting this stuff directly helps me understand the structure better.</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-capture-templates</span>
@@ -354,8 +390,8 @@ It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</
 </span></span><span class="line"><span class="cl">        <span class="c1">; ... other entries removed for clarity</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;pm&#34;</span> <span class="s">&#34;Money entry&#34;</span> <span class="nv">entry</span>
 </span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">file+datetree</span> <span class="s">&#34;~/Sync/org/agendas/journal.org&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">         <span class="s">&#34;** %U - %^{Amount} %^{Summary} :money:%^g&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>I start with fields needed for the template selection menu in <code>org-capture</code>. I also tell org mode to save money entries will in the <code>journal.org</code> file under a <em>date tree</em>, which presents a year / month / date hierarchy for entries. Finally, I describe the capture template.</p>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;** %U - %^{Amount} %^{Summary} :money:%^g&#34;</span><span class="p">))))</span></span></span></code></pre>
+</figure><p>I start with fields needed for the template selection menu in <code>org-capture</code>. I also tell org mode to save money entries will in the <code>journal.org</code> file under a <em>date tree</em>, which presents a year / month / date hierarchy for entries. Finally, I describe the capture template.</p>
 <p>A capture template can be a string or file containing text and template directives. A short string describes money entries. The table below explains the <a href="http://orgmode.org/manual/Template-expansion.html#Template-expansion">template expansion</a> rules I used.</p>
 <table>
 <thead>
@@ -423,38 +459,45 @@ Org mode includes features which make it attractive for blogging and journaling.
 <p>Why not use that functionality for my own site? Random Geekery is built with <a href="/card/jekyll/">Jekyll</a>, and there are already <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">instructions</a> available for using the two together. I can use those as a starting point.</p>
 <h2 id="organize-directories">Organize Directories</h2>
 <p>When I’m using Org mode to write the blog pages, Jekyll becomes an implementation detail specific to publishing the blog. One folder contains all of the Jekyll project files, and an <code>org</code> folder mirrors the content-specific structure of the <code>jekyll</code> tree.</p>
-<pre tabindex="0"><code>+jekyll
-+- css
-+- _data
-+- _drafts
-+- img
-+- _includes
-+- _layouts
-+- pages
-+- _plugins
-+- _posts
-+- _sass
-+- _scripts
-+- _site
-+org
-    +- _drafts
-    +- _posts
-    +- pages
-</code></pre><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#43;jekyll
+&#43;- css
+&#43;- _data
+&#43;- _drafts
+&#43;- img
+&#43;- _includes
+&#43;- _layouts
+&#43;- pages
+&#43;- _plugins
+&#43;- _posts
+&#43;- _sass
+&#43;- _scripts
+&#43;- _site
+&#43;org
+    &#43;- _drafts
+    &#43;- _posts
+    &#43;- pages</code></pre>
+</figure><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
 <h2 id="front-matter">Front Matter</h2>
 <p>The <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> used by Jekyll and other engines to determine content metadata requires some special handling to get exported correctly by Org mode. The most straightforward thing is to use the suggestion from the instructions mentioned earlier. Put your front matter in a HTML block right at the top of the file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: Blog Writing in Org Mode
 </span></span><span class="line"><span class="cl">layout: post
 </span></span><span class="line"><span class="cl">category: Emacs
 </span></span><span class="line"><span class="cl">tags: org jekyll
 </span></span><span class="line"><span class="cl">---
-</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span>
-</span></span></code></pre></div><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span></span></span></code></pre>
+</figure><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
 <h2 id="configure-html-export">Configure HTML Export</h2>
 <p>HTML and other output needs to be placed correctly within the Jekyll layout conventions. A proper <code>org-publish-project-alist</code> will take care of this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
 </span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span>
 </span></span><span class="line"><span class="cl">         <span class="c1">;; Location of org files</span>
@@ -479,13 +522,15 @@ Org mode includes features which make it attractive for blogging and journaling.
 </span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-attachment</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;rg&#34;</span> <span class="nb">:components</span> <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span> <span class="s">&#34;org-static-randomgeekery&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">        <span class="p">))</span>
-</span></span></code></pre></div><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span></span></span></code></pre>
+</figure><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
 <h2 id="publishing-a-post">Publishing A Post</h2>
 <p>So when you’ve been editing a draft long enough and you’re ready to make it a real live post, you need to move the file from <code>_drafts</code> to <code>_posts</code>, with the publish date prefixing the filename.</p>
 <p>I could do that manually, but it’s tedious to do that for every blog post.</p>
 <p>I experiment with my rudimentary Emacs Lisp skills to create a new filename that looks about right.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Write current draft file as a Jekyll post file&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">if</span>
@@ -507,11 +552,11 @@ Org mode includes features which make it attractive for blogging and journaling.
 </span></span><span class="line"><span class="cl">        <span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;%s is not in _drafts!&#34;</span> <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">      <span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">)</span>
-</span></span></code></pre></div><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span></span></span></code></pre>
+</figure><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
 <blockquote>
-<p>[!WARNING]
-See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
+<p><strong>WARNING</strong></p>
+<p>See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
 </blockquote>
 <h2 id="followup">Followup</h2>
 <p>I wonder if maybe this isn’t the best approach, since it seems to confuse the heck out of Org mode. My lone org file just would not republish until I found <a href="http://lists.gnu.org/archive/html/emacs-orgmode/2009-05/msg00285.html">this post</a> for a similar situation. If it’s just not rebuilding, force it with a numeric argument: <kbd>C-u 0 C-c e</kbd>.</p>
@@ -524,14 +569,15 @@ See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the mo
   <pubDate>Fri, 16 May 2014 00:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2014/05/exporting-from-org-to-markdown/</guid>
-  <description>[!NOTE] tldr C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
+  <description>tldr
+C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
 Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about Org mode, and I’m not ready to leave it just yet. There’s a problem, though.</description>
    <category>post</category> 
    <category>post</category> 
    <category>emacs</category>  <category>orgmode</category>  <category>markdown</category>  <category>tools</category> 
   <content:encoded><![CDATA[<blockquote>
-<p>[!NOTE] <a href="/card/tldr/">tldr</a>
-<code>C-h v org-export-backends</code> to ensure that <a href="/card/markdown/">card/Markdown</a> export is available. <code>C-c C-e m m</code> invokes <code>org-md-export-to-markdown</code>. You may need to update <a href="/card/org/">card/Org</a>, which could be a fussy process.</p>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p><code>C-h v org-export-backends</code> to ensure that <a href="/card/markdown/">card/Markdown</a> export is available. <code>C-c C-e m m</code> invokes <code>org-md-export-to-markdown</code>. You may need to update <a href="/card/org/">card/Org</a>, which could be a fussy process.</p>
 </blockquote>
 <p>Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about <a href="http://orgmode.org">Org mode</a>, and I’m not ready to leave it just yet. There’s a problem, though. The blog that I’m supposed to be contributing to looks a bit like <a href="/card/jekyll/">Jekyll</a>. Specifically, it uses <a href="http://daringfireball.net/projects/markdown">Markdown</a> formatting. That’s nice, but I <em>really</em> like Org mode formatting this week.</p>
 <p>No problem!</p>
@@ -539,8 +585,11 @@ Let’s say that I am supposed to be writing a blog post. Not this one, another 
 <p>Except that <code>C-c C-e m m</code> just exported the post to a <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind mind map</a>. Cool, but not Markdown. <code>org-md-export-to-markdown</code> isn’t even available.</p>
 <p>Problem.</p>
 <p>Apparently I have <code>org-mode</code> 7.9.3f installed. The documentation on the Org Mode site is for the newest version: 8.2.6. How do I get the new version? The <a href="http://orgmode.org/manual/Installation.html">installation instructions</a> suggest it can be done with <code>package-install</code> before you’ve loaded any org files.</p>
-<pre tabindex="0"><code>package-install RET org
-</code></pre><p>And now I have 8.2.6.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >package-install RET org</code></pre>
+</figure><p>And now I have 8.2.6.</p>
 <p>No problem. Except now I’m getting an error with <code>C-c C-e m</code>. Oh, I see the problem. There are only a few <a href="http://orgmode.org/manual/Export-back_002dends.html#Export-back_002dends">export backends</a> enabled by default.</p>
 <ul>
 <li>ascii</li>
@@ -549,20 +598,30 @@ Let’s say that I am supposed to be writing a blog post. Not this one, another 
 <li>latex</li>
 </ul>
 <p>I need to set <code>org-export-backends</code>. The documentation specifies that I should use the Emacs customization interface. All righty.</p>
-<pre tabindex="0"><code>C-h v org-export-backends
-</code></pre><p>I end up with this in my <code>.init.el</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C-h v org-export-backends</code></pre>
+</figure><p>I end up with this in my <code>.init.el</code></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; custom-set-variables was added by Custom.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; Your init file should contain only one such instance.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
-</span></span><span class="line"><span class="cl"> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-export-backends</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nv">ascii</span> <span class="nv">html</span> <span class="nv">icalendar</span> <span class="nv">latex</span> <span class="nv">md</span><span class="p">))))</span>
-</span></span></code></pre></div><p>The export interface is better, but now I get a <strong>different</strong> error.</p>
-<pre tabindex="0"><code>org-refresh-category-properties: Invalid function: org-with-silent-modifications
-</code></pre><p>This <a href="http://www.benjaminmgross.com/markdown-export-on-aquamacs/">Markdown Export on Aquamacs</a> post by Benjamin M. Gross was particularly helpful. He suggests you use the package manager to remove and reinstall the <code>org</code> package.</p>
+</span></span><span class="line"><span class="cl"> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-export-backends</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nv">ascii</span> <span class="nv">html</span> <span class="nv">icalendar</span> <span class="nv">latex</span> <span class="nv">md</span><span class="p">))))</span></span></span></code></pre>
+</figure><p>The export interface is better, but now I get a <strong>different</strong> error.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >org-refresh-category-properties: Invalid function: org-with-silent-modifications</code></pre>
+</figure><p>This <a href="http://www.benjaminmgross.com/markdown-export-on-aquamacs/">Markdown Export on Aquamacs</a> post by Benjamin M. Gross was particularly helpful. He suggests you use the package manager to remove and reinstall the <code>org</code> package.</p>
 <p>So I did. There was a confusing moment where the package manager didn’t seem to realize that a Org Mode was installed. Just turns out that a newer version was available. I installed the newer version and restarted emacs.</p>
 <p>Trying <code>C-c C-e m m</code> one more time before I give up for now.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Exporting From Org to Markdown
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Exporting From Org to Markdown
 </span></span></span><span class="line"><span class="cl"><span class="gh"></span>
 </span></span><span class="line"><span class="cl">Let&#39;s say that I am supposed to be writing a blog post. Not this
 </span></span><span class="line"><span class="cl">one, another one. I have spent a lot of time learning about
@@ -571,8 +630,8 @@ Let’s say that I am supposed to be writing a blog post. Not this one, another 
 </span></span><span class="line"><span class="cl">to looks a bit like [<span class="nt">Jekyll</span>](<span class="na">http://jekyllrb.com/</span>). Specifically, it uses
 </span></span><span class="line"><span class="cl">[<span class="nt">Markdown</span>](<span class="na">http://daringfireball.net/projects/markdown/</span>)
 </span></span><span class="line"><span class="cl">formatting. That&#39;s nice, but I <span class="ge">*really*</span> like <span class="sb">`org-mode`</span> formatting
-</span></span><span class="line"><span class="cl">this week.
-</span></span></code></pre></div><p>See? No problem!</p>
+</span></span><span class="line"><span class="cl">this week.</span></span></code></pre>
+</figure><p>See? No problem!</p>
 <p>Now I just need to <em>write</em> the post. Not this one. The other one.</p>
 ]]></content:encoded>
 </item>

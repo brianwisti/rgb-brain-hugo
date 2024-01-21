@@ -50,13 +50,17 @@ relevant pictures are overrated; this dog and cat are cute together</p>
 <p><a href="/card/eleventy/">card/Eleventy</a>’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.</p>
 <p>Lots of big ideas, but let’s start small with the officially documented process for processing Sass.</p>
 <p>First things first, let&rsquo;s update <code>devDependencies</code> in my <code>package.json</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;devDependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;@11ty/eleventy&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.0.0&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I keep my Sass files under <code>src/assets/style</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/assets/style/
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I keep my Sass files under <code>src/assets/style</code>:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/assets/style/
 </span></span><span class="line"><span class="cl"><span class="go">src/assets/style/
 </span></span></span><span class="line"><span class="cl"><span class="go">├── _base.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">├── _layout.scss
@@ -65,9 +69,10 @@ relevant pictures are overrated; this dog and cat are cute together</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">    └── _shiki.scss
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">1 directory, 4 files
-</span></span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Generally, I have been following the site organization guidelines described in <a href="https://www.webstoemp.com/blog/eleventy-projects-structure/">Structuring Eleventy Projects</a>. If I have some non-content file I need transformed — Sass, images, whatever — I put it under <code>src/assets</code>.</p>
+</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Generally, I have been following the site organization guidelines described in <a href="https://www.webstoemp.com/blog/eleventy-projects-structure/">Structuring Eleventy Projects</a>. If I have some non-content file I need transformed — Sass, images, whatever — I put it under <code>src/assets</code>.</p>
 </blockquote>
 <p>Eleventy provides instructions on how to set up <a href="https://www.11ty.dev/docs/languages/custom/">custom templates</a> for dealing with Sass, and even <a href="https://www.11ty.dev/docs/languages/custom/#skipping-a-template-from-inside-of-the-compile-function">skipping a template</a> so it doesn&rsquo;t build <code>_base.scss</code> and so on.</p>
 <p>And that&rsquo;s great. It works. <code>src/assets/style/main.scss</code> becomes <code>dist/assets/style/main.css</code>. Course, it&rsquo;s not quite perfect. I still need <code>main.css</code> rebuild if I write to <code>_base.scss</code>.</p>
@@ -75,7 +80,9 @@ Generally, I have been following the site organization guidelines described in <
 <p>I need to think my way through this one.</p>
 <h2 id="add-a-sasshandler">Add a SassHandler</h2>
 <p>Keeping with Jérôme Coupé&rsquo;s structural suggestions, I keep my more complex JavaScript logic under <code>src/_11ty/</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/_11ty/
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/_11ty/
 </span></span><span class="line"><span class="cl"><span class="go">src/_11ty/
 </span></span></span><span class="line"><span class="cl"><span class="go">├── collections
 </span></span></span><span class="line"><span class="cl"><span class="go">├── filters
@@ -83,7 +90,8 @@ Generally, I have been following the site organization guidelines described in <
 </span></span></span><span class="line"><span class="cl"><span class="go">│   ├── MarkdownHandler.js
 </span></span></span><span class="line"><span class="cl"><span class="go">│   └── SassHandler.js
 </span></span></span><span class="line"><span class="cl"><span class="go">└── shortcodes
-</span></span></span></code></pre></div><p><code>handlers</code> is my own variation — that&rsquo;s where I put code for particular file and content types.</p>
+</span></span></span></code></pre>
+</figure><p><code>handlers</code> is my own variation — that&rsquo;s where I put code for particular file and content types.</p>
 <p>So what needs to go into <code>SassHandler.js</code>? Let&rsquo;s see.</p>
 <ul>
 <li>ensure only <code>main.scss</code> gets handed off to Sass</li>
@@ -91,7 +99,9 @@ Generally, I have been following the site organization guidelines described in <
 <li>avoid unnecessary recompilation — without getting too clever</li>
 </ul>
 <p>Time to open up the old text editor.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- file:src/_11ty/handlers/SassHandler.js
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- file:src/_11ty/handlers/SassHandler.js
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Handler for my Sass stylesheets
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Import libraries.
@@ -111,66 +121,81 @@ Generally, I have been following the site organization guidelines described in <
 </span></span><span class="line"><span class="cl">      <span class="c1">// ==&gt; Compile the Sass and write the CSS.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">};</span>
 </span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><p>With what I&rsquo;ve figured out so far, even though Eleventy can watch and act on the files for me, keeping the paths under tight control will be my job. A
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre>
+</figure><p>With what I&rsquo;ve figured out so far, even though Eleventy can watch and act on the files for me, keeping the paths under tight control will be my job. A
 change in <code>_base.scss</code> means a change in <code>main.scss</code> which means a write to <code>main.css</code>. I have not yet learned how to do that in any Eleventy-specific way. So I&rsquo;ll disable the <code>permalink</code> compile option and handle it myself with the appropriate libraries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Import libraries
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Import libraries
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs-plus&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;sass&#34;</span><span class="p">);</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;sass&#34;</span><span class="p">);</span></span></span></code></pre>
+</figure><ul>
 <li><a href="http://atom.github.io/fs-plus/"><code>fs-plus</code></a> is a little easier to work with than Node&rsquo;s standard <code>fs</code>   library for file handling</li>
 <li><a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html"><code>path</code></a> is no <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> — heck it&rsquo;s barely even <a href="https://docs.python.org/3/library/os.path.html"><code>os.path</code></a> — but it&rsquo;s better than trusting my own string-splitting and reassembly</li>
 <li><a href="https://sass-lang.com"><code>sass</code></a> of course; these <em>are</em> Sass files</li>
 </ul>
 <p>I know exactly which files I want to read and write. Let&rsquo;s define those as constant.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Define input and output paths for sass
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Define input and output paths for sass
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">curDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sassInputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">cirDir</span><span class="p">,</span> <span class="s2">&#34;src/assets/style/main.scss&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssOutputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">curDir</span><span class="p">,</span> <span class="s2">&#34;dist/assets/style/main.css&#34;</span><span class="p">);</span>
-</span></span></code></pre></div><p>Yes this does look a lot like what Eleventy would do on its own. Since I turned off permalinks for <code>scss</code> files, I need to be careful. I start this with being extremely specific and figuring out what I can relax later — assuming I decide that relaxing is what I want to do.</p>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssOutputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">curDir</span><span class="p">,</span> <span class="s2">&#34;dist/assets/style/main.css&#34;</span><span class="p">);</span></span></span></code></pre>
+</figure><p>Yes this does look a lot like what Eleventy would do on its own. Since I turned off permalinks for <code>scss</code> files, I need to be careful. I start this with being extremely specific and figuring out what I can relax later — assuming I decide that relaxing is what I want to do.</p>
 <blockquote>
-<p>[!NOTE]
-Common sense sugests these should be defined in a config file somewhere. I&rsquo;m still getting the hang of Eleventy, though. Common sense won&rsquo;t be an option for some time.</p>
+<p><strong>NOTE</strong></p>
+<p>Common sense sugests these should be defined in a config file somewhere. I&rsquo;m still getting the hang of Eleventy, though. Common sense won&rsquo;t be an option for some time.</p>
 </blockquote>
 <p>I figure the easiest way to avoid extra recompilation is by watching the clock. If it hasn&rsquo;t been long enough since the last build, skip it. Five seconds is a completely arbitrary value for &ldquo;long enough&rdquo; but it seems to be working.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Set build time guard variables
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Set build time guard variables
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// valueOf last sass build
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">minimumWait</span> <span class="o">=</span> <span class="mi">5_000</span><span class="p">;</span> <span class="c1">// wait this many milliseconds before rebuilding
-</span></span></span></code></pre></div><p>And what does a build time check look like? We use <a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/date/valueof"><code>Date.valueOf</code></a> to get the number of milliseconds since 1970-01-01, which is a handy numeric value for simple comparison. If the difference between that and <code>lastSassBuild</code> is less than <code>minimumWait</code> milliseconds, we don&rsquo;t need to build.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Ensure we need to build the CSS
+</span></span></span></code></pre>
+</figure><p>And what does a build time check look like? We use <a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/date/valueof"><code>Date.valueOf</code></a> to get the number of milliseconds since 1970-01-01, which is a handy numeric value for simple comparison. If the difference between that and <code>lastSassBuild</code> is less than <code>minimumWait</code> milliseconds, we don&rsquo;t need to build.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Ensure we need to build the CSS
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">valueOf</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">lastSassBuild</span> <span class="o">&lt;=</span> <span class="nx">minimumWait</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>What if we <em>do</em> need to build? Update <code>lastSassBuild</code> and log what&rsquo;s going on, since I enjoy a little feedback.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Remember and log this build
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>What if we <em>do</em> need to build? Update <code>lastSassBuild</code> and log what&rsquo;s going on, since I enjoy a little feedback.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Remember and log this build
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">inputPath</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">now</span><span class="si">}</span><span class="sb">] SassHandler: </span><span class="si">${</span><span class="nx">inputPath</span><span class="si">}</span><span class="sb"> changed`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Building </span><span class="si">${</span><span class="nx">sassFilePath</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-</span></span></code></pre></div><p>I still haven&rsquo;t learned enough JavaScript to know why, but when I use <code>sass.compile</code> instead of the supposedly deprecated <code>renderSync</code> I get an exception. Eventually I&rsquo;ll be forced to revisit that, but today is not that day.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Compile the Sass and write the CSS
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Building </span><span class="si">${</span><span class="nx">sassFilePath</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span></span></span></code></pre>
+</figure><p>I still haven&rsquo;t learned enough JavaScript to know why, but when I use <code>sass.compile</code> instead of the supposedly deprecated <code>renderSync</code> I get an exception. Eventually I&rsquo;ll be forced to revisit that, but today is not that day.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Compile the Sass and write the CSS
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">sass</span><span class="p">.</span><span class="nx">renderSync</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">file</span><span class="o">:</span> <span class="nx">sassFilePath</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssText</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s2">&#34;utf8&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">makeTreeSync</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">,</span> <span class="nx">cssText</span><span class="p">);</span>
-</span></span></code></pre></div><p>Again, I&rsquo;ve disabled <code>permalink</code> so it&rsquo;s on me to ensure the output directory exists and to write the generated CSS.</p>
+</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">,</span> <span class="nx">cssText</span><span class="p">);</span></span></span></code></pre>
+</figure><p>Again, I&rsquo;ve disabled <code>permalink</code> so it&rsquo;s on me to ensure the output directory exists and to write the generated CSS.</p>
 <p>So there it is! Probably not optimal but hey we&rsquo;re all learning something every day.</p>
 <h2 id="load-that-sasshandler">Load that SassHandler</h2>
 <p>Then the relevant bits of my <code>.eleventy.js</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">SassHandler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./src/_11ty/handlers/SassHandler.js&#34;</span><span class="p">);</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">SassHandler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./src/_11ty/handlers/SassHandler.js&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">eleventyConfig</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addTemplateFormats</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addExtension</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">,</span> <span class="nx">SassHandler</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span></code></pre></div><p>This site still builds and the styles update as expected, so: yay!</p>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre>
+</figure><p>This site still builds and the styles update as expected, so: yay!</p>
 <h2 id="whats-next">What&rsquo;s next?</h2>
 <p>I dunno. Knowing me? Probably <a href="https://asciidoctor.org">Asciidoctor</a>.</p>
 ]]></content:encoded>
@@ -211,7 +236,9 @@ One of the main goals was to get my site readable on mobile devices.</descriptio
 <p>One of the main goals was to get my site readable on mobile devices. Alas, Web design is not my strongest skill.</p>
 <p>I’ll let you know if I figure out what my strongest skill <em>is</em>.</p>
 <p>And I must say, this is the simplest highlighting theme I ever made:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.code</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.code</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.6</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nc">.builtin</span> <span class="p">{</span>
@@ -230,11 +257,14 @@ One of the main goals was to get my site readable on mobile devices.</descriptio
 </span></span><span class="line"><span class="cl">    <span class="nc">.output</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="na">color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">accent-color</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>It doesn’t highlight much. Heck it didn’t highlight <em>anything</em> in that <a href="https://sass-lang.com/">SCSS</a>. Here. Try this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&#34;Hello world&#34;</span> <span class="c1"># a small demonstration</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>It doesn’t highlight much. Heck it didn’t highlight <em>anything</em> in that <a href="https://sass-lang.com/">SCSS</a>. Here. Try this:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&#34;Hello world&#34;</span> <span class="c1"># a small demonstration</span>
 </span></span><span class="line"><span class="cl"><span class="go">Hello world
-</span></span></span></code></pre></div><p>But I’m not sure how long I’ll keep this style. For one thing, some of the bits like footnotes aren’t <em>quite</em> used as the stylesheet recommends. Though I could probably make it work across the site with some shortcodes. And there’s an awful lot of <code>float</code> and <code>clear</code> to get those side notes working. That can be a brittle approach.</p>
+</span></span></span></code></pre>
+</figure><p>But I’m not sure how long I’ll keep this style. For one thing, some of the bits like footnotes aren’t <em>quite</em> used as the stylesheet recommends. Though I could probably make it work across the site with some shortcodes. And there’s an awful lot of <code>float</code> and <code>clear</code> to get those side notes working. That can be a brittle approach.</p>
 <p>Besides, I’ve been itching to play with <a href="https://tailwindcss.com/">Tailwind CSS</a>. I might even see if I can reimplement this theme with Tailwind. Except with more color.</p>
 ]]></content:encoded>
 </item>
@@ -253,7 +283,9 @@ How? I used prefers-color-scheme. It tries to respect existing light/dark mode s
   <content:encoded><![CDATA[<p>Got tired of blowing my eyeballs out during evening work.</p>
 <p><img src="/post/2020/02/../../../attachments/img/2020/cover-2020-02-02.png" alt="attachments/img/2020/cover-2020-02-02.png"/></p>
 <p>How? I used <a href="https://developer.mozilla.org/en-US/search?q=prefers-color-scheme">prefers-color-scheme</a>. It tries to respect existing light/dark mode settings. Here’s the stylesheet short version.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nd">:root</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nd">:root</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">--text-color</span><span class="o">:</span>                 <span class="nf">hsl</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="kt">%</span><span class="o">,</span> <span class="mi">0</span><span class="kt">%</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="na">--content-background-color</span><span class="o">:</span>   <span class="nf">hsla</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="kt">%</span><span class="o">,</span> <span class="mi">100</span><span class="kt">%</span><span class="o">,</span> <span class="mi">0</span><span class="mf">.8</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -268,8 +300,8 @@ How? I used prefers-color-scheme. It tries to respect existing light/dark mode s
 </span></span><span class="line"><span class="cl"><span class="nn">#page-content</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="na">background-color</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">content</span><span class="o">-</span><span class="n">background-color</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">   <span class="na">color</span><span class="o">:</span>            <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="ni">text</span><span class="o">-</span><span class="ni">color</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: Wellington for Sass</title>
@@ -286,11 +318,17 @@ $ wt compile assets/scss/main.scss -b static/css 2017/10/31 21:09:54 Compilation
    <category>site</category>  <category>css</category>  <category>tools</category> 
   <content:encoded><![CDATA[<p>I found <a href="https://getwt.io/">Wellington</a>, a <a href="http://sass-lang.com/">Sass</a> compiler written in <a href="/card/go/">card/Go</a>.</p>
 <p>I installed Wellington with <a href="https://brew.sh/">Homebrew</a> - actually Linuxbrew but that’s a post for another day maybe, once I’m sure this Linuxbrew experiment worked for me.</p>
-<pre tabindex="0"><code>$ brew install wellington
-</code></pre><p>This is not the night to redesign the whole site, though. Make sure everything works.</p>
-<pre tabindex="0"><code>$ wt compile assets/scss/main.scss -b static/css
-2017/10/31 21:09:54 Compilation took: 28.333622ms
-</code></pre><p>Seems to produce the same style output. I had no complaint about the speed of Ruby’s Sass compiler, but Wellington is certainly quicker.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install wellington</code></pre>
+</figure><p>This is not the night to redesign the whole site, though. Make sure everything works.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ wt compile assets/scss/main.scss -b static/css
+2017/10/31 21:09:54 Compilation took: 28.333622ms</code></pre>
+</figure><p>Seems to produce the same style output. I had no complaint about the speed of Ruby’s Sass compiler, but Wellington is certainly quicker.</p>
 <p>I guess now I can start thinking about redesigning the site layout.</p>
 ]]></content:encoded>
 </item>
@@ -312,7 +350,9 @@ $ wt compile assets/scss/main.scss -b static/css 2017/10/31 21:09:54 Compilation
 </blockquote>
 <p>I like that. And his insistence on sticking to a limited palette was kind of inspiring too. Sometimes we get overloaded by choice. Maybe it&rsquo;s better to get a solid core of colors - or tools - and work with those.</p>
 <h2 id="the-bob-ross-css-palette">The Bob Ross CSS Palette</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">sap-green</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">sap-green</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#0A3410</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">sap-green-text</span> <span class="p">{</span>
@@ -440,8 +480,8 @@ $ wt compile assets/scss/main.scss -b static/css 2017/10/31 21:09:54 Compilation
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">titanium-white-border</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">border-color</span><span class="p">:</span> <span class="mh">#FFFFFF</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 </channel>
 </rss>

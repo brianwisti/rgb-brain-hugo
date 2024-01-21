@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/07/parrot-babysteps-0x-the-stellar-app/">Parrot Babysteps 0c - The Stellar App</a></li>
@@ -339,18 +344,27 @@ learning more about Parrot.
 catalog. Instead, let&rsquo;s set up a small test catalog and write some tests.</p>
 <p>Where you put your test data is a matter of taste. I will be keeping my data in
 a folder named <code>data</code>. That seems reasonable.</p>
-<pre tabindex="0"><code>$ mkdir data
-</code></pre><p>Only a few entries are needed in the test catalog. We just need to be sure that
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir data</code></pre>
+</figure><p>Only a few entries are needed in the test catalog. We just need to be sure that
 the code works with a CSV file with the same structure as the HYG database.
 I&rsquo;ll grab Sol, another G2V spectrum star, and a K3V star.</p>
-<pre tabindex="0"><code># example-0c-01/data/test-catalog.csv
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/data/test-catalog.csv
 StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 80,80,224817,,,,,0.01611947,-11.82353722,64.143681847338,419.04,-82.83,,8.40,4.36423057594421,G2V,0.566,62.7822,0.26494,-13.14292,-5.827e-06,0.000130277,-2.5209e-05
-7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06
-</code></pre><p>The test data is out of the way, so now I feel comfortable writing the tests
+7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06</code></pre>
+</figure><p>The test data is out of the way, so now I feel comfortable writing the tests
 that use it.</p>
-<pre tabindex="0"><code># example-0c-01/t/05-search-catalog.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/t/05-search-catalog.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -377,12 +391,15 @@ that use it.</p>
 
     matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;G2V&#39;, &#39;ColorIndex&#39;, &#39;0.566&#39;)
     is(matches, 1, &#39;There should be one G2V star with Spectrum G2V and ColorIndex 0.566&#39;)
-.end
-</code></pre><p>I am deliberately keeping the tests simple right now. The goal is to make sure
+.end</code></pre>
+</figure><p>I am deliberately keeping the tests simple right now. The goal is to make sure
 the basic functionality works rather than to guarantee behavior for every little
 detail. Tests can be added for those details as they become important.</p>
 <p>The actual <code>search_catalog</code> sub borrows quite a bit from <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>.</p>
-<pre tabindex="0"><code># example-0c-01/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -421,8 +438,8 @@ detail. Tests can be added for those details as they become important.</p>
   RETURN_MATCHES:
     close catalog
     .return(matches)
-.end
-</code></pre><p><code>search_catalog</code> will handle the task of reading the file and looking for
+.end</code></pre>
+</figure><p><code>search_catalog</code> will handle the task of reading the file and looking for
 stars that match the search conditions it has been given. After it defines
 a star from the current line, it asks <code>check_star</code> to compare that star
 to the set of conditions it has been given. It remembers the stars that
@@ -436,7 +453,10 @@ on that empty <code>main</code> that has been sitting in <code>stellar.pir</code
 want to make <code>hygxyz.csv</code> available now. I will be pushing my copy into the
 <code>data</code> folder, next to <code>test-catalog.csv</code>. You can place your copy wherever you
 like, but make sure that you set the path appropriately in <code>main</code>.</p>
-<pre tabindex="0"><code># example-0c-02/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-02/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -463,18 +483,21 @@ like, but make sure that you set the path appropriately in <code>main</code>.</p
     match_count = matches
     print match_count
     say &#34; matches.&#34;
-.end
-</code></pre><p>Here is the result of all that work we have done setting up the project and
+.end</code></pre>
+</figure><p>Here is the result of all that work we have done setting up the project and
 support code. The main subroutine in <code>stellar</code> is downright civilized
 compared to what we had for <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>. All we do is search based on the
 command line parameters and display each of the matches.</p>
-<pre tabindex="0"><code>$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
 &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
 &lt;Name: HD 7186, Spectrum: G2V, Distance: 112.359550561798&gt;
 &lt;Name: HD 140235, Spectrum: G2V, Distance: 60.1684717208183&gt;
 &lt;Name: HD 169019, Spectrum: G2V, Distance: 108.108108108108&gt;
-4 matches.
-</code></pre><p>Hey, this thing is almost useful!</p>
+4 matches.</code></pre>
+</figure><p>Hey, this thing is almost useful!</p>
 <h2 id="conclusion">Conclusion</h2>
 <p><code>stellar</code> has reached a major milestone. When I started fiddling with the <a href="http://astronexus.com/node/34">HYG
 Database</a>, I wanted to write a command-line Parrot tool that could look up

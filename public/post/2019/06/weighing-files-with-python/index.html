@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/06/weighing-files-with-python/">Weighing Files With Python</a></li>
@@ -315,15 +320,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p><img src="/post/2019/06/attachments/img/2019/firefox-throttled-3g-kitty.png" alt="Firefox Developer Tools network tab with throttling at 3G"/></p>
 <p>This is helpful on a page-by-page basis, and probably <em>very</em> helpful for evaluating a single page application. It doesn’t translate easily to checking an entire site. I suppose I could use <a href="https://github.com/tylertreat/Comcast">Comcast</a>, a command line tool for &ldquo;simulating shitty network conditions&rdquo; and maybe <a href="https://httpie.org/">HTTPie</a> to crawl the site under those conditions.</p>
 <blockquote>
-<p>[!NOTE]
-Brian, stop. This is taking you into the world of resilience testing and <a href="https://en.wikipedia.org/wiki/Chaos_engineering">chaos engineering</a>, which sounds <em>awesome</em> and has a wealth of tools already written. It also sounds completely unnecessary for this humble little blog.</p>
+<p><strong>NOTE</strong></p>
+<p>Brian, stop. This is taking you into the world of resilience testing and <a href="https://en.wikipedia.org/wiki/Chaos_engineering">chaos engineering</a>, which sounds <em>awesome</em> and has a wealth of tools already written. It also sounds completely unnecessary for this humble little blog.</p>
 <p>&ldquo;Pick your battles&rdquo; is another truism that applies here.</p>
 </blockquote>
 <p>We’ll ignore latency for now. Besides, I’ve already managed many major elements of latency. <a href="https://gohugo.io">Hugo</a> creates a static site. Every page already exists by the time you visit. No extra time needed for database lookups or constructing views. I use AWS <a href="https://aws.amazon.com/s3/">S3</a> to host, and <a href="https://aws.amazon.com/cloudfront/">Cloudfront</a> as a <a href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDN</a>. This is probably the fastest and most reliable approach possible with my resources.</p>
 <p>I <em>do</em> have an issue with the CDN not promptly updating some files when I upload the site, but I’m working on that.</p>
 <h2 id="measuring-file-sizes">Measuring file sizes</h2>
 <p>I could just pick an arbitrary threshold and find every file bigger than that with a <a href="/card/perl/">card/Perl</a> one-liner using <a href="https://metacpan.org/pod/File::Find::Rule">File::Find::Rule</a>&rsquo;s <a href="https://metacpan.org/pod/distribution/File-Find-Rule/lib/File/Find/Rule/Procedural.pod">procedural</a> flavor.</p>
-<pre tabindex="0"><code>$ perl -MFile::Find::Rule -E &#39;say for find(file =&gt; size =&gt; &#34;&gt; 6M&#34; =&gt; in =&gt; &#34;public&#34;);&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl -MFile::Find::Rule -E &#39;say for find(file =&gt; size =&gt; &#34;&gt; 6M&#34; =&gt; in =&gt; &#34;public&#34;);&#39;
 public/2015/08/01/zentangle-doodle/cover.png
 public/2017/04/22/kalaidoscope-symmetry/cover.jpg
 public/2017/11/07/something-colorful/cover.jpg
@@ -332,10 +340,12 @@ public/2018/09/30/cougar-mountain/fantastic-erratic.jpg
 public/2018/09/30/cougar-mountain/old-stump.jpg
 public/2018/09/30/cougar-mountain/mossy.jpg
 public/2018/09/30/cougar-mountain/tall-stump.jpg
-public/2018/09/30/cougar-mountain/cover.jpg
-</code></pre><p>Or maybe find the median between my biggest and smallest files, flagging everything bigger than the median. I promised <a href="/card/python/">card/Python</a> in the tags, so let’s move away from Perl.</p>
+public/2018/09/30/cougar-mountain/cover.jpg</code></pre>
+</figure><p>Or maybe find the median between my biggest and smallest files, flagging everything bigger than the median. I promised <a href="/card/python/">card/Python</a> in the tags, so let’s move away from Perl.</p>
 <p><strong><code>median.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">attr</span>
@@ -358,10 +368,13 @@ public/2018/09/30/cougar-mountain/cover.jpg
 </span></span><span class="line"><span class="cl">    <span class="n">median</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span><span class="n">smallest</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">largest</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl">    <span class="n">biggest_half</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files_seen</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">median</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">fw</span> <span class="ow">in</span> <span class="n">biggest_half</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">fw</span><span class="p">)</span>
-</span></span></code></pre></div><p>I know Python 3.7 has <a href="https://docs.python.org/3/library/dataclasses.html">data classes</a>. I like <a href="https://www.attrs.org">attrs</a>, which supports type hinting while still working on older versions of the language.</p>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">fw</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I know Python 3.7 has <a href="https://docs.python.org/3/library/dataclasses.html">data classes</a>. I like <a href="https://www.attrs.org">attrs</a>, which supports type hinting while still working on older versions of the language.</p>
 <p>Running this gives me the same files as my one-liner. Good choice for an arbitrary number, right?</p>
-<pre tabindex="0"><code>$ python median.py
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python median.py
 FileWeight(path=&#39;public/2015/08/01/zentangle-doodle/cover.png&#39;, size=8964751)
 FileWeight(path=&#39;public/2017/04/22/kalaidoscope-symmetry/cover.jpg&#39;, size=7729604)
 FileWeight(path=&#39;public/2017/11/07/something-colorful/cover.jpg&#39;, size=9594815)
@@ -370,8 +383,8 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/fantastic-erratic.jpg&#39
 FileWeight(path=&#39;public/2018/09/30/cougar-mountain/old-stump.jpg&#39;, size=7672471)
 FileWeight(path=&#39;public/2018/09/30/cougar-mountain/mossy.jpg&#39;, size=6639527)
 FileWeight(path=&#39;public/2018/09/30/cougar-mountain/tall-stump.jpg&#39;, size=7052340)
-FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412560)
-</code></pre><p>I learned that this technique of grabbing everything on one side of the median is called a &ldquo;median split.&rdquo; I also learned that however convenient it might be, a median split doesn’t <em>mean</em> anything. It’s the value halfway between two numbers. Is it a big download size? Maybe. What if I have a bunch of 5.9MB files? Those would be kind of big too, right? If I keep optimizing the biggest half and the median steadily moves down, how will I know when I’m done? What’s a small download?</p>
+FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412560)</code></pre>
+</figure><p>I learned that this technique of grabbing everything on one side of the median is called a &ldquo;median split.&rdquo; I also learned that however convenient it might be, a median split doesn’t <em>mean</em> anything. It’s the value halfway between two numbers. Is it a big download size? Maybe. What if I have a bunch of 5.9MB files? Those would be kind of big too, right? If I keep optimizing the biggest half and the median steadily moves down, how will I know when I’m done? What’s a small download?</p>
 <p>Okay. I’m okay. I need to breathe for a minute. Once you start asking questions, it can be hard to stop.</p>
 <p>So I need to know what the numbers mean, and what a good threshold is. Come to think of it, there might be a few thresholds.</p>
 <h2 id="estimating-download-time">Estimating download time</h2>
@@ -382,7 +395,9 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 <p>That 750 Kbps number represents 750,000 bits. There are eight bits in a byte. Divide 750,000 by eight and that’s only 93,750 bytes per second. The site’s median size of roughly six megabytes suddenly feels a lot bigger.</p>
 <p>Let’s teach the FileWeight class to estimate downloads. I’ll clarify its printed details while I’m at it.</p>
 <p><strong><code>download-time.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">attr</span>
 </span></span><span class="line"><span class="cl">
@@ -416,9 +431,12 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&gt; (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">) 3g=</span><span class="si">{</span><span class="n">time_3g</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
-</span></span></code></pre></div><p>The script is still focusing on the median, but the extra information should give us a little context.</p>
-<pre tabindex="0"><code>$ python download-time.py
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span></span></span></code></pre>
+</figure><p>The script is still focusing on the median, but the extra information should give us a little context.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python download-time.py
 &lt;public/2015/08/01/zentangle-doodle/cover.png&gt; (8.55 MB) 3g=95.624s
 &lt;public/2017/04/22/kalaidoscope-symmetry/cover.jpg&gt; (7.37 MB) 3g=82.449s
 &lt;public/2017/11/07/something-colorful/cover.jpg&gt; (9.15 MB) 3g=102.345s
@@ -427,8 +445,8 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 &lt;public/2018/09/30/cougar-mountain/old-stump.jpg&gt; (7.32 MB) 3g=81.840s
 &lt;public/2018/09/30/cougar-mountain/mossy.jpg&gt; (6.33 MB) 3g=70.822s
 &lt;public/2018/09/30/cougar-mountain/tall-stump.jpg&gt; (6.73 MB) 3g=75.225s
-&lt;public/2018/09/30/cougar-mountain/cover.jpg&gt; (8.02 MB) 3g=89.734s
-</code></pre><p>Oh that’s not good. The biggest file would take almost two and a half minutes to download, while the smallest above the median would still take over a minute. That’s on top of whatever else is on the page.</p>
+&lt;public/2018/09/30/cougar-mountain/cover.jpg&gt; (8.02 MB) 3g=89.734s</code></pre>
+</figure><p>Oh that’s not good. The biggest file would take almost two and a half minutes to download, while the smallest above the median would still take over a minute. That’s on top of whatever else is on the page.</p>
 <p>My threshold should be far less than the median. How much less?</p>
 <h3 id="picking-my-thresholds">Picking my thresholds</h3>
 <p>Jakob Nielsen <a href="https://www.nngroup.com/articles/response-times-3-important-limits/">summarized</a> how different response times feel to a user when interacting with an application – and yes, loading a post from your blog in a browser is interacting with an application, affected by the browser <em>and</em> your site (and the network, and so on).</p>
@@ -447,7 +465,9 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 </ul>
 <p>– but no. The first two are lies from my ego, the last two are <em>terrible</em> arguments from my apathy.</p>
 <p>I know my thresholds. Let’s teach FileWeight about them so it can report the news.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ...</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">DOWNLOAD_EXPRESSIONS</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;excessive&#34;</span><span class="p">:</span> <span class="s2">&#34;🙁&#34;</span><span class="p">,</span>
@@ -497,9 +517,12 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 </span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">random</span>
 </span></span><span class="line"><span class="cl">    <span class="n">selection</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">files_seen</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">fw</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">fw</span><span class="p">)</span>
-</span></span></code></pre></div><p>I also added a little emoji quick reference so I can tell at a glance the expected user reaction at the file’s download rate.</p>
-<pre tabindex="0"><code>$ python download-time.py
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">fw</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I also added a little emoji quick reference so I can tell at a glance the expected user reaction at the file’s download rate.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python download-time.py
 &lt;public/2018/12/31/hopepunk-for-2019/cover_hu302a359ad2f64a42481affbc4fbbb8c4_4191368_1000x0_resize_q75_linear.jpg&gt; (156.96 KB) 3g=1.714s😐
 &lt;public/2018/10/27/winter-hat-and-gloves/cover_hu42513aeed6d773f768448596f8f497f6_2320770_1000x0_resize_q75_linear.jpg&gt; (182.43 KB) 3g=1.993s😐
 &lt;public/tags/pagetemplate/index.xml&gt; (128.25 KB) 3g=1.401s😐
@@ -509,15 +532,17 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 &lt;public/2018/08/11/satellite/satellite-lines-black.jpg&gt; (476.27 KB) 3g=5.202s😐
 &lt;public/coolnamehere/2007/04/19_01-handling-a-single-round.html&gt; (469 bytes) 3g=0.005s😁
 &lt;public/2018/08/19/island-center-forest/mossy-trees.jpg&gt; (3.56 MB) 3g=39.789s🙁
-&lt;public/2008/10/01/natalies-hat/cover.jpg&gt; (84.94 KB) 3g=0.928s😊
-</code></pre><p>Plenty of build process artifacts in there. The long image names come from using Hugo <a href="https://gohugo.io/content-management/image-processing/">image processing</a> functions for thumbnails and inline images. I also have many tiny redirect files, letting Hugo’s
+&lt;public/2008/10/01/natalies-hat/cover.jpg&gt; (84.94 KB) 3g=0.928s😊</code></pre>
+</figure><p>Plenty of build process artifacts in there. The long image names come from using Hugo <a href="https://gohugo.io/content-management/image-processing/">image processing</a> functions for thumbnails and inline images. I also have many tiny redirect files, letting Hugo’s
 <a href="https://gohugo.io/content-management/urls/#aliases/">aliasing</a> behavior make up for the site’s inconsistent organization over time.</p>
 <p>A FileWeight object can now describe the details I care about for a single file, including where it fits in the attention span thresholds. How many of my files are too big?</p>
 <h2 id="putting-it-all-together">Putting it all together</h2>
 <p>Ideally I would measure all the files associated with each post – HTML, CSS, fonts, JavaScript if any, and images – then add those together for a total page weight. Someday I may even do that! Not today, though. Today I focus on information about downloading each file individually. This post is long enough already.</p>
 <h3 id="all-the-files">All the files</h3>
 <p><strong><code>report-weight.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
@@ -590,24 +615,29 @@ FileWeight(path=&#39;public/2018/09/30/cougar-mountain/cover.jpg&#39;, size=8412
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">site</span> <span class="o">=</span> <span class="n">SiteWeight</span><span class="p">(</span><span class="s2">&#34;public&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">site</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
-</span></span></code></pre></div><p>I spent too much time on that download table. I could have spent even more, sizing each column to the longest field and <em>anyways</em> that wasn’t the point. Let’s look at my download estimates.</p>
-<pre tabindex="0"><code>$ python report-weight.py
+</span></span><span class="line"><span class="cl">    <span class="n">site</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span></span></span></code></pre>
+</figure><p>I spent too much time on that download table. I could have spent even more, sizing each column to the longest field and <em>anyways</em> that wasn’t the point. Let’s look at my download estimates.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python report-weight.py
 All files in public
 1,886 files (418.71 MB)
 Download guesses for 750.00 Kbps
  🙁 &gt; 10s      &gt; 915.53 KB                   111
  😐 1s - 10s   91.55 KB - 915.53 KB          269
  😊 0.1s - 1s  9.16 KB - 91.55 KB            611
- 😁 ≤ 0.1s     ≤ 9.16 KB                     895
-</code></pre><p>Way too many files take more than ten seconds to load. I know better than to be pleased about the large number of files that load instantly. As I mentioned, quite a few of them are redirects. On the latency side of things those are <em>worse</em> because the visitor then has to load the real post.</p>
+ 😁 ≤ 0.1s     ≤ 9.16 KB                     895</code></pre>
+</figure><p>Way too many files take more than ten seconds to load. I know better than to be pleased about the large number of files that load instantly. As I mentioned, quite a few of them are redirects. On the latency side of things those are <em>worse</em> because the visitor then has to load the real post.</p>
 <p>I also said I’m not worrying about latency today.</p>
 <p>The median list was helpful in showing me that my biggest offenders are image files, so what about adding a report on those?</p>
 <h3 id="just-the-media-files">Just the media files</h3>
 <p>The easiest way would be to base it off file extension. But that ends up looking a bit untidy, because extensions have accumulated over the years. JPEG files are the worst offender, being stored as <code>.jpeg</code>, <code>.jpg</code>, and even <code>.JPG</code>.</p>
 <p>I’ll use the standard <a href="https://docs.python.org/3/library/mimetypes.html#mimetypes.guess_type">mimetypes</a> library instead. FileWeight can use that to guess what kind of file it’s looking at, and SiteWeight will make another download table for media files. It still uses file extensions, but with a smarter list than what I could build.</p>
 <p><strong><code>weight-with-media.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ...</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">mimetypes</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Tell mimetypes about nonstandard files it may find.</span>
@@ -682,9 +712,12 @@ Download guesses for 750.00 Kbps
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">media_summary</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
-</span></span></code></pre></div><p>The script makes two download reports now, with only a little more work!</p>
-<pre tabindex="0"><code>$ python weight-with-media.py
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span></span></span></code></pre>
+</figure><p>The script makes two download reports now, with only a little more work!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python weight-with-media.py
 ---
 All files in public
 1,886 files (418.71 MB)
@@ -700,8 +733,8 @@ Download guesses for 750.00 Kbps
  🙁 &gt; 10s      &gt; 915.53 KB                   107
  😐 1s - 10s   91.55 KB - 915.53 KB          236
  😊 0.1s - 1s  9.16 KB - 91.55 KB            339
- 😁 ≤ 0.1s     ≤ 9.16 KB                     120
-</code></pre><p>Yeah, that’s what I thought. The majority of those small files are text, and the vast majority of the large files are image or video. Yes, I noticed that a few of my excessively large files are text. Probably archive pages of one sort or another. I’ll gather the information on those later.</p>
+ 😁 ≤ 0.1s     ≤ 9.16 KB                     120</code></pre>
+</figure><p>Yeah, that’s what I thought. The majority of those small files are text, and the vast majority of the large files are image or video. Yes, I noticed that a few of my excessively large files are text. Probably archive pages of one sort or another. I’ll gather the information on those later.</p>
 <p>But it looks like I have an answer to my question.</p>
 <h2 id="my-question">My question?</h2>
 <p>Whether it’s worth my time to try optimizing image file sizes.</p>
@@ -724,13 +757,16 @@ Download guesses for 750.00 Kbps
 </ul>
 <h3 id="should-i-optimize-my-weighing-script">Should I optimize my weighing script?</h3>
 <p>Good question! Let’s look at the numbers.</p>
-<pre tabindex="0"><code>$ time make weight
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ time make weight
 python weight-with-media.py
 ...
 real    0m0.131s
 user    0m0.083s
-sys     0m0.044s
-</code></pre><p>No.</p>
+sys     0m0.044s</code></pre>
+</figure><p>No.</p>
 <p>Seriously though. I assembled this in a few hours. Half of it’s too clever and the other half’s too stupid. But it gets the answers I need in a timely fashion. That&rsquo;s plenty good enough.</p>
 
   

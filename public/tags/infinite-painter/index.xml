@@ -162,7 +162,10 @@ Of course I already worked out the site integration.</description>
 <p><img src="/post/2018/06/../../../attachments/img/2018/cover-2018-06-12.png" alt="attachments/img/2018/cover-2018-06-12.png"/></p>
 <p>Well, one design. I only got things going yesterday, with a quick sketch on a plain white background. Future plans include adjusting old designs and creating new ones for the store, with an intended pace of roughly one design per week.</p>
 <p>Of course I already worked out the site integration. Everything on Random Geekery tagged &ldquo;buy me&rdquo; should have a direct link to its page on the store. I get a lovely Hugo <a href="http://gohugo.io/functions/errorf/"><code>errorf</code></a> message if I forget the link.</p>
-<pre tabindex="0"><code>{{- if in .Params.tags &#34;buy me&#34; -}}
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >{{- if in .Params.tags &#34;buy me&#34; -}}
   {{- if isset .Params &#34;purchase&#34; -}}
     {{- with .Params.purchase -}}
       &lt;p class=&#34;cover-link&#34;&gt;
@@ -172,8 +175,8 @@ Of course I already worked out the site integration.</description>
   {{- else -}}
     {{ errorf &#34;%s Tagged &#39;buy me&#39; without purchase front matter!&#34; .File.Path }}
   {{- end -}}
-{{- end -}}
-</code></pre><p>My partial is a little clunky, but it worked. I can improve it later.</p>
+{{- end -}}</code></pre>
+</figure><p>My partial is a little clunky, but it worked. I can improve it later.</p>
 ]]></content:encoded>
 </item>
 <item>

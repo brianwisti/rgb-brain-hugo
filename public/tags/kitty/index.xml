@@ -30,27 +30,38 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 <p>Confused yet? Me too. I barely understand what I’m trying to describe here. Really it’s just that ligatures make your code look cooler than the plain text most developers enter and read for hours a day. Whether they improve life in any meaningful fashion is arguable, but &ldquo;it looks cooler&rdquo; is good enough for me today.</p>
 <p>By using a special font such as <a href="https://github.com/tonsky/FiraCode">Fira Code</a> and a capable terminal, all sorts of character transformations happen. For example, the <code>&lt;</code> and <code>=</code> characters combined as <code>⇐</code> — to indicate &ldquo;less than or equal to&rdquo; — displays as <code>⩽</code>. It means the same thing, but it says it with a single visual character.</p>
 <p>We have this rich library of symbols to describe our solutions, but most programming languages use a tiny subset of those symbols. Except <a href="/card/raku/">card/Raku</a> of course. Raku sort of does everything.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku -e <span class="s1">&#39;say 1 ≤ 5&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku -e <span class="s1">&#39;say 1 ≤ 5&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">True
-</span></span></span></code></pre></div><p>Anyways, back to ligatures. They let you pretend you’re using that rich library of symbols.</p>
+</span></span></span></code></pre>
+</figure><p>Anyways, back to ligatures. They let you pretend you’re using that rich library of symbols.</p>
 <p>Gnome Terminal does not support ligatures, at least not on my system. Konsole from the <em>inbox/KDE</em> project does, but adds many KDE-specific dependencies to my system. I wanted to find something a bit more lightweight.</p>
 <p>kitty satisfies that need.</p>
 <h2 id="installing-kitty">Installing kitty</h2>
 <p>kitty runs on both Linux and macOS, but right now I’m concerned with Linux. I already have <a href="https://iterm2.com/">iTerm2</a> for ligatures on macOS.</p>
 <p>The <a href="https://sw.kovidgoyal.net/kitty/binary.html">installation instructions</a> for <em>kitty</em> follow a familiar pattern of &ldquo;grab and run the installer script.&rdquo; If you don’t feel safe with that you can <a href="https://sw.kovidgoyal.net/kitty/build.html">install from source</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -L https://sw.kovidgoyal.net/kitty/installer.sh <span class="p">|</span> sh /dev/stdin
-</span></span></code></pre></div><p><code>installer.sh</code> loads Python to download the latest <code>kitty</code> executable to <code>~/.local/kitty.app</code> on Linux.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -L https://sw.kovidgoyal.net/kitty/installer.sh <span class="p">|</span> sh /dev/stdin</span></span></code></pre>
+</figure><p><code>installer.sh</code> loads Python to download the latest <code>kitty</code> executable to <code>~/.local/kitty.app</code> on Linux.</p>
 <p>I followed the installation instructions for desktop integration, making small adjustments as needed for my own system setup.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ln -s ~/.local/kitty.app/bin/kitty ~/bin/
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ln -s ~/.local/kitty.app/bin/kitty ~/bin/
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> cp ~/.local/kitty.app/share/applications/kitty.desktop <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="go">  ~/.local/share/applications
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> sed -i <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="go">  &#34;s/Icon\=kitty/Icon\=\/home\/$USER\/.local\/kitty.app\/share\/icons\/hicolor\/256x256\/apps\/kitty.png/g&#34; \
 </span></span></span><span class="line"><span class="cl"><span class="go">  ~/.local/share/applications/kitty.desktop
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> chmod u+x ~/.local/share/applications/kitty.desktop
-</span></span></code></pre></div><p>These steps put <em>kitty</em> on my <code>$PATH</code> and create a desktop entry complete with application icon for launching from the GNOME Menu.</p>
+</span></span></code></pre>
+</figure><p>These steps put <em>kitty</em> on my <code>$PATH</code> and create a desktop entry complete with application icon for launching from the GNOME Menu.</p>
 <p>My desktop entry file ended up looking like this after a couple edits (specifying executable path, stuff like that).</p>
-<div class="highlight" title="kitty.desktop"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Desktop Entry]</span>
+<figure class="highlight">
+  <figcaption><tt>kitty.desktop</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Desktop Entry]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Version</span><span class="o">=</span><span class="s">1.0</span>
 </span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">Application</span>
 </span></span><span class="line"><span class="cl"><span class="na">Name</span><span class="o">=</span><span class="s">kitty</span>
@@ -59,50 +70,69 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 </span></span><span class="line"><span class="cl"><span class="na">TryExec</span><span class="o">=</span><span class="s">/home/randomgeek/bin/kitty</span>
 </span></span><span class="line"><span class="cl"><span class="na">Exec</span><span class="o">=</span><span class="s">/home/randomgeek/bin/kitty</span>
 </span></span><span class="line"><span class="cl"><span class="na">Icon</span><span class="o">=</span><span class="s">/home/randomgeek/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png</span>
-</span></span><span class="line"><span class="cl"><span class="na">Categories</span><span class="o">=</span><span class="s">System;TerminalEmulator;</span>
-</span></span></code></pre></div><p>Course, I still had to tell GNOME the desktop launcher was trustworthy but opening <code>~/.local/share/applications/kitty.desktop</code> in the GNOME file manager.</p>
+</span></span><span class="line"><span class="cl"><span class="na">Categories</span><span class="o">=</span><span class="s">System;TerminalEmulator;</span></span></span></code></pre>
+</figure><p>Course, I still had to tell GNOME the desktop launcher was trustworthy but opening <code>~/.local/share/applications/kitty.desktop</code> in the GNOME file manager.</p>
 <p><img src="/post/2019/05/attachments/img/2019/gnome-trust.png" alt="GNOME trust dialog"/></p>
 <h2 id="font-installation">Font installation</h2>
 <p>I need a font that supports ligatures now. Fira Code is the one I know best, though I wouldn’t mind trying others. Fortunately, Fira Code is available via my system package manager.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install fonts-firacode
-</span></span></code></pre></div><h2 id="kitty-configuration">kitty configuration</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install fonts-firacode</span></span></code></pre>
+</figure><h2 id="kitty-configuration">kitty configuration</h2>
 <p>Next step is to define my <a href="https://sw.kovidgoyal.net/kitty/conf.html">configuration</a> in <code>~/.config/kitty/kitty.conf</code>. The whole point of this experiment is to get ligatures, so that’s my first configuration change.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">font_family           Fira Code
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">font_family           Fira Code
 </span></span><span class="line"><span class="cl">bold_font             auto
 </span></span><span class="line"><span class="cl">italic_font           auto
 </span></span><span class="line"><span class="cl">bold_italic_font      auto
-</span></span><span class="line"><span class="cl">font_size             14.0
-</span></span></code></pre></div><p>Then throw in some window geometry stuff. Normally <em>kitty</em> remembers and applies the last window size you used, but I often don’t want that for the quick transient terminals I open during my day. Instead I go with a terminal 110 characters wide and 40 columns tall.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">remember_window_size  no
+</span></span><span class="line"><span class="cl">font_size             14.0</span></span></code></pre>
+</figure><p>Then throw in some window geometry stuff. Normally <em>kitty</em> remembers and applies the last window size you used, but I often don’t want that for the quick transient terminals I open during my day. Instead I go with a terminal 110 characters wide and 40 columns tall.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">remember_window_size  no
 </span></span><span class="line"><span class="cl">initial_window_width  110c
-</span></span><span class="line"><span class="cl">initial_window_height 40c
-</span></span></code></pre></div><p><em>kitty</em> does not load a login shell by default. I prefer a login shell, so I specify that in <code>kitty.conf</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">shell                 /bin/bash --login
-</span></span></code></pre></div><h2 id="using-kitty">Using kitty</h2>
+</span></span><span class="line"><span class="cl">initial_window_height 40c</span></span></code></pre>
+</figure><p><em>kitty</em> does not load a login shell by default. I prefer a login shell, so I specify that in <code>kitty.conf</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">shell                 /bin/bash --login</span></span></code></pre>
+</figure><h2 id="using-kitty">Using kitty</h2>
 <p><img src="/post/2019/05/attachments/img/2019/mojolicious.png" alt="Ligatures when looking at Mojolicious source"/></p>
 <p>The ligatures are pretty, of course. But what I really notice? Kitty is fast. Maybe that’s just because I became accustomed to GNOME Terminal and its sluggishness. Kitty might not be <a href="http://rxvt.sourceforge.net/">rxvt</a> fast, but it’s much quicker than what I’m used to.</p>
 <p>Since kitty is a terminal emulator, most of the functionality is familiar. The default <a href="https://sw.kovidgoyal.net/kitty/index.html#tabs-and-windows">keyboard shortcuts</a> are similar to those offered by GNOME Terminal, with support for clipboard access and tabs. <em>kitty</em> also supports windows much like panes in <a href="https://github.com/tmux/tmux/wiki">tmux</a>, but for now I’m sticking with the familiarity of tmux.</p>
 <h2 id="speaking-of-tmux">Speaking of tmux</h2>
 <p>terminfo should install what’s needed, but if not you will see an annoying message when you try to start tmux:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tmux
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tmux
 </span></span><span class="line"><span class="cl"><span class="go">open terminal failed: missing or unsuitable terminal: xterm-kitty
-</span></span></span></code></pre></div><p>This works:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">TERM</span><span class="o">=</span><span class="s2">&#34;xterm-256color&#34;</span> tmux
-</span></span></code></pre></div><p>But see this <a href="https://unix.stackexchange.com/questions/470676/tmux-under-kitty-terminal">StackExchange</a> item for better instructions. Or at least a pointer to better instructions.</p>
+</span></span></span></code></pre>
+</figure><p>This works:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">TERM</span><span class="o">=</span><span class="s2">&#34;xterm-256color&#34;</span> tmux
+</span></span></code></pre>
+</figure><p>But see this <a href="https://unix.stackexchange.com/questions/470676/tmux-under-kitty-terminal">StackExchange</a> item for better instructions. Or at least a pointer to better instructions.</p>
 <h2 id="kittens">kittens</h2>
 <p><a href="https://sw.kovidgoyal.net/kitty/index.html#kittens">Kittens</a> are Python scripts that take advantage of features provided by kitty. Kitty includes built-in kittens for handling <a href="https://sw.kovidgoyal.net/kitty/kittens/hints.html">handling arbitrary text</a> such as URLs, working with the <a href="https://sw.kovidgoyal.net/kitty/kittens/clipboard.html">clipboard</a>, and viewing <a href="https://sw.kovidgoyal.net/kitty/kittens/diff.html">file diffs</a>. You can even <a href="https://sw.kovidgoyal.net/kitty/kittens/custom.html">write your own</a>!</p>
 <p>Most of the kittens are useful, but a couple also make for great screenshots. So here they are 😸</p>
 <h3 id="icat">icat</h3>
 <p><a href="https://sw.kovidgoyal.net/kitty/kittens/icat.html">icat</a> shows an image in the terminal.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kitty +kitten icat cat-fall.jpeg
-</span></span></code></pre></div><p><img src="/post/2019/05/attachments/img/2019/kitty-icat.png" alt="classic cat pics in the terminal!"/></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kitty +kitten icat cat-fall.jpeg</span></span></code></pre>
+</figure><p><img src="/post/2019/05/attachments/img/2019/kitty-icat.png" alt="classic cat pics in the terminal!"/></p>
 <p>Over on Twitter, <a href="http://techblog.babyl.ca/">Yanick Champoux</a> noted that
 <code>icat</code> does not play well with tmux.</p>
 <p>{{&lt; tweet user=&ldquo;yenzie&rdquo; id=&ldquo;1133131184089681920&rdquo; &gt;}}</p>
 <p>Confirmed for myself by running icat in a tmux window.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> kitty +kitten icat content/post/2019/kitty-terminal/kitty-icat.png
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> kitty +kitten icat content/post/2019/kitty-terminal/kitty-icat.png
 </span></span><span class="line"><span class="cl"><span class="go">Terminal does not support reporting screen sizes via the TIOCGWINSZ ioctl
-</span></span></span></code></pre></div><p>Dang. Thanks, Yanick!</p>
+</span></span></span></code></pre>
+</figure><p>Dang. Thanks, Yanick!</p>
 <h3 id="unicode-input">Unicode Input</h3>
 <p><code>Control-Shift-U</code> lets you enter <a href="https://sw.kovidgoyal.net/kitty/kittens/unicode-input.html">Unicode characters</a>, by code or by name.</p>
 <p><img src="/post/2019/05/attachments/img/2019/unicode-entry.png" alt="Entering a unicode character by name in kitty"/></p>

@@ -133,8 +133,8 @@ Yesterday I finished a little project to set up a reusable Vagrant box for Mongo
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/">Connect To MongoDB on a Vagrant box from the host</a></li>
@@ -296,7 +301,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <a href="/post/2014/08/trusty-mongo-mojo-box/">Yesterday</a> I finished a little project to set up a reusable Vagrant box for MongoDB and <a href="/card/perl/">card/Perl</a> Mojolicious experiments. That project is okay as it is right now, but I would like to get at MongoDB from the host system.</p>
 <p>It is not painfully difficult, but it would be easy for me to forget. That is why I made a post out of it.</p>
 <p>Adjust the Vagrantfile so that the MongoDB guest port is forwarded to a host port.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">&#34;2&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">&#34;2&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">
@@ -309,13 +316,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">  <span class="c1"># Configure guest services to be accessible on host</span>
 </span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">3000</span>
 </span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">27017</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">27017</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Inside the box, comment out the <code>bind_ip</code> line from <code>/etc/mongod.conf</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Listen to local interface only. Comment out to listen on all interfaces.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># bind_ip = 127.0.0.1</span>
-</span></span></code></pre></div><p>Restart the <code>mongod</code> service.</p>
-<pre tabindex="0"><code>$ sudo service mongod restart
-</code></pre><p>Connect to Mongo from the host using whatever interface you prefer. I have been enjoying <a href="http://robomongo.org/">Robomongo</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Inside the box, comment out the <code>bind_ip</code> line from <code>/etc/mongod.conf</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Listen to local interface only. Comment out to listen on all interfaces.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bind_ip = 127.0.0.1</span></span></span></code></pre>
+</figure><p>Restart the <code>mongod</code> service.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo service mongod restart</code></pre>
+</figure><p>Connect to Mongo from the host using whatever interface you prefer. I have been enjoying <a href="http://robomongo.org/">Robomongo</a>.</p>
   
 
 

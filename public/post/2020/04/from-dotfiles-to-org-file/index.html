@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/">From Dotfiles to Org File</a></li>
@@ -316,7 +321,9 @@ formatting is better, for one thing.</p>
 <h2 id="prepare-org-mode">Prepare Org mode</h2>
 <p>Babel used to be an extension to Org, but it’s been a core part of the framework for a bit now. Thing is, Babel is powerful and a little dangerous. You need to give it permission.</p>
 <p><strong><code>~/.emacs</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
@@ -325,21 +332,23 @@ formatting is better, for one thing.</p>
 </span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
 </span></span><span class="line"><span class="cl">   <span class="ss">&#39;org-babel-load-languages</span>
-</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> 
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> </span></span></code></pre>
+</figure><ul>
 <li><code>shell</code> is a general-purpose mode that covers <code>sh</code>, <code>bash</code>, <code>zsh</code>, and so on.</li>
 </ul>
 <p>Babel wants to know what languages it can load. I’m only tangling shell files, so that’s all I put in <code>org-babel-load-languages</code>.</p>
 <p>By default, Babel requests confirmation from you for every code block it handles. That’s smart, but also annoying. Disabling <code>org-confirm-babel-evaluate</code> means I’m okay with Babel executing or extracting any code it finds. It also means I need to ensure that my code blocks don’t request any dangerous actions. Leave this setting enabled if smart matters more to you than annoying.</p>
 <blockquote>
-<p>[!NOTE] Correction
-The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
+<p><strong>Correction</strong></p>
+<p>The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
 </blockquote>
 <p>Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.</p>
 <h2 id="my-literate-config">My literate config</h2>
 <p>Let’s keep my starting point really really simple. Just a little bit out of my <a href="https://www.zsh.org/">Zsh</a> config.</p>
 <p><strong><code>config.org</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
 </span></span><span class="line"><span class="cl"><span class="nb">{{{kbd(C-c C-v t)}}}</span> to tangle until I&#39;m ready to add hooks
@@ -360,18 +369,27 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
-<pre tabindex="0"><code>Tangled 2 code blocks from config.org
-</code></pre><p>So I look in my files.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Tangled 2 code blocks from config.org</code></pre>
+</figure><p>So I look in my files.</p>
 <p><strong><code>~/.zshenv</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span>
-</span></span></code></pre></div><p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Yay it worked!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span></span></span></code></pre>
+</figure><p><strong><code>~/.zshrc</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Yay it worked!</p>
 <p>There’s not much being &ldquo;tangled&rdquo; though, is there?</p>
 <p>I’ve been playing with <a href="https://antigen.sharats.me/">Antigen</a>, but I may go back to <a href="https://ohmyz.sh/">Oh My Zsh</a>. Let’s put the Antigen stuff in its own block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c">
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
@@ -388,16 +406,20 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">antigen theme gozilla
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="s">&lt;&lt;antigen&gt;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">source /home/ran</span>dom/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>C-c C-v t again, and there it is!</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>C-c C-v t again, and there it is!</p>
 <p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen use oh-my-zsh
 </span></span><span class="line"><span class="cl">
@@ -414,8 +436,8 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
 <p><strong>Emacs code extraction key bindings</strong></p>
 <table>
 <thead>

@@ -135,8 +135,8 @@ My more focused approach to Taskwarrior is working well. I add a task when I get
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/12/taskwarrior-priorities/">Taskwarrior Priorities</a></li>
@@ -298,7 +303,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <code>task</code> report with a column for priority levels</p>
 <p>Merry Christmas! Time to organize my <a href="/card/taskwarrior/">card/Taskwarrior</a> tasks.</p>
 <p>My more focused approach to Taskwarrior is working well. I add a task when I get an idea, and mark it <code>done</code> sometime after I finish. Annotations let me add noteworthy details. Tags and projects help both for organizing tasks and describing them. A task bubbles up to the top of <code>task next</code> as I add more information to it.</p>
-<pre tabindex="0"><code>$ task -work
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -work
 [task next ( -work )]
 
 ID Age  Project Tag              Description                                   Urg
@@ -324,21 +332,27 @@ ID Age  Project Tag              Description                                   U
 20 4d           music            merge rating files                           0.82
 21 4d           music            filter duplicate tracks                      0.82
 22 4d           knitting         circular hat variant                         0.82
-25 3d           music            restore backup                               0.82
-</code></pre><p>That bubbling behavior gets in the way sometimes.</p>
+25 3d           music            restore backup                               0.82</code></pre>
+</figure><p>That bubbling behavior gets in the way sometimes.</p>
 <p>I created some tasks for playing with my Fitbit data and added relevant annotations. Taskwarrior follows a rule of &ldquo;it must be important if you’re talking so much about it,&rdquo;&quot; and dutifully puts those tasks high on the list.</p>
 <p>Thing is, right now I care more about fixing my music library. Long story, but the moral of <em>that</em> tale is be careful with Beets and the <a href="http://beets.readthedocs.io/en/v1.4.6/plugins/duplicates.html">Duplicates</a> plugin. I have slightly different versions of the library on each of my machines, and a backup with all of the music but none of the Beets import information. I could make a project out of it, but it’s more of a thing I poke at when I can.</p>
 <p>Anyways — I want my <code>next</code> report to more closely resemble my current priorities. I can do that by manually setting <a href="https://taskwarrior.org/docs/priority.html">Priority</a> for each of my tasks.</p>
 <h2 id="task-priority">Task priority</h2>
 <p>Priority can be added to any task as an attribute, using <code>priority:</code> followed by the Priority you wish to assign. Priority also works as a filter for your reports.
 The default choices are <code>H</code>, <code>M</code>, <code>L</code>, and none at all — to remove a Priority.</p>
-<pre tabindex="0"><code>$ task add return library books priority:M
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add return library books priority:M
 Created task 29.
 $ task modify 18 priority:H
 Modifying task 18 &#39;Priorities&#39;.
-Modified 1 task.
-</code></pre><p>Looking at the first few entries of <code>next</code> shows me the effect of setting Priority.</p>
-<pre tabindex="0"><code>$ task -work
+Modified 1 task.</code></pre>
+</figure><p>Looking at the first few entries of <code>next</code> shows me the effect of setting Priority.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -work
 [task next ( -work )]
 
 ID Age  P Project Tag              Description                                   Urg
@@ -346,8 +360,8 @@ ID Age  P Project Tag              Description                                  
 29 3min M                          return library books                          3.9
 26 1h     fitbit  health           get fitbit data                               2.7
                                      2017-12-24 can only grab 31 days at a time
-                                     2017-12-24 want all data back to 2016-01
-</code></pre><p>I see a new column reflecting that I now describe some tasks with Priority. Over on the end, <a href="https://taskwarrior.org/docs/urgency.html">Urgency</a> jumps for tasks with any Priority at all. <code>H</code> Priority tasks get a large boost. But what do these Priority values <em>mean</em>?</p>
+                                     2017-12-24 want all data back to 2016-01</code></pre>
+</figure><p>I see a new column reflecting that I now describe some tasks with Priority. Over on the end, <a href="https://taskwarrior.org/docs/urgency.html">Urgency</a> jumps for tasks with any Priority at all. <code>H</code> Priority tasks get a large boost. But what do these Priority values <em>mean</em>?</p>
 <p>Priority means something different for everyone. The basic idea is the higher a task’s Priority is, the more important it is to me.</p>
 <p>Here’s how I use Priority values for now.</p>
 <table>
@@ -383,7 +397,10 @@ ID Age  P Project Tag              Description                                  
 </table>
 <p>My usage will change as I learn more about Taskwarrior but this works.</p>
 <p>I don’t need to think too much about priority when I’m just adding to the idea bucket. Probably a good idea to periodically review unprioritized tasks and assign a Priority or delete them if they won’t ever be worth my time.</p>
-<pre tabindex="0"><code>$ task -work priority:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -work priority:
 [task next ( -work priority: )]
 
 ID Age Project Tag              Description                                   Urg
@@ -410,9 +427,12 @@ ID Age Project Tag              Description                                   Ur
 22 5d          knitting         circular hat variant                         0.83
 25 3d          music            restore backup                               0.82
 
-19 tasks
-</code></pre><p>Give me a minute while I assign priorities.</p>
-<pre tabindex="0"><code>$ task -work
+19 tasks</code></pre>
+</figure><p>Give me a minute while I assign priorities.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -work
 [task next ( -work )]
 
 ID Age P Project Tag              Description                                      Urg
@@ -443,8 +463,8 @@ ID Age P Project Tag              Description                                   
 21 5d  L         music            filter duplicate tracks                         2.63
 22 5d  L         knitting         circular hat variant                            2.63
 
-21 tasks
-</code></pre><p>I could have added due date information to the library task rather than an annotation, but I’m sticking with this approach of a few features at a time. Otherwise I’ll try to learn everything at one sitting, get overwhelmed and distracted, then abandon the whole thing.</p>
+21 tasks</code></pre>
+</figure><p>I could have added due date information to the library task rather than an annotation, but I’m sticking with this approach of a few features at a time. Otherwise I’ll try to learn everything at one sitting, get overwhelmed and distracted, then abandon the whole thing.</p>
 <p>That said, it looks like next I should learn <a href="https://taskwarrior.org/docs/dates.html">dates</a> in Taskwarrior.</p>
 
   

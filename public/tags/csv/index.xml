@@ -32,19 +32,23 @@ I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</
 <p>Most Markdown parsers include some way to handle tables. Usually it involves
 drawing your table with ASCII characters. Something like this, from an older
 post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Function            | Keys    | Description
 </span></span><span class="line"><span class="cl">--------------------|---------|-------------------------------------
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-create`</span>   | <span class="sb">`C-z c`</span> | Create a new screen and switch to it.
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-next`</span>     | <span class="sb">`C-z n`</span> | Cycle to the next screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-previous`</span> | <span class="sb">`C-z p`</span> | Cycle to the previous screen
 </span></span><span class="line"><span class="cl"><span class="sb">`elscreen-kill`</span>     | <span class="sb">`C-z k`</span> | Kill the current screen
-</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings
-</span></span></code></pre></div><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
+</span></span><span class="line"><span class="cl"><span class="sb">`elscreen-help`</span>     | <span class="sb">`C-z ?`</span> | Show ElScreen key bindings</span></span></code></pre>
+</figure><p>I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.</p>
 <p><a href="/card/restructuredtext/">card/reStructuredText</a> and <a href="/card/asciidoctor/">card/Asciidoctor</a> both provide table-handling approaches beyond drawing ASCII, though the default <a href="https://docutils.sourceforge.io/rst.html">rst table</a> is lovely if you <em>do</em> like fiddling with columns. I looked at them for shortcode inspiration — particularly rst’s <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4">csv-table</a> and <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table">list-table</a> directives.</p>
 <h2 id="csv-tables">CSV tables</h2>
 <p>First up: CSV, &ldquo;Comma-Separated Values&rdquo;. I work a fair amount with CSV on the command line. I may want to copy and paste something into a table for a blog post every once in a while.</p>
 <p>A <code>csv-table</code> shortcode could contain any CSV data. Maybe something from the <a href="https://github.com/awesomedata/awesome-public-datasets">Awesome Public Datasets</a>? Nah, I’ll just use my <a href="https://plausible.io">https://plausible.io</a> visitor count for the last week.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">2020-05-28,66
 </span></span><span class="line"><span class="cl">2020-05-29,43
@@ -54,11 +58,14 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">2020-06-02,62
 </span></span><span class="line"><span class="cl">2020-06-03,73
 </span></span><span class="line"><span class="cl">2020-06-04,28
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>My shortcode receives that data as a string in the <a href="https://gohugo.io/templates/shortcode-templates/#inner"><code>.Inner</code></a> variable. How to turn that string into a table?</p>
 <h3 id="just-use-transformunmarshal">Just use <code>transform.Unmarshal</code></h3>
 <p>Give <code>transform.Unmarshal</code> a formatted string, and it gives you back a data structure. CSV text becomes an array of arrays, which we turn into a table by iterating through everything with <a href="https://gohugo.io/functions/range/"><code>range</code></a>.</p>
-<div class="highlight" title="layouts/shortcodes/csv-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;layouts/shortcodes/csv-table.html&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
@@ -68,8 +75,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Voila! Instant table!</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Voila! Instant table!</p>
 <p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
 <p>Not bad, but it could be better.</p>
 <ul>
@@ -80,12 +87,17 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <p>Give me a minute.</p>
 <h3 id="fine-tuning-the-table-with-parameters">Fine-tuning the table with parameters</h3>
 <p>I’ll add a parameter for the caption. Maybe another parameter indicating whether to expect a header row, since the first row of CSV doesn’t <em>always</em> contain column names.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">csv-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Site visitors, 2020-05-28 to 2020-06-04&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Date,Visitors
 </span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
-<div class="highlight" title="layouts/shortcodes/csv/table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">csv-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Now that I know how I want to use the shortcode, it’s time to implement the details.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/csv/table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
@@ -107,8 +119,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><ul>
 <li>if there’s a header row, <a href="https://gohugo.io/functions/after/"><code>after</code></a> lets me skip past it when building the data rows</li>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
@@ -124,7 +136,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>No, I’m talking about something similar to the <code>csv-table</code> case: arrays of JSON objects you paste in from somewhere else to add a little information to your blog post.</p>
 <p>Heck, you don’t even need parameters. You could put caption and header details <em>in</em> the data! Might be a good idea to use a list of desired columns instead of a simple flag. That way we can pick and choose columns without editing the row objects.</p>
 <p>Suppose I extracted details for the US and a couple neighbors from <a href="https://covid19api.com/">COVID19API</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">data-table</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">{
 </span></span><span class="line"><span class="cl">  &#34;caption&#34;: &#34;COVID-19 updates for 6 Jun 2020&#34;,
 </span></span><span class="line"><span class="cl">  &#34;headers&#34;: [
@@ -175,9 +189,12 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    }
 </span></span><span class="line"><span class="cl">  ]
 </span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
-<div class="highlight" title="layouts/shortcodes/data-table.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">data-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>The logic looks similar to <code>csv-table</code>, with adjustments for data format differences.</p>
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/data-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ $table := .Inner | transform.Unmarshal }}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  {{ with $table.caption }} <span class="p">&lt;</span><span class="nt">caption</span><span class="p">&gt;</span>{{ . | markdownify }}<span class="p">&lt;/</span><span class="nt">caption</span><span class="p">&gt;</span> {{ end }}
@@ -202,8 +219,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{ end }}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
 <p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
@@ -212,7 +229,9 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 <p>What about that first table I mentioned? You know, the <code>elscreen</code> quick reference? <em>That</em> is the kind of table I need a shortcode for. Something like a reStructuredText <code>list-table</code>, or <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables">Asciidoctor tables</a>.</p>
 <p>I tried different approaches with <code>transform.Unmarshal</code> and mashing YAML, TOML, or JSON lists into something useful. That got frustratingly brittle. Time to step back and reevaluate. What’s the simplest structure that still does what I want?</p>
 <p>Maybe something line-oriented?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">list-table</span> <span class="na">caption</span><span class="o">=</span><span class="s">&#34;Common `elscreen` commands&#34;</span> <span class="na">header</span><span class="o">=</span><span class="s">true</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">Function
 </span></span><span class="line"><span class="cl">Keys
 </span></span><span class="line"><span class="cl">Description
@@ -236,10 +255,13 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">`elscreen-help`
 </span></span><span class="line"><span class="cl">`C-z ?`
 </span></span><span class="line"><span class="cl">Show ElScreen key bindings
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">list-table</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>Every line contains one field. Blank lines separate table rows. No special prefix characters needed, since everything’s already in a shortcode.</p>
 <p>I like it. Easy to write, easy to read, and easy to parse with <a href="https://gohugo.io/functions/split/"><code>split</code></a>. Well — you need to <a href="https://gohugo.io/functions/trim/"><code>trim</code></a> a leading newline because of how <code>.Inner</code> gets handed off, but that’s the only wrinkle so far.</p>
-<div class="highlight" title="layouts/shortcodes/list-table.html"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
+<figure class="highlight">
+  <figcaption><tt>layouts/shortcodes/list-table.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{ $caption := .Get &#34;caption&#34; }}
 </span></span><span class="line"><span class="cl">{{ $useHeaderRow := .Get &#34;header&#34; }}
 </span></span><span class="line"><span class="cl">{{ $rows := split (trim .Inner &#34;\n&#34;) &#34;\n\n&#34; }}
 </span></span><span class="line"><span class="cl">
@@ -265,8 +287,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">      {{ end }}
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
-</span></span><span class="line"><span class="cl">&lt;/table&gt;
-</span></span></code></pre></div><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
+</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>
@@ -302,9 +324,12 @@ Okay that’s it.</description>
   <content:encoded><![CDATA[<h2>Twenty seconds to write a one-liner, and two days to think about it</h2><p><img src="/post/2020/03/../../../attachments/img/2020/cover-2020-03-31.jpg" alt="attachments/img/2020/cover-2020-03-31.jpg"/>
 We like quick answers to important questions</p>
 <p>How many text formatting languages have I used for my <a href="/card/hugo/">Hugo</a> site? For that matter, how many content files were written in each?</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><p>Mostly <a href="/card/markdown/">Markdown</a>, with a fair chunk of <a href="/card/restructuredtext/">reStructuredText</a> and a little bit of <a href="/card/asciidoctor/">Asciidoctor</a>. Oh and one HTML source file, originally an <a href="/post/2014/10/blog-writing-in-org-mode/">Org-Jekyll experiment</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><p>Mostly <a href="/card/markdown/">Markdown</a>, with a fair chunk of <a href="/card/restructuredtext/">reStructuredText</a> and a little bit of <a href="/card/asciidoctor/">Asciidoctor</a>. Oh and one HTML source file, originally an <a href="/post/2014/10/blog-writing-in-org-mode/">Org-Jekyll experiment</a>.</p>
 <p>Okay that’s it. That’s the post, everyone. Time to go home!</p>
 <h2 id="breaking-it-down">Breaking it down</h2>
 <p>It helps me to understand the pieces I smash together in my one-liners. Read along if you like, or move on to more interesting topics. I don’t judge.</p>
@@ -324,20 +349,25 @@ Bag(adoc(4), html, md(327), rst(109))
 <dd>Content with <code>date</code> in the future</dd>
 </dl>
 <p>What does that output look like?</p>
-<pre tabindex="0"><code>$ hugo list all
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all
 path,slug,title,date,expiryDate,publishDate,draft,permalink
 content/draft/listing-hugo-content-extensions-with-raku/index.adoc,,Listing Hugo Content Extensions With Raku,2020-03-27T22:36:13-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/listing-hugo-content-extensions-with-raku/
 content/draft/managing-music-with-beets/index.adoc,,Managing My Music With Beets,2020-03-27T10:31:41-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/managing-music-with-beets/
 content/post/2020/03/stdu-viewer/index.rst,,STDU Viewer,2020-03-26T23:42:16-07:00,0001-01-01T00:00:00Z,2020-03-26T23:42:16-07:00,false,https://randomgeekery.org/2020/03/26/stdu-viewer/
-content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/
-</code></pre><p>I could feed that to any language with a nice library for handling CSV
+content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/</code></pre>
+</figure><p>I could feed that to any language with a nice library for handling CSV
 files — which is most of them. Heck, I could feed it to Excel!</p>
 <p>Now that I think to look, there’s the <a href="https://github.com/secretGeek/awesomecsv">Awesome CSV</a> list of tools and resources.</p>
 <p>But no. Today I handed it off to the first tool that came to mind.</p>
 <h3 id="raku--e"><code>raku -e</code></h3>
 <p>Look, we’ve all been stuck at home for a bit. I need a break from Python. How about <a href="/card/perl/">Perl</a>&rsquo;s sister language, <a href="/card/raku/">Raku</a>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="nb">bag</span><span class="p">(</span><span class="nb">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">..*].</span><span class="nb">map</span><span class="p">({</span> <span class="o">.</span><span class="nb">split</span><span class="p">(&#34;</span><span class="s2">,</span><span class="p">&#34;)</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="kt">IO</span><span class="o">.</span><span class="nb">extension</span> <span class="p">}))</span><span class="o">.</span><span class="nb">say</span>
-</span></span></code></pre></div><h4 id="bagsay"><code>bag(…).say</code></h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="nb">bag</span><span class="p">(</span><span class="nb">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">..*].</span><span class="nb">map</span><span class="p">({</span> <span class="o">.</span><span class="nb">split</span><span class="p">(&#34;</span><span class="s2">,</span><span class="p">&#34;)</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="kt">IO</span><span class="o">.</span><span class="nb">extension</span> <span class="p">}))</span><span class="o">.</span><span class="nb">say</span></span></span></code></pre>
+</figure><h4 id="bagsay"><code>bag(…).say</code></h4>
 <p><a href="https://docs.raku.org/routine/bag"><code>bag</code></a> uses its arguments to create a <a href="https://docs.raku.org/type/Bag">Bag</a> — basically, a set that gives each member a &ldquo;weight&rdquo; based on integer values. <a href="https://docs.raku.org/type/Mu#method_say"><code>say</code></a> prints the <a href="https://docs.raku.org/routine/gist"><code>gist</code></a> of the Bag, telling me what I need to know. The highest level view of this one-liner is &ldquo;make a Bag and give me a general idea what it looks like.&rdquo;</p>
 <h4 id="lines1map--"><code>lines[1..*].map({ … })</code></h4>
 <p>Now I need to create that bag from <code>hugo list all</code>. <a href="https://docs.raku.org/type/IO::Handle#routine_lines"><code>lines</code></a> called as
@@ -349,23 +379,35 @@ a routine creates a list of lines from <a href="https://docs.raku.org/language/v
 <p>So the line of comma-delimited values is <a href="https://docs.raku.org/type/Str#routine_split"><code>split</code></a> into values. Each line from Hugo’s CSV gets <code>split</code> into a list of values, but I only care about the first one. The first value is the path to the content file itself.</p>
 <p>Coercing that to an <a href="https://docs.raku.org/type/IO::Path">IO::Path</a> object lets me ask for an <a href="https://docs.raku.org/type/IO::Path#method_extension"><code>extension</code></a>.</p>
 <p>The block returns that extension, so when <code>map</code> is all done it has a list of file extensions:</p>
-<pre tabindex="0"><code>(adoc adoc rst rst md md md rst ...)
-</code></pre><p>During initialization, the Bag counts how many times each extension appears in the list. Since the result of that tally is all I care about, I print it out.</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><h2 id="alternate-versions">Alternate versions</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >(adoc adoc rst rst md md md rst ...)</code></pre>
+</figure><p>During initialization, the Bag counts how many times each extension appears in the list. Since the result of that tally is all I care about, I print it out.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;bag(lines[1..*].map({ .split(&#34;,&#34;)[0].IO.extension })).say&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><h2 id="alternate-versions">Alternate versions</h2>
 <p>While I was learning more about my impulsive little invocation, I wondered about other ways to get the same information from Raku.</p>
 <h3 id="a-bit-more-perlish">A bit more Perlish</h3>
 <p>All those method dots bother you? No problem. We can use them like plain old subroutines too. Course, we have to reach for <a href="https://docs.raku.org/language/variables#$*SPEC"><code>$*SPEC</code></a>. This lower-level <a href="https://docs.raku.org/type/IO::Spec">IO::Spec</a> object understands file extensions on our platform.</p>
-<pre tabindex="0"><code>$ hugo list all | raku -e &#39;say bag(map({ $*SPEC.extension(split(&#34;,&#34;, $_)[0]) }, lines[1..*]))&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><h3 id="using-textcsv">Using Text::CSV</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo list all | raku -e &#39;say bag(map({ $*SPEC.extension(split(&#34;,&#34;, $_)[0]) }, lines[1..*]))&#39;
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><h3 id="using-textcsv">Using Text::CSV</h3>
 <p>I know what to expect from Hugo’s CSV output, but what if I didn’t? I’d feed the standard input handle <code>$*IN</code> to H. Merijn Brand’s <a href="https://github.com/Tux/CSV">Text::CSV</a> module.</p>
-<pre tabindex="0"><code>$ zef install Text::CSV
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ zef install Text::CSV
 $ hugo list all | raku -MText::CSV -e \
   &#39;bag(csv(in =&gt; $*IN, headers=&gt;&#34;skip&#34;, fragment=&gt;&#34;col=1&#34;).map({ .IO.extension })).say&#39;
-Bag(adoc(4), html, md(327), rst(109))
-</code></pre><p>Though if I was being <em>this</em> careful, I’d probably also move away from a one-liner. But that takes us a long ways away from my original goal of getting a quick answer to an idle question.</p>
+Bag(adoc(4), html, md(327), rst(109))</code></pre>
+</figure><p>Though if I was being <em>this</em> careful, I’d probably also move away from a one-liner. But that takes us a long ways away from my original goal of getting a quick answer to an idle question.</p>
 <p>Well, I satisfied my curiosity and understood a little more Raku. That was fun!</p>
 ]]></content:encoded>
 </item>

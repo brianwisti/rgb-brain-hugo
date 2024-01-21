@@ -135,8 +135,8 @@ Sequence As usual for many programming languages, the the sequence control struc
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/">Parrot Babysteps 03 - Simple Control Structures</a></li>
@@ -303,7 +308,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="sequence">Sequence</h2>
 <p>As usual for many programming languages, the the sequence control structure is
 implemented in Parrot as a pattern of one instruction following another.</p>
-<pre tabindex="0"><code># example-03-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-01.pir
 .sub main :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -314,8 +322,8 @@ implemented in Parrot as a pattern of one instruction following another.</p>
     name = stdin.&#39;readline_interactive&#39;(PROMPT)
     response = &#34;Hello, &#34; . name
     say response
-.end
-</code></pre><h2 id="selection">Selection</h2>
+.end</code></pre>
+</figure><h2 id="selection">Selection</h2>
 <p>Parrot uses simple mechanisms for building selection and repetition structures. Why is this?
 This is because Parrot and PIR are built for designing new programming languages. The
 designers opted to have the core control structures be simplistic so you wouldn&rsquo;t be stuck
@@ -333,16 +341,25 @@ habits and start learning how <code>goto</code> is used in Parrot.</p>
 <p>Labels consist of a series of letters, numbers, and underscores followed by a colon <code>:</code> character.
 Although it&rsquo;s not strictly required, I use uppercase letters for label identifiers.
 You will generally find labels by themselves, outdented from the other instructions around it.</p>
-<pre tabindex="0"><code>&lt;IDENTIFIER&gt;:
-    # Code following instruction
-</code></pre><p>Again: this is not required. I follow this convention because I believe it makes my
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&lt;IDENTIFIER&gt;:
+    # Code following instruction</code></pre>
+</figure><p>Again: this is not required. I follow this convention because I believe it makes my
 code easier to read. You could just as easily have the following instruction on the same line,
 but it has the risk of making your code visually cluttered.</p>
-<pre tabindex="0"><code>SET_NAME: $S0 = &#39;Brian&#39;
-say $S0
-</code></pre><p>Labels serve as markers in your code. They don&rsquo;t accomplish much by themselves, but can
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >SET_NAME: $S0 = &#39;Brian&#39;
+say $S0</code></pre>
+</figure><p>Labels serve as markers in your code. They don&rsquo;t accomplish much by themselves, but can
 show some of your program structure if named and placed intelligently.</p>
-<pre tabindex="0"><code># example-03-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-02.pir
 .sub main :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -356,16 +373,22 @@ GET_NAME:
 
     response = &#34;Hello, &#34; . name
     say response
-.end
-</code></pre><h3 id="goto"><code>goto</code></h3>
+.end</code></pre>
+</figure><h3 id="goto"><code>goto</code></h3>
 <p>A <code>goto</code> instruction sends Parrot execution to a specific labelled location
 in your code.</p>
-<pre tabindex="0"><code>goto &lt;LABEL_IDENTIFIER&gt;
-</code></pre><p>When it follows a <code>goto</code>, Parrot picks up by executing the first
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >goto &lt;LABEL_IDENTIFIER&gt;</code></pre>
+</figure><p>When it follows a <code>goto</code>, Parrot picks up by executing the first
 instruction following the label. In this example, it creates an
 infinite loop which can only be interrupted by pressing
 Control-C.</p>
-<pre tabindex="0"><code># example-03-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-03.pir
 .sub main :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -381,23 +404,32 @@ GET_NAME:
 
     response = &#34;Hello, &#34; . name
     say response
-.end
-</code></pre><p>Infinite loops have their occasional uses, but most of the time they&rsquo;re just
+.end</code></pre>
+</figure><p>Infinite loops have their occasional uses, but most of the time they&rsquo;re just
 annoying.</p>
-<pre tabindex="0"><code>$ parrot example-03-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-03-03.pir
 What is your name? Brian
 What is your name? Brian
 What is your name? I said &#34;Brian!&#34;
-What is your name? &lt;Control-C&gt;
-</code></pre><h3 id="if"><code>if</code></h3>
+What is your name? &lt;Control-C&gt;</code></pre>
+</figure><h3 id="if"><code>if</code></h3>
 <p>The <code>if</code> operation lets us perform specific instructions when a particular
 condition is true by branching control. At our level of expertise, that
 branching is performed with <code>goto</code>. So for us, the general <code>if</code> syntax looks
 like this:</p>
-<pre tabindex="0"><code>if &lt;conditional&gt; goto &lt;LABEL&gt;
-</code></pre><p>Let&rsquo;s see <code>if</code> in action by adding a little control logic to our name
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >if &lt;conditional&gt; goto &lt;LABEL&gt;</code></pre>
+</figure><p>Let&rsquo;s see <code>if</code> in action by adding a little control logic to our name
 prompt.</p>
-<pre tabindex="0"><code># example-03-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-04.pir
 .sub &#39;main&#39; :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -417,8 +449,8 @@ prompt.</p>
   SAY_IT:
     say response
 
-.end
-</code></pre><p>I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while
+.end</code></pre>
+</figure><p>I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while
 another greeting is prepared for everybody else. The program accomplishes this by examining the value of <code>name</code>.
 If <code>name</code> is &ldquo;Brian&rdquo;, the program is instructed to <code>goto</code> the label <code>GREETING_FOR_BRIAN</code>. Otherwise it continues
 on, preparing a generic response and going to the <code>SAY_IT</code> label. <code>GREETING_FOR_BRIAN</code> prepares a custom response
@@ -452,7 +484,10 @@ is examined. False looks a little different for each of the types.</p>
 </table>
 <p>Anything that doesn&rsquo;t look false is considered true.</p>
 <p>You can also use comparison operators to compare two values in your conditional.</p>
-<pre tabindex="0"><code># example-03-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-05.pir
 .sub main :main
     .local int    a
     .local int    b
@@ -479,15 +514,18 @@ BOTH_EQUAL:
 
 END:
     say &#34;Wasn&#39;t that fun?&#34;
-.end
-</code></pre><p>This little script grabs two values from the user and reports which one is greater -
+.end</code></pre>
+</figure><p>This little script grabs two values from the user and reports which one is greater -
 or reports the special case when they are the same.</p>
-<pre tabindex="0"><code>$ parrot example-03-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-03-05.pir
 a: 5
 b: 10
 b is greater
-Wasn&#39;t that fun?
-</code></pre><p>Here are the comparison operators that are available for your conditionals.</p>
+Wasn&#39;t that fun?</code></pre>
+</figure><p>Here are the comparison operators that are available for your conditionals.</p>
 <table>
 <thead>
 <tr>
@@ -526,7 +564,10 @@ Wasn&#39;t that fun?
 a number if it&rsquo;s within a certain range. Parrot does not let us chain
 comparisons, but we can still use multiple tests with the <code>and</code> and <code>or</code>
 opcodes.</p>
-<pre tabindex="0"><code># example-03-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-06.pir
 .sub main :main
     .const int MINIMUM = 10
     .const int MAXIMUM = 100
@@ -555,22 +596,28 @@ GET_NUMBER:
 
   END_PROGRAM:
     say &#34;Thank you!&#34;
-.end
-</code></pre><p><code>and</code> compares its arguments, and returns true if the arguments all look true.
+.end</code></pre>
+</figure><p><code>and</code> compares its arguments, and returns true if the arguments all look true.
 Parrot lets you store test results in a variable, as you can see. Then you can
 examine the truthiness of the variable in your <code>if</code> condition.</p>
-<pre tabindex="0"><code>$ parrot example-03-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-03-06.pir
 Enter a number (10 - 100): 990
 That is not in the acceptable range!
 Thank you!
 $ parrot example-03-06.pir
 Enter a number (10 - 100): 82
 That is in the acceptable range.
-Thank you!
-</code></pre><p>This approach looked odd enough to me that I thought I&rsquo;d show the equivalent
+Thank you!</code></pre>
+</figure><p>This approach looked odd enough to me that I thought I&rsquo;d show the equivalent
 Perl code.</p>
 <p>This Parrot code:</p>
-<pre tabindex="0"><code>  $I0 = input &gt;= MINIMUM
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  $I0 = input &gt;= MINIMUM
   $I1 = input &lt;= MAXIMUM
   input_is_valid = and $I0, $I1
   if input_is_valid goto VALID_INPUT
@@ -581,18 +628,23 @@ VALID_INPUT:
   say &#34;That is in the acceptable range.&#34;
 
 END_PROGRAM:
-  say &#34;Thank you!&#34;
-</code></pre><p>is roughly equivalent to the following Perl code:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span> <span class="o">&gt;=</span> <span class="nv">$MINIMUM</span> <span class="o">&amp;&amp;</span> <span class="nv">$input</span> <span class="o">&lt;=</span> <span class="nv">$MAXIMUM</span><span class="p">)</span> <span class="p">{</span>
+  say &#34;Thank you!&#34;</code></pre>
+</figure><p>is roughly equivalent to the following Perl code:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span> <span class="o">&gt;=</span> <span class="nv">$MINIMUM</span> <span class="o">&amp;&amp;</span> <span class="nv">$input</span> <span class="o">&lt;=</span> <span class="nv">$MAXIMUM</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">say</span> <span class="s">&#34;That is in the acceptable range.&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">say</span> <span class="s">&#34;That is not in the acceptable range.&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Thank you!&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>We could also use <code>or</code>, which compares its arguments and returns true if <em>either</em>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Thank you!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>We could also use <code>or</code>, which compares its arguments and returns true if <em>either</em>
 argument looks true.</p>
-<pre tabindex="0"><code># example-03-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-07.pir
 .sub &#39;main&#39; :main
     .const int MINIMUM = 10
     .const int MAXIMUM = 100
@@ -620,16 +672,22 @@ WARN_USER_ABOUT_INPUT:
 
 END_PROGRAM:
     say &#34;Thank you!&#34;
-.end
-</code></pre><h3 id="unless"><code>unless</code></h3>
+.end</code></pre>
+</figure><h3 id="unless"><code>unless</code></h3>
 <p>Sometimes the normal <code>if</code> test does not clearly describe your needs. You
 may only want to branch if a test fails. While you <em>can</em> do this with <code>if</code>,
 Parrot also provides the <code>unless</code> test for exactly this situation. <code>unless</code>
 looks similar to <code>if</code>:</p>
-<pre tabindex="0"><code>unless &lt;conditional&gt; goto &lt;LABEL&gt;
-</code></pre><p>I can use it in the user prompt program to streamline the description of
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >unless &lt;conditional&gt; goto &lt;LABEL&gt;</code></pre>
+</figure><p>I can use it in the user prompt program to streamline the description of
 the application&rsquo;s response to anyone but me.</p>
-<pre tabindex="0"><code># example-03-08.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-08.pir
 .sub main :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -648,8 +706,8 @@ the application&rsquo;s response to anyone but me.</p>
 
   SAY_IT:
     say response
-.end
-</code></pre><p>The program will run the same after this little change. Try it and see.</p>
+.end</code></pre>
+</figure><p>The program will run the same after this little change. Try it and see.</p>
 <p>Usage of <code>unless</code> is a personal choice. I like it because it lets me describe
 my program a little more concisely. Others don&rsquo;t like to use <code>unless</code> because
 it adds to the mental load of reading application code: &ldquo;let&rsquo;s see, <code>unless</code>
@@ -662,7 +720,10 @@ explore more controlled loops.</p>
 core features we need for a wide range of control structures. Things can
 get interesting now that we&rsquo;ve added these tools to our kit.</p>
 <p>How about a countdown?</p>
-<pre tabindex="0"><code># example-03-09.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-09.pir
 .sub &#39;main&#39; :main
     .const int start = 10
     .const int stop  = 0
@@ -677,12 +738,15 @@ get interesting now that we&rsquo;ve added these tools to our kit.</p>
 
   LIFTOFF:
     say &#34;Liftoff!&#34;
-.end
-</code></pre><p>This presents a simple count-controlled loop. We set a loop counter <code>current</code> to a reasonable start value before we
+.end</code></pre>
+</figure><p>This presents a simple count-controlled loop. We set a loop counter <code>current</code> to a reasonable start value before we
 start looping. We check the value of the loop counter each time we start the loop, quitting if <code>current</code> is less
 than our stopping value. After our check, we display the value, subtract one, and run the loop again.</p>
 <p>A condition-controlled loop is easy, too.</p>
-<pre tabindex="0"><code># example-03-10.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-03-10.pir
 .sub main :main
     .const string PROMPT = &#34;What is your name? &#34;
     .local string name
@@ -699,16 +763,19 @@ GET_NAME:
 GREET_USER:
     response = &#34;Hello, &#34; . name
     say response
-.end
-</code></pre><p>Our script will now continue to check to see if the user actually entered
+.end</code></pre>
+</figure><p>Our script will now continue to check to see if the user actually entered
 anything for a name. If the user has entered a name, control goes to
 the <code>GREET_USER</code> label. Otherwise, control is sent backwards to the
 <code>GET_USER</code> label.</p>
-<pre tabindex="0"><code>$ parrot example-03-10.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-03-10.pir
 What is your name? 
 What is your name? Brian
-Hello, Brian
-</code></pre><p>Collection loops such as list iterators will have to wait until we examine PMCs.</p>
+Hello, Brian</code></pre>
+</figure><p>Collection loops such as list iterators will have to wait until we examine PMCs.</p>
 <h2 id="summary">Summary</h2>
 <p>Adding <code>if</code> and <code>goto</code> to our toolkit has given us the means to build fundamental
 control structures in our Parrot programs. We know how to use simple conditionals

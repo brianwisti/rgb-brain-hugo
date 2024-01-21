@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2004/">2004</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2004/07/control-structures/">Control Structures</a></li>
@@ -300,48 +305,60 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li>Mix the sugar and vanilla extract into the bowl.</li>
 </ul>
 <p>Here’s a simple sequence example.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Brian&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span>
-</span></span></code></pre></div><p>You don’t try to beat the eggs in the bowl after you’ve put the sugar in. I suppose you could, but you are just making your life more difficult. Similarly, you don’t try to print the name before you’ve defined it. Bad things will happen if you even try.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Brian&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span></span></span></code></pre>
+</figure><p>You don’t try to beat the eggs in the bowl after you’ve put the sugar in. I suppose you could, but you are just making your life more difficult. Similarly, you don’t try to print the name before you’ve defined it. Bad things will happen if you even try.</p>
 <h2 id="selection">Selection</h2>
 <p>Selection structures allow you to mark some code as optional.</p>
 <ul>
 <li><em>(optional)</em> Mix in walnuts</li>
 </ul>
 <p>I like walnuts, but not in cookies. I’m not going to mix them into the dough. Maybe I’ll just eat them here.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey!&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;is here!&#34;</span>
-</span></span></code></pre></div><p>There are a few refinements to the Selection structure. The main refinement is the if/else structure. This allows you to perform one block of code if the test is true, and another block if the test fails.</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey!&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;is here!&#34;</span></span></span></code></pre>
+</figure><p>There are a few refinements to the Selection structure. The main refinement is the if/else structure. This allows you to perform one block of code if the test is true, and another block if the test fails.</p>
 <p>Instead of:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span>
-</span></span></code></pre></div><p>We can say:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span></span></span></code></pre>
+</figure><p>We can say:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span>
-</span></span></code></pre></div><p>The other main refinement is the if/else-if/else structure, which lets you chain tests together. Instead of:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span></span></span></code></pre>
+</figure><p>The other main refinement is the if/else-if/else structure, which lets you chain tests together. Instead of:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brooke&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;This computer is really yours, isn&#39;t it?&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span>
-</span></span></code></pre></div><p>… we can say:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span></span></span></code></pre>
+</figure><p>… we can say:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brooke&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;This computer is really yours, isn&#39;t it?&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span>
-</span></span></code></pre></div><blockquote>
-<p>[!WARNING]
-Pay attention to how the else-if refinement is spelled in your favorite programming language! It’s <code>elif</code> in Python, and in other languages could be <code>elsif</code>, <code>elseif</code>, <code>else if</code>, or something else I haven’t come across yet.</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>WARNING</strong></p>
+<p>Pay attention to how the else-if refinement is spelled in your favorite programming language! It’s <code>elif</code> in Python, and in other languages could be <code>elsif</code>, <code>elseif</code>, <code>else if</code>, or something else I haven’t come across yet.</p>
 </blockquote>
 <h2 id="repetition">Repetition</h2>
 <p>The next control structure is <em>repetition</em>, which will execute a block of code repeatedly until some condition is true.</p>
@@ -351,11 +368,13 @@ Pay attention to how the else-if refinement is spelled in your favorite programm
 <p>Don’t you hate it when they tell you what temperature the oven is supposed to be at the last minute? I suppose that’s why we’re suppose to read the recipe before we start cooking. Anyways, the repetition here is that you keep on baking until those cookies are done!</p>
 <p>Repetition in programming has a very wide range of refinements. I’ll just look at the major ones.</p>
 <p>The first one is the while-loop.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;We have been baking for&#34;</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="s2">&#34;minutes&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">number</span> <span class="o">+=</span> <span class="mi">1</span>        <span class="c1"># The same as saying -&gt; number = number + 1</span>
-</span></span></code></pre></div><p>The basic idea of a while-loop is this:</p>
+</span></span><span class="line"><span class="cl">    <span class="n">number</span> <span class="o">+=</span> <span class="mi">1</span>        <span class="c1"># The same as saying -&gt; number = number + 1</span></span></span></code></pre>
+</figure><p>The basic idea of a while-loop is this:</p>
 <ol>
 <li>We set up a test. We had to create a variable in this case, to make sure the test has some meaning the first time through.</li>
 <li>We apply the test. Is <code>number</code> less than <code>10</code>?</li>
@@ -365,39 +384,49 @@ Pay attention to how the else-if refinement is spelled in your favorite programm
 </ol>
 <p>Generally, any test that your programming language can understand in a sense of true or false can be used. This applies to <em>Selection</em> structures too, but I forgot to mention it then.</p>
 <p>Another kind of repetition structure is the list-loop <em>(better name? Somebody? Please?)</em>. The list-loop steps through each of the values in a list and executes its block with the current item in the loop.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;I like&#34;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;in my breakfast.&#34;</span>
-</span></span></code></pre></div><p>Some languages won’t let you change the original value of <code>item</code> in a normal list-loop. For example, in Python I can uppercase <code>item</code> in my loop, but the original will still be lowercase. Try it yourself:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;I like&#34;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;in my breakfast.&#34;</span></span></span></code></pre>
+</figure><p>Some languages won’t let you change the original value of <code>item</code> in a normal list-loop. For example, in Python I can uppercase <code>item</code> in my loop, but the original will still be lowercase. Try it yourself:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>  <span class="c1"># This is a *method* available to String *objects*</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;I like&#34;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;in my breakfast.&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span>
-</span></span></code></pre></div><p>Replacing the original value of <code>item</code> is more of a challenge, and often not worth the effort involved. You could step through the list using indexes, and change things that way:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span></span></span></code></pre>
+</figure><p>Replacing the original value of <code>item</code> is more of a challenge, and often not worth the effort involved. You could step through the list using indexes, and change things that way:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">breakfast</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">breakfast</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">breakfast</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span>
-</span></span></code></pre></div><p>I think that approach is unattractive, though. I’ll do it if I have to, but I will use a prettier and easier tactic if it’s available. A better way is to build a new list based on a modified version of the old list. Python makes this easy with a language feature called <em>list comprehensions</em>, which are funny-looking but very easy once you get the hang of them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span></span></span></code></pre>
+</figure><p>I think that approach is unattractive, though. I’ll do it if I have to, but I will use a prettier and easier tactic if it’s available. A better way is to build a new list based on a modified version of the old list. Python makes this easy with a language feature called <em>list comprehensions</em>, which are funny-looking but very easy once you get the hang of them.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="n">capitalized</span> <span class="o">=</span> <span class="p">[</span><span class="n">food</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">food</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">capitalized</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;is a great part of breakfast&#34;</span>
-</span></span></code></pre></div><p>Many other languages have similar approaches, such as Perl’s <code>map</code> function.</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;is a great part of breakfast&#34;</span></span></span></code></pre>
+</figure><p>Many other languages have similar approaches, such as Perl’s <code>map</code> function.</p>
 <h2 id="remote">Remote</h2>
 <p>The last major control structure I am going to look at is <em>remote code</em>. This isn’t technically code on another machine, but I suppose it could be. Remote code was written outside of the main sequence of the application, but you can use it (repeatedly) from within the main sequence. I guess the easiest cooking equivalent would be to hire a person who makes the cookies for you.</p>
 <p>Remote code usually takes the form of functions, classes (the source of the <code>capitalize</code> method used in <em>Repetition</em>), and modules (which are usually collections of classes or functions in a separate file).</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_name</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_name</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">raw_prompt</span><span class="p">(</span><span class="s2">&#34;What is your name?&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;it&#39;s good to see you!&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">greet</span><span class="p">(</span> <span class="n">get_name</span><span class="p">()</span> <span class="p">)</span>
-</span></span></code></pre></div><p>That’s it for now.</p>
+</span></span><span class="line"><span class="cl"><span class="n">greet</span><span class="p">(</span> <span class="n">get_name</span><span class="p">()</span> <span class="p">)</span></span></span></code></pre>
+</figure><p>That’s it for now.</p>
 
   
 

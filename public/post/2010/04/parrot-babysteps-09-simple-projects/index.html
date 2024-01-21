@@ -133,8 +133,8 @@ Creating a Simple Project A nice Parrot project layout includes a t folder for t
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/04/parrot-babysteps-09-simple-projects/">Parrot Babysteps 09 - Simple Projects</a></li>
@@ -304,15 +309,21 @@ can simplify testing or other tasks.</p>
 <h2 id="creating-a-simple-project">Creating a Simple Project</h2>
 <p>A nice Parrot project layout includes a <code>t</code> folder for tests, a <code>lib</code> folder for
 library code, and a <code>setup.pir</code> file to drive the whole thing.</p>
-<pre tabindex="0"><code>$ mkdir simple-pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir simple-pir
 $ mkdir simple-pir/t
 $ mkdir simple-pir/lib
-$ cd simple-pir
-</code></pre><p>What gets placed in <code>setup.pir</code>? Not much, considering how much it does.
+$ cd simple-pir</code></pre>
+</figure><p>What gets placed in <code>setup.pir</code>? Not much, considering how much it does.
 <code>setup.pir</code> takes advantage of the Parrot <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/distutils.pir">distutils</a> module for a whole range
 of tasks. All I&rsquo;m concerned about today is <em>testing</em>, so my setup is going to be
 rather lightweight.</p>
-<pre tabindex="0"><code># example-09-01/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -323,15 +334,18 @@ rather lightweight.</p>
     directive = shift args
 
     setup(directive)
-.end
-</code></pre><p>This is not exciting code, but it is enough to see what distutils <em>can</em> give me.
+.end</code></pre>
+</figure><p>This is not exciting code, but it is enough to see what distutils <em>can</em> give me.
 The first command line parameter is shifted onto a dummy register variable,
 because I don&rsquo;t really care about the name of <code>setup.pir</code> from within
 <code>setup.pir</code>.  Then I load the <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/distutils.pir">distutils</a> bytecode so I can get access to the <code>setup</code> subroutine.</p>
 <p>This <code>setup.pir</code> will get more complicated as we go on, and you will
 <em>definitely</em> see more complex <code>setup.pir</code> files out in the wild, but this will
 get us started.</p>
-<pre tabindex="0"><code>$ parrot setup.pir help
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir help
 usage: parrot setup.pir [target|--key value]*
 
     Default targets are :
@@ -354,15 +368,21 @@ usage: parrot setup.pir [target|--key value]*
 
         bdist:          Create a binary distribution
 
-        help:           Print this help message.
-</code></pre><p>What happens when I tell <code>setup.pir</code> that I want to test?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+        help:           Print this help message.</code></pre>
+</figure><p>What happens when I tell <code>setup.pir</code> that I want to test?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 Files=0, Tests=0,  0.000 wallclock secs
-Result: NOTESTS
-</code></pre><p>Well of course it failed. There aren&rsquo;t any test files, and <code>setup.pir</code> wouldn&rsquo;t
+Result: NOTESTS</code></pre>
+</figure><p>Well of course it failed. There aren&rsquo;t any test files, and <code>setup.pir</code> wouldn&rsquo;t
 know how to run them if there were!</p>
 <p>I&rsquo;ll fix the second part first.</p>
-<pre tabindex="0"><code># example-09-02/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-02/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -377,16 +397,22 @@ know how to run them if there were!</p>
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>Parrot allows you to use <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html#Named_Parameters">named parameters</a> for some subroutines, and <code>setup</code>
+.end</code></pre>
+</figure><p>Parrot allows you to use <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html#Named_Parameters">named parameters</a> for some subroutines, and <code>setup</code>
 takes full advantage of that feature. If you&rsquo;re used to <a href="/tags/perl/">Perl</a> or <a href="/tags/ruby/">Ruby</a>,
 named parameters look a lot like a hash. That&rsquo;s close enough for our purposes. A
 named parameter generally follows a simple format:</p>
-<pre tabindex="0"><code>&#39;&lt;key-1&gt;&#39; =&gt; &#39;&lt;value-1&gt;&#39;
-</code></pre><p>Thankfully, <code>distutils.pir</code> is a well-documented module, and you
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#39;&lt;key-1&gt;&#39; =&gt; &#39;&lt;value-1&gt;&#39;</code></pre>
+</figure><p>Thankfully, <code>distutils.pir</code> is a well-documented module, and you
 can find details about the many options by checking the documentation.</p>
-<pre tabindex="0"><code>$ perldoc /usr/local/lib/parrot/3.0.0/library/distutils.pir
-</code></pre><p>I only care about a single option: <code>prove_exec</code>, which tells <code>setup</code> what program
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc /usr/local/lib/parrot/3.0.0/library/distutils.pir</code></pre>
+</figure><p>I only care about a single option: <code>prove_exec</code>, which tells <code>setup</code> what program
 will be used to run the tests. Why does <code>setup</code> care? Well, Parrot is a VM. Your
 tests can be in PIR, NQP, <a href="/tags/raku-lang/">Rakudo</a>, or even a language of your own design.
 These <a href="/post/2009/07/parrot-babysteps">Babysteps</a> are about Parrot PIR, so it makes sense that the tests will be in
@@ -394,7 +420,10 @@ the same language.</p>
 <p>Oh yes, the tests. Let&rsquo;s write one. I&rsquo;ll follow the convention I see in the Perl
 world of a number followed by a description for the test filename, and the test
 itself will be for a simple area calculating function.</p>
-<pre tabindex="0"><code># example-09-02/t/01-radius.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-02/t/01-radius.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local num radius
@@ -406,9 +435,12 @@ itself will be for a simple area calculating function.</p>
     expected_area = 3.1415926
     actual_area = area_of_circle(radius)
     is(expected_area, actual_area, &#39;Circle with radius 1 should have area PI&#39;, 1e-6)
-.end
-</code></pre><p>So - this should fail, right?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>So - this should fail, right?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-radius.t .. Dubious, test returned 1
 Failed 1/1 subtests 
 
@@ -424,13 +456,16 @@ Files=1, Tests=0,  0.021 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:18)
-</code></pre><p>Excellent. Parrot didn&rsquo;t just tell us that the test failed. It also told us
+called from Sub &#39;main&#39; pc 29 (setup.pir:18)</code></pre>
+</figure><p>Excellent. Parrot didn&rsquo;t just tell us that the test failed. It also told us
 about some unexpected output from our test script. What&rsquo;s that unexpected
 output? Oh, something about not having a subroutine called <code>area_of_circle</code>.
 Let&rsquo;s fix that by adding a new library file called <code>lib/area.pir</code>, and adding
 the missing subroutine.</p>
-<pre tabindex="0"><code># example-09-03/lib/area.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-03/lib/area.pir
 
 .sub area_of_circle
     .param num radius
@@ -442,23 +477,29 @@ the missing subroutine.</p>
     area *= radius
 
     .return(area)
-.end
-</code></pre><p>This is code borrowed from <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">step 2</a> and dropped into a subroutine.</p>
+.end</code></pre>
+</figure><p>This is code borrowed from <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">step 2</a> and dropped into a subroutine.</p>
 <p>Don&rsquo;t forget to include this library code from your test file.</p>
-<pre tabindex="0"><code># example-09-03/lib/area.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-03/lib/area.pir
 
 .include &#39;lib/area.pir&#39;
 
 .sub &#39;main&#39; :main
     # ...
-.end
-</code></pre><p>Did it work?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>Did it work?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-radius.t .. ok
 All tests successful.
 Files=1, Tests=1,  0.016 wallclock secs
-Result: PASS
-</code></pre><p>Yay!</p>
+Result: PASS</code></pre>
+</figure><p>Yay!</p>
 <p>Hold on a second. I snuck an extra argument back when I wrote the <code>is</code> assertion. What was that
 all about? Well, <a href="http://leto.net">Jonathan Leto</a> explained to me that <code>is</code> takes an additional argument
 for precision, which is useful in the fuzzy world of <a href="http://en.wikipedia.org/wiki/Floating_point#Accuracy_problems">floating point

@@ -64,10 +64,12 @@
 
   
     <meta name="twitter:description" content="Time for a quick post about Reply, a new Perl toy from Jesse Luers. There will not be much for me to say, because I have only been playing with it for about twenty minutes.
-[!NOTE] This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
+NOTE
+This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
 Reply is a REPL for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a plugin system that I may look at later if I have more time.">
     <meta property="og:description" content="Time for a quick post about Reply, a new Perl toy from Jesse Luers. There will not be much for me to say, because I have only been playing with it for about twenty minutes.
-[!NOTE] This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
+NOTE
+This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
 Reply is a REPL for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a plugin system that I may look at later if I have more time.">
   
 
@@ -135,8 +137,8 @@ Reply is a REPL for Perl. It is an interactive shell that simplifies quick exper
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/08/repl-in-perl-with-reply/">REPL In Perl With Reply</a></li>
@@ -305,17 +312,23 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2014/08/../../../attachments/img/2014/cover-2014-08-14.png" alt="attachments/img/2014/cover-2014-08-14.png"/></p>
 <p>Time for a quick post about <a href="https://metacpan.org/release/Reply">Reply</a>, a new <a href="/card/perl/">Perl</a> toy from <a href="http://tozt.net/">Jesse Luers</a>. There will not be much for me to say, because I have only been playing with it for about twenty minutes.</p>
 <blockquote>
-<p>[!NOTE]
-This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.</p>
+<p><strong>NOTE</strong></p>
+<p>This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.</p>
 </blockquote>
 <p>Reply is a <a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a <a href="https://metacpan.org/source/DOY/Reply-0.35/lib/Reply/Plugin.pm">plugin</a> system that I may look at later if I have more time.</p>
 <h2 id="installation">Installation</h2>
 <p>I use <a href="http://perlbrew.pl">perlbrew</a> and <a href="https://github.com/miyagawa/cpanminus">cpanm</a>, so installation was easy.</p>
-<pre tabindex="0"><code>$ cpanm Reply
-</code></pre><p>Oh. It is worth pointing out that if you do not have <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU Readline</a> or a similar library installed, you will not get command-line editing or history in Reply.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpanm Reply</code></pre>
+</figure><p>Oh. It is worth pointing out that if you do not have <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU Readline</a> or a similar library installed, you will not get command-line editing or history in Reply.</p>
 <h2 id="hello-reply">Hello Reply</h2>
 <p>The <code>reply</code> command starts a new session. Once the session is going, it’s pretty much just Perl.</p>
-<pre tabindex="0"><code>$ reply
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ reply
 0&gt; &#34;Hello World&#34;
 $res[0] = &#39;Hello World&#39;
 
@@ -323,23 +336,35 @@ $res[0] = &#39;Hello World&#39;
 $res[1] = &#39;Brian&#39;
 
 2&gt; &#34;Hello $name&#34;
-$res[2] = &#39;Hello Brian&#39;
-</code></pre><p>Getting user input via <code>STDIN</code> works pretty much how you would expect.</p>
-<pre tabindex="0"><code>3&gt; chomp( $name = &lt;STDIN&gt; )
+$res[2] = &#39;Hello Brian&#39;</code></pre>
+</figure><p>Getting user input via <code>STDIN</code> works pretty much how you would expect.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >3&gt; chomp( $name = &lt;STDIN&gt; )
 Brian
 $res[3] = 1
 
 4&gt; $name
-$res[4] = &#39;Brian&#39;
-</code></pre><p>Defining subroutines is no big deal.</p>
-<pre tabindex="0"><code>5&gt; sub greeting { &#34;Hello $_[0]&#34; }
+$res[4] = &#39;Brian&#39;</code></pre>
+</figure><p>Defining subroutines is no big deal.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >5&gt; sub greeting { &#34;Hello $_[0]&#34; }
 6&gt; greeting $name
-$res[5] = &#39;Hello Brian&#39;
-</code></pre><p>And <code>exit</code> will quit Reply. It all seems straightforward.</p>
-<pre tabindex="0"><code>7&gt; exit
-</code></pre><h2 id="a-marginally-more-complex-example">A Marginally More Complex Example</h2>
+$res[5] = &#39;Hello Brian&#39;</code></pre>
+</figure><p>And <code>exit</code> will quit Reply. It all seems straightforward.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >7&gt; exit</code></pre>
+</figure><h2 id="a-marginally-more-complex-example">A Marginally More Complex Example</h2>
 <p>I have been working on a little experiment: fetching Questhub.io JSON with <a href="http://mojolicio.us/perldoc/Mojo/UserAgent">Mojo::UserAgent</a> and <a href="http://mojolicio.us/perldoc/Mojo/JSON">Mojo::JSON</a>. I decided to see if I could try some of that experiment in Reply.</p>
-<pre tabindex="0"><code>0&gt; use Mojo::UserAgent
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >0&gt; use Mojo::UserAgent
 1&gt; use Mojo::JSON &#39;decode_json&#39;
 2&gt; my $ua = Mojo::UserAgent-&gt;new
 $res[0] = bless( {}, &#39;Mojo::UserAgent&#39; )
@@ -362,9 +387,9 @@ $res[1] = [
   &#39;Python (Ru)&#39;,
   &#39;Read&#39;,
   &#39;Testing&#39;,
-  &#39;Yoga + Meditation&#39;
-]
-</code></pre><p>Yes, I can.</p>
+  &#39;Yoga &#43; Meditation&#39;
+]</code></pre>
+</figure><p>Yes, I can.</p>
 <h2 id="what-do-i-think">What Do I Think?</h2>
 <p>I like Reply overall. I am not used to thinking in REPL terms when it comes to Perl, and need to spend more than twenty minutes with it. I like Reply enough that I do expect to spend more time with it.</p>
 <p>I noticed that my coding style was more terse within the confines of Reply. Maybe I should install GNU Readline support on my machine or enable the <a href="https://metacpan.org/pod/Reply::Plugin::Editor">Editor plugin</a>.</p>

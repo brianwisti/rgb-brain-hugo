@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/07/parrot-babysteps-01-getting-started/">Parrot Babysteps 01 - Getting Started</a></li>
@@ -301,8 +306,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h4 id="linux">Linux</h4>
 <p>I&rsquo;m running <a href="http://www.ubuntu.com">Ubuntu</a> 10.10 with <a href="http://packages.ubuntu.com/lucid/build-essential">build-essential</a> and Perl 5 installed.
 Perl 5 is installed by default on Ubuntu, and <code>build-essential</code> is easy enough.</p>
-<pre tabindex="0"><code>$ sudo apt-get install build-essential
-</code></pre><p>There may be other dependencies already installed on this machine that I do not know
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install build-essential</code></pre>
+</figure><p>There may be other dependencies already installed on this machine that I do not know
 about. I tend to install <em>many</em> packages on my system, such as <a href="http://packages.ubuntu.com/lucid/wget">wget</a>. Perl 5 and
 <code>build-essential</code> should do it as far as I know, though.</p>
 <p>You will probably want a good text editor as well. <a href="/tags/vim/">Vim</a>
@@ -319,9 +327,12 @@ files on this platform because I am a creature of habit.</p>
 <p>You need to get Parrot before you can use it. The <a href="http://www.parrot.org/download">download page</a> shows where you can get versions of Parrot appropriate to your system, including <a href="http://sourceforge.net/projects/parrotwin32/">Windows packages</a>.</p>
 <h3 id="linux-and-os-x">Linux and OS X</h3>
 <p>I will be grabbing the latest <a href="http://parrot.org/source.html">stable source release</a>.</p>
-<pre tabindex="0"><code>$ cd ~/src
-$ wget http://www.parrot.org/release/supported
-</code></pre><p>Previous versions of these Babysteps were using the development releases of Parrot.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd ~/src
+$ wget http://www.parrot.org/release/supported</code></pre>
+</figure><p>Previous versions of these Babysteps were using the development releases of Parrot.
 Why did I switch? I have trouble keeping my articles up to date with the pace
 of Parrot development while also developing new material and working, so my focus moved
 to the slower &ldquo;supported&rdquo; cycle. I may switch back to using development releases
@@ -330,42 +341,57 @@ to use development. Most of the material will <em>probably</em> work as-is.</p>
 <p>I&rsquo;ve gone through a few installations of Parrot by now, and have finally noticed that
 bad things happen if you ignore your old installation. Cleaning up the important
 files for the old installation is a good idea. So, if you are upgrading:</p>
-<pre tabindex="0"><code>$ sudo rm -rf /usr/local/lib/*parrot*
-</code></pre><p>Of course, you better make sure that anything matching that name pattern is actually
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo rm -rf /usr/local/lib/*parrot*</code></pre>
+</figure><p>Of course, you better make sure that anything matching that name pattern is actually
 related to your old Parrot install before nuking them like this.</p>
 <p>Next I&rsquo;ll unpack, build, and test my download.</p>
-<pre tabindex="0"><code>$ tar xfvz parrot-3.0.0.tar.gz
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ tar xfvz parrot-3.0.0.tar.gz
 $ cd parrot-3.0.0
 $ perl Configure.pl
 $ make
-$ make test
-</code></pre><p><code>make test</code> takes a little longer each time I install a new version of Parrot. They add tests in every
+$ make test</code></pre>
+</figure><p><code>make test</code> takes a little longer each time I install a new version of Parrot. They add tests in every
 iteration. Just think of those extra few seconds as proof that someone cares about the quality of
 software they&rsquo;re writing for the world.</p>
 <p>The Parrot authors can always use additional feedback about how well their baby works on
 different platforms. One piece of information that can be useful for them is a smoke report
 with test results telling them how well Parrot works on your machine. You can very easily do
 this on Linux and OS X:</p>
-<pre tabindex="0"><code>$ sudo cpan TAP::Harness::Archive
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo cpan TAP::Harness::Archive
 $ make smoke
 ...
 All tests successful.
-Files=381, Tests=13848, 155 wallclock secs ( 2.36 usr  1.43 sys + 102.37 cusr 28.89 csys = 135.05 CPU)
+Files=381, Tests=13848, 155 wallclock secs ( 2.36 usr  1.43 sys &#43; 102.37 cusr 28.89 csys = 135.05 CPU)
 Result: PASS
 
 TAP Archive created at /Users/brian/src/parrot/parrot-3.0.0/parrot_test_run.tar.gz
 Test report successfully sent to Smolder at
 http://smolder.parrot.org/app/projects/report_details/14424
 You can see other recent reports at
-http://smolder.parrot.org/app/projects/smoke_reports/1 .
-</code></pre><p>My smoke report and the <a href="http://smolder.parrot.org/app/projects/smoke_reports/1">list of recent reports</a> are fun to look at in a nerdy
+http://smolder.parrot.org/app/projects/smoke_reports/1 .</code></pre>
+</figure><p>My smoke report and the <a href="http://smolder.parrot.org/app/projects/smoke_reports/1">list of recent reports</a> are fun to look at in a nerdy
 sort of way.</p>
 <p>There. Now I&rsquo;ll install Parrot.</p>
-<pre tabindex="0"><code>$ sudo make install
-</code></pre><p>Oh, editor support is also available. Since I&rsquo;m using Vim, I&rsquo;ll need to make <code>vim-install</code>.</p>
-<pre tabindex="0"><code>$ cd editor
-$ make vim-install
-</code></pre><p>This gives me syntax highlighting and template generation for new PIR files.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo make install</code></pre>
+</figure><p>Oh, editor support is also available. Since I&rsquo;m using Vim, I&rsquo;ll need to make <code>vim-install</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd editor
+$ make vim-install</code></pre>
+</figure><p>This gives me syntax highlighting and template generation for new PIR files.</p>
 <h3 id="windows-1">Windows</h3>
 <p>It appears to be even more straightforward to install Parrot on Microsoft Windows.
 The <a href="http://www.parrot.org/download">Parrot download page</a> includes a link to
@@ -431,25 +457,37 @@ it for me. I <em>like</em> having Vim support.</p>
 <h2 id="output">Output</h2>
 <p>It is time to start writing code. Move to your projects
 directory and create a new directory for the Parrot Babysteps project.</p>
-<pre tabindex="0"><code>$ cd ~/projects
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd ~/projects
 $ mkdir parrot-babysteps
 $ cd parrot-babysteps
-$ gvim example-01-01.pir
-</code></pre><p>When I&rsquo;m connected to the iMac via <code>ssh</code> I settle for</p>
-<pre tabindex="0"><code>$ vim example-01-01.pir
-</code></pre><p>The steps are the more or less the same on Windows. First, open a command
+$ gvim example-01-01.pir</code></pre>
+</figure><p>When I&rsquo;m connected to the iMac via <code>ssh</code> I settle for</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vim example-01-01.pir</code></pre>
+</figure><p>The steps are the more or less the same on Windows. First, open a command
 prompt by whatever means you&rsquo;re comfortable with. I prefer typing <code>cmd</code>
 into the &ldquo;Search programs and files&rdquo; field of the Start menu. Then, move to your projects
 directory and create a new directory for the Parrot Babysteps project.</p>
-<pre tabindex="0"><code>C:\Users\brian&gt; cd \projects
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:\Users\brian&gt; cd \projects
 C:\projects&gt; mkdir parrot-babysteps
 C:\projects&gt; cd parrot-babysteps
-C:\projects\parrot-babysteps&gt; gvim example-01-01.pir
-</code></pre><p>From here on, the differences between Windows and other platforms become
+C:\projects\parrot-babysteps&gt; gvim example-01-01.pir</code></pre>
+</figure><p>From here on, the differences between Windows and other platforms become
 small enough that I feel comfortable ignoring them until something really significant
 catches my attention.</p>
 <p>We immediately see some benefit from installing editor support.</p>
-<pre tabindex="0"><code># Copyright (C) 2011 Parrot Foundation.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Copyright (C) 2011 Parrot Foundation.
 
 .sub &#39;main&#39; :main
     # For Parrot developers.
@@ -459,22 +497,28 @@ catches my attention.</p>
 #   mode: pir
 #   fill-column: 100
 # End:
-# vim: expandtab shiftwidth=4 ft=pir:
-</code></pre><p>That looks like a heck of a lot for an otherwise empty file, but most of those
+# vim: expandtab shiftwidth=4 ft=pir:</code></pre>
+</figure><p>That looks like a heck of a lot for an otherwise empty file, but most of those
 lines are actually comments.</p>
 <h3 id="comments">Comments</h3>
 <p>PIR comments start with a <code>#</code> character. Everything from that <code>#</code> to the end of the line is
 ignored by the parser.</p>
-<pre tabindex="0"><code># This is a comment
-</code></pre><p>Comments are handy. They can explain why you chose a particular solution,
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># This is a comment</code></pre>
+</figure><p>Comments are handy. They can explain why you chose a particular solution,
 concerns you have about the code, or pretty much anything else. The
 comments in our template serve to identify where the template file came from
 and a few directives for Vim to remember when editing this file.</p>
 <h3 id="directives">Directives</h3>
 <p>There are only two important lines left when we ignore the comments.</p>
-<pre tabindex="0"><code>.sub main :main
-.end
-</code></pre><p>Lines that start with a period (<code>.</code>) are <em>directives</em>, special instructions for PIR. There
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub main :main
+.end</code></pre>
+</figure><p>Lines that start with a period (<code>.</code>) are <em>directives</em>, special instructions for PIR. There
 are a number of directives for Parrot, and it is possible to create your own. The <code>.sub</code>
 line is telling PIR that this line begins a compilation unit called &ldquo;main&rdquo; which serves as the <code>:main</code>
 compilation unit in the program. Compilation units are tasty named tidbits of code that get a
@@ -494,26 +538,35 @@ body of the subroutine - the stuff that gets executed when the subroutine is cal
 about figuring out which one to run first. We still don&rsquo;t have anything to be executed,
 though. How about making this program <em>do</em> something?</p>
 <h3 id="building-the-program">Building The Program</h3>
-<pre tabindex="0"><code># example-01-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-01.pir
 .sub main :main
     say &#34;Hello, world!&#34;
-.end
-</code></pre><p>Finally - code! Fairly self-explanatory code at that. Well, almost. <code>say</code> is
+.end</code></pre>
+</figure><p>Finally - code! Fairly self-explanatory code at that. Well, almost. <code>say</code> is
 an <a href="http://docs.parrot.org/parrot/latest/html/ops.html"><em>opcode</em></a> - a
 native Parrot command - for presenting values to the user. <code>say</code> won&rsquo;t normally speak the
 phrase &ldquo;Hello, world!&rdquo; through your speakers. It will, however print the phrase on a line in your
 console.</p>
-<pre tabindex="0"><code>$ parrot example-01-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-01-01.pir
 Hello, World!
-$
-</code></pre><h2 id="variables">Variables</h2>
+$</code></pre>
+</figure><h2 id="variables">Variables</h2>
 <p>What if I want to change the greeting, so that it displays my name as part of the greeting?
 While simply rewriting the phrase does technically work &hellip;</p>
-<pre tabindex="0"><code># example-01-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-02.pir
 .sub main :main
     say &#34;Hello, Brian!&#34;
-.end
-</code></pre><p>&hellip; I want something a little more flexible. I want to be able to define a name, and then
+.end</code></pre>
+</figure><p>&hellip; I want something a little more flexible. I want to be able to define a name, and then
 print a greeting with the name. This will require adding a variable.
 We use variables whenever we want the program to remember something.</p>
 <p>There are four types of things that Parrot can keep track of:</p>
@@ -533,14 +586,17 @@ can be thought of as variable buckets: one bucket for each type. Okay, maybe not
 like four rows of nicely organized variables, with each variable type in its own row.</p>
 <p>Register variables are prefixed with the dollar sign <code>$</code> and an uppercase letter indicating their
 type. The rest of the variable name is a whole number from zero on up. Here, let me show you:</p>
-<pre tabindex="0"><code># example-01-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-03.pir
 .sub main :main
     $S0 = &#34;Brian&#34;
     $S1 = &#34;Hello, &#34; . $S0
     $S1 = $S1 . &#34;!&#34;
     say $S1
-.end
-</code></pre><p>Assignment to register variables is pretty straightforward, as you can see. You tell Parrot which
+.end</code></pre>
+</figure><p>Assignment to register variables is pretty straightforward, as you can see. You tell Parrot which
 position in which row is being assigned to on one side of the <code>=</code> symbol, and the value
 to assign on the other.</p>
 <p>Oh, did you see what I did when creating <code>$S1</code>? I did mention that Parrot has special rules for
@@ -559,8 +615,11 @@ sheet of variable names handy.</p>
 readable name for our variable, asking Parrot to deal with the register side of things.</p>
 <p>Creation of a local variable requires the <code>.local</code> directive, followed by type information and
 lastly a variable name.</p>
-<pre tabindex="0"><code>.local &lt;type&gt; &lt;name&gt;
-</code></pre><p>The type names match up to the Parrot types, of course:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local &lt;type&gt; &lt;name&gt;</code></pre>
+</figure><p>The type names match up to the Parrot types, of course:</p>
 <ul>
 <li><code>int</code> for integers</li>
 <li><code>num</code> for numbers</li>
@@ -569,7 +628,10 @@ lastly a variable name.</p>
 </ul>
 <p>Variables created with the <code>.local</code> directive can be treated the same as a
 register variable.</p>
-<pre tabindex="0"><code># example-01-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-04.pir
 .sub main :main
     .local string name
     .local string greeting
@@ -578,25 +640,34 @@ register variable.</p>
     greeting = &#34;Hello, &#34; . name
     greeting = greeting . &#34;!&#34;
     say greeting
-.end
-</code></pre><p>You know, that line where we append an exclamation to our greeting is longer than it needs to be.
+.end</code></pre>
+</figure><p>You know, that line where we append an exclamation to our greeting is longer than it needs to be.
 The PIR provides special operators for when you are doing something to a variable and then assigning
 the result back to the same variable. That means we could describe &ldquo;append an exclamation point to
 <code>greeting</code>&rdquo; this way, too:</p>
-<pre tabindex="0"><code># example-01-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-05.pir
 # ...
 greeting = &#34;Hello, &#34; . name
 greeting .= &#34;!&#34;
-# ...
-</code></pre><h2 id="input">Input</h2>
+# ...</code></pre>
+</figure><h2 id="input">Input</h2>
 <p>We&rsquo;ve covered a lot of conceptual ground already. What has it earned us?</p>
-<pre tabindex="0"><code>$ parrot example-01-05.pir
-Hello, Brian!
-</code></pre><p>This is not impressive. We&rsquo;ve actually increased the amount of code significantly compared
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-01-05.pir
+Hello, Brian!</code></pre>
+</figure><p>This is not impressive. We&rsquo;ve actually increased the amount of code significantly compared
 to just saying &ldquo;Hello, Brian!&rdquo;. Splitting the name off into its own variable does lay the groundwork
 for a slightly more impressive task, though. Let&rsquo;s make the program ask the user for his name
 when run.</p>
-<pre tabindex="0"><code># example-01-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-01-06.pir
 .sub main :main
     .local string name
     .local string greeting
@@ -607,8 +678,8 @@ when run.</p>
     greeting = &#34;Hello, &#34; . name
     greeting .= &#34;!&#34;
     say greeting
-.end
-</code></pre><p>We&rsquo;ve only added a few lines, but these few lines have added a lot of functionality. The first thing
+.end</code></pre>
+</figure><p>We&rsquo;ve only added a few lines, but these few lines have added a lot of functionality. The first thing
 you probably noticed was the <em>pmc</em> variable named <code>stdin</code>. PMCs are used in Parrot for complex types,
 like classes in other languages. They often have special subroutines called <em>methods</em> tied to them.
 Those methods can greatly simplify the creation of complex programs.</p>
@@ -618,10 +689,13 @@ it to our <code>stdin</code> PMC. Standard input - widely referred to as <em>std
 describes where we expect user input to come from. That can be any number of places, but
 usually refers to the keyboard. The FileHandle method we care about most today is <code>readline_interactive</code>.
 <code>readline_interactive</code> prompts the user for input, and hands that input back to the program.</p>
-<pre tabindex="0"><code>$ parrot example-01-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-01-06.pir
 Please enter your name: Brian
-Hello, Brian
-</code></pre><h2 id="conclusion">Conclusion</h2>
+Hello, Brian</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>We&rsquo;ve done quite a bit today. We installed Parrot, created a simple script that prints a greeting
 to the console, then expanded our script to get the user&rsquo;s name and incorporate the name into the
 greeting. It took less effort than I thought it would despite the fact that PIR is low-level

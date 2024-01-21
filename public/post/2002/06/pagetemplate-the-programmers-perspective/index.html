@@ -139,8 +139,8 @@ require &#39;PageTemplate&#39; You’ll need a PageTemplate object to hold value
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -253,11 +253,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetemplate-the-programmers-perspective/">PageTemplate - The Programmer&#39;s Perspective</a></li>
@@ -300,20 +305,32 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="using-pagetemplate-in-your-ruby-code">Using PageTemplate In Your Ruby Code</h2>
 <p>This is a <em>very</em> quick overview, because I just spent hours going over the designer documents and I’m a little tired.</p>
 <p>First, of course, you’ll want to <a href="/post/2002/07/pagetemplate-getting-it/">install</a> the PageTemplate package. Once that’s done, <code>require</code> the package.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
-</span></span></code></pre></div><p>You’ll need a PageTemplate object to hold values and parse template files.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
-</span></span></code></pre></div><p>At some point, you will want the PageTemplate object to load a template text file, bristling with directives. The template file should be readable by the script, and the path must be either absolute or relative to the script’s working directory.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/var/www/templates/template.txt&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>To assign a value for use by PageTemplate, use hash-style assignment, with the name to be used by the template as the key, and the value assigned as — well — the value. The only rule is that the value must evaluate to a String. Either it <em>is</em> a String or it has a <code>to_s</code> method). Page designers would probably be grateful if the key was a string, too. Much easier to type it into a text template that way.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;My PageTemplate Script&#39;</span>
-</span></span></code></pre></div><p>The easiest way to handle flags used in <code>if</code> directives is to take advantage of Ruby’s boolean values.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;flag&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;shovel&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
-</span></span></code></pre></div><p>You can use the truth of a regular variable or loop variable in an <code>if</code> directive, but remember that Ruby is more specific about <code>false</code> than other languages you might be used to. For example, the number zero is not false. It’s just zero. Same with empty strings. If you want a variable to be interpreted as <code>false</code>, you should explicitly set it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span></span></span></code></pre>
+</figure><p>You’ll need a PageTemplate object to hold values and parse template files.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">()</span></span></span></code></pre>
+</figure><p>At some point, you will want the PageTemplate object to load a template text file, bristling with directives. The template file should be readable by the script, and the path must be either absolute or relative to the script’s working directory.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/var/www/templates/template.txt&#39;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>To assign a value for use by PageTemplate, use hash-style assignment, with the name to be used by the template as the key, and the value assigned as — well — the value. The only rule is that the value must evaluate to a String. Either it <em>is</em> a String or it has a <code>to_s</code> method). Page designers would probably be grateful if the key was a string, too. Much easier to type it into a text template that way.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;My PageTemplate Script&#39;</span></span></span></code></pre>
+</figure><p>The easiest way to handle flags used in <code>if</code> directives is to take advantage of Ruby’s boolean values.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;flag&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;shovel&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span></span></span></code></pre>
+</figure><p>You can use the truth of a regular variable or loop variable in an <code>if</code> directive, but remember that Ruby is more specific about <code>false</code> than other languages you might be used to. For example, the number zero is not false. It’s just zero. Same with empty strings. If you want a variable to be interpreted as <code>false</code>, you should explicitly set it.</p>
 <p>PageTemplate uses arrays of objects for lists. Each object provides a local namespace which lasts only for the current iteration through the chunk of content. Otherwise, you’d have to manually set loop variables, and I don’t like that idea!</p>
 <p>The classic approach is to borrow from <a href="http://html-template.sourceforge.net/">HTML::Template</a> and use a list of hashes for your namespaces.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">listing</span> <span class="o">=</span> <span class="o">[</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">listing</span> <span class="o">=</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Swordfishtrombones&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;artist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Tom Waits&#39;</span> <span class="p">},</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;Dirt Track Date&#39;</span><span class="p">,</span>
@@ -321,9 +338,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The Craft&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;artist&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Blackalicious&#39;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;albums&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span>
-</span></span></code></pre></div><p>What about nested lists? They are handled the same way. One of the keys in your item hash points to another array of hashes, which will be used for the inner loop.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">favorites</span> <span class="o">=</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl"><span class="n">template</span><span class="o">[</span><span class="s1">&#39;albums&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">listing</span></span></span></code></pre>
+</figure><p>What about nested lists? They are handled the same way. One of the keys in your item hash points to another array of hashes, which will be used for the inner loop.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">favorites</span> <span class="o">=</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="s2">&#34;topic&#34;</span>  <span class="o">=&gt;</span> <span class="s2">&#34;Interesting Comic Books&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;items&#34;</span>    <span class="o">=&gt;</span> <span class="o">[</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;title&#34;</span>   <span class="o">=&gt;</span> <span class="s2">&#34;Dropsie Avenue&#34;</span><span class="p">,</span>
@@ -346,37 +365,49 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;title&#34;</span>   <span class="o">=&gt;</span> <span class="s2">&#34;Swordfishtrombones&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;creator&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;Tom Waits&#34;</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="o">]</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">]</span>
-</span></span></code></pre></div><p>Using objects in a list requires a little more research, but it’s still a practical solution. Say you’re trying to figure out how to use PageTemplate in an image gallery. You might have an Image class with accessors that look something like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Image</span>
+</span></span><span class="line"><span class="cl"><span class="o">]</span></span></span></code></pre>
+</figure><p>Using objects in a list requires a little more research, but it’s still a practical solution. Say you’re trying to figure out how to use PageTemplate in an image gallery. You might have an Image class with accessors that look something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Image</span>
 </span></span><span class="line"><span class="cl">  <span class="kp">attr_reader</span> <span class="ss">:url</span><span class="p">,</span> <span class="ss">:height</span><span class="p">,</span> <span class="ss">:width</span><span class="p">,</span> <span class="ss">:caption</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>You can build your template armed with this knowledge.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop images %]
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>You can build your template armed with this knowledge.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop images %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;[%var url%]&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">=</span><span class="s">&#34;[%var height%]&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;[%var width%]&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">alt</span><span class="o">=</span><span class="s">&#34;[%var caption %]&#34;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>[%var caption %]<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end loop %]
-</span></span></code></pre></div><p>Then, rather than waste precious minutes altering class <code>Image</code> to respond to hash-based access, you can assign a list of <code>Image</code> objects to the template list.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">galleryPage</span><span class="o">[</span><span class="s1">&#39;images&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">gallery</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">images</span>
-</span></span></code></pre></div><p>This approach definitely encourages maintaining a consistent interface. I wouldn’t want to go altering my template files (or telling the designer to alter her files) every time I get a bright idea for how <code>Image</code> should work.</p>
+</span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
+</figure><p>Then, rather than waste precious minutes altering class <code>Image</code> to respond to hash-based access, you can assign a list of <code>Image</code> objects to the template list.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">galleryPage</span><span class="o">[</span><span class="s1">&#39;images&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">gallery</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">images</span></span></span></code></pre>
+</figure><p>This approach definitely encourages maintaining a consistent interface. I wouldn’t want to go altering my template files (or telling the designer to alter her files) every time I get a bright idea for how <code>Image</code> should work.</p>
 <p>You can also refer to public methods of the object in your template, but that’s still a bit shaky. The methods have to accept calls with no arguments or blocks (Ex: <code>image.thumbnail()</code> would be referenced as <code>[%var thumbnail%]</code>).</p>
 <p>Once you’ve told your PageTemplate object which file to load and what values to remember, you’ll probably want to display the neat custom page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">output</span>
-</span></span></code></pre></div><p>Of course, if you do things this way you’ll have to remember all of the HTTP header information. Life will be much easier for you if you just use the functionality provided by the standard CGI module for ruby.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">cgi</span><span class="o">.</span><span class="n">out</span> <span class="p">{</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span> <span class="p">}</span>
-</span></span></code></pre></div><p>I’m not a <a href="http://rubyonrails.com/">Rails</a> person, so I really don’t know how well PageTemplate works with Rails these days. Definitely send reports if you have any troubles, though. See <a href="/post/2002/06/pagetemplate/">pagetemplate</a> for links to bug filing and the forum.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">output</span></span></span></code></pre>
+</figure><p>Of course, if you do things this way you’ll have to remember all of the HTTP header information. Life will be much easier for you if you just use the functionality provided by the standard CGI module for ruby.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">cgi</span><span class="o">.</span><span class="n">out</span> <span class="p">{</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>I’m not a <a href="http://rubyonrails.com/">Rails</a> person, so I really don’t know how well PageTemplate works with Rails these days. Definitely send reports if you have any troubles, though. See <a href="/post/2002/06/pagetemplate/">pagetemplate</a> for links to bug filing and the forum.</p>
 <h3 id="caching-templates">Caching Templates</h3>
 <p>PageTemplate has some support for saving template information to disk. This means that your application needs less time to prepare its templates. You still need to provide a Namespace when you need output, though.</p>
 <p>Two steps are required to take advantage of PageTemplate’s cache capabilities. First, make sure that your script has write permissions to the directory or directories that contain your template source. Next, call the PageTemplate constructor with the <code>use_cache</code> flag set to <code>true</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">template</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;use_cache&#39;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><h3 id="creating-your-own-syntax">Creating Your Own Syntax</h3>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="creating-your-own-syntax">Creating Your Own Syntax</h3>
 <p>For now, use the source as your guides.</p>
 
   

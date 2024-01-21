@@ -135,8 +135,8 @@ Syntax Example &lt;h1&gt;Hello, [%var name%]&lt;/h1&gt; Every time that PageTemp
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetemplate-variables/">PageTemplate - Variables</a></li>
@@ -299,16 +304,22 @@ idea to use variable names that make sense(<code>name</code> for a person’s na
 across a value directive, it replaces that directive with some text.</p>
 <h3 id="syntax">Syntax</h3>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, [%var name%]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Every time that PageTemplate sees <code>[%var name%]</code> in your template, it
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, [%var name%]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Every time that PageTemplate sees <code>[%var name%]</code> in your template, it
 will replace that directive with the text associated with <code>name</code>.</p>
 <p>The programmer works his magic, and the visitor “Frank” sees this
 greeting:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, Frank<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>If <code>name</code> is not set, nothing is inserted. The greeting header would end
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, Frank<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>If <code>name</code> is not set, nothing is inserted. The greeting header would end
 up looking like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello,<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="filters">Filters</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello,<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h2 id="filters">Filters</h2>
 <p>Text on the Web is a funny thing. Your page can be unreadable if you
 forget to escape a few <code>&lt;</code> characters. You could rely on your
 programmers to take care of the necessary escapes, but there is always
@@ -318,22 +329,26 @@ They take the contents of a variable and reformat it according to
 specific rules.</p>
 <h3 id="syntax-1">Syntax</h3>
 <h3 id="example-1">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%var message.contents :escapeHTML %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You can also view this comment <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;[%var message.url :escapeURL %]&#34;</span><span class="p">&gt;</span>here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Thank You,<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>That might end up looking like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>That might end up looking like this:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="ni">&amp;lt;</span>span style=&#39;font-size: 250%&#39;<span class="ni">&amp;gt;&amp;lt;</span>blink<span class="ni">&amp;gt;</span>Wenzleedale suks! Cheddr 4evar!!1!<span class="ni">&amp;lt;</span>/blink<span class="ni">&amp;gt;&amp;lt;</span>/span<span class="ni">&amp;gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You can also view this comment <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://wensleydaleforum.net/messages/view/Wenzlee+Sucks%21&#34;</span><span class="p">&gt;</span>here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Thank You,<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="dots-objects-and-traits">Dots, Objects, and Traits</h2>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h2 id="dots-objects-and-traits">Dots, Objects, and Traits</h2>
 <p>What? Oh, some of you might have noticed that little dot in the variable
 names for the last example. This is a little bit of geek code getting
 into the template. Lots of information in a Ruby program is divided into
@@ -350,8 +365,11 @@ code. PageTemplate is a little more flexible in how it gets an object’s
 details, so a more general name seemed appropriate. You can call them
 “Waffle Monkeys of the Yukon” if you like.</p>
 <h3 id="syntax-2">Syntax</h3>
-<pre tabindex="0"><code>variable.trait
-</code></pre>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >variable.trait</code></pre>
+</figure>
   
 
 

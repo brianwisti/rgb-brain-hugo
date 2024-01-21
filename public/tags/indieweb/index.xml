@@ -106,16 +106,24 @@ A spiderweb! For <em>inbox/Webmention</em>! Get it? Okay, yeah. Sorry.</p>
 <p>Let’s acquaint ourselves with the important parts of this API.  You’ll need your API token, which can be found in the Webmention <a href="https://webmention.io/settings">settings</a> once you sign up.</p>
 <h2 id="reading-the-feed-with-httpie">Reading the feed with HTTPie</h2>
 <p>I’ll use <a href="https://httpie.io">HTTPie</a> for my little exploration.  I like the way it works.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pip install httpie
-</span></span></code></pre></div><h3 id="getting-recent-reactions">Getting recent reactions</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pip install httpie</span></span></code></pre>
+</figure><h3 id="getting-recent-reactions">Getting recent reactions</h3>
 <p>We mainly care about the mentions endpoint.  Hand it your domain and API token, and it will send you the 20 most recent responses for your site.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span>
-</span></span></code></pre></div><p>HTTPie’s double-equals <code>==</code> syntax means &ldquo;make a query string,&rdquo; so I end up with something like this::</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://webmention.io/api/mentions.jf2?domain=randomgeekery.org&amp;token=xxxxx
-</span></span></code></pre></div><p>When <code>http</code> fetches that URL, I get back a <a href="https://www.w3.org/TR/jf2/">JF2</a> feed that looks something like this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span></span></span></code></pre>
+</figure><p>HTTPie’s double-equals <code>==</code> syntax means &ldquo;make a query string,&rdquo; so I end up with something like this::</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://webmention.io/api/mentions.jf2?domain=randomgeekery.org&amp;token=xxxxx</span></span></code></pre>
+</figure><p>When <code>http</code> fetches that URL, I get back a <a href="https://www.w3.org/TR/jf2/">JF2</a> feed that looks something like this.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -142,34 +150,42 @@ A spiderweb! For <em>inbox/Webmention</em>! Get it? Okay, yeah. Sorry.</p>
 </span></span><span class="line"><span class="cl">    <span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webmentions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;feed&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>What’s JF2?  It’s obviously JSON.  Maybe something to do with <a href="https://jsonfeed.org/">JSON Feed</a>?  Similar, but no.  JF2 is a JSON format for <a href="/card/microformats/">microformats2</a>.  The mnemonic I’ve been trying to drill into my head is &ldquo;JSON (micro)Formats 2.&rdquo;</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>What’s JF2?  It’s obviously JSON.  Maybe something to do with <a href="https://jsonfeed.org/">JSON Feed</a>?  Similar, but no.  JF2 is a JSON format for <a href="/card/microformats/">microformats2</a>.  The mnemonic I’ve been trying to drill into my head is &ldquo;JSON (micro)Formats 2.&rdquo;</p>
 <p>It’s not a very good mnemonic.</p>
 <p>Each entry summarizes the reaction, including which of my posts they were reacting to.  That’s kind of important.  Most recently, Twitter user <a href="https://twitter.com/junkw">@junkw</a> retweeted my announcement about <a href="/post/2020/10/i-added-this-note-from-org-mode/">adding a note from Org mode</a>.</p>
 <blockquote>
-<p>[!NOTE]
-There’s also a <code>.json</code> endpoint for every feed that presents a different structure for mentions.  I prefer it, because it contains fewer <code>wm-*</code> fields.  But the documentation uses JF2, so that’s what I’ll do.</p>
+<p><strong>NOTE</strong></p>
+<p>There’s also a <code>.json</code> endpoint for every feed that presents a different structure for mentions.  I prefer it, because it contains fewer <code>wm-*</code> fields.  But the documentation uses JF2, so that’s what I’ll do.</p>
 </blockquote>
 <h3 id="checking-for-new-reactions">Checking for new reactions</h3>
 <p>Maybe I’m checking again later and only want to see the <em>new</em> reactions.  I request mentions received since the value of the <code>wm-received</code> field in the last entry I have.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">since</span><span class="o">==</span><span class="s2">&#34;2020-10-26T04:07:20Z&#34;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">since</span><span class="o">==</span><span class="s2">&#34;2020-10-26T04:07:20Z&#34;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[],</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webmentions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;feed&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Well, yeah.  That makes sense.  I don’t get the kind of traffic where you’d expect fresh reactions every time you check.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Well, yeah.  That makes sense.  I don’t get the kind of traffic where you’d expect fresh reactions every time you check.</p>
 <h3 id="fetching-the-oldest-reactions-first">Fetching the oldest reactions first</h3>
 <p>As I mentioned at the start, my site is a little broken.  I need to rebuild the full list of reactions so my <a href="/card/hugo/">card/Hugo</a> site can work with a complete record. To do that, I should probably start from the oldest mentions and work my way forward.</p>
 <p>Rather than the default <code>sort-dir</code> of <code>down</code>, I specify <code>up</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  sort-dir<span class="o">==</span>up
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  sort-dir<span class="o">==</span>up</span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -196,31 +212,47 @@ There’s also a <code>.json</code> endpoint for every feed that presents a diff
 </span></span><span class="line"><span class="cl">    <span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webmentions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;feed&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Aww, my first site reply. From <a href="https://twitter.com/hercynium">@hercynium</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Aww, my first site reply. From <a href="https://twitter.com/hercynium">@hercynium</a>.</p>
 <p>I only get 20 results by default, though.  Here.  Let’s make <a href="https://stedolan.github.io/jq/">jq</a> show us. Here’s a default page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> sort-dir<span class="o">==</span>up <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">20
-</span></span></code></pre></div><h3 id="handling-result-pagination">Handling result pagination</h3>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">20</span></span></code></pre>
+</figure><h3 id="handling-result-pagination">Handling result pagination</h3>
 <p>I can specify how many responses I want in each response with the <code>per-page</code> parameter.  With <code>per-page</code> set to 100, I get a hundred entries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> per-page<span class="o">==</span><span class="m">100</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">100
-</span></span></code></pre></div><p>Of course, if there aren’t a hundred entries to fill the page, I only get what’s available.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">100</span></span></code></pre>
+</figure><p>Of course, if there aren’t a hundred entries to fill the page, I only get what’s available.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> <span class="nv">since</span><span class="o">==</span><span class="s2">&#34;2020-10-26T04:07:20Z&#34;</span> per-page<span class="o">=</span><span class="m">100</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">0
-</span></span></code></pre></div><p>The <code>page</code> parameter — which starts at zero — lets me step through the feed in batches.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> jq <span class="s1">&#39;.children | length&#39;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">0</span></span></code></pre>
+</figure><p>The <code>page</code> parameter — which starts at zero — lets me step through the feed in batches.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">domain</span><span class="o">==</span>randomgeekery.org <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">token</span><span class="o">==</span><span class="nv">$WEBMENTION_KEY</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  sort-dir<span class="o">==</span>up <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">page</span><span class="o">==</span><span class="m">1</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">page</span><span class="o">==</span><span class="m">1</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -248,13 +280,17 @@ There’s also a <code>.json</code> endpoint for every feed that presents a diff
 </span></span><span class="line"><span class="cl">    <span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webmentions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;feed&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Right.  That’s Bridgy catching a Twitter thread.  At least I can see the full conversation from my site.  Or I will once I’m done fixing everything.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Right.  That’s Bridgy catching a Twitter thread.  At least I can see the full conversation from my site.  Or I will once I’m done fixing everything.</p>
 <h3 id="bonus-checking-for-reactions-to-a-specific-post">Bonus: checking for reactions to a specific post</h3>
 <p>I could get a JF2 feed for specific URLs on my site if I was so inclined.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">target</span><span class="o">==</span>https://randomgeekery.org
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http get https://webmention.io/api/mentions.jf2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="nv">target</span><span class="o">==</span>https://randomgeekery.org</span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;children&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -277,12 +313,15 @@ There’s also a <code>.json</code> endpoint for every feed that presents a diff
 </span></span><span class="line"><span class="cl">    <span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Webmentions&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;feed&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I deal with my site reactions in bulk so they can be incorporated in the Hugo build.  This could be handy for JavaScript-driven update on reactions since the site was last built and pushed, though.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I deal with my site reactions in bulk so they can be incorporated in the Hugo build.  This could be handy for JavaScript-driven update on reactions since the site was last built and pushed, though.</p>
 <h2 id="rebuilding-the-local-mentions-file">Rebuilding the local mentions file</h2>
 <p>Now I want to take what I learned about the API to build a local copy of my site’s mention history.  Let’s step away from HTTPie and the command line before I try something dangerous.</p>
 <p>The <a href="https://requests.readthedocs.io/">Requests</a> library for <a href="/card/python/">card/Python</a> can help me build one list of Webmentions.</p>
-<div class="highlight" title="rebuild-mentions-feed.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+<figure class="highlight">
+  <figcaption><tt>rebuild-mentions-feed.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
 </span></span><span class="line"><span class="cl">
@@ -328,15 +367,18 @@ There’s also a <code>.json</code> endpoint for every feed that presents a diff
 </span></span><span class="line"><span class="cl">    <span class="n">domain</span> <span class="o">=</span> <span class="s2">&#34;randomgeekery.org&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;WEBMENTION_KEY&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="n">target_file</span> <span class="o">=</span> <span class="s2">&#34;mentions.jf2&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rebuild_full_feed</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">target_file</span><span class="p">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> python rebuild-mentions-feed.py
+</span></span><span class="line"><span class="cl">    <span class="n">rebuild_full_feed</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">target_file</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> python rebuild-mentions-feed.py
 </span></span><span class="line"><span class="cl"><span class="go">Added 100 entries
 </span></span></span><span class="line"><span class="cl"><span class="go">Added 100 entries
 </span></span></span><span class="line"><span class="cl"><span class="go">Added 100 entries
 </span></span></span><span class="line"><span class="cl"><span class="go">Added 83 entries
 </span></span></span><span class="line"><span class="cl"><span class="go">Reached end of feed
 </span></span></span><span class="line"><span class="cl"><span class="go">Wrote 383 entries to mentions.jf2
-</span></span></span></code></pre></div><p>This gives me the first requirement for rebuilding my mentions: an intact historical record, up to the current moment.</p>
+</span></span></span></code></pre>
+</figure><p>This gives me the first requirement for rebuilding my mentions: an intact historical record, up to the current moment.</p>
 <h2 id="intermission">Intermission</h2>
 <p>Time to pause.</p>
 <p>Why?  Why not just use this JSON as a <a href="https://gohugo.io/templates/data-templates/">Hugo data file</a> — let it filter through finding relevant mentions for each post?</p>
@@ -396,13 +438,19 @@ This was an interesting experiment, but messed with results on search engine pag
 <p>My post title and URL referenced Rakubrew’s predecessor &ldquo;Rakudobrew,&rdquo; which I considered an unacceptable faux pas.  So I fixed it.</p>
 <h2 id="hugo-aliases-a-solution-to-for-my-url-typo">Hugo aliases: A solution to for my URL typo</h2>
 <p>This faux pas was easily corrected with <a href="https://gohugo.io/content-management/urls/#aliases">Hugo Aliases</a>.  Move your content where it needs to be, and add an alias for the old link to content front matter.</p>
-<div class="highlight" title="Front matter for my Rakubrew post" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Setting up Raku with Rakubrew</span><span class="w">
+<figure class="highlight">
+  <figcaption><span>Front matter for my Rakubrew post</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Setting up Raku with Rakubrew</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">stub</span><span class="p">:</span><span class="w"> </span><span class="l">setting-up-raku-with-rakubrew</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">⋮</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">aliases</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">/post/2020/05/setting-up-raku-with-rakudobrew/</span><span class="w">
-</span></span></span></code></pre></div><p>With default configuration, Hugo generates an HTML redirect page for every alias.</p>
-<div class="highlight" title="HTML generated by Hugo for the alias" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">/post/2020/05/setting-up-raku-with-rakudobrew/</span></span></span></code></pre>
+</figure><p>With default configuration, Hugo generates an HTML redirect page for every alias.</p>
+<figure class="highlight">
+  <figcaption><span>HTML generated by Hugo for the alias</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>https://randomgeekery.org/post/2020/05/setting-up-raku-with-rakubrew/<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -411,8 +459,8 @@ This was an interesting experiment, but messed with results on search engine pag
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;refresh&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;0; url=https://randomgeekery.org/post/2020/05/setting-up-raku-with-rakubrew/&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>The visitor may briefly see a blank page.  Browsers visiting the old URL see the <code>http-equiv=&quot;refresh&quot;</code> element and immediately go to the new <code>url</code>. Normally, this is fine.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>The visitor may briefly see a blank page.  Browsers visiting the old URL see the <code>http-equiv=&quot;refresh&quot;</code> element and immediately go to the new <code>url</code>. Normally, this is fine.</p>
 <h2 id="now-for-todays-problem">Now for today’s problem</h2>
 <p>Now my <em>inbox/Webmention</em> feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  <a href="https://brid.gy/">Brid.gy</a> — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!</p>
 <p><img src="/post/2020/05/attachments/img/2020/bridgy.png" alt="Bridgy dashboard showing &ldquo;No webmention support&rdquo; in responses to my old URL"/></p>
@@ -421,7 +469,10 @@ This was an interesting experiment, but messed with results on search engine pag
 <h2 id="use-a-custom-alias-template-for-my-webmention-problem">Use a custom alias template for my webmention problem</h2>
 <p>Oh thank goodness. Hugo supports <a href="https://gohugo.io/content-management/urls/#customize">custom alias templates</a>.</p>
 <p>What’s the least I can do to get things working?</p>
-<div class="highlight" title="layouts/alias.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<figure class="highlight">
+  <figcaption><tt>layouts/alias.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Permalink }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -432,10 +483,10 @@ This was an interesting experiment, but messed with results on search engine pag
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;refresh&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;0; url={{ .Permalink }}&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-I was going to do a whole post on receiving webmentions, but that’s basically it  right there. Sign up at <a href="https://webmention.io">Webmention.io</a> and add the <code>&lt;link&gt;</code> to your pages.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>I was going to do a whole post on receiving webmentions, but that’s basically it  right there. Sign up at <a href="https://webmention.io">Webmention.io</a> and add the <code>&lt;link&gt;</code> to your pages.</p>
 </blockquote>
 <p>Brid.gy now sees the webmention link at the old URL.  I can manually resend the relevant mentions.  All is well.</p>
 <p>Almost.  Now that I’m looking at my templates, I see problems.</p>
@@ -476,7 +527,10 @@ I was going to do a whole post on receiving webmentions, but that’s basically 
 <p>I have no problem with automatic redirect for non-entry content: sections, pagination, archives, tag listings, and so on.  I made peace with my constant puttering on those a long time ago.  <a href="https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-">redirect in <code>.htaccess</code></a> suffices for non-entry content.  But actual posts and pages should stay constant or at the very least tell you where they went.</p>
 <p>And this post adds a new rule that they need to tell <em>you</em> — not just the browser.</p>
 <p>This is what I came up with, more or less.</p>
-<div class="highlight" title="layouts/alias.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<figure class="highlight">
+  <figcaption><tt>layouts/alias.html</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{{ .Permalink }}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -512,8 +566,8 @@ I was going to do a whole post on receiving webmentions, but that’s basically 
 </span></span><span class="line"><span class="cl">        does not immediately redirect.
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{ end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><ol>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><ol>
 <li>Analytics for aliased pages, because I want to know if folks are clicking on
 old links, but not for pagination aliases. Those are noise for me, not
 information.</li>
@@ -522,16 +576,22 @@ information.</li>
 </ol>
 <p>It works with some tweaking.  Hugo <a href="https://gohugo.io/templates/pagination/">pagination</a> relies on aliases to setup <code>page/1</code> redirects.  Those pagination links aren’t associated with a Page, and an extra click with those would be annoying.  But in the end I have a non-refreshing informational page at the old link for page aliases, and an auto-refreshing page with context for pagination aliases.</p>
 <p>Build gets much noisier with that <code>warnf</code> in place.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> make build
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> make build
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go">WARN 2020/05/20 12:27:20 No page defined for &#34;https://randomgeekery.org/tags/yeah-i-know/&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">WARN 2020/05/20 12:27:20 No page defined for &#34;https://randomgeekery.org/tags/unless-thats-cool/&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">WARN 2020/05/20 12:27:20 No page defined for &#34;https://randomgeekery.org/tags/zentangle/&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">WARN 2020/05/20 12:27:20 No page defined for &#34;https://randomgeekery.org/tags/zombie/&#34;
 </span></span></span><span class="line"><span class="cl"><span class="go">⋮
-</span></span></span></code></pre></div><p>Kill pagination again.</p>
+</span></span></span></code></pre>
+</figure><p>Kill pagination again.</p>
 <p>Mind you, I have no idea what effect this will have on Search Engine Optimization. Then again, this would be a much different site if I cared about SEO.</p>
-<div class="highlight" title="The new redirect file" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<figure class="highlight">
+  <figcaption><span>The new redirect file</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>https://randomgeekery.org/post/2020/05/setting-up-raku-with-rakubrew/<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -552,8 +612,8 @@ information.</li>
 </span></span><span class="line"><span class="cl">      If your browser does not immediately send you to the new location,
 </span></span><span class="line"><span class="cl">      you can visit <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org/post/2020/05/setting-up-raku-with-rakubrew/&#34;</span><span class="p">&gt;</span>https://randomgeekery.org/post/2020/05/setting-up-raku-with-rakubrew/<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> yourself.
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Now that I decided to go with an unchanging alias page, it needs to fit in stylistically with the rest of the site.  You don’t need to worry about those details though.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Now that I decided to go with an unchanging alias page, it needs to fit in stylistically with the rest of the site.  You don’t need to worry about those details though.</p>
 <p>All this because I wanted to see my Twitter likes on the page.</p>
 ]]></content:encoded>
 </item>
@@ -645,8 +705,8 @@ Can&rsquo;t throw the YAPC::NA shirt away yet. Hasn&rsquo;t worn through complet
 <p><a class="u-category h-card" href="https://jmac.org">Jason McIntosh</a> seems like a reasonable choice to test <em>inbox/Webmention</em> on. I wouldn’t know about the <a href="/card/indieweb/">card/IndieWeb</a> if not for him. I know I’ll try his <a href="https://metacpan.org/pod/Web::Mention">Web::Mention</a> library eventually. But first, <a href="https://github.com/Ryuno-Ki/webmention-tools">webmention-tools</a>.</p>
 <p>The other stuff didn’t work and didn’t give useful errors. I ended up using Web::Mention. It’s fine. Just half to rewrite half the post. That’s fine.</p>
 <blockquote>
-<p>[!NOTE]
-The other stuff didn&rsquo;t work and didn&rsquo;t give useful errors.  I ended up using Web::Mention.  It&rsquo;s fine.  Just have to rewrite half the post.  That&rsquo;s fine.</p>
+<p><strong>NOTE</strong></p>
+<p>The other stuff didn&rsquo;t work and didn&rsquo;t give useful errors.  I ended up using Web::Mention.  It&rsquo;s fine.  Just have to rewrite half the post.  That&rsquo;s fine.</p>
 </blockquote>
 ]]></content:encoded>
 </item>

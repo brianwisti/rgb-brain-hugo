@@ -135,8 +135,8 @@ First off, it includes every page and post by default. The site content includes
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/09/full-content-hugo-feeds/">Full Content Hugo Feeds</a></li>
@@ -303,7 +308,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>The <a href="https://gohugo.io/templates/rss/">Hugo RSS Template documentation</a> tells me what I need to know. I can change the entry count in site config, and handle the content of each entry with a template.</p>
 <h3 id="limit-entry-count">Limit Entry Count</h3>
 <p>Just the relevant bits of my <code>config.json</code>. Twenty entries seems like a good arbitrary value.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;languageCode&#34;</span><span class="p">:</span> <span class="s2">&#34;en-us&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;copyright&#34;</span><span class="p">:</span> <span class="s2">&#34;This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;rssLimit&#34;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
@@ -312,17 +319,21 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Brian Wisti&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;brianwisti@pobox.com&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="all-the-content">All The Content</h3>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h3 id="all-the-content">All The Content</h3>
 <p>All I need to do here is copy the <a href="https://gohugo.io/templates/rss/#the-embedded-rss-xml">default</a> RSS template into <code>layouts/_default/rss.xml</code>, then make my changes.</p>
 <p>My changes are small indeed. I place the post <code>.Content</code> in the description instead of the <code>.Summary</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;description&gt;</span>{{ .Content | html }}<span class="nt">&lt;/description&gt;</span>
-</span></span></code></pre></div><p>The full entry looks like this.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;description&gt;</span>{{ .Content | html }}<span class="nt">&lt;/description&gt;</span></span></span></code></pre>
+</figure><p>The full entry looks like this.</p>
 <blockquote>
-<p>[!NOTE]
-Updated for Hugo 0.57, which changed how <code>.Pages</code> worked. Now use <code>.RegularPages</code>, and for top-level RSS use <code>.Site.RegularPages</code></p>
+<p><strong>NOTE</strong></p>
+<p>Updated for Hugo 0.57, which changed how <code>.Pages</code> worked. Now use <code>.RegularPages</code>, and for top-level RSS use <code>.Site.RegularPages</code></p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">{{- $pages := .RegularPages -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">{{- $pages := .RegularPages -}}
 </span></span><span class="line"><span class="cl">{{- if .IsHome -}}
 </span></span><span class="line"><span class="cl">  {{- $pages = .Site.RegularPages -}}
 </span></span><span class="line"><span class="cl">{{- else -}}
@@ -360,8 +371,8 @@ Updated for Hugo 0.57, which changed how <code>.Pages</code> worked. Now use <co
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/item&gt;</span>
 </span></span><span class="line"><span class="cl">    {{ end }}
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;/channel&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/rss&gt;</span>
-</span></span></code></pre></div><p>That ought to do it.</p>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/rss&gt;</span></span></span></code></pre>
+</figure><p>That ought to do it.</p>
 <h3 id="what-else">What Else?</h3>
 <p>What else I could do with the feed?</p>
 <ul>

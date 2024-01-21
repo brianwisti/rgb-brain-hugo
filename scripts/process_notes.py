@@ -56,6 +56,10 @@ class VaultNote:
 
         updated_content = re.sub(CALLOUT, callout_title, post.content)
 
+        # TODO: captioned images
+        # TODO: YouTube videos
+        # TODO: relative image links (starts with "attachments")
+
         if updated_content != post.content:
             post.content = updated_content
             logging.info("updated content")

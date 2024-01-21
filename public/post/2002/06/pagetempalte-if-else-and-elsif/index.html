@@ -135,8 +135,8 @@ Syntax [%if condition %] chunk [%end if %] Here is an example of if in use.
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetempalte-if-else-and-elsif/">PageTemplate - If, Else, and Elsif</a></li>
@@ -295,27 +300,35 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 when some condition is true. PageTemplate will skip the block and move
 on if the condition is false.</p>
 <h3 id="syntax">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition %]
 </span></span><span class="line"><span class="cl">  chunk
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>Here is an example of <code>if</code> in use.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if pageowner %]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>Here is an example of <code>if</code> in use.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if pageowner %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;admin.cgi&#34;</span><span class="p">&gt;</span>Admin View<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>In this example, if the application tells PageTemplate that <code>pageowner</code>
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>In this example, if the application tells PageTemplate that <code>pageowner</code>
 is true, PageTemplate inserts a link to an administrative page.
 Otherwise, nothing happens here.</p>
 <h2 id="else">Else</h2>
 <p>The <code>else</code> directive adds extra power to <code>if</code>, by indicating a chunk of
 content to use when a condition is not true.</p>
 <h3 id="syntax-1">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if value%]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if value%]
 </span></span><span class="line"><span class="cl">  chunk
 </span></span><span class="line"><span class="cl">[%else%]
 </span></span><span class="line"><span class="cl">  alternate chunk
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if login%]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h3 id="example">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if login%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Welcome back, [%var login %]!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;logout.cgi&#34;</span><span class="p">&gt;</span>Log Out<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
@@ -324,8 +337,8 @@ content to use when a condition is not true.</p>
 </span></span><span class="line"><span class="cl">  Password: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;passwd&#34;</span> <span class="p">/&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Login!&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><p>This is the situation where I use <code>else</code> directives the most. If the
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><p>This is the situation where I use <code>else</code> directives the most. If the
 visitor is logged in to a Web application, she is shown a brief
 welcoming message. If not, then she will see a login form.</p>
 <p>This example also shows a convenient approach to <code>if</code> conditions. We
@@ -345,7 +358,9 @@ Features</a> page for doing
 multiple tests on the same variable.</p>
 </aside>
 <h3 id="syntax-2">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition1 %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if condition1 %]
 </span></span><span class="line"><span class="cl">  Block 1
 </span></span><span class="line"><span class="cl">[%elsif condition2 %]
 </span></span><span class="line"><span class="cl">  Block 2
@@ -354,29 +369,35 @@ multiple tests on the same variable.</p>
 </span></span><span class="line"><span class="cl">  Block n
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl">  Else Block
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h3 id="example-1">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if cart.items %]
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h3 id="example-1">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%if cart.items %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have [%var cart.count %] items in your cart.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%elsif cart.empty %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Your cart is empty.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have no cart. <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;register.rb&#34;</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> and get one!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end if %]
-</span></span></code></pre></div><h2 id="unless">Unless</h2>
+</span></span><span class="line"><span class="cl">[%end if %]</span></span></code></pre>
+</figure><h2 id="unless">Unless</h2>
 <p>Sometimes you want to ask if something is false. For example, you may
 want to show a login form in one spot if the user is not logged in, but
 nothing at all if he is logged in. That is exactly the sort of thing
 <code>unless</code> was intended for.</p>
 <h3 id="syntax-3">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless condition %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless condition %]
 </span></span><span class="line"><span class="cl">  Block
-</span></span><span class="line"><span class="cl">[%end unless %]
-</span></span></code></pre></div><h3 id="example-2">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless user.has_donated %]
+</span></span><span class="line"><span class="cl">[%end unless %]</span></span></code></pre>
+</figure><h3 id="example-2">Example</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%unless user.has_donated %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;pay_up.cgi&#34;</span><span class="p">&gt;</span>Donate money, chump!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end unless %]
-</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">[%end unless %]</span></span></code></pre>
+</figure>
   
 
 

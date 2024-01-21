@@ -29,50 +29,60 @@ Why? Hugo renders Org files just fine, but I wanted my config to be a bit more t
 <p>Hugo renders Org files just fine, but I wanted my config to be a bit more tightly integrated.  <code>ox-hugo</code> works well as both plain old Org and as an intermediary that exports Hugo content.  A single Org file can become as many Hugo pages as I want.</p>
 <h2 id="getting-it-to-work">Getting it to work</h2>
 <p>This week my favorite Emacs flavor is <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>.  Their <a href="https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/org">org module</a> supports <code>ox-hugo</code> as an option, so enabling that option in my init should do the trick — after a <code>doom sync</code> of course.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
 </span></span><span class="line"><span class="cl"> <span class="err">⋮</span>
 </span></span><span class="line"><span class="cl"> <span class="nb">:lang</span>
-</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span>
-</span></span></code></pre></div><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
 </span></span><span class="line"><span class="cl"><span class="cs">#+hugo_base_dir</span><span class="c">: ~/Sites/random-geekery-blog/</span>
-</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span>
-</span></span></code></pre></div><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span></span></span></code></pre>
+</figure><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
 <blockquote>
-<p>[!NOTE]
-A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
+<p><strong>NOTE</strong></p>
+<p>A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
 </blockquote>
 <p>Each top-level section will be a page in <code>/config/</code>. I show <em>which</em> page in the subtree’s <code>:properties:</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_description: Be kinda weird if I didn&#39;t manage that one in Org, yes?
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_file_name: emacs
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_hugo_weight: 5
-</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
-</span></span></code></pre></div><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
+</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span></span></span></code></pre>
+</figure><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
 <blockquote>
-<p>[!WARNING]
-If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
+<p><strong>WARNING</strong></p>
+<p>If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
 </blockquote>
 <p>Since I’m showing off <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Babel</a>’s ability to tangle, I want to show the tangle references.  <code>:noweb no-export</code> tells Babel to tangle when evaluating the block, but <em>not</em> when exporting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">text</span><span class="c"> :noweb no-export
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>&lt;&lt;zsh/set-base-path&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/define-editor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/clicolor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/add-home-bin&gt;&gt;
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
 <p>I also create a subtree for the section <code>_index.md</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_file_name: _index
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">#+begin_note
 </span></span><span class="line"><span class="cl">This is my live config, written as an [[<span class="na">https://orgmode.org/</span>][<span class="nt">Org</span>]] file and integrated with my site with [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">=ox-hugo=</span>]].
-</span></span><span class="line"><span class="cl">⋮
-</span></span></code></pre></div><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
+</span></span><span class="line"><span class="cl">⋮</span></span></code></pre>
+</figure><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
 <h2 id="the-rest-is-implementation-details">The rest is implementation details</h2>
 <p>This whole process is fiddly.  Org mode.  Literate config.  Hugo.  <code>ox-hugo</code>. That makes the whole thing fiddly^4 or something.  But these quick notes covered things that got in my way while gluing the whole thing together.  If you want to try it out, at least <em>some</em> of the fiddliness should be clearer.</p>
 ]]></content:encoded>
@@ -123,11 +133,13 @@ I’ll add /uses later. Anyways, time for music.</description>
    <category>note</category> 
    <category>emacs</category>  <category>orgconfig</category> 
   <content:encoded><![CDATA[<p>I hit <code>F5</code>, <a href="/card/emacs/">Emacs</a> opens my <code>config.org</code> for editing. It might not be much but it feels good to scratch such a specific itch. Feeling pretty good about myself.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f5&gt;&#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f5&gt;&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
 </span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nv">find-file</span> <span class="s">&#34;~/.dotfiles/config.org&#34;</span><span class="p">)))</span>
-</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nv">find-file</span> <span class="s">&#34;~/.dotfiles/config.org&#34;</span><span class="p">)))</span></span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: From Dotfiles to Org File</title>
@@ -158,7 +170,9 @@ formatting is better, for one thing.</p>
 <h2 id="prepare-org-mode">Prepare Org mode</h2>
 <p>Babel used to be an extension to Org, but it’s been a core part of the framework for a bit now. Thing is, Babel is powerful and a little dangerous. You need to give it permission.</p>
 <p><strong><code>~/.emacs</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
@@ -167,21 +181,23 @@ formatting is better, for one thing.</p>
 </span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
 </span></span><span class="line"><span class="cl">   <span class="ss">&#39;org-babel-load-languages</span>
-</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> 
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> </span></span></code></pre>
+</figure><ul>
 <li><code>shell</code> is a general-purpose mode that covers <code>sh</code>, <code>bash</code>, <code>zsh</code>, and so on.</li>
 </ul>
 <p>Babel wants to know what languages it can load. I’m only tangling shell files, so that’s all I put in <code>org-babel-load-languages</code>.</p>
 <p>By default, Babel requests confirmation from you for every code block it handles. That’s smart, but also annoying. Disabling <code>org-confirm-babel-evaluate</code> means I’m okay with Babel executing or extracting any code it finds. It also means I need to ensure that my code blocks don’t request any dangerous actions. Leave this setting enabled if smart matters more to you than annoying.</p>
 <blockquote>
-<p>[!NOTE] Correction
-The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
+<p><strong>Correction</strong></p>
+<p>The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
 </blockquote>
 <p>Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.</p>
 <h2 id="my-literate-config">My literate config</h2>
 <p>Let’s keep my starting point really really simple. Just a little bit out of my <a href="https://www.zsh.org/">Zsh</a> config.</p>
 <p><strong><code>config.org</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
 </span></span><span class="line"><span class="cl"><span class="nb">{{{kbd(C-c C-v t)}}}</span> to tangle until I&#39;m ready to add hooks
@@ -202,18 +218,27 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
-<pre tabindex="0"><code>Tangled 2 code blocks from config.org
-</code></pre><p>So I look in my files.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Tangled 2 code blocks from config.org</code></pre>
+</figure><p>So I look in my files.</p>
 <p><strong><code>~/.zshenv</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span>
-</span></span></code></pre></div><p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Yay it worked!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span></span></span></code></pre>
+</figure><p><strong><code>~/.zshrc</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Yay it worked!</p>
 <p>There’s not much being &ldquo;tangled&rdquo; though, is there?</p>
 <p>I’ve been playing with <a href="https://antigen.sharats.me/">Antigen</a>, but I may go back to <a href="https://ohmyz.sh/">Oh My Zsh</a>. Let’s put the Antigen stuff in its own block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c">
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
@@ -230,16 +255,20 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">antigen theme gozilla
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="s">&lt;&lt;antigen&gt;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">source /home/ran</span>dom/.config/broot/launcher/bash/br
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>C-c C-v t again, and there it is!</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>C-c C-v t again, and there it is!</p>
 <p><strong><code>~/.zshrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen use oh-my-zsh
 </span></span><span class="line"><span class="cl">
@@ -256,8 +285,8 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">antigen apply
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br
-</span></span></code></pre></div><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br</span></span></code></pre>
+</figure><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
 <p><strong>Emacs code extraction key bindings</strong></p>
 <table>
 <thead>
@@ -284,7 +313,8 @@ The Babel settings I added are for code <em>extraction</em>, not code evaluation
   
   <guid>https://randomgeekery.org/post/2018/10/trying-beorg/</guid>
   <description>This is not a review. This is me, excitedly sharing screenshots of the shiny thing I am playing with.
-[!NOTE] My beorg screenshots are in the Dark theme, which is currently the only paid add-on for the app. All functionality I look at today is part of the free core. I’m perfectly happy putting out 99 cents if it helps development a little bit.
+NOTE
+My beorg screenshots are in the Dark theme, which is currently the only paid add-on for the app. All functionality I look at today is part of the free core. I’m perfectly happy putting out 99 cents if it helps development a little bit.
 You can also contribute directly to feature development by making a contribution in Settings.</description>
    <category>post</category> 
    <category>post</category> 
@@ -292,8 +322,8 @@ You can also contribute directly to feature development by making a contribution
   <content:encoded><![CDATA[<h2>The beorg iOS app has me playing with Org mode again</h2><p>This is not a review. This is me, excitedly sharing screenshots of the shiny thing I am playing with.</p>
 <p><img src="/post/2018/10/../../../attachments/img/2018/cover-2018-10-14.png" alt="attachments/img/2018/cover-2018-10-14.png"/></p>
 <blockquote>
-<p>[!NOTE]
-My beorg screenshots are in the Dark theme, which is currently the only paid add-on for the app. All functionality I look at today is part of the free core. I’m perfectly happy putting out 99 cents if it helps development a little bit.</p>
+<p><strong>NOTE</strong></p>
+<p>My beorg screenshots are in the Dark theme, which is currently the only paid add-on for the app. All functionality I look at today is part of the free core. I’m perfectly happy putting out 99 cents if it helps development a little bit.</p>
 <p>You can also contribute directly to feature development by making a contribution in Settings.</p>
 </blockquote>
 <p>Does <a href="https://beorgapp.com/">beorg</a> support your favorite <a href="/card/org/">card/Org</a> feature? I have no idea. But I can add,

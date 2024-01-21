@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/02/goto-address-mode-opens-links-in-emacs/">Goto Address Mode Opens Links in Emacs</a></li>
@@ -290,10 +295,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p><a href="/card/org/">card/Org</a> mode has this nice thing where you can click a link in the <a href="/card/emacs/">Emacs</a> buffer to open it in your browser. Turns out that’s not some special org-only behavior. It’s <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Goto-Address-mode.html">goto-address-mode</a>, a minor mode that activates URLs and email addresses in the current buffer.</p>
 <p>You can manually launch it with <code>M-x goto-address-mode</code>. It might be easier to automatically enable it for certain modes. You do that with a <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html">hook</a>.</p>
 <p>I want links to be available when reviewing notes and blog posts. Since I write those notes in a number of formats, I should add the hook one of the general <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Basic-Major-Modes.html#Basic-Major-Modes">major modes</a>. text-mode is a good start.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="c1">;; base mode for prose</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="c1">;; base mode for prose</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;text-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-</span></span><span class="line"><span class="cl">                           <span class="p">(</span><span class="nv">goto-address-mode</span><span class="p">)))</span>
-</span></span></code></pre></div><p>Now I can open links from my Markdown and <a href="/card/restructuredtext/">card/reStructuredText</a> files with a click! Or a <code>C-c &lt;RET&gt;</code>.</p>
+</span></span><span class="line"><span class="cl">                           <span class="p">(</span><span class="nv">goto-address-mode</span><span class="p">)))</span></span></span></code></pre>
+</figure><p>Now I can open links from my Markdown and <a href="/card/restructuredtext/">card/reStructuredText</a> files with a click! Or a <code>C-c &lt;RET&gt;</code>.</p>
 <p><strong><code>goto-address-mode</code> key bindings</strong></p>
 <table>
 <thead>

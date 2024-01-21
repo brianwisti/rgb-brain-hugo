@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2007/">2007</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2007/06/perldoc/">Perldoc</a></li>
@@ -293,27 +298,54 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>I have heard first-time <a href="/card/perl/">Perl</a> programmers complain about the lack of documentation. This is understandable. They don&rsquo;t know all the nifty stuff that comes with the standard Perl distribution.</p>
 <p>Perl has a built-in documentation system referred to as <code>perldoc</code>. Perl modules are spiked with documentation about how to access the features of that module. This documentation is in the form of POD, or Plain Old Documentation. <code>perldoc</code> reads the POD, formats it into something more pleasing to the eye, and presents it to you in one form or another. I&rsquo;ll be talking about the command-line <code>perldoc</code> utility, but the documentation is also transformed into HTML for the ActiveState Perl distribution, <a href="http://cpan.org/">CPAN</a>, and the <a href="http://perldoc.perl.org/">perl.org perldoc repository</a>. You may think you don&rsquo;t need to worry about the <code>perldoc</code> command if you have ready access to the Internet, but it is still useful for finding exactly the details you need. Accessing documentation from the command line also means that you can view the details for the specific version that is installed on your machine. And really, these are my notes. You can stop reading any time you like.</p>
 <p>Using <code>perldoc</code> is easy. Basic usage looks like this:</p>
-<pre tabindex="0"><code>$ perldoc name-of-article-or-module
-</code></pre><p><code>perldoc</code> goes looking for the POD associated with the specific article or module. If it finds the POD, it formats it using a special program (usually <code>nroff</code> on Linux) and feeds the formatted text to a screen reader such as <code>more</code> or <code>less</code>. You can then search or page through the documentation using the normal commands for your screen reader.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc name-of-article-or-module</code></pre>
+</figure><p><code>perldoc</code> goes looking for the POD associated with the specific article or module. If it finds the POD, it formats it using a special program (usually <code>nroff</code> on Linux) and feeds the formatted text to a screen reader such as <code>more</code> or <code>less</code>. You can then search or page through the documentation using the normal commands for your screen reader.</p>
 <p>It is as simple as that. I am going to look at some of the things <code>perldoc</code> can find for you, but first I need to make a small confession. All I&rsquo;m doing is reviewing the documentation for <code>perldoc</code> itself. You can skip my rambling notes and get directly to the meat of the information with the following command:</p>
-<pre tabindex="0"><code>$ perldoc perldoc
-</code></pre><p>All the information you could possibly want is in the perldocs, or it should be. It may not always make sense the first time through. It will seem clear as a bell after a little practice. You can always refer to other sources until it starts to make sense.</p>
-<pre tabindex="0"><code>$ perldoc perl
-</code></pre><p>This provides a simple summary of perl&rsquo;s command line options, a very brief summary of the available documentation, and a description of Perl itself. Use use this for the summary, but there is a more detailed summary available.</p>
-<pre tabindex="0"><code>perldoc perltoc
-</code></pre><p>This contains an extensive overview of the documentation available, including summaries, keywords, and a table of contents for each article. Look close enough and you will notice that there are several tutorials available.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc perldoc</code></pre>
+</figure><p>All the information you could possibly want is in the perldocs, or it should be. It may not always make sense the first time through. It will seem clear as a bell after a little practice. You can always refer to other sources until it starts to make sense.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc perl</code></pre>
+</figure><p>This provides a simple summary of perl&rsquo;s command line options, a very brief summary of the available documentation, and a description of Perl itself. Use use this for the summary, but there is a more detailed summary available.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >perldoc perltoc</code></pre>
+</figure><p>This contains an extensive overview of the documentation available, including summaries, keywords, and a table of contents for each article. Look close enough and you will notice that there are several tutorials available.</p>
 <h2 id="accessing-information-about-a-specific-module">Accessing information about a specific module</h2>
-<pre tabindex="0"><code>$ perldoc &lt;module&gt;
-</code></pre><h3 id="viewing-the-source-of-that-module">Viewing the source of that module</h3>
-<pre tabindex="0"><code>$ perldoc -m &lt;module&gt;
-</code></pre><h3 id="finding-out-exactly-which-file-contains-the-documentation">Finding out exactly which file contains the documentation</h3>
-<pre tabindex="0"><code>$ perldoc -l &lt;module&gt;
-</code></pre><h2 id="accessing-specific-information">Accessing specific information</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc &lt;module&gt;</code></pre>
+</figure><h3 id="viewing-the-source-of-that-module">Viewing the source of that module</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc -m &lt;module&gt;</code></pre>
+</figure><h3 id="finding-out-exactly-which-file-contains-the-documentation">Finding out exactly which file contains the documentation</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc -l &lt;module&gt;</code></pre>
+</figure><h2 id="accessing-specific-information">Accessing specific information</h2>
 <h3 id="perl-built-in-functions">Perl built-in functions</h3>
-<pre tabindex="0"><code>$ perldoc -f &lt;function&gt;
-</code></pre><h3 id="the-perl-faq">The Perl FAQ</h3>
-<pre tabindex="0"><code>$ perldoc -q &lt;search-expression&gt;
-</code></pre><p><code>perldoc</code> will then look for a FAQ question containing the search expression, and present it to you.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc -f &lt;function&gt;</code></pre>
+</figure><h3 id="the-perl-faq">The Perl FAQ</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc -q &lt;search-expression&gt;</code></pre>
+</figure><p><code>perldoc</code> will then look for a FAQ question containing the search expression, and present it to you.</p>
 <h2 id="wrapping-up">Wrapping Up</h2>
 <p>These are the main features of <code>perldoc</code> that I use, but that&rsquo;s not all there is to it. Check <code>perldoc perldoc</code> for all the gory details.</p>
   

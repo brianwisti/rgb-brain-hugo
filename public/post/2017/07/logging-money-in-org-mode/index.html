@@ -64,10 +64,12 @@
 
   
     <meta name="twitter:description" content="I am setting up Emacs card/Org to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
-[!NOTE] 2020-03-01 It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
+2020-03-01
+It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
 I only want to see how I use my money.">
     <meta property="og:description" content="I am setting up Emacs card/Org to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
-[!NOTE] 2020-03-01 It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
+2020-03-01
+It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
 I only want to see how I use my money.">
   
 
@@ -135,8 +137,8 @@ I only want to see how I use my money.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/07/logging-money-in-org-mode/">Logging Money In Org Mode</a></li>
@@ -301,8 +308,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2017/07/../../../attachments/img/2017/cover-2017-07-31.png" alt="attachments/img/2017/cover-2017-07-31.png"/></p>
 <p>I am setting up Emacs <a href="/card/org/">card/Org</a> to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.</p>
 <blockquote>
-<p>[!NOTE] 2020-03-01
-It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</p>
+<p><strong>2020-03-01</strong></p>
+<p>It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</p>
 </blockquote>
 <p>I only want to see how I use my money. This can eventually become part of a budget, but all I want today is the ability to make quick money notes.</p>
 <ul>
@@ -317,7 +324,9 @@ It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</
 <p>I already use <a href="http://www.howardism.org/Technical/Emacs/journaling-org.html">journaling features</a> of Emacs org mode to record tasks that I accomplish through the day. That journal could also record income and expenses. I need a new org <a href="http://orgmode.org/manual/Capture-templates.html#Capture-templates">capture template</a> and menu item for money, though.</p>
 <h2 id="adding-a-menu-entry-and-template">Adding a menu entry and template</h2>
 <p><code>org-capture-templates</code> holds templates for creating new org entries. I manually edit mine, although the recommended approach to managing those is through the Emacs Customize interface. Old habits die hard.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; Probably easier for most folks to manage this with Customize (C-c c C),</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; Probably easier for most folks to manage this with Customize (C-c c C),</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; but setting this stuff directly helps me understand the structure better.</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-capture-templates</span>
@@ -326,8 +335,8 @@ It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.</
 </span></span><span class="line"><span class="cl">        <span class="c1">; ... other entries removed for clarity</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;pm&#34;</span> <span class="s">&#34;Money entry&#34;</span> <span class="nv">entry</span>
 </span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">file+datetree</span> <span class="s">&#34;~/Sync/org/agendas/journal.org&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">         <span class="s">&#34;** %U - %^{Amount} %^{Summary} :money:%^g&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>I start with fields needed for the template selection menu in <code>org-capture</code>. I also tell org mode to save money entries will in the <code>journal.org</code> file under a <em>date tree</em>, which presents a year / month / date hierarchy for entries. Finally, I describe the capture template.</p>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;** %U - %^{Amount} %^{Summary} :money:%^g&#34;</span><span class="p">))))</span></span></span></code></pre>
+</figure><p>I start with fields needed for the template selection menu in <code>org-capture</code>. I also tell org mode to save money entries will in the <code>journal.org</code> file under a <em>date tree</em>, which presents a year / month / date hierarchy for entries. Finally, I describe the capture template.</p>
 <p>A capture template can be a string or file containing text and template directives. A short string describes money entries. The table below explains the <a href="http://orgmode.org/manual/Template-expansion.html#Template-expansion">template expansion</a> rules I used.</p>
 <table>
 <thead>

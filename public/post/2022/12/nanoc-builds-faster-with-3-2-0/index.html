@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2022/">2022</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2022/12/nanoc-builds-faster-with-3-2-0/">Nanoc builds sites faster with 3.2.0</a></li>
@@ -309,7 +314,9 @@ By default, YJIT optimizes a method on the 30th time you call it.
 <li>Remove the build folder and move on to the next case</li>
 </ol>
 <p>First in 3.1.3 to set a baseline of sorts.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.1.3
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.1.3
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
@@ -317,9 +324,12 @@ By default, YJIT optimizes a method on the 30th time you call it.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">Site compiled in 43.87s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rm -r output/
-</span></span></code></pre></div><p>Don&rsquo;t judge those numbers too harshly. Nanoc site configuration is Ruby code, and mine was very sloppy Ruby code. Regardless, it&rsquo;s way slower than <a href="https://gohugo.io">Hugo</a>.</p>
+</span></span></code></pre>
+</figure><p>Don&rsquo;t judge those numbers too harshly. Nanoc site configuration is Ruby code, and mine was very sloppy Ruby code. Regardless, it&rsquo;s way slower than <a href="https://gohugo.io">Hugo</a>.</p>
 <p>Now in 3.2.0 without enabling YJIT, to see if just the plain old upgrade is quicker.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.2.0
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.2.0
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
@@ -328,15 +338,19 @@ By default, YJIT optimizes a method on the 30th time you call it.
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 37.30s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rm -r output/
-</span></span></code></pre></div><p>There&rsquo;s variation from one invocation to the next in 3.1.3, but 3.2.0&rsquo;s first build is consistently a sliver faster than 3.1.3&rsquo;s second build.</p>
+</span></span></code></pre>
+</figure><p>There&rsquo;s variation from one invocation to the next in 3.1.3, but 3.2.0&rsquo;s first build is consistently a sliver faster than 3.1.3&rsquo;s second build.</p>
 <p>Finally with YJIT.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 29.51s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 23.28s.
-</span></span></span></code></pre></div><p>That is an impressive difference. We&rsquo;re still not talking Hugo numbers, of course.
+</span></span></span></code></pre>
+</figure><p>That is an impressive difference. We&rsquo;re still not talking Hugo numbers, of course.
 But under 30 seconds means I might be able to pay attention long enough to fix
 my terrible site configuration code.</p>
 

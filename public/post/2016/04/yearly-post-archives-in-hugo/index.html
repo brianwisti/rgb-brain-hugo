@@ -135,8 +135,8 @@ Years give me a fixed point to anchor my archive listings to.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2016/">2016</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2016/04/yearly-post-archives-in-hugo/">Yearly Post Archives In Hugo</a></li>
@@ -302,27 +307,31 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Hugo already has <a href="https://gohugo.io/extras/pagination/">pagination</a> functionality, but I dislike this approach in blogs. For one thing, it messes up web search. I find an interesting link which Google claims is on page 12 of some blog, but now I must dig to page 14 or 15 or 23.</p>
 <p>Years give me a fixed point to anchor my archive listings to. I could narrow it down to years <em>and</em> months, but I am not that prolific. Years will do fine.</p>
 <blockquote>
-<p>[!NOTE]
-Skeptical side-eye from 2024</p>
+<p><strong>NOTE</strong></p>
+<p>Skeptical side-eye from 2024</p>
 </blockquote>
 <h2 id="everything-on-one-page-for-each-section">Everything On One Page For Each Section</h2>
 <p>Hugo bases <a href="https://gohugo.io/templates/list/">template selection</a> on specificity: use the most specific template if available, otherwise use more general-purpose templates. Right now I lean on my <code>_default</code> layouts for all content. The <code>_default/list.ace</code> template provides the layout for all content collections.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
 </span></span></span><span class="line"><span class="cl"><span class="x">  h1 </span><span class="cp">{{</span> <span class="nv">.Title</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">  ul.post-list
 </span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">range</span> <span class="nv">.Data.Pages</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      li </span><span class="cp">{{</span> <span class="nv">.Render</span> <span class="s2">&#34;li&#34;</span> <span class="cp">}}</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span></code></pre></div><blockquote>
-<p>[!NOTE] 2022-03-27
-I used Hugo&rsquo;s support for Ace templates on my site back when writing this post. That support&rsquo;s been removed since then, but the logic holds well enough. The important stuff is in the <code>{{ … }}</code> blocks, so try not to get too distracted by
+</span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>2022-03-27</strong></p>
+<p>I used Hugo&rsquo;s support for Ace templates on my site back when writing this post. That support&rsquo;s been removed since then, but the logic holds well enough. The important stuff is in the <code>{{ … }}</code> blocks, so try not to get too distracted by
 Ace.</p>
 </blockquote>
 <p>Hugo gives the template a title and a collection of pages — along with numerous other <a href="https://gohugo.io/templates/variables/">variables</a>, and at the other end something like this is produced.</p>
 <p><img src="/post/2016/04/attachments/img/2016/site-default-listing.png" title="Default listing applied to Craft section" alt="screenshot"/></p>
 <h2 id="group-everything-by-date">Group Everything By Date</h2>
 <p>For a first step in the process, let’s see what happens when we tell the Pages to <a href="https://gohugo.io/templates/list/#grouping-by-page-date">group by date</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
 </span></span></span><span class="line"><span class="cl"><span class="x">  h1 </span><span class="cp">{{</span> <span class="nv">.Title</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">range</span> <span class="err">(</span><span class="nv">.Data.Pages.GroupByDate</span> <span class="s2">&#34;2006&#34;</span><span class="err">)</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">    h2 </span><span class="cp">{{</span> <span class="nv">.Key</span> <span class="cp">}}</span><span class="x">
@@ -330,12 +339,14 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">range</span> <span class="nv">.Pages</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">        li </span><span class="cp">{{</span> <span class="nv">.Render</span> <span class="s2">&#34;li&#34;</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span></code></pre></div><p><img src="/post/2016/04/attachments/img/2016/site-single-page-year-headers.png" alt="Now with headers for each year"/></p>
+</span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
+</figure><p><img src="/post/2016/04/attachments/img/2016/site-single-page-year-headers.png" alt="Now with headers for each year"/></p>
 <p>Not too bad. Let’s move on.</p>
 <h2 id="this-years-content">This Year’s Content</h2>
 <p>Hold on a second. I can use the <a href="https://gohugo.io/templates/functions/#first"><code>first</code></a> function to create a list of things published this year. I’ll put that in my <code>index.ace</code> layout.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
 </span></span></span><span class="line"><span class="cl"><span class="x">  p This page lists the projects and posts I published on the site this year.
 </span></span></span><span class="line"><span class="cl"><span class="x">  p This is a blog, so of course you can
 </span></span></span><span class="line"><span class="cl"><span class="x">    a href=&#34;/index.xml&#34;  subscribe via RSS.
@@ -345,21 +356,27 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">range</span> <span class="nv">.Pages</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">        li </span><span class="cp">{{</span> <span class="nv">.Render</span> <span class="s2">&#34;li&#34;</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span></code></pre></div><p><img src="/post/2016/04/attachments/img/2016/site-this-years-posts.png" alt="This year’s stuff — perfect for the front page"/></p>
+</span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
+</figure><p><img src="/post/2016/04/attachments/img/2016/site-this-years-posts.png" alt="This year’s stuff — perfect for the front page"/></p>
 <p>No matter how hard I tried, I could not find a way to create a page for <em>last year</em> with this technique. Moving on.</p>
 <h2 id="life-hack-use-taxonomies">Life Hack: Use Taxonomies!</h2>
 <p>Hugo does not directly support yearly archive pages. However, this <a href="https://discuss.gohugo.io/t/pagination-and-group-by-date/1441/3">Hugo community comment</a> shows that somebody solved a very similar problem using <a href="http://gohugo.io/taxonomies/overview/">taxonomies</a>.</p>
 <p>Taxonomies are special terms you create to organize your content. Categories and tags are a common example across blogs. Hugo simplifies creation of your own taxonomies and their presentation with templates.</p>
 <p>Strictly speaking, this is kind of a hack. You would ordinarily put an entry with singular and plural names for your taxonomies in <code>config.yml</code>, but I do not care about pluralization in this case. I just want a way to create &ldquo;year&rdquo; templates.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">taxonomies</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;year&#34;</span><span class="w">
-</span></span></span></code></pre></div><p>In order for this to work, I need every content item to have a <code>year</code> entry in its front matter set to the year that item was published.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="m">2016</span><span class="w">
-</span></span></span></code></pre></div><p>This is going to be tedious. Let’s not do this manually, okay?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">taxonomies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;year&#34;</span></span></span></code></pre>
+</figure><p>In order for this to work, I need every content item to have a <code>year</code> entry in its front matter set to the year that item was published.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="m">2016</span></span></span></code></pre>
+</figure><p>This is going to be tedious. Let’s not do this manually, okay?</p>
 <p>Here comes the <a href="/card/perl/">card/Perl</a>.</p>
 <h3 id="automate-the-frontmatter">Automate The Frontmatter</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env perl</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env perl</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">v5</span><span class="mf">.22.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">autodie</span> <span class="sx">qw(:all)</span><span class="p">;</span>
@@ -395,10 +412,12 @@ Ace.</p>
 </span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">name</span><span class="p">(</span> <span class="sx">qw( *.md *.html )</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">in</span><span class="p">(</span> <span class="s">&#34;content&#34;</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">add_metadata_to</span> <span class="nv">$_</span> <span class="k">for</span> <span class="nv">@files</span><span class="p">;</span>
-</span></span></code></pre></div><h2 id="summarize-every-year-on-one-page">Summarize Every Year On One Page</h2>
+</span></span><span class="line"><span class="cl"><span class="n">add_metadata_to</span> <span class="nv">$_</span> <span class="k">for</span> <span class="nv">@files</span><span class="p">;</span></span></span></code></pre>
+</figure><h2 id="summarize-every-year-on-one-page">Summarize Every Year On One Page</h2>
 <p>My <code>_default/terms.ace</code> layout was already set up for categories and tags. The reverse alphabetical order was some whimsical experiment that I forgot to change, but it works perfect for years. Reverse alphabetical looks quite a bit like reverse chronological when things are sorted in <a href="https://en.wiktionary.org/wiki/ASCIIbetical">ASCIIbetical</a> order.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">= content main
 </span></span></span><span class="line"><span class="cl"><span class="x">  h1 </span><span class="cp">{{</span> <span class="nv">.Title</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">  dl
 </span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="err">$</span><span class="nv">data</span> <span class="err">:=</span> <span class="nv">.Data</span> <span class="cp">}}</span><span class="x">
@@ -406,8 +425,8 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      dt
 </span></span></span><span class="line"><span class="cl"><span class="x">        a href=&#34;/</span><span class="cp">{{</span> <span class="err">$</span><span class="nv">data.Plural</span> <span class="cp">}}</span><span class="x">/</span><span class="cp">{{</span> <span class="err">$</span><span class="nv">value.Name</span> <span class="err">|</span> <span class="nv">urlize</span> <span class="cp">}}</span><span class="x">&#34; </span><span class="cp">{{</span> <span class="err">$</span><span class="nv">value.Name</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      dd </span><span class="cp">{{</span> <span class="err">$</span><span class="nv">value.Count</span> <span class="cp">}}</span><span class="x"> posts
-</span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
-</span></span></span></code></pre></div><p>So by adding one little entry to <code>config.yml</code> and making one little edit — okay, write a Perl script to make one little edit to every page in my site — I get a usable yearly archive!</p>
+</span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
+</figure><p>So by adding one little entry to <code>config.yml</code> and making one little edit — okay, write a Perl script to make one little edit to every page in my site — I get a usable yearly archive!</p>
 <p><img src="/post/2016/04/attachments/img/2016/site-list-all-years.png" alt="all years"/></p>
 <p>I put <code>_default/list.ace</code> back in its original state, and each year has a simple listing.</p>
 <p><img src="/post/2016/04/attachments/img/2016/site-single-year.png" title="Just the stuff I pushed in 2015" alt="screenshot"/></p>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/11/naming-things-in-tmux/">Naming things in tmux</a></li>
@@ -304,10 +309,14 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="using-tmux-commands">Using Tmux commands</h2>
 <p>Although tmux binds keys to commands, it’s easier for me to remember words than keys.  It’s part of why I still use <a href="/card/taskwarrior/">Taskwarrior</a> more than <a href="/card/org/">card/Org</a>.  Because of that, I’ll focus on the tmux commands.</p>
 <p>You can send them directly to <code>tmux</code> in an open shell.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ tmux &lt;command&gt; [arguments]
-</span></span></code></pre></div><p>You don’t have a shell handy?  <code>C-b :</code> will pull up a quick Tmux  command prompt to enter your commands:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">C-b :&lt;command&gt; [arguments]
-</span></span></code></pre></div><p>If your command produces output, it will display in place of your current window until you hit <code>ENTER</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ tmux &lt;command&gt; [arguments]</span></span></code></pre>
+</figure><p>You don’t have a shell handy?  <code>C-b :</code> will pull up a quick Tmux  command prompt to enter your commands:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">C-b :&lt;command&gt; [arguments]</span></span></code></pre>
+</figure><p>If your command produces output, it will display in place of your current window until you hit <code>ENTER</code>.</p>
 <p>On to the commands themselves.  I’ve added some highlights along the way, with command full names, aliases, and useful arguments — but not <em>all</em> arguments.</p>
 <h2 id="sessions">Sessions</h2>
 <p>First things first.  Let’s figure out what I have.</p>
@@ -319,11 +328,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <dd><code>ls</code></dd>
 </dl>
 <p>I can list sessions with <code>list-sessions</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ tmux list-sessions
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ tmux list-sessions
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">0: 3 windows (created Wed Nov 18 22:25:18 2020) (attached)
-</span></span><span class="line"><span class="cl">2: 1 windows (created Sat Nov 21 12:08:28 2020)
-</span></span></code></pre></div><p>This shows two sessions.  The first one — currently attached, which means its the one I’m typing in right now — contains three windows, and has been open a few days.  The other is open with some work stuff.  Yes, I know.  On a Saturday.  I’m working on that &ldquo;life/work balance&rdquo; thing.</p>
+</span></span><span class="line"><span class="cl">2: 1 windows (created Sat Nov 21 12:08:28 2020)</span></span></code></pre>
+</figure><p>This shows two sessions.  The first one — currently attached, which means its the one I’m typing in right now — contains three windows, and has been open a few days.  The other is open with some work stuff.  Yes, I know.  On a Saturday.  I’m working on that &ldquo;life/work balance&rdquo; thing.</p>
 <p>By writing a blog post.</p>
 <p>Whatever.</p>
 <p>Anyways, that number on the start of each entry identifies the session.  It starts at zero, and keeps going up with each new session until you quit all your tmux sessions and start again.  Quitting a session won’t affect the numbering.  <code>2</code> is the name of the session, and that stayed true even when I quit session <code>1</code>.</p>
@@ -341,18 +352,24 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <dd><code>-p</code>    previous</dd>
 </dl>
 <p>Used to be I’d get at that other session by opening a new tab in my terminal and telling <code>tmux</code> to attach to it, making sure to detach it from whatever other connections I may have had open.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tmux attach -d -t 2
-</span></span></code></pre></div><p>Then I learned that we can switch to my other sessions with <code>switch-client</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:switch-client -t 2
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">tmux attach -d -t 2</span></span></code></pre>
+</figure><p>Then I learned that we can switch to my other sessions with <code>switch-client</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:switch-client -t 2
 </span></span><span class="line"><span class="cl">:ls
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">0: 3 windows (created Wed Nov 18 22:25:18 2020)
-</span></span><span class="line"><span class="cl">2: 1 windows (created Sat Nov 21 12:08:28 2020) (attached)
-</span></span></code></pre></div><p>We can cycle through sessions without targeting them, too.  A <code>-n</code> argument cycles to the next, while <code>-p</code> cycles to the previous.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:switch-client -n
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>C-b )</kbd> and <kbd>C-b (</kbd>.</p>
+</span></span><span class="line"><span class="cl">2: 1 windows (created Sat Nov 21 12:08:28 2020) (attached)</span></span></code></pre>
+</figure><p>We can cycle through sessions without targeting them, too.  A <code>-n</code> argument cycles to the next, while <code>-p</code> cycles to the previous.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:switch-client -n</span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>C-b )</kbd> and <kbd>C-b (</kbd>.</p>
 </blockquote>
 <p>I don’t think so much about tabbed terminals anymore.  I do forget which session holds work stuff and which holds site stuff, though.</p>
 <h3 id="renaming-sessions">Renaming sessions</h3>
@@ -369,14 +386,18 @@ Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>
 <dd><code>-t</code>  target</dd>
 </dl>
 <p>I’m not stuck with the tmux-assigned session numbers for identification. I can rename them!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-session -t 0 site
-</span></span><span class="line"><span class="cl">:rename -t 2 work
-</span></span></code></pre></div><p>Does that help?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-session -t 0 site
+</span></span><span class="line"><span class="cl">:rename -t 2 work</span></span></code></pre>
+</figure><p>Does that help?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">site: 3 windows (created Wed Nov 18 22:25:18 2020) (attached)
-</span></span><span class="line"><span class="cl">work: 1 windows (created Sat Nov 21 12:08:28 2020)
-</span></span></code></pre></div><p>It sure does.  Oh and it sorts the listing alphabetically.  Good to know.</p>
+</span></span><span class="line"><span class="cl">work: 1 windows (created Sat Nov 21 12:08:28 2020)</span></span></code></pre>
+</figure><p>It sure does.  Oh and it sorts the listing alphabetically.  Good to know.</p>
 <p>With several sessions going at once — it happens sometimes — names tell me what I intended to do with my time.  Makes switching to a targeted session easier for me as well.</p>
 <p>I gave each of my sessions a purpose.  Now.  What’s going on with the windows <em>inside</em> the sessions?</p>
 <h2 id="windows">Windows</h2>
@@ -390,20 +411,24 @@ Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>
 <dd><code>-a</code>  all</dd>
 </dl>
 <p><code>list-windows</code> summarizes the windows in my current session.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:list-windows
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:list-windows
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">1: zsh* (2 panes) [282x65] [layout eb16,282x65,0,0{142x65,0,0,0,139x65,143,0,1}] @0 (active)
 </span></span><span class="line"><span class="cl">2: zsh#- (1 panes) [282x65] [layout c59f,282x65,0,0,2] @1
-</span></span><span class="line"><span class="cl">3: zsh# (1 panes) [282x65] [layout c5a0,282x65,0,0,3] @2
-</span></span></code></pre></div><p>Let’s see.  There’s a window with two panes, one of which is a Zsh session. There’s a second Zsh session.  And — uh — a third Zsh session.</p>
+</span></span><span class="line"><span class="cl">3: zsh# (1 panes) [282x65] [layout c5a0,282x65,0,0,3] @2</span></span></code></pre>
+</figure><p>Let’s see.  There’s a window with two panes, one of which is a Zsh session. There’s a second Zsh session.  And — uh — a third Zsh session.</p>
 <p>I can even list every window in every session!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:lsw -a
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:lsw -a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">site:1: zsh* (2 panes) [282x65]
 </span></span><span class="line"><span class="cl">site:2: zsh#- (1 panes) [282x65]
 </span></span><span class="line"><span class="cl">site:3: zsh# (1 panes) [282x65]
-</span></span><span class="line"><span class="cl">work:1: zsh* (1 panes) [282x63]
-</span></span></code></pre></div><p>That’s not very helpful. The named sessions help clarify things somewhat, but the windows are just a lot of Zsh.</p>
+</span></span><span class="line"><span class="cl">work:1: zsh* (1 panes) [282x63]</span></span></code></pre>
+</figure><p>That’s not very helpful. The named sessions help clarify things somewhat, but the windows are just a lot of Zsh.</p>
 <p>Let’s fix that.</p>
 <h3 id="renaming-windows">Renaming windows</h3>
 <dl>
@@ -417,20 +442,26 @@ Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>
 <dd><code>-t N</code>  target window</dd>
 </dl>
 <p>I can rename the windows within my session.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-window -t 1 writing
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-window -t 1 writing
 </span></span><span class="line"><span class="cl">:renamew -t 2 hugo
-</span></span><span class="line"><span class="cl">:renamew -t 3 kexp
-</span></span></code></pre></div><p>There we go.  I’m writing this post in <a href="/card/neovim/">card/Neovim</a>, serving my site with <a href="/card/hugo/">card/Hugo</a> locally for review, and listening to the <a href="/card/kexp/">card/KEXP</a> stream via <code>mplayer</code>.</p>
+</span></span><span class="line"><span class="cl">:renamew -t 3 kexp</span></span></code></pre>
+</figure><p>There we go.  I’m writing this post in <a href="/card/neovim/">card/Neovim</a>, serving my site with <a href="/card/hugo/">card/Hugo</a> locally for review, and listening to the <a href="/card/kexp/">card/KEXP</a> stream via <code>mplayer</code>.</p>
 <p>Heck, I can rename windows in my other session if I like.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-window -t work:1 compiling
-</span></span></code></pre></div><p>Does <em>that</em> help?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:lsw -a
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rename-window -t work:1 compiling</span></span></code></pre>
+</figure><p>Does <em>that</em> help?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:lsw -a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">site:1: writing* (2 panes) [282x65]
 </span></span><span class="line"><span class="cl">site:2: hugo# (1 panes) [282x65]
 </span></span><span class="line"><span class="cl">site:3: kexp#- (1 panes) [282x65]
-</span></span><span class="line"><span class="cl">work:1: compiling* (1 panes) [282x65]
-</span></span></code></pre></div><p>It does!  My sessions and windows all make sense!  More or less.</p>
+</span></span><span class="line"><span class="cl">work:1: compiling* (1 panes) [282x65]</span></span></code></pre>
+</figure><p>It does!  My sessions and windows all make sense!  More or less.</p>
 <p>Some folks might prefer naming their windows according to the current process. Maybe even automating that process.  For my own brain, a named purpose is generally more informative and more persistent than any executable.</p>
 <p>So much more I could learn, but this covers enough to call it a post.</p>
 <p>Besides, I need to get back to work.</p>

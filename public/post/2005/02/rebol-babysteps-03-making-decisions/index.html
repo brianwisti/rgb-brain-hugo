@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2005/">2005</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/">REBOL Babysteps - 03 Making Decisions</a></li>
@@ -303,9 +308,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="simple-tests">Simple Tests</h2>
 <h3 id="if"><code>if</code></h3>
 <p>The simplest selection structure is <code>if</code>. You give it a <em>test expression</em> and a <em>block</em>. If the test expression turns out to be true, then REBOL runs the block. Otherwise, it ignores the block and moves on to the next statement.</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
-if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>if</th>
@@ -322,9 +330,12 @@ if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
 </tbody>
 </table>
 <p>You can choose between using the <code>equal?</code> function or the <em>equality</em> operator.</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
-if name == &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
-</code></pre><p>Those two equal signs in there combine to make a special <em>operator</em> that REBOL uses to test for strict equality &ndash; making sure that the thing on the left has exactly the same value as the thing on the right. There are a number of comparison functions and operators in REBOL. It&rsquo;s up to you whether you prefer to use the function approach or the operator approach. My own preference varies according to my mood and the things being compared. Numbers and strings often get the operator treatment, while I lean towards using the functions for more complex things. I&rsquo;ll stick to using the functions today, because that&rsquo;s the sort of mood I&rsquo;m in.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+if name == &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]</code></pre>
+</figure><p>Those two equal signs in there combine to make a special <em>operator</em> that REBOL uses to test for strict equality &ndash; making sure that the thing on the left has exactly the same value as the thing on the right. There are a number of comparison functions and operators in REBOL. It&rsquo;s up to you whether you prefer to use the function approach or the operator approach. My own preference varies according to my mood and the things being compared. Numbers and strings often get the operator treatment, while I lean towards using the functions for more complex things. I&rsquo;ll stick to using the functions today, because that&rsquo;s the sort of mood I&rsquo;m in.</p>
 <table>
 <thead>
 <tr>
@@ -379,13 +390,19 @@ if name == &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
 <p><code>equal?</code> doesn&rsquo;t care about case. &ldquo;abc&rdquo; and &ldquo;ABC&rdquo; are the same, according to these tests. So are <code>1</code> and <code>1.0</code>. This is the way most of us think about comparisons, but programs sometimes need more careful comparisons in situations where case matters. One example that immediately comes to mind is login and password entry. You need to use <code>strict-equal?</code> or <code>strict-not-equal?</code> if you need an exact test.</p>
 <h3 id="either"><code>either</code></h3>
 <p>What happens if you want to do one thing if a test is true, but a <em>different</em> thing if the test is false? Let&rsquo;s say, for example, we want to print out one message if we recognize the user as a master, and print out another message if the user is not a master. Well, I suppose you could have two <code>if</code> statements, like this:</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
 if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
-if not-equal? name &#34;Zim&#34; [ print &#34;Meow!&#34; ]
-</code></pre><p>This can obviously get ugly very quickly. REBOL gives us the <code>either</code> statement to simplify situations like this.</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
-either equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ] [ print &#34;Meow!&#34; ]
-</code></pre><p>The <code>either</code> command requires a test expressions and two blocks. Either the test is true and the first block is executed, or the test is false and the second block is executed. That makes sense, doesn&rsquo;t it? Here&rsquo;s how that example breaks down.</p>
+if not-equal? name &#34;Zim&#34; [ print &#34;Meow!&#34; ]</code></pre>
+</figure><p>This can obviously get ugly very quickly. REBOL gives us the <code>either</code> statement to simplify situations like this.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+either equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ] [ print &#34;Meow!&#34; ]</code></pre>
+</figure><p>The <code>either</code> command requires a test expressions and two blocks. Either the test is true and the first block is executed, or the test is false and the second block is executed. That makes sense, doesn&rsquo;t it? Here&rsquo;s how that example breaks down.</p>
 <table>
 <thead>
 <tr>
@@ -405,29 +422,41 @@ either equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ] [ p
 </tbody>
 </table>
 <p>Now is a good time to point out how flexible REBOL can be. Let&rsquo;s reexamine our code and see what we are trying to do. We are printing a message, right? The only thing that is different is <em>which</em> message we are printing. We could hand the entire <code>if</code> statement directly to the print command like this:</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
-print either equal? name &#34;Zim&#34; [ &#34;Reporting for duty sir!&#34; ] [ &#34;Meow!&#34; ]
-</code></pre><p>It accomplishes the exact same thing as we did with the original <code>either</code> statement, but removes a little bit of repetition. Some folks think that steps like this do a lot to make program code more readable. Another approach might be to assign the result of the <code>either</code> statement to a variable and then print the variable. I like this approach, because my program might grow later on. I might decide that I want the program to <em>speak</em> the response rather than print it out to the screen.</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
+print either equal? name &#34;Zim&#34; [ &#34;Reporting for duty sir!&#34; ] [ &#34;Meow!&#34; ]</code></pre>
+</figure><p>It accomplishes the exact same thing as we did with the original <code>either</code> statement, but removes a little bit of repetition. Some folks think that steps like this do a lot to make program code more readable. Another approach might be to assign the result of the <code>either</code> statement to a variable and then print the variable. I like this approach, because my program might grow later on. I might decide that I want the program to <em>speak</em> the response rather than print it out to the screen.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
 response: either equal? name &#34;Zim&#34; [ &#34;Yes master I obey!&#34; ] [ &#34;Meow!&#34; ]
-print response
-</code></pre><p>I don&rsquo;t want to overwhelm anybody right now, and you can ignore options like these until you are much more comfortable with REBOL. I just wanted you to see how REBOL will let you describe your program in the style that you like best.</p>
+print response</code></pre>
+</figure><p>I don&rsquo;t want to overwhelm anybody right now, and you can ignore options like these until you are much more comfortable with REBOL. I just wanted you to see how REBOL will let you describe your program in the style that you like best.</p>
 <p>Yes, <code>either</code> is a variation of the <code>if/else</code> construct that you find in many other languages.</p>
 <h2 id="having-multiple-tests">Having Multiple Tests</h2>
 <h3 id="any"><code>any</code></h3>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
 response: ask &#34;What&#39;s your favorite snack? &#34;
 if any [
 	equal? response &#34;tacos&#34;
 	equal? response &#34;waffles&#34;
 ] [
 	print &#34;Me too!&#34;
-]
-</code></pre><p>There will be times that you want to check several things, and execute if any of them are true. Fortunately REBOL is there to help us with the <code>any</code> function. <code>any</code> takes a block of tests and returns true if any of those tests are true. This is another one of those definitions that just repeats the obvious, isn&rsquo;t it? Well, a lot of predefined words in REBOL work like that.</p>
+]</code></pre>
+</figure><p>There will be times that you want to check several things, and execute if any of them are true. Fortunately REBOL is there to help us with the <code>any</code> function. <code>any</code> takes a block of tests and returns true if any of those tests are true. This is another one of those definitions that just repeats the obvious, isn&rsquo;t it? Well, a lot of predefined words in REBOL work like that.</p>
 <p>Yes, this does sound like the <code>or</code> logical operator from other languages. Also known as <code>||</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>any</code> better than <code>||</code>.</p>
 <h3 id="all"><code>all</code></h3>
 <p>What if you only want to execute the block if <em>all</em> tests are true? It shouldn&rsquo;t surprise you by this point to find out that REBOL is right there waiting for us with the <code>all</code> statement.</p>
-<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-rebol" data-lang="rebol"
+      >REBOL []
 name: ask &#34;Name: &#34;
 password: ask &#34;Password: &#34;
 if all [
@@ -435,8 +464,8 @@ if all [
 	strict-equal? password &#34;Pretty Please?&#34;
 ] [
 	print &#34;Login accepted!&#34;
-]
-</code></pre><p>Yes, this does sound like the <code>and</code> logical operator from other languages. Also known as <code>&amp;&amp;</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>all</code> better than <code>&amp;&amp;</code>.</p>
+]</code></pre>
+</figure><p>Yes, this does sound like the <code>and</code> logical operator from other languages. Also known as <code>&amp;&amp;</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>all</code> better than <code>&amp;&amp;</code>.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Now that you have worked with selection structures, you have a major building block for writing useful programs. Next time around we will take a look at a few of REBOL&rsquo;s many repetition and iteration structures. Then maybe we can sit down and write a <em>real</em> program!</p>
 <h2 id="changes">Changes</h2>

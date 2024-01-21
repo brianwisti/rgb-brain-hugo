@@ -135,8 +135,8 @@ Instead of manually checking each of the 245 posts on this site, I chose to writ
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/04/making-a-mojo-link-checker/">Making A Mojo Link Checker</a></li>
@@ -307,17 +312,21 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="the-code">The code</h2>
 <p>I could just dump the script here and go on with my day, but I feel like typing a lot for some reason. Let’s go through the major chunks of the code.</p>
 <h3 id="the-setup">The setup</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.24.0</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.24.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">experimental</span> <span class="s">&#39;signatures&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>Whenever possible, I specify the latest version of Perl (currently <a href="http://perldoc.perl.org/perl5240delta.html">5.24</a>. It enables some features and deprecates others. If nothing else, it reminds me when I last worked on the code. Recent Perl versions automatically enable <a href="http://perldoc.perl.org/strict.html"><code>strict</code></a>, but it’s useful for me to also turn on <a href="http://perldoc.perl.org/warnings.html"><code>warnings</code></a>.</p>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">experimental</span> <span class="s">&#39;signatures&#39;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Whenever possible, I specify the latest version of Perl (currently <a href="http://perldoc.perl.org/perl5240delta.html">5.24</a>. It enables some features and deprecates others. If nothing else, it reminds me when I last worked on the code. Recent Perl versions automatically enable <a href="http://perldoc.perl.org/strict.html"><code>strict</code></a>, but it’s useful for me to also turn on <a href="http://perldoc.perl.org/warnings.html"><code>warnings</code></a>.</p>
 <p>The <a href="https://metacpan.org/pod/experimental"><code>experimental</code></a> CPAN module saves some boiler plate when using Perl features that have not fully stabilized — such as function <a href="http://perldoc.perl.org/feature.html#The-%27signatures%27-feature">signatures</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::DOM</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::DOM</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::File</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::JSON</span> <span class="sx">qw(decode_json)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::URL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::UserAgent</span><span class="p">;</span>
-</span></span></code></pre></div><p>Mojolicious provides a remarkable amount of functionality for such a small installation. This is just what I’m explicitly using.</p>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojo::UserAgent</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Mojolicious provides a remarkable amount of functionality for such a small installation. This is just what I’m explicitly using.</p>
 <dl>
 <dt><a href="http://mojolicious.org/perldoc/Mojo/DOM">Mojo::DOM</a></dt>
 <dd>HTML/XML DOM parser that supports <a href="https://www.w3.org/TR/CSS2/selector.html">CSS Selectors</a></dd>
@@ -331,7 +340,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <dd>makes HTTP and WebSocket requests (similar to <a href="https://metacpan.org/pod/LWP::UserAgent">LWP::UserAgent</a>, or <a href="http://docs.python-requests.org/en/master/">Requests</a> for Python people)</dd>
 </dl>
 <h3 id="from-the-top">From the top</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$config_file</span>   <span class="o">=</span> <span class="s">&#34;config.json&#34;</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$config_file</span>   <span class="o">=</span> <span class="s">&#34;config.json&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$config</span>        <span class="o">=</span> <span class="n">decode_json</span><span class="p">(</span><span class="nn">Mojo::File</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$config_file</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">slurp</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$site</span>          <span class="o">=</span> <span class="nn">Mojo::URL</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$config</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">BaseURL</span><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$root</span>          <span class="o">=</span> <span class="nv">$config</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">publishDir</span><span class="p">}</span> <span class="o">||</span> <span class="s">&#39;public&#39;</span><span class="p">;</span>
@@ -349,14 +360,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$files</span> <span class="o">=</span> <span class="nv">$path</span><span class="o">-&gt;</span><span class="nn">list_tree</span><span class="o">-&gt;</span><span class="nb">grep</span><span class="p">(</span> <span class="sx">qr{ \. (?:html|xml )$ }</span><span class="n">x</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nv">$files</span><span class="o">-&gt;</span><span class="nb">each</span><span class="p">(</span> <span class="k">sub</span> <span class="p">{</span> <span class="n">check_links_in</span><span class="p">(</span><span class="nv">$_</span><span class="p">);</span> <span class="p">}</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>This is the important bit: load the config, create a user agent, and check links in one or all of the generated HTML files. I checked the generated HTML files in <code>public</code> because I didn’t feel like messing with <code>hugo server</code> or a Mojolicious mini-app. Scraping a local server could be an option later.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>This is the important bit: load the config, create a user agent, and check links in one or all of the generated HTML files. I checked the generated HTML files in <code>public</code> because I didn’t feel like messing with <code>hugo server</code> or a Mojolicious mini-app. Scraping a local server could be an option later.</p>
 <p>Using Mojolicious for everything was so much fun that I rewrote <code>config.yaml</code> as <code>config.json</code> to allow using <code>Mojo::JSON</code> here. Hugo’s built-in support for different <a href="http://gohugo.io/overview/configuration/">configuration format</a> made that a painless shift. Then Mojo lets me <a href="http://mojolicious.org/perldoc/Mojo/File#slurp"><code>slurp</code></a> the contents of the config file into a single string, which <a href="http://mojolicious.org/perldoc/Mojo/JSON#decode_json"><code>decode_json</code></a> turns into a hash reference.</p>
 <p><a href="http://mojolicious.org/perldoc/Mojo/File#list_tree"><code>list_tree</code></a> gives a recursive directory listing of everything under <code>$root</code> as a <a href="http://mojolicious.org/perldoc/Mojo/Collection">Mojo::Collection</a>. Collections provide a tidy toolkit of list handling functionality without requiring me to go back and forth between arrays and array references.
 I could find and iterate over all the HTML and XML files in vanilla Perl 5, but I like this better.</p>
 <p>After a few runs, I added the ability to specify a single file in <a href="http://perldoc.perl.org/perlvar.html#%40ARGV"><code>@ARGV</code></a>. That way I can figure things out when that one link in that one file causes trouble.</p>
 <h3 id="checking-links-in-a-file">Checking links in a file</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">check_links_in</span><span class="p">($filename) {</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">check_links_in</span><span class="p">($filename) {</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$html</span> <span class="o">=</span> <span class="nn">Mojo::File</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span> <span class="nv">$filename</span> <span class="p">)</span><span class="o">-&gt;</span><span class="n">slurp</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$dom</span> <span class="o">=</span> <span class="nn">Mojo::DOM</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span> <span class="nv">$html</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$links</span> <span class="o">=</span> <span class="nv">$dom</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span> <span class="s">&#39;[href], [src]&#39;</span> <span class="p">);</span>
@@ -380,12 +393,14 @@ I could find and iterate over all the HTML and XML files in vanilla Perl 5, but 
 </span></span><span class="line"><span class="cl">    <span class="c1"># In this version we only care about invalid links.</span>
 </span></span><span class="line"><span class="cl">    <span class="k">unless</span> <span class="p">(</span> <span class="nv">$checked_links</span><span class="o">-&gt;</span><span class="p">{</span> <span class="nv">$target</span> <span class="p">}</span> <span class="p">)</span> <span class="p">{</span> <span class="n">say</span> <span class="n">summary_for</span><span class="p">(</span> <span class="nv">$target</span><span class="p">,</span> <span class="nv">$filename</span> <span class="p">);</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Once again I <code>slurp</code> a file into a string. This time it gets handed off to <code>Mojo::DOM</code> so it can <a href="http://mojolicious.org/perldoc/Mojo/DOM#find"><code>find</code></a> any elements with <code>src</code> or <code>href</code> attributes, and then create a <code>Mojo::URL</code> from the appropriate <a href="http://mojolicious.org/perldoc/Mojo/DOM#attr"><code>attr</code></a>. <code>Mojo::URL</code> does the tedious work of parsing URLs and making components like <a href="http://mojolicious.org/perldoc/Mojo/URL#scheme"><code>scheme</code></a> available.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Once again I <code>slurp</code> a file into a string. This time it gets handed off to <code>Mojo::DOM</code> so it can <a href="http://mojolicious.org/perldoc/Mojo/DOM#find"><code>find</code></a> any elements with <code>src</code> or <code>href</code> attributes, and then create a <code>Mojo::URL</code> from the appropriate <a href="http://mojolicious.org/perldoc/Mojo/DOM#attr"><code>attr</code></a>. <code>Mojo::URL</code> does the tedious work of parsing URLs and making components like <a href="http://mojolicious.org/perldoc/Mojo/URL#scheme"><code>scheme</code></a> available.</p>
 <p>Leaning on the <code>//</code> defined-or logical shortcut lets me take advantage of the three boolean states of Perl: truthy, falsey, and &ldquo;I dunno.&rdquo; Each URL-testing subroutine can return <code>undef</code> to indicate that it doesn’t know what to do with the URL, and let the next subroutine in line handle it. If nobody knows what to do with it, then that’s a bad link and gets remembered as a falsey value.</p>
 <p><a href="http://mojolicious.org/perldoc/Mojo/Collection#each"><code>each</code></a> hands two items to the subroutine it invokes: an item in the collection and what number in the collection that item is (starting from 1). No, I don’t use <code>$n</code>, but I wanted you to see that it’s available. You can also access the item as <code>$_</code> as I did earlier. You can even do your subroutine arguments the old fashioned way with <code>@_</code>.</p>
 <h3 id="is-it-an-internal-link">Is it an internal link?</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">file_exists_for</span><span class="p">($url) {</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">file_exists_for</span><span class="p">($url) {</span>
 </span></span><span class="line"><span class="cl">  <span class="c1"># Ignore full urls that aren&#39;t pointed at my site.</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="nv">$url</span><span class="o">-&gt;</span><span class="n">host</span> <span class="o">&amp;&amp;</span> <span class="nv">$url</span><span class="o">-&gt;</span><span class="n">host</span> <span class="ow">ne</span> <span class="nv">$site</span><span class="o">-&gt;</span><span class="n">host</span> <span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
@@ -407,8 +422,8 @@ I could find and iterate over all the HTML and XML files in vanilla Perl 5, but 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$root</span> <span class="o">.</span> <span class="nv">$path</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">-</span><span class="n">f</span> <span class="nv">$file</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I would check for <code>../</code> abuse if this was a general purpose script, but it’s mostly links I added by hand and checked manually at some point in the last fifteen years. So - assuming past me was not acting maliciously or foolishly, we rule out more likely situations:</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I would check for <code>../</code> abuse if this was a general purpose script, but it’s mostly links I added by hand and checked manually at some point in the last fifteen years. So - assuming past me was not acting maliciously or foolishly, we rule out more likely situations:</p>
 <ul>
 <li>The URL <a href="http://mojolicious.org/perldoc/Mojo/URL#host"><code>host</code></a> points to something besides my site, which means it can’t be a local file.</li>
 <li>The link has a <a href="http://mojolicious.org/perldoc/Mojo/URL#fragment"><code>fragment</code></a> pointing to a named anchor and nothing else. I only have that on <a href="/post/2014/10/blog-writing-in-org-mode/">one page</a> right now, and I don’t feel like complicating this script for a single page.</li>
@@ -417,7 +432,9 @@ I could find and iterate over all the HTML and XML files in vanilla Perl 5, but 
 </ul>
 <p><a href="http://mojolicious.org/perldoc/Mojo/Path">Mojo::Path</a> manipulation delights me. Sure, this could be a regular expression substitution with fewer characters of code, but someone else seeing <a href="http://mojolicious.org/perldoc/Mojo/Path#merge"><code>merge</code></a> after a check for a <a href="http://mojolicious.org/perldoc/Mojo/Path#trailing_slash">trailing slash</a> would probably understand that I’m adjusting for the common practice of <code>/thing/</code> being a link to <code>/thing/index.html</code>. They might understand even if they weren’t Perl developers!</p>
 <h3 id="is-it-a-working-external-link">Is it a working external link?</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">external_link_works_for</span><span class="p">($url, $ua) {</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">external_link_works_for</span><span class="p">($url, $ua) {</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$response</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1"># Ignore tutorial demo links</span>
@@ -443,11 +460,13 @@ I could find and iterate over all the HTML and XML files in vanilla Perl 5, but 
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="n">is_success</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>After some quick checks to ensure I’m not looking at a blog demo link and that I handle <a href="https://www.paulirish.com/2010/the-protocol-relative-url/">protocol-relative URLs</a> correctly, I wrap a simple <a href="http://mojolicious.org/perldoc/Mojo/UserAgent#head"><code>head</code></a> request in an <code>eval</code> block.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>After some quick checks to ensure I’m not looking at a blog demo link and that I handle <a href="https://www.paulirish.com/2010/the-protocol-relative-url/">protocol-relative URLs</a> correctly, I wrap a simple <a href="http://mojolicious.org/perldoc/Mojo/UserAgent#head"><code>head</code></a> request in an <code>eval</code> block.</p>
 <p>I use <a href="https://ochronus.com/http-head-request-good-uses/"><code>HTTP HEAD</code></a> because I only care about whether the link is valid. I don’t want the full content at the link. <code>eval</code> lets me catch timeouts and requests being sent to Web sites which no longer exist. Assuming no errors, this eventually returns whether the <a href="http://mojolicious.org/perldoc/Mojo/Transaction#result"><code>result</code></a> of the <a href="http://mojolicious.org/perldoc/Mojo/Transaction/HTTP">HTTP transaction</a> succeeded with <a href="http://mojolicious.org/perldoc/Mojo/Message/Response#is_success"><code>is_success</code></a>.</p>
 <h3 id="summarize-it">Summarize it</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">summary_for</span><span class="p">($target, $filename) {</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">summary_for</span><span class="p">($target, $filename) {</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">die</span> <span class="s">&#34;Didn&#39;t check [$target]?&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">unless</span> <span class="nb">exists</span> <span class="nv">$checked_links</span><span class="o">-&gt;</span><span class="p">{</span> <span class="nv">$target</span> <span class="p">};</span>
 </span></span><span class="line"><span class="cl">
@@ -456,12 +475,18 @@ I could find and iterate over all the HTML and XML files in vanilla Perl 5, but 
 </span></span><span class="line"><span class="cl">    <span class="p">:</span> <span class="s">&#34;-&#34;</span>  <span class="c1"># Something went wrong.</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="s">&#34;$status $filename $target&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Today I only looked for bad links, but it can be useful to know the status of <em>all</em> links in my site. I used it a few times during development. May as well leave that bit of logic in.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Today I only looked for bad links, but it can be useful to know the status of <em>all</em> links in my site. I used it a few times during development. May as well leave that bit of logic in.</p>
 <h2 id="whats-that-do">What’s That Do?</h2>
-<pre tabindex="0"><code>$ ./scripts/link-checker &gt; links.txt
-</code></pre><p>A couple hundred lines like this, basically.</p>
-<pre tabindex="0"><code>When checking http://coolnamehere.com: Premature connection close at scripts/check-links.pl line 53.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./scripts/link-checker &gt; links.txt</code></pre>
+</figure><p>A couple hundred lines like this, basically.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >When checking http://coolnamehere.com: Premature connection close at scripts/check-links.pl line 53.
 - public/categories/blogspot/index.html http://coolnamehere.com
 - public/categories/blogspot/index.html http://blogspot.com
 When checking http://vim.org/: Can&#39;t connect: Name or service not known at scripts/check-links.pl line 53.
@@ -470,8 +495,8 @@ When checking http://jruby.codehaus.org: Connect timeout at scripts/check-links.
 - public/categories/blogspot/index.html http://jruby.codehaus.org
 - public/categories/blogspot/index.html http://devzone.zend.com/article/2262-Zend-Framework-1.0.0-production-release
 When checking http://jruby.codehaus.org/: Connect timeout at scripts/check-links.pl line 53.
-- public/categories/coolnamehere/index.html http://jruby.codehaus.org/
-</code></pre><p>Goodness those are embarrassing.</p>
+- public/categories/coolnamehere/index.html http://jruby.codehaus.org/</code></pre>
+</figure><p>Goodness those are embarrassing.</p>
 <p>Okay I’m gonna go fix this.</p>
 <p>Some links just won’t work with this code. I may revisit this later, but I got what I need. All links should at least work in a browser for now.</p>
 <p>An added bonus that I didn’t expect: this code also ran on Windows 10 with no  changes needed.</p>

@@ -133,8 +133,8 @@ This page is intended to provide the non-programmer with a gentle introduction t
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2003/">2003</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2003/06/ruby-babysteps-01-first-steps/">Ruby Babysteps 01 - First Steps</a></li>
@@ -327,17 +332,23 @@ Here are a couple of my favorite popular choices:</p>
 <p>Look around a bit and pick the one that feels most comfortable to you. If you change your mind later, nobody should hold it against you.</p>
 <h3 id="hello-world">Hello, World</h3>
 <p>It is traditional to start programming by creating a program that displays a simple phrase, such as “Hello, World!” I am not about to argue with tradition. Type the following into your text editor:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  Displays a warm greeting</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, World!&#34;</span>
-</span></span></code></pre></div><p>Save the file as <code>hello.rb</code>. We’ll be running it in a few moments, but first - what’s with those first couple of lines?</p>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, World!&#34;</span></span></span></code></pre>
+</figure><p>Save the file as <code>hello.rb</code>. We’ll be running it in a few moments, but first - what’s with those first couple of lines?</p>
 <p>Well, they’re Ruby <em>comments</em>. Comments start from the character <code>#</code>, and extend to the end of the line that you wrote them on. Ruby ignores comments, which means that you can use them to explain what is going on in your code. Comments are good. When you come back to look at a complex script after several months, you might forget what some block of code does. Having the comments there to remind you will make it that much easier to sort everything out.</p>
 <p>I like to start every one of my scripts off with a quick header to describe the purpose of the program. Here is the rough template:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#  Displays a warm greeting</span>
-</span></span></code></pre></div><p>Of course, your header can be as complicated as you like:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Displays a warm greeting</span></span></span></code></pre>
+</figure><p>Of course, your header can be as complicated as you like:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  Displays a warm greeting.</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># = AUTHOR</span>
@@ -355,40 +366,60 @@ Here are a couple of my favorite popular choices:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#   You may copy and redistribute this program as you see fit, with no</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#   restrictions.</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># = WARRANTY</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   This program comes with NO warranty, real or implied.</span>
-</span></span></code></pre></div><p>Just try to match the header complexity to the program. Using this header for a program that consists of one line of code might be just a <em>little</em> bit of overkill. I usually start with the two-line header and expand it as I see fit.</p>
+</span></span><span class="line"><span class="cl"><span class="c1">#   This program comes with NO warranty, real or implied.</span></span></span></code></pre>
+</figure><p>Just try to match the header complexity to the program. Using this header for a program that consists of one line of code might be just a <em>little</em> bit of overkill. I usually start with the two-line header and expand it as I see fit.</p>
 <p>Now you probably would like to know how to actually run a program. Save the file you have been editing, and switch to a command line. Type the following at the command prompt:</p>
-<pre tabindex="0"><code>$ ruby hello.rb
-Hello, World!
-</code></pre><p>That was kind of cool. It would be nice to customize it a little bit. Maybe we could change the program so that it says &ldquo;Hello&rdquo; to us personally.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby hello.rb
+Hello, World!</code></pre>
+</figure><p>That was kind of cool. It would be nice to customize it a little bit. Maybe we could change the program so that it says &ldquo;Hello&rdquo; to us personally.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># hello.rb</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  Displays a warm greeting.</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">name</span> <span class="o">=</span> <span class="s2">&#34;Brian&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span></code></pre></div><p>Save the file, and run it again.</p>
-<pre tabindex="0"><code>$ ruby hello.rb
-Hello, Brian!
-</code></pre><p>We stored the string &ldquo;Brian&rdquo; in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can get to it later. You can get a lot more complicated than that if you want, and a lot of programmers do. However, this definition should do for a long time.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#34;</span></span></span></code></pre>
+</figure><p>Save the file, and run it again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby hello.rb
+Hello, Brian!</code></pre>
+</figure><p>We stored the string &ldquo;Brian&rdquo; in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can get to it later. You can get a lot more complicated than that if you want, and a lot of programmers do. However, this definition should do for a long time.</p>
 <p>The string itself is a special sort of variable called an <em>object</em>. Objects are very powerful things - so powerful that every variable in Ruby is an object. You can do a lot more with a variable than just ask the computer what the object’s value is. An object has a set of things that it knows how to do. For example: a String knows how to ask Ruby to work out a value when you place some Ruby code - such as a variable name — inside the string. The code is marked by special characters. Then it will take the value that Ruby found, and insert it where the special marker was placed. You could change the value of <code>name</code> and rerun the program. The correct value will be displayed in the greeting string.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">name</span> <span class="o">=</span> <span class="s2">&#34;Matt&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">!&#34;</span>
-</span></span></code></pre></div><p>See?</p>
-<pre tabindex="0"><code>$ ruby hello.rb
-Hello, Matt!
-</code></pre><p>Having a program that displays the exact same message every time you run it is nice when it comes to being consistent, but not so entertaining as a program. Let’s make things a little more interesting still. Instead of changing the value of <code>name</code> in the code of the program, we can use the <code>gets</code> method to get a name from the user.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;What is your name? &#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">name</span> <span class="o">=</span> <span class="s2">&#34;Matt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">!&#34;</span></span></span></code></pre>
+</figure><p>See?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby hello.rb
+Hello, Matt!</code></pre>
+</figure><p>Having a program that displays the exact same message every time you run it is nice when it comes to being consistent, but not so entertaining as a program. Let’s make things a little more interesting still. Instead of changing the value of <code>name</code> in the code of the program, we can use the <code>gets</code> method to get a name from the user.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;What is your name? &#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">reply</span> <span class="o">=</span> <span class="nb">gets</span>
 </span></span><span class="line"><span class="cl"><span class="nb">name</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">chomp</span>
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">!&#34;</span>
-</span></span></code></pre></div><p>Running this is a little more fun:</p>
-<pre tabindex="0"><code>$ What is your name? Brian
-Hello, Brian!
-</code></pre><p>The <code>gets</code> method … wait, I used that word again, “method”. You might be wondering what that is supposed to be. A <em>method</em> is one thing that an object is capable of. We have to call it by name. You can’t just say “Ball, do whatever it is you do.” We have to say “Ball, bounce!” In the real world, of course, talking to the ball would not be very helpful. But you get the idea.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">!&#34;</span></span></span></code></pre>
+</figure><p>Running this is a little more fun:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ What is your name? Brian
+Hello, Brian!</code></pre>
+</figure><p>The <code>gets</code> method … wait, I used that word again, “method”. You might be wondering what that is supposed to be. A <em>method</em> is one thing that an object is capable of. We have to call it by name. You can’t just say “Ball, do whatever it is you do.” We have to say “Ball, bounce!” In the real world, of course, talking to the ball would not be very helpful. But you get the idea.</p>
 <p><code>gets</code> is a method that gets a line of text from the user and <em>returns</em> it to - or hands back to - the program. What do we do with that reply? We <code>chomp</code> it! <code>gets</code> returns <em>all</em> of the text it gets, including the bit that represents the ENTER key you pressed. We don’t want to keep that, though, so we need a safe way to remove the ENTER character without doing anything to the rest of the string. <code>chomp</code> is a method associated with Strings of text which asks the string to remove that rogue ENTER character. A cleaner copy of the string is returned for you to display.</p>
 <p>If you don’t believe me about the ENTER character, you can test it for yourself. In the string which is printed by <code>puts</code>, replace <code>name</code> with <code>reply</code>. You’ll see what I am talking about.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="n">reply</span><span class="si">}</span><span class="s2">!&#34;</span>
-</span></span></code></pre></div><p>Generally, you call an object’s methods by tagging a dot and the method name at the end, like <code>object.method</code>. There are lots of things you can do with methods, and lots of ways to treat them, but that is beyond the scope of this article.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s2">&#34;Hello, </span><span class="si">#{</span><span class="n">reply</span><span class="si">}</span><span class="s2">!&#34;</span></span></span></code></pre>
+</figure><p>Generally, you call an object’s methods by tagging a dot and the method name at the end, like <code>object.method</code>. There are lots of things you can do with methods, and lots of ways to treat them, but that is beyond the scope of this article.</p>
 <p>For now, though, you’ve learned enough to get started, and now I want you to play around with what you’ve learned and enjoy yourself a little bit.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Congratulations! You have just begun learning Ruby. You just wrote a complete program which gets input from a user, and prints output which includes a modified version of their input! Stop for a minute and think about that. Of course there’s a lot more to learn, but it’s well within your abilities. There is an ever-growing abundance of resources for the “Ruby Newbie”, and you should take advantage of as many of them as possible!</p>

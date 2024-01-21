@@ -61,10 +61,12 @@ other resources.</p>
    <category>site</category>  <category>javascript</category>  <category>hyperscript</category> 
   <content:encoded><![CDATA[<p>And a touch of <a href="https://hyperscript.org/">_hyperscript</a>.
 Started from <a href="https://makewithhugo.com/add-search-to-a-hugo-site/">this post</a> and leaned on the _hyperscript to tie some bits together.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">_</span><span class="o">=</span><span class="s">&#34;on click
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">_</span><span class="o">=</span><span class="s">&#34;on click
 </span></span></span><span class="line"><span class="cl"><span class="s">           get value of #searchQuery
-</span></span></span><span class="line"><span class="cl"><span class="s">           call executeSearch(it, false)&#34;</span><span class="p">&gt;</span>Search<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>And yeah I&rsquo;m back on <a href="/card/hugo/">card/Hugo</a>. Spent so much time in the last couple weeks touching up the static repo and ignoring the <a href="/card/statamic/">card/Statamic</a> live site. Decided not to fight it. Anyways, now that I started clearly the logical next step will be <a href="/card/gatsby/">card/Gatsby</a>. For flexible values of &ldquo;logical.&rdquo;</p>
+</span></span></span><span class="line"><span class="cl"><span class="s">           call executeSearch(it, false)&#34;</span><span class="p">&gt;</span>Search<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>And yeah I&rsquo;m back on <a href="/card/hugo/">card/Hugo</a>. Spent so much time in the last couple weeks touching up the static repo and ignoring the <a href="/card/statamic/">card/Statamic</a> live site. Decided not to fight it. Anyways, now that I started clearly the logical next step will be <a href="/card/gatsby/">card/Gatsby</a>. For flexible values of &ldquo;logical.&rdquo;</p>
 ]]></content:encoded>
 </item>
 <item>
@@ -130,19 +132,25 @@ Yeah that&rsquo;s Visual Studio Code. I&rsquo;m trying new things.</p>
    <category>javascript</category>  <category>tools</category> 
   <content:encoded><![CDATA[<p><a href="http://emberjs.com/">Ember.js</a> is an impressive piece of work. It can also be painfully  verbose. A little syntactic sugar would make that go down easier. <a href="http://emberscript.com/">EmberScript</a> is <a href="http://coffeescript.org/">CoffeeScript</a> with fine-tuning specifically for Ember.js. Fine-tuning includes bits like replacing <code>class</code> and <code>extends</code> with <code>Ember.class</code> and <code>Ember.extends</code>.</p>
 <p>The simple example from the documentation:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-coffeescript" data-lang="coffeescript"><span class="line"><span class="cl"><span class="k">class</span> <span class="nx">PostsController</span> <span class="k">extends</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ArrayController</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-coffeescript" data-lang="coffeescript"><span class="line"><span class="cl"><span class="k">class</span> <span class="nx">PostsController</span> <span class="k">extends</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ArrayController</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">trimmedPosts: </span><span class="o">~&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">@content</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span></span></code></pre></div><p>would expand out to</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">PostsController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">@content</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></span></span></code></pre>
+</figure><p>would expand out to</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">PostsController</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">get$</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">get</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">PostsController</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">trimmedPosts</span><span class="o">:</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">computed</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">get$</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}).</span><span class="nx">property</span><span class="p">(</span><span class="s1">&#39;content.@each&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">});</span>
-</span></span></code></pre></div><p>Even if your team is using <a href="http://requirejs.org/">RequireJS</a>, it should look better than the vanilla JavaScript.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-coffeescript" data-lang="coffeescript"><span class="line"><span class="cl"><span class="nx">require</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span></span></span></code></pre>
+</figure><p>Even if your team is using <a href="http://requirejs.org/">RequireJS</a>, it should look better than the vanilla JavaScript.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-coffeescript" data-lang="coffeescript"><span class="line"><span class="cl"><span class="nx">require</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;lodash&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;cs!models/PostModel&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">],</span> <span class="nf">(_, PostModel) -&gt;</span>
@@ -150,8 +158,8 @@ Yeah that&rsquo;s Visual Studio Code. I&rsquo;m trying new things.</p>
 </span></span><span class="line"><span class="cl">    <span class="nv">trimmedPosts: </span><span class="o">~&gt;</span>
 </span></span><span class="line"><span class="cl">      <span class="c1"># ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">@content</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">PostsController</span>
-</span></span></code></pre></div><p>The challenge is that in order to simplify the code we write, we&rsquo;ve added layers between us and the code that the browser actually sees. CoffeeScript could interact weirdly with our dependencies, and EmberScript will undoubtedly have its own issues. Automated tests become even more important.</p>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">PostsController</span></span></span></code></pre>
+</figure><p>The challenge is that in order to simplify the code we write, we&rsquo;ve added layers between us and the code that the browser actually sees. CoffeeScript could interact weirdly with our dependencies, and EmberScript will undoubtedly have its own issues. Automated tests become even more important.</p>
 <p>I need to think on this some more.</p>]]></content:encoded>
 </item>
 <item>
@@ -160,14 +168,15 @@ Yeah that&rsquo;s Visual Studio Code. I&rsquo;m trying new things.</p>
   <pubDate>Tue, 19 Apr 2011 00:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2011/04/the-spreadsheet-story-1/</guid>
-  <description>[!NOTE] We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based marysplace-rails project.
+  <description>NOTE
+We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based marysplace-rails project.
 There is this spreadsheet project I have been working on. My wife works at a day shelter for homeless and formerly homeless women, as well as their children. At this shelter, they make use of an incentive point system. The ladies do some chore or favor, and they get points.</description>
    <category>post</category> 
    <category>post</category> 
    <category>google-apps-script</category>  <category>javascript</category>  <category>blogspot</category> 
   <content:encoded><![CDATA[<h2>A design experiment figuring out what a local homeless shelter needs to track chores.</h2><blockquote>
-<p>[!NOTE]
-We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based <a href="https://github.com/brianwisti/marysplace-rails">marysplace-rails</a> project.</p>
+<p><strong>NOTE</strong></p>
+<p>We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based <a href="https://github.com/brianwisti/marysplace-rails">marysplace-rails</a> project.</p>
 </blockquote>
 <p>There is this spreadsheet project I have been working on. My wife works
 at a day shelter for homeless and formerly homeless women, as well as
@@ -318,8 +327,7 @@ the Excel spreadsheet was working well enough that I should focus my
 effort on the
 <a href="https://github.com/brianwisti/marysplace-rails">marysplace-rails</a>
 project.</p>
-</aside>
-]]></content:encoded>
+</aside>]]></content:encoded>
 </item>
 <item>
   <title>Post: A Glance at Client-Side Frameworks</title>

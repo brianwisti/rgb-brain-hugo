@@ -63,9 +63,11 @@
 
 
   
-    <meta name="twitter:description" content="[!NOTE] card/tldr Use the start, stop, and active Taskwarrior commands to manage what you’re doing right now.
+    <meta name="twitter:description" content="card/tldr
+Use the start, stop, and active Taskwarrior commands to manage what you’re doing right now.
 I use Taskwarrior’s priority system to show what I want to be working on now. What if there are several things I want to be working on right now? Even with my priority rules, I still find myself drawn to the lower priority tasks that are more interesting. Realistically, I can only do one thing at a time.">
-    <meta property="og:description" content="[!NOTE] card/tldr Use the start, stop, and active Taskwarrior commands to manage what you’re doing right now.
+    <meta property="og:description" content="card/tldr
+Use the start, stop, and active Taskwarrior commands to manage what you’re doing right now.
 I use Taskwarrior’s priority system to show what I want to be working on now. What if there are several things I want to be working on right now? Even with my priority rules, I still find myself drawn to the lower priority tasks that are more interesting. Realistically, I can only do one thing at a time.">
   
 
@@ -133,8 +135,8 @@ I use Taskwarrior’s priority system to show what I want to be working on now. 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/12/active-tasks-in-taskwarrior/">Active Tasks in Taskwarrior</a></li>
@@ -294,52 +301,73 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 
   <p><img src="/post/2018/12/../../../attachments/img/2018/cover-2018-12-01.png" alt="attachments/img/2018/cover-2018-12-01.png"/></p>
 <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">card/tldr</a>
-Use the <code>start</code>, <code>stop</code>, and <code>active</code> <a href="/card/taskwarrior/">Taskwarrior</a> commands to manage what you’re doing right now.</p>
+<p><strong><a href="/card/tldr/">card/tldr</a></strong></p>
+<p>Use the <code>start</code>, <code>stop</code>, and <code>active</code> <a href="/card/taskwarrior/">Taskwarrior</a> commands to manage what you’re doing right now.</p>
 </blockquote>
 <p>I use Taskwarrior’s <a href="/post/2017/12/taskwarrior-priorities/">priority</a> system to show what I want to be working on now. What if there are several things I want to be working on right now? Even with my priority rules, I still find myself drawn to the lower priority tasks that are more interesting. Realistically, I can only do one thing at a time. How do I remind myself which task should have my active attention?</p>
 <h2 id="task-start"><code>task start</code></h2>
 <p>Easy! Use the <code>start</code> command.</p>
-<pre tabindex="0"><code>$ task 72 start
-</code></pre><p>This assigns the virtual tag <code>+ACTIVE</code> to the task. The regular task report highlights active tasks, as well as showing a new &ldquo;Active&rdquo; column indicating how long the task has been active.</p>
-<pre tabindex="0"><code>$ task
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 72 start</code></pre>
+</figure><p>This assigns the virtual tag <code>+ACTIVE</code> to the task. The regular task report highlights active tasks, as well as showing a new &ldquo;Active&rdquo; column indicating how long the task has been active.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task
 
 ID Active Age  P Project Tag              Description                       Urg
 72 12min  1h   H         blog taskwarrior start, stop, and active           10.9
 61        7d   H         crochet gift     crochet crown for mom             6.94
 47        3mo  M         art              upload felix to dbh               5.35
 35        6mo  L site    layout           add Year link to content headers  4.75
-⋮
-</code></pre><p>Being active increases the urgency of a task, bubbling it up to the top in this report. I can also request to see <em>only</em> the active tasks.</p>
+⋮</code></pre>
+</figure><p>Being active increases the urgency of a task, bubbling it up to the top in this report. I can also request to see <em>only</em> the active tasks.</p>
 <h2 id="task-active"><code>task active</code></h2>
 <p>The <code>active</code> report shows me only those tasks that have been assigned the <code>+ACTIVE</code> virtual tag. Very handy in my blog <a href="/post/2018/02/taskwarrior-contexts/">context</a>, when many curious ideas are tugging at my easily distracted brain and I need to see just what I’m doing.</p>
-<pre tabindex="0"><code>$ task active
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task active
 
 ID Started    Active Age P Project Tag              Description                      Urg
-72 2018-12-01 14min  1h  H         blog taskwarrior start, stop, and active          10.9
-</code></pre><p>You can start as many tasks as you like. I find that distracting. Taskwarrior helps me focus, and starting a dozen different tasks feels like the opposite of focusing. I’ll limit <code>+ACTIVE</code> for <em>one</em> task that I intend to be working on <em>at this moment</em>.</p>
+72 2018-12-01 14min  1h  H         blog taskwarrior start, stop, and active          10.9</code></pre>
+</figure><p>You can start as many tasks as you like. I find that distracting. Taskwarrior helps me focus, and starting a dozen different tasks feels like the opposite of focusing. I’ll limit <code>+ACTIVE</code> for <em>one</em> task that I intend to be working on <em>at this moment</em>.</p>
 <h2 id="task-stop"><code>task stop</code></h2>
 <p>I’m still writing this post, but I need to do something else real quick. I could just <code>start</code> that other task, but that blows a hole in my “one active task at a time” personal rule. Instead I’ll show that my attention is elsewhere with <code>stop</code>.</p>
-<pre tabindex="0"><code>$ task 72 stop
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 72 stop
 Stopping task 72 &#39;start, stop, and active&#39;.
-Stopped 1 task.
-</code></pre><p>Okay excuse me for a few minutes.</p>
-<pre tabindex="0"><code>$ task 73 start
+Stopped 1 task.</code></pre>
+</figure><p>Okay excuse me for a few minutes.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 73 start
 Starting task 73 &#39;walk the dog&#39;.
 Started 1 task.
 ⋮
 $ task 73 done
 Completed task 73 &#39;walk the dog&#39;.
 Completed 1 task.
-You have more urgent tasks.
-</code></pre><p><em>You have more urgent tasks.</em> — Yeah, tell that to the dog.</p>
-<pre tabindex="0"><code>$ task 72 start
+You have more urgent tasks.</code></pre>
+</figure><p><em>You have more urgent tasks.</em> — Yeah, tell that to the dog.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 72 start
 Starting task 72 &#39;start, stop, and active&#39;.
-Started 1 task.
-</code></pre><p>Now where was I? Oh yeah. I wanted to mention time tracking.</p>
+Started 1 task.</code></pre>
+</figure><p>Now where was I? Oh yeah. I wanted to mention time tracking.</p>
 <h2 id="taskwarrior-is-not-for-time-tracking">Taskwarrior is not for time tracking</h2>
 <p>Those <code>start</code> and <code>stop</code> commands show up in the task’s modification history, including timestamps and information about duration of active status.</p>
-<pre tabindex="0"><code>$ task 72
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 72
 No command specified - assuming &#39;information&#39;.
 
 Name          Value
@@ -366,8 +394,8 @@ Date                Modification
 2018-12-01 13:41:53 Priority changed from &#39;M&#39; to &#39;H&#39;.
 2018-12-01 13:42:01 Start set to &#39;2018-12-01 13:42:01&#39;.
 2018-12-01 13:59:06 Start deleted (duration: PT17M5S).
-2018-12-01 14:43:08 Start set to &#39;2018-12-01 14:43:08&#39;.
-</code></pre><p>Even though there are timestamps in the task info, this is clumsy for time tracking. The Taskwarrior team also wrote <a href="https://taskwarrior.org/docs/timewarrior">Timewarrior</a>, a command line tool dedicated to tracking and reporting time. It even hooks into Taskwarrior’s <code>start</code> and <code>stop</code> commands, giving you time management with your task management.</p>
+2018-12-01 14:43:08 Start set to &#39;2018-12-01 14:43:08&#39;.</code></pre>
+</figure><p>Even though there are timestamps in the task info, this is clumsy for time tracking. The Taskwarrior team also wrote <a href="https://taskwarrior.org/docs/timewarrior">Timewarrior</a>, a command line tool dedicated to tracking and reporting time. It even hooks into Taskwarrior’s <code>start</code> and <code>stop</code> commands, giving you time management with your task management.</p>
 <p>I may explore Timewarrior eventually, but for now I am content using Taskwarrior alone to show what I’ve done with <code>completed</code>, what I’m doing right now with today’s new commands, and what I want to do (with everything else).</p>
 
   

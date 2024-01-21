@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2015/">2015</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2015/07/use-cpan-outdated/">Use cpan-outdated</a></li>
@@ -289,11 +294,17 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>Thought I&rsquo;d share <a href="https://metacpan.org/author/TOKUHIROM">TOKUHIROM</a>&rsquo;s <a href="https://metacpan.org/pod/distribution/cpan-outdated/script/cpan-outdated">cpan-outdated</a> tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to <a href="/card/perl/">card/Perl</a> modules you have installed. That functionality is available in the CPAN shell with the <code>r</code> command, but it is hard to beat the convenience of the <code>cpan-outdated</code> command line tool.</p>
 <h2 id="installing-cpan-outdated">Installing cpan-outdated</h2>
 <p>cpan-outdated is available on CPAN as &ldquo;App::cpanoutdated&rdquo;. Install it with your preferred tool - in my case, [cpanminus][].</p>
-<pre tabindex="0"><code>$ cpanm App::cpanoutdated
-</code></pre><p>Installation will put  <code>cpan-outdated</code> on your path.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpanm App::cpanoutdated</code></pre>
+</figure><p>Installation will put  <code>cpan-outdated</code> on your path.</p>
 <h2 id="using-cpan-outdated">Using cpan-outdated</h2>
 <p>Like any good executable, <code>cpan-outdated</code> has a <code>--help</code> option.</p>
-<pre tabindex="0"><code>$ cpan-outdated --help
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpan-outdated --help
 Usage:
         # print the list of distribution that contains outdated modules
         % cpan-outdated
@@ -316,9 +327,12 @@ Usage:
 
         # install with cpanm
         % cpan-outdated    | cpanm
-        % cpan-outdated -p | cpanm
-</code></pre><p>Let&rsquo;s see what that looks like on my machine.</p>
-<pre tabindex="0"><code>$ cpan-outdated
+        % cpan-outdated -p | cpanm</code></pre>
+</figure><p>Let&rsquo;s see what that looks like on my machine.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpan-outdated
 B/BI/BINGOS/Archive-Extract-0.76.tar.gz
 P/PJ/PJF/autodie-2.29.tar.gz
 X/XS/XSAWYERX/Dancer2-0.161000.tar.gz
@@ -327,9 +341,12 @@ E/ET/ETHER/HTTP-Message-6.07.tar.gz
 N/NE/NEILB/Lingua-EN-FindNumber-1.31.tar.gz
 S/SR/SRI/Mojolicious-6.13.tar.gz
 B/BD/BDFOY/Test-File-1.44.tar.gz
-E/ET/ETHER/Test-Pod-1.51.tar.gz
-</code></pre><p>Use <code>-p</code> to just list packages without path information.</p>
-<pre tabindex="0"><code>$ cpan-outdated -p
+E/ET/ETHER/Test-Pod-1.51.tar.gz</code></pre>
+</figure><p>Use <code>-p</code> to just list packages without path information.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpan-outdated -p
 Archive::Extract
 autodie
 Dancer2
@@ -338,10 +355,13 @@ HTTP::Headers
 Lingua::EN::FindNumber
 Mojolicious
 Test::File
-Test::Pod
-</code></pre><p>I find the <code>-p</code> output easier to read at a glance.</p>
+Test::Pod</code></pre>
+</figure><p>I find the <code>-p</code> output easier to read at a glance.</p>
 <p>Pipe the output of <code>cpan-outdated</code> to <code>cpanminus</code> to immediately update the outdated modules.</p>
-<pre tabindex="0"><code>$ cpan-outdated -p | cpanm
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpan-outdated -p | cpanm
 --&gt; Working on Archive::Extract
 Fetching http://www.cpan.org/authors/id/B/BI/BINGOS/Archive-Extract-0.76.tar.gz ... OK
 Configuring Archive-Extract-0.76 ... OK
@@ -387,8 +407,8 @@ Fetching http://www.cpan.org/authors/id/E/ET/ETHER/Test-Pod-1.51.tar.gz ... OK
 Configuring Test-Pod-1.51 ... OK
 Building and testing Test-Pod-1.51 ... OK
 Successfully installed Test-Pod-1.51 (upgraded from 1.50)
-9 distributions installed
-</code></pre><p>That&rsquo;s pretty much all there is to it! <code>cpan-outdated</code> is a simple tool, but it fills its role perfectly.</p>
+9 distributions installed</code></pre>
+</figure><p>That&rsquo;s pretty much all there is to it! <code>cpan-outdated</code> is a simple tool, but it fills its role perfectly.</p>
   
 
 

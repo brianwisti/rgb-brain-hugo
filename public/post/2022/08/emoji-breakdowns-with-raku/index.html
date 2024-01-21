@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2022/">2022</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2022/08/emoji-breakdowns-with-raku/">Emoji Breakdowns With Raku</a></li>
@@ -285,7 +290,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-14.png" alt="attachments/img/2022/cover-2022-08-14.png"/>
 If you think that&rsquo;s weird, you should see what all these emoji have done to my neovim session.</p>
 <p>Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This Raku script prints out code points for emoji characters with a little help from <a href="https://raku.land/cpan:ANTONOV/Pretty::Table">Pretty::Table</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Pretty::Table</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -321,32 +328,38 @@ If you think that&rsquo;s weird, you should see what all these emoji have done t
 </span></span><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$emoji</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="p">&#34;&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="nf">emoji-table</span><span class="p">(</span><span class="nv">$emoji</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And here&rsquo;s what it looks like in action:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🦋
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And here&rsquo;s what it looks like in action:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🦋
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">| Emoji Breakdown |
 </span></span><span class="line"><span class="cl">    Name      Code  Hex Code  Emoji
-</span></span><span class="line"><span class="cl"> BUTTERFLY  129419     1F98B    🦋
-</span></span></code></pre></div><h2 id="why">Why?</h2>
+</span></span><span class="line"><span class="cl"> BUTTERFLY  129419     1F98B    🦋</span></span></code></pre>
+</figure><h2 id="why">Why?</h2>
 <p>So I&rsquo;m doing a thing with a CSS stylesheet involving display of emojis. You don&rsquo;t want the emoji in a stylesheet though. More portable to use code points, the numeric value or values a computer uses to identify the character.</p>
 <p>The problem: I don&rsquo;t know the code point. I use a convenient emoji picker. All it gives me is a character.</p>
 <p>I&rsquo;ve had some luck looking this stuff up online. But why spend 10 seconds <a href="https://unicode-table.com/en/1F98B/">looking it up</a> when I could spend half an hour writing code and another hour rationalizing my decision in a blog post?</p>
 <p><a href="https://docs.raku.org/type/Str#%28Cool%29_routine_ord"><code>Str.ord</code></a> gets me the ordinal for a single character. That&rsquo;s not always what I need though. What looks like a single character could be composed of several codepoints.</p>
 <p>Unicode is weird.</p>
 <p><a href="https://docs.raku.org/type/Str#%28Cool%29_routine_ords"><code>Str.ords</code></a> gives me a list of all code points in the string, whether one or several. I get the name of the emoji as well with <a href="https://docs.raku.org/type/Str#%28Cool%29_routine_uniname"><code>str.uniname</code></a>. I can use that name with <a href="https://docs.raku.org/type/Str#routine_uniparse"><code>Str.uniparse</code></a> to get the emoji again.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ raku -e &#39;say &#34;butterfly&#34;.uniparse;&#39;
-</span></span><span class="line"><span class="cl">🦋
-</span></span></code></pre></div><p>Pretty::Table makes it look nice — or as nice as my terminal can manage — no matter how many code points are in the emoji.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🏄‍♀️
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ raku -e &#39;say &#34;butterfly&#34;.uniparse;&#39;
+</span></span><span class="line"><span class="cl">🦋</span></span></code></pre>
+</figure><p>Pretty::Table makes it look nice — or as nice as my terminal can manage — no matter how many code points are in the emoji.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🏄‍♀️
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">| Emoji Breakdown |
 </span></span><span class="line"><span class="cl">          Name            Code  Hex Code  Emoji
 </span></span><span class="line"><span class="cl">         SURFER         127940     1F3C4    🏄
 </span></span><span class="line"><span class="cl">   ZERO WIDTH JOINER      8205      200D    ‍
 </span></span><span class="line"><span class="cl">      FEMALE SIGN         9792      2640    ♀
-</span></span><span class="line"><span class="cl"> VARIATION SELECTOR-16   65039      FE0F    ️
-</span></span></code></pre></div><p>I helped the terminal out by putting the emoji character at the end of each line. Otherwise the pretty table layouts get offset weird.</p>
+</span></span><span class="line"><span class="cl"> VARIATION SELECTOR-16   65039      FE0F    ️</span></span></code></pre>
+</figure><p>I helped the terminal out by putting the emoji character at the end of each line. Otherwise the pretty table layouts get offset weird.</p>
 <p>Anyways I had fun. And now I&rsquo;m only two tangents away from the day&rsquo;s intended tasks.</p>
   
 

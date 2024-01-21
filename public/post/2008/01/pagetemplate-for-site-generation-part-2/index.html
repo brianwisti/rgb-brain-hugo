@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2008/">2008</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation-part-2/">PageTemplate for Site Generation Part 2</a></li>
@@ -294,12 +299,17 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I could use a format similar to my <a href="/post/2007/12/python-loves-blogger-part-1/">Python blog files</a>. I won&rsquo;t really need PageTemplate if I do that, though. Not for the content file, anyways. That&rsquo;s okay, though. The Maruku filter was more of a proof-of-concept, anyways. PageTemplate will be useful for fitting the generated content into an actual template, though.</p>
 <p>That means I&rsquo;m starting over on my content files.</p>
 <p>Given a content file that looks like this:</p>
-<pre tabindex="0"><code>title: A Simple Page
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >title: A Simple Page
 --
-This page intentionally left blank.
-</code></pre><p>I want an object that makes the title available in some way (simple Hash style access is fine), and makes the HTML-formatted content available. After a few minutes of fiddling and poking around, I end up with tests and application code.</p>
+This page intentionally left blank.</code></pre>
+</figure><p>I want an object that makes the title available in some way (simple Hash style access is fine), and makes the HTML-formatted content available. After a few minutes of fiddling and poking around, I end up with tests and application code.</p>
 <h4 id="article-test-code">Article Test Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;SiteTemplate&#39;</span>
@@ -312,9 +322,11 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_equal</span><span class="p">(</span><span class="s1">&#39;A Simple Page&#39;</span><span class="p">,</span> <span class="n">article</span><span class="o">.</span><span class="n">metadata</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">content</span> <span class="o">=~</span> <span class="sr">%r{&lt;p&gt;This page intentionally left blank.&lt;/p&gt;}</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="the-application-code">The Application Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="the-application-code">The Application Code</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;maruku&#39;</span>
@@ -356,12 +368,14 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="vi">@content</span> <span class="o">=</span> <span class="no">Maruku</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>It&rsquo;s a really simple, slow parser, but it works. I won&rsquo;t try to optimize it before I&rsquo;ve actually figured out what it&rsquo;s supposed to be doing.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>It&rsquo;s a really simple, slow parser, but it works. I won&rsquo;t try to optimize it before I&rsquo;ve actually figured out what it&rsquo;s supposed to be doing.</p>
 <h3 id="the-template">The Template</h3>
 <p>The next target is stuffing this content into a template. That&rsquo;s <em>easy</em>. Here&rsquo;s the template:</p>
 <h4 id="simplehtml-template-file">simple.html Template File</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>[%var title%]<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -369,10 +383,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>[%var title%]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">        [%var content%]
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>I could assemble my page manually if I felt like it. As a matter of fact, let&rsquo;s do that in one of the tests.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>I could assemble my page manually if I felt like it. As a matter of fact, let&rsquo;s do that in one of the tests.</p>
 <h4 id="manual-page-generation-test">Manual Page Generation Test</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_manual_page_generation</span><span class="p">()</span>
@@ -384,10 +400,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">template</span><span class="o">[</span><span class="s1">&#39;content&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">content</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;title&gt;A Simple Page&lt;/title&gt;}</span><span class="p">,</span> <span class="n">template</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Do I really want to manually apply even that little bit of code, though? No, I don&rsquo;t.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Do I really want to manually apply even that little bit of code, though? No, I don&rsquo;t.</p>
 <h4 id="automatic-page-generation-test">Automatic Page Generation Test</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_standard_page_generation</span>
 </span></span><span class="line"><span class="cl">        <span class="n">article_file</span> <span class="o">=</span> <span class="s1">&#39;simple.txt&#39;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;simple.html&#39;</span>
@@ -395,9 +413,11 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;title&gt;A Simple Page&lt;/title&gt;}</span><span class="p">,</span> <span class="n">html_page</span><span class="o">.</span><span class="n">to_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;p&gt;This page}</span><span class="p">,</span> <span class="n">html_page</span><span class="o">.</span><span class="n">to_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="automatic-page-generation-code">Automatic Page Generation Code</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="automatic-page-generation-code">Automatic Page Generation Code</h4>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;PageTemplate&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HTML_Page</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">opts</span> <span class="o">=</span> <span class="p">{})</span>
@@ -411,11 +431,13 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="vi">@template</span><span class="o">[</span><span class="s1">&#39;content&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@article</span><span class="o">.</span><span class="n">content</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="vi">@template</span><span class="o">.</span><span class="n">output</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h3 id="saving-a-file">Saving a File</h3>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h3 id="saving-a-file">Saving a File</h3>
 <p>Okay, now I have article files with content and metadata being consumed, formatted, and handed off to PageTemplate for wrapping into a pretty HTML page. The only thing remaining at this stage is to actually <em>write</em> the file.</p>
 <h4 id="test-writes">Test Writes</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_HTML_Page</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
 </span></span><span class="line"><span class="cl">
@@ -437,10 +459,12 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="n">assert_match</span><span class="p">(</span><span class="sr">%r{&lt;p&gt;This page}</span><span class="p">,</span> <span class="n">saved_html</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="no">FileUtils</span><span class="o">::</span><span class="n">rm_rf</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h4 id="code-to-make-the-writes-happen">Code to Make the Writes Happen</h4>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h4 id="code-to-make-the-writes-happen">Code to Make the Writes Happen</h4>
 <p>Oh heck, just take the whole thing. This is what my <code>SiteTemplate.rb</code> file looks like right now.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
@@ -507,8 +531,8 @@ This page intentionally left blank.
 </span></span><span class="line"><span class="cl">        <span class="no">FileUtils</span><span class="o">::</span><span class="n">mkdir_p</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vi">@output_file</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">print</span> <span class="n">to_html</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h3 id="wrapup">Wrapup</h3>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h3 id="wrapup">Wrapup</h3>
 <p>This stage is done. We&rsquo;ve taken some article files that look a lot like my blog files and turned them into fully-fleshed HTML files. They will fit into a PageTemplate that&rsquo;s been defined by the site maintainer, guaranteeing a standard look for the site.</p>
 <p>My next post on this topic will deal with putting an <code>HTML_Page</code> into the context of a larger site.</p>
   

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/06/ox-hugo-for-the-orgconfig/">Ox Hugo for the Orgconfig</a></li>
@@ -301,50 +306,60 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Hugo renders Org files just fine, but I wanted my config to be a bit more tightly integrated.  <code>ox-hugo</code> works well as both plain old Org and as an intermediary that exports Hugo content.  A single Org file can become as many Hugo pages as I want.</p>
 <h2 id="getting-it-to-work">Getting it to work</h2>
 <p>This week my favorite Emacs flavor is <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>.  Their <a href="https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/org">org module</a> supports <code>ox-hugo</code> as an option, so enabling that option in my init should do the trick — after a <code>doom sync</code> of course.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span>
 </span></span><span class="line"><span class="cl"> <span class="err">⋮</span>
 </span></span><span class="line"><span class="cl"> <span class="nb">:lang</span>
-</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span>
-</span></span></code></pre></div><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">org</span> <span class="nv">+hugo</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Off in the depths of my <code>~/org/</code> folder, I create a new <code>config.org</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My Orgconfig</span>
 </span></span><span class="line"><span class="cl"><span class="cs">#+hugo_base_dir</span><span class="c">: ~/Sites/random-geekery-blog/</span>
-</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span>
-</span></span></code></pre></div><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="cs">#+hugo_section</span><span class="c">: config</span></span></span></code></pre>
+</figure><p>Everything here will end up going in the <code>config</code> section of my site, under <code>~/Sites/random-geekery-blog/content/config</code>.</p>
 <blockquote>
-<p>[!NOTE]
-A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
+<p><strong>NOTE</strong></p>
+<p>A while back I got stuck with <code>ox-hugo</code> for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.</p>
 </blockquote>
 <p>Each top-level section will be a page in <code>/config/</code>. I show <em>which</em> page in the subtree’s <code>:properties:</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>Emacs config
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_description: Be kinda weird if I didn&#39;t manage that one in Org, yes?
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_file_name: emacs
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_hugo_weight: 5
-</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
-</span></span></code></pre></div><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
+</span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span></span></span></code></pre>
+</figure><p><code>ox-hugo</code> automatically <a href="https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D">converts</a> the <code>export</code> properties to Hugo front matter.  <code>:export_file_name:</code> of <code>emacs</code> maps out to a generated file <code>emacs/index.md</code> under <code>content/config/</code>.</p>
 <blockquote>
-<p>[!WARNING]
-If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
+<p><strong>WARNING</strong></p>
+<p>If you’re playing along, remember to tag sensitive config sections as <code>:noexport:</code>!</p>
 </blockquote>
 <p>Since I’m showing off <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Babel</a>’s ability to tangle, I want to show the tangle references.  <code>:noweb no-export</code> tells Babel to tangle when evaluating the block, but <em>not</em> when exporting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: zsh/base-variables</span>
 </span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">text</span><span class="c"> :noweb no-export
 </span></span></span><span class="line"><span class="cl"><span class="c"></span>&lt;&lt;zsh/set-base-path&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/define-editor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/clicolor&gt;&gt;
 </span></span><span class="line"><span class="cl">&lt;&lt;zsh/add-home-bin&gt;&gt;
-</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
-</span></span></code></pre></div><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span></span></span></code></pre>
+</figure><p>And — yeah.  I still haven’t figured out a nice way to highlight those tangle bits, so for the moment I default to calling my mostly-tangled blocks &ldquo;text&rdquo;.</p>
 <p>I also create a subtree for the section <code>_index.md</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="k">+ </span>My personal orgconfig
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_file_name: _index
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">#+begin_note
 </span></span><span class="line"><span class="cl">This is my live config, written as an [[<span class="na">https://orgmode.org/</span>][<span class="nt">Org</span>]] file and integrated with my site with [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">=ox-hugo=</span>]].
-</span></span><span class="line"><span class="cl">⋮
-</span></span></code></pre></div><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
+</span></span><span class="line"><span class="cl">⋮</span></span></code></pre>
+</figure><p>Now my config section summary is part of the config org file.  I find this aesthetically pleasing.</p>
 <h2 id="the-rest-is-implementation-details">The rest is implementation details</h2>
 <p>This whole process is fiddly.  Org mode.  Literate config.  Hugo.  <code>ox-hugo</code>. That makes the whole thing fiddly^4 or something.  But these quick notes covered things that got in my way while gluing the whole thing together.  If you want to try it out, at least <em>some</em> of the fiddliness should be clearer.</p>
 

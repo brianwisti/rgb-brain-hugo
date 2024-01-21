@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/05/crafts-are-now-posts/">Crafts Are Now Posts</a></li>
@@ -304,9 +309,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I complete the last step of this process today: transforming craft content into post content, and updating site configuration to handle this change.</p>
 <h2 id="how">How?</h2>
 <p>How much craft content will I need to migrate?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> find content/craft/ -name <span class="s1">&#39;*.md&#39;</span> <span class="p">|</span> wc -l
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> find content/craft/ -name <span class="s1">&#39;*.md&#39;</span> <span class="p">|</span> wc -l
 </span></span><span class="line"><span class="cl"><span class="go">51
-</span></span></span></code></pre></div><p>51 items is not bad, but it is more than I want to update manually. Time for a little code. Today I choose <a href="/card/ruby/">card/Ruby</a>.</p>
+</span></span></span></code></pre>
+</figure><p>51 items is not bad, but it is more than I want to update manually. Time for a little code. Today I choose <a href="/card/ruby/">card/Ruby</a>.</p>
 <h3 id="transform-front-matter-in-craft-content">Transform front matter in Craft content</h3>
 <p>The plan is to transform craft content <a href="http://gohugo.io/content-management/front-matter/">front matter</a> for craft content, then manually move everything into <code>content/post</code>.</p>
 <p>Here are the basic changes I need to make:</p>
@@ -318,7 +326,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li>Rewrite the file with the new front matter.</li>
 </ul>
 <p>I use <a href="/card/yaml/">card/YAML</a> for front matter. Ruby includes a <a href="http://ruby-doc.org/stdlib-2.5.1/libdoc/yaml/rdoc/YAML.html">core library</a> for handling YAML. <a href="http://ruby-doc.org/stdlib-2.5.1/libdoc/find/rdoc/Find.html#method-c-find">Find.find</a> helps me find the markdown content files. This means I do not need to install extra libraries!</p>
-<div class="highlight" title="migrate-craft.rb"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;find&#39;</span>
+<figure class="highlight">
+  <figcaption><tt>migrate-craft.rb</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;find&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="no">CRAFT_DIR</span> <span class="o">=</span> <span class="s1">&#39;content/craft&#39;</span>
@@ -359,26 +370,34 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">front_matter</span><span class="o">.</span><span class="n">to_yaml</span>
 </span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">puts</span> <span class="n">content_text</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I run it and add changes with <code>-p</code> to double check the output. It worked!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ruby migrate-craft.rb
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I run it and add changes with <code>-p</code> to double check the output. It worked!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ruby migrate-craft.rb
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> git add -p
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> git commit -m <span class="s1">&#39;Craft section front matter shift to craft category&#39;</span>
-</span></span></code></pre></div><p>Really, that&rsquo;s all the Ruby we need. The rest is dealing with git and other details manually.</p>
+</span></span></code></pre>
+</figure><p>Really, that&rsquo;s all the Ruby we need. The rest is dealing with git and other details manually.</p>
 <p>I must specify that &ldquo;craft&rdquo; is an active category, since some categories represent archives that I do not want on the main navigation menu.</p>
-<div class="highlight" title="config.json"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="s2">&#34;Params&#34;</span><span class="err">:</span> <span class="p">{</span>
+<figure class="highlight">
+  <figcaption><tt>config.json</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="s2">&#34;Params&#34;</span><span class="err">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;activeCategories&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;craft&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;marginalia&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;programming&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;tools&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span></code></pre></div><h3 id="move-page-bundles-to-contentpost">Move page bundles to content/post</h3>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre>
+</figure><h3 id="move-page-bundles-to-contentpost">Move page bundles to content/post</h3>
 <p>Next I want to move content files from <code>content/craft</code> to <code>content/post</code>. You could do this sort of thing from the command line, but I just used <a href="https://wiki.gnome.org/Apps/Files">GNOME Files</a>.</p>
 <p>I tell Git to delete the missing files with <code>git rm -r content/craft</code> then add the moved files under <code>content/post</code>.</p>
 <p>Right. Let&rsquo;s see how this builds.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> hugo server -D
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> hugo server -D
 </span></span><span class="line"><span class="cl"><span class="go">Building sites … ERROR 2018/05/25 20:31:05 error processing shortcode &#34;_internal/shortcodes/ref.html&#34; for page
 </span></span></span><span class="line"><span class="cl"><span class="go">&#34;post/2018/interviewed-about-facebook/index.md&#34;: template: _internal/shortcodes/ref.html:1:73: executing
 </span></span></span><span class="line"><span class="cl"><span class="go">&#34;_internal/shortcodes/ref.html&#34; at &lt;ref .Page (.Get 0)&gt;: error calling ref: No page found with path or logical
@@ -389,7 +408,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span></span><span class="line"><span class="cl"><span class="go">name &#34;craft/2018/a-couple-crochet-hats/index.md&#34;.
 </span></span></span><span class="line"><span class="cl"><span class="go">Total in 1039 ms
 </span></span></span><span class="line"><span class="cl"><span class="go">Error: Error building site: logged 2 error(s)
-</span></span></span></code></pre></div><p>Oops. Fix the <a href="http://gohugo.io/content-management/shortcodes/#ref-and-relref"><code>ref</code></a> shortcodes in my content.</p>
+</span></span></span></code></pre>
+</figure><p>Oops. Fix the <a href="http://gohugo.io/content-management/shortcodes/#ref-and-relref"><code>ref</code></a> shortcodes in my content.</p>
 <h3 id="handle-section-category-and-tag-details">Handle section, category, and tag details</h3>
 <p>Anyways, the last little bit is just tidying. Move the old knitting, crochet, and drawing category branch bundles to corresponding tag folders.</p>
 <h2 id="done">Done?</h2>

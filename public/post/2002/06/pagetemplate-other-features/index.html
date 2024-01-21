@@ -133,8 +133,8 @@ Filter Filtering seemed so handy with variables that we thought it would be fun 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2002/">2002</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetemplate-other-features/">PageTemplate - Other Features</a></li>
@@ -297,10 +302,12 @@ to have filtering as an independent action. All the contents of a
 <code>filter</code> block are passed through the named filter during output.</p>
 <h3 id="syntax">Syntax</h3>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%filter :escapeHTML %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%filter :escapeHTML %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">blink</span><span class="p">&gt;</span>Some browsers still allow this?<span class="p">&lt;/</span><span class="nt">blink</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end]
-</span></span></code></pre></div><h2 id="include">Include</h2>
+</span></span><span class="line"><span class="cl">[%end]</span></span></code></pre>
+</figure><h2 id="include">Include</h2>
 <p><code>include</code> is somewhat tricky. The idea is easy enough. You want to
 include the same template fragment in several other templates. A login
 form, a stats view, whatever. <code>include</code> lets you do that in one of two
@@ -310,9 +317,11 @@ is where you request that a specific file be processed. Okay, that
 wasn’t so hard after all.</p>
 <h3 id="syntax-1">Syntax</h3>
 <h3 id="example-1">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%include login_form %]
-</span></span><span class="line"><span class="cl">[%include fragments/login_form.tmpl %]
-</span></span></code></pre></div><h2 id="define">Define</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%include login_form %]
+</span></span><span class="line"><span class="cl">[%include fragments/login_form.tmpl %]</span></span></code></pre>
+</figure><h2 id="define">Define</h2>
 <p>Occasionally you will have information that the developer doesn’t. No, I
 don’t mean the name of the great Mexican restaurant on the north side of
 town. Wait a minute. Sure, why not? You know the name of this great
@@ -331,32 +340,38 @@ code. It’s kind of a shortcut and only good for simple string values,
 but every once in a while a shortcut is exactly what you need.</p>
 <h3 id="syntax-2">Syntax</h3>
 <h3 id="example-2">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%define restaurant Jalisco %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%define restaurant Jalisco %]
 </span></span><span class="line"><span class="cl">[%define dish Enchilada Combo %]
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>I really enjoy the [%var dish %] at [%var restaurant%]<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="case">Case</h2>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>I really enjoy the [%var dish %] at [%var restaurant%]<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h2 id="case">Case</h2>
 <p>The <code>case</code> directive is a special extra directive which allows you to
 show different content based on the value of a single variable.</p>
 <h3 id="syntax-3">Syntax</h3>
 <h3 id="example-3">Example</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%case role %]
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%case role %]
 </span></span><span class="line"><span class="cl">[%when admin %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;abuse.cgi&#34;</span><span class="p">&gt;</span>Abuse Users<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%when user %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;beg.cgi&#34;</span><span class="p">&gt;</span>Beg For Mercy From Admin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%else %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;register.cgi&#34;</span><span class="p">&gt;</span>Register To Get Love And Abuse From Admin<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">[%end %]
-</span></span></code></pre></div><p>You must make sure the developer includes the <code>PageTemplate/case.rb</code>
+</span></span><span class="line"><span class="cl">[%end %]</span></span></code></pre>
+</figure><p>You must make sure the developer includes the <code>PageTemplate/case.rb</code>
 library in his code to use the <code>case</code> directive.</p>
 <h2 id="comments">Comments</h2>
 <p>Comments are useful if you want to make notes to yourself as the
 template designer, but you don’t want those comments showing up in the
 final template output.</p>
 <h3 id="syntax-4">Syntax</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%-- Random Commentary %]
-</span></span></code></pre></div><h2 id="alternate-syntax">Alternate Syntax</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%-- Random Commentary %]</span></span></code></pre>
+</figure><h2 id="alternate-syntax">Alternate Syntax</h2>
 <p>One of PageTemplate’s features is the ability to come up with your own
 directive syntax. If you feel that the default syntax is less than
 ideal, discuss a new system with your developers. If you are the lone

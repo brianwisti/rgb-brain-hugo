@@ -133,8 +133,8 @@ What is a context? Taskwarrior contexts are predefined filters appropriate to a 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/02/taskwarrior-contexts/">Taskwarrior Contexts</a></li>
@@ -298,57 +303,90 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I removed sensitive tasks from <code>task</code> output with manual filters like <code>-work</code>. A special context for my blog would let me concentrate on writing instead of remembering that filter every time.</p>
 <h2 id="using-contexts">Using contexts</h2>
 <p>To create a context, use <code>context define</code> with its name and filter rules.</p>
-<pre tabindex="0"><code>$ task context define blog -work
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context define blog -work
 Are you sure you want to add &#39;context.blog&#39; with a value of &#39;-work&#39;? (yes/no) yes
-Context &#39;blog&#39; defined. Use &#39;task context blog&#39; to activate.
-</code></pre><p>Now I have a context that includes everything but <code>+work</code> tasks. Perfect.</p>
+Context &#39;blog&#39; defined. Use &#39;task context blog&#39; to activate.</code></pre>
+</figure><p>Now I have a context that includes everything but <code>+work</code> tasks. Perfect.</p>
 <p>Maybe another context for <em>only</em> work tasks?</p>
-<pre tabindex="0"><code>$ task context define work +work
-</code></pre><p>How do I get a handy list of created contexts?</p>
-<pre tabindex="0"><code>$ task context list
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context define work &#43;work</code></pre>
+</figure><p>How do I get a handy list of created contexts?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context list
 
 Name Definition Active
 blog -work      no
-work +work      no
-</code></pre><p>I could get carried away with new contexts, but I’ll keep it to three for now: at work, on the blog, and <em>everywhere</em> — no context at all. I can add more later.</p>
+work &#43;work      no</code></pre>
+</figure><p>I could get carried away with new contexts, but I’ll keep it to three for now: at work, on the blog, and <em>everywhere</em> — no context at all. I can add more later.</p>
 <p>Before I start using the contexts, how many tasks do I have?</p>
-<pre tabindex="0"><code>$ task count
-153
-</code></pre><p><a href="https://taskwarrior.org/docs/commands/count.html"><code>count</code></a> counts every task, including those that I completed or deleted. Let’s apply the <code>+PENDING</code> <a href="https://taskwarrior.org/docs/tags.html#supported">virtual tag</a> to only count incomplete tasks.</p>
-<pre tabindex="0"><code>$ task +PENDING count
-63
-</code></pre><p>With these numbers in my head, let’s set the “blog” context.</p>
-<pre tabindex="0"><code>$ task context blog
-Context &#39;blog&#39; set. Use &#39;task context none&#39; to remove.
-</code></pre><p>Now how many tasks do I have?</p>
-<pre tabindex="0"><code>$ task count
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task count
+153</code></pre>
+</figure><p><a href="https://taskwarrior.org/docs/commands/count.html"><code>count</code></a> counts every task, including those that I completed or deleted. Let’s apply the <code>+PENDING</code> <a href="https://taskwarrior.org/docs/tags.html#supported">virtual tag</a> to only count incomplete tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING count
+63</code></pre>
+</figure><p>With these numbers in my head, let’s set the “blog” context.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context blog
+Context &#39;blog&#39; set. Use &#39;task context none&#39; to remove.</code></pre>
+</figure><p>Now how many tasks do I have?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task count
 112
-$ task +PENDING count
-53
-</code></pre><p>Okay, I don’t have that many <code>+work</code> tags. It’s still nice not to worry about them when writing.</p>
+$ task &#43;PENDING count
+53</code></pre>
+</figure><p>Okay, I don’t have that many <code>+work</code> tags. It’s still nice not to worry about them when writing.</p>
 <p>How do I see what context I am in? <code>context list</code> includes a column to show the active context.</p>
-<pre tabindex="0"><code>$ task context list
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context list
 
 Name Definition Active
 blog -work      yes
-work +work      no
-</code></pre><p>However, it might be clearer to show only the current context.</p>
-<pre tabindex="0"><code>$ task context show
-Context &#39;blog&#39; with filter &#39;-work&#39; is currently applied.
-</code></pre><p>Context affects reporting, but does not affect task creation. I can create a <code>+work</code> task from my &ldquo;blog&rdquo; context. It just won’t show up in any reports until I switch context.</p>
+work &#43;work      no</code></pre>
+</figure><p>However, it might be clearer to show only the current context.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context show
+Context &#39;blog&#39; with filter &#39;-work&#39; is currently applied.</code></pre>
+</figure><p>Context affects reporting, but does not affect task creation. I can create a <code>+work</code> task from my &ldquo;blog&rdquo; context. It just won’t show up in any reports until I switch context.</p>
 <p>Taskwarrior maintains context across shell sessions, so eventually I will want to clear the current context.</p>
-<pre tabindex="0"><code>$ task context none
-</code></pre><p>I must confess something, dear reader. This post has been sitting as a draft for almost a month. My Taskwarrior usage evolved during that month. I create fewer <code>+work</code> tasks, because it often duplicated effort between Taskwarrior and the issue tracker used at work. I still have a few for side tasks that don’t fit neatly into work’s ticketing system. I don’t really have enough to merit a work context, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context none</code></pre>
+</figure><p>I must confess something, dear reader. This post has been sitting as a draft for almost a month. My Taskwarrior usage evolved during that month. I create fewer <code>+work</code> tasks, because it often duplicated effort between Taskwarrior and the issue tracker used at work. I still have a few for side tasks that don’t fit neatly into work’s ticketing system. I don’t really have enough to merit a work context, though.</p>
 <p>I may as well delete the “work” context.</p>
-<pre tabindex="0"><code>$ task context delete work
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context delete work
 Are you sure you want to remove &#39;context.work&#39;? (yes/no) yes
 Context &#39;work&#39; deleted.
 $ task context list
 
 Name   Definition      Active
 blog   -work           yes
-bucket +idea -PRIORITY no
-</code></pre><p>Oh yeah — the bucket. That’s new since I started this post.</p>
+bucket &#43;idea -PRIORITY no</code></pre>
+</figure><p>Oh yeah — the bucket. That’s new since I started this post.</p>
 <p>I get a lot of ideas. Some of them are awful. Some of them seem worth doing. They all go in Taskwarrior. Every once in a while I sit down with a cup of coffee and sort through unexamined ideas: tasks tagged <code>+idea</code> and without an assigned priority. That’s what the “bucket” context is there for.</p>
 <p>The interesting ideas get a priority — usually <code>L</code> unless they excite me. The uninteresting ones get deleted.</p>
 <p>That’s all for now. Have fun getting something done!</p>

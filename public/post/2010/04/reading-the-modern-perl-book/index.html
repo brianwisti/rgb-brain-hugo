@@ -135,8 +135,8 @@ GURPS Geek campaign.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/04/reading-the-modern-perl-book/">Reading the Modern Perl Book</a></li>
@@ -358,40 +363,60 @@ something more than a musty system administration language.</p>
 <p>chromatic is also writing a book and maintaining the <a href="https://github.com/chromatic/modern_perl_book">draft</a> on github. I
 finally decided I wanted to read that draft. The README and a tiny bit of Git
 knowledge provide all I need.</p></p>
-<pre tabindex="0"><code>$ git clone git://github.com/chromatic/modern_perl_book.git
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ git clone git://github.com/chromatic/modern_perl_book.git
 $ cd modern_perl_book
-$ perl build/tools/build_chapters.pl
-</code></pre><p>Now there is a handful of POD files in build/chapters which I could read with
+$ perl build/tools/build_chapters.pl</code></pre>
+</figure><p>Now there is a handful of POD files in build/chapters which I could read with
 perldoc.</p>
-<pre tabindex="0"><code>$ ls build/chapters
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ls build/chapters
 chapter_01.pod  chapter_03.pod  chapter_05.pod  chapter_07.pod  chapter_09.pod  chapter_11.pod  chapter_13.pod  chapter_15.pod
 chapter_02.pod  chapter_04.pod  chapter_06.pod  chapter_08.pod  chapter_10.pod  chapter_12.pod  chapter_14.pod  chapter_16.pod
-$ perldoc build/chapters/chapter_01.pod
-</code></pre><p>I can also generate HTML for those days when perldoc just isn&rsquo;t making me
+$ perldoc build/chapters/chapter_01.pod</code></pre>
+</figure><p>I can also generate HTML for those days when perldoc just isn&rsquo;t making me
 happy.</p>
-<pre tabindex="0"><code>$ perl build/tools/build_html.pl
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl build/tools/build_html.pl
 Can&#39;t locate Pod/PseudoPod/HTML.pm in @INC (@INC contains: /usr/local/lib/perl5/5.10.1/darwin-2level /usr/local/lib/perl5/5.10.1 /usr/local/lib/perl5/site_perl/5.10.1/darwin-2level /usr/local/lib/perl5/site_perl/5.10.1 /usr/local/lib/perl5/site_perl .) at build/tools/build_html.pl line 6.
-BEGIN failed--compilation aborted at build/tools/build_html.pl line 6.
-</code></pre><p>Oops. It looks like there&rsquo;s a dependency. No problem.</p>
-<pre tabindex="0"><code>$ sudo cpan Pod::PseudoPod::HTML
+BEGIN failed--compilation aborted at build/tools/build_html.pl line 6.</code></pre>
+</figure><p>Oops. It looks like there&rsquo;s a dependency. No problem.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo cpan Pod::PseudoPod::HTML
 $ perl build/tools/build_html.pl
 $ ls build/html
 chapter_01.html chapter_04.html chapter_07.html chapter_10.html chapter_13.html chapter_16.html
 chapter_02.html chapter_05.html chapter_08.html chapter_11.html chapter_14.html style.css
-chapter_03.html chapter_06.html chapter_09.html chapter_12.html chapter_15.html
-</code></pre><p>Now I can open the chapters in my favorite Web browser.</p>
-<pre tabindex="0"><code>$ elinks build/html/chapter_01.html
-</code></pre><p>From here, I can pay attention to chromatic&rsquo;s <a href="https://twitter.com/chromatic_x">tweets</a> — or his <a href="https://identi.ca/chromatic">dents</a>,
+chapter_03.html chapter_06.html chapter_09.html chapter_12.html chapter_15.html</code></pre>
+</figure><p>Now I can open the chapters in my favorite Web browser.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ elinks build/html/chapter_01.html</code></pre>
+</figure><p>From here, I can pay attention to chromatic&rsquo;s <a href="https://twitter.com/chromatic_x">tweets</a> — or his <a href="https://identi.ca/chromatic">dents</a>,
 since he seems more active on Identi.ca - or watch the <code>modern_perl_book</code>
 repository on github. Whenever he mentions new content, I will refresh and
 rebuild.</p>
-<pre tabindex="0"><code>$ git pull
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ git pull
 $ perl build/tools/build_chapters.pl
-$ perl build/tools/build_html.pl
-</code></pre><p>I don&rsquo;t want to remember three whole commands. Am I taking <a href="https://c2.com/cgi/wiki?LazinessImpatienceHubris">Laziness</a> too
+$ perl build/tools/build_html.pl</code></pre>
+</figure><p>I don&rsquo;t want to remember three whole commands. Am I taking <a href="https://c2.com/cgi/wiki?LazinessImpatienceHubris">Laziness</a> too
 far? Perhaps. Nevertheless, here&rsquo;s a Perl script to handle the task. It should
 only rebuild the chapters and HTML if there was an update in the repository.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env perl</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env perl</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># refresh.pl</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Modern::Perl</span><span class="p">;</span>
@@ -411,8 +436,8 @@ only rebuild the chapters and HTML if there was an update in the repository.</p>
 </span></span><span class="line"><span class="cl">    <span class="nb">system</span> <span class="sx">qw(perl build/tools/build_html.pl)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">say</span> <span class="s">&#34;All done. Enjoy the update!&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>
   
 
 

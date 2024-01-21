@@ -133,8 +133,8 @@ I&rsquo;ve revisited the code for Blogger posting with Python. Start with python
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2008/">2008</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2008/01/adding-categories-to-the-python-blogger-client/">Adding Categories to the Python Blogger Client</a></li>
@@ -301,9 +306,14 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2>The Original Tale</h2>
 <p>I&rsquo;ve already used my <a href="/post/2007/12/python-loves-blogger-part-1/">Python Blogger client</a> for a couple of postings, and I&rsquo;ve been pretty happy with it so far. It still desperately needs tags, though. Actually, Blogger calls them &ldquo;labels.&rdquo; Actually actually, the Atom API calls them &ldquo;categories.&rdquo; Well, whatever they are called it looks like they are pretty easy to add.</p>
 <p>You already know that tags are defined in my config header, and are simply a comma-delimited list like so:</p>
-<pre tabindex="0"><code>tags: python,gdata,blogger
-</code></pre><p>Here&rsquo;s the new <code>sendPost</code> method:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sendPost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >tags: python,gdata,blogger</code></pre>
+</figure><p>Here&rsquo;s the new <code>sendPost</code> method:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sendPost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Log into Blogger and submit my already parsed post&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># Authenticate using ClientLogin</span>
@@ -338,8 +348,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="n">entry</span><span class="o">.</span><span class="n">control</span> <span class="o">=</span> <span class="n">control</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># Submit it!</span>
-</span></span><span class="line"><span class="cl">    <span class="n">blogger</span><span class="o">.</span><span class="n">Post</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s1">&#39;/feeds/&#39;</span> <span class="o">+</span> <span class="n">blog_id</span> <span class="o">+</span> <span class="s1">&#39;/posts/default&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>I hope this works. If it does work, then I am going to do a little refactoring  as time allows to make this mess a little cleaner. If it doesn&rsquo;t work, then I  guess I&rsquo;ll have to &hellip; you know &hellip; <em>fix it</em>.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">blogger</span><span class="o">.</span><span class="n">Post</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s1">&#39;/feeds/&#39;</span> <span class="o">+</span> <span class="n">blog_id</span> <span class="o">+</span> <span class="s1">&#39;/posts/default&#39;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I hope this works. If it does work, then I am going to do a little refactoring  as time allows to make this mess a little cleaner. If it doesn&rsquo;t work, then I  guess I&rsquo;ll have to &hellip; you know &hellip; <em>fix it</em>.</p>
   
 
 

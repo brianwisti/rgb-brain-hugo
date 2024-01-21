@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/">Setting Task Dependencies in Taskwarrior</a></li>
@@ -298,7 +303,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 
   <p><img src="/post/2018/02/../../../attachments/img/2018/cover-2018-02-19.png" alt="attachments/img/2018/cover-2018-02-19.png"/></p>
 <p>I recently realized I could track my reading in <a href="/card/taskwarrior/">Taskwarrior</a>, since I use it to track so many other things.</p>
-<pre tabindex="0"><code>$ task +readlist
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;readlist
 
 ID Age   P Tag                    Description                        Urg
 67 22h   H community readlist     Forge Your Future with Open Source  6.9
@@ -308,18 +316,24 @@ ID Age   P Tag                    Description                        Urg
 63 6d      dev readlist           Practical Data Science with R      0.93
 72 19min   dev readlist           Think Stats                         0.9
 73 17min   dev readlist           Understanding Computation           0.9
-75 16min   home readlist          Sink Reflections                    0.9
-</code></pre><p>I use <a href="/post/2017/12/taskwarrior-priorities/">Priority</a> to show what I’m reading right now. The highest priority goes to the book which I intend to finish next.</p>
+75 16min   home readlist          Sink Reflections                    0.9</code></pre>
+</figure><p>I use <a href="/post/2017/12/taskwarrior-priorities/">Priority</a> to show what I’m reading right now. The highest priority goes to the book which I intend to finish next.</p>
 <p><a href="https://pragprog.com/book/vbopens/forge-your-future-with-open-source">Forge Your Future with OpenSource</a> is my current main read. The book guides you through making your first open source community contributions. It includes exercises to help you make your best contribution.</p>
 <p>I want to complete these exercises, but I know I won’t unless I create some kind of reminder.</p>
 <p>I’ll add tasks for the exercises described so far.</p>
-<pre tabindex="0"><code>$ task add +community Set FOSS contribution goals
-$ task add +community Set FOSS project requirements
-$ task add +community Collect FOSS candidate projects
-$ task add +community Select FOSS project
-</code></pre><p>There will certainly be more exercises. I will create tasks for them as they come up.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add &#43;community Set FOSS contribution goals
+$ task add &#43;community Set FOSS project requirements
+$ task add &#43;community Collect FOSS candidate projects
+$ task add &#43;community Select FOSS project</code></pre>
+</figure><p>There will certainly be more exercises. I will create tasks for them as they come up.</p>
 <p>Assigning a shared project makes their connection clearer.</p>
-<pre tabindex="0"><code>$ task 67,76-79 modify project:fosscontrib
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 67,76-79 modify project:fosscontrib
   - Project will be set to &#39;fosscontrib&#39;.
 Modify task 67 &#39;Forge Your Future with Open Source&#39;? (yes/no/all/quit) all
 Modifying task 67 &#39;Forge Your Future with Open Source&#39;.
@@ -328,8 +342,8 @@ Modifying task 77 &#39;Set FOSS project requirements&#39;.
 Modifying task 78 &#39;Collect FOSS candidate projects&#39;.
 Modifying task 79 &#39;Select FOSS project&#39;.
 Modified 5 tasks.
-The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).
-</code></pre><p>All right but how do I show the dependencies? Let’s describe them first.</p>
+The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).</code></pre>
+</figure><p>All right but how do I show the dependencies? Let’s describe them first.</p>
 <ul>
 <li>I must collect candidate projects before I can select a FOSS project.</li>
 <li>I must set my FOSS project requirements before I can collect candidate projects.</li>
@@ -338,12 +352,18 @@ The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is
 </ul>
 <p>Each item depends on another being completed before I can work on it. It is <em>blocked</em>, and the task it depends on is <em>blocking</em> it.</p>
 <p>Use the <code>depends</code> attribute to show when one task blockeds another.</p>
-<pre tabindex="0"><code>$ task 79 modify depends:78
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 79 modify depends:78
 Modifying task 79 &#39;Select FOSS project&#39;.
 Modified 1 task.
-Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).
-</code></pre><p>What does that look like now?</p>
-<pre tabindex="0"><code>$ task project:fosscontrib
+Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).</code></pre>
+</figure><p>What does that look like now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:fosscontrib
 
 ID Age   Deps P Project     Tag                Description                        Urg
 78 25min        fosscontrib community          Collect FOSS candidate projects     9.8
@@ -352,26 +372,38 @@ ID Age   Deps P Project     Tag                Description                      
 77 25min        fosscontrib community          Set FOSS project requirements       1.8
 79 22min 78     fosscontrib community          Select FOSS project                -3.2
 
-5 tasks
-</code></pre><p>The report shows a new <code>Deps</code> column, indicating dependencies. The <code>Urg</code> column shows that &ldquo;Select FOSS project&rdquo; gets a lower priority — it’s blocked by &ldquo;Collect FOSS candidate projects&rdquo;, which now has a higher priority because it blocks a task.</p>
+5 tasks</code></pre>
+</figure><p>The report shows a new <code>Deps</code> column, indicating dependencies. The <code>Urg</code> column shows that &ldquo;Select FOSS project&rdquo; gets a lower priority — it’s blocked by &ldquo;Collect FOSS candidate projects&rdquo;, which now has a higher priority because it blocks a task.</p>
 <p>The report visually highlights the blocking task while downplaying the blocked task. This is easier to show with a screenshot.</p>
 <p><img src="/post/2018/02/attachments/img/2018/single-dependency.png" alt="fosscontrib project with one dependency set"/></p>
 <p>Let’s assign the rest of the dependencies.</p>
-<pre tabindex="0"><code>$ task 78 modify depends:77
-$ task 77 modify depends:76
-</code></pre><p>Wait a minute.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 78 modify depends:77
+$ task 77 modify depends:76</code></pre>
+</figure><p>Wait a minute.</p>
 <p>How do I describe the book’s dependencies? I want to say it depends on all of these tasks, but that’s not possible in Taskwarrior — unless there’s an <a href="https://taskwarrior.org/tools/">extension</a>, but I’m not ready for those yet.</p>
 <p>There’s a missing task, isn’t there? Completing all the exercises in the book is its own task. <em>That</em> is what finishing the book depends on.</p>
-<pre tabindex="0"><code>$ task add Complete all tasks in book priority:H project:fosscontrib depends:79
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add Complete all tasks in book priority:H project:fosscontrib depends:79
 Created task 80.
-The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (6 of 6 tasks remaining).
-</code></pre><p>Today it depends on selecting a FOSS project. That will change as the book presents new exercises. This is a small inconvenience that makes the tasks&rsquo; overall relationships clearer to <em>me</em>. I am the important audience for my personal task list.</p>
+The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (6 of 6 tasks remaining).</code></pre>
+</figure><p>Today it depends on selecting a FOSS project. That will change as the book presents new exercises. This is a small inconvenience that makes the tasks&rsquo; overall relationships clearer to <em>me</em>. I am the important audience for my personal task list.</p>
 <p>Now I can correctly describe what I must do to complete the book.</p>
-<pre tabindex="0"><code>$ task 67 modify depends:80
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 67 modify depends:80
 Modifying task 67 &#39;Forge Your Future with Open Source&#39;.
-Modified 1 task.
-</code></pre><p>What does this project look like now?</p>
-<pre tabindex="0"><code>$ task project:fosscontrib
+Modified 1 task.</code></pre>
+</figure><p>What does this project look like now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:fosscontrib
 
 ID Age Deps P Project     Tag                Description                        Urg
 80 53s 79   H fosscontrib                    Complete all tasks in book           10
@@ -381,15 +413,18 @@ ID Age Deps P Project     Tag                Description                        
 79 1h  78     fosscontrib community          Select FOSS project                 4.8
 67 23h 80   H fosscontrib community readlist Forge Your Future with Open Source  2.9
 
-6 tasks
-</code></pre><p>Right but what does it <em>look</em> like?</p>
+6 tasks</code></pre>
+</figure><p>Right but what does it <em>look</em> like?</p>
 <p><img src="/post/2018/02/attachments/img/2018/cover-2018-02-19.png" title="I have my work cut out for me" alt="taskwarrior report"/></p>
 <p>The report deemphasizes everything but the task that blocks everything else. You can see some urgency math going on in that last column where tasks are both blocking and blocked.</p>
 <h2 id="new-virtual-tags">New virtual tags!</h2>
 <p>Dependencies give us new virtual tags to filter reports based on task dependencies.</p>
 <h3 id="blocked"><code>+BLOCKED</code></h3>
 <p>The <code>+BLOCKED</code> virtual tag filter includes only those tasks which depend on another task.</p>
-<pre tabindex="0"><code>$ task +BLOCKED
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;BLOCKED
 
 ID Age  Deps P Project     Tag                Description                        Urg
 80 3min 79   H fosscontrib                    Complete all tasks in book           10
@@ -398,10 +433,13 @@ ID Age  Deps P Project     Tag                Description                       
 79 1h   78     fosscontrib community          Select FOSS project                 4.8
 67 23h  80   H fosscontrib community readlist Forge Your Future with Open Source  2.9
 
-5 tasks
-</code></pre><h3 id="blocking"><code>+BLOCKING</code></h3>
+5 tasks</code></pre>
+</figure><h3 id="blocking"><code>+BLOCKING</code></h3>
 <p>The <code>+BLOCKING</code> virtual tag filter includes only those tasks which I assigned as dependencies for another task.</p>
-<pre tabindex="0"><code>$ task +BLOCKING
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;BLOCKING
 
 ID Age  Deps P Project     Tag       Description                     Urg
 80 4min 79   H fosscontrib           Complete all tasks in book        10
@@ -410,16 +448,19 @@ ID Age  Deps P Project     Tag       Description                     Urg
 78 1h   77     fosscontrib community Collect FOSS candidate projects  4.8
 79 1h   78     fosscontrib community Select FOSS project              4.8
 
-5 tasks
-</code></pre><h2 id="what-now">What now?</h2>
+5 tasks</code></pre>
+</figure><h2 id="what-now">What now?</h2>
 <p>By looking at what <em>is</em> blocking and is <em>not</em> blocked, you can focus on the tasks that block everything else.</p>
-<pre tabindex="0"><code>$ task +BLOCKING -BLOCKED
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;BLOCKING -BLOCKED
 
 ID Age Project     Tag       Description                 Urg
 76 4h  fosscontrib community Set FOSS contribution goals  9.8
 
-1 task
-</code></pre><p>I should start working on those goals so I can finish that book.</p>
+1 task</code></pre>
+</figure><p>I should start working on those goals so I can finish that book.</p>
   
 
 

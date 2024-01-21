@@ -133,8 +133,8 @@ Motive I often create several inbox/Knitting or inbox/Crochet projects from the 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/11/using-hugo-data-templates/">Using Hugo Data Templates</a></li>
@@ -304,35 +309,50 @@ for that reference changes.</p>
 <h2 id="my-data-template-for-links">My data template for links</h2>
 <p>Before getting carried away with visions of complex structures to meet my every desire, what do I need <em>right now</em>?</p>
 <p>I need a glossary of links I can reference at any time. Its entries must provide what I consider the canonical resource URL for a book or topic. That’s it. I can revisit the glossary idea if my needs change later. So let’s start with the links I just used. I like to talk about YAML, TOML, and JSON sometimes, after all.</p>
-<div class="highlight" title="data/links.toml"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Frequently used URLs</span>
+<figure class="highlight">
+  <figcaption><tt>data/links.toml</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Frequently used URLs</span>
 </span></span><span class="line"><span class="cl"><span class="nx">JSON</span> <span class="p">=</span> <span class="s2">&#34;https://json.org/&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">TOML</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/toml-lang/toml&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">YAML</span> <span class="p">=</span> <span class="s2">&#34;http://yaml.org/&#34;</span>
-</span></span></code></pre></div><p>The filename provides part of the data structure for Hugo. For example, the &ldquo;TOML&rdquo; entry in <code>data/links.toml</code> becomes <code>$.Site.Data.links.JSON</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="nx">YAML</span> <span class="p">=</span> <span class="s2">&#34;http://yaml.org/&#34;</span></span></span></code></pre>
+</figure><p>The filename provides part of the data structure for Hugo. For example, the &ldquo;TOML&rdquo; entry in <code>data/links.toml</code> becomes <code>$.Site.Data.links.JSON</code>.</p>
 <p>Nobody but me sees these keys – except right now, while I am telling <em>you</em> about them. Since they’re for me, it’s most important that I pick keys I can remember easily within the limitations of the data format. &ldquo;JSON&rdquo; works. &ldquo;TheJsonSpecificationSite&rdquo; probably would not. &ldquo;The JSON Site&rdquo; is a legal key in TOML, but in this case not a helpful one.</p>
 <h2 id="getting-the-data-from-my-template">Getting the data from my template</h2>
 <p>How do I <em>use</em> these URLs? With a <a href="https://gohugo.io/templates/shortcode-templates/">shortcode</a>! Again, focusing on exactly what I need right now: the URL in <code>$.Site.Data.links</code> corresponding to a key.</p>
 <p><code>layouts/shortcodes/linkFor.html</code> provides just that. It uses its first positional argument as a key, returning the value at that <a href="https://gohugo.io/functions/index-function/">index</a> in the glossary.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- with .Get 0 -}}{{ index $.Site.Data.links . }}{{- end -}}
-</span></span></code></pre></div><p>Then in my content Markdown:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">[<span class="nt">TOML</span>](<span class="na">{{&lt; linkFor &#34;TOML&#34; &gt;}}</span>)
-</span></span></code></pre></div><p>That’s <em>almost</em> everything I need. I should throw in error checking for inevitable typos such as the one I made a couple minutes ago.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">[<span class="nt">TOML</span>](<span class="na">{{&lt; linkFor &#34;YOML&#34; &gt;}}</span>)
-</span></span></code></pre></div><p>I don’t need anything fancy, but I do need something to tell me if there’s a problem. The system quietly returns nothing if there is no entry for the key. I would hate to have empty links all over my site due to a lazily written shortcode.</p>
-<pre tabindex="0"><code>{{- with .Get 0 -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- with .Get 0 -}}{{ index $.Site.Data.links . }}{{- end -}}</span></span></code></pre>
+</figure><p>Then in my content Markdown:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl">[<span class="nt">TOML</span>](<span class="na">{{&lt; linkFor &#34;TOML&#34; &gt;}}</span>)</span></span></code></pre>
+</figure><p>That’s <em>almost</em> everything I need. I should throw in error checking for inevitable typos such as the one I made a couple minutes ago.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl">[<span class="nt">TOML</span>](<span class="na">{{&lt; linkFor &#34;YOML&#34; &gt;}}</span>)</span></span></code></pre>
+</figure><p>I don’t need anything fancy, but I do need something to tell me if there’s a problem. The system quietly returns nothing if there is no entry for the key. I would hate to have empty links all over my site due to a lazily written shortcode.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >{{- with .Get 0 -}}
    {{- $url := index $.Site.Data.links . -}}
    {{- if $url -}}
        {{- $url -}}
    {{- else -}}
        {{- errorf &#34;No link for key %s&#34; . -}}
    {{- end -}}
-{{- end -}}
-</code></pre><p>Now I get an error both on the console and in the browser:</p>
-<pre tabindex="0"><code>$ hugo server -D
+{{- end -}}</code></pre>
+</figure><p>Now I get an error both on the console and in the browser:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo server -D
 Building sites … ERROR 2018/11/10 15:53:14 No link for key YOML
 Total in 1389 ms
-Error: Error building site: logged 1 error(s)
-</code></pre><p><img src="/post/2018/11/attachments/img/2018/error-screenshot.png" alt="Hugo shows the error in-browser"/></p>
+Error: Error building site: logged 1 error(s)</code></pre>
+</figure><p><img src="/post/2018/11/attachments/img/2018/error-screenshot.png" alt="Hugo shows the error in-browser"/></p>
 <p>This provides what I need for today.</p>
 <h2 id="other-thoughts">Other thoughts?</h2>
 <ul>

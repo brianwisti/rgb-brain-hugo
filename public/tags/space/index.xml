@@ -91,18 +91,27 @@ learning more about Parrot.
 catalog. Instead, let&rsquo;s set up a small test catalog and write some tests.</p>
 <p>Where you put your test data is a matter of taste. I will be keeping my data in
 a folder named <code>data</code>. That seems reasonable.</p>
-<pre tabindex="0"><code>$ mkdir data
-</code></pre><p>Only a few entries are needed in the test catalog. We just need to be sure that
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir data</code></pre>
+</figure><p>Only a few entries are needed in the test catalog. We just need to be sure that
 the code works with a CSV file with the same structure as the HYG database.
 I&rsquo;ll grab Sol, another G2V spectrum star, and a K3V star.</p>
-<pre tabindex="0"><code># example-0c-01/data/test-catalog.csv
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/data/test-catalog.csv
 StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 80,80,224817,,,,,0.01611947,-11.82353722,64.143681847338,419.04,-82.83,,8.40,4.36423057594421,G2V,0.566,62.7822,0.26494,-13.14292,-5.827e-06,0.000130277,-2.5209e-05
-7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06
-</code></pre><p>The test data is out of the way, so now I feel comfortable writing the tests
+7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06</code></pre>
+</figure><p>The test data is out of the way, so now I feel comfortable writing the tests
 that use it.</p>
-<pre tabindex="0"><code># example-0c-01/t/05-search-catalog.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/t/05-search-catalog.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -129,12 +138,15 @@ that use it.</p>
 
     matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;G2V&#39;, &#39;ColorIndex&#39;, &#39;0.566&#39;)
     is(matches, 1, &#39;There should be one G2V star with Spectrum G2V and ColorIndex 0.566&#39;)
-.end
-</code></pre><p>I am deliberately keeping the tests simple right now. The goal is to make sure
+.end</code></pre>
+</figure><p>I am deliberately keeping the tests simple right now. The goal is to make sure
 the basic functionality works rather than to guarantee behavior for every little
 detail. Tests can be added for those details as they become important.</p>
 <p>The actual <code>search_catalog</code> sub borrows quite a bit from <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>.</p>
-<pre tabindex="0"><code># example-0c-01/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -173,8 +185,8 @@ detail. Tests can be added for those details as they become important.</p>
   RETURN_MATCHES:
     close catalog
     .return(matches)
-.end
-</code></pre><p><code>search_catalog</code> will handle the task of reading the file and looking for
+.end</code></pre>
+</figure><p><code>search_catalog</code> will handle the task of reading the file and looking for
 stars that match the search conditions it has been given. After it defines
 a star from the current line, it asks <code>check_star</code> to compare that star
 to the set of conditions it has been given. It remembers the stars that
@@ -188,7 +200,10 @@ on that empty <code>main</code> that has been sitting in <code>stellar.pir</code
 want to make <code>hygxyz.csv</code> available now. I will be pushing my copy into the
 <code>data</code> folder, next to <code>test-catalog.csv</code>. You can place your copy wherever you
 like, but make sure that you set the path appropriately in <code>main</code>.</p>
-<pre tabindex="0"><code># example-0c-02/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-02/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -215,18 +230,21 @@ like, but make sure that you set the path appropriately in <code>main</code>.</p
     match_count = matches
     print match_count
     say &#34; matches.&#34;
-.end
-</code></pre><p>Here is the result of all that work we have done setting up the project and
+.end</code></pre>
+</figure><p>Here is the result of all that work we have done setting up the project and
 support code. The main subroutine in <code>stellar</code> is downright civilized
 compared to what we had for <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>. All we do is search based on the
 command line parameters and display each of the matches.</p>
-<pre tabindex="0"><code>$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
 &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
 &lt;Name: HD 7186, Spectrum: G2V, Distance: 112.359550561798&gt;
 &lt;Name: HD 140235, Spectrum: G2V, Distance: 60.1684717208183&gt;
 &lt;Name: HD 169019, Spectrum: G2V, Distance: 108.108108108108&gt;
-4 matches.
-</code></pre><p>Hey, this thing is almost useful!</p>
+4 matches.</code></pre>
+</figure><p>Hey, this thing is almost useful!</p>
 <h2 id="conclusion">Conclusion</h2>
 <p><code>stellar</code> has reached a major milestone. When I started fiddling with the <a href="http://astronexus.com/node/34">HYG
 Database</a>, I wanted to write a command-line Parrot tool that could look up
@@ -268,12 +286,18 @@ foundation. Today we&rsquo;re going to get that step our of the way.</p>
 <h2 id="set-up-the-project">Set up the project</h2>
 <p>Let&rsquo;s apply what we learned last time putting together <a href="/post/2010/04/parrot-babysteps-09-simple-projects">larger projects</a>, and
 set up a project named <code>stellar</code>.</p>
-<pre tabindex="0"><code>$ mkdir stellar
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir stellar
 $ mkdir stellar/t
-$ mkdir stellar/lib
-</code></pre><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
+$ mkdir stellar/lib</code></pre>
+</figure><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
 for anything more elaborate.</p>
-<pre tabindex="0"><code># example-0a-01/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -288,8 +312,8 @@ for anything more elaborate.</p>
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
+.end</code></pre>
+</figure><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
 empty. We will steadily build up all of our functionality in the Stellar library
 and eventually add a very simple file to act as the face of Stellar for
 Parrot. Right now, we just have an empty <code>lib/stellar.pir</code>.</p>
@@ -314,7 +338,10 @@ to think of the numbering as simply presenting the order that I came up with the
 stories. It provides a simple history of sorts. First I came up with that test,
 and I wrote this test after I was comfortable with the first.</p>
 <p>In that spirit, I will name the first test story <code>01-extract-details.t</code>.</p>
-<pre tabindex="0"><code># example-0a-01/t/01-extract-details.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/t/01-extract-details.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -338,12 +365,15 @@ and I wrote this test after I was comfortable with the first.</p>
 
     $S0 = star[&#39;Proper Name&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
+.end</code></pre>
+</figure><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
 <code>ProperName</code>. We&rsquo;ll come back to that.</p>
 <p>What happens if this test is run while <code>stellar.pir</code> is still empty? It fails,
 of course. It might be useful to look at <em>how</em> it fails.</p>
-<pre tabindex="0"><code>stellar $ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >stellar $ parrot setup.pir test
 t/01-extract-details.t .. Dubious, test returned 1
 Failed 1/1 subtests
 
@@ -355,14 +385,17 @@ Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
 written yet. This is different from a regular test failure, because Parrot
 couldn&rsquo;t even get to the tests. I&rsquo;m showing this so that you recognize what&rsquo;s
 going on when you see errors like this in your own library.</p>
 <p>Adding <code>extract_star_details</code> is easy enough. Just copy the code from the
 earlier step.</p>
-<pre tabindex="0"><code># stellar/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># stellar/lib/stellar.pir
 
 .sub extract_star_details
     .param pmc    headers
@@ -383,14 +416,17 @@ earlier step.</p>
     current_header = headers[current_index]
     current_value = values[current_index]
     star[current_header] = current_value
-    current_index += 1
+    current_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   RETURN_STAR:
     .return(star)
-.end
-</code></pre><p>Let&rsquo;s run the test again.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>Let&rsquo;s run the test again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. Failed 1/1 subtests
 
 Test Summary Report
@@ -401,31 +437,40 @@ Files=1, Tests=1,  0.020 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
 little vague for larger test stories, though. Let&rsquo;s run the test file directly.</p>
-<pre tabindex="0"><code>#!text
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot t/01-extract-details.t
 1..1
 not ok 1 - ProperName should be Sol
 # Have:
-# Want: Sol
-</code></pre><p>Okay, <em>now</em> we can fix the typo.</p>
-<pre tabindex="0"><code>#!parrot
+# Want: Sol</code></pre>
+</figure><p>Okay, <em>now</em> we can fix the typo.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # t/01-extract-details.t
 .sub &#39;main&#39; :main
     ...
     $S0 = star[&#39;ProperName&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>The test should pass now that the correction has been made.</p>
-<pre tabindex="0"><code>#!text
+.end</code></pre>
+</figure><p>The test should pass now that the correction has been made.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot setup.pir test
 t/01-extract-details.t .. ok
 All tests successful.
 Files=1, Tests=1,  0.014 wallclock secs
-Result: PASS
-</code></pre><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
+Result: PASS</code></pre>
+</figure><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
 to know what failure looks like before we can reach success.</p>
 <p>What have we accomplished so far? We now have a story in which the user, armed
 with a header line and a line describing a star, gets an object that she can
@@ -446,7 +491,10 @@ they have it. They might want to print it, but they might also want to feed it
 to an unmanned orbiter for some reason.</p>
 <p>Because we can&rsquo;t predict with certainty what someone will do with the string
 summary of a star, this test story will focus on asking for that string.</p>
-<pre tabindex="0"><code># t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># t/02-summarize-star.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -470,11 +518,14 @@ summary of a star, this test story will focus on asking for that string.</p>
     summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
     $S0 = summarize_star(star)
     is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
-.end
-</code></pre><p>It&rsquo;s not hard to create the code which will make this story true, but it does
+.end</code></pre>
+</figure><p>It&rsquo;s not hard to create the code which will make this story true, but it does
 involve a little more work than the simple copy and paste for
 <code>extract_star_details</code>.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -543,13 +594,16 @@ involve a little more work than the simple copy and paste for
     summary .= &#34;&gt;&#34;
 
     .return(summary)
-.end
-</code></pre><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
+.end</code></pre>
+</figure><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
 change the focus from displaying the details to returning them as a simple
 string.</p>
 <p>What&rsquo;s most important is that this test passes when handed Sol. How about some
 of those stars that don&rsquo;t have proper names?</p>
-<pre tabindex="0"><code># example-0a-04/t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/02-summarize-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -589,21 +643,27 @@ of those stars that don&rsquo;t have proper names?</p>
     star = extract_star_details(header_fields, star_fields)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>It does indeed work.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>It does indeed work.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. ok
 t/02-summarize-star.t ... ok
 All tests successful.
 Files=2, Tests=4,  0.030 wallclock secs
-Result: PASS
-</code></pre><p>I am concerned about the heft of this test code. The concern is that I
+Result: PASS</code></pre>
+</figure><p>I am concerned about the heft of this test code. The concern is that I
 had to split the CSV text, extract star details, and summarize the star
 manually for each star string. Each of those times is an opportunity for me to
 make a mistake. I <em>think</em> I would like to have a subroutine which would take the
 header fields and a CSV line of star data, and return the extracted details.
 Let&rsquo;s make a new test story for that.</p>
-<pre tabindex="0"><code># example-0a-04/t/03-extract-from-csv.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/03-extract-from-csv.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -638,9 +698,12 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_from_csv_line(star_string, header_fields, delimiter)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>The code to make this work is simple enough.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+.end</code></pre>
+</figure><p>The code to make this work is simple enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -655,8 +718,8 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_star_details(header_fields, star_fields)
 
     .return(star)
-.end
-</code></pre><p>I do not know if I have saved much work, but it is easier for me to read the
+.end</code></pre>
+</figure><p>I do not know if I have saved much work, but it is easier for me to read the
 test story. That is important to me, because debugging and improving the code is
 easier if I can easily understand what is happening.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -689,20 +752,29 @@ Introduction We have inched our way forward in our understanding of Parrot and P
 <p>After nearly 15 minutes of dedicated research - once you subtract the hours spent admiring the <a href="http://apod.nasa.gov/apod/archivepix.html">Astronomy Picture of the Day archives</a> - I came across David Nash&rsquo;s <a href="http://astronexus.com">Astronomy Nexus</a>. This is a great resource for amateur astronomers, space trivia buffs, and people who enjoy geeky pictures like the view of Earth from <a href="http://astronexus.com/node/157">Gliese 581</a>. It also has a nice, easily parsed file listing almost 120,000 stars. At roughly 20 Megabytes uncompressed, that&rsquo;s big enough to be interesting.</p>
 <p>Enough jabbering. Let&rsquo;s start downloading. The latest version of the catalog is available from the <a href="http://www.astronexus.com/node/34">HYG Database</a> page. I grabbed <a href="http://astronexus.com/files/downloads/hygxyz.csv.gz">version 2.0</a>, which is currently the most recent.</p>
 <p>The file is compressed in <code>gz</code> format. Uncompressing it on Linux or OS X is easy:</p>
-<pre tabindex="0"><code>$ gunzip hygxyz.csv.gz
-</code></pre><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ gunzip hygxyz.csv.gz</code></pre>
+</figure><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
 <p>Put the resulting <a href="/card/csv/">CSV</a> (Comma-Separated Values) file in your project directory after uncompressing. Now  we have a file full of comma-separated values which look something like this:</p>
-<pre tabindex="0"><code>StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
 Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 1,1,224700,,,,,6.079e-05,01.08901332,282.485875706215,-5.20,-1.88,,9.10,1\
 .84501631012894,F5,0.482,282.43485,0.00449,5.36884,4.9e-08,-7.12e-06,-2.5\
-74e-06
-</code></pre><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
+74e-06</code></pre>
+</figure><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
 <p>Let&rsquo;s start small, by counting the number of stars listed in the HYG database.</p>
 <h2 id="counting-stars">Counting Stars</h2>
 <p>To count stars, we can read each line of the file and count the number of lines read. Remember not to count the header line!</p>
-<pre tabindex="0"><code># example-06-01
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-01
 
 .loadlib &#39;io_ops&#39;
 
@@ -722,7 +794,7 @@ Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -731,23 +803,38 @@ Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
     print star_count
     say &#39; stars in the HYG catalog.&#39;
 
-.end
-</code></pre><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
-<pre tabindex="0"><code>data_file = open filename, &#39;r&#39;
-</code></pre><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
+.end</code></pre>
+</figure><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >data_file = open filename, &#39;r&#39;</code></pre>
+</figure><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
 <p>What will we use to read a line from the file? How about the <code>readline</code>?</p>
-<pre tabindex="0"><code>current_line = readline data_file
-</code></pre><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
-<pre tabindex="0"><code>unless data_file goto SHOW_STAR_COUNT
-</code></pre><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
-<pre tabindex="0"><code>close data_file
-</code></pre><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line = readline data_file</code></pre>
+</figure><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >unless data_file goto SHOW_STAR_COUNT</code></pre>
+</figure><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >close data_file</code></pre>
+</figure><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
 <p>I&rsquo;ll probably continue closing finished files even after somebody tells me otherwise, truthfully.  I am one of those people who likes explicit code and ties his shoelaces with a tidy little double-knot. I can&rsquo;t help it - it&rsquo;s in my nature.</p>
 <p>That&rsquo;s all the important information about reading files. Oh sure, there are details we&rsquo;ll need to look at eventually, such as what happens when the file doesn&rsquo;t exist or you don&rsquo;t have permission. But for reading a file that we know exists and that we can read, <code>open</code>, <code>readline</code>, and <code>close</code> are the main bits.</p>
 <p>How many stars are in HYG?</p>
-<pre tabindex="0"><code>$ example-06-01.pir
-There are 119618 stars in the HYG catalog.
-</code></pre><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ example-06-01.pir
+There are 119618 stars in the HYG catalog.</code></pre>
+</figure><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
 <h3 id="intermission-file-mode-indicators">Intermission: File Mode Indicators</h3>
 <p>Now is as good a time as any to summarize the indicator codes that <code>open</code> accepts.</p>
 <table>
@@ -781,7 +868,10 @@ There are 119618 stars in the HYG catalog.
 <p>We will just be reading files today, but you might as well remember it now. It will come up eventually.</p>
 <h2 id="counting-names">Counting Names</h2>
 <p>All right. I&rsquo;m manually counting commas in HYG. It looks like &ldquo;ProperName&rdquo; is the seventh field. It also looks like there are quite a few stars in the catalog that have no proper name. How many?</p>
-<pre tabindex="0"><code># example-06-02
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-02
 
 .loadlib &#39;io_ops&#39;
 
@@ -807,15 +897,15 @@ There are 119618 stars in the HYG catalog.
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     star_data = split &#39;,&#39;, current_line
     star_name = star_data[6]
     if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
+    unnamed_count &#43;= 1
     goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
+    named_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -828,18 +918,30 @@ There are 119618 stars in the HYG catalog.
     print unnamed_count
     say &#39; of them do not have proper names.&#39;
 
-.end
-</code></pre><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
-<pre tabindex="0"><code>star_data = split &#39;,&#39;, current_line
-</code></pre><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
-<pre tabindex="0"><code>star_name = star_data[6]
-</code></pre><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
-<pre tabindex="0"><code>$ parrot example-06-02.pir
+.end</code></pre>
+</figure><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_data = split &#39;,&#39;, current_line</code></pre>
+</figure><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_name = star_data[6]</code></pre>
+</figure><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-02.pir
 There are 119618 stars in the HYG catalog.
 87 of them have proper names.
-119531 of them do not have proper names.
-</code></pre><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
-<pre tabindex="0"><code># example-06-03
+119531 of them do not have proper names.</code></pre>
+</figure><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-03
 
 .loadlib &#39;io_ops&#39;
 
@@ -873,7 +975,7 @@ There are 119618 stars in the HYG catalog.
     if name_index &gt;= field_count goto NAME_INDEX_ERROR
     current_field = field_names[name_index]
     if current_field == NAME_FIELD goto NEXT_STAR
-    name_index += 1
+    name_index &#43;= 1
     goto FIND_NAME_INDEX
 
   NAME_INDEX_ERROR:
@@ -883,15 +985,15 @@ There are 119618 stars in the HYG catalog.
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     star_data = split DELIMITER, current_line
     star_name = star_data[name_index]
     if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
+    unnamed_count &#43;= 1
     goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
+    named_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -906,18 +1008,24 @@ There are 119618 stars in the HYG catalog.
     goto END
 
   END:
-.end
-</code></pre><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
-<pre tabindex="0"><code>.const string DELIMITER  = &#39;,&#39;
-.const string NAME_FIELD = &#39;ProperName&#39;
-</code></pre><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
+.end</code></pre>
+</figure><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.const string DELIMITER  = &#39;,&#39;
+.const string NAME_FIELD = &#39;ProperName&#39;</code></pre>
+</figure><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
 <ol>
 <li>I know the purpose of the value. The semantics of it appeals to me: &ldquo;split with    DELIMITER, which is <code>','</code>&rdquo; rather than &ldquo;split with <code>','</code> which is the delimiter&rdquo;.</li>
 <li>I only have to change one spot. If someday David Nash wants to switch to tab    delimited files, I will not have to find and replace <code>','</code> throughout my code.</li>
 </ol>
 <p>As far as <code>NAME_FIELD</code>, that&rsquo;s just because I prefer referring to things by name. It doesn&rsquo;t really serve any other purpose. Choose your own style, but make sure others can read it.</p>
 <p>The next task is to find which field holds the star name. We&rsquo;ll split the header line and step through each field until we either find the field we&rsquo;re looking for or hit the end.</p>
-<pre tabindex="0"><code>  current_line  = readline data_file
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  current_line  = readline data_file
   field_names   = split DELIMITER, current_line
   field_count   = field_names
 
@@ -925,24 +1033,33 @@ FIND_NAME_INDEX:
   if name_index &gt;= field_count goto NAME_INDEX_ERROR
   current_field = field_names[name_index]
   if current_field == NAME_FIELD goto NEXT_STAR
-  name_index += 1
+  name_index &#43;= 1
   goto FIND_NAME_INDEX
 
 NAME_INDEX_ERROR:
   say &#39;Went through available fields without finding name index!&#39;
-  goto END
-</code></pre><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
+  goto END</code></pre>
+</figure><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
 <p>Now that Parrot knows which field holds the names, we can use it in our name counting.</p>
-<pre tabindex="0"><code>star_name = star_data[name_index]
-</code></pre><p>Let&rsquo;s run the new code.</p>
-<pre tabindex="0"><code>$ parrot example-06-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_name = star_data[name_index]</code></pre>
+</figure><p>Let&rsquo;s run the new code.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-03.pir
 There are 119618 stars in the HYG catalog.
 87 of them have proper names.
-119531 of them do not have proper names.
-</code></pre><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
+119531 of them do not have proper names.</code></pre>
+</figure><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
 <h2 id="understanding-the-data-by-looking-at-sol">Understanding the Data by Looking at Sol</h2>
 <p>I want to get a lot more information from this data, but in order to do that I&rsquo;ll need a nice way to understand the information about each star in the set. We&rsquo;re going to go about that by focusing on Sol, our own sun.</p>
-<pre tabindex="0"><code># example-06-04
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-04
 
 .loadlib &#39;io_ops&#39;
 
@@ -976,25 +1093,31 @@ There are 119618 stars in the HYG catalog.
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto DISPLAY_NEXT_FIELD
 
   END:
 
-.end
-</code></pre><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
+.end</code></pre>
+</figure><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
 <p>In order to display the field names and values together, we step through the header and star data arrays at the same time.</p>
-<pre tabindex="0"><code>  DISPLAY_NEXT_FIELD:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  DISPLAY_NEXT_FIELD:
     if current_field_index &gt;= field_count goto END
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
-    goto DISPLAY_NEXT_FIELD
-</code></pre><p>What does the HYG data for Sol look like?</p>
-<pre tabindex="0"><code>$ parrot example-06-04.pir
+    current_field_index &#43;= 1
+    goto DISPLAY_NEXT_FIELD</code></pre>
+</figure><p>What does the HYG data for Sol look like?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-04.pir
 StarID: 0
 HIP:
 HD:
@@ -1020,15 +1143,21 @@ VY: 0
 VZ
 : 0
 
-$
-</code></pre><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
-<pre tabindex="0"><code>VZ
+$</code></pre>
+</figure><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >VZ
 : 0
 
-$
-</code></pre><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
+$</code></pre>
+</figure><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
 <p>Perl has the builtin <a href="http://perldoc.perl.org/functions/chomp.html"><code>chomp</code></a> function which is perfect for exactly this situation. Parrot doesn&rsquo;t have <code>chomp</code> as a builtin, but it is available via the standard <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/String/Utils.pir">String/Utils</a> library. There&rsquo;s no need to download anything extra, because &ldquo;String/Utils&rdquo; ships with Parrot.</p>
-<pre tabindex="0"><code># example-06-05
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-05
 
 .loadlib &#39;io_ops&#39;
 
@@ -1069,27 +1198,45 @@ $
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto DISPLAY_NEXT_FIELD
 
   END:
 
-.end
-</code></pre><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
-<pre tabindex="0"><code>load_bytecode &#39;String/Utils.pbc&#39;
-</code></pre><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
+.end</code></pre>
+</figure><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >load_bytecode &#39;String/Utils.pbc&#39;</code></pre>
+</figure><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
 <p>The actual <code>chomp</code> functionality is still just beyond our reach, though. We need to make room for it in our own program by reserving a PMC.</p>
-<pre tabindex="0"><code>.local pmc    chomp
-</code></pre><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
-<pre tabindex="0"><code>chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
-</code></pre><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc    chomp</code></pre>
+</figure><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;</code></pre>
+</figure><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
 <p>Now that we&rsquo;ve got that loading business out of the way, we can actually use <code>chomp</code>.  <code>chomp</code> is a subroutine, and not an opcode. You&rsquo;ll need to use parentheses when you use it.</p>
-<pre tabindex="0"><code>current_line  = chomp(current_line)
-</code></pre><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line  = chomp(current_line)</code></pre>
+</figure><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
 <p>Remember to use it again when reading the data line for Sol.</p>
-<pre tabindex="0"><code>current_line  = chomp(current_line)
-</code></pre><p>How does the data look now?</p>
-<pre tabindex="0"><code>$ parrot example-06-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line  = chomp(current_line)</code></pre>
+</figure><p>How does the data look now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-05.pir
 StarID: 0
 HIP:
 HD:
@@ -1112,11 +1259,14 @@ Y: 0
 Z: 0
 VX: 0
 VY: 0
-VZ: 0
-</code></pre><p>That&rsquo;s better.</p>
+VZ: 0</code></pre>
+</figure><p>That&rsquo;s better.</p>
 <p>Now it would be nice to ask for specific data for our star in a meaningful way. For example, I want to just see the name and spectrum information. We could dig through the fields the way we have been, but I think it would be better if we could just ask for them by name.</p>
 <p>One way to do that is with a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/hash.pmc.html">Hash</a>. This is a collection structure similar to an array. The difference is that you get data from the hash using string keys instead of looking things up by index. Python programmers know it as a &ldquo;dictionary&rdquo;.</p>
-<pre tabindex="0"><code># example-06-06
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-06
 
 .loadlib &#39;io_ops&#39;
 
@@ -1157,7 +1307,7 @@ VZ: 0
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_FIELD
 
   DISPLAY_STAR_DETAILS:
@@ -1174,21 +1324,30 @@ VZ: 0
 
   END:
 
-.end
-</code></pre><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
-<pre tabindex="0"><code>.local pmc star
+.end</code></pre>
+</figure><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc star
 # ...
-star = new &#39;Hash&#39;
-</code></pre><p>Instead of reading and printing the fields, we assign them to the hash.</p>
-<pre tabindex="0"><code>ASSIGN_NEXT_FIELD:
+star = new &#39;Hash&#39;</code></pre>
+</figure><p>Instead of reading and printing the fields, we assign them to the hash.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >ASSIGN_NEXT_FIELD:
   if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
   current_field_name = field_names[current_field_index]
   current_field_value = star_data[current_field_index]
   star[current_field_name] = current_field_value
-  current_field_index += 1
-  goto ASSIGN_NEXT_FIELD
-</code></pre><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  current_field_index &#43;= 1
+  goto ASSIGN_NEXT_FIELD</code></pre>
+</figure><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   $S0 = star[&#39;ProperName&#39;]
   $S1 = star[&#39;Spectrum&#39;]
   $S2 = star[&#39;Distance&#39;]
@@ -1198,15 +1357,21 @@ star = new &#39;Hash&#39;
   print $S1
   print &#34;, Distance: &#34;
   print $S2
-  say &#34;&gt;&#34;
-</code></pre><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
+  say &#34;&gt;&#34;</code></pre>
+</figure><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
 <p>What does our output look like now?</p>
-<pre tabindex="0"><code> $ parrot example-06-06.pir
- &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
-</code></pre><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      > $ parrot example-06-06.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;</code></pre>
+</figure><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
 <h2 id="stars-like-ours">Stars Like Ours</h2>
 <p>Now that we have a Hash to describe characteristics of our own Sun, we can build Hashes for other stars and look for the ones that are similar to ours. We&rsquo;ll use the spectrum as our guideline, and look for an exact match rather than just a vague similarity. We&rsquo;re also going to filter out the ones that don&rsquo;t have a name, because we know that many of the stars in this set don&rsquo;t have proper names.</p>
-<pre tabindex="0"><code># example-06-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-07.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -1253,7 +1418,7 @@ star = new &#39;Hash&#39;
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     sol[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
@@ -1277,7 +1442,7 @@ star = new &#39;Hash&#39;
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
@@ -1286,10 +1451,10 @@ star = new &#39;Hash&#39;
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -1313,21 +1478,30 @@ star = new &#39;Hash&#39;
     print unnamed_match_count
     say &#39; have no proper name&#39;
 
-.end
-</code></pre><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
-<pre tabindex="0"><code>  EXAMINE_STAR:
+.end</code></pre>
+</figure><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  EXAMINE_STAR:
     star_spectrum = star[&#39;Spectrum&#39;]
     if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
-</code></pre><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
-<pre tabindex="0"><code>  REMEMBER_MATCH:
-    matching_count += 1
+    goto LOAD_NEXT_STAR</code></pre>
+</figure><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  REMEMBER_MATCH:
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
-</code></pre><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+    unnamed_match_count &#43;= 1
+    goto LOAD_NEXT_STAR</code></pre>
+</figure><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   star_name = star[&#39;ProperName&#39;]
   star_spectrum = star[&#39;Spectrum&#39;]
   star_distance = star[&#39;Distance&#39;]
@@ -1338,14 +1512,17 @@ star = new &#39;Hash&#39;
   print &#34;, Distance: &#34;
   print star_distance
   say &#34;&gt;&#34;
-  goto LOAD_NEXT_STAR
-</code></pre><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
-<pre tabindex="0"><code> $ parrot example-06-07.pir
+  goto LOAD_NEXT_STAR</code></pre>
+</figure><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      > $ parrot example-06-07.pir
  &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
  &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
  568 stars exactly matched Sol&#39;s spectrum G2V
- 567 have no proper name
-</code></pre><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
+ 567 have no proper name</code></pre>
+</figure><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Wow. There has been a lot of new stuff today. Not only did we learn how to read files and use Hashes, we also saw how to load bytecode libraries. We counted, searched through, and displayed data from a 20 Megabyte text file with nearly 120,000 entries. We also learned that <a href="http://en.wikipedia.org/wiki/Alpha_Centauri">Rigel Kentaurus A</a> is the only named neighbor in the database that is the same spectral type as our Sun.</p>
 <p>I think we&rsquo;re reaching the limits of what I want to do with <code>goto</code> as my primary  tool for guiding program flow. PIR Code is getting harder to write and edit. The next step really should be creating subroutines to abstract some of the more complicated or tedious processes.</p>

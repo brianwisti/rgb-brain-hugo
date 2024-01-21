@@ -137,8 +137,8 @@ Hi,
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2011/">2011</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/">Elaborate Answers To Simple Questions</a></li>
@@ -305,7 +310,9 @@ saving all python programs in C:ROUGH When I am executing these
 scripts through command prompt facing some problem with &ldquo;import&rdquo;.
 Please help me out</p>
 <p>My program:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!python</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!python</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#import C:\Python27\Lib\string</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
@@ -320,14 +327,17 @@ Please help me out</p>
 </span></span><span class="line"><span class="cl">                    <span class="n">text</span>
 </span></span><span class="line"><span class="cl">                    <span class="p">),</span><span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>ERROR IS:</p>
-<pre tabindex="0"><code>C:\Python27&gt;python.exe c:\ROUGH\addingsubtofrm.py
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>ERROR IS:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C:\Python27&gt;python.exe c:\ROUGH\addingsubtofrm.py
 Traceback (most recent call last):
   File &#34;c:\ROUGH\addingsubtofrm.py&#34;, line 12, in &lt;module&gt;
     body = string.join((&#34;From: %s&#34; % From,
-AttributeError: &#39;module&#39; object has no attribute &#39;join&#39;
-</code></pre><p>…​</p>
+AttributeError: &#39;module&#39; object has no attribute &#39;join&#39;</code></pre>
+</figure><p>…​</p>
 </blockquote>
 <p>For some reason, I do not get any error when I try to run her code with
 Python 2.7.1 on Windows XP. That’s okay, though. I can still help a
@@ -337,7 +347,9 @@ little bit on the style.</p>
 directly attached to strings. So instead of using <code>string.join(items, separator)</code>, you could use <code>separator.join(items)</code>. That’s considered
 the standard way to join a list of items into a single string these
 days.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
@@ -346,15 +358,17 @@ days.</p>
 </span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">Subject</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                    <span class="n">text</span>
 </span></span><span class="line"><span class="cl">                    <span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>This probably answers her question, but I am apparently in the mood to
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>This probably answers her question, but I am apparently in the mood to
 spend a lot of time writing about Python basics. Sounds like blog gold
 to me.</p>
 <p>There’s a problem with <code>body</code> if you want to use it for an actual email
 message. There needs to be a blank line between the headers and the
 body. One way to do that is to use <code>join</code> twice: once to build the
 header block and again to create a properly laid-out email message.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -368,12 +382,14 @@ header block and again to create a properly laid-out email message.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
 </span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>The header block still looks a little clumsy. I am sure there is a
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>The header block still looks a little clumsy. I am sure there is a
 prettier way to generate it. When I look at how the header block is
 printed, I realize that it looks a lot like a Python dictionary. Does
 the code look any clearer if I use a dictionary?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
@@ -390,13 +406,15 @@ the code look any clearer if I use a dictionary?</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
 </span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>Well, no. Not really. I think I’m actually typing <em>more</em> than I was
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>Well, no. Not really. I think I’m actually typing <em>more</em> than I was
 before, and it’s not really any easier to read. It’s all that <code>&quot;From: %s&quot; % headers['From']&quot;</code> nonsense.</p>
 <p><code>join</code> takes a sequence. I do not have to hand it a literal like we have
 been doing so far. Let’s build a list of header lines, and <em>then</em> join
 them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
@@ -417,8 +435,8 @@ them.</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
 </span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>It is easier to read, even if it is a little longer. We are building a
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>It is easier to read, even if it is a little longer. We are building a
 list of header lines by stepping through each of the key/value pairs
 that make up the <code>headers</code> dictionary. Oh, and don’t worry about what
 order the items are printed in. That order doesn’t matter in email
@@ -429,7 +447,9 @@ building lists like this is so common that Python provides powerful
 tools called <a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">list
 comprehensions</a>,
 which can reduce those four lines into one.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
@@ -445,14 +465,16 @@ which can reduce those four lines into one.</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
 </span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
-</span></span></code></pre></div><p>All right. Now if this were an <em>actual</em> email, there are some missing
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span></span></span></code></pre>
+</figure><p>All right. Now if this were an <em>actual</em> email, there are some missing
 headers. There are probably also some details missing that are related
 to email handling. Rather than try to figure out what’s missing, I’m
 going to suggest that you use the
 <a href="http://docs.python.org.library.email.html">email</a> library that comes
 standard with Python.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
@@ -479,8 +501,8 @@ standard with Python.</p>
 </span></span><span class="line"><span class="cl"><span class="n">From</span><span class="p">:</span> <span class="n">yeahright</span><span class="nd">@nonotreallyawebsiteihope.com</span>
 </span></span><span class="line"><span class="cl"><span class="n">Subject</span><span class="p">:</span> <span class="n">Testmail</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Test</span>
-</span></span></code></pre></div><p>There you go. If your end goal is generating emails, use the Python
+</span></span><span class="line"><span class="cl"><span class="n">Test</span></span></span></code></pre>
+</figure><p>There you go. If your end goal is generating emails, use the Python
 email library.</p>
 
   

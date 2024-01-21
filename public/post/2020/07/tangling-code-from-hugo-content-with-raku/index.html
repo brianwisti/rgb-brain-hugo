@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/07/tangling-code-from-hugo-content-with-raku/">Tangling code from Hugo content with Raku</a></li>
@@ -306,22 +311,29 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 You know what else I can tangle? Yarn!</p>
 <p>I spend a while using <a href="/card/raku/">card/Raku</a> to extract code from a <a href="/card/hugo/">card/Hugo</a> post.</p>
 <blockquote>
-<p>[!NOTE] 2020-09-03
-<a href="https://fosstodon.org/@codesections">@codesections@fosstodon.org</a> found a typo! I forgot to <em>show</em> the target file name once command line arguments are in place. It should go <code>raku tangle-fragments.raku index.md</code>.</p>
+<p><strong>2020-09-03</strong></p>
+<p><a href="https://fosstodon.org/@codesections">@codesections@fosstodon.org</a> found a typo! I forgot to <em>show</em> the target file name once command line arguments are in place. It should go <code>raku tangle-fragments.raku index.md</code>.</p>
 </blockquote>
 <p>Let&rsquo;s say I have a file.  The one you&rsquo;re reading, perhaps.  Well, its original Markdown content.</p>
 <p>It has a <a href="/card/hugo/">card/Hugo</a> shortcode in it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">print(&#34;Hello&#34;)
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>I based <code>{{&lt; code &gt;}}</code> here on a shortcode from the <a href="https://github.com/gohugoio/hugoDocs/blob/master/layouts/shortcodes/code.html">Hugo docs</a>. It presents highlighted code with additional context.</p>
-<div class="highlight" title="hello.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Really handy when you&rsquo;re writing about code.  Thing is, now I have two copies. There&rsquo;s one here in the shortcode, and another in a <code>hello.py</code> file that I&rsquo;m writing about.  I&rsquo;d prefer there was only a single copy.  That way they don&rsquo;t get out of sync.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>I based <code>{{&lt; code &gt;}}</code> here on a shortcode from the <a href="https://github.com/gohugoio/hugoDocs/blob/master/layouts/shortcodes/code.html">Hugo docs</a>. It presents highlighted code with additional context.</p>
+<figure class="highlight">
+  <figcaption><tt>hello.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Really handy when you&rsquo;re writing about code.  Thing is, now I have two copies. There&rsquo;s one here in the shortcode, and another in a <code>hello.py</code> file that I&rsquo;m writing about.  I&rsquo;d prefer there was only a single copy.  That way they don&rsquo;t get out of sync.</p>
 <p>I <em>could</em> use Hugo&rsquo;s <a href="https://gohugo.io/functions/readfile/">readFile</a> function in a new shortcode, including the contents of <code>hello.py</code> in this Markdown file.  Something like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">include</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Actual shortcode logic left as an exercise for the reader.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">include</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;hello.py&#34;</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Actual shortcode logic left as an exercise for the reader.</p>
 </blockquote>
 <p>But that still breaks up the writing flow a little bit.  I&rsquo;m writing the code over here, and writing <em>about</em> it over there.  It&rsquo;s a tiny complaint, but working with <a href="/card/org/">card/Org</a> has spoiled me.  I get to write the code in the same document that I&rsquo;m writing about it in.  Everything stays in sync, more or less.</p>
 <p>What I want is to write about <code>hello.py</code> here, and with a command have <code>hello.py</code> appear on my filesystem, containing the Python code I&rsquo;ve been describing.</p>
@@ -333,7 +345,9 @@ throughout some kind of document.  A tool like <a href="https://www.cs.tufts.edu
 parses the document to create code files.  Could be any kind of file, really.
 The process can get fancy.</p>
 <p>But the start is not fancy: given a text file containing a <code>{{&lt; code file=&quot;(something)&quot; &gt;}}</code>, write the contents of that shortcode to the named file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">index.md</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
@@ -357,17 +371,21 @@ The process can get fancy.</p>
 </span></span><span class="line"><span class="cl">    <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I love Raku&rsquo;s approach to <a href="https://docs.raku.org/language/regexes">regular expressions</a>.  For starters, the syntax looks a bit more like describing a grammar.  I can break the funny regex characters up with spaces, and clarify them with comments.  In fact, I could someday build this up to a real <a href="https://docs.raku.org/language/grammars">grammar</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I love Raku&rsquo;s approach to <a href="https://docs.raku.org/language/regexes">regular expressions</a>.  For starters, the syntax looks a bit more like describing a grammar.  I can break the funny regex characters up with spaces, and clarify them with comments.  In fact, I could someday build this up to a real <a href="https://docs.raku.org/language/grammars">grammar</a>.</p>
 <p>Secondly, it addresses the fact that most text we look at these days contains multiple lines.  I didn&rsquo;t have to worry about any special multiline flags to get this working.</p>
 <p>Finally, getting at the named captures was — I wouldn&rsquo;t say &ldquo;obvious,&rdquo; but at least &ldquo;coherent.&rdquo; I can treat the match variable <code>$/</code> as a nested <a href="https://docs.raku.org/language/hashmap">Hash</a>. The important bits look something like this::</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">shortcode =&gt;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">shortcode =&gt;
 </span></span><span class="line"><span class="cl">  filename =&gt; ｢hello.py｣
-</span></span><span class="line"><span class="cl">  content =&gt; ｢print(&#34;Hello&#34;)｣
-</span></span></code></pre></div><p>I can grab the named capture <code>filename</code> of my matched <code>shortcode</code> regex with <code>$/&lt;shortcode&gt;&lt;filename&gt;</code> — or <code>~$&lt;shortcode&gt;&lt;filename&gt;</code>, depending on your preferred syntax.</p>
+</span></span><span class="line"><span class="cl">  content =&gt; ｢print(&#34;Hello&#34;)｣</span></span></code></pre>
+</figure><p>I can grab the named capture <code>filename</code> of my matched <code>shortcode</code> regex with <code>$/&lt;shortcode&gt;&lt;filename&gt;</code> — or <code>~$&lt;shortcode&gt;&lt;filename&gt;</code>, depending on your preferred syntax.</p>
 <p>This is all possible in languages like Perl with assorted flags, but I haven&rsquo;t seen parsing treated so well by default since maybe <a href="/card/rebol/">card/REBOL</a>.</p>
 <p>Anyways, let&rsquo;s run this thing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle.raku
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle.raku
 </span></span><span class="line"><span class="cl"><span class="go">Tangled to hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bat hello.py
 </span></span><span class="line"><span class="cl"><span class="go">───────┬──────────────────────────────────────────────────────────────────────
@@ -375,30 +393,42 @@ The process can get fancy.</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">───────┼──────────────────────────────────────────────────────────────────────
 </span></span></span><span class="line"><span class="cl"><span class="go">   1   │ print(&#34;Hello&#34;)
 </span></span></span><span class="line"><span class="cl"><span class="go">───────┴──────────────────────────────────────────────────────────────────────
-</span></span></span></code></pre></div><p>Sweet.</p>
+</span></span></span></code></pre>
+</figure><p>Sweet.</p>
 <p>Except — this Markdown file I&rsquo;m writing.  It has <em>two</em> file code blocks now.  I want to tangle both of them.</p>
 <h2 id="multiple-output-files">Multiple output files</h2>
 <p>This requires a couple changes, since I&rsquo;m writing code about Hugo shortcodes in a Hugo post.</p>
 <p>To show shortcode directives without Hugo evaluating them, they need to look like shortcode comments.  Their contents will get passed straight through as part of your post.  To show <code>{{&lt; shortcode &gt;}}</code> in a post, your Hugo content needs <code>{{&lt;/* shortcode */&gt;}}</code>.</p>
 <p>So that&rsquo;s lovely and all, but can be a headache of its own for this specific situation of extracting code from a blog post.</p>
 <p>I need to remember this commented shortcode syntax.</p>
-<div class="highlight" title="define-commented-shortcodes"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">&lt;/* </span><span class="p">&#39;;</span>
-</span></span><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">}}</span><span class="p">&#39;;</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Goodness, that looks silly.  Well, I&rsquo;m writing this blog post as a test case
+<figure class="highlight">
+  <figcaption><tt>define-commented-shortcodes</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">&lt;/* </span><span class="p">&#39;;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;</span><span class="p">&#39;</span> <span class="o">~</span> <span class="p">&#39;</span><span class="s1">}}</span><span class="p">&#39;;</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Goodness, that looks silly.  Well, I&rsquo;m writing this blog post as a test case
 for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented shortcode delimiters without Hugo and my code getting into a fierce argument.</p>
 <p>If I wasn&rsquo;t writing the code <em>in</em> this post, I could use something simpler, like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{​&lt;/* </span><span class="p">&#39;;</span>
-</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;}}</span><span class="p">&#39;;</span>
-</span></span></code></pre></div><p>But that&rsquo;s not the path I chose.  It&rsquo;s not easy to write programs that write themselves.  Sometimes you must help them along.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{​&lt;/* </span><span class="p">&#39;;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$commented-closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> */&gt;}}</span><span class="p">&#39;;</span></span></span></code></pre>
+</figure><p>But that&rsquo;s not the path I chose.  It&rsquo;s not easy to write programs that write themselves.  Sometimes you must help them along.</p>
 </blockquote>
 <p>That way I can replace those commented shortcode delimiters with their normal counterparts when I tangle later.</p>
-<div class="highlight" title="define-commented-shortcodes"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">$block</span><span class="p">&lt;</span><span class="s">shortcode</span><span class="p">&gt;&lt;</span><span class="s">content</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <figcaption><tt>define-commented-shortcodes</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">$block</span><span class="p">&lt;</span><span class="s">shortcode</span><span class="p">&gt;&lt;</span><span class="s">content</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-opener</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$opener</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span>
-</span></span></code></pre></div><p>Now that I have that particular detail out of the way, tangle every block? Sure!  Make a regular expression match <code>:global</code> and it returns a list containing every match.</p>
-<div class="highlight" title="tangle-every-block"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span>  <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span></span></span></code></pre>
+</figure><p>Now that I have that particular detail out of the way, tangle every block? Sure!  Make a regular expression match <code>:global</code> and it returns a list containing every match.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-every-block</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span>  <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@fragments</span> <span class="o">=</span> <span class="nv">$markdown</span><span class="o">.</span><span class="nb">match</span><span class="p">(/&lt;</span><span class="nf">shortcode</span><span class="p">&gt;/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">@fragments</span> <span class="k">-&gt;</span> <span class="nv">$block</span> <span class="p">{</span>
@@ -406,9 +436,12 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">replace-commented-shortcodes</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I think that about covers it.  The shortcode recognition logic can stay the same.</p>
-<div class="highlight" title="tangle-multi.raku"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I think that about covers it.  The shortcode recognition logic can stay the same.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-multi.raku</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">index.md</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
@@ -428,9 +461,11 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span><span class="line"><span class="cl">  <span class="o">«</span><span class="n">define-commented-shortcodes</span><span class="o">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-every-block</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And it works!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-multi.raku
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And it works!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-multi.raku
 </span></span><span class="line"><span class="cl"><span class="go">Tangled to hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle.raku
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bat tangle.raku
@@ -463,52 +498,69 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span></span><span class="line"><span class="cl"><span class="go">  24   │   }
 </span></span></span><span class="line"><span class="cl"><span class="go">  25   │ }
 </span></span></span><span class="line"><span class="cl"><span class="go">  ───────┴──────────────────────────────────────────────────────────────────────
-</span></span></span></code></pre></div><p>Unfortunately, I&rsquo;m not quite done yet.</p>
+</span></span></span></code></pre>
+</figure><p>Unfortunately, I&rsquo;m not quite done yet.</p>
 <h2 id="multiple-fragments">Multiple fragments</h2>
 <p>I&rsquo;m not done yet because I don&rsquo;t like to describe my code a full file at a time.  I&rsquo;d rather talk about this bit here, explain that bit over there, then mash it all up in the end.</p>
 <p>Consistency counts, so I need to pick a syntax.  Well — you&rsquo;ve been reading along.  You can see that I already made my choice.  I got used to <code>&lt;&lt;fragment-name&gt;&gt;</code> in Babel, where the attribute is called <code>name</code>. Might as well keep doing that over here.  Oh but hang on. I want it to stand out a bit.  I&rsquo;ll use angle quotes <code>«‥»</code>.</p>
 <blockquote>
-<p>[!NOTE]
-On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovim/">card/Neovim</a>, <code>«</code> is a <a href="https://vimhelp.org/digraph.txt.html#digraph.txt">digraph</a> which can be entered via <kbd>Control-k</kbd> followed by <kbd>&lt;&lt;</kbd>.  Or if you&rsquo;ve set up a <a href="https://en.wikipedia.org/wiki/Compose_key">Compose</a> key, it&rsquo;s <kbd>Compose</kbd> followed by <kbd>&lt;&lt;</kbd> in any editor.</p>
+<p><strong>NOTE</strong></p>
+<p>On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovim/">card/Neovim</a>, <code>«</code> is a <a href="https://vimhelp.org/digraph.txt.html#digraph.txt">digraph</a> which can be entered via <kbd>Control-k</kbd> followed by <kbd>&lt;&lt;</kbd>.  Or if you&rsquo;ve set up a <a href="https://en.wikipedia.org/wiki/Compose_key">Compose</a> key, it&rsquo;s <kbd>Compose</kbd> followed by <kbd>&lt;&lt;</kbd> in any editor.</p>
 <p><code>»</code> is the same, but <kbd>&gt;&gt;</kbd> instead.</p>
 <p><em>Or</em> you can use <code>&lt;&lt;…&gt;&gt;</code> in your code and ignore my recent obsession with fancy characters.</p>
 <p>Yes, I know I could practically write it <em>all</em> with fancy characters in Raku. One step at a time.</p>
 </blockquote>
 <p>Let&rsquo;s go back to the Python code because it&rsquo;s still so small.</p>
 <p>Say I want to demonstrate the delightful <a href="/card/rich/">card/Rich</a> terminal library for Python.</p>
-<div class="highlight" title="import-libraries"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<figure class="highlight">
+  <figcaption><tt>import-libraries</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 </span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
-</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span>
-</span></span></code></pre></div><p>But before I really use it in my code, I spend 1,500 words singing its praises.</p>
+</span></span><span class="line"><span class="cl"> <span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span></span></span></code></pre>
+</figure><p>But before I really use it in my code, I spend 1,500 words singing its praises.</p>
 <p>It&rsquo;s nice.  I like it.</p>
 <p>Okay, done singing.  Time to write the rest of the program.</p>
-<div class="highlight" title="rich-hello.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">«</span><span class="n">import</span><span class="o">-</span><span class="n">libraries</span><span class="err">»</span>
+<figure class="highlight">
+  <figcaption><tt>rich-hello.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">«</span><span class="n">import</span><span class="o">-</span><span class="n">libraries</span><span class="err">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&#34;**Hello**, *World*.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span>
-</span></span></code></pre></div><p>I identify the fragment with a <code>name</code> attribute:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;import-libraries&#34;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;python&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span></span></span></code></pre>
+</figure><p>I identify the fragment with a <code>name</code> attribute:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;import-libraries&#34;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;python&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">from rich import print
 </span></span><span class="line"><span class="cl">from rich.panel import Panel
 </span></span><span class="line"><span class="cl">from rich.markdown import Markdown
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>My <code>code</code> block references the <code>import-libraries</code> fragment by name when I&rsquo;m ready for it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;rich-hello.py&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>My <code>code</code> block references the <code>import-libraries</code> fragment by name when I&rsquo;m ready for it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">code</span> <span class="na">file</span><span class="o">=</span><span class="s">&#34;rich-hello.py&#34;</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">«import-libraries»
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">md = Markdown(&#34;**Hello**, *World*.&#34;)
 </span></span><span class="line"><span class="cl">print(Panel(md))
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><p>I <em>might</em> spend some time talking about the <code>code</code> shortcode in another post, but I dislike Go&rsquo;s templating enough that this does not sound like fun.</p>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
+</figure><p>I <em>might</em> spend some time talking about the <code>code</code> shortcode in another post, but I dislike Go&rsquo;s templating enough that this does not sound like fun.</p>
 <h3 id="rounding-up-fragments-to-tangle">Rounding up fragments to tangle</h3>
 <p>Recognizing an additional parameter doesn&rsquo;t make my regular expression <em>that</em> much more complicated, but I can see things getting  ore complex.  I could even find a better pattern later.  Let&rsquo;s give the params their own named regex for some encapsulation.</p>
-<div class="highlight" title="shortcode-params-regex"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">params</span> <span class="p">{</span><span class="sr">
+<figure class="highlight">
+  <figcaption><tt>shortcode-params-regex</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">params</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="p">&#39;</span><span class="s1">file=&#34;</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$&lt;filename&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">&#34;</span><span class="p">&#39;</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="o">||</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">   </span><span class="p">&#39;</span><span class="s1">name=&#34;</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$&lt;fragment&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">&#34;</span><span class="p">&#39;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>That way I can drop it in <code>shortcode</code> to say &ldquo;oh and look for <code>params</code> while you&rsquo;re at it please.&rdquo;</p>
-<div class="highlight" title="nested-shortcode-regex"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="p">«</span><span class="s2">shortcode-params-regex</span><span class="p">»</span>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>That way I can drop it in <code>shortcode</code> to say &ldquo;oh and look for <code>params</code> while you&rsquo;re at it please.&rdquo;</p>
+<figure class="highlight">
+  <figcaption><tt>nested-shortcode-regex</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="p">«</span><span class="s2">shortcode-params-regex</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$opener</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1">{{&lt; </span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$closer</span> <span class="o">=</span> <span class="p">&#39;</span><span class="s1"> &gt;}}</span><span class="p">&#39;;</span>
 </span></span><span class="line"><span class="cl">
@@ -518,9 +570,12 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="nv">$&lt;content&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr">  </span><span class="c1"># Remember everything else in the block
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="se">\n</span><span class="sr">                </span><span class="c1"># Ignore trailing newline
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">  </span><span class="nv">$opener</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">/code</span><span class="p">&#39;</span><span class="sr"> </span><span class="nv">$closer</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Okay, we recognize <code>file</code> and <code>name</code> parameters.  What do we do with them? We gather them!</p>
-<div class="highlight" title="gather-fragments-and-files"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%fragment-for</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>Okay, we recognize <code>file</code> and <code>name</code> parameters.  What do we do with them? We gather them!</p>
+<figure class="highlight">
+  <figcaption><tt>gather-fragments-and-files</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%fragment-for</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@filenames</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$markdown</span> <span class="o">=</span> <span class="nb">slurp</span> <span class="nv">$filename</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -537,24 +592,33 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="k">my</span> <span class="nv">$filename</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">&lt;</span><span class="s">filename</span><span class="p">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">@filenames</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="nv">$filename</span><span class="o">.</span><span class="kt">Str</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="tangling-my-fragments">Tangling my fragments</h3>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h3 id="tangling-my-fragments">Tangling my fragments</h3>
 <p>Let&rsquo;s see here.  I know before I can write any files, I need to make sure everything&rsquo;s tangled Trying to keep fragments easy to identify.  They sit on a line by themselves, possibly with some leading whitespace.</p>
-<div class="highlight" title="tangle-fragments"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">fragment</span> <span class="p">{</span><span class="sr"> </span><span class="ni">^^</span><span class="sr"> </span><span class="se">\h</span><span class="o">*?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">«</span><span class="p">&#34;</span><span class="sr"> </span><span class="nv">$&lt;name&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">»</span><span class="p">&#34;</span><span class="sr"> </span><span class="ni">$$</span><span class="sr"> </span><span class="p">}</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-fragments</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">fragment</span> <span class="p">{</span><span class="sr"> </span><span class="ni">^^</span><span class="sr"> </span><span class="se">\h</span><span class="o">*?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">«</span><span class="p">&#34;</span><span class="sr"> </span><span class="nv">$&lt;name&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="ni">.</span><span class="o">+?</span><span class="sr"> </span><span class="p">&#34;</span><span class="s2">»</span><span class="p">&#34;</span><span class="sr"> </span><span class="ni">$$</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">%tangle-for</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">«</span><span class="s2">tangle-function</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">%fragment-for</span><span class="o">.</span><span class="nb">keys</span> <span class="k">-&gt;</span> <span class="nv">$name</span> <span class="p">{</span> <span class="nf">tangle</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span> <span class="p">}</span>
-</span></span></code></pre></div><p>Raku functions are lexically scoped, which means it&rsquo;s perfectly okay to declare a function inside another function.  Though next time I revisit  his, I may want to think about a <a href="https://docs.raku.org/language/classtut">class</a> or something to hold the  complexity.</p>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nv">%fragment-for</span><span class="o">.</span><span class="nb">keys</span> <span class="k">-&gt;</span> <span class="nv">$name</span> <span class="p">{</span> <span class="nf">tangle</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>Raku functions are lexically scoped, which means it&rsquo;s perfectly okay to declare a function inside another function.  Though next time I revisit  his, I may want to think about a <a href="https://docs.raku.org/language/classtut">class</a> or something to hold the  complexity.</p>
 <p>But what does that function need to look like?  I&rsquo;m still not sure I got it quite right.  I mean I know the <em>basic</em> shape of it.</p>
-<div class="highlight" title="tangle-function"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">tangle</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-function</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">tangle</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-error-checking</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-text</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>It needs some error checking.  I know that much.  Oh, and if it&rsquo;s already been tangled I should avoid going through it again.</p>
-<div class="highlight" title="tangle-error-checking"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">return</span> <span class="p">&#34;&#34;</span> <span class="k">unless</span> <span class="nv">$name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>It needs some error checking.  I know that much.  Oh, and if it&rsquo;s already been tangled I should avoid going through it again.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-error-checking</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">return</span> <span class="p">&#34;&#34;</span> <span class="k">unless</span> <span class="nv">$name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
@@ -563,20 +627,26 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">   <span class="k">my</span> <span class="nv">$content</span> <span class="o">=</span> <span class="nv">%fragment-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">};</span>
 </span></span><span class="line"><span class="cl">   <span class="k">unless</span> <span class="nv">$content</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">die</span> <span class="p">&#34;</span><span class="s2">«</span><span class="nv">$name</span><span class="s2">» is not a valid fragment</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span></code></pre></div><p>The idea of the thing is clear enough.  Find and recursively <code>tangle</code> each fragment found in this text, replacing the fragment references with their tangled text.  Once that&rsquo;s all done, cache and return the tangled text.</p>
-<div class="highlight" title="tangle-text"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">$content</span><span class="o">.</span><span class="nb">match</span><span class="p">(/</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">fragment</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nv">$match</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span></span></span></code></pre>
+</figure><p>The idea of the thing is clear enough.  Find and recursively <code>tangle</code> each fragment found in this text, replacing the fragment references with their tangled text.  Once that&rsquo;s all done, cache and return the tangled text.</p>
+<figure class="highlight">
+  <figcaption><tt>tangle-text</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">$content</span><span class="o">.</span><span class="nb">match</span><span class="p">(/</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">fragment</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="p">:</span><span class="s">global</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nv">$match</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$fragment-ref</span> <span class="o">=</span> <span class="nv">$match</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$fragment-name</span> <span class="o">=</span> <span class="nv">$match</span><span class="p">&lt;</span><span class="s">fragment</span><span class="p">&gt;&lt;</span><span class="s">name</span><span class="p">&gt;</span><span class="o">.</span><span class="kt">Str</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">say</span> <span class="p">&#34;</span><span class="nv">$name</span><span class="s2"> ← «</span><span class="nv">$fragment-name</span><span class="s2">»</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">     <span class="nv">$content</span><span class="o">.</span><span class="nb">subst-mutate</span><span class="p">(/</span><span class="nv">$fragment-ref</span><span class="p">/</span><span class="o">,</span> <span class="nf">tangle</span><span class="p">(</span> <span class="nv">$fragment-name</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">   <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span>
-</span></span></code></pre></div><p>I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a <code>Match</code> and a <code>String</code>.  There <em>must</em> be better ways. But the most important thing?  I got it to work eventually.</p>
+</span></span><span class="line"><span class="cl">   <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$name</span> <span class="p">}</span> <span class="o">=</span> <span class="nv">$content</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a <code>Match</code> and a <code>String</code>.  There <em>must</em> be better ways. But the most important thing?  I got it to work eventually.</p>
 <h3 id="writing-tangled-files">Writing tangled files</h3>
 <p>After all that, writing the tangled files felt easy.</p>
-<div class="highlight" title="write-tangled-fragments"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="p">«</span><span class="s2">define-commented-shortcodes</span><span class="p">»</span>
+<figure class="highlight">
+  <figcaption><tt>write-tangled-fragments</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl">   <span class="p">«</span><span class="s2">define-commented-shortcodes</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="nv">@filenames</span> <span class="k">-&gt;</span> <span class="nv">$tangle-file</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">     <span class="k">my</span> <span class="nv">$tangle-content</span> <span class="o">=</span> <span class="nv">%tangle-for</span><span class="p">{</span> <span class="nv">$tangle-file</span> <span class="p">}</span>
@@ -584,10 +654,13 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">       <span class="o">.</span><span class="nb">subst</span><span class="p">(:</span><span class="s">global</span><span class="o">,</span> <span class="p">/</span><span class="sr"> </span><span class="nv">$commented-closer</span><span class="sr"> </span><span class="p">/</span><span class="o">,</span> <span class="nv">$closer</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">spurt</span> <span class="nv">$tangle-file</span><span class="o">,</span> <span class="nv">$tangle-content</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="nb">say</span> <span class="p">&#34;</span><span class="s2">Tangled to </span><span class="nv">$tangle-file</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span></code></pre></div><p>Then — theoretically — all these fragments I wrote will make a useful code tangler!</p>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span></span></span></code></pre>
+</figure><p>Then — theoretically — all these fragments I wrote will make a useful code tangler!</p>
 <p>Might as well make it so this script can look at more than just the file I&rsquo;m editing right now.</p>
-<div class="highlight" title="tangle-fragments.raku"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$filename</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <figcaption><tt>tangle-fragments.raku</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$filename</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">nested-shortcode-regex</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">gather-fragments-and-files</span><span class="p">»</span>
@@ -595,13 +668,18 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">tangle-fragments</span><span class="p">»</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">«</span><span class="s2">write-tangled-files</span><span class="p">»</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Easiest <a href="https://docs.raku.org/language/create-cli">CLI</a> I ever wrote, by the way.  See?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Easiest <a href="https://docs.raku.org/language/create-cli">CLI</a> I ever wrote, by the way.  See?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku
 </span></span><span class="line"><span class="cl"><span class="go">Usage:
 </span></span></span><span class="line"><span class="cl"><span class="go">  tangle-fragments.raku &lt;filename&gt;
-</span></span></span></code></pre></div><p>Time for the real thing.  I&rsquo;m nervous.  I shouldn&rsquo;t be nervous.  I know how this story ends.  Then again I keep rewriting the middle.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku index.md
+</span></span></span></code></pre>
+</figure><p>Time for the real thing.  I&rsquo;m nervous.  I shouldn&rsquo;t be nervous.  I know how this story ends.  Then again I keep rewriting the middle.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku tangle-fragments.raku index.md
 </span></span><span class="line"><span class="cl"><span class="go">fragment: hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">fragment: tangle.raku
 </span></span></span><span class="line"><span class="cl"><span class="go">fragment: define-commented-shortcodes
@@ -637,14 +715,18 @@ On a US keyboard using <a href="/card/vim/">card/Vim</a> or <a href="/card/neovi
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle-multi.raku
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to rich-hello.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Tangled to tangle-fragments.raku
-</span></span></span></code></pre></div><p>That overwrote my test version of <code>tangle-fragments.raku</code>.  Scary.  Ran the new version to keep myself honest.  It produced the same output, and appears to have correctly tangled my fragments!</p>
-<div class="highlight" title="Generated rich-hello.py" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+</span></span></span></code></pre>
+</figure><p>That overwrote my test version of <code>tangle-fragments.raku</code>.  Scary.  Ran the new version to keep myself honest.  It produced the same output, and appears to have correctly tangled my fragments!</p>
+<figure class="highlight">
+  <figcaption><span>Generated rich-hello.py</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.markdown</span> <span class="kn">import</span> <span class="n">Markdown</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&#34;**Hello**, *World*.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span>
-</span></span></code></pre></div><p>Running <code>rich-hello.py</code> looks more interesting with a screenshot than a text block:</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Running <code>rich-hello.py</code> looks more interesting with a screenshot than a text block:</p>
 <p><img src="/post/2020/07/attachments/img/2020/rich-panel.png" alt="Formatted output using Rich"/></p>
 <p>Okay.  Now I&rsquo;m done.</p>
 <p>I <em>could</em> have done this in Python.  There are decent parsing libraries out there.  But Raku did this on its own, without pulling in any extra — without pulling in <em>any</em> libraries.</p>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2008/">2008</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/">PageTemplate for Site Generation</a></li>
@@ -297,7 +302,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I am going to start small, by teaching SiteTemplate about <a href="https://github.com/bhollis/maruku">Maruku</a>.</p>
 <p>It took me a bit of time to get that much done, because I needed to relearn how PageTemplate initializes. <em>Note to self: don&rsquo;t ever go a full year without using your own library.</em></p>
 <p>The test is simple: create a template using the Maruku filter. Compare the output of that template with the text minus PageTemplate directives and fed into Maruku. The test passes if they look alike, or close enough.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
@@ -317,9 +324,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="n">assert_equal</span><span class="p">(</span><span class="n">maruku_doc</span><span class="o">.</span><span class="n">to_html</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="s2">&#34;Check if Maruku filter ran successfully&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Then the code I needed to make that test pass:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Then the code I needed to make that test pass:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Utility for generating a static site with PageTemplate</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
@@ -334,8 +343,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">      <span class="k">end</span>
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I cut corners by adding the <code>maruku</code> filter method to PageTemplate&rsquo;s DefaultPreprocessor. PageTemplate&rsquo;s internals need a little work, since this isn&rsquo;t the prettiest way a person might want to add filters. It works well, but it&rsquo;s not pretty.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I cut corners by adding the <code>maruku</code> filter method to PageTemplate&rsquo;s DefaultPreprocessor. PageTemplate&rsquo;s internals need a little work, since this isn&rsquo;t the prettiest way a person might want to add filters. It works well, but it&rsquo;s not pretty.</p>
 <p>That works well enough. Next time I&rsquo;ll try a template filter, which puts the Maruku output into a template file of my choosing. That way we get the standard look for pages.</p>
   
 

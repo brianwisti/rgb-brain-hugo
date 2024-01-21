@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/05/pretty-print-terminal-files-with-bat/">Pretty Print Terminal Files With Bat</a></li>
@@ -295,12 +300,17 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2019/05/../../../attachments/img/2019/cover-2019-05-24.png" alt="attachments/img/2019/cover-2019-05-24.png"/></p>
 <p>My work routine lately includes automatic generation of SQL files for database updates. That routine includes quickly skimming them to find obvious errors. I wanted something quicker than reviewing them in my editor, but fancier than the simple plain text of <code>cat</code>.</p>
 <p>I have the <a href="http://pygments.org/">Pygments</a> syntax highlighting library for <a href="/card/python/">card/Python</a> installed, so I could use <code>pygmentize</code> piped to <code>less</code> for paging:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pygmentize -g work.sql <span class="p">|</span> less -NR
-</span></span></code></pre></div><p>However, that is noticeably slow and most definitely not convenient. Adding an alias helped the convenience, but did nothing for the sluggishness.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pygmentize -g work.sql <span class="p">|</span> less -NR</span></span></code></pre>
+</figure><p>However, that is noticeably slow and most definitely not convenient. Adding an alias helped the convenience, but did nothing for the sluggishness.</p>
 <p><a href="https://github.com/sharkdp/bat">bat</a> provides what I need. It runs quick enough that I don’t need to think about it, highlights code, numbers lines, indicates git changes in the margin, and feeds the result to <code>less</code> if there’s more than you can display on one screen.</p>
 <p>Packages are available for several Linux distributions, or you can install it via <a href="https://brew.sh/">Homebrew</a> (reminder: Homebrew works on macOS <em>and</em> Linux these days).</p>
-<pre tabindex="0"><code>$ brew install bat
-</code></pre><p>Sometimes I need to check the structure of files where whitespace matters: tab-delimited files, Makefiles, Python, stuff like that. <code>bat -A</code> shows whitespace and other non-printable characters displayed, though you lose syntax highlighting.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install bat</code></pre>
+</figure><p>Sometimes I need to check the structure of files where whitespace matters: tab-delimited files, Makefiles, Python, stuff like that. <code>bat -A</code> shows whitespace and other non-printable characters displayed, though you lose syntax highlighting.</p>
 <p><img src="/post/2019/05/attachments/img/2019/showing-whitespace.png" alt="The site Makefile — oh look a trailing space!"/></p>
 <h2 id="plain-text">Plain Text</h2>
 <p>I enjoy the formatting conveniences from <code>bat</code> even when examining plain text files.</p>

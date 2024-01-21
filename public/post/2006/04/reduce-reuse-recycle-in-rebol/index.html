@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2006/">2006</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2006/04/reduce-reuse-recycle-in-rebol/">Reduce, Reuse, Recycle in REBOL</a></li>
@@ -310,68 +315,98 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>That first list of <code>re-</code> words was really standing in the way of understanding Rebol. That&rsquo;s because the prefix <code>re-</code> doesn&rsquo;t quite mean what you would expect in an English language context. I&rsquo;m used to the meaning &ldquo;do this thing again,&rdquo; and that&rsquo;s the way it gets used in words like <code>resend</code> and <code>repeat</code>. What about <code>repend</code> and those others?</p>
 <h2 id="reduce"><code>reduce</code></h2>
 <p>The key for those words is in understanding <code>reduce</code>. <code>reduce</code> takes a series and evaluates every expression in that series. When it&rsquo;s done, it hands you a new list consisting of the results of those evaluations. It&rsquo;s easier to show than explain:</p>
-<pre tabindex="0"><code>&gt;&gt; example: [
-[    2 + 3
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; example: [
+[    2 &#43; 3
 [    4 * 6
 [    4 / 2
 [    ]
 == [
-    2 + 3
+    2 &#43; 3
     4 * 6
     4 / 2
   ]
 &gt;&gt; reduce example
-== [5 24 2]
-</code></pre><p>It gets more interesting when your expressions are a little more interesting, but I&rsquo;m keeping it simple so I don&rsquo;t get distracted.</p>
+== [5 24 2]</code></pre>
+</figure><p>It gets more interesting when your expressions are a little more interesting, but I&rsquo;m keeping it simple so I don&rsquo;t get distracted.</p>
 <p>Those other four words which have been confusing me for months suddenly make a lot more sense when I realize that the prefix <code>re-</code> means &ldquo;<code>reduce</code> these values before doing this other thing.&rdquo;</p>
 <h2 id="reform"><code>reform</code></h2>
 <p><code>form</code> takes a value and returns a stringified version of the value.</p>
-<pre tabindex="0"><code>&gt;&gt; form example
-== &#34;2 + 3 4 * 6 4 / 2&#34;
-</code></pre><p>Now that we know what <code>reduce</code> does, we have a good idea what to expect out of <code>reform</code>.</p>
-<pre tabindex="0"><code>&gt;&gt; reform example
-== &#34;5 24 2&#34;
-</code></pre><p>It will <code>reduce</code> the series, and then <code>form</code> a string from the values in the
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; form example
+== &#34;2 &#43; 3 4 * 6 4 / 2&#34;</code></pre>
+</figure><p>Now that we know what <code>reduce</code> does, we have a good idea what to expect out of <code>reform</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; reform example
+== &#34;5 24 2&#34;</code></pre>
+</figure><p>It will <code>reduce</code> the series, and then <code>form</code> a string from the values in the
 new series.</p>
 <h2 id="rejoin"><code>rejoin</code></h2>
 <p><code>join</code> is a little funky. Now that I understand what <code>rejoin</code> does, I usually end up using it directly. Here&rsquo;s a breakdown just the same.</p>
 <p><code>join</code> takes two arguments: a value and a series. It will reduce the value and the series, and then glue the results tightly into a string. Sounds a little bit like <code>form</code>, doesn&rsquo;t it? Unlike <code>form</code>, <code>join</code> will not provide spaces in between the values.</p>
-<pre tabindex="0"><code>&gt;&gt; join 3 + 2 example
-== &#34;55242&#34;
-</code></pre><p><code>rejoin</code> effectively does the same thing, but it doesn&rsquo;t need the first value. You can <code>rejoin</code> your series directly.</p>
-<pre tabindex="0"><code>&gt;&gt; rejoin example
-== &#34;5242&#34;
-</code></pre><h2 id="remold"><code>remold</code></h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; join 3 &#43; 2 example
+== &#34;55242&#34;</code></pre>
+</figure><p><code>rejoin</code> effectively does the same thing, but it doesn&rsquo;t need the first value. You can <code>rejoin</code> your series directly.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; rejoin example
+== &#34;5242&#34;</code></pre>
+</figure><h2 id="remold"><code>remold</code></h2>
 <p><code>mold</code> is somewhat nifty. It will transform its argument into a string that Rebol can evaluate later. Pretty handy for generating code while the program is running!</p>
-<pre tabindex="0"><code>&gt;&gt; mold example
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; mold example
 == {[
-      2 + 3
+      2 &#43; 3
       4 * 6
       4 / 2
-]}
-</code></pre><p><code>remold</code> will <code>reduce</code> the argument and then <code>mold</code> the results.</p>
-<pre tabindex="0"><code>&gt;&gt; remold example
-== &#34;[5 24 2]&#34;
-</code></pre><h2 id="repend"><code>repend</code></h2>
-<pre tabindex="0"><code>&gt;&gt; append example [2 + 3]
+]}</code></pre>
+</figure><p><code>remold</code> will <code>reduce</code> the argument and then <code>mold</code> the results.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; remold example
+== &#34;[5 24 2]&#34;</code></pre>
+</figure><h2 id="repend"><code>repend</code></h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append example [2 &#43; 3]
 == [
-    2 + 3
+    2 &#43; 3
     4 * 6
-    4 / 2 2 + 3
-]
-</code></pre><p>Be careful, <code>append</code> actually does append the value to your original series. You may want to work on a <code>copy</code> if you want to leave your original series alone.</p>
-<pre tabindex="0"><code>&gt;&gt; append copy example [2 + 3]
-== [ 2 + 3 
+    4 / 2 2 &#43; 3
+]</code></pre>
+</figure><p>Be careful, <code>append</code> actually does append the value to your original series. You may want to work on a <code>copy</code> if you want to leave your original series alone.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append copy example [2 &#43; 3]
+== [ 2 &#43; 3 
      4 * 6 
      4 / 2 
-     2 + 3
+     2 &#43; 3
 ]
 &gt;&gt; example
-== [2 + 3 4 * 6 4 / 2]
-</code></pre><p>Let&rsquo;s look at <code>repend</code> now that we&rsquo;ve got the <code>append</code> warning out of the way. Easy enough. <code>repend</code> will <code>reduce</code> the extra value before appending. I haven&rsquo;t gotten far enough along to see why this is better or even different from just appending the raw expression:</p>
-<pre tabindex="0"><code>&gt;&gt; append copy example 2 + 3
-== [2 + 3 4 * 6 4 / 2 5]
-</code></pre><p>I do feel a little smarter than I did 20 minutes ago, though. If nothing else, I feel good.</p>
+== [2 &#43; 3 4 * 6 4 / 2]</code></pre>
+</figure><p>Let&rsquo;s look at <code>repend</code> now that we&rsquo;ve got the <code>append</code> warning out of the way. Easy enough. <code>repend</code> will <code>reduce</code> the extra value before appending. I haven&rsquo;t gotten far enough along to see why this is better or even different from just appending the raw expression:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append copy example 2 &#43; 3
+== [2 &#43; 3 4 * 6 4 / 2 5]</code></pre>
+</figure><p>I do feel a little smarter than I did 20 minutes ago, though. If nothing else, I feel good.</p>
 <p>Great, now I think I&rsquo;ve got a little bit better understanding of Rebol. Let&rsquo;s see if I&rsquo;ve gotten far enough to make truly useful programs.</p>
   
 

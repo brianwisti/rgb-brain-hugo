@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/08/trying-a-thing-with-neovim/">trying a thing with neovim</a></li>
@@ -311,21 +316,26 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I won&rsquo;t make you wait around for a proper post. Hugo lets you use reStructuredText.  But Hugo&rsquo;s way is slow and hard to customize. Not their fault. reStructuredText is not their focus.</p>
 <p>Still — why not format it ahead of time?</p>
 <blockquote>
-<p>[!NOTE] Answer
-Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
+<p><strong>Answer</strong></p>
+<p>Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
 </blockquote>
 <p>Shush, me.</p>
 <h3 id="the-implementation">The Implementation</h3>
 <p>Start with <code>content/whatever/index.rst.txt</code>.</p>
 <p>Make sure Hugo won&rsquo;t track <code>rst.txt</code> files by explicitly adding an item the <a href="https://gohugo.io/getting-started/configuration/#ignore-content-and-data-files-when-rendering"><code>ignoreFiles</code></a> config setting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
 <p>I tried setting <code>ignoreFiles = ['\.rst$']</code> but as far as I could tell, Hugo ignored my request to ignore the file. Looks like I&rsquo;m sticking with <code>.rst.txt</code> for now.</p>
 <p>With the code down below in my Neovim python3 — that&rsquo;s <em>python3</em> not <em>python</em> — rplugin folder, and remote plugins updated, I write <code>index.rst.txt</code> to disk.</p>
 <p>The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.</p>
 <h4 id="the-code">The Code</h4>
-<div class="highlight" title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <figcaption><tt>~/.config/nvim/rplugin/python3/rstbuild_hugo.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -360,11 +370,11 @@ Because it took a lot of work to figure this out? And most folks are perfectly h
 </span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">post</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
 <blockquote>
-<p>[!NOTE]
-<em>You</em> will, if you skim the Updates at the end.</p>
+<p><strong>NOTE</strong></p>
+<p><em>You</em> will, if you skim the Updates at the end.</p>
 </blockquote>
 <p>If you grab a copy for your own nefarious plans — a similar template could get you fast Asciidoctor transforms as well — just remember a couple things:</p>
 <ul>

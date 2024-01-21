@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/11/directory-listings-with-crystal/">Directory Listings With Crystal</a></li>
@@ -294,19 +299,29 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="list-files-in-a-directory">List files in a directory</h2>
 <p>Let’s start with a list of the directory’s contents. We can worry about summarizing them later.</p>
 <p><a href="https://crystal-lang.org/api/Dir.html">Dir</a> knows all about directories and their contents. Open a directory with a string containing a path, and ask for its children.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="n">dirname</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Sync/Books/computer&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">children</span>
-</span></span></code></pre></div><pre tabindex="0"><code>[&#34;programmingvoiceinterfaces.pdf&#34;, &#34;Databases&#34;, &#34;task-2.5.1.ref.pdf&#34;, &#34;Perl&#34;, &#34;Tools&#34;,
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="n">dirname</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Sync/Books/computer&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">children</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >[&#34;programmingvoiceinterfaces.pdf&#34;, &#34;Databases&#34;, &#34;task-2.5.1.ref.pdf&#34;, &#34;Perl&#34;, &#34;Tools&#34;,
 &#34;devopsish&#34;, &#34;diy&#34;, &#34;Hacking_ The Art of Exploitation, 2nd Edition.pdf&#34;,
 &#34;The Linux Programming Interface.pdf&#34;, &#34;Web Layout&#34;, &#34;Java&#34;, &#34;JavaScript&#34;, &#34;Generative_Art.pdf&#34;,
 &#34;Mac OS X Lion_ The Missing Manual.PDF&#34;, &#34;highperformanceimages.pdf&#34;, &#34;jsonatwork.pdf&#34;,
 &#34;Microsoftish&#34;, &#34;Python&#34;, &#34;Ruby&#34;, &#34;PHP&#34;, &#34;Misc-lang&#34;, &#34;tools&#34;, &#34;Data Science&#34;, &#34;Principles&#34;, &#34;cs&#34;,
-&#34;vistaguidesv2&#34;]
-</code></pre><p><a href="https://crystal-lang.org/api/Dir.html#children:Array%28String%29-instance-method">Dir#children</a> gets you all the files in a directory except the special <code>.</code> and <code>..</code> items. If you need those, use <a href="https://crystal-lang.org/api/Dir.html#entries:Array%28String%29-instance-method">Dir#entries</a>.</p>
+&#34;vistaguidesv2&#34;]</code></pre>
+</figure><p><a href="https://crystal-lang.org/api/Dir.html#children:Array%28String%29-instance-method">Dir#children</a> gets you all the files in a directory except the special <code>.</code> and <code>..</code> items. If you need those, use <a href="https://crystal-lang.org/api/Dir.html#entries:Array%28String%29-instance-method">Dir#entries</a>.</p>
 <p>I need to look at each child if I want a readable summary of the directory. I could mess with the <a href="https://crystal-lang.org/api/Array.html">Array</a> returned by <code>Dir#children</code>. There’s a better way, though. Crystal provides a handy <a href="https://en.wikipedia.org/wiki/Iterator">iterator</a> with
 <a href="https://crystal-lang.org/api/Dir.html#each_child%28dirname,&amp;block%29-class-method">Dir#each_child</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="p">{</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">child</span> <span class="p">}</span>
-</span></span></code></pre></div><pre tabindex="0"><code>programmingvoiceinterfaces.pdf
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="p">{</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">child</span> <span class="p">}</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >programmingvoiceinterfaces.pdf
 Databases
 task-2.5.1.ref.pdf
 Perl
@@ -331,16 +346,21 @@ tools
 Data Science
 Principles
 cs
-vistaguidesv2
-</code></pre><p>That’s <em>much</em> easier to read. Yes. I can work with <code>Dir#each_child</code> to create a summary.</p>
+vistaguidesv2</code></pre>
+</figure><p>That’s <em>much</em> easier to read. Yes. I can work with <code>Dir#each_child</code> to create a summary.</p>
 <h2 id="summarize-the-directory-contents">Summarize the directory contents</h2>
 <p>I want file names, sizes, and modification times. I already have the names. <a href="https://crystal-lang.org/api/File/Info.html">File.info</a> provides size and time details. Formatting can be handled with a mix of <a href="https://crystal-lang.org/api/toplevel.html#sprintf%28format_string,args:Array%7CTuple%29:String-class-method">sprintf</a> and <a href="https://crystal-lang.org/api/Number.html#format%28separator=%27.%27,delimiter=%27,%27,decimal_places:Int?=nil,*,group:Int=3,only_significant:Bool=false%29:String-instance-method">Number#format</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">  <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">dirname</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">child</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;%-50s %10d %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I worked these column widths out manually. There are more robust approaches. In fact, I’ll get to one of them in a few paragraphs.</p>
-<pre tabindex="0"><code>programmingvoiceinterfaces.pdf                     18,597,798  2019-02-17 15:32:27 UTC
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I worked these column widths out manually. There are more robust approaches. In fact, I’ll get to one of them in a few paragraphs.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >programmingvoiceinterfaces.pdf                     18,597,798  2019-02-17 15:32:27 UTC
 Databases                                               4,096  2019-10-26 04:31:25 UTC
 task-2.5.1.ref.pdf                                    130,899  2019-02-17 15:32:27 UTC
 Perl                                                    4,096  2019-10-26 04:31:25 UTC
@@ -365,17 +385,22 @@ tools                                                   4,096  2019-10-25 14:41:
 Data Science                                            4,096  2019-10-26 04:31:25 UTC
 Principles                                              4,096  2019-10-20 01:23:43 UTC
 cs                                                      4,096  2019-10-19 01:37:08 UTC
-vistaguidesv2                                           4,096  2019-10-19 06:56:45 UTC
-</code></pre><p>This is nice and tidy! Of course, now I have more thoughts. The items need to be sorted — by name is good enough. I also want a more obvious indicator which ones are directories.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
+vistaguidesv2                                           4,096  2019-10-19 06:56:45 UTC</code></pre>
+</figure><p>This is nice and tidy! Of course, now I have more thoughts. The items need to be sorted — by name is good enough. I also want a more obvious indicator which ones are directories.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">  <span class="n">dir</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">    <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">dirname</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">child</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">child</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">directory?</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;%-50s %10s %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>If a trailing <code>/</code> for directories is good enough for <code>ls -F</code>, it’s good enough for me.</p>
-<pre tabindex="0"><code>Data Science/                                           4,096  2019-10-26 04:31:25 UTC
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>If a trailing <code>/</code> for directories is good enough for <code>ls -F</code>, it’s good enough for me.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Data Science/                                           4,096  2019-10-26 04:31:25 UTC
 Databases/                                              4,096  2019-10-26 04:31:25 UTC
 Generative_Art.pdf                                 22,777,770  2019-02-17 15:32:26 UTC
 Hacking_ The Art of Exploitation, 2nd Edition.pdf   4,218,534  2019-02-17 15:32:26 UTC
@@ -400,19 +425,24 @@ jsonatwork.pdf                                     10,193,473  2019-02-17 15:32:
 programmingvoiceinterfaces.pdf                     18,597,798  2019-02-17 15:32:27 UTC
 task-2.5.1.ref.pdf                                    130,899  2019-02-17 15:32:27 UTC
 tools/                                                  4,096  2019-10-25 14:41:26 UTC
-vistaguidesv2/                                          4,096  2019-10-19 06:56:45 UTC
-</code></pre><p>This is better! I can use this information. Time to look at arbitrary directories.</p>
+vistaguidesv2/                                          4,096  2019-10-19 06:56:45 UTC</code></pre>
+</figure><p>This is better! I can use this information. Time to look at arbitrary directories.</p>
 <h2 id="specifying-a-directory-via-argv">Specifying a directory via <code>ARGV</code></h2>
 <p><a href="https://crystal-lang.org/api/toplevel.html#ARGV">ARGV</a> is a top level array holding arguments intended for your program. If we called a compiled Crystal program like this:</p>
-<pre tabindex="0"><code>$ ./list ~/Sync/Books/computer
-</code></pre><p><code>~/Sync/Books/computer</code> would be the first and only item in <code>ARGV</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./list ~/Sync/Books/computer</code></pre>
+</figure><p><code>~/Sync/Books/computer</code> would be the first and only item in <code>ARGV</code>.</p>
 <blockquote>
-<p>[!NOTE]
-Some languages include the program name in their list of arguments. Crystal keeps the program name in <code>PROGRAM_NAME</code>, and the arguments in <code>ARGV</code>.</p>
+<p><strong>NOTE</strong></p>
+<p>Some languages include the program name in their list of arguments. Crystal keeps the program name in <code>PROGRAM_NAME</code>, and the arguments in <code>ARGV</code>.</p>
 </blockquote>
 <p>If I needed anything more than &ldquo;grab the first item in <code>ARGV</code>,&rdquo; I’d probably use <a href="https://crystal-lang.org/api/OptionParser.html">OptionParser</a>. But all I need is &ldquo;grab the first item in <code>ARGV</code>.&rdquo;</p>
 <p><strong><code>list.cr</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># list information about a directory&#39;s contents</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># list information about a directory&#39;s contents</span>
 </span></span><span class="line"><span class="cl"><span class="n">dirname</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
@@ -421,8 +451,11 @@ Some languages include the program name in their list of arguments. Crystal keep
 </span></span><span class="line"><span class="cl">    <span class="n">child</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">directory?</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;%-50s %10s %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ crystal run list.cr -- ~/Sync/pictures/
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal run list.cr -- ~/Sync/pictures/
 1/                                                      4,096  2019-10-18 15:28:30 UTC
 1999/                                                   4,096  2019-10-18 15:28:30 UTC
 2001/                                                   4,096  2019-10-18 15:28:30 UTC
@@ -439,10 +472,10 @@ Some languages include the program name in their list of arguments. Crystal keep
 2018/                                                   4,096  2019-10-18 15:28:30 UTC
 digikam4.db                                         4,386,816  2019-02-17 15:58:19 UTC
 recognition.db                                      4,755,456  2019-02-17 15:58:19 UTC
-thumbnails-digikam.db                              197,328,896  2019-02-17 15:58:21 UTC
-</code></pre><blockquote>
-<p>[!NOTE]
-When using <code>crystal run</code> to execute a script, use <code>--</code> to split arguments for <code>crystal</code> and those for your script. <code>list.cr</code> is for Crystal. <code>~/Sync/pictures/</code> is for the script.</p>
+thumbnails-digikam.db                              197,328,896  2019-02-17 15:58:21 UTC</code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>When using <code>crystal run</code> to execute a script, use <code>--</code> to split arguments for <code>crystal</code> and those for your script. <code>list.cr</code> is for Crystal. <code>~/Sync/pictures/</code> is for the script.</p>
 </blockquote>
 <p>This works, if you use it exactly right. Right now is where I’m tempted to say &ldquo;Error handling is left as an exercise for the reader.&rdquo; But no. Not this time.</p>
 <p>Let’s build this up so it handles common errors and concerns.</p>
@@ -458,7 +491,9 @@ When using <code>crystal run</code> to execute a script, use <code>--</code> to 
 <p>That covers the likeliest possibilities running this program on my own computer. Besides, Crystal will let me know I forgot something.</p>
 <p>I assembled this <a href="https://en.wikipedia.org/wiki/Top-down_and_bottom-up_design">top-down</a>, describing what I want to do and then describing how to do it. And even though Crystal doesn’t require a main method, that seems like a good place to start. If nothing else, it keeps the core logic in one place.</p>
 <p>What does <code>main</code> do? It displays a <code>summary_table</code> of whatever I hand to it. If anything goes wrong, it quits with a <code>fatal_error</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">main</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Print a brief file or directory summary specified via command line argument</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">()</span>
@@ -469,38 +504,46 @@ When using <code>crystal run</code> to execute a script, use <code>--</code> to 
 </span></span><span class="line"><span class="cl">  <span class="k">rescue</span> <span class="n">ex</span>
 </span></span><span class="line"><span class="cl">    <span class="n">fatal_error</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I don’t need to consider every possible error. But I should make sure we’re polite about the errors we do encounter. Rescue any <a href="https://crystal-lang.org/reference/syntax_and_semantics/exception_handling.html">exceptions</a> that occur and hand them to <code>fatal_error</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I don’t need to consider every possible error. But I should make sure we’re polite about the errors we do encounter. Rescue any <a href="https://crystal-lang.org/reference/syntax_and_semantics/exception_handling.html">exceptions</a> that occur and hand them to <code>fatal_error</code>.</p>
 <p><code>fatal_error</code> prints its <code>error</code> message and usage info to <a href="https://crystal-lang.org/api/toplevel.html#STDERR">STDERR</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Quit with an error and usage info</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Quit with an error and usage info</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="n">error</span>
 </span></span><span class="line"><span class="cl">  <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;USAGE: </span><span class="si">#{</span><span class="no">PROGRAM_NAME</span><span class="si">}</span><span class="s2"> FILENAME&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>That non-zero <a href="https://crystal-lang.org/api/toplevel.html#exit%28status=0%29:NoReturn-class-method">exit</a> tells the shell something went wrong. Handy for piped commands and customized shell prompts that incorporate execution status.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>That non-zero <a href="https://crystal-lang.org/api/toplevel.html#exit%28status=0%29:NoReturn-class-method">exit</a> tells the shell something went wrong. Handy for piped commands and customized shell prompts that incorporate execution status.</p>
 <p>The summary table glues together a collection of summary rows — even if it’s just a collection of one — composed from file summaries and formatted according to some basic guidelines about column size.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a string description of a file or directory</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a string description of a file or directory</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">summary_table</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">summaries</span> <span class="o">=</span> <span class="n">dir_summaries</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="o">||</span> <span class="p">{</span> <span class="n">file_summary</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="n">columns</span> <span class="o">=</span> <span class="n">column_sizes</span><span class="p">(</span><span class="n">summaries</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="n">summaries</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">summary_row</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p><a href="https://dev.to/walpolesj/short-circuit-assignment-25ik">Short-circuit assignment</a> uses the <a href="https://crystal-lang.org/reference/syntax_and_semantics/or.html">or</a> operator <code>||</code> to succinctly set our summaries. We got a directory summary? Use it. No? Okay, try treating it as a single file. Whichever one returns a useful value first gets assigned to <code>summaries</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p><a href="https://dev.to/walpolesj/short-circuit-assignment-25ik">Short-circuit assignment</a> uses the <a href="https://crystal-lang.org/reference/syntax_and_semantics/or.html">or</a> operator <code>||</code> to succinctly set our summaries. We got a directory summary? Use it. No? Okay, try treating it as a single file. Whichever one returns a useful value first gets assigned to <code>summaries</code>.</p>
 <p>Since we’re going top-down, we can say that a directory summary is a sorted collection of files summaries and move on.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a multiline description of a directory</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a multiline description of a directory</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dir_summaries</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">unless</span> <span class="nb">File</span><span class="o">.</span><span class="n">directory?</span> <span class="n">dirname</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dir</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="n">file_summary</span> <span class="nb">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Returning early for non-directories simplifies short-circuit assignment. This method knows it may be handed a regular file. Stopping right away prevents that from being treated the same as an error.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Returning early for non-directories simplifies short-circuit assignment. This method knows it may be handed a regular file. Stopping right away prevents that from being treated the same as an error.</p>
 <p>Oh <em>here’s</em> the work of summarizing. Build a name. Describe the size. Turn the file’s modification time into something we can read.</p>
 <p>Okay that’s not much work after all. Especially considering that I already figured out how to describe size.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_summary</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">basename</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">basename</span> <span class="n">filename</span>
 </span></span><span class="line"><span class="cl"><span class="n">size</span> <span class="o">=</span> <span class="n">describe_size</span> <span class="nb">File</span><span class="o">.</span><span class="n">size</span> <span class="n">filename</span>
@@ -509,10 +552,12 @@ When using <code>crystal run</code> to execute a script, use <code>--</code> to 
 </span></span><span class="line"><span class="cl"><span class="n">basename</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="nb">File</span><span class="o">.</span><span class="n">directory?</span> <span class="n">filename</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="n">basename</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">mod_time</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>That’s a lot of <a href="https://en.wikipedia.org/wiki/Method_chaining">methodchaining</a>. Method chains are useful, but brittle. Temped to at least hide it in a new describe_time method. Oh well. Next time.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>That’s a lot of <a href="https://en.wikipedia.org/wiki/Method_chaining">methodchaining</a>. Method chains are useful, but brittle. Temped to at least hide it in a new describe_time method. Oh well. Next time.</p>
 <p>Yep. Turned that Proc from the other day into a method.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return string description of byte size as bytes/KB/MB/GB</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return string description of byte size as bytes/KB/MB/GB</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">describe_size</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">scales</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;GB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;MB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="p">,</span> <span class="s2">&#34;KB&#34;</span><span class="p">}</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">bytes</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}</span>
@@ -524,17 +569,21 @@ When using <code>crystal run</code> to execute a script, use <code>--</code> to 
 </span></span><span class="line"><span class="cl">                <span class="k">end</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">scale</span><span class="o">.</span><span class="n">humanize</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">term</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p><a href="https://crystal-lang.org/api/Number.html#humanize%28io:IO,precision=3,separator=%27.%27,delimiter=%27,%27,*,base=10**3,significant=true,prefixes:Indexable=SI_PREFIXES%29:Nil-instance-method">Number#humanize</a> is a delightful convenience method for readable numbers. It adds commas where expected. It trims floating point numbers to more digestible precision. No word yet on whether it slices or dices.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p><a href="https://crystal-lang.org/api/Number.html#humanize%28io:IO,precision=3,separator=%27.%27,delimiter=%27,%27,*,base=10**3,significant=true,prefixes:Indexable=SI_PREFIXES%29:Nil-instance-method">Number#humanize</a> is a delightful convenience method for readable numbers. It adds commas where expected. It trims floating point numbers to more digestible precision. No word yet on whether it slices or dices.</p>
 <p><code>column_sizes</code> is dangerously close to clever — the bad kind of smart where I’m likely to miss a mistake. The intent is reasonable enough. Find how long each field is in each summary. Figure out which is the longest value for each column. But there’s probably a more legible way to do it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a list containing the size needed to fit each field.</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a list containing the size needed to fit each field.</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">column_sizes</span><span class="p">(</span><span class="n">summaries</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sizes</span> <span class="o">=</span> <span class="n">summaries</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span> <span class="n">field</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span> <span class="n">field</span><span class="o">.</span><span class="n">size</span> <span class="p">}</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">sizes</span><span class="o">.</span><span class="n">max_of</span> <span class="p">{</span> <span class="o">|</span><span class="n">column</span><span class="o">|</span> <span class="n">column</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="p">}</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Oh thank goodness. Back to fairly legible code with <code>summary_row</code>. Although. Honestly? I’m being so specific with how each item in the summary is treated. That calls out for a class, or at least a <a href="https://crystal-lang.org/reference/syntax_and_semantics/structs.html">struct</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Oh thank goodness. Back to fairly legible code with <code>summary_row</code>. Although. Honestly? I’m being so specific with how each item in the summary is treated. That calls out for a class, or at least a <a href="https://crystal-lang.org/reference/syntax_and_semantics/structs.html">struct</a>.</p>
 <p>Not enough time to rewrite the whole program, though. Sometimes it’s more important to get to the next task than to get this one perfect.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">summary_row</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">path_column</span><span class="p">,</span> <span class="n">size_column</span><span class="p">,</span> <span class="n">mod_column</span> <span class="o">=</span> <span class="n">columns</span>
 </span></span><span class="line"><span class="cl">
@@ -543,23 +592,29 @@ When using <code>crystal run</code> to execute a script, use <code>--</code> to 
 </span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">rjust</span><span class="p">(</span><span class="n">size_column</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34; &#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="o">[</span><span class="mi">2</span><span class="o">].</span><span class="n">ljust</span><span class="p">(</span><span class="n">mod_column</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Like most languages, Crystal’s <a href="https://crystal-lang.org/api/String.html">String</a> class has <em>many</em> methods to make life easier. <a href="https://crystal-lang.org/api/String.html#ljust%28len,char:Char=%27%27%29-instance-method">String#ljust</a> pads the end of a string. <a href="https://crystal-lang.org/api/String.html#rjust%28len,char:Char=%27%27%29-instance-method">String#rjust</a> pads at the start, which is nice for number columns. Though my humanized numbers do reduce the effectiveness of a numeric column.</p>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Like most languages, Crystal’s <a href="https://crystal-lang.org/api/String.html">String</a> class has <em>many</em> methods to make life easier. <a href="https://crystal-lang.org/api/String.html#ljust%28len,char:Char=%27%27%29-instance-method">String#ljust</a> pads the end of a string. <a href="https://crystal-lang.org/api/String.html#rjust%28len,char:Char=%27%27%29-instance-method">String#rjust</a> pads at the start, which is nice for number columns. Though my humanized numbers do reduce the effectiveness of a numeric column.</p>
 <p>That’s it? I’m done? Excellent!</p>
 <p>Let’s build it and look at a random folder in my Sync archive.</p>
-<pre tabindex="0"><code>$ crystal build list.cr
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal build list.cr
 $ ./list ~/Sync/music-stuff/
 examine-iTunes.py 564 bytes 2019-02-17 07:58:19
 itunes.xml          29.8 MB 2019-02-17 07:58:19
 ratings.rb          1.02 KB 2019-02-17 07:58:19
-rhythmdb.xml        14.8 MB 2019-02-17 07:58:19
-</code></pre><p>Oh hey. Stuff from a couple old music management posts. Getting back to those is on the task list. I’ll get there.</p>
+rhythmdb.xml        14.8 MB 2019-02-17 07:58:19</code></pre>
+</figure><p>Oh hey. Stuff from a couple old music management posts. Getting back to those is on the task list. I’ll get there.</p>
 <p>Anyways. My <code>list</code> program works!</p>
 <p>I learned a fair bit about managing collections in Crystal. Also, the &ldquo;small methods&rdquo; approach that served me well in Ruby seems just as handy here.</p>
 <h2 id="yeah-i-know">Yeah, I know</h2>
 <p>If file information was all I needed, I could get the same details and more with
 <a href="https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation">ls</a>.</p>
-<pre tabindex="0"><code>$ ls -gGhp ~/Sync/pictures/
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ls -gGhp ~/Sync/pictures/
 total 197M
 drwxr-xr-x  3 4.0K Oct 18 08:28 1/
 drwxr-xr-x  7 4.0K Oct 18 08:28 1999/
@@ -577,8 +632,8 @@ drwxr-xr-x 12 4.0K Oct 18 08:28 2017/
 drwxr-xr-x 11 4.0K Oct 18 08:28 2018/
 -rw-r--r--  1 4.2M Feb 17  2019 digikam4.db
 -rw-r--r--  1 4.6M Feb 17  2019 recognition.db
--rw-r--r--  1 189M Feb 17  2019 thumbnails-digikam.db
-</code></pre><p>But I wouldn’t have learned anything about Crystal. I wouldn’t have had nearly as much fun, either. And — not counting other concerns like &ldquo;paying rent&rdquo; or &ldquo;eating&rdquo; — fun is the most important part!</p>
+-rw-r--r--  1 189M Feb 17  2019 thumbnails-digikam.db</code></pre>
+</figure><p>But I wouldn’t have learned anything about Crystal. I wouldn’t have had nearly as much fun, either. And — not counting other concerns like &ldquo;paying rent&rdquo; or &ldquo;eating&rdquo; — fun is the most important part!</p>
   
 
 

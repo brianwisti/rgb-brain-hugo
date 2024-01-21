@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/">Perl 5 Babysteps 02 - User Input</a></li>
@@ -294,7 +299,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>It&rsquo;s so neat that I&rsquo;m going to show you two ways to do it.</p>
 <h2 id="traditional">Traditional</h2>
 <p>Here&rsquo;s how I got user input before Perl 5.10. You&rsquo;ll find a lot of code that looks like this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
 </span></span></span><span class="line"><span class="cl"><span class="cm">
 </span></span></span><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
 </span></span></span><span class="line"><span class="cl"><span class="cm">
@@ -308,16 +315,23 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;What is your name? &#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">chomp</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>Why don&rsquo;t we run this before we start trying to decipher it?</p>
-<pre tabindex="0"><code>$ perl hello.pl
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Why don&rsquo;t we run this before we start trying to decipher it?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl
 What is your name? Brian[ENTER]
-Hello, Brian!
-</code></pre><p>There is a lot going on in the few lines we added. Let&rsquo;s look at them one by one.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;What is your name? &#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p><code>print</code> is how we used to get messages displayed on the console. It&rsquo;s still useful when you want to say something but you don&rsquo;t want to start a whole new line when it&rsquo;s done. We use <code>print</code> so that our answer to the question will display on the same line as the question itself. That is a common approach to user prompts.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span>
-</span></span></code></pre></div><p>We&rsquo;ve got some funny-looking thing instead of &ldquo;Brian&rdquo;. What is it?  Here&rsquo;s the short explanation:</p>
+Hello, Brian!</code></pre>
+</figure><p>There is a lot going on in the few lines we added. Let&rsquo;s look at them one by one.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;What is your name? &#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p><code>print</code> is how we used to get messages displayed on the console. It&rsquo;s still useful when you want to say something but you don&rsquo;t want to start a whole new line when it&rsquo;s done. We use <code>print</code> so that our answer to the question will display on the same line as the question itself. That is a common approach to user prompts.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>We&rsquo;ve got some funny-looking thing instead of &ldquo;Brian&rdquo;. What is it?  Here&rsquo;s the short explanation:</p>
 <blockquote>
 <p><code>&lt;STDIN&gt;</code> gets input from the user that you can save in a variable.</p>
 </blockquote>
@@ -333,17 +347,24 @@ the filehandle - which is <code>STDIN</code> in this case, which is the keys you
 from the keyboard in this case - is stored in <code>$name</code>.</p>
 </blockquote>
 <p>There&rsquo;s a really long version, but I&rsquo;m getting bored so we&rsquo;ll skip it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">chomp</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
-</span></span></code></pre></div><p><code>chomp</code> removes the last character from a string if that character is a newline - whatever a newline is defined as on your platform. Why do we need that? Well, when Perl reads with the <code>&lt;...&gt;</code> operator, it gives you <em>everything</em>. That includes the <code>[ENTER]</code> key that you pressed to send your name to the program. What that ENTER actually looks like depends on your platform: but the end result is a line break in the text. Sometimes we like that, but not today. Here&rsquo;s what you would see if you left out <code>chomp</code>:</p>
-<pre tabindex="0"><code>$ perl hello.pl
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">chomp</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span></span></span></code></pre>
+</figure><p><code>chomp</code> removes the last character from a string if that character is a newline - whatever a newline is defined as on your platform. Why do we need that? Well, when Perl reads with the <code>&lt;...&gt;</code> operator, it gives you <em>everything</em>. That includes the <code>[ENTER]</code> key that you pressed to send your name to the program. What that ENTER actually looks like depends on your platform: but the end result is a line break in the text. Sometimes we like that, but not today. Here&rsquo;s what you would see if you left out <code>chomp</code>:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl hello.pl
 What is your name? Brian[ENTER]
 Hello, Brian
 !
-$
-</code></pre><p>You can see that you&rsquo;re going to use <code>chomp</code> a lot when getting user input. But what if there were an easier way? There is &hellip; sort of.</p>
+$</code></pre>
+</figure><p>You can see that you&rsquo;re going to use <code>chomp</code> a lot when getting user input. But what if there were an easier way? There is &hellip; sort of.</p>
 <h2 id="a-new-way">A new way</h2>
 <p>The new way looks better to my eyes, but I&rsquo;m willing to admit that there&rsquo;s a lot going on for a beginner. You can feel free to ignore this section if you like, and my feelings won&rsquo;t be hurt at all.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
 </span></span></span><span class="line"><span class="cl"><span class="cm">
 </span></span></span><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
 </span></span></span><span class="line"><span class="cl"><span class="cm">
@@ -359,16 +380,20 @@ $
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$console</span> <span class="o">=</span> <span class="nn">Term::ReadLine</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span>    <span class="o">=</span> <span class="nv">$console</span><span class="o">-&gt;</span><span class="n">get_reply</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=&gt;</span> <span class="s">&#34;What is your name? &#34;</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>The program is doing nearly the same thing as before, but the code looks a lot different. We <code>use</code> some new stuff, added a new variable, and have changed the way we get the user&rsquo;s name. On the other hand, we don&rsquo;t have to <code>chomp</code> anything.</p>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>The program is doing nearly the same thing as before, but the code looks a lot different. We <code>use</code> some new stuff, added a new variable, and have changed the way we get the user&rsquo;s name. On the other hand, we don&rsquo;t have to <code>chomp</code> anything.</p>
 <h3 id="looking-at-the-changes">Looking at the changes</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::UI</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::ReadLine</span><span class="p">;</span>
-</span></span></code></pre></div><p>These lines tell Perl to load a couple of modules for some additional functionality. This is different from when we called <code>use</code> before. With Modern::Perl we were giving Perl a new personality. This time we&rsquo;re just making some new functions available. Module names are usually capitalized like proper names, and that <code>::</code> is conventionally used to indicate related modules within a category.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::UI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::ReadLine</span><span class="p">;</span></span></span></code></pre>
+</figure><p>These lines tell Perl to load a couple of modules for some additional functionality. This is different from when we called <code>use</code> before. With Modern::Perl we were giving Perl a new personality. This time we&rsquo;re just making some new functions available. Module names are usually capitalized like proper names, and that <code>::</code> is conventionally used to indicate related modules within a category.</p>
 <p>Why do we want those modules? So we can create an object that reads user input.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$console</span> <span class="o">=</span> <span class="nn">Term::ReadLine</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span>    <span class="o">=</span> <span class="nv">$console</span><span class="o">-&gt;</span><span class="n">get_reply</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=&gt;</span> <span class="s">&#34;What is your name? &#34;</span> <span class="p">);</span>
-</span></span></code></pre></div><p>There are a lot of things to learn in these two lines of code, so please forgive me if I rush through them too quickly.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$console</span> <span class="o">=</span> <span class="nn">Term::ReadLine</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span>    <span class="o">=</span> <span class="nv">$console</span><span class="o">-&gt;</span><span class="n">get_reply</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=&gt;</span> <span class="s">&#34;What is your name? &#34;</span> <span class="p">);</span></span></span></code></pre>
+</figure><p>There are a lot of things to learn in these two lines of code, so please forgive me if I rush through them too quickly.</p>
 <p>What&rsquo;s an object? Oh boy. That is a tricky question for a beginner tutorial. It&rsquo;s so tricky that I&rsquo;ve decided to skip it completely. Almost completely. Objects are basically magic scalar variables that hold extra information such as data (the <em>fields</em>) and subroutines (the <em>methods</em>). Intelligent use of objects allow you to quickly write powerful programs while hiding the complexity of what&rsquo;s going on behind a sweet and smiling face.</p>
 <p><em>Classes</em> define the structure of a particular type of object. You create an object with a <em>constructor</em> method defined in the class. The constructor is usually called <code>new</code>, and you access it with the <code>-&gt;</code> operator. The same operator is used to access the methods of your <code>$console</code> object.</p>
 <p>The last source of confusion in this new example is the way we asked <code>$console</code> to present its prompt to the user. The quick way to think of it is that we are giving a dictionary to <code>get_reply</code>. <code>get_reply</code> looks at this dictionary for keywords that are important to it, such as <code>prompt</code>. We use that <code>=&gt;</code> operator to tell <code>$console-&gt;get_reply</code> that we want the <code>prompt</code> to be &ldquo;What is your name? &quot;</p>

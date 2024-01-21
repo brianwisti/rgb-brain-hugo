@@ -31,9 +31,11 @@
 <p>{{&lt; twitter user=&ldquo;brianwisti&rdquo; id=&ldquo;1536166882352455681&rdquo; &gt;}}</p>
 <p>The secondary purpose was to get more comfortable using <a href="/card/typescript/">card/TypeScript</a> and <a href="/card/node.js/">card/Node.js</a>. I didn&rsquo;t revert to Python, Perl, or Ruby for <em>any</em> of this. Mission accomplished!</p>
 <p>You want to <em>see</em> the code? Ah. Well. Maybe later. This was flailing and puttering code, not showing off code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">task add project:Site +blog <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  write better on taskwarrior logseq import
-</span></span></code></pre></div><p>There. Now it can haunt me for the next couple years.</p>]]></content:encoded>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">task add project:Site +blog <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  write better on taskwarrior logseq import</span></span></code></pre>
+</figure><p>There. Now it can haunt me for the next couple years.</p>]]></content:encoded>
 </item>
 <item>
   <title>Post: OrgMode-ish VimWiki</title>
@@ -85,56 +87,87 @@ Taskwarrior lets you assign <a href="/post/2018/01/taskwarrior-due-dates/">due d
 <h2 id="filtering-with-or">Filtering with <code>or</code></h2>
 <p>Filters already have an implied <code>and</code>. It looks like this.</p>
 <p>How many active tasks do I have?</p>
-<pre tabindex="0"><code>$ task +PENDING count
-198
-</code></pre><p>How many active tasks do I want to work on soon?</p>
-<pre tabindex="0"><code>$ task +PENDING priority:M count
-28
-</code></pre><p>That’s filtering tasks to those for which <code>+PENDING</code> <strong>and</strong> <code>priority:M</code> are true.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING count
+198</code></pre>
+</figure><p>How many active tasks do I want to work on soon?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING priority:M count
+28</code></pre>
+</figure><p>That’s filtering tasks to those for which <code>+PENDING</code> <strong>and</strong> <code>priority:M</code> are true.</p>
 <p>How many active tasks do I want to be working on now?</p>
-<pre tabindex="0"><code>$ task +PENDING priority:H count
-6
-</code></pre><p>That’s a bit much. It should be more like four or five.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING priority:H count
+6</code></pre>
+</figure><p>That’s a bit much. It should be more like four or five.</p>
 <p>How many active tasks do I want to work on now or soon? That is, which tasks are <code>+PENDING</code> and have either <code>priority:M</code> or <code>priority:H</code>?</p>
 <p>We can use <code>or</code> to join two filters. If either of them is true for the task, that task is included. Use parentheses to build more complex filters.</p>
-<pre tabindex="0"><code>$ task +PENDING (priority:H or priority:M) count
-zsh: unknown file attribute: i
-</code></pre><p>Tada — oops. Hang on. This stuff goes through the shell before it reaches Taskwarrior. Let’s put the filter in a string.</p>
-<pre tabindex="0"><code>$ task &#39;+PENDING (priority:H or priority:M)&#39; count
-34
-</code></pre><p>Tada!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING (priority:H or priority:M) count
+zsh: unknown file attribute: i</code></pre>
+</figure><p>Tada — oops. Hang on. This stuff goes through the shell before it reaches Taskwarrior. Let’s put the filter in a string.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#39;&#43;PENDING (priority:H or priority:M)&#39; count
+34</code></pre>
+</figure><p>Tada!</p>
 <p>Okay, it works, but I just know there will be more typos using this filter from memory. How can I avoid typing it in every time?</p>
 <h2 id="use-a-context">Use a context</h2>
 <p>I could add that priority filter to my &ldquo;focused&rdquo; <a href="/post/2018/02/taskwarrior-contexts/">context</a>, used when I need to ignore distracting ideas.</p>
 <p><strong><code>~/.taskrc</code></strong></p>
-<pre tabindex="0"><code>context.focused=-idea -shelved (priority:H or priority:M)
-</code></pre><p>Now <em>every</em> report skips low priority tasks.</p>
-<pre tabindex="0"><code>$ task context focused
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >context.focused=-idea -shelved (priority:H or priority:M)</code></pre>
+</figure><p>Now <em>every</em> report skips low priority tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context focused
 Context &#39;focused&#39; set. Use &#39;task context none&#39; to remove.
-$ task +PENDING count
-34
-</code></pre><p>This is great, but I want to know my top tasks even when I’m not in focused context.</p>
+$ task &#43;PENDING count
+34</code></pre>
+</figure><p>This is great, but I want to know my top tasks even when I’m not in focused context.</p>
 <p>Plus it’s easy to forget which context you’re in. I once spent 15 minutes trying to find a <code>+work</code> task before remembering I was still in <code>offwork</code> context. Which reminds me — </p>
-<pre tabindex="0"><code>$ task context blog
-</code></pre><h2 id="use-a-shell-alias">Use a shell alias</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context blog</code></pre>
+</figure><h2 id="use-a-shell-alias">Use a shell alias</h2>
 <p>Part of Taskwarrior’s charm is the fact that we use <code>task</code> from the command line. I could take advantage of that with a shell alias for <code>task</code> using the preface filter.</p>
 <p><strong><code>~/.aliases</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ttop</span><span class="o">=</span><span class="s1">&#39;task +PENDING &#34;(priority:H or priority:M)&#34;&#39;</span>
-</span></span></code></pre></div><p>This gives me sort of an on-the-fly context.</p>
-<pre tabindex="0"><code>$ ttop count
-34
-</code></pre><p>I could use <code>ttop</code> with any Taskwarrior command, so <code>ttop next</code> would be a fine way to look at my important tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ttop</span><span class="o">=</span><span class="s1">&#39;task +PENDING &#34;(priority:H or priority:M)&#34;&#39;</span></span></span></code></pre>
+</figure><p>This gives me sort of an on-the-fly context.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ttop count
+34</code></pre>
+</figure><p>I could use <code>ttop</code> with any Taskwarrior command, so <code>ttop next</code> would be a fine way to look at my important tasks.</p>
 <p>But I’d kind of like to have a custom report for reviewing tasks I’ve set as important. Something with a little more information than <code>task minimal</code> but a bit less than <code>task next</code>.</p>
 <h2 id="use-a-custom-report">Use a custom report</h2>
 <p>Might be easier to show than tell. For more of a &ldquo;tell&rdquo; approach, check the &ldquo;REPORTS&rdquo; section of <code>man taskrc</code>. Here’s my custom &ldquo;top&rdquo; report, loosely based on Taskwarrior’s <code>minimal</code> report.</p>
 <p><strong><code>~/.taskrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Almost-minimal view of tasks I want to work on most
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Almost-minimal view of tasks I want to work on most
 </span></span><span class="line"><span class="cl">report.top.columns=id,priority,project,tags,description.count 
 </span></span><span class="line"><span class="cl">report.top.description=&#39;Minimal details of tasks&#39;
 </span></span><span class="line"><span class="cl">report.top.filter=status:pending (priority:H or priority:M)
 </span></span><span class="line"><span class="cl">report.top.labels=ID,Pri,Project,Tags,Description
-</span></span><span class="line"><span class="cl">report.top.sort=priority-/,project-,description+ 
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">report.top.sort=priority-/,project-,description+ </span></span></code></pre>
+</figure><ul>
 <li>
 <p><code>description.count</code> column is used for the description text and the number of annotations for the task.</p>
 </li>
@@ -143,7 +176,10 @@ $ task +PENDING count
 </li>
 </ul>
 <p>And here’s what my <code>top</code> report looks like.</p>
-<pre tabindex="0"><code>$ task top
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task top
 ID  Pri Project    Tags              Description
  28 H   Site       blog taskwarrior  custom reports [1]
 194 H   Site       blog              describe workflow
@@ -181,24 +217,30 @@ ID  Pri Project    Tags              Description
 145 M              ops               refactor sync cronjob to script
  16 M              tools             try out newsboat news reader
 34 tasks
-Filter: ( status = pending and ( priority = H or priority = M ) )
-</code></pre><p>I can apply additional filters just like with any other report.</p>
-<pre tabindex="0"><code>$  rgb-hugo (master) task project:OrgConfig top
+Filter: ( status = pending and ( priority = H or priority = M ) )</code></pre>
+</figure><p>I can apply additional filters just like with any other report.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$  rgb-hugo (master) task project:OrgConfig top
 ID  Pri Project   Tags Description
 197 M   OrgConfig ops  add awesomewm settings
 1 task
-Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )
-</code></pre><p>So that’s pretty handy. But clearly I need to clean this up a bit. Some of those aren’t really things I want to work on soon. But at least now I have one less <code>priority:H</code> task.</p>
+Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )</code></pre>
+</figure><p>So that’s pretty handy. But clearly I need to clean this up a bit. Some of those aren’t really things I want to work on soon. But at least now I have one less <code>priority:H</code> task.</p>
 <p>You can see Taskwarrior’s settings for the <code>minimal</code> report, or any other, with <code>show report.NAME</code>:</p>
-<pre tabindex="0"><code>$ task show report.minimal
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task show report.minimal
 
 Config Variable            Value
 report.minimal.columns     id,project,tags.count,description.count
 report.minimal.description Minimal details of tasks
 report.minimal.filter      status:pending or status:waiting
 report.minimal.labels      ID,Project,Tags,Description
-report.minimal.sort        project+/,description+
-</code></pre>]]></content:encoded>
+report.minimal.sort        project&#43;/,description&#43;</code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: Taskwarrior Sync</title>
@@ -207,7 +249,8 @@ report.minimal.sort        project+/,description+
   
   <guid>https://randomgeekery.org/post/2020/01/taskwarrior-sync/</guid>
   <description>inthe.AM is pretty, that’s for sure.
-[!WARNING] 2024-01-14 This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
+2024-01-14
+This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
 The problem You’ve been doing great with your Taskwarrior tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.
 Everything’s great until the day you need to get at your tasks on a different machine: laptop, work computer, whatever.</description>
    <category>post</category> 
@@ -216,8 +259,8 @@ Everything’s great until the day you need to get at your tasks on a different 
   <content:encoded><![CDATA[<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-26.png" alt="attachments/img/2020/cover-2020-01-26.png"/>
 inthe.AM is pretty, that&rsquo;s for sure.</p>
 <blockquote>
-<p>[!WARNING] 2024-01-14
-This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!</p>
+<p><strong>2024-01-14</strong></p>
+<p>This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!</p>
 </blockquote>
 <h2 id="the-problem">The problem</h2>
 <p>You’ve been doing great with your <a href="/card/taskwarrior/">Taskwarrior</a> tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.</p>
@@ -251,46 +294,72 @@ Well, the mobile Taskwarrior experience is not great. There are a couple Android
 <p>Since I’m not really using inthe.AM’s features, let’s set myself up on Freecinc. I click the big friendly &ldquo;Generate My Keys&rdquo; link, and the site tells me what to do.</p>
 <p><img src="/post/2020/01/attachments/img/2020/freecinc-setup.png" alt="The first couple steps of Freecinc setup"/></p>
 <p>There are six total steps, consistently almost entirely of downloading some small files and copying and pasting some commands. Once the <code>.pem</code> files are safe and I set the <code>taskd</code> settings, I initialize synchronization.</p>
-<pre tabindex="0"><code>$ task sync init
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task sync init
 Please confirm that you wish to upload all your pending tasks to the Taskserver (yes/no) yes
 Syncing with freecinc.com:53589
 
-Sync successful.  1516 changes uploaded.
-</code></pre><p>Follow their instructions to set up any other machines you need connected to the Freecinc taskserver.</p>
+Sync successful.  1516 changes uploaded.</code></pre>
+</figure><p>Follow their instructions to set up any other machines you need connected to the Freecinc taskserver.</p>
 <p>Once you go through all that work to set things up, how hard is it to <em>use</em> the <a href="https://taskwarrior.org/docs/commands/synchronize.html">synchronize</a> command?</p>
-<pre tabindex="0"><code>$ task log +taskwarrior set up freecinc
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task log &#43;taskwarrior set up freecinc
 Logged task f053e7ab-1332-4131-8ceb-c2e121e8b00e.
 $ task sync
 Syncing with freecinc.com:53589
 
-Sync successful.  1 changes uploaded.
-</code></pre><p>That’s it. Run <code>task sync</code> occasionally and you’re golden.</p>
+Sync successful.  1 changes uploaded.</code></pre>
+</figure><p>That’s it. Run <code>task sync</code> occasionally and you’re golden.</p>
 <h2 id="nits-and-tips">Nits and tips</h2>
 <p>Task servers dramatically improve life with Taskwarrior. Some little annoyances become more apparent though. Let’s deal with those now.</p>
 <h3 id="cutting-down-on-the-verbosity">Cutting down on the verbosity</h3>
 <p>You get tired of this pretty quick:</p>
-<pre tabindex="0"><code>226 tasks, truncated to 61 lines
-There are local changes.  Sync required.
-</code></pre><p>The second you need to make a change, you get that message about local changes. Configure verbosity in your <code>.taskrc</code> if you don’t care about that particular update.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">verbose</span><span class="o">=</span><span class="s">blank,header,footnote,label,new-id,affected,edit,special,project,filter,unwait</span>
-</span></span></code></pre></div><p>This removes messages about sync while leaving everything else. If you want more quiet, try <code>verbose=off</code> or even <code>verbose=nothing</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >226 tasks, truncated to 61 lines
+There are local changes.  Sync required.</code></pre>
+</figure><p>The second you need to make a change, you get that message about local changes. Configure verbosity in your <code>.taskrc</code> if you don’t care about that particular update.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">verbose</span><span class="o">=</span><span class="s">blank,header,footnote,label,new-id,affected,edit,special,project,filter,unwait</span></span></span></code></pre>
+</figure><p>This removes messages about sync while leaving everything else. If you want more quiet, try <code>verbose=off</code> or even <code>verbose=nothing</code>.</p>
 <blockquote>
-<p>[!NOTE]
-See <code>man taskrc</code> for more details about Taskwarrior configuration.</p>
+<p><strong>NOTE</strong></p>
+<p>See <code>man taskrc</code> for more details about Taskwarrior configuration.</p>
 </blockquote>
 <h3 id="sync-automatically-with-a-cron-job">Sync automatically with a cron job</h3>
 <p>The hardest part of synchronization is remembering to do it. Let’s set up a <a href="https://opensource.com/article/17/11/how-use-cron-linux">cron</a> job so I don’t have to remember.</p>
-<pre tabindex="0"><code>$ crontab -e
-</code></pre><p>Hourly should suffice. The <a href="https://crontab.guru/#0_*">https://crontab.guru/#0_*</a><em>*</em>*_*[crontab guru] says &ldquo;hourly&rdquo; would look like this:</p>
-<pre tabindex="0"><code>0 * * * * /usr/bin/task sync
-</code></pre><p>And that works. But I haven’t gotten around to setting up mail on that machine, so <code>cron</code> discards the output. I have no idea what the sync result was.</p>
-<pre tabindex="0"><code>0 * * * * { printf &#34;\%s: &#34; &#34;$(date &#34;+\%F \%T&#34;)&#34;; /usr/bin/task sync } &gt;&gt; /home/randomgeek/logs/task-sync.log 2&gt;&amp;1
-</code></pre><p>This appends a timestamp and the result of <code>task sync</code> — including standard and error ouputs — to a log file.</p>
-<pre tabindex="0"><code>2020-01-26 16:00:00: Sync successful.  1 changes uploaded.
-</code></pre><p><em>There</em> we go. I better turn this into a script before I get any more elaborate with it though. Except I have to go take care of something else.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crontab -e</code></pre>
+</figure><p>Hourly should suffice. The <a href="https://crontab.guru/#0_*">https://crontab.guru/#0_*</a><em>*</em>*_*[crontab guru] says &ldquo;hourly&rdquo; would look like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >0 * * * * /usr/bin/task sync</code></pre>
+</figure><p>And that works. But I haven’t gotten around to setting up mail on that machine, so <code>cron</code> discards the output. I have no idea what the sync result was.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >0 * * * * { printf &#34;\%s: &#34; &#34;$(date &#34;&#43;\%F \%T&#34;)&#34;; /usr/bin/task sync } &gt;&gt; /home/randomgeek/logs/task-sync.log 2&gt;&amp;1</code></pre>
+</figure><p>This appends a timestamp and the result of <code>task sync</code> — including standard and error ouputs — to a log file.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >2020-01-26 16:00:00: Sync successful.  1 changes uploaded.</code></pre>
+</figure><p><em>There</em> we go. I better turn this into a script before I get any more elaborate with it though. Except I have to go take care of something else.</p>
 <p>No problem, I’ll make a task.</p>
-<pre tabindex="0"><code>$ task add +ops +taskwarrior priority:M refactor sync cronjob to script
-</code></pre>]]></content:encoded>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add &#43;ops &#43;taskwarrior priority:M refactor sync cronjob to script</code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: A Quick Notes Script for Taskwarrior</title>
@@ -311,7 +380,10 @@ What’s the problem? What tasks am I working on right now?</description>
 <p>I plan to work on that today, but — well — there’s another problem too.</p>
 <h2 id="whats-the-problem">What’s the problem?</h2>
 <p>What tasks am I working on right now? Let’s get the <a href="/post/2018/12/active-tasks-in-taskwarrior/">active</a> task report.</p>
-<pre tabindex="0"><code>$ task active
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task active
 
 ID  Started    Active Age P Project Tags        Due        Description
 232 2020-01-12 2min   2h  H         taskwarrior 2020-01-12 quick and easy notes script
@@ -320,20 +392,26 @@ ID  Started    Active Age P Project Tags        Due        Description
                                                              2019-12-28 reference
                                                            https://twitter.com/brianwi-
                                                            sti/status/1210771041783447-
-                                                           553
-</code></pre><p>This is a mess. My task descriptions can get verbose. That makes my reports look busy. Annotations give additional information, but at the cost of cluttering the report even more.</p>
+                                                           553</code></pre>
+</figure><p>This is a mess. My task descriptions can get verbose. That makes my reports look busy. Annotations give additional information, but at the cost of cluttering the report even more.</p>
 <p>The <a href="/post/2019/09/taskwarrior-editing-refinements/">edit</a> view isn’t any better, really.</p>
-<pre tabindex="0"><code>$ task 220 edit
-</code></pre><p><code>task edit</code> gives me something like this:</p>
-<pre tabindex="0"><code># Annotations look like this: &lt;date&gt; -- &lt;text&gt; and there can be any number of them.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 220 edit</code></pre>
+</figure><p><code>task edit</code> gives me something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Annotations look like this: &lt;date&gt; -- &lt;text&gt; and there can be any number of them.
 # The &#39; -- &#39; separator between the date and text field should not be removed.
 # A &#34;blank slot&#34; for adding an annotation follows for your convenience.
   Annotation:        2019-12-28 14:33:53 -- reference https:\/\/twitter.com\/brianwisti\/status\/1210771041783447553
-  Annotation:        2020-01-12 13:43:40 --
-</code></pre><p>I want some way of adding and reviewing information about a particular task without cluttering my Taskwarrior reports.</p>
+  Annotation:        2020-01-12 13:43:40 --</code></pre>
+</figure><p>I want some way of adding and reviewing information about a particular task without cluttering my Taskwarrior reports.</p>
 <blockquote>
-<p>[!NOTE]
-Honestly <a href="/card/org/">card/Org</a> provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.</p>
+<p><strong>NOTE</strong></p>
+<p>Honestly <a href="/card/org/">card/Org</a> provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.</p>
 </blockquote>
 <h2 id="what-i-need-today">What I need today</h2>
 <p>I need the ability to open a text file with notes for a specific task. I shouldn’t have to find or name the file myself. If the file doesn’t exist yet, it should be created.</p>
@@ -357,10 +435,15 @@ Except <code>$EDITOR</code>.</li>
 </blockquote>
 <p>How can we identify tasks consistently? IDs change as we complete tasks. Task descriptions change as we modify them. Fortunately, Every task has a <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> — a Universally Unique Identifier.</p>
 <p>The <a href="https://taskwarrior.org/docs/commands/_get.html"><code>_get</code></a> command gives us access to specific attributes of a task.</p>
-<pre tabindex="0"><code>$ task _get 220.uuid
-7887cab7-5ec4-4e8f-a257-edbd28f61301
-</code></pre><p>But how do I get this information <em>from Python</em>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task _get 220.uuid
+7887cab7-5ec4-4e8f-a257-edbd28f61301</code></pre>
+</figure><p>But how do I get this information <em>from Python</em>?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Manage Taskwarrior notes&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -368,26 +451,38 @@ Except <code>$EDITOR</code>.</li>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">task_id</span> <span class="o">=</span> <span class="mi">220</span>
 </span></span><span class="line"><span class="cl"><span class="n">task_uuid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;task _get </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">.uuid&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Task </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> has UUID </span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ task-note.py
-Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301
-</code></pre><p>That wasn’t so hard. I got lost in <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> last time I tried anything interesting with Python and processes. Turns out <a href="https://docs.python.org/3/library/os.html#os.popen">os.popen</a> provides a relatively straightforward approach.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Task </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> has UUID </span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task-note.py
+Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301</code></pre>
+</figure><p>That wasn’t so hard. I got lost in <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> last time I tried anything interesting with Python and processes. Turns out <a href="https://docs.python.org/3/library/os.html#os.popen">os.popen</a> provides a relatively straightforward approach.</p>
 <p>Where will I put my notes? Maybe <code>~/task-notes</code>. No, <code>~/Dropbox/task-notes</code>. That way everything is synchronized across my machines.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&#34;~/Dropbox/task-notes&#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&#34;~/Dropbox/task-notes&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">notes_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Saving notes to </span><span class="si">{</span><span class="n">notes_dir</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Later I might want to be more careful with directory creation. But today’s guideline is &ldquo;quick and dirty.&rdquo; <a href="https://docs.python.org/3/library/os.html#os.makedirs">os.makedirs</a> will recursively create <code>notes_dir</code> if needed. Since I specified <code>exist_ok=True</code>, we silently move on if <code>notes_dir</code> already exists.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Saving notes to </span><span class="si">{</span><span class="n">notes_dir</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Later I might want to be more careful with directory creation. But today’s guideline is &ldquo;quick and dirty.&rdquo; <a href="https://docs.python.org/3/library/os.html#os.makedirs">os.makedirs</a> will recursively create <code>notes_dir</code> if needed. Since I specified <code>exist_ok=True</code>, we silently move on if <code>notes_dir</code> already exists.</p>
 <p>I want the file to be named something like <code>UUID.md</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_basename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">.md&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_basename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">.md&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">notes_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">notes_dir</span><span class="p">,</span> <span class="n">notes_basename</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">notes_file</span><span class="p">)</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ task-note.py
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">notes_file</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task-note.py
 Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301
 Saving notes to /home/randomgeek/Dropbox/task-notes
-/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md
-</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">editor</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;EDITOR&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execlp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">)</span>
-</span></span></code></pre></div><p>The various <code>exec*</code> functions of module <a href="https://docs.python.org/3/library/os.html">os</a> replace the Python process with a new command. The suffixes indicate additional details.</p>
+/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">editor</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;EDITOR&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execlp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">)</span></span></span></code></pre>
+</figure><p>The various <code>exec*</code> functions of module <a href="https://docs.python.org/3/library/os.html">os</a> replace the Python process with a new command. The suffixes indicate additional details.</p>
 <ul>
 <li>The <code>l</code> — that’s a lowercase <code>L</code> — simplifies the case when you know exactly what arguments to use. All I needed was <code>$EDITOR &lt;file&gt;</code>. <code>execl*</code> functions let me specify program arguments as arguments to the function itself.</li>
 <li>The <code>p</code> indicates that I expect <code>$EDITOR</code> to be somewhere in the current <code>$PATH</code>.</li>
@@ -396,23 +491,33 @@ Saving notes to /home/randomgeek/Dropbox/task-notes
 <p><img src="/post/2020/01/attachments/img/2020/task-notes-view.png" alt="Neovim launched by Python"/></p>
 <p>Sweet. It worked!</p>
 <blockquote>
-<p>[!NOTE]
-Specifying the program twice confused me at first. Things clicked for me when I tried the <code>v</code> variant:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execvp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="p">[</span><span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">])</span>
-</span></span></code></pre></div><p>With v, you construct your program arguments with a list or tuple. Now It looks we’re constructing the <code>ARGV</code> list — or <a href="https://docs.python.org/3/library/sys.html#sys.argv">sys.argv</a> in Python. The program itself usually gets the first slot in <code>ARGV</code>. For example, here’s sys.argv for my <code>task-note.py</code> invocation:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;/home/randomgeek/bin/task-note.py&#39;</span><span class="p">,</span> <span class="s1">&#39;220&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>Most user-facing programs hide that detail from you — even Vim.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">echo</span> <span class="nx">argv</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">[<span class="s1">&#39;/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md&#39;</span>]
-</span></span></code></pre></div><p>I <em>think</em> that’s what’s going on anyways.</p>
+<p><strong>NOTE</strong></p>
+<p>Specifying the program twice confused me at first. Things clicked for me when I tried the <code>v</code> variant:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execvp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="p">[</span><span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">])</span></span></span></code></pre>
+</figure><p>With v, you construct your program arguments with a list or tuple. Now It looks we’re constructing the <code>ARGV</code> list — or <a href="https://docs.python.org/3/library/sys.html#sys.argv">sys.argv</a> in Python. The program itself usually gets the first slot in <code>ARGV</code>. For example, here’s sys.argv for my <code>task-note.py</code> invocation:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;/home/randomgeek/bin/task-note.py&#39;</span><span class="p">,</span> <span class="s1">&#39;220&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>Most user-facing programs hide that detail from you — even Vim.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">echo</span> <span class="nx">argv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">[<span class="s1">&#39;/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md&#39;</span>]</span></span></code></pre>
+</figure><p>I <em>think</em> that’s what’s going on anyways.</p>
 <p>I won’t lie. This <code>exec*</code> stuff is easier to say in Perl:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">exec</span><span class="p">(</span><span class="nv">$ENV</span><span class="p">{</span><span class="n">EDITOR</span><span class="p">},</span> <span class="nv">$notes_file</span><span class="p">);</span>
-</span></span></code></pre></div></blockquote>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">exec</span><span class="p">(</span><span class="nv">$ENV</span><span class="p">{</span><span class="n">EDITOR</span><span class="p">},</span> <span class="nv">$notes_file</span><span class="p">);</span></span></span></code></pre>
+</figure></blockquote>
 <h2 id="generalize-for-any-task">Generalize for any task</h2>
 <p>I learned what I needed to learn. Next is cleaning up and accepting command line arguments.</p>
 <p><a href="https://docs.python.org/3/library/argparse.html">argparse</a> will take care of the command line arguments. Might as well replace <code>print</code> with <a href="https://docs.python.org/3/library/logging.html">logging</a> calls. You know, just a little bit of tidying.</p>
 <p><strong><code>task-note.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Manage Taskwarrior notes&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -457,11 +562,11 @@ Specifying the program twice confused me at first. Things clicked for me when I 
 </span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;task_id&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;ID of the task to note&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">write_note</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
-</span></span></code></pre></div><p>I know. I didn’t want task metadata yet. It quickly became obvious that I would forget what task is involved unless I put <em>something</em>. So now the script adds the task description to a header line the first time a note is opened.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">write_note</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I know. I didn’t want task metadata yet. It quickly became obvious that I would forget what task is involved unless I put <em>something</em>. So now the script adds the task description to a header line the first time a note is opened.</p>
 <blockquote>
-<p>[!WARNING]
-Remember to <code>flush</code> your filehandles before handing control over to external processes like <a href="/card/vim/">card/Vim</a>. Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!</p>
+<p><strong>WARNING</strong></p>
+<p>Remember to <code>flush</code> your filehandles before handing control over to external processes like <a href="/card/vim/">card/Vim</a>. Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!</p>
 </blockquote>
 <p>Also threw in some error checking after the first time I tried writing notes for a nonexistent task.</p>
 <h2 id="whats-next">What’s Next?</h2>
@@ -504,42 +609,56 @@ Even with Taskwarrior to help me tackle my TODO list, I feel the pain of living 
   <pubDate>Thu, 05 Sep 2019 00:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2019/09/taskwarrior-editing-refinements/</guid>
-  <description>[!NOTE] card/tldr edit and append give additional ways to update your Taskwarrior tasks. undo is there for the errors you catch quickly.
+  <description>card/tldr
+edit and append give additional ways to update your Taskwarrior tasks. undo is there for the errors you catch quickly.
 I mentioned modify early on, and it works. But it’s real easy to make silly mistakes. Time to talk about a couple extra commands that reduce the impact of little daily blunders.
-modify So let’s say I got a book for work-related learning. I create a task.</description>
+modify So let’s say I got a book for work-related learning. I create a task.
+$ task add &#39;Read &#34;Two Scoops of Django&#34;&#39; Created task 201 Oh wait, this a learning task, so I should add the &#43;learn tag.</description>
    <category>post</category> 
    <category>post</category> 
    <category>taskwarrior</category>  <category>tools</category> 
   <content:encoded><![CDATA[<h2>In which I mention more ways to edit Taskwarrior tasks</h2><p><img src="/post/2019/09/../../../attachments/img/2019/cover-2019-09-05.png" alt="attachments/img/2019/cover-2019-09-05.png"/></p>
 <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">card/tldr</a>
-<code>edit</code> and <code>append</code> give additional ways to update your <a href="/card/taskwarrior/">Taskwarrior</a> tasks. <code>undo</code> is there for the errors you catch quickly.</p>
+<p><strong><a href="/card/tldr/">card/tldr</a></strong></p>
+<p><code>edit</code> and <code>append</code> give additional ways to update your <a href="/card/taskwarrior/">Taskwarrior</a> tasks. <code>undo</code> is there for the errors you catch quickly.</p>
 </blockquote>
 <p>I mentioned <code>modify</code> early on, and it works. But it’s real easy to make silly mistakes. Time to talk about a couple extra <a href="https://taskwarrior.org/docs/commands/">commands</a> that reduce the impact of little daily blunders.</p>
 <h2 id="modify"><code>modify</code></h2>
 <p>So let’s say I got a <a href="https://www.twoscoopspress.com/">book</a> for work-related learning. I create a task.</p>
-<pre tabindex="0"><code>$ task add &#39;Read &#34;Two Scoops of Django&#34;&#39;
-Created task 201
-</code></pre><p>Oh wait, this a learning task, so I should add the <code>+learn</code> tag. I’ll use <code>modify</code> to add the forgotten tag.</p>
-<pre tabindex="0"><code>$ task 201 modify +learn
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add &#39;Read &#34;Two Scoops of Django&#34;&#39;
+Created task 201</code></pre>
+</figure><p>Oh wait, this a learning task, so I should add the <code>+learn</code> tag. I’ll use <code>modify</code> to add the forgotten tag.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 201 modify &#43;learn
 $ task 201 ls
 
 ID  Tags  Description
-201 learn Read &#34;Two Scoops of Django&#34;
-</code></pre><p><code>task ls</code> shows a condensed report with the most important details of filtered tasks. Very useful for quick summaries and blog posts.</p>
+201 learn Read &#34;Two Scoops of Django&#34;</code></pre>
+</figure><p><code>task ls</code> shows a condensed report with the most important details of filtered tasks. Very useful for quick summaries and blog posts.</p>
 <p>So far so good, right? As long as there’s no confusion about what you’re changing, <code>modify</code> does the right thing. But a typo? A typo can rewrite your description.</p>
 <p>Maybe I’ll add that task to my &ldquo;WorkSkills&rdquo; project. What if my fingers forget that the syntax is <code>project:WorkSkills</code>?</p>
 <p>It happens. Frequently. Judge me all you want.</p>
-<pre tabindex="0"><code>$ task 201 modify project WorkSkills
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 201 modify project WorkSkills
 $ task 201 ls
 
 ID  Tags  Description
-201 learn project WorkSkills
-</code></pre><p>Oops.</p>
+201 learn project WorkSkills</code></pre>
+</figure><p>Oops.</p>
 <p>Fortunately I caught it quick, so I can fix my mistake with <code>undo</code>.</p>
 <h2 id="undo"><code>undo</code></h2>
 <p><code>task undo</code> reverts the last change you made, and can keep going back through your history one change at a time.</p>
-<pre tabindex="0"><code>$ task undo
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task undo
 
 The last modification was made 9/3/2019
 
@@ -552,26 +671,32 @@ tags         learn                                 learn
 uuid         2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369  2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369
 
 The undo command is not reversible.  Are you sure you want to revert to the previous state? (yes/no) yes
-Modified task reverted.
-</code></pre><p>Taskwarrior tells me what values will be affected by an <code>undo</code>, which I find helpful. Yes, I want to restore previous state.</p>
-<pre tabindex="0"><code>$ task 201 ls
+Modified task reverted.</code></pre>
+</figure><p>Taskwarrior tells me what values will be affected by an <code>undo</code>, which I find helpful. Yes, I want to restore previous state.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 201 ls
 
 ID  Tags  Description
-201 learn Read &#34;Two Scoops of Django&#34;
-</code></pre><p>Whew. All better.</p>
+201 learn Read &#34;Two Scoops of Django&#34;</code></pre>
+</figure><p>Whew. All better.</p>
 <p>History is a JSON stream in <code>~/.task/undo.data</code> if you’re curious. I don’t really know how far back it goes. I often miss my mistakes until after I made other changes that I’d rather not undo.</p>
 <h2 id="append"><code>append</code></h2>
 <p>My typos tend to happen when I’m on a roll. As a result, I don’t notice them until it’s far too late to <code>undo</code>. I use <code>append</code> for quick changes to reduce the risk of a typo making the description unrecognizable. It behaves like <code>modify</code> for adding and changing properties. However, anything interpreted as a description change gets tacked on the end of the current description by <code>append</code>.</p>
 <p>Here’s the same project story as before, but with <code>append</code> instead of <code>modify</code>.</p>
-<pre tabindex="0"><code>$ task 201 append project WorkSkills
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 201 append project WorkSkills
 $ task 201 ls
 
 ID  Tags  Description
-201 learn Read &#34;Two Scoops of Django&#34; project WorkSkills
-</code></pre><p>I still made my mistake, but at least I can find the task by its original description.</p>
+201 learn Read &#34;Two Scoops of Django&#34; project WorkSkills</code></pre>
+</figure><p>I still made my mistake, but at least I can find the task by its original description.</p>
 <blockquote>
-<p>[!NOTE]
-<code>prepend</code> also exists, and is useful much the same way append is. Which you use is a matter of preference.</p>
+<p><strong>NOTE</strong></p>
+<p><code>prepend</code> also exists, and is useful much the same way append is. Which you use is a matter of preference.</p>
 </blockquote>
 <p>But what about bigger changes? Or what about when I change the description and don’t notice until a couple weeks later?</p>
 <h2 id="edit"><code>edit</code></h2>
@@ -579,11 +704,14 @@ ID  Tags  Description
 <p><img src="/post/2019/09/attachments/img/2019/cover-2019-09-05.png" alt="Taskwarrior edit view"/></p>
 <p>Those <code>✘</code> characters are just how I show trailing whitespace in Vim with <a href="https://vim.fandom.com/wiki/Highlight_unwanted_spaces">listchars</a>. Anyways, I added &ldquo;WorkSkills&rdquo; to the &ldquo;Project&rdquo; line and fixed the description. There is even a line where I can add an annotation if I want, but not today. As soon as I save the file and quit my editor, Taskwarrior applies my changes.</p>
 <p>See?</p>
-<pre tabindex="0"><code>$ task 201 ls
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 201 ls
 
 ID  Project    Tags  Description
-201 WorkSkills learn Read &#34;Two Scoops of Django&#34;
-</code></pre><p>I feel better now. I’ve been wanting to mention these commands in the series for a while now. Since February 2018, according to my task list.</p>
+201 WorkSkills learn Read &#34;Two Scoops of Django&#34;</code></pre>
+</figure><p>I feel better now. I’ve been wanting to mention these commands in the series for a while now. Since February 2018, according to my task list.</p>
 ]]></content:encoded>
 </item>
 <item>
@@ -624,14 +752,20 @@ Crystal looks friendly. Similar syntax to Ruby. Statically typed, ruling out a c
 <h2 id="installation">Installation</h2>
 <p>The documentation provides instructions on <a href="https://crystal-lang.org/reference/installation/">how to install Crystal</a> across
 several platforms. Today I’m on my Windows partition. Though they’re working on a full Windows port, the best path for now is to use <a href="https://brew.sh/">Homebrew</a> on <em>inbox/WSL</em>.</p>
-<pre tabindex="0"><code>$ brew install crystal
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install crystal
 ...
 $ crystal version
 Crystal 0.30.1 (2019-08-15)
 LLVM: 8.0.1
-Default target: x86_64-unknown-linux-gnu
-</code></pre><p><code>crystal</code> provides a collection of subcommands.</p>
-<pre tabindex="0"><code>$ crystal help
+Default target: x86_64-unknown-linux-gnu</code></pre>
+</figure><p><code>crystal</code> provides a collection of subcommands.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal help
 
 Usage: crystal [command] [switches] [program file] [--] [arguments]
 
@@ -646,32 +780,50 @@ Command:
     spec                     build and run specs (in spec directory)
     tool                     run a tool
     help, --help, -h         show this help
-    version, --version, -v   show version
-</code></pre><p>Oh my there are some interesting commands in there! I’ll just focus on the ones that result in me running code.</p>
+    version, --version, -v   show version</code></pre>
+</figure><p>Oh my there are some interesting commands in there! I’ll just focus on the ones that result in me running code.</p>
 <h2 id="one-liners-with-eval">One-liners with <code>eval</code></h2>
 <p>Crystal does not ship with an interactive shell. Makes sense, considering that it’s supposed to be a compiled language. Still, it’s more flexible than I expected. If all I want is a one-liner, Crystal can do that!</p>
-<pre tabindex="0"><code>$ crystal eval &#39;puts &#34;Hi!&#34;&#39;
-Hi!
-</code></pre><p>Okay, that wasn’t super exciting. What about pretty-printing the current environment variables?</p>
-<pre tabindex="0"><code>$ crystal eval &#39;pp ENV&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;puts &#34;Hi!&#34;&#39;
+Hi!</code></pre>
+</figure><p>Okay, that wasn’t super exciting. What about pretty-printing the current environment variables?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;pp ENV&#39;
 {&#34;BF&#34; =&gt; &#34;$albumartist | $album | $track/$tracktotal | $title&#34;,
 &#34;BREW_PREFIX&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew&#34;,
 &#34;CLICOLOR&#34; =&gt; &#34;1&#34;,
 ...
 &#34;_&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;,
-&#34;wg_date&#34; =&gt; &#34;#[]%Y-%m-%d %H:%M%z#[default]&#34;}
-</code></pre><p><a href="https://crystal-lang.org/api/ENV.html">ENV</a> is a Hash-like accessor. You can access and iterate through environment variables as if they were keys in a Hash.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;ENV.each { |k, v| puts &#34;#{k}: #{v}&#34; }&#39;
-</code></pre><p>Except that the <code>pp</code> output was sorted. That’s fine. We’ll sort the keys.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;ENV.keys.sorted.each { |k| puts &#34;#{k}: #{ENV[k]}&#34; }&#39;
-</code></pre><p>Printing data as JSON is a pretty common task. Common enough that it’s a Hash method here. Except ENV isn’t a <a href="https://crystal-lang.org/api/Hash.html">Hash</a>. It’s a &ldquo;Hash-like accessor.&rdquo;</p>
+&#34;wg_date&#34; =&gt; &#34;#[]%Y-%m-%d %H:%M%z#[default]&#34;}</code></pre>
+</figure><p><a href="https://crystal-lang.org/api/ENV.html">ENV</a> is a Hash-like accessor. You can access and iterate through environment variables as if they were keys in a Hash.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;ENV.each { |k, v| puts &#34;#{k}: #{v}&#34; }&#39;</code></pre>
+</figure><p>Except that the <code>pp</code> output was sorted. That’s fine. We’ll sort the keys.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;ENV.keys.sorted.each { |k| puts &#34;#{k}: #{ENV[k]}&#34; }&#39;</code></pre>
+</figure><p>Printing data as JSON is a pretty common task. Common enough that it’s a Hash method here. Except ENV isn’t a <a href="https://crystal-lang.org/api/Hash.html">Hash</a>. It’s a &ldquo;Hash-like accessor.&rdquo;</p>
 <p>No problem, we can make a Hash from <code>ENV</code>.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;
 {&#34;NVM_DIR&#34;:&#34;/home/random/.nvm&#34;,&#34;HOSTTYPE&#34;:&#34;x86_64&#34;,&#34;PYENV_HOME&#34;:&#34;/home/random/.pyenv&#34;, ...
-&#34;WSLENV&#34;:&#34;&#34;,&#34;_&#34;:&#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;}
-</code></pre><p>Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I know I can fix this from inside Crystal, but my one-liner would get clunky. Hey, this is a one-liner. Let’s pipe it to <a href="https://stedolan.github.io/jq/">jq</a>!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
-</span></span></code></pre></div><p>There, now it’s all pretty-printed.</p>
+&#34;WSLENV&#34;:&#34;&#34;,&#34;_&#34;:&#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;}</code></pre>
+</figure><p>Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I know I can fix this from inside Crystal, but my one-liner would get clunky. Hey, this is a one-liner. Let’s pipe it to <a href="https://stedolan.github.io/jq/">jq</a>!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
+</span></span></code></pre>
+</figure><p>There, now it’s all pretty-printed.</p>
 <p><img src="/post/2019/08/attachments/img/2019/crystal-env-jq.png" alt="Colorized JSON via jq"/></p>
 <p>One-liners are fun.</p>
 <p>What was I doing next? Oh right. Crystal source files.</p>
@@ -679,7 +831,9 @@ Hi!
 <p>I have no idea how to do dependency management in Crystal yet. Something
 about <a href="https://crystal-lang.org/reference/the_shards_command/">shards</a>. But even stock Crystal looks like it would work as a glue language for shell scripts. Plus, the <code>run</code> command lets you ignore the build process and pretend your code is being run directly.</p>
 <p><strong><code>hello-user.cr</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env crystal</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env crystal</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Who are you? &#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="nb">gets</span>
@@ -691,29 +845,37 @@ about <a href="https://crystal-lang.org/reference/the_shards_command/">shards</a
 </span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;Better get on it!&#34;</span> <span class="k">if</span> <span class="n">tasks</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;I was not expecting you to say </span><span class="se">\&#34;</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">!&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><ul>
 <li>Since <code>run</code> is the default command, you could make a plain old Crystal script! What can I say, I like the old ways.</li>
 <li>Crystal ignores trailing whitespace in <code>to_i</code>. You’ll still want to <code>chomp</code> when examining the output of a command.</li>
 </ul>
-<pre tabindex="0"><code>$ chmod 700 hello-user.cr
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ chmod 700 hello-user.cr
 $ ./hello-user.cr
 Who are you? random
 Hey there random!
 You have 3 tasks due.
-Better get on it!
-</code></pre><p>Remember, this is just me using <code>#!</code> to say <code>crystal run hello-user.cr</code></p>
+Better get on it!</code></pre>
+</figure><p>Remember, this is just me using <code>#!</code> to say <code>crystal run hello-user.cr</code></p>
 <p>It looks a <em>lot</em> like Ruby. You could take out that <code>#!</code> and it would <em>almost</em> work as-is.</p>
-<pre tabindex="0"><code>$ ruby hello-user.cr
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby hello-user.cr
 Who are you? random
 I was not expecting you to say &#34;random
-&#34;!
-</code></pre><p>Almost.</p>
+&#34;!</code></pre>
+</figure><p>Almost.</p>
 <h2 id="build"><code>build</code></h2>
 <p>Okay, directly running scripts is great for testing or quick tasks, but Crystal <em>is</em> a compiled language. Let’s compile something.</p>
 <p><a href="https://twitter.com/pjf/status/852466839145795584">Paul Fenwick</a> and <a href="https://jacoby.github.io/2017/10/25/making-taskwarrior-work-for-me.html">Dave Jacoby</a> have — or had, no idea if they still do — a neat trick to show quick task status in their shell prompt. I’ll do the same thing, but in Crystal.</p>
 <p><strong><code>task-indicator.cr</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="no">URGENT</span>       <span class="o">=</span> <span class="sc">&#39;\u{2757}&#39;</span>  <span class="c1"># exclamation</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="no">URGENT</span>       <span class="o">=</span> <span class="sc">&#39;\u{2757}&#39;</span>  <span class="c1"># exclamation</span>
 </span></span><span class="line"><span class="cl"><span class="no">DUE_TOMORROW</span> <span class="o">=</span> <span class="sc">&#39;\u{1f4c5}&#39;</span> <span class="c1"># calendar</span>
 </span></span><span class="line"><span class="cl"><span class="no">DUE_TODAY</span>    <span class="o">=</span> <span class="sc">&#39;\u{1f631}&#39;</span> <span class="c1"># screaming</span>
 </span></span><span class="line"><span class="cl"><span class="no">OVERDUE</span>      <span class="o">=</span> <span class="sc">&#39;\u{2620}&#39;</span>  <span class="c1"># ded</span>
@@ -738,38 +900,52 @@ I was not expecting you to say &#34;random
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">task_indicator</span>
-</span></span></code></pre></div><p>Does it work?</p>
-<pre tabindex="0"><code>$ crystal run task-indicator.cr
-{{}}
-</code></pre><p>Yeah, I know. I’m working on it. <em>Anyways</em> let’s build this thing.</p>
-<pre tabindex="0"><code>$ crystal build task-indicator.cr
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">task_indicator</span></span></span></code></pre>
+</figure><p>Does it work?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal run task-indicator.cr
+{{}}</code></pre>
+</figure><p>Yeah, I know. I’m working on it. <em>Anyways</em> let’s build this thing.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal build task-indicator.cr
 $ ls -lhF
 total 1.3M
 -rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
--rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
-</code></pre><p>There’s a new executable called <code>task-indicator</code>. It’s not exactly small, but it produces the same output. Yes, the screaming face.</p>
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr</code></pre>
+</figure><p>There’s a new executable called <code>task-indicator</code>. It’s not exactly small, but it produces the same output. Yes, the screaming face.</p>
 <h2 id="build---release"><code>build --release</code></h2>
 <p>The default build includes a lot of debugging information that I won’t need in my daily usage. I’ll make a release version.</p>
-<pre tabindex="0"><code>$ crystal build --release task-indicator.cr -o task-indicator-release
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal build --release task-indicator.cr -o task-indicator-release
 $ ls -lhF
 total 2.0M
 -rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
 -rwxrwxr-x 1 random random 665K Aug 25 14:23 task-indicator-release*
--rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
-</code></pre><p>I didn’t <em>have</em> to give it a different name. I wanted to see the size difference between debug and release builds.</p>
-<pre tabindex="0"><code>$ cp task-indicator-release ~/bin/task-indicator
-</code></pre><p>Then over in my <code>.bashrc</code>:</p>
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr</code></pre>
+</figure><p>I didn’t <em>have</em> to give it a different name. I wanted to see the size difference between debug and release builds.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cp task-indicator-release ~/bin/task-indicator</code></pre>
+</figure><p>Then over in my <code>.bashrc</code>:</p>
 <p><strong><code>~/.bashrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Terminal colours (after installing GNU coreutils)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Terminal colours (after installing GNU coreutils)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">NM</span><span class="o">=</span><span class="s2">&#34;\[\033[0;38m\]&#34;</span>  <span class="c1"># means no background and white lines</span>
 </span></span><span class="line"><span class="cl"><span class="nv">HI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;34m\]&#34;</span>  <span class="c1"># change this for username letter colors</span>
 </span></span><span class="line"><span class="cl"><span class="nv">HII</span><span class="o">=</span><span class="s2">&#34;\[\033[0;31m\]&#34;</span> <span class="c1"># change this for hostname letter colors</span>
 </span></span><span class="line"><span class="cl"><span class="nv">SI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;33m\]&#34;</span>  <span class="c1"># this is for the current directory</span>
 </span></span><span class="line"><span class="cl"><span class="nv">IN</span><span class="o">=</span><span class="s2">&#34;\[\033[0;0m\]&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span>
-</span></span></code></pre></div><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
+</span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span></span></span></code></pre>
+</figure><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
 <p>Nice.</p>
 <p>At first I put the output of <code>task-indicator</code> in a variable, and put the variable in <code>$PS1</code>. Except that variable was only evaluated on shell start. Instead put the invocation directly in <code>$PS1</code> with a leading backslash. Now the indicator is live, as I expected it to be.</p>
 <h2 id="done">Done!</h2>
@@ -789,22 +965,28 @@ $ task &#39;(&#43;idea or &#43;learn)&#39; newest limit:1 ID Created Age Mod Pro
    <category>note</category> 
    <category>taskwarrior</category>  <category>oops</category> 
   <content:encoded><![CDATA[<p>My <a href="/post/2019/06/checking-in-on-my-idea-bucket/">glance</a> at the Idea Bucket only worked by luck. The <code>+LATEST</code> virtual tag is for the latest task in the system, not just the latest in the filter. I want the <code>newest</code> report, which lists tasks by freshness, then <code>limit:</code> to control the number of tasks reported.</p>
-<pre tabindex="0"><code>$ task &#39;(+idea or +learn)&#39; newest limit:1
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#39;(&#43;idea or &#43;learn)&#39; newest limit:1
 
 ID  Created    Age Mod Project Tags     Description
 180 2019-07-02 19h 19h Site    idea ops automate permalink switches
                                           2019-07-02 for when I do a mass change, create aliases of old form
 
-54 tasks, 1 shown
-</code></pre><p>Okay right. I threw some new ideas in the last few days. Better set a higher limit.</p>
-<pre tabindex="0"><code>$ task &#39;(+idea or +learn)&#39; newest limit:3
+54 tasks, 1 shown</code></pre>
+</figure><p>Okay right. I threw some new ideas in the last few days. Better set a higher limit.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#39;(&#43;idea or &#43;learn)&#39; newest limit:3
 
 ID  Created    Age Mod Project Tags             Description
 180 2019-07-02 19h 19h Site    idea ops         automate permalink switches
                                                   2019-07-02 for when I do a mass change, create aliases of old form
 176 2019-06-28 4d  4d          db learn         json1 extension for sqlite
-175 2019-06-28 4d  4d          javascript learn set up entropic for Node
-</code></pre>]]></content:encoded>
+175 2019-06-28 4d  4d          javascript learn set up entropic for Node</code></pre>
+</figure>]]></content:encoded>
 </item>
 </channel>
 </rss>

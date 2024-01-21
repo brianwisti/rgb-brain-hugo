@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/">Getting File Info From The Shell</a></li>
@@ -303,23 +308,35 @@ also, it is time to vacuum my desk again</p>
 <p><img src="/post/2020/04/../../../attachments/img/2020/basement-original.jpg" alt="attachments/img/2020/basement-original.jpg"/>
 I lived in this basement <a href="/post/2017/03/geekish-update/">a few years ago</a></p>
 <p>Do I need to resize it? Should find out how big it is first.</p>
-<pre tabindex="0"><code>$ exa basement-original.jpg
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exa basement-original.jpg
 Permissions Size User   Date Modified Git Name
-.rw-rw-r--  131k random 20 Apr  9:04   -- basement-original.jpg
-</code></pre><p>No I don’t mean file size. I mean geometry. How many pixels wide, and how many high? <a href="https://the.exa.website/">exa</a> <em>is</em> nifty though. You should try it out.</p>
+.rw-rw-r--  131k random 20 Apr  9:04   -- basement-original.jpg</code></pre>
+</figure><p>No I don’t mean file size. I mean geometry. How many pixels wide, and how many high? <a href="https://the.exa.website/">exa</a> <em>is</em> nifty though. You should try it out.</p>
 <p>I don’t want to leave my shell session to do it either. Sure that’s just stubbornness on my part. I <em>could</em> get the necessary information from my desktop’s file browser, but I type quicker than I click.</p>
 <h2 id="file-is-everywhere"><code>file</code> is everywhere</h2>
 <p><code>file</code> is a standard utility, which means it’s available on pretty much any Unix or Unix-like system you use. It works by matching a file’s internal details to entries in a <a href="https://linux.die.net/man/5/magic"><code>magic</code></a> database and reporting its findings. <code>magic</code> can be extended, though the details are beyond me for now.</p>
-<pre tabindex="0"><code>$ file basement-original.jpg
-basement-original.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 800x487, frames 3
-</code></pre><p><code>basement-original.jpg</code> is a jpeg image. Yep, that checks out. Let’s see — 800x487. That looks like a geometry value. 800 pixels wide and 487 pixels high, if I remember the order right.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ file basement-original.jpg
+basement-original.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 800x487, frames 3</code></pre>
+</figure><p><code>basement-original.jpg</code> is a jpeg image. Yep, that checks out. Let’s see — 800x487. That looks like a geometry value. 800 pixels wide and 487 pixels high, if I remember the order right.</p>
 <p>I want more detail, but this is all I can get from <code>file</code>. That’s what ExifTool is for.</p>
 <h2 id="exiftool-knows-everything">ExifTool knows everything</h2>
 <p>ExifTool lets me read and edit metadata for images, music, PDF, Word files, videos — a dizzying assortment of files are <a href="https://exiftool.org/#supported">supported</a>.</p>
 <p>You can install ExifTool with the downloads listed on <a href="https://exiftool.org/">its site</a> or using your favorite package manager.</p>
-<pre tabindex="0"><code>$ brew install exiftool
-</code></pre><p>Default usage returns every bit of information ExifTool thinks is relevant for the file type.</p>
-<pre tabindex="0"><code>$ exiftool basement-original.jpg
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install exiftool</code></pre>
+</figure><p>Default usage returns every bit of information ExifTool thinks is relevant for the file type.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool basement-original.jpg
 ExifTool Version Number         : 11.85
 File Name                       : basement-original.jpg
 Directory                       : .
@@ -342,18 +359,27 @@ Bits Per Sample                 : 8
 Color Components                : 3
 Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)
 Image Size                      : 800x487
-Megapixels                      : 0.390
-</code></pre><p>800 pixels wide, 487 pixels high. I remembered correctly! While I’m here, let’s look at ways to fine-tune the output.</p>
+Megapixels                      : 0.390</code></pre>
+</figure><p>800 pixels wide, 487 pixels high. I remembered correctly! While I’m here, let’s look at ways to fine-tune the output.</p>
 <p>We could cut down on the noise by specifying the fields or tags we want to see.</p>
-<pre tabindex="0"><code>$ exiftool -ImageWidth -ImageHeight basement-original.jpg
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool -ImageWidth -ImageHeight basement-original.jpg
 Image Width                     : 800
-Image Height                    : 487
-</code></pre><p>We could use <code>-S</code> for more compact output focused less on tabular layout.</p>
-<pre tabindex="0"><code>$ exiftool -S -ImageWidth -ImageHeight basement-original.jpg
+Image Height                    : 487</code></pre>
+</figure><p>We could use <code>-S</code> for more compact output focused less on tabular layout.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool -S -ImageWidth -ImageHeight basement-original.jpg
 ImageWidth: 800
-ImageHeight: 487
-</code></pre><p>We could tell ExifTool to format its report for processing by <a href="/card/csv/">CSV</a> or <a href="https://github.com/burningtree/awesome-json">JSON</a> tools.</p>
-<pre tabindex="0"><code>$ exiftool -j basement-original.jpg
+ImageHeight: 487</code></pre>
+</figure><p>We could tell ExifTool to format its report for processing by <a href="/card/csv/">CSV</a> or <a href="https://github.com/burningtree/awesome-json">JSON</a> tools.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool -j basement-original.jpg
 [{
   &#34;SourceFile&#34;: &#34;basement-original.jpg&#34;,
   &#34;ExifToolVersion&#34;: 11.85,
@@ -379,11 +405,14 @@ ImageHeight: 487
   &#34;YCbCrSubSampling&#34;: &#34;YCbCr4:4:4 (1 1)&#34;,
   &#34;ImageSize&#34;: &#34;800x487&#34;,
   &#34;Megapixels&#34;: 0.390
-}]
-</code></pre><p>Hang on. I feel compelled to be a bit fancy.</p>
+}]</code></pre>
+</figure><p>Hang on. I feel compelled to be a bit fancy.</p>
 <p><strong>Piping to <a href="https://github.com/BurntSushi/xsv">xsv</a> for aggregate information about site images.</strong></p>
-<pre tabindex="0"><code>$ exiftool -csv -r content \
-  | xsv search -s MIMEType &#39;image/.+&#39; \
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool -csv -r content \
+  | xsv search -s MIMEType &#39;image/.&#43;&#39; \
   | xsv select ImageWidth,ImageHeight \
   | xsv stats \
   | xsv select field,min,max,mean \
@@ -392,10 +421,13 @@ ImageHeight: 487
   419 image files read
 field        min  max   mean
 ImageWidth   27   5120  1337.1172248803825
-ImageHeight  27   4032  1009.7368421052624
-</code></pre><p>Hm. I must have some icon files in there somewhere.</p>
+ImageHeight  27   4032  1009.7368421052624</code></pre>
+</figure><p>Hm. I must have some icon files in there somewhere.</p>
 <p>For more fun, point it at some music files. Heck, it will try to give useful information for text!</p>
-<pre tabindex="0"><code>$ exiftool index.adoc
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ exiftool index.adoc
 ExifTool Version Number         : 11.85
 File Name                       : index.adoc
 Directory                       : .
@@ -410,11 +442,14 @@ MIME Type                       : text/plain
 MIME Encoding                   : us-ascii
 Newlines                        : Unix LF
 Line Count                      : 189
-Word Count                      : 619
-</code></pre><p>Here’s the <code>file</code> output in comparison.</p>
-<pre tabindex="0"><code>$ file index.adoc
-index.adoc: ASCII text
-</code></pre><p>I could probably write some <code>magic</code> configuration to get more information. But installing ExifTool was easier.</p>
+Word Count                      : 619</code></pre>
+</figure><p>Here’s the <code>file</code> output in comparison.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ file index.adoc
+index.adoc: ASCII text</code></pre>
+</figure><p>I could probably write some <code>magic</code> configuration to get more information. But installing ExifTool was easier.</p>
 <h2 id="good-enough">Good enough?</h2>
 <p><code>file</code> is universally available and gave me the details I needed today. ExifTool gives me everything I needed and then some. I’ll most likely keep it available on my systems.</p>
 <p>And no, I’m not going to worry about resizing that image for now.</p>

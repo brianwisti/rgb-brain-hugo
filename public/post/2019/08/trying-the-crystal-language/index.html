@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/08/trying-the-crystal-language/">Trying the Crystal Language</a></li>
@@ -300,14 +305,20 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="installation">Installation</h2>
 <p>The documentation provides instructions on <a href="https://crystal-lang.org/reference/installation/">how to install Crystal</a> across
 several platforms. Today I’m on my Windows partition. Though they’re working on a full Windows port, the best path for now is to use <a href="https://brew.sh/">Homebrew</a> on <em>inbox/WSL</em>.</p>
-<pre tabindex="0"><code>$ brew install crystal
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ brew install crystal
 ...
 $ crystal version
 Crystal 0.30.1 (2019-08-15)
 LLVM: 8.0.1
-Default target: x86_64-unknown-linux-gnu
-</code></pre><p><code>crystal</code> provides a collection of subcommands.</p>
-<pre tabindex="0"><code>$ crystal help
+Default target: x86_64-unknown-linux-gnu</code></pre>
+</figure><p><code>crystal</code> provides a collection of subcommands.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal help
 
 Usage: crystal [command] [switches] [program file] [--] [arguments]
 
@@ -322,32 +333,50 @@ Command:
     spec                     build and run specs (in spec directory)
     tool                     run a tool
     help, --help, -h         show this help
-    version, --version, -v   show version
-</code></pre><p>Oh my there are some interesting commands in there! I’ll just focus on the ones that result in me running code.</p>
+    version, --version, -v   show version</code></pre>
+</figure><p>Oh my there are some interesting commands in there! I’ll just focus on the ones that result in me running code.</p>
 <h2 id="one-liners-with-eval">One-liners with <code>eval</code></h2>
 <p>Crystal does not ship with an interactive shell. Makes sense, considering that it’s supposed to be a compiled language. Still, it’s more flexible than I expected. If all I want is a one-liner, Crystal can do that!</p>
-<pre tabindex="0"><code>$ crystal eval &#39;puts &#34;Hi!&#34;&#39;
-Hi!
-</code></pre><p>Okay, that wasn’t super exciting. What about pretty-printing the current environment variables?</p>
-<pre tabindex="0"><code>$ crystal eval &#39;pp ENV&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;puts &#34;Hi!&#34;&#39;
+Hi!</code></pre>
+</figure><p>Okay, that wasn’t super exciting. What about pretty-printing the current environment variables?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;pp ENV&#39;
 {&#34;BF&#34; =&gt; &#34;$albumartist | $album | $track/$tracktotal | $title&#34;,
 &#34;BREW_PREFIX&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew&#34;,
 &#34;CLICOLOR&#34; =&gt; &#34;1&#34;,
 ...
 &#34;_&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;,
-&#34;wg_date&#34; =&gt; &#34;#[]%Y-%m-%d %H:%M%z#[default]&#34;}
-</code></pre><p><a href="https://crystal-lang.org/api/ENV.html">ENV</a> is a Hash-like accessor. You can access and iterate through environment variables as if they were keys in a Hash.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;ENV.each { |k, v| puts &#34;#{k}: #{v}&#34; }&#39;
-</code></pre><p>Except that the <code>pp</code> output was sorted. That’s fine. We’ll sort the keys.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;ENV.keys.sorted.each { |k| puts &#34;#{k}: #{ENV[k]}&#34; }&#39;
-</code></pre><p>Printing data as JSON is a pretty common task. Common enough that it’s a Hash method here. Except ENV isn’t a <a href="https://crystal-lang.org/api/Hash.html">Hash</a>. It’s a &ldquo;Hash-like accessor.&rdquo;</p>
+&#34;wg_date&#34; =&gt; &#34;#[]%Y-%m-%d %H:%M%z#[default]&#34;}</code></pre>
+</figure><p><a href="https://crystal-lang.org/api/ENV.html">ENV</a> is a Hash-like accessor. You can access and iterate through environment variables as if they were keys in a Hash.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;ENV.each { |k, v| puts &#34;#{k}: #{v}&#34; }&#39;</code></pre>
+</figure><p>Except that the <code>pp</code> output was sorted. That’s fine. We’ll sort the keys.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;ENV.keys.sorted.each { |k| puts &#34;#{k}: #{ENV[k]}&#34; }&#39;</code></pre>
+</figure><p>Printing data as JSON is a pretty common task. Common enough that it’s a Hash method here. Except ENV isn’t a <a href="https://crystal-lang.org/api/Hash.html">Hash</a>. It’s a &ldquo;Hash-like accessor.&rdquo;</p>
 <p>No problem, we can make a Hash from <code>ENV</code>.</p>
-<pre tabindex="0"><code>$ crystal eval &#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal eval &#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;
 {&#34;NVM_DIR&#34;:&#34;/home/random/.nvm&#34;,&#34;HOSTTYPE&#34;:&#34;x86_64&#34;,&#34;PYENV_HOME&#34;:&#34;/home/random/.pyenv&#34;, ...
-&#34;WSLENV&#34;:&#34;&#34;,&#34;_&#34;:&#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;}
-</code></pre><p>Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I know I can fix this from inside Crystal, but my one-liner would get clunky. Hey, this is a one-liner. Let’s pipe it to <a href="https://stedolan.github.io/jq/">jq</a>!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
-</span></span></code></pre></div><p>There, now it’s all pretty-printed.</p>
+&#34;WSLENV&#34;:&#34;&#34;,&#34;_&#34;:&#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;}</code></pre>
+</figure><p>Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I know I can fix this from inside Crystal, but my one-liner would get clunky. Hey, this is a one-liner. Let’s pipe it to <a href="https://stedolan.github.io/jq/">jq</a>!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
+</span></span></code></pre>
+</figure><p>There, now it’s all pretty-printed.</p>
 <p><img src="/post/2019/08/attachments/img/2019/crystal-env-jq.png" alt="Colorized JSON via jq"/></p>
 <p>One-liners are fun.</p>
 <p>What was I doing next? Oh right. Crystal source files.</p>
@@ -355,7 +384,9 @@ Hi!
 <p>I have no idea how to do dependency management in Crystal yet. Something
 about <a href="https://crystal-lang.org/reference/the_shards_command/">shards</a>. But even stock Crystal looks like it would work as a glue language for shell scripts. Plus, the <code>run</code> command lets you ignore the build process and pretend your code is being run directly.</p>
 <p><strong><code>hello-user.cr</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env crystal</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env crystal</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Who are you? &#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="nb">gets</span>
@@ -367,29 +398,37 @@ about <a href="https://crystal-lang.org/reference/the_shards_command/">shards</a
 </span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;Better get on it!&#34;</span> <span class="k">if</span> <span class="n">tasks</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;I was not expecting you to say </span><span class="se">\&#34;</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">!&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><ul>
 <li>Since <code>run</code> is the default command, you could make a plain old Crystal script! What can I say, I like the old ways.</li>
 <li>Crystal ignores trailing whitespace in <code>to_i</code>. You’ll still want to <code>chomp</code> when examining the output of a command.</li>
 </ul>
-<pre tabindex="0"><code>$ chmod 700 hello-user.cr
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ chmod 700 hello-user.cr
 $ ./hello-user.cr
 Who are you? random
 Hey there random!
 You have 3 tasks due.
-Better get on it!
-</code></pre><p>Remember, this is just me using <code>#!</code> to say <code>crystal run hello-user.cr</code></p>
+Better get on it!</code></pre>
+</figure><p>Remember, this is just me using <code>#!</code> to say <code>crystal run hello-user.cr</code></p>
 <p>It looks a <em>lot</em> like Ruby. You could take out that <code>#!</code> and it would <em>almost</em> work as-is.</p>
-<pre tabindex="0"><code>$ ruby hello-user.cr
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby hello-user.cr
 Who are you? random
 I was not expecting you to say &#34;random
-&#34;!
-</code></pre><p>Almost.</p>
+&#34;!</code></pre>
+</figure><p>Almost.</p>
 <h2 id="build"><code>build</code></h2>
 <p>Okay, directly running scripts is great for testing or quick tasks, but Crystal <em>is</em> a compiled language. Let’s compile something.</p>
 <p><a href="https://twitter.com/pjf/status/852466839145795584">Paul Fenwick</a> and <a href="https://jacoby.github.io/2017/10/25/making-taskwarrior-work-for-me.html">Dave Jacoby</a> have — or had, no idea if they still do — a neat trick to show quick task status in their shell prompt. I’ll do the same thing, but in Crystal.</p>
 <p><strong><code>task-indicator.cr</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="no">URGENT</span>       <span class="o">=</span> <span class="sc">&#39;\u{2757}&#39;</span>  <span class="c1"># exclamation</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="no">URGENT</span>       <span class="o">=</span> <span class="sc">&#39;\u{2757}&#39;</span>  <span class="c1"># exclamation</span>
 </span></span><span class="line"><span class="cl"><span class="no">DUE_TOMORROW</span> <span class="o">=</span> <span class="sc">&#39;\u{1f4c5}&#39;</span> <span class="c1"># calendar</span>
 </span></span><span class="line"><span class="cl"><span class="no">DUE_TODAY</span>    <span class="o">=</span> <span class="sc">&#39;\u{1f631}&#39;</span> <span class="c1"># screaming</span>
 </span></span><span class="line"><span class="cl"><span class="no">OVERDUE</span>      <span class="o">=</span> <span class="sc">&#39;\u{2620}&#39;</span>  <span class="c1"># ded</span>
@@ -414,38 +453,52 @@ I was not expecting you to say &#34;random
 </span></span><span class="line"><span class="cl">  <span class="k">end</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">task_indicator</span>
-</span></span></code></pre></div><p>Does it work?</p>
-<pre tabindex="0"><code>$ crystal run task-indicator.cr
-{{}}
-</code></pre><p>Yeah, I know. I’m working on it. <em>Anyways</em> let’s build this thing.</p>
-<pre tabindex="0"><code>$ crystal build task-indicator.cr
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">task_indicator</span></span></span></code></pre>
+</figure><p>Does it work?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal run task-indicator.cr
+{{}}</code></pre>
+</figure><p>Yeah, I know. I’m working on it. <em>Anyways</em> let’s build this thing.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal build task-indicator.cr
 $ ls -lhF
 total 1.3M
 -rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
--rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
-</code></pre><p>There’s a new executable called <code>task-indicator</code>. It’s not exactly small, but it produces the same output. Yes, the screaming face.</p>
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr</code></pre>
+</figure><p>There’s a new executable called <code>task-indicator</code>. It’s not exactly small, but it produces the same output. Yes, the screaming face.</p>
 <h2 id="build---release"><code>build --release</code></h2>
 <p>The default build includes a lot of debugging information that I won’t need in my daily usage. I’ll make a release version.</p>
-<pre tabindex="0"><code>$ crystal build --release task-indicator.cr -o task-indicator-release
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ crystal build --release task-indicator.cr -o task-indicator-release
 $ ls -lhF
 total 2.0M
 -rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
 -rwxrwxr-x 1 random random 665K Aug 25 14:23 task-indicator-release*
--rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
-</code></pre><p>I didn’t <em>have</em> to give it a different name. I wanted to see the size difference between debug and release builds.</p>
-<pre tabindex="0"><code>$ cp task-indicator-release ~/bin/task-indicator
-</code></pre><p>Then over in my <code>.bashrc</code>:</p>
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr</code></pre>
+</figure><p>I didn’t <em>have</em> to give it a different name. I wanted to see the size difference between debug and release builds.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cp task-indicator-release ~/bin/task-indicator</code></pre>
+</figure><p>Then over in my <code>.bashrc</code>:</p>
 <p><strong><code>~/.bashrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Terminal colours (after installing GNU coreutils)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Terminal colours (after installing GNU coreutils)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">NM</span><span class="o">=</span><span class="s2">&#34;\[\033[0;38m\]&#34;</span>  <span class="c1"># means no background and white lines</span>
 </span></span><span class="line"><span class="cl"><span class="nv">HI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;34m\]&#34;</span>  <span class="c1"># change this for username letter colors</span>
 </span></span><span class="line"><span class="cl"><span class="nv">HII</span><span class="o">=</span><span class="s2">&#34;\[\033[0;31m\]&#34;</span> <span class="c1"># change this for hostname letter colors</span>
 </span></span><span class="line"><span class="cl"><span class="nv">SI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;33m\]&#34;</span>  <span class="c1"># this is for the current directory</span>
 </span></span><span class="line"><span class="cl"><span class="nv">IN</span><span class="o">=</span><span class="s2">&#34;\[\033[0;0m\]&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span>
-</span></span></code></pre></div><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
+</span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span></span></span></code></pre>
+</figure><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
 <p>Nice.</p>
 <p>At first I put the output of <code>task-indicator</code> in a variable, and put the variable in <code>$PS1</code>. Except that variable was only evaluated on shell start. Instead put the invocation directly in <code>$PS1</code> with a leading backslash. Now the indicator is live, as I expected it to be.</p>
 <h2 id="done">Done!</h2>

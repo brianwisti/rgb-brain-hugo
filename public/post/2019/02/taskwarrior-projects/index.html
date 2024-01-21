@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/02/taskwarrior-projects/">Taskwarrior Projects</a></li>
@@ -298,37 +303,51 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>A Taskwarrior project is a name that can be shared by many tasks, sort of like a tag. Unlike tags, each task can only have one project name at a time. This lets you collect closely related tasks under a single label.</p>
 <h2 id="defining-a-project">Defining a project</h2>
 <p>Every task has a <code>project</code> field, so all you must do to assign a project is give that field a value.</p>
-<pre tabindex="0"><code>$ task add +social project:cards order business cards
-$ task add project:cards +art draft design
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add &#43;social project:cards order business cards
+$ task add project:cards &#43;art draft design
 Created task 107.
 The project &#39;cards&#39; has changed.  Project &#39;cards&#39; is 0% complete (2 of 2 tasks remaining).
-$ task add project:cards +money figure out pricing
+$ task add project:cards &#43;money figure out pricing
 Created task 108.
 The project &#39;cards&#39; has changed.  Project &#39;cards&#39; is 0% complete (3 of 3 tasks remaining).
-$ task add project:cards +site &#39;blog -&gt; store master link&#39;
+$ task add project:cards &#43;site &#39;blog -&gt; store master link&#39;
 Created task 109.
-The project &#39;cards&#39; has changed.  Project &#39;cards&#39; is 0% complete (4 of 4 tasks remaining).
-</code></pre><blockquote>
-<p>[!NOTE]
-Quote your project names if you want to use multiple words.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">task add +social project:<span class="s1">&#39;business cards&#39;</span> order business cards
-</span></span></code></pre></div></blockquote>
+The project &#39;cards&#39; has changed.  Project &#39;cards&#39; is 0% complete (4 of 4 tasks remaining).</code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Quote your project names if you want to use multiple words.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">task add +social project:<span class="s1">&#39;business cards&#39;</span> order business cards</span></span></code></pre>
+</figure></blockquote>
 <p>As you add and complete tasks in a project, Taskwarrior gives you a quick  summary of the project’s status. Taskwarrior includes a quick blurb about project status as you add and complete tasks in that project.</p>
 <p>Projects work for these new tasks. They all work towards the same goal, even though there isn’t a clear <a href="/post/2018/02/setting-task-dependencies-in-taskwarrior/">dependency</a> between them. I suppose I could wait until I have the design, pricing, and link ready, but those other items can be finished in any order. To be honest, I don’t mess much with depends unless I need the reminder.</p>
 <p>Now let’s take a look at those tasks. They’ll get lost with all the others, so filter by project name.</p>
-<pre tabindex="0"><code>$ task project:cards
-</code></pre><p><img src="/post/2019/02/attachments/img/2019/task-project-cards.png" alt="task report filtered to cards project"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:cards</code></pre>
+</figure><p><img src="/post/2019/02/attachments/img/2019/task-project-cards.png" alt="task report filtered to cards project"/></p>
 <p>Since some tasks have a project, Taskwarrior creates a new column in the <code>next</code> report. There’s also a slight bump to Urgency when you define a project.</p>
 <p>It’s often useful to see what active projects you have.</p>
 <h2 id="listing-projects">Listing projects</h2>
 <p>The <code>projects</code> report lists your projects with pending tasks, and the number of tasks for each project.</p>
-<pre tabindex="0"><code>$ task projects
-</code></pre><p><img src="/post/2019/02/attachments/img/2019/task-projects.png" alt="task projects listing"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task projects</code></pre>
+</figure><p><img src="/post/2019/02/attachments/img/2019/task-projects.png" alt="task projects listing"/></p>
 <p>There’s also an entry for tasks that have no project, but fight the temptation to make a project for every task. That can end up making things more confusing.</p>
 <h2 id="subprojects">Subprojects</h2>
 <p>Notice how I have an &ldquo;Artbiz&rdquo; project? That’s supposed to be focusing on ways to make money with my art. That may or may not be a good thing to lump under a project, but there it is.</p>
 <p>My cards project is obviously part of the broader &ldquo;Artbiz&rdquo; project, and I can show that with subprojects.</p>
-<pre tabindex="0"><code>$ task project:cards modify project:Artbiz.cards
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:cards modify project:Artbiz.cards
 - Project will be changed from &#39;cards&#39; to &#39;Artbiz.cards&#39;.
 Modify task 106 &#39;order business cards&#39;? (yes/no/all/quit) all
 Modifying task 106 &#39;order business cards&#39;.
@@ -337,16 +356,19 @@ Modifying task 108 &#39;figure out pricing&#39;.
 Modifying task 109 &#39;blog -&gt; store master link&#39;.
 Modified 4 tasks.
 The project &#39;cards&#39; has changed.  Project &#39;cards&#39; is 0% complete (0 of 0 tasks remaining).
-The project &#39;Artbiz.cards&#39; has changed.  Project &#39;Artbiz.cards&#39; is 0% complete (4 of 4 tasks remaining).
-</code></pre><p>The period character separates the name of the main project from its subproject. Subprojects can have their own subprojects, but be careful about making your life too complicated. This is still just a single string of text, and a typo can create an unintended new project.</p>
+The project &#39;Artbiz.cards&#39; has changed.  Project &#39;Artbiz.cards&#39; is 0% complete (4 of 4 tasks remaining).</code></pre>
+</figure><p>The period character separates the name of the main project from its subproject. Subprojects can have their own subprojects, but be careful about making your life too complicated. This is still just a single string of text, and a typo can create an unintended new project.</p>
 <p>Then again — because it’s just a single string, it’s easy enough to change back with <code>modify</code>.</p>
 <p>What does <code>projects</code> look like when you have subprojects? The subproject is listed beneath its main project, indented slightly to show the relation.</p>
 <p><img src="/post/2019/02/attachments/img/2019/task-projects-with-subproject.png" alt="task projects listing with a subproject"/></p>
 <p>The <code>projects</code> report is useful as a minimal project listing, but what if you want more information?</p>
 <h2 id="summarizing-tasks-by-project">Summarizing tasks by project</h2>
 <p>That’s when you use the <code>summary</code> report.</p>
-<pre tabindex="0"><code>$ task summary
-</code></pre><p><img src="/post/2019/02/attachments/img/2019/task-summary.png" alt="task summary"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task summary</code></pre>
+</figure><p><img src="/post/2019/02/attachments/img/2019/task-summary.png" alt="task summary"/></p>
 <p>The first two columns of <code>summary</code> give the same information as <code>projects</code>. You also get the average age of pending tasks in each project, and the percentage completed for each project, both as a number and as a progress bar!</p>
 <p>Isn’t that cool?</p>
 <p><em>I</em> think it’s cool, anyways.</p>

@@ -135,8 +135,8 @@ It is easy to test which version of Rake you have from the command line:">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2011/">2011</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2011/07/rake/">Rake</a></li>
@@ -300,9 +305,12 @@ It is written in <a href="/card/ruby/">Ruby</a>, but is useful in far more than 
 <p>The great news is that if you have Ruby on your system, you <em>probably</em> already have Rake.
 It has been included as part of the standard Ruby distribution for a few years.</p>
 <p>It is easy to test which version of Rake you have from the command line:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake --version
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake --version
 </span></span><span class="line"><span class="cl"><span class="go">rake, version 0.9.2
-</span></span></span></code></pre></div><p>If you do not have Rake, then you just need to install a fresh release of Ruby.
+</span></span></span></code></pre>
+</figure><p>If you do not have Rake, then you just need to install a fresh release of Ruby.
 Go ahead.
 I’ll wait.</p>
 <p>Rake is driven by a <em>Rakefile</em>.
@@ -319,8 +327,11 @@ Hey.
 It works for me.
 Static HTML serves fast, and I don’t change the content on my site <em>that</em> often.</p>
 <p>I invoke a simple command to build my site before uploading it.</p>
-<pre tabindex="0"><code>$ python site-builder.py
-</code></pre><p>That is not painful, but it does get boring.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python site-builder.py</code></pre>
+</figure><p>That is not painful, but it does get boring.
 More importantly, I have been thinking about how <a href="http://beta.compass-style.org">Compass</a> would be a great thing to use for my site.
 But <code>site-builder.py</code> is an ugly, ugly piece of hackery.
 It is just coherent enough to build the site you’re reading.
@@ -331,38 +342,52 @@ That’s where Rake comes in.</p>
 Here is a dummy version of <code>site-builder.py</code> that you can use.
 No, it does not build a site.
 It <em>will</em> give you something to work with for demonstrating Rake, though.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Imaginary version of site-builder.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Imaginary version of site-builder.py</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="n">__main__</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Look at me, I&#39;m building a site!&#34;</span>
-</span></span></code></pre></div><p>First I will start by creating a Rakefile to handle my current workflow.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Rakefile for coolnamehere.com</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Look at me, I&#39;m building a site!&#34;</span></span></span></code></pre>
+</figure><p>First I will start by creating a Rakefile to handle my current workflow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Rakefile for coolnamehere.com</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>The simplest Rake <code>task</code> command takes two arguments:
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>The simplest Rake <code>task</code> command takes two arguments:
 a name for that task, and a block of actions to perform when that task is requested.
 The name can be written as a String or as a Symbol, but I usually see it written as a Symbol.</p>
 <p>The block can be any valid Ruby code.
 The <code>:html</code> block uses my shell to run the Python script that builds coolnamehere.com.
 You ask Rake to execute a particular task from the command line by using the task’s name.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><p>How do you find out what tasks are available, aside from reading the Rakefile?
+</span></span></span></code></pre>
+</figure><p>How do you find out what tasks are available, aside from reading the Rakefile?
 The -T flag will ask Rake to list all of the available tasks.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake -T
-</span></span></code></pre></div><p>Oh.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake -T</span></span></code></pre>
+</figure><p>Oh.
 Hold on a second.
 Rake will only list the tasks you have described with the <code>desc</code> command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Let us try that again.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Let us try that again.
 The <code>-T</code> flag will ask Rake to list all of the available <em>described</em> tasks.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake -T
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake -T
 </span></span><span class="line"><span class="cl"><span class="go">rake html  # Generate Web site
-</span></span></span></code></pre></div><p>A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
+</span></span></span></code></pre>
+</figure><p>A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
 That is why limiting the task list to described tasks is a good idea.</p>
 <h3 id="a-second-task">A Second Task</h3>
 <p>As I mentioned before, part of the reason I am writing a Rakefile is because I want to use Compass to define the styles for coolnamehere.
@@ -370,61 +395,80 @@ I set up a Compass project parallel to my site sources, including the blueprint 
 The Compass project is called &ldquo;style&rdquo;.
 My projects generally do not have clever names.</p>
 <p>If you <em>really</em> want to play along, here is how I set up my Compass project.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install compass
-</span></span><span class="line"><span class="cl">compass create style --using blueprint
-</span></span></code></pre></div><p>This is another straightforward task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install compass
+</span></span><span class="line"><span class="cl">compass create style --using blueprint</span></span></code></pre>
+</figure><p>This is another straightforward task.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>I do not expect anything exciting to happen, since I have not changed the SCSS files.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>I do not expect anything exciting to happen, since I have not changed the SCSS files.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
-</span></span></span></code></pre></div><p>There is still a problem, though.
+</span></span></span></code></pre>
+</figure><p>There is still a problem, though.
 All of the stylesheets are in <code>style/stylesheets</code>,
 but the working stylesheets have been over in <code>site/inc/css</code>.
 I need Rake to copy the finished stylesheets to the expected location.
 Might as well copy the images that are sitting in the <code>style</code> project while I am at it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate style sheets&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:css</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;compass compile style&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/css&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </span></span><span class="line"><span class="cl">  <span class="n">cp</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&#34;style/stylesheets/images/*&#34;</span><span class="p">),</span> <span class="s2">&#34;source/inc/images&#34;</span><span class="p">,</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Rake conveniently imports the FileUtils module.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Rake conveniently imports the FileUtils module.
 This lets me use Ruby standard library methods such as <code>cp</code> to copy a list of files rather than relying on platform-specific shell commands.</p>
 <p>What does that look like in action?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/screen.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/stylesheets/ie.css style/stylesheets/print.css style/stylesheets/screen.css source/inc/css
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
-</span></span></span></code></pre></div><p>Good enough.
+</span></span></span></code></pre>
+</figure><p>Good enough.
 Excuse me while I adjust my HTML template to point at the right stylesheets.</p>
 <h3 id="setting-a-dependency">Setting a Dependency</h3>
 <p>There are already awkward bits to the Rakefile as it is right now.
 I need to run two commands in order to build the site completely.
 Because <code>site-builder.py</code> also copies the site files to a new location, I must also remember to run the commands in the correct order.
 If I don’t, then the generated CSS will go into my site sources after the HTML has already been generated and copied.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake css
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">...
-</span></span></span></code></pre></div><p>What if I made <code>:css</code> a <em>dependency</em> of <code>:html</code>?
+</span></span></span></code></pre>
+</figure><p>What if I made <code>:css</code> a <em>dependency</em> of <code>:html</code>?
 Rake would make sure that the <code>:css</code> task was executed before it tried to execute the <code>:html</code> task.</p>
 <p>A little syntax trickery simplifies the task of describing a task’s dependencies.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">sh</span> <span class="s2">&#34;python site-builder.py&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Now instead of just a name for the task, we are giving <code>task</code> a Hash.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Now instead of just a name for the task, we are giving <code>task</code> a Hash.
 The only key of that Hash is the name of the task, and the value is a list of tasks which this one depends on.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake html
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
@@ -433,7 +477,8 @@ The only key of that Hash is the name of the task, and the value is a list of ta
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
 </span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><p>Excellent.
+</span></span></span></code></pre>
+</figure><p>Excellent.
 Now I can generate both CSS and HTML from a single Rake command.
 I am going to work a little bit on the styles, and to see if I notice any other little issues with my Rakefile.</p>
 <h3 id="setting-the-default-task">Setting The Default Task</h3>
@@ -447,11 +492,15 @@ It would be nice to use that shortcut while I am working on coolnamehere.</p>
 It looks for a task named &ldquo;default&rdquo; or <code>:default</code>.
 That makes sense.
 Let me set up a default task that depends on the <code>:html</code> task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
-</span></span></code></pre></div><p>That is all I need to do, actually.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span></span></span></code></pre>
+</figure><p>That is all I need to do, actually.
 A task can simply be a name and its dependencies.
 You do not <em>need</em> to define a block of actions for that task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rake
 </span></span><span class="line"><span class="cl"><span class="go">compass compile style
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/ie.scss
 </span></span></span><span class="line"><span class="cl"><span class="go">unchanged style/sass/print.scss
@@ -460,26 +509,33 @@ You do not <em>need</em> to define a block of actions for that task.</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">cp -r style/images/grid.png source/inc/images
 </span></span></span><span class="line"><span class="cl"><span class="go">python site-builder.py
 </span></span></span><span class="line"><span class="cl"><span class="go">Look at me, I&#39;m building a site!
-</span></span></span></code></pre></div><h3 id="something-i-have-been-meaning-to-get-around-to">Something I Have Been Meaning To Get Around To</h3>
+</span></span></span></code></pre>
+</figure><h3 id="something-i-have-been-meaning-to-get-around-to">Something I Have Been Meaning To Get Around To</h3>
 <p>I have been promising myself for years that I will assemble some sort of script that would automate the process of uploading my site.
 I never get around to it, though.
 Instead I fire up NCFTP, load the &ldquo;coolnamehere&rdquo; bookmark I’ve had for years, and upload.</p>
 <p>It is time to fix that by adding an &ldquo;upload&rdquo; task.
 I will take advantage of the <a href="https://github.com/glejeune/syncftp">syncftp</a> Ruby library,
 which looks like it will handle all of the little details.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install syncftp
-</span></span></code></pre></div><p>For the first test, I will just fill in the blanks using the syncftp README as a guide.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gem install syncftp</span></span></code></pre>
+</figure><p>For the first test, I will just fill in the blanks using the syncftp README as a guide.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Transfer site to the remote host&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:upload</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span> <span class="k">do</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span> <span class="o">=</span> <span class="no">SyncFTP</span><span class="o">.</span><span class="n">new</span> <span class="s1">&#39;ftp.myhost.com&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:username</span> <span class="o">=&gt;</span> <span class="s1">&#39;me&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>Here’s the complete Rakefile, with the as-yet untested &ldquo;upload&rdquo; task.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:html</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">desc</span> <span class="s2">&#34;Generate Web site&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">task</span> <span class="ss">:html</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:css</span><span class="o">]</span> <span class="k">do</span>
@@ -500,12 +556,14 @@ which looks like it will handle all of the little details.</p>
 </span></span><span class="line"><span class="cl">    <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;supersecret&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="n">ftp</span><span class="o">.</span><span class="n">sync</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_html&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span></code></pre></div><p>Well, yes.
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Well, yes.
 There are differences from the <em>actual</em> Rakefile, but this gets the idea across.</p>
 <p>All that I need to do now is test it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake upload
-</span></span></code></pre></div>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rake upload</span></span></code></pre>
+</figure>
   
 
 

@@ -64,11 +64,11 @@
 
   
     <meta name="twitter:description" content="
-[!NOTE] tldr
+tldr
 Set GREP_OPTIONS=&#39;-RI --color=auto&#39;. Or install ack.
 ">
     <meta property="og:description" content="
-[!NOTE] tldr
+tldr
 Set GREP_OPTIONS=&#39;-RI --color=auto&#39;. Or install ack.
 ">
   
@@ -137,8 +137,8 @@ Set GREP_OPTIONS=&#39;-RI --color=auto&#39;. Or install ack.
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/06/pretty-recursive-grep/">Pretty Recursive Grep</a></li>
@@ -293,22 +298,33 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">tldr</a>
-Set <code>GREP_OPTIONS='-RI --color=auto'</code>. Or install <a href="http://beyondgrep.com">ack</a>.</p>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p>Set <code>GREP_OPTIONS='-RI --color=auto'</code>. Or install <a href="http://beyondgrep.com">ack</a>.</p>
 </blockquote>
 <p>I&rsquo;m looking for TODO entries in source code on a machine that does not have Ack installed. It does have <a href="http://www.gnu.org/software/grep/">GNU grep</a>, though.</p>
 <p>Obviously I want to search subdirectories. I can choose between <code>--recursive</code>, <code>-R</code>, or using <code>rgrep</code> on this particular machine.</p>
 <p>I am usually searching through source code. I hardly ever want binary files to match. That means <code>--binary-file=without-match</code>  or <code>-I</code>.</p>
 <p>Finally, I like pretty colors. The <code>--color=auto</code> option makes me happy.</p>
 <p>That leaves me with this invocation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> grep --recursive --binary-file<span class="o">=</span>without-match --color<span class="o">=</span>auto <span class="s1">&#39;TODO&#39;</span> .
-</span></span></code></pre></div><p>Or maybe the short form would be easier.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rgrep -I --color<span class="o">=</span>auto <span class="s1">&#39;TODO&#39;</span> .
-</span></span></code></pre></div><p>Probably smartest to look at what <a href="http://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html">environment variables</a> I could set up in order to skip remembering this stuff at all.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GREP_OPTIONS</span><span class="o">=</span><span class="s1">&#39;-RI --color=auto&#39;</span>
-</span></span></code></pre></div><p>Pop that in my <code>.bashrc</code> and I&rsquo;m set.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> grep <span class="s1">&#39;TODO&#39;</span> .
-</span></span></code></pre></div><p>All right. Back to work.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> grep --recursive --binary-file<span class="o">=</span>without-match --color<span class="o">=</span>auto <span class="s1">&#39;TODO&#39;</span> .
+</span></span></code></pre>
+</figure><p>Or maybe the short form would be easier.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rgrep -I --color<span class="o">=</span>auto <span class="s1">&#39;TODO&#39;</span> .
+</span></span></code></pre>
+</figure><p>Probably smartest to look at what <a href="http://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html">environment variables</a> I could set up in order to skip remembering this stuff at all.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GREP_OPTIONS</span><span class="o">=</span><span class="s1">&#39;-RI --color=auto&#39;</span></span></span></code></pre>
+</figure><p>Pop that in my <code>.bashrc</code> and I&rsquo;m set.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> grep <span class="s1">&#39;TODO&#39;</span> .
+</span></span></code></pre>
+</figure><p>All right. Back to work.</p>
   
 
 

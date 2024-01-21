@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/05/querying-hugo-content-with-python/">Querying Hugo Content With Python</a></li>
@@ -316,18 +321,26 @@ My blogging output by year – bet you didn’t know there were blogs in 1 CE</p
 <h2 id="background">Background</h2>
 <p>I incorporated in my site workflow a while back because of <a href="https://blog.afoolishmanifesto.com/">fRew Schmidt</a>.  See, he wrote an interesting post about his Hugo / Unix / Vim <a href="https://blog.afoolishmanifesto.com/posts/hugo-unix-vim-integration/">blogging workflow</a>. I immediately copied <a href="https://blog.afoolishmanifesto.com/posts/hugo-unix-vim-integration/#advanced-unix-tools"><code>q</code></a>, a <a href="/card/perl/">card/Perl</a> script he wrote for querying site metadata via an in-memory <a href="https://sqlite.org">SQLite</a> database.</p>
 <p><code>q</code> is ridiculously fast and convenient if you know the query you want to ask.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> q --sql <span class="s1">&#39;select count(1) from articles where title like &#34;%perl%&#34;&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> q --sql <span class="s1">&#39;select count(1) from articles where title like &#34;%perl%&#34;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">22
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> q --sql <span class="s1">&#39;select count(1) from articles where title like &#34;%python%&#34;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">25
-</span></span></span></code></pre></div><p>Is your query too awkward to comfortably type on a command line? Put it in a shell script, like fREW’s <code>tag-count</code> example.</p>
-<div class="highlight" title="tag-count"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span></code></pre>
+</figure><p>Is your query too awkward to comfortably type on a command line? Put it in a shell script, like fREW’s <code>tag-count</code> example.</p>
+<figure class="highlight">
+  <figcaption><tt>tag-count</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="nb">exec</span> scripts/q <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --sql <span class="s1">&#39;SELECT COUNT(*) AS c, tag FROM _ GROUP BY tag ORDER BY COUNT(*), tag&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --formatter <span class="s1">&#39;sprintf &#34;%3d %s&#34;, $r{c}, $r{tag}&#39;</span>
-</span></span></code></pre></div><p>That gets you a list of all the tags in your entries, ordered by number of appearances.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tag-count
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --formatter <span class="s1">&#39;sprintf &#34;%3d %s&#34;, $r{c}, $r{tag}&#39;</span></span></span></code></pre>
+</figure><p>That gets you a list of all the tags in your entries, ordered by number of appearances.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tag-count
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go"> 29 ruby
 </span></span></span><span class="line"><span class="cl"><span class="go"> 33 perl
@@ -335,11 +348,14 @@ My blogging output by year – bet you didn’t know there were blogs in 1 CE</p
 </span></span></span><span class="line"><span class="cl"><span class="go"> 43 learn
 </span></span></span><span class="line"><span class="cl"><span class="go"> 45 drawing
 </span></span></span><span class="line"><span class="cl"><span class="go"> 77 site
-</span></span></span></code></pre></div><p>I converted it to <a href="/card/python/">card/Python</a> eventually, of course. <a href="https://github.com/kennethreitz-archive/records">Records</a> produced nice-looking output while letting me stick to SQL syntax. Noticeably slower than <code>q</code>, but acceptable. A bit later, I added a table for aliases. Then, another table for announcements — my tweets and toots about new content.</p>
+</span></span></span></code></pre>
+</figure><p>I converted it to <a href="/card/python/">card/Python</a> eventually, of course. <a href="https://github.com/kennethreitz-archive/records">Records</a> produced nice-looking output while letting me stick to SQL syntax. Noticeably slower than <code>q</code>, but acceptable. A bit later, I added a table for aliases. Then, another table for announcements — my tweets and toots about new content.</p>
 <p>Aside from answering idle questions like &ldquo;how many drawings have I posted?&rdquo; my little database streamlines the process of publishing site updates and automatically announcing new posts.</p>
 <h2 id="whats-the-problem">What’s the problem?</h2>
 <p>I’m thinking about adding more tables to improve <a href="/card/indieweb/">card/IndieWeb</a> integration. But to be honest, my creation has grown unwieldy. And <em>slow</em>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> query <span class="s1">&#39;select date, title from articles order by date&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> query <span class="s1">&#39;select date, title from articles order by date&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go">Skinny Lines and Flat Colors                             |2020-05-02T21:11:00-07:00
 </span></span></span><span class="line"><span class="cl"><span class="go">Pondering My Indieweb Guinea Pig                         |2020-05-03T20:30:00-07:00
@@ -347,15 +363,19 @@ My blogging output by year – bet you didn’t know there were blogs in 1 CE</p
 </span></span></span><span class="line"><span class="cl"><span class="go">445 rows
 </span></span></span><span class="line"><span class="cl"><span class="go">query &#39;select title, published_at from contents order by published_at&#39;  \
 </span></span></span><span class="line"><span class="cl"><span class="go">2.64s user 0.13s system 101% cpu 2.730 total
-</span></span></span></code></pre></div><p>Compared to the original Perl script?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> q --sql <span class="s1">&#39;select date, title from articles where date is not null is not null order by date&#39;</span>
+</span></span></span></code></pre>
+</figure><p>Compared to the original Perl script?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> q --sql <span class="s1">&#39;select date, title from articles where date is not null is not null order by date&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-02T21:11:00-07:00    Skinny Lines and Flat Colors
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-03T15:46:00-07:00    Sending Webmentions
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-03T20:30:00-07:00    Pondering My Indieweb Guinea Pig
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-04 23:26:21-07:00    Got a Working glitch-soc Rails Dev Environment
 </span></span></span><span class="line"><span class="cl"><span class="go">q --sql   0.17s user 0.02s system 99% cpu 0.197 total
-</span></span></span></code></pre></div><p>I’m tempted to gut my Python workflow. Start fresh from <code>q</code> and Perl again. But no. That would be a lot of work — duplicated work, at that.</p>
+</span></span></span></code></pre>
+</figure><p>I’m tempted to gut my Python workflow. Start fresh from <code>q</code> and Perl again. But no. That would be a lot of work — duplicated work, at that.</p>
 <p>I’ll stick to Python for now. But surely we can do better than the duct tape script I’ve been using.</p>
 <p><a href="https://simonwillison.net/">Simon Willison</a>&rsquo;s <code>sqlite-utils</code> may be just the thing.</p>
 <h2 id="whats-sqlite-utils">What’s <code>sqlite-utils</code>?</h2>
@@ -365,19 +385,24 @@ structures as you insert them — though you can be explicit if you prefer. It
 particularly useful for bulk inserting or exporting data dumps in JSON or <a href="/card/csv/">CSV</a>.</p>
 <p>Makes sense. It’s part of the <a href="https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem">Datasette ecosystem</a>.  Willison’s Datasette project simplifies exploring and publishing data for folks who understand data but not necessarily databases.</p>
 <p>And although it’s slower than <code>q</code> for SQL queries, it’s much closer than what I came up with!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> sqlite-utils site.db <span class="s1">&#39;select publishDate, title from entries order by publishDate&#39;</span> --table
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> sqlite-utils site.db <span class="s1">&#39;select publishDate, title from entries order by publishDate&#39;</span> --table
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-03T04:11:00+00:00  Skinny Lines and Flat Colors
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-03T22:46:00+00:00  Sending Webmentions
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-04T03:30:00+00:00  Pondering My Indieweb Guinea Pig
 </span></span></span><span class="line"><span class="cl"><span class="go">2020-05-05T06:26:21+00:00  Got a Working glitch-soc Rails Dev Environment
 </span></span></span><span class="line"><span class="cl"><span class="go">sqlite-utils site.db  --table  0.54s user 0.16s system 158% cpu 0.442 total
-</span></span></span></code></pre></div><h2 id="creating-sitedb-with-sqlite-utils">Creating <code>site.db</code> with <code>sqlite-utils</code></h2>
+</span></span></span></code></pre>
+</figure><h2 id="creating-sitedb-with-sqlite-utils">Creating <code>site.db</code> with <code>sqlite-utils</code></h2>
 <p>Okay! Let’s do this. I want to load and prepare details from my content entries before I let <code>sqlite-utils</code> turn it into a database.</p>
 <h3 id="getting-metadata-from-hugo-and-front-matter">Getting metadata from Hugo and front matter</h3>
 <p>We could recursively walk through the <code>content/</code> folder, collecting front matter details about everything we find. Most of the time, this is more than I want. <a href="https://gohugo.io/content-management/organization/">Hugo site organization</a> includes supplemental material like page bundles and <code>_index</code> pages. That’s distracting when I only want to focus on my posts and notes. If you just want core content — posts, pages, stuff like that — ask Hugo.</p>
 <p>I <a href="/post/2020/03/listing-hugo-content-extensions-with-raku/">mentioned</a> the <code>hugo list</code> commands before. <a href="https://gohugo.io/commands/hugo_list_all/"><code>hugo list all</code></a> prints summaries of all your main content entries, as comma-separated text. Python’s standard <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> and <a href="https://docs.python.org/3/library/csv.html">csv</a> are all I need to turn that into something useful.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">subprocess</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
@@ -386,9 +411,11 @@ particularly useful for bulk inserting or exporting data dumps in JSON or <a hre
 </span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="s2">&#34;hugo&#34;</span><span class="p">,</span> <span class="s2">&#34;list&#34;</span><span class="p">,</span> <span class="s2">&#34;all&#34;</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">))</span>
-</span></span></code></pre></div><p><a href="https://docs.python.org/3/library/csv.html#csv.DictReader">csv.DictReader</a> gives me a collection of manageable dictionaries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><p><a href="https://docs.python.org/3/library/csv.html#csv.DictReader">csv.DictReader</a> gives me a collection of manageable dictionaries.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;2020-04-28T01:36:54-07:00&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;draft&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;expiryDate&#39;</span><span class="p">:</span> <span class="s1">&#39;0001-01-01T00:00:00Z&#39;</span><span class="p">,</span>
@@ -397,9 +424,11 @@ particularly useful for bulk inserting or exporting data dumps in JSON or <a hre
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;publishDate&#39;</span><span class="p">:</span> <span class="s1">&#39;2020-04-28T01:36:54-07:00&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;slug&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;From Dotfiles to Org File&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>That’s useful for a high level overview of <a href="/post/2020/04/from-dotfiles-to-org-file/">that post</a>, but I want more. I want tags, categories, aliases, etc. I keep those details as <a href="https://yaml.org/">YAML</a> text in content <a href="https://gohugo.io/content-management/front-matter/">front matter</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">From Dotfiles to Org File</span><span class="w">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>That’s useful for a high level overview of <a href="/post/2020/04/from-dotfiles-to-org-file/">that post</a>, but I want more. I want tags, categories, aliases, etc. I keep those details as <a href="https://yaml.org/">YAML</a> text in content <a href="https://gohugo.io/content-management/front-matter/">front matter</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">From Dotfiles to Org File</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">uuid</span><span class="p">:</span><span class="w"> </span><span class="l">f03e5f2f-70a8-4988-92cd-595c8e3fdc97</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">at 1:30am they&#39;re all good ideas</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2020&#39;</span><span class="w">
@@ -415,16 +444,21 @@ particularly useful for bulk inserting or exporting data dumps in JSON or <a hre
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">/2020/04/28/from-dotfiles-to-org-file/</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">announcements</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mastodon</span><span class="p">:</span><span class="w"> </span><span class="l">https://hackers.town/@randomgeek/104075340897518607</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">twitter</span><span class="p">:</span><span class="w"> </span><span class="l">https://twitter.com/brianwisti/status/1255056188087111681</span><span class="w">
-</span></span></span></code></pre></div><p><a href="https://pyyaml.org">PyYAML</a> moves quick when powered by <a href="https://pyyaml.org/wiki/LibYAML">libYAML</a>.  So I make sure I have both installed on my Manjaro machine.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install libyaml
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">twitter</span><span class="p">:</span><span class="w"> </span><span class="l">https://twitter.com/brianwisti/status/1255056188087111681</span></span></span></code></pre>
+</figure><p><a href="https://pyyaml.org">PyYAML</a> moves quick when powered by <a href="https://pyyaml.org/wiki/LibYAML">libYAML</a>.  So I make sure I have both installed on my Manjaro machine.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install libyaml
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> pip install pyyaml
-</span></span></code></pre></div><p>I can’t think of a pretty way to get at an entry’s front matter, so let’s just get it out of the way.</p>
+</span></span></code></pre>
+</figure><p>I can’t think of a pretty way to get at an entry’s front matter, so let’s just get it out of the way.</p>
 <blockquote>
-<p>[!NOTE]
-It’s not worth rewriting a whole blog post just yet, but in the years since writing this I use <a href="https://github.com/eyeseast/python-frontmatter">python-frontmatter</a> to handle frontmatter.</p>
+<p><strong>NOTE</strong></p>
+<p>It’s not worth rewriting a whole blog post just yet, but in the years since writing this I use <a href="https://github.com/eyeseast/python-frontmatter">python-frontmatter</a> to handle frontmatter.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">yaml</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">yaml</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">DELIMITER</span> <span class="o">=</span> <span class="s2">&#34;---</span><span class="se">\n</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -432,8 +466,8 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_frontmatter</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Get dictionary from a file&#39;s YAML frontmatter&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="p">,</span> <span class="n">yaml_text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">DELIMITER</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">yaml_text</span><span class="p">)</span>
-</span></span></code></pre></div><ol>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">yaml_text</span><span class="p">)</span></span></span></code></pre>
+</figure><ol>
 <li>read the file</li>
 <li>grab the front matter YAML</li>
 <li>hand back a dictionary based on that front matter text</li>
@@ -441,12 +475,21 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 <p>Why a function? It’s only a couple lines of code.</p>
 <p>Sure, but it’s an ugly couple of lines. Plus it hides the YAML-specific details away in case I switch my front matter to TOML, JSON, or some other format.</p>
 <p>Okay, now to mash entry and relevant front matter bits together. I prefer <a href="https://arrow.readthedocs.io/">Arrow</a> &rsquo;s interface to <a href="https://docs.python.org/3.8/library/datetime.html">datetime</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install arrow
-</span></span></code></pre></div><div class="highlight" title="Import entry dependencies" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install arrow
+</span></span></code></pre>
+</figure><figure class="highlight">
+  <figcaption><span>Import entry dependencies</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">arrow</span>
-</span></span></code></pre></div><div class="highlight" title="Prepare entry" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SiteEntry</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&#34;SiteEntry&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;entry&#34;</span><span class="p">,</span> <span class="s2">&#34;tags&#34;</span><span class="p">,</span> <span class="s2">&#34;announcements&#34;</span><span class="p">,</span> <span class="s2">&#34;aliases&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">arrow</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <figcaption><span>Prepare entry</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SiteEntry</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&#34;SiteEntry&#34;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;entry&#34;</span><span class="p">,</span> <span class="s2">&#34;tags&#34;</span><span class="p">,</span> <span class="s2">&#34;announcements&#34;</span><span class="p">,</span> <span class="s2">&#34;aliases&#34;</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">prepare_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a SiteEntry with details about a single content entry&#34;&#34;&#34;</span>
@@ -476,8 +519,8 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 </span></span><span class="line"><span class="cl">    <span class="n">aliases</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;entry_path&#34;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="n">alias</span><span class="p">}</span> <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;aliases&#34;</span><span class="p">,</span> <span class="p">[])</span>
 </span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">SiteEntry</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">tags</span><span class="p">,</span> <span class="n">announcements</span><span class="p">,</span> <span class="n">aliases</span><span class="p">)</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">SiteEntry</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">tags</span><span class="p">,</span> <span class="n">announcements</span><span class="p">,</span> <span class="n">aliases</span><span class="p">)</span></span></span></code></pre>
+</figure><ul>
 <li>A <a href="https://docs.python.org/3/library/collections.html#collections.namedtuple">namedtuple</a> helps when you want some structure but not a full class.</li>
 <li>Always make sure times are in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a> when saving to the database!</li>
 <li>Hugo determines <a href="https://gohugo.io/content-management/sections/">sections</a> from a file’s location under <code>content/</code>, so let’s do the same.</li>
@@ -485,11 +528,20 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 </ul>
 <p>I got everything tidy and pretty. We’re ready for the database.</p>
 <h3 id="loading-the-data">Loading the data</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install sqlite-utils
-</span></span></code></pre></div><p>The <code>sqlite-utils</code> <a href="https://sqlite-utils.readthedocs.io/en/stable/python-api.html">Python API</a> ends up taking hardly any code at all, thanks partly to the work spent massaging the entries. You treat the database as a dictionary, with each table name as a field. Tables get created when you insert something.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install sqlite-utils
+</span></span></code></pre>
+</figure><p>The <code>sqlite-utils</code> <a href="https://sqlite-utils.readthedocs.io/en/stable/python-api.html">Python API</a> ends up taking hardly any code at all, thanks partly to the work spent massaging the entries. You treat the database as a dictionary, with each table name as a field. Tables get created when you insert something.</p>
 <p>I think we called that &ldquo;autovivification&rdquo; in Perl. It’s nice.</p>
-<div class="highlight" title="import sqlite-utils" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
-</span></span></code></pre></div><div class="highlight" title="build databse" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DB_NAME</span> <span class="o">=</span>  <span class="s2">&#34;site.db&#34;</span>
+<figure class="highlight">
+  <figcaption><span>import sqlite-utils</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <figcaption><span>build databse</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DB_NAME</span> <span class="o">=</span>  <span class="s2">&#34;site.db&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">build_db</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Build the database&#34;&#34;&#34;</span>
@@ -517,18 +569,23 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">site</span><span class="p">[</span><span class="s2">&#34;aliases&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="n">aliases</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="s2">&#34;url&#34;</span><span class="p">,</span> <span class="n">foreign_keys</span><span class="o">=</span><span class="p">[(</span><span class="s2">&#34;entry_path&#34;</span><span class="p">,</span> <span class="s2">&#34;entries&#34;</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span></span></span></code></pre>
+</figure><ul>
 <li>Rebuild the database from scratch every time this runs. Alternately, leave this out and <code>upsert_all</code> to do an insert or update.</li>
 <li>Setting <code>path</code> as the primary key, since every filename should be unique.</li>
 <li>A tuple <code>pk</code> specifies a compound primary key — each pair must be unique.</li>
 <li><code>sqlite-utils</code> hides the details of foreign keys in SQLite. Just use a list of <code>FIELD_NAME</code> / <code>TABLE_NAME</code> pairs.</li>
 </ul>
 <p>All that works makes <code>build_db</code> a convenient starting point for <code>build-db.py</code>.</p>
-<div class="highlight" title="define script execution" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">build_db</span><span class="p">()</span>
-</span></span></code></pre></div><p>I <em>could</em> specify an in-memory database, but no. For the moment I’ll settle on creating a database file. That way I can more easily play with the <code>sqlite-utils</code> command line interface.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> sqlite-utils tables site.db --counts --json-cols <span class="p">|</span> python -m json.tool
+<figure class="highlight">
+  <figcaption><span>define script execution</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">build_db</span><span class="p">()</span></span></span></code></pre>
+</figure><p>I <em>could</em> specify an in-memory database, but no. For the moment I’ll settle on creating a database file. That way I can more easily play with the <code>sqlite-utils</code> command line interface.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> sqlite-utils tables site.db --counts --json-cols <span class="p">|</span> python -m json.tool
 </span></span><span class="line"><span class="cl"><span class="go">[
 </span></span></span><span class="line"><span class="cl"><span class="go">    {
 </span></span></span><span class="line"><span class="cl"><span class="go">        &#34;table&#34;: &#34;entries&#34;,
@@ -547,14 +604,18 @@ It’s not worth rewriting a whole blog post just yet, but in the years since wr
 </span></span></span><span class="line"><span class="cl"><span class="go">        &#34;count&#34;: 900
 </span></span></span><span class="line"><span class="cl"><span class="go">    }
 </span></span></span><span class="line"><span class="cl"><span class="go">]
-</span></span></span></code></pre></div><p>I’m content. But I’m also curious. What does my site metadata look like in Datasette?</p>
+</span></span></span></code></pre>
+</figure><p>I’m content. But I’m also curious. What does my site metadata look like in Datasette?</p>
 <h2 id="exploring-sitedb-with-datasette">Exploring <code>site.db</code> with Datasette</h2>
 <p>I don’t have any great insights here. I just wanted to look at the pretty
 tables. Played with <a href="https://datasette.readthedocs.io/en/stable/metadata.html">metadata</a> and checked out the results.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install datasette
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pip install datasette
 </span></span><span class="line"><span class="cl"><span class="go">⋮
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> datasette serve --metadata datasette.json site.db
-</span></span></code></pre></div><p>The basic interface is pleasant enough, especially when you apply some <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> Of course, <a href="https://www.niche-museums.com/">Niche Museums</a> shows you can go a <em>long</em> ways past &ldquo;some CSS&rdquo; with Datasette.</p>
+</span></span></code></pre>
+</figure><p>The basic interface is pleasant enough, especially when you apply some <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> Of course, <a href="https://www.niche-museums.com/">Niche Museums</a> shows you can go a <em>long</em> ways past &ldquo;some CSS&rdquo; with Datasette.</p>
 <p>Oh and more on the pleasant interface. It allows you to edit the SQL for your current view.</p>
 <p><img src="/post/2020/05/attachments/img/2020/datasette-sql.png" alt="lightly styled with custom SQL"/></p>
 <p>There are detail pages for each row. Again, the Niche Museums site shows that <a href="https://www.niche-museums.com/browse/museums/21">detail view</a> can be heavily tweaked.</p>
@@ -562,7 +623,9 @@ tables. Played with <a href="https://datasette.readthedocs.io/en/stable/metadata
 <p><a href="https://datasette.readthedocs.io/en/stable/ecosystem.html#datasette-plugins">Plugins</a> add all sorts of functionality. <a href="https://github.com/simonw/datasette-vega">datasette-vega</a> draws graphs of query results.</p>
 <p><img src="/post/2020/05/attachments/img/2020/datasette-graph.png" alt="Charting interface with entries posted per year"/></p>
 <p>Year 0001? Hang on, let me check that in my shiny new Datasette server.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">path</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">title</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">publishDate</span><span class="p">,</span><span class="w">
@@ -574,8 +637,8 @@ tables. Played with <a href="https://datasette.readthedocs.io/en/stable/metadata
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="s2">&#34;publishDate&#34;</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;0001%&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">publishDate</span><span class="w"> </span><span class="k">desc</span><span class="w">
-</span></span></span></code></pre></div><h3 id="year-0001-content">Year 0001 content</h3>
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">publishDate</span><span class="w"> </span><span class="k">desc</span></span></span></code></pre>
+</figure><h3 id="year-0001-content">Year 0001 content</h3>
 <table>
 <thead>
 <tr>

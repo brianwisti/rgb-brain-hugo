@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2015/">2015</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2015/07/using-octopress-3/">Using Octopress 3</a></li>
@@ -293,29 +298,44 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><a href="http://octopress.org/">Octopress</a> is &ldquo;an obsessively designed toolkit for writing and deploying <em>Jekyll</em> blogs.&rdquo; A <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">blog post</a> earlier this year by author Brandon Mathis described frustrations with Octopress 2, along with plans for <a href="https://github.com/octopress/octopress">Octopress 3</a>. I didn&rsquo;t use Octopress before, so I can&rsquo;t tell you anything about how much better or worse the newest Octopress is. This release feels like a straightforward and useful extension to Jekyll. Apparently the older releases did not.</p>
 <p>Instructions for installing and using Octopress 3 are on <a href="https://github.com/octopress/octopress">Github</a>. Here is what I did to  incorporate and use the new Octopress on my site.</p>
 <p>I need to install Octopress 3 first, obviously.</p>
-<pre tabindex="0"><code>$ gem install octopress
-</code></pre><p>Octopress provides a handful of commands for creating and managing content in a Jekyll site. I head into my site folder and start things off with <code>octopress init</code>.</p>
-<pre tabindex="0"><code>$ cd randomgeekery.org
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ gem install octopress</code></pre>
+</figure><p>Octopress provides a handful of commands for creating and managing content in a Jekyll site. I head into my site folder and start things off with <code>octopress init</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd randomgeekery.org
 $ octopress init
 Added Octopress scaffold:
- + _templates/
- +   draft
- +   page
- +   post
-</code></pre><p><code>init</code> creates the templates that will be used by other Octopress commands.</p>
+ &#43; _templates/
+ &#43;   draft
+ &#43;   page
+ &#43;   post</code></pre>
+</figure><p><code>init</code> creates the templates that will be used by other Octopress commands.</p>
 <p>I&rsquo;ll start with the draft for this post.</p>
-<pre tabindex="0"><code>$ octopress new draft &#34;Using Octopress 3&#34;
-New draft: _drafts/using-octopress-3.markdown
-</code></pre><p>I add my content, drink some coffee, and fix the most grievous errors in my draft. Time to publish the draft. Octopress commands can complete partial filenames. Let&rsquo;s see if that works.</p>
-<pre tabindex="0"><code>$ octopress publish octopress
-Published: _drafts/using-octopress-3.markdown → _posts/2015-07-12-using-octopress-3.markdown
-</code></pre><p>Sure does. That is convenient.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ octopress new draft &#34;Using Octopress 3&#34;
+New draft: _drafts/using-octopress-3.markdown</code></pre>
+</figure><p>I add my content, drink some coffee, and fix the most grievous errors in my draft. Time to publish the draft. Octopress commands can complete partial filenames. Let&rsquo;s see if that works.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ octopress publish octopress
+Published: _drafts/using-octopress-3.markdown → _posts/2015-07-12-using-octopress-3.markdown</code></pre>
+</figure><p>Sure does. That is convenient.</p>
 <p>Wait. I organize <code>_posts</code> by category folders. I&rsquo;ll back out of the last publish and try again with a location specified.</p>
-<pre tabindex="0"><code>$ octopress unpublish octopress
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ octopress unpublish octopress
 Unpublished: _posts/2015-07-12-using-octopress-3.markdown → _drafts/using-octopress-3.markdown
 $ octopress publish octopress --dir tools
-Published: _drafts/using-octopress-3.markdown → _posts/tools/2015-07-12-using-octopress-3.markdown
-</code></pre><p>I already have my own deployment script, so for now I will not worry about the Octopress <code>deploy</code> command. I&rsquo;ll just publish it.</p>
+Published: _drafts/using-octopress-3.markdown → _posts/tools/2015-07-12-using-octopress-3.markdown</code></pre>
+</figure><p>I already have my own deployment script, so for now I will not worry about the Octopress <code>deploy</code> command. I&rsquo;ll just publish it.</p>
 <p>Oh before I do that, I just want to mention that Octopress 3 does a
 great job streamlining management of individual posts. I like it.</p>
   

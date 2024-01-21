@@ -137,8 +137,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/04/taskwarrior-custom-reports/">Taskwarrior Custom Reports</a></li>
@@ -317,56 +322,87 @@ Taskwarrior lets you assign <a href="/post/2018/01/taskwarrior-due-dates/">due d
 <h2 id="filtering-with-or">Filtering with <code>or</code></h2>
 <p>Filters already have an implied <code>and</code>. It looks like this.</p>
 <p>How many active tasks do I have?</p>
-<pre tabindex="0"><code>$ task +PENDING count
-198
-</code></pre><p>How many active tasks do I want to work on soon?</p>
-<pre tabindex="0"><code>$ task +PENDING priority:M count
-28
-</code></pre><p>That’s filtering tasks to those for which <code>+PENDING</code> <strong>and</strong> <code>priority:M</code> are true.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING count
+198</code></pre>
+</figure><p>How many active tasks do I want to work on soon?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING priority:M count
+28</code></pre>
+</figure><p>That’s filtering tasks to those for which <code>+PENDING</code> <strong>and</strong> <code>priority:M</code> are true.</p>
 <p>How many active tasks do I want to be working on now?</p>
-<pre tabindex="0"><code>$ task +PENDING priority:H count
-6
-</code></pre><p>That’s a bit much. It should be more like four or five.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING priority:H count
+6</code></pre>
+</figure><p>That’s a bit much. It should be more like four or five.</p>
 <p>How many active tasks do I want to work on now or soon? That is, which tasks are <code>+PENDING</code> and have either <code>priority:M</code> or <code>priority:H</code>?</p>
 <p>We can use <code>or</code> to join two filters. If either of them is true for the task, that task is included. Use parentheses to build more complex filters.</p>
-<pre tabindex="0"><code>$ task +PENDING (priority:H or priority:M) count
-zsh: unknown file attribute: i
-</code></pre><p>Tada — oops. Hang on. This stuff goes through the shell before it reaches Taskwarrior. Let’s put the filter in a string.</p>
-<pre tabindex="0"><code>$ task &#39;+PENDING (priority:H or priority:M)&#39; count
-34
-</code></pre><p>Tada!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;PENDING (priority:H or priority:M) count
+zsh: unknown file attribute: i</code></pre>
+</figure><p>Tada — oops. Hang on. This stuff goes through the shell before it reaches Taskwarrior. Let’s put the filter in a string.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#39;&#43;PENDING (priority:H or priority:M)&#39; count
+34</code></pre>
+</figure><p>Tada!</p>
 <p>Okay, it works, but I just know there will be more typos using this filter from memory. How can I avoid typing it in every time?</p>
 <h2 id="use-a-context">Use a context</h2>
 <p>I could add that priority filter to my &ldquo;focused&rdquo; <a href="/post/2018/02/taskwarrior-contexts/">context</a>, used when I need to ignore distracting ideas.</p>
 <p><strong><code>~/.taskrc</code></strong></p>
-<pre tabindex="0"><code>context.focused=-idea -shelved (priority:H or priority:M)
-</code></pre><p>Now <em>every</em> report skips low priority tasks.</p>
-<pre tabindex="0"><code>$ task context focused
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >context.focused=-idea -shelved (priority:H or priority:M)</code></pre>
+</figure><p>Now <em>every</em> report skips low priority tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context focused
 Context &#39;focused&#39; set. Use &#39;task context none&#39; to remove.
-$ task +PENDING count
-34
-</code></pre><p>This is great, but I want to know my top tasks even when I’m not in focused context.</p>
+$ task &#43;PENDING count
+34</code></pre>
+</figure><p>This is great, but I want to know my top tasks even when I’m not in focused context.</p>
 <p>Plus it’s easy to forget which context you’re in. I once spent 15 minutes trying to find a <code>+work</code> task before remembering I was still in <code>offwork</code> context. Which reminds me — </p>
-<pre tabindex="0"><code>$ task context blog
-</code></pre><h2 id="use-a-shell-alias">Use a shell alias</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task context blog</code></pre>
+</figure><h2 id="use-a-shell-alias">Use a shell alias</h2>
 <p>Part of Taskwarrior’s charm is the fact that we use <code>task</code> from the command line. I could take advantage of that with a shell alias for <code>task</code> using the preface filter.</p>
 <p><strong><code>~/.aliases</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ttop</span><span class="o">=</span><span class="s1">&#39;task +PENDING &#34;(priority:H or priority:M)&#34;&#39;</span>
-</span></span></code></pre></div><p>This gives me sort of an on-the-fly context.</p>
-<pre tabindex="0"><code>$ ttop count
-34
-</code></pre><p>I could use <code>ttop</code> with any Taskwarrior command, so <code>ttop next</code> would be a fine way to look at my important tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ttop</span><span class="o">=</span><span class="s1">&#39;task +PENDING &#34;(priority:H or priority:M)&#34;&#39;</span></span></span></code></pre>
+</figure><p>This gives me sort of an on-the-fly context.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ttop count
+34</code></pre>
+</figure><p>I could use <code>ttop</code> with any Taskwarrior command, so <code>ttop next</code> would be a fine way to look at my important tasks.</p>
 <p>But I’d kind of like to have a custom report for reviewing tasks I’ve set as important. Something with a little more information than <code>task minimal</code> but a bit less than <code>task next</code>.</p>
 <h2 id="use-a-custom-report">Use a custom report</h2>
 <p>Might be easier to show than tell. For more of a &ldquo;tell&rdquo; approach, check the &ldquo;REPORTS&rdquo; section of <code>man taskrc</code>. Here’s my custom &ldquo;top&rdquo; report, loosely based on Taskwarrior’s <code>minimal</code> report.</p>
 <p><strong><code>~/.taskrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Almost-minimal view of tasks I want to work on most
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl"># Almost-minimal view of tasks I want to work on most
 </span></span><span class="line"><span class="cl">report.top.columns=id,priority,project,tags,description.count 
 </span></span><span class="line"><span class="cl">report.top.description=&#39;Minimal details of tasks&#39;
 </span></span><span class="line"><span class="cl">report.top.filter=status:pending (priority:H or priority:M)
 </span></span><span class="line"><span class="cl">report.top.labels=ID,Pri,Project,Tags,Description
-</span></span><span class="line"><span class="cl">report.top.sort=priority-/,project-,description+ 
-</span></span></code></pre></div><ul>
+</span></span><span class="line"><span class="cl">report.top.sort=priority-/,project-,description+ </span></span></code></pre>
+</figure><ul>
 <li>
 <p><code>description.count</code> column is used for the description text and the number of annotations for the task.</p>
 </li>
@@ -375,7 +411,10 @@ $ task +PENDING count
 </li>
 </ul>
 <p>And here’s what my <code>top</code> report looks like.</p>
-<pre tabindex="0"><code>$ task top
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task top
 ID  Pri Project    Tags              Description
  28 H   Site       blog taskwarrior  custom reports [1]
 194 H   Site       blog              describe workflow
@@ -413,24 +452,30 @@ ID  Pri Project    Tags              Description
 145 M              ops               refactor sync cronjob to script
  16 M              tools             try out newsboat news reader
 34 tasks
-Filter: ( status = pending and ( priority = H or priority = M ) )
-</code></pre><p>I can apply additional filters just like with any other report.</p>
-<pre tabindex="0"><code>$  rgb-hugo (master) task project:OrgConfig top
+Filter: ( status = pending and ( priority = H or priority = M ) )</code></pre>
+</figure><p>I can apply additional filters just like with any other report.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$  rgb-hugo (master) task project:OrgConfig top
 ID  Pri Project   Tags Description
 197 M   OrgConfig ops  add awesomewm settings
 1 task
-Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )
-</code></pre><p>So that’s pretty handy. But clearly I need to clean this up a bit. Some of those aren’t really things I want to work on soon. But at least now I have one less <code>priority:H</code> task.</p>
+Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )</code></pre>
+</figure><p>So that’s pretty handy. But clearly I need to clean this up a bit. Some of those aren’t really things I want to work on soon. But at least now I have one less <code>priority:H</code> task.</p>
 <p>You can see Taskwarrior’s settings for the <code>minimal</code> report, or any other, with <code>show report.NAME</code>:</p>
-<pre tabindex="0"><code>$ task show report.minimal
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task show report.minimal
 
 Config Variable            Value
 report.minimal.columns     id,project,tags.count,description.count
 report.minimal.description Minimal details of tasks
 report.minimal.filter      status:pending or status:waiting
 report.minimal.labels      ID,Project,Tags,Description
-report.minimal.sort        project+/,description+
-</code></pre>
+report.minimal.sort        project&#43;/,description&#43;</code></pre>
+</figure>
   
 
 

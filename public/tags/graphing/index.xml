@@ -30,14 +30,19 @@ A few months passed.</description>
 <p>First off let me roll 1d100 and check the Random Language Chart. I rolled a 73, and that means I write this in Ruby.</p>
 <p>I decided to look at the XML file that gets exported by iTunes whenever a library detail changes. <a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/plist.5.html">Property List XML</a> frustrates quickly if you attack it with naive XML parsing. Fortunately, Ben Bleything wrote a <a href="https://github.com/bleything/plist">plist</a> gem that simplifies the task in Ruby.</p>
 <p>Since I like pretty pictures, I may as well use Geoffrey Grosenbach’s <a href="https://github.com/topfunky/gruff">gruff</a> to make a pretty pie chart.</p>
-<pre tabindex="0"><code>$ ruby --version
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby --version
 ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-darwin14]
 $ gem install plist
-$ gem install gruff
-</code></pre><h2 id="here-it-is">Here It Is</h2>
+$ gem install gruff</code></pre>
+</figure><h2 id="here-it-is">Here It Is</h2>
 <p>No big code explanation this time around. My last few attempts at that have gone stale in my drafts folder. Plus, I’m worn out. I <em>tried</em> the naive XML parsing thing, and it frustrated me quickly. Thank goodness for <a href="https://github.com/bleything/plist">plist</a>.</p>
 <p><strong><code>graph-ratings.rb</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;plist&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;plist&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;gruff&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="no">SOURCE</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;HOME&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Music/iTunes/iTunes Music Library.xml&#34;</span>
@@ -86,16 +91,19 @@ $ gem install gruff
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">ratings</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">rating</span><span class="o">|</span> <span class="n">graph</span><span class="o">.</span><span class="n">data</span> <span class="n">rating</span><span class="p">,</span> <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:songs</span><span class="o">]</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">graph</span><span class="o">.</span><span class="n">write</span> <span class="s2">&#34;song-pie.png&#34;</span>
-</span></span></code></pre></div><p>Running it shows me that I have more than a month of music to rate, and only if I can rate music in my sleep.</p>
-<pre tabindex="0"><code>Rating Songs Percent Duration
+</span></span><span class="line"><span class="cl"><span class="n">graph</span><span class="o">.</span><span class="n">write</span> <span class="s2">&#34;song-pie.png&#34;</span></span></span></code></pre>
+</figure><p>Running it shows me that I have more than a month of music to rate, and only if I can rate music in my sleep.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Rating Songs Percent Duration
      0 13907   83.0% 38:05:56:14
     20    60    0.4% 00:03:41:48
     40   179    1.1% 00:12:28:46
     60  1351    8.1% 03:16:21:32
     80   984    5.9% 02:14:57:47
-   100   273    1.6% 00:17:44:35
-</code></pre><p>It seems I still like most of the music I own at least a little bit. Many former favorites have drifted to the 60 rating (3 stars), though. Time does change tastes a little bit.</p>
+   100   273    1.6% 00:17:44:35</code></pre>
+</figure><p>It seems I still like most of the music I own at least a little bit. Many former favorites have drifted to the 60 rating (3 stars), though. Time does change tastes a little bit.</p>
 <p>The graph. Let’s look at that pretty picture.</p>
 <p><img src="/post/2015/03/attachments/img/2015/song-pie.png" alt="Ratings pie chart"/></p>
 <p>Yes. I have much music listening ahead of me.</p>

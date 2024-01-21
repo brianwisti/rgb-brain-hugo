@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/06/parrot-babysteps-0b-subroutine-params/">Parrot Babysteps 0b - Subroutine Params</a></li>
@@ -338,7 +343,10 @@ as I want, as long as my program gives the right answer.</p>
 <h3 id="testing-a-condition">Testing a Condition</h3>
 <p>Our first approach to checking a star&rsquo;s details will be to check a single field.
 The star <code>ProperName</code> is a good field to start with:</p>
-<pre tabindex="0"><code># example-0b-01/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-01/t/04-check-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -363,10 +371,13 @@ The star <code>ProperName</code> is a good field to start with:</p>
     ok($I0, &#39;Sol should have ProperName of &#34;Sol&#34;&#39;)
     $I0 = check_star_proper_name(star, &#39;Arcturus&#39;)
     nok($I0, &#39;Sol should not have ProperName of &#34;Arcturus&#34;&#39;)
-.end
-</code></pre><p><code>check_star_proper_name</code> is an easy sub to write. My version is more verbose
+.end</code></pre>
+</figure><p><code>check_star_proper_name</code> is an easy sub to write. My version is more verbose
 than necessary, to be honest:</p>
-<pre tabindex="0"><code># example-0b-01/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-01/lib/stellar.pir
 
 # ...
 
@@ -379,8 +390,8 @@ than necessary, to be honest:</p>
     actual_value = star[&#39;ProperName&#39;]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>The sub returns the result of comparing our desired <code>ProperName</code> with the actual
+.end</code></pre>
+</figure><p>The sub returns the result of comparing our desired <code>ProperName</code> with the actual
 value held in the <code>star</code>. I rely on Parrot to do the right thing when comparing
 <code>desired_value</code> with <code>actual_value</code>. <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">Remember</a> that Parrot automatically
 handles any type conversions, so we can ignore type for now.</p>
@@ -391,7 +402,10 @@ is explicit behavior, which I like. Then again, it is also cluttering up my
 tests. The headers never change, yet I always include them. What if I could make
 the header string and delimiter optional?</p>
 <p>I <em>can</em> make those parameters optional. Let&rsquo;s reopen the test file <code>03-extract-from-csv.t</code>.</p>
-<pre tabindex="0"><code># example-0b-02/03-extract-from-csv.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-02/03-extract-from-csv.t
 .sub main &#39;:main&#39;
     # ...
     plan(4)
@@ -403,10 +417,13 @@ the header string and delimiter optional?</p>
     star = extract_from_csv_line(star_string)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;header_fields should be optional&#34;)
-.end
-</code></pre><p>How do we make those fields optional? We use the parameter modifiers <code>:optional</code>
+.end</code></pre>
+</figure><p>How do we make those fields optional? We use the parameter modifiers <code>:optional</code>
 and <code>:opt_flag</code>.</p>
-<pre tabindex="0"><code>.sub extract_from_csv_line
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub extract_from_csv_line
     .param string star_string
     .param pmc    header_fields     :optional
     .param int    has_header_fields :opt_flag
@@ -429,14 +446,17 @@ and <code>:opt_flag</code>.</p>
     star = extract_star_details(header_fields, star_fields)
 
     .return(star)
-.end
-</code></pre><p>The <code>:optional</code> modifier makes sense. Use it to tell Parrot that a particular
+.end</code></pre>
+</figure><p>The <code>:optional</code> modifier makes sense. Use it to tell Parrot that a particular
 parameter is not required for the sub to perform its duties. <code>:opt_flag</code> might
 require a little bit of explanation, though. It is a bookkeeping parameter
 provided by Parrot to let you know whether or not the preceding optional
 parameter was provided by the caller. You test the flag to see if the optional
 parameter was set. The name of the flag doesn&rsquo;t matter.</p>
-<pre tabindex="0"><code># example-0b-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-03.pir
 .sub &#39;main&#39; :main
     .local string eggs
     .local string topping 
@@ -466,15 +486,21 @@ parameter was set. The name of the flag doesn&rsquo;t matter.</p>
 
   SERVE_BREAKFAST:
     .return(breakfast_order)
-.end
-</code></pre><p>This program executes without a hitch. There is nothing important about the name
+.end</code></pre>
+</figure><p>This program executes without a hitch. There is nothing important about the name
 of the flag.</p>
-<pre tabindex="0"><code>$ parrot example-0b-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-0b-03.pir
 Eggs cooked over easy topped with Frank&#39;s RedHot
-Eggs cooked over easy
-</code></pre><p>Order <em>does</em> matter, though. You always want to put the flag after the optional
+Eggs cooked over easy</code></pre>
+</figure><p>Order <em>does</em> matter, though. You always want to put the flag after the optional
 parameter in your <code>.param</code> directives, or bad things will happen.</p>
-<pre tabindex="0"><code># example-0b-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-04.pir
 .sub &#39;main&#39; :main
     .local string eggs
     .local string topping 
@@ -504,16 +530,22 @@ parameter in your <code>.param</code> directives, or bad things will happen.</p>
 
   SERVE_BREAKFAST:
     .return(breakfast_order)
-.end
-</code></pre><p>See?</p>
-<pre tabindex="0"><code>$ parrot example-0b-04.pir
+.end</code></pre>
+</figure><p>See?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-0b-04.pir
 Eggs cooked over easy
 too few positional arguments: 1 passed, 2 (or more) expected
 current instr.: &#39;breakfast&#39; pc 34 (example-0b-04.pir:19)
-called from Sub &#39;main&#39; pc 26 (example-0b-04.pir:15)
-</code></pre><p>Back to <code>stellar</code>. <code>extract_from_csv_line</code> can work the headers out for itself now. Let&rsquo;s clean up
+called from Sub &#39;main&#39; pc 26 (example-0b-04.pir:15)</code></pre>
+</figure><p>Back to <code>stellar</code>. <code>extract_from_csv_line</code> can work the headers out for itself now. Let&rsquo;s clean up
 our test code.</p>
-<pre tabindex="0"><code># example-0b-05/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-05/t/04-check-star.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -531,11 +563,14 @@ our test code.</p>
     ok($I0, &#39;Sol should have ProperName of &#34;Sol&#34;&#39;)
     $I0 = check_star_proper_name(star, &#39;Arcturus&#39;)
     nok($I0, &#39;Sol should not have ProperName of &#34;Arcturus&#34;&#39;)
-.end
-</code></pre><p>It is a little easier now to tell what I am actually testing in this code. Good.
+.end</code></pre>
+</figure><p>It is a little easier now to tell what I am actually testing in this code. Good.
 I know I should be all methodical and orderly about checking my star fields, but
 I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Spectrum</code>.</p>
-<pre tabindex="0"><code># example-0b-06/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/t/04-check-star.t
 
 .sub &#39;main&#39; :main
     # ...
@@ -545,9 +580,12 @@ I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Sp
     ok($I0, &#39;Sol should have Spectrum of &#34;G2V&#34;&#39;)
     $I0 = check_star_spectrum(star, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have Spectrum of &#34;K3V&#34;&#39;)
-.end
-</code></pre><p>Meanwhile, in <code>stellar.pir</code>:</p>
-<pre tabindex="0"><code># example-0b-06/lib/stellar.pir
+.end</code></pre>
+</figure><p>Meanwhile, in <code>stellar.pir</code>:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/lib/stellar.pir
 .sub check_star_spectrum
     .param pmc star
     .param string desired_value
@@ -557,12 +595,15 @@ I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Sp
     actual_value = star[&#39;Spectrum&#39;]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>This works perfectly, but compare <code>check_star_spectrum</code> to
+.end</code></pre>
+</figure><p>This works perfectly, but compare <code>check_star_spectrum</code> to
 <code>check_star_proper_name</code>. They are almost identical. In fact, the only difference between
 the code for the two subs is which field gets grabbed for <code>actual_value</code>.
 It seems to me that the same behavior could be described by a single sub.</p>
-<pre tabindex="0"><code># example-0b-06/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/t/04-check-star.t
 .sub &#39;main&#39; :main
     # ...
 
@@ -578,10 +619,13 @@ It seems to me that the same behavior could be described by a single sub.</p>
     ok($I0, &#39;Sol should have Spectrum of &#34;G2V&#34;&#39;)
     $I0 = check_star_field(star, &#39;Spectrum&#39;, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have Spectrum of &#34;K3V&#34;&#39;)
-.end
-</code></pre><p><code>check_star_field</code> looks like a generic version of <code>check_star_proper_name</code> and
+.end</code></pre>
+</figure><p><code>check_star_field</code> looks like a generic version of <code>check_star_proper_name</code> and
 <code>check_star_spectrum</code>.</p>
-<pre tabindex="0"><code># example-0b-06/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/lib/stellar.pir
 
 # ...
 
@@ -595,8 +639,8 @@ It seems to me that the same behavior could be described by a single sub.</p>
     actual_value = star[field]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>All tests are still passing. You <em>are</em> working along with me and running tests,
+.end</code></pre>
+</figure><p>All tests are still passing. You <em>are</em> working along with me and running tests,
 right? It&rsquo;s time to decide what to do with those specific subs now that we have
 a nice general purpose field checker. You could argue that those subs should
 stick around but as wrappers that call <code>check_star_field</code>. That is entirely
@@ -605,7 +649,10 @@ though. I will delete the specific subs and their tests in my code.</p>
 <h3 id="testing-multiple-conditions">Testing Multiple Conditions</h3>
 <p><code>stellar</code> does a convincing job of checking a single field in a star. The next
 step is figuring out how to check multiple fields.</p>
-<pre tabindex="0"><code># example-0b-07/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-07/t/04-check-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -640,8 +687,8 @@ step is figuring out how to check multiple fields.</p>
     nok($I0, &#39;Sol should not have ProperName &#34;Sol&#34; and Spectrum &#34;K3V&#34;&#39;)
     $I0 = check_star(star, &#39;ProperName&#39;, &#39;Arcturus&#39;, &#39;Spectrum&#39;, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have ProperName &#34;Arcturus&#34; and Spectrum &#34;K3V&#34;&#39;)
-.end
-</code></pre><p>Yes, I did go through several variations on testing multiple fields. I wanted to
+.end</code></pre>
+</figure><p>Yes, I did go through several variations on testing multiple fields. I wanted to
 make sure that <code>check_star</code> behaved <em>exactly</em> the way I expected. How am I going
 to make those tests succeed?</p>
 <h4 id="slurpy-and-flat-save-the-day"><code>:slurpy</code> and <code>:flat</code> Save the Day</h4>
@@ -652,7 +699,10 @@ that is the <code>:flat</code> modifier in subroutine calls, which lets us say &
 this array of stuff. Just tack its elements to the param list for the sub I&rsquo;m
 about to call.&rdquo;</p>
 <p>Enough imaginary dialog. Here&rsquo;s what <code>check_star</code> looks like.</p>
-<pre tabindex="0"><code># example-0b-07/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-07/lib/stellar.pir
 .sub check_star
     .param pmc    star
     .param string field
@@ -675,8 +725,8 @@ about to call.&rdquo;</p>
 
   RETURN_RESULT:
     .return(match_result)
-.end
-</code></pre><p>I tried to make it clear what was going on the comments. <code>check_star</code> is given a
+.end</code></pre>
+</figure><p>I tried to make it clear what was going on the comments. <code>check_star</code> is given a
 star and a handful of conditions. It only cares about the first condition, and
 stuffs the rest into <code>extra_fields</code>. If the first condition fails, we&rsquo;re done.
 There&rsquo;s no point in checking any more fields, so jump down to return the failure.
@@ -699,7 +749,10 @@ of evaluating the sub rather than storing it in memory. It may not do much in a
 case like <code>check_star</code>, but you should see a difference in complex problems.</p>
 <p>Then again, it might help <code>check_star</code> immensely. I don&rsquo;t really know about
 Parrot optimization effects yet.</p>
-<pre tabindex="0"><code># example-0b-08/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-08/lib/stellar.pir
 .sub &#39;main&#39; :main
     # ...
 
@@ -708,8 +761,8 @@ Parrot optimization effects yet.</p>
 
   RETURN_RESULT:
     .return(match_result)
-.end
-</code></pre><h2 id="conclusion">Conclusion</h2>
+.end</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>We can now examine multiple fields to determine if a star matches a description
 we&rsquo;ve provided. Along the way, we explored subroutine parameters. We learned how
 to make a parameter optional. We learned how to grab all of a subroutine&rsquo;s

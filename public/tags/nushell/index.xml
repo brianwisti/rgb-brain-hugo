@@ -27,8 +27,11 @@ Okay human, now do something interesting.&lt;/p&gt;</description>
 <p><img src="/post/2022/07/../../../attachments/img/2022-07-18-cats.jpg" alt="attachments/img/2022-07-18-cats.jpg"/>
 Okay human, now do something interesting.</p>
 <p>Oh and for a little bit of <a href="https://nushell.sh">Nushell</a> geekery, here&rsquo;s how I copied the newest photo from Dropbox sync to the folder for this post — since neither are named in a readily accessible pattern for quick typing:</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">cp (ls ~/Dropbox/Camera | last | get name) $&#34;(ls content/posts/2022/07/ | last | get name)/cats.jpg&#34;
-</code></pre>]]></content:encoded>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >cp (ls ~/Dropbox/Camera | last | get name) $&#34;(ls content/posts/2022/07/ | last | get name)/cats.jpg&#34;</code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: My Three(ish) Favorite Nushell Features</title>
@@ -51,12 +54,18 @@ histogram for post frequency by year using Nushell built-ins</p>
 <h2 id="nushell-feature-zero-showing-program-output">Nushell feature zero: showing program output</h2>
 <p>If you can&rsquo;t easily run a program and see its output, you are in a REPL, not a shell. I have not come across a command shell that fails that test yet, but I use it as an immediate reassurance that I haven&rsquo;t confused myself by launching <code>ipython</code> again.</p>
 <p>I&rsquo;m on <a href="https://gohugo.io">Hugo</a> again, which means I have the Hugo CLI. <code>hugo list all</code> prints out a <a href="/card/csv/">CSV</a> summary of your site, ready for processing by some other program.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
 <h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
 <p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv
-</code></pre><p>Of course, the result of that pipe is something a little different from other shells.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv</code></pre>
+</figure><p>Of course, the result of that pipe is something a little different from other shells.</p>
 <h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
 <p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
 <p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
@@ -66,25 +75,40 @@ histogram for post frequency by year using Nushell built-ins</p>
 <p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
 <p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | length
-</code></pre><pre tabindex="0"><code>421
-</code></pre><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | length</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >421</code></pre>
+</figure><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
 <h3 id="listing-command-categories-by-grouping">Listing command categories by grouping</h3>
 <p>All these commands are organized into categories. To see what categories, we can <code>group</code> the help table.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | group-by category
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | group-by category</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
 <h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
 <p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
 <blockquote>
-<p>[!NOTE]
-I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
+<p><strong>NOTE</strong></p>
+<p>I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
 </blockquote>
 <h3 id="viewing-only-select-columns-with-select">Viewing only select columns with <code>select</code></h3>
 <p>That&rsquo;s still a little busy. How about we <code>select</code> the name and usage? And heck — tables make for great screenshots, but let&rsquo;s try see what <code>to md</code> gives us.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats | select name usage | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats | select name usage | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>name</th>
@@ -206,14 +230,20 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>Note the pattern of commands and subcommands. The &ldquo;formats&rdquo; category includes two primary commands, <code>from</code> and <code>to</code>. Then many subcommands for converting <em>from</em> assorted formats to a table, and their counterparts for converting from a table <em>to</em> assorted formats.</p>
 <h3 id="getting-help-for-a-specific-command">Getting help for a specific command</h3>
 <p>We can ask for help with a specific command. Most shells offer this in one form or another, though they don&rsquo;t generally provide the command discovery path we just walked down.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help to md
-</code></pre><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help to md</code></pre>
+</figure><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
 <h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
 <p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
 <p>Remember Hugo? This was supposed to be a post about Hugo.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | last 5 | select title publishDate | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | last 5 | select title publishDate | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -248,21 +278,36 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>The really basic idea is that <a href="https://www.nushell.sh/book/types_of_data.html#blocks">blocks</a> run arbitrary commands on a parameter, and let us do what we like with the result.</p>
 <p>I&rsquo;m going to do sort of a <a href="https://databricks.com/glossary/what-are-dataframes">dataframe</a> type of action here. That&rsquo;s not a normal state for my brain so I need to step through this slowly.</p>
 <p><code>hugo list all</code> gave me some CSV text.</p>
-<pre tabindex="0"><code>hugo list all
-</code></pre><p><code>from csv</code> turned that text into a table.</p>
-<pre tabindex="0"><code>hugo list all | from csv
-</code></pre><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at ...
-</code></pre><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at { |it| ... }
-</code></pre><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all</code></pre>
+</figure><p><code>from csv</code> turned that text into a table.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all | from csv</code></pre>
+</figure><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at ...</code></pre>
+</figure><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at { |it| ... }</code></pre>
+</figure><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
 <p>The block returns a column with dates for every value in my table&rsquo;s <code>publishDate</code> column.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime }
-)
-</code></pre><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
+)</code></pre>
+</figure><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
 <blockquote>
 <p>[!NOTE] Where did the parentheses come from?
 That&rsquo;s how Nushell does multi-line one-liners.</p>
@@ -271,22 +316,28 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 </blockquote>
 <p>Where were we? Oh right. I have a table with more columns than I care about.</p>
 <p>I only want the post titles and the dates they were published.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at
-)
-</code></pre><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+)</code></pre>
+</figure><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at |
   last 5 |
   to md
-)
-</code></pre><p>Okay I think that covers it.</p>
+)</code></pre>
+</figure><p>Okay I think that covers it.</p>
 <table>
 <thead>
 <tr>
@@ -321,31 +372,58 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 <h2 id="nushell-feature-three-data-types">Nushell feature three: data types</h2>
 <p>My experience with data types in shells is limited and mostly unpleasant: values are strings that can be interchangeably treated as strings or numbers. Sometimes you can treat them like lists. Oops you broke something.</p>
 <p>Nushell <a href="https://www.nushell.sh/book/types_of_data.html">data type</a> support goes past that. For starters, values declared in the shell itself have the appropriate type.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">1.2 | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">float
-</code></pre><pre tabindex="0"><code class="language-nushell" data-lang="nushell">&#34;1.2&#34; | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">string
-</code></pre><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >1.2 | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >float</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >&#34;1.2&#34; | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >string</code></pre>
+</figure><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
 <p>What about conversions? In my fiddling so far, Nushell treats output from external programs like a string until you tell it otherwise, like a moment ago piping Hugo&rsquo;s output <code>from csv</code> and then the <code>publishDate</code> column <code>into datetime</code>.</p>
 <h3 id="date-math">Date math</h3>
 <p>All right. Let&rsquo;s figure this out. What datetime is it right now?</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">date now
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Mon, 04 Jul 2022 18:08:26 -0700 (now)
-</code></pre><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >date now</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Mon, 04 Jul 2022 18:08:26 -0700 (now)</code></pre>
+</figure><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
 <p>I arbitrarily picked three months as my threshold. Nushell provides numerous shorthands for durations, but so far nothing at an appropriate scale for ancient blogs. I haven&rsquo;t found a lazy way to say &ldquo;three months ago,&rdquo; but I can say &ldquo;90 days ago.&rdquo; Close enough for today.</p>
 <p>Need to make a subexpression out of <code>date now</code> so Nushell has a date it can use for the math.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(date now) - 90day
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)
-</code></pre><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(date now) - 90day</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)</code></pre>
+</figure><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   where published-at &gt; ((date now) - 90day) |
   select title published-at |
   to md
-)
-</code></pre><table>
+)</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -394,15 +472,18 @@ Just realized it&rsquo;s been about a year since I started poking at Nushell as 
 <p>It&rsquo;s not my login <code>$SHELL</code> or anything yet — still need to figure out things like <code>pyenv</code> and <code>nvm</code> — but yeah I like using Nushell.
 Especially under Windows, where I know little enough about PowerShell that I can set up Nushell on Windows Terminal and pretend it&rsquo;s a login shell.</p>
 <p>Now I just need something that would make a cool cover image screenshot.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
     hugo list all |
     from csv |
     insert year { |it| $it.publishDate | into datetime | date to-record | get year } |
     where year &gt; 1 |
     histogram year --percentage-type relative |
     sort-by year
-)
-</code></pre>]]></content:encoded>
+)</code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: Trying Nushell on Windows</title>
@@ -427,7 +508,10 @@ Jack — one of the cats — has recovered from whatever was bothering him with 
 <p>Right. I have also been spending more time in Windows recently. No big deal. I bounce between emphasizing Windows and Linux on my hard drive routinely.</p>
 <h3 id="installing-nushell-with-winget">Installing Nushell with Winget</h3>
 <p>The quickstart on the Nushell suggests using <a href="https://www.nushell.sh/book/installation.html">winget</a>. Lucky me, I happen to have played with that recently enough to remember it&rsquo;s there.</p>
-<pre tabindex="0"><code>$ winget install nushell
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ winget install nushell
 Found nu [Nushell.Nushell] Version 0.61.0
 This application is licensed to you by its owner.
 Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
@@ -435,9 +519,12 @@ Downloading https://github.com/nushell/nushell/releases/download/0.61.0/nu_0_61_
   ██████████████████████████████  10.8 MB / 10.8 MB
 Successfully verified installer hash
 Starting package install...
-Successfully installed
-</code></pre><p>That installed Nushell to my Program Files. <code>nu.exe</code> itself is under <code>C:/Program Files/nu/bin</code>. I run that and agree to everything — I don&rsquo;t know Nushell all that well yet, and I certainly don&rsquo;t know Nushell under Windows enough yet.</p>
-<pre tabindex="0"><code>$ C:\&#34;Program Files&#34;\nu\bin\nu
+Successfully installed</code></pre>
+</figure><p>That installed Nushell to my Program Files. <code>nu.exe</code> itself is under <code>C:/Program Files/nu/bin</code>. I run that and agree to everything — I don&rsquo;t know Nushell all that well yet, and I certainly don&rsquo;t know Nushell under Windows enough yet.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ C:\&#34;Program Files&#34;\nu\bin\nu
 No environment config file found at C:\Users\brian\AppData\Roaming\nushell\env.nu
 Would you like to create one with defaults (Y/n):
 y
@@ -446,13 +533,15 @@ No config file found at C:\Users\brian\AppData\Roaming\nushell\config.nu
 Would you like to create one with defaults (Y/n):
 y
 Config file created at: C:\Users\brian\AppData\Roaming\nushell\config.nu
-C:\Users\brian\AppData\Local〉 ls | sort-by modified | last 5
-</code></pre><p>And it works!</p>
+C:\Users\brian\AppData\Local〉 ls | sort-by modified | last 5</code></pre>
+</figure><p>And it works!</p>
 <p><img src="/post/2022/04/attachments/img/2022/nu-win-initial-ls.png" alt="output of ls in Nushell on Windows"/></p>
 <h3 id="integrating-with-windows-terminal">Integrating with Windows Terminal</h3>
 <p><a href="https://docs.microsoft.com/en-us/windows/terminal/">Windows Terminal</a> is my preferred terminal emulator over in the Windows world. Though I could absolutely point and click my way through adding a Nushell profile, I&rsquo;ll follow <a href="https://www.nushell.sh/book/installation.html#setting-the-default-shell-windows-terminal">Setting the default shell</a> and update <code>settings.json</code> myself.</p>
 <p>Here are the relevant changes to my profile.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;defaultProfile&#34;</span><span class="p">:</span> <span class="s2">&#34;{2b372ca1-1ee2-403d-a839-6d63077ad871}&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;profiles&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
@@ -472,10 +561,12 @@ C:\Users\brian\AppData\Local〉 ls | sort-by modified | last 5
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I add an entry for Nu Shell to the profile list, and make that entry my default in Windows Terminal. I chopped out everything not immediately relevant, so this is <em>not</em> a complete <code>settings.json</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I add an entry for Nu Shell to the profile list, and make that entry my default in Windows Terminal. I chopped out everything not immediately relevant, so this is <em>not</em> a complete <code>settings.json</code>.</p>
 <p>You can ignore my choices for font and color scheme. But if you <em>do</em> want exactly the same look, install the <a href="https://www.nerdfonts.com">Nerd Fonts</a> version of <a href="https://github.com/belluzj/fantasque-sans">Fantasque Sans Mono</a> and add this entry for <a href="http://sailorhg.github.io/fairyfloss/">Fairy Floss</a> colors to the <code>schemes</code> section of your <code>settings.json</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">        <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;#5A5475&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;black&#34;</span><span class="p">:</span> <span class="s2">&#34;#464258&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;blue&#34;</span><span class="p">:</span> <span class="s2">&#34;#6C71C4&#34;</span><span class="p">,</span>
@@ -497,11 +588,14 @@ C:\Users\brian\AppData\Local〉 ls | sort-by modified | last 5
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;selectionBackground&#34;</span><span class="p">:</span> <span class="s2">&#34;#FFFFFF&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;white&#34;</span><span class="p">:</span> <span class="s2">&#34;#CCCCCC&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;yellow&#34;</span><span class="p">:</span> <span class="s2">&#34;#E6C000&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="err">,</span>
-</span></span></code></pre></div><h3 id="integration-with-starship">Integration with Starship</h3>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="err">,</span></span></span></code></pre>
+</figure><h3 id="integration-with-starship">Integration with Starship</h3>
 <p>Nushell provides all sorts of customization options, but I prefer <a href="https://starship.rs">Starship</a>&rsquo;s cross-shell prompt setup. Unfortunately Starship is not yet available through Winget on my system. It is available through <a href="https://chocolatey.org">Chocolatey</a>. It just so happens I have Chocolatey installed.</p>
 <p>Open myself an administrator terminal by Control-clicking the PowerShell entry on my Windows Terminal menu, and away we go!</p>
-<pre tabindex="0"><code>$ choco install starship
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ choco install starship
 Chocolatey v1.1.0
 Installing the following packages:
 starship
@@ -529,9 +623,12 @@ Add the following to the end of ~\Documents\PowerShell\Microsoft.PowerShell_prof
   Software installed to &#39;C:\ProgramData\chocolatey\lib\starship\tools&#39;
 
 Chocolatey installed 1/1 packages.
- See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-</code></pre><p>Nushell explicitly allows for multiple segments in your prompt, with <code>PROMPT_COMMAND</code> and <code>PROMPT_COMMAND_RIGHT</code>. I&rsquo;ll keep their right-hand prompt, but use Starship for the left-hand prompt in my <code>env.nu</code>.</p>
-<pre tabindex="0"><code class="language-nu" data-lang="nu">let-env STARSHIP_SHELL = &#34;nu&#34;
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).</code></pre>
+</figure><p>Nushell explicitly allows for multiple segments in your prompt, with <code>PROMPT_COMMAND</code> and <code>PROMPT_COMMAND_RIGHT</code>. I&rsquo;ll keep their right-hand prompt, but use Starship for the left-hand prompt in my <code>env.nu</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >let-env STARSHIP_SHELL = &#34;nu&#34;
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $&#39;--status=($env.LAST_EXIT_CODE)&#39;
@@ -556,13 +653,16 @@ let-env PROMPT_INDICATOR_VI_INSERT = { &#34;: &#34; }
 let-env PROMPT_INDICATOR_VI_NORMAL = { &#34;〉&#34; }
 let-env PROMPT_MULTILINE_INDICATOR = { &#34;::: &#34; }
 
-# ...
-</code></pre><p><img src="/post/2022/04/attachments/img/2022/nu-win-themed-starship.png" alt="Nushell with Fairy Floss theme and a Starship prompt"/></p>
+# ...</code></pre>
+</figure><p><img src="/post/2022/04/attachments/img/2022/nu-win-themed-starship.png" alt="Nushell with Fairy Floss theme and a Starship prompt"/></p>
 <p>I&rsquo;ll keep the Starship default config for now.</p>
 <p>That&rsquo;s pretty much it! I&rsquo;m good to go explore the world of Nushell on Windows.</p>
 <h2 id="sure-but-why">Sure but why</h2>
 <p>Well, now that I have all this set up along with a local checkout of the site&rsquo;s current <a href="/card/hugo/">card/Hugo</a> iteration, I can play with Hugo&rsquo;s article listing.</p>
-<pre tabindex="0"><code>❯ hugo list all | from csv | select title publishDate draft | sort-by -r publishDate | first 5
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >❯ hugo list all | from csv | select title publishDate draft | sort-by -r publishDate | first 5
 ╭───┬──────────────────────────────────────────────────┬───────────────────────────┬───────╮
 │ # │                      title                       │        publishDate        │ draft │
 ├───┼──────────────────────────────────────────────────┼───────────────────────────┼───────┤
@@ -571,8 +671,8 @@ let-env PROMPT_MULTILINE_INDICATOR = { &#34;::: &#34; }
 │ 2 │ Logseq&#39;s Export Formats                          │ 2022-03-13T00:00:00Z      │ false │
 │ 3 │ Added an Emacs config based off of nano-emacs    │ 2022-02-19T23:30:00-08:00 │ false │
 │ 4 │ Thinking about Hugo again but maybe with Site.js │ 2022-01-26T23:50:00-08:00 │ false │
-╰───┴──────────────────────────────────────────────────┴───────────────────────────┴───────╯
-</code></pre><p>Okay sure you can do exactly the same thing with some combination of a POSIX shell, GNU CoreUtils, and maybe <a href="https://github.com/BurntSushi/xsv">xsv</a>. Or just <a href="/post/2020/05/querying-hugo-content-with-python/">write Python code</a>.</p>
+╰───┴──────────────────────────────────────────────────┴───────────────────────────┴───────╯</code></pre>
+</figure><p>Okay sure you can do exactly the same thing with some combination of a POSIX shell, GNU CoreUtils, and maybe <a href="https://github.com/BurntSushi/xsv">xsv</a>. Or just <a href="/post/2020/05/querying-hugo-content-with-python/">write Python code</a>.</p>
 <p>But I get all this in one tool! Hypothetically, a tool that works the same on Windows and Linux! And as I <a href="https://hackers.town/@randomgeek/108162569000821645">tooted</a> at a friend while gushing over Nushell:</p>
 <blockquote>
 <p>Now you no longer need two dozen separate tools installed on each of a million systems. Now you can do it all with one tool installed on a couple dozen systems wait hang on</p>

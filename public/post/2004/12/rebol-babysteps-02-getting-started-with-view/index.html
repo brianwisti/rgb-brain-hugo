@@ -133,8 +133,8 @@ I’m going to skim through this very quickly. The goal is just for you to see h
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2004/">2004</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2004/12/rebol-babysteps-02-getting-started-with-view/">REBOL Babysteps - 02 Getting Started With View</a></li>
@@ -298,38 +303,53 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 
   <p>I’m sure you thought that getting started was fun, but it really didn’t do anything to show off <a href="/post/2004/12/rebol/">post/2004/12/rebol</a>. I’d like to go through almost exactly the same process, but this time focussing my attention on <a href="http://www.rebol.com/prod-view.html">REBOL/View</a>. So let’s give it a try!</p>
 <p>I’m going to skim through this very quickly. The goal is just for you to see how much potential there is in the REBOL/View dialect. You want to see &ldquo;Hello World&rdquo;? Here it is.</p>
-<pre tabindex="0"><code>&gt;&gt; view layout [ text &#34;Hello World!&#34; ]
-</code></pre><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-01.png" alt="Hello World in REBOL/View"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; view layout [ text &#34;Hello World!&#34; ]</code></pre>
+</figure><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-01.png" alt="Hello World in REBOL/View"/></p>
 <p>One way to interpret that series of commands is along the lines of: we want to <code>view</code> the <code>layout</code> defined as containing the <code>text</code> &ldquo;Hello World&rdquo;. I’ll be the first to admit that this is not an impressive demonstration of GUI programming — unless you’ve actually done some, then you might notice how quick it was to put together compared to using a lot of other toolkits and platforms.</p>
 <p>Still, the whole point of using a GUI is having something to <em>click</em>. Let’s revisit our script from last time and putting some pointy-clicky goodness into it.</p>
-<pre tabindex="0"><code>&gt;&gt; view layout [
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; view layout [
 [    text &#34;Enter your name&#34;
 [    field
 [    button &#34;Hi!&#34;
-[    ]
-</code></pre><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-02.png" alt="Asking for a name"/></p>
+[    ]</code></pre>
+</figure><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-02.png" alt="Asking for a name"/></p>
 <p>Neat. Except that it doesn’t actually do anything if you click the button. Pretty, but non-functional - sort of like my neighbor’s car. Let’s give the <code>button</code> a block of commands along with the string &ldquo;Hi!&rdquo;.</p>
-<pre tabindex="0"><code>&gt;&gt; view layout [
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; view layout [
 [    text &#34;Enter your name&#34;
 [    field
 [    button &#34;Hi!&#34; [
 [        alert &#34;Hello there!&#34;
 [        ]
-[    ]
-</code></pre><p>Sorry, I haven’t gotten a screenshot of the alert just yet. Trust me, though. It’s pretty standard fare for alert boxes. It still doesn’t have that personal touch that the script from <a href="/post/2004/12/rebol-babysteps-01-getting-started/">last time</a> did, though. Let’s add a few touches: a little word assignment here, a little phrase-building there with <code>rejoin</code> and some refinements. There, how about this?</p>
-<pre tabindex="0"><code>&gt;&gt; view layout [
+[    ]</code></pre>
+</figure><p>Sorry, I haven’t gotten a screenshot of the alert just yet. Trust me, though. It’s pretty standard fare for alert boxes. It still doesn’t have that personal touch that the script from <a href="/post/2004/12/rebol-babysteps-01-getting-started/">last time</a> did, though. Let’s add a few touches: a little word assignment here, a little phrase-building there with <code>rejoin</code> and some refinements. There, how about this?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; view layout [
 [    text &#34;Enter your name&#34;
 [    name: field
 [    button &#34;Hi!&#34; [
 [        message: rejoin [ &#34;Hello &#34; name/text &#34; - great to see you!&#34; ]
 [        alert message
 [        ]
-[    ]
-</code></pre><p>Hey, that was neat. We’ve got a pointy-clicky version of the &ldquo;Hello&rdquo; script we made last time. We assigned the field to a word and then used what REBOL calls &ldquo;refinements&rdquo; to access the text entered into that field. You will see a lot about refinements as your knowledge of REBOL progresses.</p>
+[    ]</code></pre>
+</figure><p>Hey, that was neat. We’ve got a pointy-clicky version of the &ldquo;Hello&rdquo; script we made last time. We assigned the field to a word and then used what REBOL calls &ldquo;refinements&rdquo; to access the text entered into that field. You will see a lot about refinements as your knowledge of REBOL progresses.</p>
 <p>Let’s turn this into a script so we can share our newfound REBOL/View knowledge with our other friends who have REBOL/View installed.</p>
 <h2 id="a-rebolview-script">A REBOL/View Script</h2>
 <p>Just rewrite the code in your favorite text editor. Don’t forget the script header we talked about last time, and the shebang line if you’re on Linux!</p>
-<pre tabindex="0"><code>#!/usr/local/bin/rebview -q
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!/usr/local/bin/rebview -q
 
 REBOL [
     Title: &#34;Hello World!&#34;
@@ -346,8 +366,8 @@ view layout [
         ]
         alert message
     ]
-]
-</code></pre><p>You still have the same execution options as before, but REBOL/View under Windows gives you an additional choice. You can find your View script via Explorer and double-click. Easy as that!</p>
+]</code></pre>
+</figure><p>You still have the same execution options as before, but REBOL/View under Windows gives you an additional choice. You can find your View script via Explorer and double-click. Easy as that!</p>
 <h2 id="all-done">All Done</h2>
 <p>This overview didn’t even scratch the surface of REBOL/View. It didn’t even <em>touch</em> the surface, but instead just gave the surface a sideways glance while hurrying to an urgent appointment. I encourage you to take a closer look at REBOL/View and its official documentation.</p>
 

@@ -99,17 +99,21 @@ sitting by the pool near the beach while she&rsquo;s in the pool</p>
   <content:encoded><![CDATA[<p>Brain insists on a CLI flow for this tumblelog. So of course I have to mess up my perfectly functional flow.</p>
 <p>I know I&rsquo;ll fiddle with it more later, but here&rsquo;s what I got at the moment.</p>
 <p>I consider the Org inactive timestamps title core to the tumblelog flow. Better let <a href="https://gohugo.io/functions/dateformat/"><code>time.Format</code></a> produce something plausible in my <code>posts.md</code> Hugo archetype.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: &#34;[{{ time.Format &#34;2006-01-02 Mon 15:04&#34; .Date }}]&#34;
 </span></span><span class="line"><span class="cl">author:
 </span></span><span class="line"><span class="cl"><span class="k">-</span> Brian Wisti
 </span></span><span class="line"><span class="cl">date: {{ .Date }}
 </span></span><span class="line"><span class="cl">tags: []
 </span></span><span class="line"><span class="cl">draft: false
-</span></span><span class="line"><span class="cl">---
-</span></span></code></pre></div><p>The archetype uses <a href="/card/yaml/">card/YAML</a> frontmatter instead of <a href="https://ox-hugo.scripter.co">ox-hugo</a>&rsquo;s default <a href="/card/toml/">card/TOML</a>. I find manually managing the tags is easier that way.</p>
+</span></span><span class="line"><span class="cl">---</span></span></code></pre>
+</figure><p>The archetype uses <a href="/card/yaml/">card/YAML</a> frontmatter instead of <a href="https://ox-hugo.scripter.co">ox-hugo</a>&rsquo;s default <a href="/card/toml/">card/TOML</a>. I find manually managing the tags is easier that way.</p>
 <p>My brain picked <a href="/card/ruby/">Ruby</a> for the script to generate and open a new post, thanks mainly to the convenience of Piotr Murach&rsquo;s <a href="https://ttytoolkit.org">TTY toolkit</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;tty-command&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;tty-editor&#34;</span>
@@ -120,8 +124,8 @@ sitting by the pool near the beach while she&rsquo;s in the pool</p>
 </span></span><span class="line"><span class="cl"><span class="n">cmd</span> <span class="o">=</span> <span class="no">TTY</span><span class="o">::</span><span class="no">Command</span><span class="o">.</span><span class="n">new</span>
 </span></span><span class="line"><span class="cl"><span class="n">cmd</span><span class="o">.</span><span class="n">run</span> <span class="s2">&#34;hugo new </span><span class="si">#{</span><span class="n">post_path</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="no">TTY</span><span class="o">::</span><span class="no">Editor</span><span class="o">.</span><span class="n">open</span> <span class="n">post_path</span>
-</span></span></code></pre></div><p>All it does is ask Hugo to create a new post based on the archetype, and then open that post file in my <code>$EDITOR</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="no">TTY</span><span class="o">::</span><span class="no">Editor</span><span class="o">.</span><span class="n">open</span> <span class="n">post_path</span></span></span></code></pre>
+</figure><p>All it does is ask Hugo to create a new post based on the archetype, and then open that post file in my <code>$EDITOR</code>.</p>
 <p>I&rsquo;ll get to more later. I know from past experience I can use <code>tty-command</code> to manage the git bits after I&rsquo;m done writing.</p>
 <p>But apparently if I want to pay rent I need to <em>work</em>.</p>]]></content:encoded>
 </item>
@@ -173,7 +177,8 @@ I’m having some fun despite myself, but I am also very much looking forward to
   
   <guid>https://randomgeekery.org/post/2022/05/2022-05-03-tue-1928/</guid>
   <description>Oh hey DNS has propagated. So the card/tumblelog has a proper URL now: https://randomgeekery.life.
-[!NOTE] 2023-09-18 Pulled into the main blog. The ignored extra site is going away.
+2023-09-18
+Pulled into the main blog. The ignored extra site is going away.
 Meanwhile, getting updates that our critters are being properly cared for while we’re on vacation, so I can do very important things like take pictures of shoes.
 A shoe in Vegas</description>
    <category>post</category> 
@@ -181,8 +186,8 @@ A shoe in Vegas</description>
    <category>vacation</category>  <category>vegas</category>  <category>now</category> 
   <content:encoded><![CDATA[<p>Oh hey DNS has propagated. So the <a href="/card/tumblelog/">card/tumblelog</a> has a proper URL now: <code>https://randomgeekery.life</code>.</p>
 <blockquote>
-<p>[!NOTE] 2023-09-18
-Pulled into the main blog. The ignored extra site is going away.</p>
+<p><strong>2023-09-18</strong></p>
+<p>Pulled into the main blog. The ignored extra site is going away.</p>
 </blockquote>
 <p>Meanwhile, getting updates that our critters are being properly cared for while we&rsquo;re on vacation, so I can do very important things like take pictures of shoes.</p>
 <p><img src="/post/2022/05/../../../attachments/img/a-shoe-in-vegas.jpeg" alt="attachments/img/a-shoe-in-vegas.jpeg"/>

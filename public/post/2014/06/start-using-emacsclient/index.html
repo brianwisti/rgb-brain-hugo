@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/06/start-using-emacsclient/">Start Using Emacsclient</a></li>
@@ -289,14 +294,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>I have been curious about the <a href="http://www.emacswiki.org/emacs/EmacsClient">Emacs Client</a> for a long time. Because <a href="/card/emacs/">Emacs</a> can have a long startup time, it can be made to run in a persistent mode. All buffers are handled by a central process. Your editor interface connects to that central process rather than managing its own buffers. Thinking about the Emacs client is what started me down the path of studying Emacs as a client/server Lisp environment. Anyways, I looked up some blog posts to tell me what to do.</p>
 <p>It should not surprise me that a <a href="http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/">blog post</a> by Avdi Grimm is one of the top hits for Emacs Client - or anything else, really. I am willing to bet that all of his <a href="http://devblog.avdi.org/category/emacs-reboot/">Emacs Reboot</a> posts are worth reading and reviewing. Let&rsquo;s focus on just the one post for now.</p>
 <p>He mentions having a short script <code>ec</code> to simplify invocation of <code>emacsclient</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">exec</span> /usr/bin/env emacsclient -c -a <span class="s2">&#34;&#34;</span> <span class="nv">$*</span>
-</span></span></code></pre></div><p>I was tempted to create an alias, but his solution will work regardless of which shell I happen to be fiddling around with that day.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">exec</span> /usr/bin/env emacsclient -c -a <span class="s2">&#34;&#34;</span> <span class="nv">$*</span></span></span></code></pre>
+</figure><p>I was tempted to create an alias, but his solution will work regardless of which shell I happen to be fiddling around with that day.</p>
 <p>I&rsquo;m also inclined to follow his thought of removing the keybinding for <code>save-buffers-kill-terminal</code> and <code>suspend-frame</code>. There have already been a few times where I quit when I meant to save.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="cl"><span class="c1">;; Adding this to my ~/.emacs.d/init.el</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="cl"><span class="c1">;; Adding this to my ~/.emacs.d/init.el</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-unset-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-c&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-unset-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-z&#34;</span><span class="p">))</span>
-</span></span></code></pre></div><p>I use <a href="http://www.emacswiki.org/emacs/EmacsLispScreen">elscreen</a>. Since <code>emacsclient</code> keeps everything running, you can switch back to a previously active screen with <code>C-z b</code>. So that makes these the new important commands for me to remember.</p>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-unset-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-z&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><p>I use <a href="http://www.emacswiki.org/emacs/EmacsLispScreen">elscreen</a>. Since <code>emacsclient</code> keeps everything running, you can switch back to a previously active screen with <code>C-z b</code>. So that makes these the new important commands for me to remember.</p>
 <table>
 <thead>
 <tr>

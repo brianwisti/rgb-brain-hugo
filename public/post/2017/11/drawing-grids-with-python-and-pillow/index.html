@@ -133,8 +133,8 @@ I enjoy inbox/Drawing. Many of my sketches have repeated elements, like Zentangl
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/">Drawing Grids With Python and Pillow</a></li>
@@ -292,19 +297,23 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Hey I used <a href="/card/python/">card/Python</a> and <a href="https://python-pillow.org/">Pillow</a> to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.</p>
 <p>I enjoy <em>inbox/Drawing</em>. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids. Not much in the way of simple grid-based repetition though.</p>
 <p>Templates exist, but I want custom templates to fit the size of my workspace. I started exploring the Pillow library recently, so let’s use that to make custom grids for my drawings.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
 </span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
 </span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p>I use a modest 600 by 600 pixel grayscale image while working out the details. No point saving anything until I know what’s going on, so just <code>show()</code> the image.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p>I use a modest 600 by 600 pixel grayscale image while working out the details. No point saving anything until I know what’s going on, so just <code>show()</code> the image.</p>
 <p><img src="/post/2017/11/attachments/img/2017/grid-blank.png" alt="A blank image"/></p>
 <p>Most of what I want is in the <a href="http://pillow.readthedocs.io/en/4.3.x/reference/ImageDraw.html">ImageDraw</a> module.</p>
 <h2 id="simple-grid">Simple Grid</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
@@ -320,10 +329,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-single-line.png" alt="Drawing one line"/></p>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-single-line.png" alt="Drawing one line"/></p>
 <p>Nice. Okay, how about repeating some lines across?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
@@ -342,10 +353,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-columns.png" alt="Drawing some columns"/>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-columns.png" alt="Drawing some columns"/>
 Lovely. How about an actual grid?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
@@ -371,10 +384,12 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-simple-grid.png" alt="Drawing a simple grid"/></p>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-simple-grid.png" alt="Drawing a simple grid"/></p>
 <p>Okay cool but I often need a specific number of squares in my grid.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="mi">25</span>
@@ -401,10 +416,12 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-step-count.png" alt="Specifying a step count"/></p>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-step-count.png" alt="Specifying a step count"/></p>
 <p>Right but I don’t want to edit the code every time.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
@@ -437,12 +454,17 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p>Run it.</p>
-<pre tabindex="0"><code>$ python grid.py 12
-</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-specify-step-count.png" alt="Grabbing a step count from the command line"/></p>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Run it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python grid.py 12</code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-specify-step-count.png" alt="Grabbing a step count from the command line"/></p>
 <p>I can specify step count from the command line. Cool. Uh hey about height and width?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
@@ -482,9 +504,11 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p>Oh come on. Stop it with <code>sys.argv</code>. Get some real command line handling in there.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Oh come on. Stop it with <code>sys.argv</code>. Get some real command line handling in there.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
@@ -523,9 +547,12 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p>Much better. Run it.</p>
-<pre tabindex="0"><code>$ python grid.py
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Much better. Run it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python grid.py
 usage: grid.py [-h] width height step_count
 
 positional arguments:
@@ -536,25 +563,35 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
 
-$ python grid.py 500 500 20
-</code></pre><p>I like <a href="https://docs.python.org/3/library/argparse.html[Argparse]">Argparse</a>.</p>
+$ python grid.py 500 500 20</code></pre>
+</figure><p>I like <a href="https://docs.python.org/3/library/argparse.html[Argparse]">Argparse</a>.</p>
 <p><img src="/post/2017/11/attachments/img/2017/grid-specify-size-steps.png" alt="Constructing grid from Argparse arguments"/></p>
 <p>Anyways - what if I ask for a rectangle instead of a square?</p>
-<pre tabindex="0"><code>$ python grid.py 400 600 24 \{\{&lt; /console &gt;}}
-</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-rectangular.png" title="Rectangular grid" alt="Rectangular grid"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python grid.py 400 600 24 \{\{&lt; /console &gt;}}</code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-rectangular.png" title="Rectangular grid" alt="Rectangular grid"/></p>
 <p>Hold on. I was handing <code>height</code> and <code>width</code> to <a href="http://pillow.readthedocs.io/en/4.3.x/reference/Image.html#the-image-class">Image</a> in the wrong order this whole time.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
-</span></span></code></pre></div><p>Run it.</p>
-<pre tabindex="0"><code>$ python grid.py 400 600 24
-</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-correct-image-init.png" alt="Correct Image initialization"/></p>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span></span></span></code></pre>
+</figure><p>Run it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python grid.py 400 600 24</code></pre>
+</figure><p><img src="/post/2017/11/attachments/img/2017/grid-correct-image-init.png" alt="Correct Image initialization"/></p>
 <p>This works. I have half a dozen ideas left, but I want to use it for a sketch <em>now</em>.</p>
 <p><strong><code>grid.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
@@ -594,12 +631,15 @@ $ python grid.py 500 500 20
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;grid-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">.png&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">step_count</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Saving </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ python grid.py 1800 2400 50
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python grid.py 1800 2400 50
 Saving grid-1800-2400-50.png
 $ ls
-grid-1800-2400-50.png   grid.py*
-</code></pre><p>Let’s skim over the part where I get the grid onto the iPad and import it as a new layer in my current sketch. That part includes no code — for now.</p>
+grid-1800-2400-50.png   grid.py*</code></pre>
+</figure><p>Let’s skim over the part where I get the grid onto the iPad and import it as a new layer in my current sketch. That part includes no code — for now.</p>
 <p>Anyways, back to the sketch.</p>
 
   

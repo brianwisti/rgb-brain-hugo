@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/04/eleventy/">Eleventy</a></li>
@@ -301,34 +306,45 @@ Use one of the <a href="https://www.11ty.io/docs/starter/">starter projects</a>,
 </blockquote>
 <h2 id="starting-fresh-with-packagejson">Starting fresh with <code>package.json</code></h2>
 <p>I&rsquo;ll follow the <a href="https://www.11ty.io/docs/local-installation/">suggestion</a> from docs and install Eleventy locally to the site project.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> mkdir rgb-eleventy
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> mkdir rgb-eleventy
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">cd</span> rgb-eleventy
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> npm init
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> npm install --save-dev @11ty/eleventy
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> npx eleventy
 </span></span><span class="line"><span class="cl"><span class="go">Processed 0 files in 0.03 seconds
-</span></span></span></code></pre></div><p>Yay, the process works! Now I need content.</p>
+</span></span></span></code></pre>
+</figure><p>Yay, the process works! Now I need content.</p>
 <h2 id="content-read-markdown-write-html">Content: Read Markdown, write HTML</h2>
 <p>I can stick with familiar <a href="/card/markdown/">card/Markdown</a> content, since Eleventy supports it through <a href="https://markdown-it.github.io/">markdown-it</a>. Throw a couple sentences in <code>index.md</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Random Geekery Blog
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Random Geekery Blog
 </span></span></span><span class="line"><span class="cl"><span class="gh"></span>
 </span></span><span class="line"><span class="cl">But in [Eleventy][].
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[Eleventy]: https://www.11ty.io/
-</span></span></code></pre></div><p>And rebuild the site.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npx eleventy
+</span></span><span class="line"><span class="cl">[Eleventy]: https://www.11ty.io/</span></span></code></pre>
+</figure><p>And rebuild the site.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npx eleventy
 </span></span><span class="line"><span class="cl">Writing _site/index.html from ./index.md.
-</span></span><span class="line"><span class="cl">Processed <span class="m">1</span> file in 0.07 seconds
-</span></span></code></pre></div><p>So what&rsquo;s in <code>_site/index.html</code>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Random Geekery Blog<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>But in <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://www.11ty.io/&#34;</span><span class="p">&gt;</span>Eleventy<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>That&rsquo;s HTML, all right. But I need a full HTML page. Rather than make my content file more complex, I&rsquo;ll use a layout template.</p>
+</span></span><span class="line"><span class="cl">Processed <span class="m">1</span> file in 0.07 seconds</span></span></code></pre>
+</figure><p>So what&rsquo;s in <code>_site/index.html</code>?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Random Geekery Blog<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>But in <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://www.11ty.io/&#34;</span><span class="p">&gt;</span>Eleventy<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>That&rsquo;s HTML, all right. But I need a full HTML page. Rather than make my content file more complex, I&rsquo;ll use a layout template.</p>
 <h2 id="templates">Templates</h2>
 <p>Eleventy <a href="https://www.11ty.io/docs/layouts/">layouts</a> are similar to layouts in other site generators. They provide a skeletal HTML file along with special directives. These files get combined with your content files, creating complete pages that have a consistent layout and design.</p>
 <p>Rather than focus on all the templating languages Eleventy supports, I&rsquo;ll use
 <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a>. I don&rsquo;t want to spend time looking at all the templating languages supported by Eleventy. I&rsquo;ll just use Nunjucks since it appears frequently in the docs.</p>
 <p>My <code>_includes/layout.njk</code> is pretty much your basic minimal HTML 5 skeleton.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
@@ -340,19 +356,23 @@ Use one of the <a href="https://www.11ty.io/docs/starter/">starter projects</a>,
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    {{ content | safe }}
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p><code>content</code> comes from the body of the content file, while <code>title</code> is in <code>index.md</code>&rsquo;s <a href="https://www.11ty.io/docs/data-frontmatter/">front matter</a>. That&rsquo;s also where I specify layout.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p><code>content</code> comes from the body of the content file, while <code>title</code> is in <code>index.md</code>&rsquo;s <a href="https://www.11ty.io/docs/data-frontmatter/">front matter</a>. That&rsquo;s also where I specify layout.</p>
 <p>So yeah. I should probably add some front matter.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">layout: layout.njk
 </span></span><span class="line"><span class="cl">title: Random Geekery Blog
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">But in [Eleventy][].
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[Eleventy]: https://www.11ty.io/
-</span></span></code></pre></div><p>Rebuild, and now <code>_site/index.html</code> looks like a Web page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
+</span></span><span class="line"><span class="cl">[Eleventy]: https://www.11ty.io/</span></span></code></pre>
+</figure><p>Rebuild, and now <code>_site/index.html</code> looks like a Web page.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
@@ -365,18 +385,20 @@ Use one of the <a href="https://www.11ty.io/docs/starter/">starter projects</a>,
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>But in <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://www.11ty.io/&#34;</span><span class="p">&gt;</span>Eleventy<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="use-pass-through-file-copy-for-static-content">Use Pass-through File Copy for static content</h2>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><h2 id="use-pass-through-file-copy-for-static-content">Use Pass-through File Copy for static content</h2>
 <p>Finally, I want to put in some CSS. I could just insert it in the template, but I prefer to keep styles in their own file.</p>
 <p>Eleventy&rsquo;s default behavior is minimal. It knows content. It knows templates. Going beyond that requires special instructions. In order to add static content like stylesheets, we must <a href="https://www.11ty.io/docs/config/">configure</a> Eleventy to recognize them.</p>
 <p>My <code>.eleventy.js</code> tells Eleventy that everything in the folder <code>static/css</code> gets copied into site output unmodified.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eleventyConfig</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eleventyConfig</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addPassthroughCopy</span><span class="p">(</span><span class="s2">&#34;static/css&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">passthroughFileCopy</span><span class="o">:</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>
   
 
 

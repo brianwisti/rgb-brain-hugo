@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2018/">2018</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2018/02/my-sloppy-floppy-fingerless-mitten/">My Sloppy Floppy Fingerless Mitten</a></li>
@@ -310,17 +315,23 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Up until today my site images relied on a Python script to generate post cover images and thumbnails from master images in <code>static/</code>. Hugo 0.36 can now create those images itself, but you have to organize your content and its images correctly.</p>
 <h3 id="post-organization">Post organization</h3>
 <p>Instead of a single file, your post becomes a directory, with <code>index.md</code> for the content itself.</p>
-<pre tabindex="0"><code>content
-+-&gt; craft
-  +-&gt; 2018
-    +-&gt; my-sloppy-floppy-fingerless-mitten
-      +-&gt; index.md
-      +-&gt; cover.jpg
-</code></pre><h3 id="templates">Templates</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >content
+&#43;-&gt; craft
+  &#43;-&gt; 2018
+    &#43;-&gt; my-sloppy-floppy-fingerless-mitten
+      &#43;-&gt; index.md
+      &#43;-&gt; cover.jpg</code></pre>
+</figure><h3 id="templates">Templates</h3>
 <p>Posts might have a primary images, which Hugo displays at the top of the post itself, and as a thumbnail in summary pages. I named the image <code>cover.jpg</code>.</p>
 <h4 id="cover-image">Cover Image</h4>
 <p>If I have a cover image, Hugo&rsquo;s image processing creates a version of the image 800 pixels wide. Display this image, along with a link to the original.</p>
-<pre tabindex="0"><code>{{- $description := .Title -}}
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >{{- $description := .Title -}}
 {{- $coverImage := .Page.Resources.GetMatch &#34;cover*&#34; -}}
 {{- if $coverImage -}}
   {{- $image := $coverImage.Resize &#34;800x&#34; -}}
@@ -336,10 +347,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   &lt;/figure&gt;
 {{- else -}}
   legacy cover image handling
-{{- end -}}
-</code></pre><h4 id="thumbnail">Thumbnail</h4>
+{{- end -}}</code></pre>
+</figure><h4 id="thumbnail">Thumbnail</h4>
 <p>If I have a cover image, I create 128 pixel square <a href="https://gohugo.io/content-management/image-processing/#smart-cropping-of-images">smart crop</a> — a thumbnail which should show the original&rsquo;s most interesting part. The thumbnail is presented along with a link to the post itself.</p>
-<pre tabindex="0"><code>{{ $title := .Title }}
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >{{ $title := .Title }}
 {{- $coverImage := .Page.Resources.GetMatch &#34;cover*&#34; -}}
 {{- if $coverImage -}}
   {{- $thumbnail := $coverImage.Fill &#34;128x128&#34; -}}
@@ -352,8 +366,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   &lt;/a&gt;
 {{- else -}}
   legacy thumbnail handling
-{{- end -}}
-</code></pre><h3 id="conclusion">Conclusion</h3>
+{{- end -}}</code></pre>
+</figure><h3 id="conclusion">Conclusion</h3>
 <p>This flow replaces my Python image script and a fair amount of templating logic. Once I remove the legacy templating logic, I&rsquo;ll put the cover image and thumbnail dimensions in site config, making it easier to redesign page layout later.</p>
 <p>I better get to it.</p>
   

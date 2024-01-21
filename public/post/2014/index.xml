@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>2014onRandom Geekery</title>
+    <link>https://randomgeekery.org/post/2014/</link>
+    <description>
+      Recent contentin2014 on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 20 Jan 2024 22:42:33 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2014/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Finding and Removing Duplicate Files</title>
+  <link>https://randomgeekery.org/post/2014/12/finding-and-removing-duplicate-files/</link>
+  <pubDate>Sat, 13 Dec 2014 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/12/finding-and-removing-duplicate-files/</guid>
+  <description>&lt;p&gt;&lt;a href=&#34;https://randomgeekery.org/card/perl/&#34;&gt;Perl&lt;/a&gt; CPAN modules to simplify file cleanup&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>files</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>Perl CPAN modules to simplify file cleanup</h2><p><a href="/card/perl/">Perl</a> CPAN modules to simplify file cleanup</p>
+<p>I had a clever idea a couple months ago: to write a blog post detailing how to find recursively find duplicate files in a folder. My technique was good enough: track file sizes, find files that had the same file
+size and <a href="http://en.wikipedia.org/wiki/MD5#MD5_hashes">MD5 hash</a>, and display the resulting list. It wasn’t foolproof, but it showed some thought. After spending a little too much time on the post, I realized I had never checked <a href="http://www.cpan.org/">CPAN</a>. Of course there is already a module to handle that exact task.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>So here is my problem. I have — let’s see —</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ find ~/Sync -type f | wc -l
+    44388</code></pre>
+</figure><p>I have 44,388 files in my Sync folder.</p>
+<p>I organized my home machines recently. When I say &ldquo;organized&rdquo; I mean that everything got swept into my <code>~/Sync</code> folder to deal with later. The refuse of several years squirreling files into random locations is now sitting in that single folder.</p>
+<p>Well, now it is time to clean that single folder up. I want to find and delete duplicate files. I planned to focus on image files, but File::Find::Duplicates makes it easier to find <em>all</em> duplicates.</p>
+<h2 id="the-solution">The Solution</h2>
+<p><a href="https://metacpan.org/pod/File::Find::Duplicates">File::Find::Duplicates</a> exports a <code>find_duplicate_files</code> subroutine, which finds the duplicate files in a list of folders.</p>
+<p>First tell me how many sets of duplicates I have.</p>
+<p><strong><code>count-dupes.pl</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Duplicates</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$root</span>       <span class="o">=</span> <span class="s">&#34;$ENV{HOME}/Sync&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@dupes</span>      <span class="o">=</span> <span class="n">find_duplicate_files</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$dupe_count</span> <span class="o">=</span> <span class="nv">@dupes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Found $dupe_count sets of duplicates in $root&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This will tell me how much work is ahead of me.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl count-dupes.pl
+Found 3465 sets of duplicates in /Users/brian/Sync</code></pre>
+</figure><p>Removing the files was easy, but it rattled my nerves.</p>
+<p><strong><code>remove-dupes.pl</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Carp</span> <span class="sx">qw(croak)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Basename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Duplicates</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$root</span>  <span class="o">=</span> <span class="s">&#34;$ENV{HOME}/Sync&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@dupes</span> <span class="o">=</span> <span class="n">find_duplicate_files</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$deleted</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="k">my</span> <span class="nv">$dupeset</span> <span class="p">(</span> <span class="nv">@dupes</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Pick a file to serve as primary.</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Using string-based sorting as arbitrary rule to establish what&#39;s first.</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="p">(</span> <span class="nv">$prime</span><span class="p">,</span> <span class="nv">@secondary</span> <span class="p">)</span> <span class="o">=</span> <span class="nb">sort</span> <span class="nv">@</span><span class="p">{</span> <span class="nv">$dupeset</span><span class="o">-&gt;</span><span class="n">files</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Delete the duplicates</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="k">my</span> <span class="nv">$file</span> <span class="p">(</span> <span class="nv">@secondary</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">unlink</span> <span class="nv">$file</span>
+</span></span><span class="line"><span class="cl">      <span class="ow">or</span> <span class="n">croak</span> <span class="s">&#34;Unable to unlink $file: $!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$deleted</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Deleted $deleted files.&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I fought the temptation to add progress bars or anything like that. Focus on getting the job done. I can add work if I end up revisiting this task later.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl remove-dupes.pl
+Deleted 3509 files.</code></pre>
+</figure><p>I removed a lot of files. Are there still any duplicates?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl count-dupes.pl
+Found 0 sets of duplicates in /Users/brian/Sync</code></pre>
+</figure><p>Thing is, I suspect that my <code>Sync</code> directory contains many empty subdirectories.</p>
+<h2 id="about-those-directories">About Those Directories</h2>
+<p><a href="https://metacpan.org/pod/File::Find::Rule::DirectoryEmpty">File::Find::Rule::DirectoryEmpty</a> helps with exactly that problem. It extends the useful <a href="https://metacpan.org/pod/File::Find::Rule">File::Find::Rule</a> module to simplify finding files with characteristics you define.</p>
+<p><strong><code>find-leaves.pl</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Rule::DirectoryEmpty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$root</span> <span class="o">=</span> <span class="s">&#34;$ENV{HOME}/Sync&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">@empties</span> <span class="o">=</span> <span class="nn">File::Find::Rule</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">directoryempty</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">in</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$empty_count</span> <span class="o">=</span> <span class="nv">@empties</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$empty_count empty directories&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl find-leaves.pl
+2904 empty directories</code></pre>
+</figure><p>Yow. I can delete those directories, but then there could be parent directories that are now empty, and then grandparent directories, and then —</p>
+<p>You know what? Just keep looking and deleting until there no more empty directories.</p>
+<p><strong><code>remove-leaves.pl</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.20.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Carp</span> <span class="sx">qw(croak)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Find::Rule::DirectoryEmpty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$deleted</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$root</span>    <span class="o">=</span> <span class="s">&#34;$ENV{HOME}/Sync&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$found</span>   <span class="o">=</span> <span class="nn">File::Find::Rule</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">directoryempty</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span> <span class="k">my</span> <span class="nv">@empties</span> <span class="o">=</span> <span class="nv">$found</span><span class="o">-&gt;</span><span class="n">in</span><span class="p">(</span> <span class="nv">$root</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$empty_count</span> <span class="o">=</span> <span class="nv">@empties</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">say</span> <span class="s">&#34;Found $empty_count empty directories&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="k">my</span> <span class="nv">$empty</span> <span class="p">(</span> <span class="nv">@empties</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">rmdir</span> <span class="nv">$empty</span>
+</span></span><span class="line"><span class="cl">      <span class="ow">or</span> <span class="n">croak</span> <span class="s">&#34;Unable to rmdir $empty: $!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$deleted</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;$deleted empty folders deleted&#34;</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I like a little logging on each pass so that I know what my program is seeing.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl remove-leaves.pl
+Found 2904 empty directories
+Found 529 empty directories
+Found 29 empty directories
+Found 5 empty directories
+3467 empty folders deleted</code></pre>
+</figure><p>I might dig in later to <em>actually</em> organize the remaining files. I may even automate it with some Perl. This is good enough for today, though.</p>
+<h2 id="done">Done</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ find ~/Sync/ -type f | wc -l
+   40880</code></pre>
+</figure><p>Now I have 40,880 files in my <code>~/Sync</code> folder. Maybe I should have counted directories too.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Blog Writing in Org Mode</title>
+  <link>https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/</link>
+  <pubDate>Tue, 21 Oct 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/</guid>
+  <description>Introduction Much of what I’ve read aboutOrg has focused on its utility as a task management tool. That’s great. I wouldn’t mind spending some time on that aspect. Mostly I’ve been focused on its usefulness for note-taking and writing.
+Org mode includes features which make it attractive for blogging and journaling. It has a relatively simple set of markup rules for common constructs such as paragraphs, lists, source code, and tables.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>emacs</category>  <category>orgmode</category>  <category>jekyll</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>An experiment with using Org mode to write Jekyll blog posts.</h2><h2 id="introduction">Introduction</h2>
+<p>Much of what I’ve read about<a href="/card/org/">Org</a> has focused on its utility as a task management tool. That’s great. I wouldn’t mind spending some time on that aspect. Mostly I’ve been focused on its usefulness for note-taking and writing.</p>
+<p>Org mode includes features which make it attractive for blogging and journaling. It has a relatively simple set of markup rules for common constructs such as paragraphs, <a href="http://orgmode.org/manual/Plain-lists.html">lists</a>, <a href="http://orgmode.org/manual/Working-With-Source-Code.html">source code</a>, and <a href="http://orgmode.org/manual/Tables.html">tables</a>. The mode itself provides an editing interface which simplifies creating and managing those constructs. Most importantly for the blogger, org files can be exported to a range of formats including Markdown and HTML.</p>
+<p>Why not use that functionality for my own site? Random Geekery is built with <a href="/card/jekyll/">Jekyll</a>, and there are already <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">instructions</a> available for using the two together. I can use those as a starting point.</p>
+<h2 id="organize-directories">Organize Directories</h2>
+<p>When I’m using Org mode to write the blog pages, Jekyll becomes an implementation detail specific to publishing the blog. One folder contains all of the Jekyll project files, and an <code>org</code> folder mirrors the content-specific structure of the <code>jekyll</code> tree.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#43;jekyll
+&#43;- css
+&#43;- _data
+&#43;- _drafts
+&#43;- img
+&#43;- _includes
+&#43;- _layouts
+&#43;- pages
+&#43;- _plugins
+&#43;- _posts
+&#43;- _sass
+&#43;- _scripts
+&#43;- _site
+&#43;org
+    &#43;- _drafts
+    &#43;- _posts
+    &#43;- pages</code></pre>
+</figure><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
+<h2 id="front-matter">Front Matter</h2>
+<p>The <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> used by Jekyll and other engines to determine content metadata requires some special handling to get exported correctly by Org mode. The most straightforward thing is to use the suggestion from the instructions mentioned earlier. Put your front matter in a HTML block right at the top of the file.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: Blog Writing in Org Mode
+</span></span><span class="line"><span class="cl">layout: post
+</span></span><span class="line"><span class="cl">category: Emacs
+</span></span><span class="line"><span class="cl">tags: org jekyll
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span></span></span></code></pre>
+</figure><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
+<h2 id="configure-html-export">Configure HTML Export</h2>
+<p>HTML and other output needs to be placed correctly within the Jekyll layout conventions. A proper <code>org-publish-project-alist</code> will take care of this.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Location of org files</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-extension</span> <span class="s">&#34;org&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Location of Jekyll files</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/jekyll/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:recursive</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-org-to-html</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:headline-levels</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:html-extension</span> <span class="s">&#34;html&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Only export section between &lt;body&gt;&lt;/body&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:body-only</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-static-randomgeekery&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-extension</span> <span class="s">&#34;css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:recursive</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-attachment</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;rg&#34;</span> <span class="nb">:components</span> <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span> <span class="s">&#34;org-static-randomgeekery&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span></span></span></code></pre>
+</figure><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
+<h2 id="publishing-a-post">Publishing A Post</h2>
+<p>So when you’ve been editing a draft long enough and you’re ready to make it a real live post, you need to move the file from <code>_drafts</code> to <code>_posts</code>, with the publish date prefixing the filename.</p>
+<p>I could do that manually, but it’s tedious to do that for every blog post.</p>
+<p>I experiment with my rudimentary Emacs Lisp skills to create a new filename that looks about right.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Write current draft file as a Jekyll post file&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">if</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;_drafts&#34;</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">draft-copy</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="nv">post-copy</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; _drafts/&lt;stub&gt;.org</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; becomes</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; _posts/yyyy-mm-dd-&lt;stub&gt;.org</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="nf">concat</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">&#34;_drafts&#34;</span> <span class="s">&#34;_posts&#34;</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">(</span><span class="nf">file-name-directory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nf">format-time-string</span> <span class="s">&#34;%Y-%m-%d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;-&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">write-file</span> <span class="nv">post-copy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;%s is not in _drafts!&#34;</span> <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span></span></span></code></pre>
+</figure><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
+<blockquote>
+<p><strong>WARNING</strong></p>
+<p>See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
+</blockquote>
+<h2 id="followup">Followup</h2>
+<p>I wonder if maybe this isn’t the best approach, since it seems to confuse the heck out of Org mode. My lone org file just would not republish until I found <a href="http://lists.gnu.org/archive/html/emacs-orgmode/2009-05/msg00285.html">this post</a> for a similar situation. If it’s just not rebuilding, force it with a numeric argument: <kbd>C-u 0 C-c e</kbd>.</p>
+<p>This works well enough to get one post published, anyways. I’m sure to revisit this topic as I continue to learn more about Org mode and Emacs.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: chocolatey</title>
+  <link>https://randomgeekery.org/post/2014/10/windows-chocolatey/</link>
+  <pubDate>Sat, 04 Oct 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/10/windows-chocolatey/</guid>
+  <description>&lt;p&gt;I don’t know about you, but I had a pleasant Saturday. It started with an hour or so of the Coursera &lt;a href=&#34;https://www.coursera.org/course/proglang/&#34;&gt;Programming Languages&lt;/a&gt; videos. I learned a little bit about &lt;a href=&#34;http://www.smlnj.org/&#34;&gt;SML&lt;/a&gt;, and have been trying to remember the instructor’s caution about comparing what’s learned in class to other languages. It’s supposed to be a fresh perspective on programming.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>windows</category>  <category>package-manager</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>A package manager for Windows</h2><p>I don&rsquo;t know about you, but I had a pleasant Saturday. It started with an hour or so of the Coursera <a href="https://www.coursera.org/course/proglang/">Programming Languages</a> videos. I learned a little bit about <a href="http://www.smlnj.org/">SML</a>, and have been trying to remember the instructor&rsquo;s caution about comparing what&rsquo;s learned in class to other languages. It&rsquo;s supposed to be a fresh perspective on programming.</p>
+<p>Some time in the evening was spent playing Torchlight 2 and fiddling with things on the Windows partition of my machine.</p>
+<p>Recently I have been spending more time in <em>inbox/Windows</em>. I don&rsquo;t really know why. Could just be a seasonal thing. Every few months I get bored of the tools and languages I&rsquo;m using, and start looking for new combinations. Most of the Free and Open Source Software that I enjoy is available on any operating system I feel like using, so it isn&rsquo;t <em>that</em> big of a deal.</p>
+<p>Sometimes I discover something completely new to me when I do these switches. One of my discoveries this time around on Windows is <a href="https://chocolatey.org/">chocolatey</a>. chocolatey is a package manager for Windows. It allows you to install a surprising range of software utilities from an administrative command line - <code>cmd.exe</code> or PowerShell will work.</p>
+<p>According to their front page, there are currently 2,257 unique packages available in the chocolatey system. There are plenty of expected FOSS tools such as editors and programming languages. There are also many utilities that I always end up installing on Windows, like <a href="https://chocolatey.org/packages/paint.net/">Paint.NET</a> and <a href="https://chocolatey.org/packages/putty/">PuTTY</a>.</p>
+<p>I didn&rsquo;t find chocolatey until after installing my core Python and Perl toolset, but both are available. <a href="https://chocolatey.org/packages/python/">Here&rsquo;s Python</a> and <a href="https://chocolatey.org/packages/StrawberryPerl/">Here&rsquo;s Perl</a>. It looks like the version of Strawberry Perl in chocolately is a little behind, so it probably helps to pay attention to available versions.</p>
+<p><a href="https://chocolatey.org/packages/ruby/">Ruby</a> and <a href="https://chocolatey.org/packages/Emacs/">Emacs</a> are installed via chocolatey, though. I definitely want to spend some more time with chocolatey. It seems quite nice at first glance.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Starting The Coursera Programming Languages Course</title>
+  <link>https://randomgeekery.org/post/2014/10/starting-the-coursera-programming-languages-course/</link>
+  <pubDate>Fri, 03 Oct 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/10/starting-the-coursera-programming-languages-course/</guid>
+  <description>&lt;p&gt;I signed up for the Coursera &lt;a href=&#34;https://www.coursera.org/course/proglang&#34;&gt;Programming Languages&lt;/a&gt; course. I may even complete it. See, I signed up for a Scala course earlier this year, but did not get past the first video. That made me sad. Scala is one of those things that I would like to learn.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>personal</category>  <category>marginalia</category> 
+  <content:encoded><![CDATA[<h2>A quick confession about learning how to learn</h2><p>I signed up for the Coursera <a href="https://www.coursera.org/course/proglang">Programming Languages</a> course. I may even complete it. See, I signed up for a Scala course earlier this year, but did not get past the first video. That made me sad. Scala is one of those things that I would like to learn.</p>
+<p><em>Many</em> topics appeal to me. This causes problems. I will never stop finding things that I want to learn: languages, idioms, platforms, databases, security, and so on. The list becomes almost frightening when you add non-computery things that I want to get better at: drawing, knitting, cooking, writing, etcetera.</p>
+<p>I keep trying to learn new things. I know that I will never have enough time to learn most of it, but I keep trying.</p>
+<p>Preparation makes more things possible. You are supposed to set time aside that is just for focused learning. The early morning and early evening work best for me, since there are fewer distractions.</p>
+<p>Some of my preparation involves watching videos with the express purpose of learning. <a href="http://about.avdi.org/">Avdi Grimm</a>&rsquo;s <a href="http://www.rubytapas.com/">Ruby Tapas</a> episodes help with that goal. They are short. They are educational. They are fun.</p>
+<p>The Coursera videos have a greater length than Ruby Tapas, of course. At least my brain is warmed up for the task of focused learning. A few stretching exercises have been done.</p>
+<p>I&rsquo;m nervous. My habits are getting better, but my ratio of Things Started to Things Finished embarrasses me. I will not make &ldquo;Finish This Course&rdquo; a requirement. Too nervous. But I will have a certain amount of pride if I can make it through, do the assignments, and maybe even - <em>gasp</em> - turn them in.</p>
+<p>Here&rsquo;s hoping.</p>
+<p>related:: <a href="/card/tech-career-skill-development/">card/Tech Career Skill Development</a></p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Counting Words in Blog Posts</title>
+  <link>https://randomgeekery.org/post/2014/10/counting-words-in-blog-posts/</link>
+  <pubDate>Thu, 02 Oct 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/10/counting-words-in-blog-posts/</guid>
+  <description>&lt;p&gt;I want to write at least 250 words per day. This is not a 30 day challenge. It is just something I want to do. I write more than 250 words daily when you count social network posts and chat text. Wouldn’t it be nice if some of those words were organized around a single idea?&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>ruby</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>Using Ruby to track my verbosity</h2><p>I want to write at least 250 words per day. This is not a 30 day challenge. It is just something I want to do. I write more than 250 words daily when you count social network posts and chat text. Wouldn&rsquo;t it be nice if some of those words were organized around a single idea?</p>
+<p>I need some way to count those words, of course. The obvious solution is [wc](<a href="http://en.wikipedia.org/wiki/Wc">http://en.wikipedia.org/wiki/Wc</a>_(Unix).</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ wc counting-words.markdown
+     106     464    3108 counting-words.markdown</code></pre>
+</figure><p>The documentation tells me that the first column is the number of lines, the second column is the number of words, and the third column is the number of characters. I can train my brain to remember this, but instead I use the <code>-w</code> flag to get <em>only</em> the word count.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ wc -w counting-words.markdown
+     464 post.markdown</code></pre>
+</figure><p>That is better, but it is not an accurate word count. I am currently using <a href="/card/jekyll/">Jekyll</a> for blogging, and every blog post file includes a section of <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> a section of <a href="/card/markdown/">Markdown</a> content. My goal is 250 words of prose, not 250 total words. I do not want to count the front matter.</p>
+<p>I could use assorted shell tools to accomplish this, but I would rather make a <a href="/card/ruby/">Ruby</a> one-liner.</p>
+<p>First I get the basic information I was already getting from <code>wc</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby -e &#39;puts ARGF.read.split.count&#39; counting-words.markdown
+464</code></pre>
+</figure><p>How do I separate the head from the body of the post? I could do some fiddly bits using <a href="http://ruby-doc.org/core-2.1.3/ARGF.html#method-i-readlines">ARGF.readlines</a> with a separator argument, but I will keep going with what I have.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby -e &#39;puts ARGF.read.split(/^---$/).inspect&#39; counting-words.markdown
+[&#34;&#34;, &#34;\nlayout: post\ntitle: Counting Words in Blog Posts\ndescription: Using Ruby to track my verbosity\ncategory: Programming\ndate: 2014-10-02\ntags: ruby\n&#34;, &#34;\nI want to write at least 250 words per day. ...&#34;]</code></pre>
+</figure><p>How many words are in the body?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby -e &#39;puts ARGF.read.split(/^---$/)[-1].split.count&#39; counting-words.markdown
+317</code></pre>
+</figure><p>I did say that I wanted my word count to be prose. I should exclude code blocks. That calls for a multi-line regular expression, stripping out the fenced code blocks in my post.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby -e &#39;puts ARGF.read.split(/^---$/)[-1].gsub(/^~~~ .&#43;?^~~~ $/m, &#34;&#34;).split.count&#39; counting-words.markdown
+357</code></pre>
+</figure><p>I do not want to count link definitions either.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ruby -e &#39;puts ARGF.read.split(/^---$/)[-1].gsub(/^~~~ .&#43;?^~~~ |\[.&#43;?\]:.&#43;?$/m, &#34;&#34;).split.count&#39; counting-words.markdown
+341</code></pre>
+</figure><p>This is good enough. Now I turn it into a bash alias.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># words in post / work in progress</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">wip</span><span class="o">=</span><span class="s1">&#39;ruby -e &#39;</span><span class="s2">&#34;&#39;&#34;</span><span class="s1">&#39;puts ARGF.read.split(/^---$/)[-1].gsub(/^(~~~ .+?^~~~ |\[.+?\]:.+?)$/m, &#34;&#34;).split.count&#39;</span><span class="s2">&#34;&#39;&#34;</span></span></span></code></pre>
+</figure><p>Oh jeez those quotes hurt my brain. It was the first solution I came across to handle <a href="http://stackoverflow.com/a/1250279/285810">shell quoting</a>, though. I may come up with something prettier. Perhaps a full script or looking for an existing tool. This will do for now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ wip counting-words.markdown
+341</code></pre>
+</figure><p>My one-liner ended up choking on some Markdown combinations, so I
+turned it into a tiny script.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env ruby</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ignored_blocks</span> <span class="o">=</span> <span class="sr">%r{
+</span></span></span><span class="line"><span class="cl"><span class="sr">  (?: ^~~~ .+?^~~~ $)       # fenced code blocks
+</span></span></span><span class="line"><span class="cl"><span class="sr">  |                         # or
+</span></span></span><span class="line"><span class="cl"><span class="sr">  (?: ^\[ [^\]]+? \]: .+?$) # link definitions
+</span></span></span><span class="line"><span class="cl"><span class="sr">}mx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="no">ARGF</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/^---$/</span><span class="p">)</span><span class="o">[-</span><span class="mi">1</span><span class="o">].</span><span class="n">gsub</span><span class="p">(</span><span class="n">ignored_blocks</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="o">.</span><span class="n">count</span></span></span></code></pre>
+</figure><p>I needed that <code>/x</code> flag to make sense of my regular expressions.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: My Ubuntu Setup</title>
+  <link>https://randomgeekery.org/post/2014/09/my-ubuntu-setup/</link>
+  <pubDate>Wed, 17 Sep 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/09/my-ubuntu-setup/</guid>
+  <description>&lt;p&gt;I installed &lt;a href=&#34;http://ubuntu.com&#34;&gt;Ubuntu&lt;/a&gt; 14.04 on a partition of my laptop today. This is not a novelty. What &lt;em&gt;is&lt;/em&gt; unusual is the fact that today I decided to track what I installed before I felt like I had a “Minimum Viable Linux.” Turns out there was quite a bit.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>linux</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p>I installed <a href="http://ubuntu.com">Ubuntu</a> 14.04 on a partition of my laptop today. This is not a novelty. What <em>is</em> unusual is the fact that today I decided to track what I installed before I felt like I had a &ldquo;Minimum Viable Linux.&rdquo; Turns out there was quite a bit.</p>
+<ul>
+<li><a href="http://beyondgrep.com/">ack</a> because I prefer it over grep for searching file contents.</li>
+<li><a href="/card/emacs/">Emacs</a> because it&rsquo;s become my default text editor.</li>
+<li><a href="https://chrome.google.com">Google Chrome</a></li>
+<li><em>Git</em></li>
+<li><a href="http://curl.haxx.se/">curl</a></li>
+<li><a href="http://getsync.com/">BitTorrent Sync</a> because me and my free range artisanal lifestyle are too cool for Dropbox.</li>
+<li><a href="https://apps.ubuntu.com/cat/applications/unity-tweak-tool/">Unity Tweak Tool</a></li>
+<li><a href="https://apps.ubuntu.com/cat/applications/gnome-tweak-tool/">Gnome Tweak Tool</a></li>
+<li><a href="http://rvm.io">rvm</a> for <a href="/card/ruby/">Ruby</a>
+<ul>
+<li>Whatever gets installed by <code>rvm requirements</code></li>
+</ul>
+</li>
+<li><a href="http://perlbrew.pl">Perlbrew</a> for <a href="/card/perl/">Perl</a></li>
+<li><a href="https://github.com/creationix/nvm">nvm</a> for <a href="/card/node.js/">Node.js</a></li>
+<li><a href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a> for <a href="/card/python/">Python</a></li>
+<li><a href="http://www.postgresql.org/">postgresql</a></li>
+<li><a href="http://www.vagrantup.com/">Vagrant</a></li>
+<li><a href="https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up">Heroku Toolbelt</a></li>
+<li><a href="http://www.ansible.com/home">Ansible</a></li>
+<li><a href="http://www.skype.com/en/">Skype</a></li>
+<li><a href="https://www.hipchat.com/">HipChat</a></li>
+<li><a href="http://store.steampowered.com/">Steam</a> to prevent insanity, or at least redirect it.</li>
+</ul>
+<p>Other things will be installed, of course. I&rsquo;ll probably add the official Oracle JDK, Inkscape, and assorted other things. And many things will be installed via package managers for the assorted languages I play with. This list is just the core things I need to feel comfortable and ready to work.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: replyrc And Mojo</title>
+  <link>https://randomgeekery.org/post/2014/08/replyrc-and-mojo/</link>
+  <pubDate>Tue, 19 Aug 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/08/replyrc-and-mojo/</guid>
+  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2014/08/../../../attachments/img/2014/cover-2014-08-19.png&#34; alt=&#34;attachments/img/2014/cover-2014-08-19.png&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;It has been a few days since I &lt;a href=&#34;https://randomgeekery.org/post/2014/08/repl-in-perl-with-reply/&#34;&gt;started playing&lt;/a&gt; with &lt;a href=&#34;https://metacpan.org/pod/Reply&#34;&gt;Reply&lt;/a&gt;, and I still enjoy it. Command history features from the &lt;a href=&#34;https://metacpan.org/pod/Reply::Plugin::ReadLine&#34;&gt;ReadLine plugin&lt;/a&gt; became available once I installed &lt;a href=&#34;http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html&#34;&gt;GNU ReadLine&lt;/a&gt; and &lt;a href=&#34;https://metacpan.org/pod/Term::ReadLine::Gnu&#34;&gt;Term::ReadLine::Gnu&lt;/a&gt;.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>reply</category>  <category>mojolicious</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Customizing Perl Reply and using -Mojo</h2><p><img src="/post/2014/08/../../../attachments/img/2014/cover-2014-08-19.png" alt="attachments/img/2014/cover-2014-08-19.png"/></p>
+<p>It has been a few days since I <a href="/post/2014/08/repl-in-perl-with-reply/">started playing</a> with <a href="https://metacpan.org/pod/Reply">Reply</a>, and I still enjoy it. Command history features from the <a href="https://metacpan.org/pod/Reply::Plugin::ReadLine">ReadLine plugin</a> became available once I installed <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU ReadLine</a> and <a href="https://metacpan.org/pod/Term::ReadLine::Gnu">Term::ReadLine::Gnu</a>.</p>
+<p>There are still customizations that I would like to make. For example, I write most of my personal code using <a href="/card/perl/">card/Perl</a> 5.20&rsquo;s experimental <a href="http://perldoc.perl.org/perldelta.html#Experimental-Subroutine-signatures">subroutine signature</a> and <a href="http://perldoc.perl.org/perldelta.html#Experimental-Postfix-Dereferencing">postderef</a> features.</p>
+<h2 id="use-shiny-perl-520-features-automatically">Use Shiny Perl 5.20 Features Automatically</h2>
+<p>A default <code>$HOME/.replyrc</code> is created the first time you run Reply - unless you already have one, of course. It includes a selection of plugins that will be loaded and a collection of <code>script_line</code> entries that are evaluated automatically for any new Reply session. I fiddled with mine so that I had a Perl with syntactical sugar in place.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">script_line1</span> <span class="o">=</span> <span class="s">use 5.20.0</span>
+</span></span><span class="line"><span class="cl"><span class="na">script_line2</span> <span class="o">=</span> <span class="s">use warnings</span>
+</span></span><span class="line"><span class="cl"><span class="na">script_line3</span> <span class="o">=</span> <span class="s">use feature qw(signatures postderef)</span>
+</span></span><span class="line"><span class="cl"><span class="na">script_line4</span> <span class="o">=</span> <span class="s">no warnings &#39;experimental&#39;</span></span></span></code></pre>
+</figure><p>Each line gets its own numbered <code>script_line</code> entry because of the INI format and the way that input is parsed by Reply.</p>
+<p>With this base level of behavior defined, I can run <code>reply</code> and rewrite my <code>greet</code> subroutine.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">0&gt; sub greet ($name) { &#34;Hello $name!&#34; }
+</span></span><span class="line"><span class="cl">1&gt; my $me = &#34;Brian&#34;
+</span></span><span class="line"><span class="cl">$res[0] = &#39;Brian&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2&gt; greet $me
+</span></span><span class="line"><span class="cl">$res[1] = &#39;Hello Brian!&#39;</span></span></code></pre>
+</figure><p>That&rsquo;s better.</p>
+<h2 id="enabling-the-editor">Enabling The Editor</h2>
+<p>You need <a href="https://metacpan.org/pod/Proc::InvokeEditor">Proc::InvokeEditor</a> in order to activate the <a href="https://metacpan.org/pod/Reply::Plugin::Editor">Editor plugin</a>. I suppose that makes sense. Proc::InvokeEditor is a module that makes it easy to launch your default text editor on behalf of the application, sending the editor buffer back to your application as user input.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> cpanm Proc::InvokeEditor
+</span></span></code></pre>
+</figure><p>Add the Editor plugin entry to your <code>.replyrc</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Editor]</span></span></span></code></pre>
+</figure><p>And just like that, here is a new <code>#e</code> command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">0&gt; #e</span></span></code></pre>
+</figure><p>It can probably work with <a href="/post/2014/06/start-using-emacsclient/">EmacsClient</a>, but I have been lazy lately and fallen back to Vim as my <code>$EDITOR</code> default.</p>
+<h2 id="specifying-a-module-at-start">Specifying a Module at Start</h2>
+<p>I have been exploring <a href="/card/mojolicious/">card/Mojolicious</a>, which is a surprisingly full-featured framework considering its small size. The <a href="http://mojolicio.us/perldoc/ojo">ojo</a> library is a Mojolicious command line tool focused on making your one-liners even more useful. Since Reply is sort of an extended one-liner environment - okay, you can call it a &ldquo;shell&rdquo; - ojo and Reply can go together perfectly.</p>
+<p>There is no need to add ojo to my <code>.replyrc</code>, because I will not be needing its functionality every single time I load Reply. Instead I will just tell Reply to load the library when starting those particular sessions.</p>
+<p>Let&rsquo;s keep with the Questhub.io example from the earlier post. I start <code>reply</code> with the <code>-M</code> flag to load a specific module on startup.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ reply -Mojo
+</span></span><span class="line"><span class="cl">0&gt; sort map { $_-&gt;{name} } j( g( &#39;https://questhub.io/api/realm&#39; )-&gt;body )-&gt;@*
+</span></span><span class="line"><span class="cl">$res[0] = [
+</span></span><span class="line"><span class="cl">  &#39;Big Data&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Chaos&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Code&#39;,
+</span></span><span class="line"><span class="cl">  &#39;DC Metro Region&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Fitness&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Haskell&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Japanese&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Lisp&#39;,
+</span></span><span class="line"><span class="cl">  &#39;MOOCs&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Meta&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Node.js&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Perl&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Portland&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Python (Ru)&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Read&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Testing&#39;,
+</span></span><span class="line"><span class="cl">  &#39;Yoga + Meditation&#39;
+</span></span><span class="line"><span class="cl">]</span></span></code></pre>
+</figure><p>I know. This is confusing if you are unfamiliar with ojo and the experimental Perl 5.20 postderef feature. We can look at it in smaller pieces.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Using ojo::g</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span><span class="p">(</span> <span class="s">&#39;https://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="n">body</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># is roughly the same as this</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ua</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span> <span class="s">&#39;http://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="nn">res</span><span class="o">-&gt;</span><span class="n">body</span></span></span></code></pre>
+</figure><p><a href="http://mojolicio.us/perldoc/ojo#g"><code>g</code></a> is a shortcut for the <code>get</code> method of <a href="http://mojolicio.us/perldoc/Mojo/UserAgent">Mojo::UserAgent</a>. There are shortcuts for numerous HTTP verbs in ojo.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># using ojo::j and ojo::g</span>
+</span></span><span class="line"><span class="cl"><span class="n">j</span><span class="p">(</span> <span class="n">g</span><span class="p">(</span> <span class="s">&#39;https://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="n">body</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># is rougly the same as this</span>
+</span></span><span class="line"><span class="cl"><span class="n">decode_json</span><span class="p">(</span> <span class="nv">$ua</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span> <span class="s">&#39;https://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="nn">res</span><span class="o">-&gt;</span><span class="n">body</span> <span class="p">)</span></span></span></code></pre>
+</figure><p><a href="http://mojolicio.us/perldoc/ojo#j"><code>j</code></a> is a convenience function from <a href="http://mojolicio.us/perldoc/Mojo/JSON#j">Mojo::JSON</a> for encoding and decoding JSON. My experience so far has been that it does what I mean when I use it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># using j, g, and postderef</span>
+</span></span><span class="line"><span class="cl"><span class="n">j</span><span class="p">(</span> <span class="n">g</span><span class="p">(</span> <span class="s">&#39;https://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="n">body</span> <span class="p">)</span><span class="o">-&gt;</span><span class="nv">@</span><span class="err">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nv">is</span> <span class="n">rougly</span> <span class="n">the</span> <span class="n">same</span> <span class="n">as</span> <span class="n">this</span>
+</span></span><span class="line"><span class="cl"><span class="nv">@</span><span class="p">{</span> <span class="n">decode_json</span><span class="p">(</span> <span class="nv">$ua</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span> <span class="s">&#39;https://questhub.io/api/realm&#39;</span> <span class="p">)</span><span class="o">-&gt;</span><span class="nn">res</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">)</span> <span class="p">}</span></span></span></code></pre>
+</figure><p><code>$ref-&gt;@*</code> is an experimental new syntax for accessing the contents of an array reference. It is equivalent to <code>@{ $ref }</code> or <code>@$ref</code>. The postderef syntax is a little easier for me to read, but your experience may be different.</p>
+<h2 id="all-done">All Done</h2>
+<p>That is enough for now. With the ReadLine plugin and Editor plugin enabled, a nice 2014-ish Perl setup in my <code>.replyrc</code>, and ojo available when I want it, Reply is downright useful for me.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: REPL In Perl With Reply</title>
+  <link>https://randomgeekery.org/post/2014/08/repl-in-perl-with-reply/</link>
+  <pubDate>Thu, 14 Aug 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/08/repl-in-perl-with-reply/</guid>
+  <description>Time for a quick post about Reply, a new Perl toy from Jesse Luers. There will not be much for me to say, because I have only been playing with it for about twenty minutes.
+NOTE
+This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
+Reply is a REPL for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a plugin system that I may look at later if I have more time.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>perl</category>  <category>reply</category>  <category>mojolicious</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2014/08/../../../attachments/img/2014/cover-2014-08-14.png" alt="attachments/img/2014/cover-2014-08-14.png"/></p>
+<p>Time for a quick post about <a href="https://metacpan.org/release/Reply">Reply</a>, a new <a href="/card/perl/">Perl</a> toy from <a href="http://tozt.net/">Jesse Luers</a>. There will not be much for me to say, because I have only been playing with it for about twenty minutes.</p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.</p>
+</blockquote>
+<p>Reply is a <a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a <a href="https://metacpan.org/source/DOY/Reply-0.35/lib/Reply/Plugin.pm">plugin</a> system that I may look at later if I have more time.</p>
+<h2 id="installation">Installation</h2>
+<p>I use <a href="http://perlbrew.pl">perlbrew</a> and <a href="https://github.com/miyagawa/cpanminus">cpanm</a>, so installation was easy.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cpanm Reply</code></pre>
+</figure><p>Oh. It is worth pointing out that if you do not have <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU Readline</a> or a similar library installed, you will not get command-line editing or history in Reply.</p>
+<h2 id="hello-reply">Hello Reply</h2>
+<p>The <code>reply</code> command starts a new session. Once the session is going, it’s pretty much just Perl.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ reply
+0&gt; &#34;Hello World&#34;
+$res[0] = &#39;Hello World&#39;
+
+1&gt; my $name = &#34;Brian&#34;
+$res[1] = &#39;Brian&#39;
+
+2&gt; &#34;Hello $name&#34;
+$res[2] = &#39;Hello Brian&#39;</code></pre>
+</figure><p>Getting user input via <code>STDIN</code> works pretty much how you would expect.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >3&gt; chomp( $name = &lt;STDIN&gt; )
+Brian
+$res[3] = 1
+
+4&gt; $name
+$res[4] = &#39;Brian&#39;</code></pre>
+</figure><p>Defining subroutines is no big deal.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >5&gt; sub greeting { &#34;Hello $_[0]&#34; }
+6&gt; greeting $name
+$res[5] = &#39;Hello Brian&#39;</code></pre>
+</figure><p>And <code>exit</code> will quit Reply. It all seems straightforward.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >7&gt; exit</code></pre>
+</figure><h2 id="a-marginally-more-complex-example">A Marginally More Complex Example</h2>
+<p>I have been working on a little experiment: fetching Questhub.io JSON with <a href="http://mojolicio.us/perldoc/Mojo/UserAgent">Mojo::UserAgent</a> and <a href="http://mojolicio.us/perldoc/Mojo/JSON">Mojo::JSON</a>. I decided to see if I could try some of that experiment in Reply.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >0&gt; use Mojo::UserAgent
+1&gt; use Mojo::JSON &#39;decode_json&#39;
+2&gt; my $ua = Mojo::UserAgent-&gt;new
+$res[0] = bless( {}, &#39;Mojo::UserAgent&#39; )
+
+3&gt; sort map { $_-&gt;{name} } @{ decode_json( $ua-&gt;get( &#39;https://questhub.io/api/realm&#39; )-&gt;res-&gt;body ) }
+$res[1] = [
+  &#39;Big Data&#39;,
+  &#39;Chaos&#39;,
+  &#39;Code&#39;,
+  &#39;DC Metro Region&#39;,
+  &#39;Fitness&#39;,
+  &#39;Haskell&#39;,
+  &#39;Japanese&#39;,
+  &#39;Lisp&#39;,
+  &#39;MOOCs&#39;,
+  &#39;Meta&#39;,
+  &#39;Node.js&#39;,
+  &#39;Perl&#39;,
+  &#39;Portland&#39;,
+  &#39;Python (Ru)&#39;,
+  &#39;Read&#39;,
+  &#39;Testing&#39;,
+  &#39;Yoga &#43; Meditation&#39;
+]</code></pre>
+</figure><p>Yes, I can.</p>
+<h2 id="what-do-i-think">What Do I Think?</h2>
+<p>I like Reply overall. I am not used to thinking in REPL terms when it comes to Perl, and need to spend more than twenty minutes with it. I like Reply enough that I do expect to spend more time with it.</p>
+<p>I noticed that my coding style was more terse within the confines of Reply. Maybe I should install GNU Readline support on my machine or enable the <a href="https://metacpan.org/pod/Reply::Plugin::Editor">Editor plugin</a>.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Connect To MongoDB on a Vagrant box from the host</title>
+  <link>https://randomgeekery.org/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/</link>
+  <pubDate>Wed, 06 Aug 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/</guid>
+  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2014/08/../../../attachments/img/2014/cover-2014-08-06.png&#34; alt=&#34;attachments/img/2014/cover-2014-08-06.png&#34;/&gt;
+&lt;a href=&#34;https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/&#34;&gt;Yesterday&lt;/a&gt; I finished a little project to set up a reusable Vagrant box for MongoDB and &lt;a href=&#34;https://randomgeekery.org/card/perl/&#34;&gt;card/Perl&lt;/a&gt; Mojolicious experiments. That project is okay as it is right now, but I would like to get at MongoDB from the host system.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>vagrant</category>  <category>mongodb</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2014/08/../../../attachments/img/2014/cover-2014-08-06.png" alt="attachments/img/2014/cover-2014-08-06.png"/>
+<a href="/post/2014/08/trusty-mongo-mojo-box/">Yesterday</a> I finished a little project to set up a reusable Vagrant box for MongoDB and <a href="/card/perl/">card/Perl</a> Mojolicious experiments. That project is okay as it is right now, but I would like to get at MongoDB from the host system.</p>
+<p>It is not painfully difficult, but it would be easy for me to forget. That is why I made a post out of it.</p>
+<p>Adjust the Vagrantfile so that the MongoDB guest port is forwarded to a host port.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">&#34;2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Use Ubuntu 14.04 64 bit</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&#34;ubuntu/trusty64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Install system requirements</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&#34;shell&#34;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&#34;bootstrap/system.sh&#34;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># Configure guest services to be accessible on host</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">3000</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">27017</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Inside the box, comment out the <code>bind_ip</code> line from <code>/etc/mongod.conf</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Listen to local interface only. Comment out to listen on all interfaces.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bind_ip = 127.0.0.1</span></span></span></code></pre>
+</figure><p>Restart the <code>mongod</code> service.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo service mongod restart</code></pre>
+</figure><p>Connect to Mongo from the host using whatever interface you prefer. I have been enjoying <a href="http://robomongo.org/">Robomongo</a>.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Trusty Mongo Mojo Box</title>
+  <link>https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/</link>
+  <pubDate>Tue, 05 Aug 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/</guid>
+  <description>tldr
+Install Vagrant &amp; VirtualBox.
+mkdir my-box cd my-box vagrant init brianwisti/trusty-mongo-mojo Be aware that this is my first packaged Vagrant box, and it is probably not great.
+Motivation I want to explore Mojolicious framework for Perl along with MongoDB. Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of virtualization tools that have become popular.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>virtualization</category>  <category>vagrant</category>  <category>perl</category>  <category>mongodb</category>  <category>mojolicious</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<blockquote>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p>Install Vagrant &amp; VirtualBox.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >mkdir my-box
+cd my-box
+vagrant init brianwisti/trusty-mongo-mojo</code></pre>
+</figure><p>Be aware that this is my first packaged Vagrant box, and it is probably not great.</p>
+</blockquote>
+<h2 id="motivation">Motivation</h2>
+<p>I want to explore <a href="http://mojolicio.us/">Mojolicious</a> framework for <a href="/card/perl/">Perl</a> along with <a href="https://www.mongodb.org/">MongoDB</a>. Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of <a href="http://en.wikipedia.org/wiki/Virtualization">virtualization</a> tools that have become popular. This is an opportunity to learn how to set up a <a href="http://vagrantup.com">Vagrant</a> box for my Mojolicious / MongoDB explorations.</p>
+<h2 id="creating-the-box">Creating The Box</h2>
+<p>A <a href="http://en.wikipedia.org/wiki/Virtual_machine">virtual machine</a> is basically a simulated operating system running on whatever your host machine is: Windows, Linux, OS X - whatever. That virtual machine lives its life as if it has its own environment. It is useful for application development, testing, application hosting, and security research. You can have a library of guest virtual machines, each dedicated to a particular task.</p>
+<p>I have now exhausted my knowledge of virtualization, so let us move on.</p>
+<p>Vagrant provides a single configuration and command set for managing
+aspects of multiple virtual machine managers. You can use Vagrant to
+create identical virtual machine &ldquo;boxes&rdquo; on host operating systems.
+These definitions — and the boxes themselves — can be shared with
+others.</p>
+<p>Although multiple virtual machine managers are supported by Vagrant, <a href="https://www.virtualbox.org/">VirtualBox</a> is widely used and has the best support.</p>
+<p>My Vagrant box needs an operating system. This is my first time through, so I will keep it simple: <a href="http://ubuntu.com">Ubuntu</a> 14.04. I figure that I can find plenty of resources online if I get stuck.</p>
+<p>Go to <a href="https://vagrantcloud.com/">Vagrant Cloud</a> for packaged Vagrant boxes with your favorite distribution and virtual machine provider. Vagrant Cloud provides a social network approach to shared boxes, allowing you to find and favorite useful options or even sharing your own. There is an Ubuntu account on Vagrant Cloud with a <a href="https://vagrantcloud.com/ubuntu/trusty64">trusty64</a> box, presenting a 14.04 64 bit release that can be used in VirtualBox.</p>
+<p>The <code>vagrant init</code> command initializes a new Vagrant box. I will
+reference trusty64 to give this box a starting point.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir mongo-mojo
+$ cd mongo-mojo
+$ vagrant init ubuntu/trusty64
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.</code></pre>
+</figure><p>I could start the box up now and have a more or less blank starting point. Instead I will provision it so that it has the packages and tools needed for me to start development quickly. My goal is to get the latest releases of MongoDB, Perl 5, Mojolicious, and <a href="https://metacpan.org/pod/Mango">Mango</a> — a pure Perl MongoDB driver written by the same developer who created Mojolicious.</p>
+<p>Vagrant <a href="http://docs.vagrantup.com/v2/provisioning/index.html">provisioning</a> can be done via several approaches, but I go for the short and sweet method of writing a <a href="http://docs.vagrantup.com/v2/provisioning/shell.html">shell script</a>.</p>
+<p>I am going to install MongoDB via the <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/">provided Ubuntu packages</a>, so that I do not have to worry about startup scripts and all that. I will also install <code>build-essential</code> so that I can build <a href="http://perlbrew.pl/">Perlbrew</a>.</p>
+<p><strong><code>bootstrap/system.sh</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Install MongoDB</span>
+</span></span><span class="line"><span class="cl">apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> tee /etc/apt/sources.list.d/mongodb.list
+</span></span><span class="line"><span class="cl">apt-get -q update
+</span></span><span class="line"><span class="cl">apt-get -q -y install mongodb-org
+</span></span><span class="line"><span class="cl">service mongod start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install development dependencies</span>
+</span></span><span class="line"><span class="cl">apt-get -q -y install build-essential
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Set up vagrant user environment</span>
+</span></span><span class="line"><span class="cl">su -c <span class="s2">&#34;source /vagrant/bootstrap/user.sh&#34;</span> vagrant</span></span></code></pre>
+</figure><p><code>system.sh</code> invokes <code>user.sh</code> as the default vagrant user. <code>user.sh</code> contains the instructions to install Perlbrew and the latest <a href="http://perl.org">Perl</a>. Once that is out of the way, <a href="https://metacpan.org/pod/cpanm">cpanm</a> will install Mojolicious and Mango.</p>
+<p><strong><code>bootstrap/user.sh</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Install perlbrew</span>
+</span></span><span class="line"><span class="cl">curl -L http://install.perlbrew.pl <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;source ~/perl5/perlbrew/etc/bashrc&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.profile
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/perl5/perlbrew/etc/bashrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install local Perl and app libs</span>
+</span></span><span class="line"><span class="cl">perlbrew install perl-5.20.0
+</span></span><span class="line"><span class="cl">perlbrew switch perl-5.20.0
+</span></span><span class="line"><span class="cl">perlbrew install-cpanm
+</span></span><span class="line"><span class="cl">cpanm Mojolicious
+</span></span><span class="line"><span class="cl">cpanm Mango</span></span></code></pre>
+</figure><p>My Vagrantfile varies only a little from the default. One thing to notice is that I have set up port forwarding so I can view running Mojolicious applications from a browser in the host system.</p>
+<p><strong><code>Vagrantfile</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">&#34;2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Use Ubuntu 14.04 64 bit</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&#34;ubuntu/trusty64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Install system requirements</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&#34;shell&#34;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&#34;bootstrap/system.sh&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Configure guest services to be accessible on host</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">3000</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span></span></span></code></pre>
+</figure><p>Now just run <code>vagrant up</code> and wait.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant up</code></pre>
+</figure><p>I end up waiting quite a while.</p>
+<p>Okay, okay. I admit that it took me a couple of tries to get those shell scripts working right. After each correction, <code>vagrant provision</code> reran the provisioning stage of <code>vagrant up</code>.</p>
+<p>Eventually it finishes.</p>
+<h2 id="testing-the-box">Testing the Box</h2>
+<p>I will not even pretend I know what I am doing here. The whole point of this exercise is to learn Mojolicious, MongoDB, and Mango. Oh yeah, and Vagrant. I just copy the sample application from the <a href="https://github.com/kraih/mango">Mango Github README</a>.</p>
+<p><strong><code>app.pl</code></strong></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojolicious::Lite</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mango</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mango::BSON</span> <span class="s">&#39;:bson&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$uri</span> <span class="o">=</span> <span class="s">&#39;mongodb://localhost:27017/test&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">helper</span> <span class="n">mango</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span> <span class="n">state</span> <span class="nv">$mango</span> <span class="o">=</span> <span class="nn">Mango</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$uri</span><span class="p">)</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Store and retrieve information non-blocking</span>
+</span></span><span class="line"><span class="cl"><span class="n">get</span> <span class="s">&#39;/&#39;</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$c</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$collection</span> <span class="o">=</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="nn">mango</span><span class="o">-&gt;</span><span class="nn">db</span><span class="o">-&gt;</span><span class="n">collection</span><span class="p">(</span><span class="s">&#39;visitors&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$ip</span>         <span class="o">=</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="nn">tx</span><span class="o">-&gt;</span><span class="n">remote_address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Store information about current visitor</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$collection</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">({</span><span class="n">when</span> <span class="o">=&gt;</span> <span class="n">bson_time</span><span class="p">,</span> <span class="n">from</span> <span class="o">=&gt;</span> <span class="nv">$ip</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">my</span> <span class="p">(</span><span class="nv">$collection</span><span class="p">,</span> <span class="nv">$err</span><span class="p">,</span> <span class="nv">$oid</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render_exception</span><span class="p">(</span><span class="nv">$err</span><span class="p">)</span> <span class="k">if</span> <span class="nv">$err</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Retrieve information about previous visitors</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$collection</span><span class="o">-&gt;</span><span class="nn">find</span><span class="o">-&gt;</span><span class="nb">sort</span><span class="p">({</span><span class="n">when</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">({</span><span class="n">_id</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">})</span><span class="o">-&gt;</span><span class="n">all</span><span class="p">(</span><span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">my</span> <span class="p">(</span><span class="nv">$collection</span><span class="p">,</span> <span class="nv">$err</span><span class="p">,</span> <span class="nv">$docs</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render_exception</span><span class="p">(</span><span class="nv">$err</span><span class="p">)</span> <span class="k">if</span> <span class="nv">$err</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># And show it to current visitor</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">(</span><span class="n">json</span> <span class="o">=&gt;</span> <span class="nv">$docs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nn">app</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">;</span></span></span></code></pre>
+</figure><p>I would like to configure my editor to invoke needed commands through Vagrant. Perhaps later. For now, SSH will do.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant ssh
+$ cd /vagrant
+$ morbo app.pl</code></pre>
+</figure><p>Back in my browser, I hit <code>http://localhost:3000</code> a couple times and get:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;10.0.2.2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;when&#34;</span><span class="p">:</span> <span class="mi">1407276553541</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;10.0.2.2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;when&#34;</span><span class="p">:</span> <span class="mi">1407276551337</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure><p>Well how about that? Everything works!</p>
+<h2 id="packaging">Packaging</h2>
+<p>Installing everything took a <em>long</em> time. I do not want to wait for the full provisioning process every time I create a new box. Can I take a snapshot of this box and use it for other projects?</p>
+<p>Of course I can. The Vagrant docs provide some <a href="http://docs.vagrantup.com/v2/boxes/base.html">guidelines</a> for creating a new box for packaging.</p>
+<blockquote>
+<p><strong>WARNING</strong></p>
+<p>There is a warning in the packaging documentation that looks serious.</p>
+<blockquote>
+<p><strong>Advanced topic!</strong> Creating a base box can be a time consuming and tedious process, and is not recommended for new Vagrant users. If you’re just getting started with Vagrant, we recommend trying to find existing base boxes to use first.</p>
+</blockquote>
+<p>Blah, blah, blah. If I listened to every warning, I wouldn’t know what my hair smells like when it’s on fire. <em>You</em> may want to be more careful,  though.</p>
+</blockquote>
+<p>The Vagrant <a href="http://docs.vagrantup.com/v2/cli/package.html">package command</a> takes your virtual machine and wraps it up into a single box file that you can reuse or share with others. Maybe I can just package my trusty64-derived box.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant package</code></pre>
+</figure><p>Apparently yes. The resulting box is about 750MB, which seems large.</p>
+<p><a href="http://williamwalker.me/">William Walker</a> wrote a post about <a href="http://williamwalker.me/blog/creating-a-custom-vagrant-box.html">Creating a Custom Vagrant Box</a>, with many useful instructions. I am ignoring most of those useful instructions right now, though I will come back to them later. What caught my eye was his suggestion for reducing the size of the box. You can use <code>dd</code> to clear out some space from inside the box.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant ssh
+$ sudo dd if=/dev/zero of=/EMPTY bs=1M
+$ sudo rm -f /EMPTY
+$ sudo shutdown -h now</code></pre>
+</figure><p>I rebuild my package. That brings it down to 649MB - still large, but better than 750. I will come back later when I have the time and see if I can cut it down a little more.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant add test-trusty-mongo-mojo package.box
+$ cd ..
+$ mkdir test-tmm
+$ cd test-tmm
+$ vagrant init test-trust-mongo-mojo
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.</code></pre>
+</figure><p>I test it with the same Mojolicious application I used above and — hot dog — it works.</p>
+<h2 id="sharing">Sharing</h2>
+<p>Now is the part where I jump straight off the cliff of rational thinking and share every horrible mistake I made with you and anyone else who wants it.</p>
+<p>Should you use MongoDB in production? I have no idea, but I bet that it’s a really bad idea to use my <a href="https://vagrantcloud.com/brianwisti/trusty-mongo-mojo">trusty-mongo-mojo box</a> in production. Still — could be interesting to play with.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant init brianwisti/trusty-mongo-mojo</code></pre>
+</figure><p>Have fun.</p>
+<h2 id="was-it-worth-it">Was It Worth It?</h2>
+<p>That’s a good question. It was great as a learning experience. I enjoyed learning more about <a href="http://vagrantup.com">Vagrant</a>. I don’t know yet whether it was worth my time to create this bundle. Mojolicious and MongoDB are already fairly easy to install on whatever platform. We’ll see. I do know that I’d like to revisit this package, clean it up, and maybe follow up with a similar package for <a href="http://perldancer.org/">Dancer</a>. It’s just plain <em>fun</em> to make these packages.</p>
+<h2 id="what-now">What Now?</h2>
+<p>All that’s left now is to learn all the things. The online <a href="http://perldoc.perl.org/">Perl documentation</a> is current with Perl 5.20. <a href="http://mojolicio.us/perldoc/Mojolicious/Lite">Mojolicious::Lite</a> is as good a place as any to start with learning Mojolicious. There’s a <a href="http://docs.mongodb.org/manual/">MongoDB manual</a> to peruse. Mango does not yet have the polished guides that Mojolicious does, but browsing the <a href="https://metacpan.org/release/Mango">Mango MetaCPAN page</a> will get me a ways.</p>
+<p>Oh yeah. When I’m done for the day, I’ll exit my vagrant session and suspend the virtual machine.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ vagrant exit
+$ vagrant suspend</code></pre>
+</figure>]]></content:encoded>
+</item>
+</channel>
+</rss>

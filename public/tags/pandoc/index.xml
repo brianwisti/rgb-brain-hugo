@@ -28,8 +28,11 @@
 <p>Since I implied a number in that question, I have a metric I can use. Word count! Just write until I have 250 words, then post it. Or five hundred. Or a thousand. Whatever. I don&rsquo;t even need a concrete goal.  Seeing the number encourages me to type a little bit more.</p>
 <p>But how to get the word count of a post? The approach I used a few years ago required enough extra thought that I eventually forgot all about it until editing this post!</p>
 <p><a href="/card/hugo/">card/Hugo</a> includes word count and reading time in <a href="https://gohugo.io/variables/page/">page variables</a>, so I could put the variable in the post template, then keep the server running and browser open while I type. In fact, that&rsquo;s exactly what I&rsquo;ve been doing!</p>
-<pre tabindex="0"><code>&lt;p&gt;About {{ .Page.ReadingTime }} minutes to read ({{ .Page.WordCount }} words)&lt;/p&gt;
-</code></pre><p>Honestly, this is cumbersome. I prefer something that doesn&rsquo;t require I have Hugo running. Sure, I enjoy previewing the site with live reload, but when I&rsquo;m writing my flow is interrupted by half my screen refreshing every few seconds.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&lt;p&gt;About {{ .Page.ReadingTime }} minutes to read ({{ .Page.WordCount }} words)&lt;/p&gt;</code></pre>
+</figure><p>Honestly, this is cumbersome. I prefer something that doesn&rsquo;t require I have Hugo running. Sure, I enjoy previewing the site with live reload, but when I&rsquo;m writing my flow is interrupted by half my screen refreshing every few seconds.</p>
 <p>Yes, I tend to save my work that often. You lose enough editing sessions and it
 becomes a reflex.</p>
 <p>Something <em>in</em> my editor would be better.</p>
@@ -40,28 +43,35 @@ becomes a reflex.</p>
 <p>Well maybe it could if I wrestled with the extensions a little. But I don&rsquo;t want to do that today. mmark can turn Markdown into HTML. Pandoc can turn HTML into plain text!</p>
 <p>So. Have mmark turn the file into HTML, then have pandoc turn the HTML into text, and count the words of text produced.</p>
 <p>We use pipes. Pipes everywhere.</p>
-<pre tabindex="0"><code>$ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d &#39; &#39;
-403
-</code></pre><blockquote>
-<p>[!NOTE]
-Found out that Hugo shortcodes look a lot like mmark includes, and that choked my pipes up a bit. Added an initial pass through Perl to remove anything that might be a shortcode. Confuses counting in a couple of my posts <em>about</em> Hugo, but I will survive.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">perl -pe <span class="s1">&#39;BEGIN{ undef $/ } s/\{\{&lt;.+?&gt;}}//gsm&#39;</span> <span class="s2">&#34; index.md \
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d &#39; &#39;
+403</code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Found out that Hugo shortcodes look a lot like mmark includes, and that choked my pipes up a bit. Added an initial pass through Perl to remove anything that might be a shortcode. Confuses counting in a couple of my posts <em>about</em> Hugo, but I will survive.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">perl -pe <span class="s1">&#39;BEGIN{ undef $/ } s/\{\{&lt;.+?&gt;}}//gsm&#39;</span> <span class="s2">&#34; index.md \
 </span></span></span><span class="line"><span class="cl"><span class="s2">  | mmark -html -fragment index.md \
 </span></span></span><span class="line"><span class="cl"><span class="s2">  | pandoc -f html -t plain \
-</span></span></span><span class="line"><span class="cl"><span class="s2">  | wc -w | tr -d &#39; &#39;
-</span></span></span></code></pre></div></blockquote>
+</span></span></span><span class="line"><span class="cl"><span class="s2">  | wc -w | tr -d &#39; &#39;</span></span></span></code></pre>
+</figure></blockquote>
 <p>I told mmark to generate a fragment of HTML rather than a complete HTML document, to reduce noise from things like a <code>&lt;title&gt;</code> tag.</p>
 <p>Plus a little massaging by <code>tr</code> since <code>wc -w</code> had leading spaces in its output.</p>
 <p>Naturally, Hugo reports a different number at this point: 397. You know what, though? I&rsquo;m not going to fuss about a small difference. If I was getting paid per word (or at all) for these posts, I might care more. Eventually I may dig into code and find out <em>why</em> they report different numbers. As it is, I am happy with the answers that pandoc + wc give me.</p>
 <h3 id="how-to-get-vim-to-report-it">How to get Vim to report it</h3>
 <p>So I know how to get the numbers I want. Now I must learn enough <a href="http://learnvimscriptthehardway.stevelosh.com/">Vimscript</a> to move that information from the shell to the status line.</p>
 <blockquote>
-<p>[!WARNING]
-I&rsquo;ve been using Neovim as my main terminal <code>$EDITOR</code>. Although it maintains compatibility with Vim, some of the functions here may require a newer release of Vim than you have on your machine.</p>
+<p><strong>WARNING</strong></p>
+<p>I&rsquo;ve been using Neovim as my main terminal <code>$EDITOR</code>. Although it maintains compatibility with Vim, some of the functions here may require a newer release of Vim than you have on your machine.</p>
 <p>The goal was to figure this out on my own machine, so unfortunately the only advice I can offer if your Vim complains is: upgrade Vim or switch to Neovim.</p>
 </blockquote>
 <p>Later I may expand this into a library function that understands about different content types. Right now it returns a formatted word count if the filetype of the current buffer is Markdown, and an empty string otherwise. That way there&rsquo;s <em>something</em> to put in the status line.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">MarkdownWordCount</span><span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">MarkdownWordCount</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">my_filetype</span> <span class="p">=</span> &amp;<span class="k">filetype</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">my_filetype</span> <span class="p">!=</span> <span class="s1">&#39;markdown&#39;</span>
@@ -75,15 +85,17 @@ I&rsquo;ve been using Neovim as my main terminal <code>$EDITOR</code>. Although 
 </span></span><span class="line"><span class="cl">        \ <span class="s2">&#34; \| wc -w \| tr -d &#39; &#39;&#34;</span>
 </span></span><span class="line"><span class="cl">        \ <span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">return</span> <span class="s2">&#34;[wc:&#34;</span> . <span class="nx">trim</span><span class="p">(</span><span class="nx">wordcount</span><span class="p">)</span> . <span class="s2">&#34;]&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">endfunction</span>
-</span></span></code></pre></div><p>Look! Functions! For the full list of neovim&rsquo;s built-in functions, see <a href="https://neovim.io/doc/user/eval.html"><code>:help eval</code></a>. Let&rsquo;s just look at the ones I used.</p>
+</span></span><span class="line"><span class="cl"><span class="k">endfunction</span></span></span></code></pre>
+</figure><p>Look! Functions! For the full list of neovim&rsquo;s built-in functions, see <a href="https://neovim.io/doc/user/eval.html"><code>:help eval</code></a>. Let&rsquo;s just look at the ones I used.</p>
 <ul>
 <li><code>system</code> gets me the output of a shell command (with a little backslash escaping so my pipes work).</li>
 <li><code>bufname</code> returns the filename for the requested buffer (<code>%</code> is Vim shorthand for &ldquo;the current buffer&rdquo;)</li>
 <li><code>trim</code> gets rid of that pesky newline. Oh hey I bet it gets rid of the leading spaces, too. Might not need to <code>tr</code> the word count.</li>
 </ul>
 <p>Also, I want to keep it from counting words all the time. The piped commands are fast enough on my computer, but it just feels like wasted effort. Keep the word count and time of last check in buffer variables. Update the word count only if the file&rsquo;s been touched since the last check.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Word Count for Markdown posts</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Word Count for Markdown posts</span>
 </span></span><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">MarkdownWordCount</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">my_filetype</span> <span class="p">=</span> &amp;<span class="k">filetype</span>
 </span></span><span class="line"><span class="cl">
@@ -114,16 +126,18 @@ I&rsquo;ve been using Neovim as my main terminal <code>$EDITOR</code>. Although 
 </span></span><span class="line"><span class="cl">  <span class="k">endif</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">return</span> <span class="s2">&#34;[wc:&#34;</span> . <span class="nx">b</span>:<span class="nx">wc_last_count</span> . <span class="s2">&#34;]&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">endfunction</span>
-</span></span></code></pre></div><p>Hey, a couple new functions!</p>
+</span></span><span class="line"><span class="cl"><span class="k">endfunction</span></span></span></code></pre>
+</figure><p>Hey, a couple new functions!</p>
 <ul>
 <li><code>getftime</code> tells me when the file was last modified</li>
 <li><code>localtime</code> tells me what time it is now.</li>
 </ul>
 <p>Both of these time functions work in &ldquo;seconds since 1970-01-01.&rdquo; That&rsquo;s not unusual, but it does mean you&rsquo;d need to feed the values to <code>strftime</code> if you wanted human-readable times.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Later, in my status line:</span>
-</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">statusline</span><span class="p">=</span>%<span class="nx">m</span>%<span class="nx">h</span>%<span class="nx">w</span><span class="p">&lt;</span>%<span class="nx">f</span><span class="p">&gt;</span>\ %<span class="p">=</span>%<span class="p">(</span>%{<span class="nx">fugitive</span>#<span class="nx">statusline</span><span class="p">()</span>}\ [%<span class="nx">Y</span>]%{<span class="nx">MarkdownWordCount</span><span class="p">()</span>}[%<span class="nx">l</span><span class="p">,</span>%<span class="nx">v</span>][%<span class="nx">p</span>%%]%<span class="p">)</span>
-</span></span></code></pre></div><p>Yeah, my status line is a little busy.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Later, in my status line:</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">statusline</span><span class="p">=</span>%<span class="nx">m</span>%<span class="nx">h</span>%<span class="nx">w</span><span class="p">&lt;</span>%<span class="nx">f</span><span class="p">&gt;</span>\ %<span class="p">=</span>%<span class="p">(</span>%{<span class="nx">fugitive</span>#<span class="nx">statusline</span><span class="p">()</span>}\ [%<span class="nx">Y</span>]%{<span class="nx">MarkdownWordCount</span><span class="p">()</span>}[%<span class="nx">l</span><span class="p">,</span>%<span class="nx">v</span>][%<span class="nx">p</span>%%]%<span class="p">)</span></span></span></code></pre>
+</figure><p>Yeah, my status line is a little busy.</p>
 <p>Anyways. It works! Is it perfect? Of course not. But it gives me the information I want, and that pleases me. On to the next task!</p>]]></content:encoded>
 </item>
 <item>
@@ -145,10 +159,13 @@ sources.</p>
 <p>I could use it to convert them to different sources.</p>
 <p>I’m not saying I <em>would</em>. But I <em>could</em>.</p>
 <p>Okay I might.</p>
-<pre tabindex="0"><code>$ pandoc --to org _posts/programming/2014-12-13-duplicate-files.markdown -o 2014-12-13-duplicate-files.org
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ pandoc --to org _posts/programming/2014-12-13-duplicate-files.markdown -o 2014-12-13-duplicate-files.org
 $ pandoc --to asciidoc _posts/programming/2014-12-13-duplicate-files.markdown -o 2014-12-13-duplicate-files.adoc
-$ pandoc _posts/programming/2014-12-13-duplicate-files.markdown -o 2014-12-13-duplicate-files.html
-</code></pre><p><img src="/post/2015/07/attachments/img/2015/emacs-pandoc.png" alt="Pandoc output in Emacs"/></p>
+$ pandoc _posts/programming/2014-12-13-duplicate-files.markdown -o 2014-12-13-duplicate-files.html</code></pre>
+</figure><p><img src="/post/2015/07/attachments/img/2015/emacs-pandoc.png" alt="Pandoc output in Emacs"/></p>
 <p>Honestly at this point I’d say it’s pretty likely.</p>
 ]]></content:encoded>
 </item>

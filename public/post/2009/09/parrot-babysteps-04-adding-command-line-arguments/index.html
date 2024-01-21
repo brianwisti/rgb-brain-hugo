@@ -133,8 +133,8 @@ It would be nice to write more ambitious programs, though. It would be painful -
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">Parrot Babysteps 04 - Adding Command Line Arguments</a></li>
@@ -304,14 +309,20 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>How do we tell Parrot that our program accepts command line arguments, though? We need some way to show that our <code>:main</code> sub is ready to take parameters. Turns out that&rsquo;s actually pretty easy.</p>
 <h3 id="param-directive"><code>.param</code> directive</h3>
 <p>The <code>.param</code> directive is used at the start of a subroutine to indicate that the subroutine will accept a parameter and place it in the named variable.</p>
-<pre tabindex="0"><code># example-04-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-04-01.pir
 
 .sub &#39;main&#39; :main
     .param pmc argv
-.end
-</code></pre><p><code>argv</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/resizablestringarray.pmc.html">ResizableStringArray</a>: an ordered collection of strings.</p>
+.end</code></pre>
+</figure><p><code>argv</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/resizablestringarray.pmc.html">ResizableStringArray</a>: an ordered collection of strings.</p>
 <p>We can use the <code>elements</code> opcode to find out how many arguments were passed to the file.</p>
-<pre tabindex="0"><code># example-04-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-04-02.pir
 
 .sub &#39;main&#39; :main
     .param pmc argv
@@ -325,14 +336,20 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     description .= &#34; arguments&#34;
 
     say description
-.end
-</code></pre><p>Try it out.</p>
-<pre tabindex="0"><code>$ parrot example-04-02.pir hey there
-I was called with 3 arguments
-</code></pre><p>Three? Let&rsquo;s look at the arguments individually and see if we can figure this out.</p>
+.end</code></pre>
+</figure><p>Try it out.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-04-02.pir hey there
+I was called with 3 arguments</code></pre>
+</figure><p>Three? Let&rsquo;s look at the arguments individually and see if we can figure this out.</p>
 <h3 id="shift"><code>shift</code></h3>
 <p>The <code>shift</code> opcode lets us pull the first item from an array. This shrinks the <code>argv</code> array by one as it shifts the rest of its contents over to fill the empty space, but it&rsquo;s not a concern for us right now.</p>
-<pre tabindex="0"><code># example-04-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-04-03.pir
 
 .sub &#39;main&#39; :main
     .param pmc argv
@@ -350,16 +367,22 @@ I was called with 3 arguments
 
   END:
 
-.end
-</code></pre><p>We can use this code to look at our program arguments one at a time.</p>
-<pre tabindex="0"><code>bash-3.2$ parrot example-04-03.pir hey there
+.end</code></pre>
+</figure><p>We can use this code to look at our program arguments one at a time.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >bash-3.2$ parrot example-04-03.pir hey there
 This argument: example-04-03.pir
 This argument: hey
-This argument: there
-</code></pre><p>Oh, right. The program name is the first argument. That is not unusual, especially in some lower level languages. I should have remembered.</p>
+This argument: there</code></pre>
+</figure><p>Oh, right. The program name is the first argument. That is not unusual, especially in some lower level languages. I should have remembered.</p>
 <h3 id="calculating-a-hypotenuse">Calculating a Hypotenuse</h3>
 <p>Let&rsquo;s take what we&rsquo;ve learned about handling the command line and apply it to our hypotenuse calculator.</p>
-<pre tabindex="0"><code># example-04-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-04-04.pir
 
 .sub &#39;main&#39; :main
     .param pmc argv
@@ -382,7 +405,7 @@ This argument: there
     b_squared = b * b
     say a_squared
     say b_squared
-    c_squared = a_squared + b_squared
+    c_squared = a_squared &#43; b_squared
     c = sqrt c_squared
     say c
     goto END
@@ -393,20 +416,29 @@ This argument: there
     goto END
 
   END:
-.end
-</code></pre><p>First we shift the first item off of <code>argv</code> because we know for sure that it&rsquo;s going to be the program name. Then we check to make sure that the user has provided us with two arguments that we can use for <code>a</code> and <code>b</code>. Not having two arguments is an error, so the program branches to displaying an error and quitting. When the argument count is right, the program shifts the arguments into <code>a</code> and <code>b</code> then uses them to calculate and display the hypotenuse.</p>
+.end</code></pre>
+</figure><p>First we shift the first item off of <code>argv</code> because we know for sure that it&rsquo;s going to be the program name. Then we check to make sure that the user has provided us with two arguments that we can use for <code>a</code> and <code>b</code>. Not having two arguments is an error, so the program branches to displaying an error and quitting. When the argument count is right, the program shifts the arguments into <code>a</code> and <code>b</code> then uses them to calculate and display the hypotenuse.</p>
 <p>Oh yeah - sooner or later you&rsquo;re going to see this error message from Parrot:</p>
-<pre tabindex="0"><code>error:imcc:syntax error, unexpected &#39;=&#39;, expecting &#39;(&#39; (&#39;=&#39;)
-        in file &#39;example-04-04.pir&#39; line 24
-</code></pre><p>What did line 24 look like?</p>
-<pre tabindex="0"><code>c_squared = a_squared + b_squared
-</code></pre><p>It took me a while to realize that I had never declared <code>.local num c_squared</code>. Unfortunately, Parrot&rsquo;s error messages aren&rsquo;t quite as descriptive as Perl&rsquo;s. Perl has had a lot more time to figure out how to gently explain a user&rsquo;s error to him, though.</p>
-<pre tabindex="0"><code>bash-3.2$ parrot example-04-04.pir 12 23
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >error:imcc:syntax error, unexpected &#39;=&#39;, expecting &#39;(&#39; (&#39;=&#39;)
+        in file &#39;example-04-04.pir&#39; line 24</code></pre>
+</figure><p>What did line 24 look like?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >c_squared = a_squared &#43; b_squared</code></pre>
+</figure><p>It took me a while to realize that I had never declared <code>.local num c_squared</code>. Unfortunately, Parrot&rsquo;s error messages aren&rsquo;t quite as descriptive as Perl&rsquo;s. Perl has had a lot more time to figure out how to gently explain a user&rsquo;s error to him, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >bash-3.2$ parrot example-04-04.pir 12 23
 144
 529
 25.9422435421457
-bash-3.2$
-</code></pre><p>That worked.</p>
+bash-3.2$</code></pre>
+</figure><p>That worked.</p>
 <p>Parrot has many special opcodes <a href="http://docs.parrot.org/parrot/latest/html/src/ops/pmc.ops.html">for dealing with PMCs</a> and soon we&rsquo;ll be looking at more of them. I am especially interested in the opcodes that allow us to use arrays and other collection types.</p>
 <h2 id="summary">Summary</h2>
 <p>Yes, this has been a <em>very</em> quick step. Maybe we didn&rsquo;t learn a whole lot,  but there&rsquo;s a little bit of new stuff in there. We did learn how to add command line handling by using <code>.param</code> to tell Parrot that our <code>:main</code> method accepts parameters. We learned that for <code>:main</code>, the parameter is a particular PMC - something called a ResizableStringArray. The <code>shift</code> opcode removes the first item in a ResizableStringArray and lets us use it in a variable. We also saw that we can use the <code>members</code> opcode to get the number of members in an array.</p>

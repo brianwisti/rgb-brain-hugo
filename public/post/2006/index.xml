@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>2006onRandom Geekery</title>
+    <link>https://randomgeekery.org/post/2006/</link>
+    <description>
+      Recent contentin2006 on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 20 Jan 2024 22:42:32 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2006/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: I&#39;ve Been Experimenting With CakePHP</title>
+  <link>https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/</link>
+  <pubDate>Fri, 22 Sep 2006 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/</guid>
+  <description>&lt;p&gt;I’ve been experimenting with &lt;a href=&#34;http://cakephp.org/&#34;&gt;CakePHP&lt;/a&gt; over the last couple of weeks for a project. It’s definitely not &lt;a href=&#34;http://rubyonrails.com/&#34;&gt;Ruby on Rails&lt;/a&gt;, but it has a lot of charm. This library provides a MVC system for &lt;a href=&#34;https://randomgeekery.org/card/php/&#34;&gt;PHP&lt;/a&gt; applications, but the really interesting thing is that you can just drop it onto your Web server space with no fuss or bother. You don’t even have to worry about clever mod_rewrite rules if you don’t want to.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>php</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I&rsquo;ve been experimenting with <a href="http://cakephp.org/">CakePHP</a> over the last couple of weeks for a project. It&rsquo;s definitely not <a href="http://rubyonrails.com/">Ruby on Rails</a>, but it has a lot of charm. This library provides a MVC system for <a href="/card/php/">PHP</a> applications, but the really interesting thing is that you can just drop it onto your Web server space with no fuss or bother. You don&rsquo;t even have to worry about clever mod_rewrite rules if you don&rsquo;t want to.</p>
+<p>Since CakePHP is so accessible, I thought it would be fun to explore the framework a little bit more, and document what&rsquo;s going on here. Now, I&rsquo;m not the greatest at remembering to update this blog, but I&rsquo;ll do my best.</p>
+<p>My goal is straightforward: create a forum application, similar in purpose to <a href="http://www.phpbb.com/">phpBB</a>. I&rsquo;m sure it has already been done, but I&rsquo;m in this strictly for the educational exercise.</p>
+<p>The first task - assuming you already have Web space with support for PHP and MySQL - is to get CakePHP. That&rsquo;s easy enough. Just grab the latest archive from the download section of the CakePHP site, and unpack it to your server space. I&rsquo;m fond of using my personal machine as a development site, so I won&rsquo;t be worrying about issues like uploading or editing remote files.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd /var/www
+$ sudo tar xfvz ~/cake_1.1.7.3363.tar.gz
+...
+$ mv cake_1.1.7.3363.tar.gz cakebb
+$ sudo chown --recursive brianwisti cakebb</code></pre>
+</figure><p>Okay, there are much safer approaches to setting things up, but I am only doing quick and dirty development on my home machine.</p>
+<p>Next I need to manage the database connections. CakePHP uses PHP code for configuration, following along with the Rails idea of &ldquo;convention over configuration.&rdquo; The theory is that a handful of PHP files are easier to sort through than a handful of XML configuration files.</p>
+<p>Configuration files are kept in <tt>cakebb/app/config</tt>. The first one I&rsquo;ll be looking at is database.php, except that there is no <tt>database.php</tt> when Cake is first extracted. We have a file <tt>database.php.default</tt> instead. I&rsquo;ll move it over to <tt>database.php</tt> so that Cake has something to look at on startup.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mv database.php.default database.php</code></pre>
+</figure><p>Of course now I need to edit the file to establish the database connection details. I&rsquo;ll also need to set up the appropriate databases on my local MySQL server.</p>
+<p>So here&rsquo;s the important part of <tt>database.php</tt>:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DATABASE_CONFIG</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$default</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;connect&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql_connect&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;login&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my secret password&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$test</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;connect&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql_connect&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;login&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my secret password&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_test&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Then I go into the MySQL shell to create the databases and accounts needed by CakeBB.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6 to server version: 5.0.22-Debian_0ubuntu6.06.2-log
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the buffer.
+
+mysql&gt; create database cakebb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; create database cakebb_test;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; grant all on cakebb.* to &#39;cakebb_user&#39;@&#39;%&#39; identified by &#39;my secret password&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; grant all on cakebb_test.* to &#39;cakebb_user&#39;@&#39;%&#39; identified by &#39;my secret password&#39;;
+Query OK, 0 rows affected (0.00 sec)</code></pre>
+</figure><p>I feel like skipping mod_rewrite for now, so I&rsquo;ll uncomment the following line (around line 40 of <tt>app/config/core.php</tt>):</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">//  define (&#39;BASE_URL&#39;, env(&#39;SCRIPT_NAME&#39;));
+</span></span></span></code></pre>
+</figure><p>All I&rsquo;ve got at this point is the basic setup, but I should test it just to make sure everything is connecting. I send my browser to <code>http://localhost/cakebb/</code> and get a lovely status page telling me that CakePHP is installed and able to connect to the database.</p>
+<p>Great. I&rsquo;m set up and functional. The next step will be to build the application models. But that will have to wait until tomorrow, because I need to get to work now.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Reduce, Reuse, Recycle in REBOL</title>
+  <link>https://randomgeekery.org/post/2006/04/reduce-reuse-recycle-in-rebol/</link>
+  <pubDate>Sun, 30 Apr 2006 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/04/reduce-reuse-recycle-in-rebol/</guid>
+  <description>&lt;p&gt;I had to share a “Eureka!” moment that I recently experienced about &lt;a href=&#34;https://randomgeekery.org/card/rebol/&#34;&gt;REBOL&lt;/a&gt;. I  never did get around to refining it, but it stands here as a rambling  testament of - well, as a testament of my ability to ramble.  I might end up refining it later, or I might not. I just didn’t want the thoughts to disappear in air as thoughts are sometimes known to do.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rebol</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>I had to share a &ldquo;Eureka!&rdquo; moment that I recently experienced about <a href="/card/rebol/">REBOL</a>. I  never did get around to refining it, but it stands here as a rambling  testament of - well, as a testament of my ability to ramble.  I might end up refining it later, or I might not. I just didn&rsquo;t want the thoughts to disappear in air as thoughts are sometimes known to do.</p>
+<h2 id="my-baffling-issue">My Baffling Issue</h2>
+<p>There are a lot of <code>re-</code> words in Rebol.</p>
+<ul>
+<li>reduce</li>
+<li>reform</li>
+<li>rejoin</li>
+<li>remold</li>
+<li>repend</li>
+</ul>
+<p>There are others, but they make sense to people who are comfortable with the English language. I won&rsquo;t spend too much time with them.</p>
+<ul>
+<li>recycle</li>
+<li>remove</li>
+<li>rename</li>
+<li>repeat</li>
+<li>replace</li>
+<li>request</li>
+<li>resend</li>
+</ul>
+<p>These do more or less what you would expect them to. <code>remove</code> will remove an item from a series, <code>rename</code> renames a file, <code>request</code> requests console input from the user. Try <code>help _word_</code> to get the specifics on the others. Like I said, I&rsquo;m not worrying about them right now.</p>
+<p>That first list of <code>re-</code> words was really standing in the way of understanding Rebol. That&rsquo;s because the prefix <code>re-</code> doesn&rsquo;t quite mean what you would expect in an English language context. I&rsquo;m used to the meaning &ldquo;do this thing again,&rdquo; and that&rsquo;s the way it gets used in words like <code>resend</code> and <code>repeat</code>. What about <code>repend</code> and those others?</p>
+<h2 id="reduce"><code>reduce</code></h2>
+<p>The key for those words is in understanding <code>reduce</code>. <code>reduce</code> takes a series and evaluates every expression in that series. When it&rsquo;s done, it hands you a new list consisting of the results of those evaluations. It&rsquo;s easier to show than explain:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; example: [
+[    2 &#43; 3
+[    4 * 6
+[    4 / 2
+[    ]
+== [
+    2 &#43; 3
+    4 * 6
+    4 / 2
+  ]
+&gt;&gt; reduce example
+== [5 24 2]</code></pre>
+</figure><p>It gets more interesting when your expressions are a little more interesting, but I&rsquo;m keeping it simple so I don&rsquo;t get distracted.</p>
+<p>Those other four words which have been confusing me for months suddenly make a lot more sense when I realize that the prefix <code>re-</code> means &ldquo;<code>reduce</code> these values before doing this other thing.&rdquo;</p>
+<h2 id="reform"><code>reform</code></h2>
+<p><code>form</code> takes a value and returns a stringified version of the value.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; form example
+== &#34;2 &#43; 3 4 * 6 4 / 2&#34;</code></pre>
+</figure><p>Now that we know what <code>reduce</code> does, we have a good idea what to expect out of <code>reform</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; reform example
+== &#34;5 24 2&#34;</code></pre>
+</figure><p>It will <code>reduce</code> the series, and then <code>form</code> a string from the values in the
+new series.</p>
+<h2 id="rejoin"><code>rejoin</code></h2>
+<p><code>join</code> is a little funky. Now that I understand what <code>rejoin</code> does, I usually end up using it directly. Here&rsquo;s a breakdown just the same.</p>
+<p><code>join</code> takes two arguments: a value and a series. It will reduce the value and the series, and then glue the results tightly into a string. Sounds a little bit like <code>form</code>, doesn&rsquo;t it? Unlike <code>form</code>, <code>join</code> will not provide spaces in between the values.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; join 3 &#43; 2 example
+== &#34;55242&#34;</code></pre>
+</figure><p><code>rejoin</code> effectively does the same thing, but it doesn&rsquo;t need the first value. You can <code>rejoin</code> your series directly.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; rejoin example
+== &#34;5242&#34;</code></pre>
+</figure><h2 id="remold"><code>remold</code></h2>
+<p><code>mold</code> is somewhat nifty. It will transform its argument into a string that Rebol can evaluate later. Pretty handy for generating code while the program is running!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; mold example
+== {[
+      2 &#43; 3
+      4 * 6
+      4 / 2
+]}</code></pre>
+</figure><p><code>remold</code> will <code>reduce</code> the argument and then <code>mold</code> the results.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; remold example
+== &#34;[5 24 2]&#34;</code></pre>
+</figure><h2 id="repend"><code>repend</code></h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append example [2 &#43; 3]
+== [
+    2 &#43; 3
+    4 * 6
+    4 / 2 2 &#43; 3
+]</code></pre>
+</figure><p>Be careful, <code>append</code> actually does append the value to your original series. You may want to work on a <code>copy</code> if you want to leave your original series alone.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append copy example [2 &#43; 3]
+== [ 2 &#43; 3 
+     4 * 6 
+     4 / 2 
+     2 &#43; 3
+]
+&gt;&gt; example
+== [2 &#43; 3 4 * 6 4 / 2]</code></pre>
+</figure><p>Let&rsquo;s look at <code>repend</code> now that we&rsquo;ve got the <code>append</code> warning out of the way. Easy enough. <code>repend</code> will <code>reduce</code> the extra value before appending. I haven&rsquo;t gotten far enough along to see why this is better or even different from just appending the raw expression:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt; append copy example 2 &#43; 3
+== [2 &#43; 3 4 * 6 4 / 2 5]</code></pre>
+</figure><p>I do feel a little smarter than I did 20 minutes ago, though. If nothing else, I feel good.</p>
+<p>Great, now I think I&rsquo;ve got a little bit better understanding of Rebol. Let&rsquo;s see if I&rsquo;ve gotten far enough to make truly useful programs.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: I still like UNIX better</title>
+  <link>https://randomgeekery.org/post/2006/03/i-still-like-unix-better/</link>
+  <pubDate>Tue, 28 Mar 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/03/i-still-like-unix-better/</guid>
+  <description>&lt;p&gt;But at least now I have learned enough to actually get stuff done in Windows.
+That, and enough of my favorite tools have been ported over that I don’t have
+to feel homesick.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>43-things</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>But at least now I have learned enough to actually get stuff done in Windows.
+That, and enough of my favorite tools have been ported over that I don&rsquo;t have
+to feel homesick.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: There Must Be Something Wrong With Me</title>
+  <link>https://randomgeekery.org/post/2006/03/there-must-be-something-wrong-with-me/</link>
+  <pubDate>Fri, 24 Mar 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/03/there-must-be-something-wrong-with-me/</guid>
+  <description>There must be something wrong with me. I’ve been sitting here for the last hour, merrily watching Jigdo downloading components for a Debian ISO. This is roughly equivalent to watching paint dry, except for the fact that at least the latter provides you with a dry painted surface when it’s done.
+Like I said, there must be something wrong with me.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>There must be something wrong with me. I&rsquo;ve been sitting here for the last hour, merrily watching Jigdo downloading components for a <a href="http://www.debian.org">Debian</a> ISO. This is roughly equivalent to watching paint dry, except for the fact that at least the latter provides you with a dry painted surface when it&rsquo;s done.</p>
+<p>Like I said, there must be something wrong with me.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Learning XML</title>
+  <link>https://randomgeekery.org/post/2006/03/learning-xml/</link>
+  <pubDate>Fri, 17 Mar 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/03/learning-xml/</guid>
+  <description>&lt;p&gt;A mountain of standards and specifications have piled on top of &lt;a href=&#34;https://randomgeekery.org/card/xml/&#34;&gt;XML&lt;/a&gt; over the  years, but the core language is still pretty easy to get started in. Because it  is a markup language rather than a programming language, there aren’t as many  new concepts to learn. If you’ve learned HTML in the past, then XML will be  familiar.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>xml</category>  <category>learn</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>A mountain of standards and specifications have piled on top of <a href="/card/xml/">XML</a> over the  years, but the core language is still pretty easy to get started in. Because it  is a markup language rather than a programming language, there aren&rsquo;t as many  new concepts to learn. If you&rsquo;ve learned HTML in the past, then XML will be  familiar.</p>
+<p>I usually try to scatter my &ldquo;Learning&rdquo; sections across several pages, so that  each major idea can get its own space. XML is different, though. Core XML  really is a simple creature, and I think I can get the most important ideas out in one page. Let&rsquo;s see if that will happen.</p>
+<h2 id="what-you-need">What You Need</h2>
+<p>A text editor is all you need to get started in XML. However, you will probably want to look at your XML as something besides markup. The best solution for that would be a Web browser that understands XML. Both Internet Explorer and <a href="http://www.mozilla.com/">Mozilla Firefox</a> can read and display XML documents in a pleasant format. I strongly prefer Firefox because its XML capabilities are
+very strong.</p>
+<h2 id="the-skeleton-of-an-xml-document">The Skeleton of an XML Document</h2>
+<p>A simple XML document is indeed very simple. All you need is a prolog and a root element.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;greeting&gt;</span>Hello, World!<span class="nt">&lt;/greeting&gt;</span></span></span></code></pre>
+</figure><p>The very first line is called the <em>prolog</em>. The browser relies on the presence of that prolog to recognize an XML file. Later, you may learn how to add information in the prolog, providing details like character set. For now, just starting every XML document out with that line is good enough.</p>
+<p>Browser, parser, interpreter, whatever. It&rsquo;s a piece of software that will look at your XML file and need to be reassured that is in fact looking at an XML file.</p>
+<p>The document itself consists of the <em>root element</em>. If you&rsquo;ve ever written HTML, then this &ldquo;element&rdquo; business will be no problem for you. <code>&lt;html&gt;</code> is the root element of a HTML file, and the rest of your page goes inside. If you haven&rsquo;t written HTML, then elements can look a little intimidating. Let&rsquo;s talk about them in a little more detail.</p>
+<h3 id="elements">Elements</h3>
+<p>Elements are what give an XML document its structure. They have three parts: a beginning, an end, and everything in between. The beginning consists of a name and maybe some <em>attributes</em> wrapped in <code>&lt;</code> and <code>&gt;</code> characters. The end is the name prefixed by the / character and wrapped in <code>&lt;</code> and <code>&gt;</code> characters. The beginning and end are often referred to as the <em>opening tag</em> and the <em>closing tag</em>. In between them, you can find anything: text, <em>entities</em>, <em>comments</em>, <em>processing instructions</em>, <em>non-parsed data</em>, and more <em>elements</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;element&gt;</span>Stuff in between<span class="nt">&lt;/element&gt;</span></span></span></code></pre>
+</figure><p>Even though you <em>can</em> find anything inside an element, the XML language you are using probably has specific rules for what can be contained inside each particular element. For example, in XHTML <code>&lt;body&gt;</code> should only be inside of the <code>&lt;html&gt;</code> element.</p>
+<h4 id="attributes">Attributes</h4>
+<p>Attributes often serve the purpose of providing additional information about an element. They consist of a name followed by an equals (=) sign and a value. The value is usually in quotation marks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;element</span> <span class="na">attribute=</span><span class="s">&#34;value&#34;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/element&gt;</span></span></span></code></pre>
+</figure><p>Elements may have any number of elements, depending on the rules defined in the XML language you are using.</p>
+<h4 id="empty-elements">Empty Elements</h4>
+<p>Sometimes there is no &ldquo;in-between&rdquo; content for an element. The creators of the XML specification realized that it would get tiring to enter <code>&lt;element&gt;&lt;/element&gt;</code> all the time. Those extra characters can also add up, taking up precious bandwidth when sending large XML documents to large numbers of machines. So, they added a special rule. If the element is empty, you can suffix the opening tag with a / character, and leave off the closing tag.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;element</span> <span class="na">attribute=</span><span class="s">&#34;value&#34;</span> <span class="nt">/&gt;</span></span></span></code></pre>
+</figure><p>You might have noticed that I put a space in between the last character of the opening tag and the / character. You don&rsquo;t need to do that, but I think that it makes the markup for an empty element a little easier to read.</p>
+<h3 id="plain-old-text">Plain Old Text</h3>
+<p>Elements may contain text. In fact, text is usually the actual content which is being marked up. It&rsquo;s easy to lose sight of that when your text is drowning in a sea of elements.</p>
+<p>Plain old text is pretty straightforward: you&rsquo;re reading some right now. There is one little quirk that you need to deal with, though. What do you do when you want to display a less-than or greater-than symbol in your text? Well, that&rsquo;s where <em>entity references</em> come in.</p>
+<h3 id="entity-references">Entity References</h3>
+<p>Entity references allow you to display characters that are either already being used in XML, or just flat out unprintable with the keyboard you are using.</p>
+<p>Using an entity reference is a little more complicated than what you&rsquo;ve dealt with so far, but let&rsquo;s get into it. An entity is either a special name or a numeric value. You reference the entiy by prefixing it with the <code>&amp;</code> character and suffixing it with the <code>;</code> character. If your entity is a numeric value, it must be prefixed with the # character befor referencing it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;element&gt;</span>1 <span class="ni">&amp;lt;</span> 2<span class="nt">&lt;/element&gt;</span></span></span></code></pre>
+</figure><p>Of course, now you need a special entity for the &amp; character. In fact, there is a small set of predefined entities which are valid in any XML document. Let&rsquo;s just stuff them into a table rather than reviewing them one by one.</p>
+<h3 id="common-xml-entities">Common XML Entities</h3>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;lt;</code></td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td><code>&amp;gt;</code></td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td><code>&amp;amp;</code></td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td><code>&amp;apos;</code></td>
+<td><code>'</code></td>
+</tr>
+<tr>
+<td><code>&amp;quot;</code></td>
+<td><code>&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Numeric entity references are a whole different can of worms, and frankly I&rsquo;d rather not get into them in such a high-level overview of XML. Still, here&rsquo;s what they look like so you can recognize them:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;element&gt;</span><span class="ni">&amp;#62;</span> should be the same as <span class="ni">&amp;gt;</span><span class="nt">&lt;/element&gt;</span></span></span></code></pre>
+</figure><p>Stick to named entities for now, and be sure to look up what is available for you. XHTML has a particularly rich set of named entities that you can use in your Web pages.</p>
+<h3 id="comments">Comments</h3>
+<p>XML authors need a way to add information that will be completely ignored by the computer. XML comments provide the ability to do just that. A comment is prefixed by <code>&lt;!--</code> and ends with <code>--&gt;</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- Some scandalously clever comment --&gt;</span></span></span></code></pre>
+</figure><h3 id="processing-instructions">Processing Instructions</h3>
+<p>Processing Instructions are special instructions to the browser which are not considered part of the document itself. They are indicated with a question mark and an indicator of the application used for the processing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?lang directives ... ?&gt;</span></span></span></code></pre>
+</figure><p>Did you notice how similar this is to the prolog mentioned above? That&rsquo;s because the prolog is a processing instruction letting the browser know that it&rsquo;s time to fire up the ol&rsquo; XML processing code.</p>
+<h3 id="non-parsed-data">Non-Parsed Data</h3>
+<p>You probably won&rsquo;t see this much when you&rsquo;re getting started, but I thought I would mention it anyways. Non-Parsed Data is content that &hellip; well &hellip; you don&rsquo;t want parsed. It can hold anything, including XML. I&rsquo;ve used it to hold Python code for projects. It doesn&rsquo;t matter what the section holds, because the browser will ignore it unless told to do otherwise.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;![CDATA[Clever code that saves the world. ]]&gt;</span></span></span></code></pre>
+</figure><h3 id="dtd-declarations">DTD Declarations</h3>
+<p>I was going to ignore these, since they are a relic of XML&rsquo;s SGML history. The truth is that you are going to see these a lot when editing XML documents. Web browsers in particular often rely on the DTD when deciding how to interpret an XHTML file. DTD declarations are used to define the rules of the XML language you are using or to point to the location of these rules. Here&rsquo;s a sample DTD declaration, which is pointing to the Transitional XHTML rules.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">    &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&gt;</span></span></span></code></pre>
+</figure><p>Using a DTD declaration in your XML is - at this stage in your knowledge - just a matter of copying and pasting a sample. You can always pursue DTD mastery yourself if you like.</p>
+<h2 id="the-importance-of-good-form">The Importance of Good Form</h2>
+<p>If you are used to HTML, then you may also be used to seeing some sloppy markup. Authors used opening tags with no closing tag, or mixed up the order that tags were closed. HTML browsers were forgiving, but XML is not. All elements must be opened and closed or shown to be empty. Elements always contain elements. You must close your elements in the opposite order you opened them.</p>
+<table>
+<thead>
+<tr>
+<th>Bad!</th>
+<th>Good!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;br&gt;</code></td>
+<td><code>&lt;br /&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;li&gt;...&lt;li&gt;...&lt;li&gt;</code></td>
+<td><code>&lt;li&gt;...&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;em&gt;&lt;strong&gt;...&lt;/em&gt;&lt;/strong&gt;</code></td>
+<td><code>&lt;em&gt;&lt;strong&gt;...&lt;/strong&gt;&lt;/em&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="conclusion">Conclusion</h2>
+<p>You&rsquo;ve just dipped your toes in the deep and murky waters of XML. There is still <em>so</em> much more to discover. I wanted you to be able to recognize an XML document in the wild, and know enough to create your own simple documents. You still need to learn how to create your own language so that your XML is completely valid. Both of us need to study XPath, XML-Schema, and the many other standards which have evolved over the years.</p>
+<p>The best resource for additional information is the <a href="http://www.w3.org/">World Wide Web Consortium</a>. But if standards and specifications aren&rsquo;t your cup of tea, there are also a number of good tutorial sites, such as <a href="http://www.xml.com/">XML.com</a> and <a href="http://www.w3schools.com/">W3 Schools</a>.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Aliases</title>
+  <link>https://randomgeekery.org/post/2006/03/aliases/</link>
+  <pubDate>Wed, 01 Mar 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/03/aliases/</guid>
+  <description>Here’s my TIL for Ruby. When you override a method in a subclass, you also need to redeclare any aliases for that method. Seems pretty obvious when you think about it. I didn’t think about it, though, and it caught me up for a few minutes.
+I’d post a block of sample code, but I keep getting &#34;body, Malformed HTML found.&#34; errors from 43 Things whenever I try to save with my code in there (pre tags and all)</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>ruby</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>Here&rsquo;s my <a href="/card/til/">TIL</a> for <a href="/card/ruby/">Ruby</a>. When you override a method in a subclass, you also need to redeclare any aliases for that method. Seems pretty obvious when you think about it. I didn&rsquo;t think about it, though, and it caught me up for a few minutes.</p>
+<p>I&rsquo;d post a block of sample code, but I keep getting <code>&quot;body, Malformed HTML found.&quot;</code>
+errors from <em>43 Things</em> whenever I try to save with my code in there (<code>pre</code> tags and
+all)</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Sticking with Vim</title>
+  <link>https://randomgeekery.org/post/2006/02/sticking-with-vim/</link>
+  <pubDate>Sun, 12 Feb 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/02/sticking-with-vim/</guid>
+  <description>I’ve been experimenting with several excellent editors for Windows, including UltraEdit and Crimson Editor. The experiments will continue, but for now I am going to stick to a Windows install of Vim. Becoming familiar with Windows doesn’t mean I have to drop everything I already know in the dust!</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>43-things</category>  <category>vim</category>  <category>editors</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I&rsquo;ve been experimenting with several excellent editors for Windows, including <a href="http://www.ultraedit.com">UltraEdit</a> and <a href="http://www.crimsoneditor.com">Crimson Editor</a>. The experiments will continue, but for now I am going to stick to a Windows install of <a href="/card/vim/">Vim</a>. Becoming familiar with Windows doesn&rsquo;t mean I have to drop everything I already know in the dust!</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: New PageTemplate Release</title>
+  <link>https://randomgeekery.org/post/2006/01/new-pagetemplate-release/</link>
+  <pubDate>Sat, 07 Jan 2006 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2006/01/new-pagetemplate-release/</guid>
+  <description>&lt;p&gt;I snuck out a couple of new &lt;a href=&#34;https://randomgeekery.org/post/2002/06/pagetemplate/&#34;&gt;PageTemplate&lt;/a&gt; releases over the last week. There were no significant changes. The main bugfix is that PT should now work okay in an environment where $SAFE &gt; 0. This means you can finally use stock PageTemplate in your mod_ruby projects. I don’t have any major plans for PT in the near future. I really need to improve the tests, so I can know for sure that the package does what it’s currently advertised to do. Much later, I want to split the library into components so that people who want the bare minimum can use a PageTemplate::Core module which would be equivalent to PT 0.3.2.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>pagetemplate</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I snuck out a couple of new <a href="/post/2002/06/pagetemplate/">PageTemplate</a> releases over the last week. There were no significant changes. The main bugfix is that PT should now work okay in an environment where $SAFE &gt; 0. This means you can finally use stock PageTemplate in your mod_ruby projects. I don&rsquo;t have any major plans for PT in the near future. I really need to improve the tests, so I can know for sure that the package does what it&rsquo;s currently advertised to do. Much later, I want to split the library into components so that people who want the bare minimum can use a PageTemplate::Core module which would be equivalent to PT 0.3.2.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

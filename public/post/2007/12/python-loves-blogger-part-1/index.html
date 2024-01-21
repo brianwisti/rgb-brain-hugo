@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2007/">2007</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2007/12/python-loves-blogger-part-1/">Python Loves Blogger (Part 1)</a></li>
@@ -307,15 +312,17 @@ because I hate writing HTML by hand these days. It will eventually manifest as a
 <li>Report the results of the request.</li>
 </ol>
 <p>It&rsquo;s fairly straightforward, but already shows me one class I&rsquo;ll be using to mask the details:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;A single posting for a blog owned by a Blogger account&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">import</span> <span class="nn">doctest</span>
-</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-</span></span></code></pre></div><p>I plan to use the <a href="https://docs.python.org/2/library/doctest.html">doctest</a> module to incorporate tests as I write this. It&rsquo;ll get invoked if the script is run directly. I&rsquo;ll put in some command line parsing later so that the tests can stillbe run but it doesn&rsquo;t have to be the default behavior.</p>
+</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></span></span></code></pre>
+</figure><p>I plan to use the <a href="https://docs.python.org/2/library/doctest.html">doctest</a> module to incorporate tests as I write this. It&rsquo;ll get invoked if the script is run directly. I&rsquo;ll put in some command line parsing later so that the tests can stillbe run but it doesn&rsquo;t have to be the default behavior.</p>
 <p>I already know what libraries I&rsquo;m going to use, so let&rsquo;s install those.</p>
 <h2 id="installing-dependencies">Installing Dependencies</h2>
 <p>I need a few things to make this work:</p>
@@ -326,7 +333,10 @@ because I hate writing HTML by hand these days. It will eventually manifest as a
 <li>A Blogger account. Seemed obvious, but I thought I&rsquo;d mention it.</li>
 </ul>
 <p>I already have Python installed, so let&rsquo;s move on to Markdown. It&rsquo;s simple enough to install and verify.</p>
-<pre tabindex="0"><code>~/src/pymods brian$ unzip ~/python_markdown-1.7.rc1.zip
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >~/src/pymods brian$ unzip ~/python_markdown-1.7.rc1.zip
 ~/src/pymods brian$ cd python_markdown-1.7/
 ~/src/pymods/python_markdown-1.7 brian$ sudo python setup.py install
 ~/src/pymods/python_markdown-1.7 brian$ python
@@ -337,35 +347,48 @@ Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34;
 &gt;&gt;&gt; import markdown
 &gt;&gt;&gt; markdown.markdown(&#34;# Hello&#34;)
 u&#39;&lt;h1&gt;Hello&lt;/h1&gt;&#39;
-&gt;&gt;&gt;
-</code></pre><p>Next I&rsquo;ll install GData.</p>
-<pre tabindex="0"><code>~/src/pymods brian$ tar xfvz ~/gdata.py-1.0.10.latest.tar.gz
+&gt;&gt;&gt;</code></pre>
+</figure><p>Next I&rsquo;ll install GData.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >~/src/pymods brian$ tar xfvz ~/gdata.py-1.0.10.latest.tar.gz
 ~/src/pymods/gdata.py-1.0.10.1 brian$ cd gdata.py-1.0.10.1/
-~/src/pymods/gdata.py-1.0.10.1 brian$ sudo python setup.py install
-</code></pre><p>What can I do to verify this one? Let&rsquo;s just run the provided sample Blogger code.</p>
-<pre tabindex="0"><code>$ cd samples/blogger
-$ python BloggerExample.py --email [email] --password [password]
-</code></pre><p>There&rsquo;s a bunch of spew, and posts are made and deleted along with comments. Looks like it works.</p>
+~/src/pymods/gdata.py-1.0.10.1 brian$ sudo python setup.py install</code></pre>
+</figure><p>What can I do to verify this one? Let&rsquo;s just run the provided sample Blogger code.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd samples/blogger
+$ python BloggerExample.py --email [email] --password [password]</code></pre>
+</figure><p>There&rsquo;s a bunch of spew, and posts are made and deleted along with comments. Looks like it works.</p>
 <h2 id="posting-formats">Posting Formats</h2>
 <p>My blog post files will have a fairly straightforward layout, with a head section and a body section. It&rsquo;ll look &hellip; well, it&rsquo;ll look a lot like the <code>lj-compose</code> buffer in Emacs for composing Livejournal posts, now that I think about it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">title: Python Loves Blogger
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">title: Python Loves Blogger
 </span></span><span class="line"><span class="cl">tags: python,gdata,project,blogger
 </span></span><span class="line"><span class="cl">--
 </span></span><span class="line"><span class="cl">I want the ability to post to my blogs from the command line. That&#39;s because
 </span></span><span class="line"><span class="cl">I prefer to do <span class="ge">*everything*</span> from the command line, but that&#39;s not really the
 </span></span><span class="line"><span class="cl">point. The point is that I want an excuse to write a new quick script and
 </span></span><span class="line"><span class="cl">satisfy that constant urge to gain some new superpower. Okay, so blogging&#39;s
-</span></span><span class="line"><span class="cl">not a superpower. Hush.
-</span></span></code></pre></div><p>The two sections are separated by a line containing only the characters <code>--</code>.</p>
+</span></span><span class="line"><span class="cl">not a superpower. Hush.</span></span></code></pre>
+</figure><p>The two sections are separated by a line containing only the characters <code>--</code>.</p>
 <p>The head section uses a common format where each line contains a key and its value, with a colon and space combo <code>:</code> separating them. The keys and values in a blog posting contain details that are important to Blogger and unique to this particular file. Right now that means I&rsquo;m only using <em>title</em> and <em>tags</em>.</p>
 <p>I&rsquo;ll just use commas for now when listing multiple values for a single key, such as with tags.</p>
-<pre tabindex="0"><code>key1: value1
-key2: value2,value3,value4,value5
-</code></pre><p>The body section is just Markdown-formatted text, including extensions that are available in the Python Markdown library.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >key1: value1
+key2: value2,value3,value4,value5</code></pre>
+</figure><p>The body section is just Markdown-formatted text, including extensions that are available in the Python Markdown library.</p>
 <h3 id="parsing-the-config-header">Parsing the Config Header</h3>
 <p>There is a very handy <a href="https://docs.python.org/2/library/configparser.html">ConfigParser</a> class available in the Python standard libs, but it&rsquo;s actually a little more than I need in a single post file. I just want to examine each line for key/value pairings without worrying about providing sections or a filehandle-like object
 to make ConfigParser happy.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">   <span class="s2">&#34;&#34;&#34;A single posting for a blog owned by a Blogger account
 </span></span></span><span class="line"><span class="cl"><span class="s2">   &#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -395,11 +418,13 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">import</span> <span class="nn">doctest</span>
-</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-</span></span></code></pre></div><p>That was pretty easy, although I did have to do a little thinking to work around the fact that newline escapes tend to be read before <code>doctest</code> can get to them. Anyways, config lines are split on the <code>: </code> pair of characters. A regular expression might be better for general use but I&rsquo;m still going for quick, dirty, and exactly what <em>I</em> want.</p>
+</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></span></span></code></pre>
+</figure><p>That was pretty easy, although I did have to do a little thinking to work around the fact that newline escapes tend to be read before <code>doctest</code> can get to them. Anyways, config lines are split on the <code>: </code> pair of characters. A regular expression might be better for general use but I&rsquo;m still going for quick, dirty, and exactly what <em>I</em> want.</p>
 <h3 id="parsing-the-post-body">Parsing the Post Body</h3>
 <p>Now let&rsquo;s get some HTML out of a block of Markdown-formatted text.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">   <span class="s2">&#34;&#34;&#34;A single posting for a blog owned by a Blogger account
@@ -446,10 +471,12 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">import</span> <span class="nn">doctest</span>
-</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-</span></span></code></pre></div><p>Those <code>doctest</code> tests are starting to look a little contorted. <code>BlogPost.__config</code> is really just   dictionary, and I don&rsquo;t really care whether it is private to the object. Let&rsquo;s make the adjustments in <code>__init__</code> and <code>parseConfig</code>. We don&rsquo;t need <code>getConfig</code> now that we have direct access to the dictionary.</p>
+</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Those <code>doctest</code> tests are starting to look a little contorted. <code>BlogPost.__config</code> is really just   dictionary, and I don&rsquo;t really care whether it is private to the object. Let&rsquo;s make the adjustments in <code>__init__</code> and <code>parseConfig</code>. We don&rsquo;t need <code>getConfig</code> now that we have direct access to the dictionary.</p>
 <p>As long as we&rsquo;re refactoring, I&rsquo;d prefer it if the message body could be treated as a property. Setting it would store the string, while getting it would invoke markup and return the result.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">   <span class="s2">&#34;&#34;&#34;A single posting for a blog owned by a Blogger account
@@ -506,10 +533,12 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">import</span> <span class="nn">doctest</span>
-</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-</span></span></code></pre></div><h2 id="command-line-options">Command Line Options</h2>
+</span></span><span class="line"><span class="cl">   <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></span></span></code></pre>
+</figure><h2 id="command-line-options">Command Line Options</h2>
 <p>Before I get too carried away, I want to make sure that there are no ugly surprises in the formatting of my posts. Let&rsquo;s do the heavy lifting with <a href="https://docs.python.org/2/library/optparse.html">optparse</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BlogPost</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">   <span class="s2">&#34;&#34;&#34;A single posting for a blog owned by a Blogger account
@@ -606,17 +635,20 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">       <span class="nb">print</span> <span class="n">post</span><span class="o">.</span><span class="n">body</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">   <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><p>You&rsquo;ll have to just take my word for it that I wrote tests for each stage. Well, except for verifying that the final output looked roughly like what I hoped for. I&rsquo;m not 100% sure how Markdown is going to place its newlines, so I am looking at the output via STDOUT:</p>
-<pre tabindex="0"><code>$ ./post-to-blog.py -f post.txt | more
+</span></span><span class="line"><span class="cl">   <span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure><p>You&rsquo;ll have to just take my word for it that I wrote tests for each stage. Well, except for verifying that the final output looked roughly like what I hoped for. I&rsquo;m not 100% sure how Markdown is going to place its newlines, so I am looking at the output via STDOUT:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./post-to-blog.py -f post.txt | more
 &lt;p&gt;I want the ability to post to my blogs from the command line. That&#39;s because
   I prefer to do &lt;em&gt;everything&lt;/em&gt; from the command line, but that&#39;s not really the
   point. The point is that I want an excuse to write a new quick script and
   satisfy that constant urge to gain some new superpower. Okay, so blogging&#39;s
   not a superpower. Hush.
 &lt;/p&gt;
-...
-</code></pre><p>I&rsquo;ll save you the details of the full output. It looked about right, though.</p>
+...</code></pre>
+</figure><p>I&rsquo;ll save you the details of the full output. It looked about right, though.</p>
 <p>Enough stalling. It&rsquo;s time to login and post this article.</p>
 <h2 id="interacting-with-blogger">Interacting with Blogger</h2>
 <p>I&rsquo;ll be using <a href="https://developers.google.com/blogger/docs/3.0/getting_started">the official guide</a> for Python and Blogger to choose my steps. You aren&rsquo;t likely to find anything here that isn&rsquo;t already there.</p>
@@ -624,7 +656,9 @@ to make ConfigParser happy.</p>
 <h3>Update 2015-03-28</h3>
 <p>The &ldquo;official guide&rdquo; link is newer than this post, and you should favor its lessons over these.</p>
 </aside>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gdata</span> <span class="kn">import</span> <span class="n">service</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">gdata</span>
@@ -749,15 +783,17 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">       <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">   <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><p>I haven&rsquo;t figured out tags/labels yet, but let&rsquo;s see how well this works. If you see this post, then I&rsquo;ll know that Part 1 of my little quest is complete!</p>
+</span></span><span class="line"><span class="cl">   <span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure><p>I haven&rsquo;t figured out tags/labels yet, but let&rsquo;s see how well this works. If you see this post, then I&rsquo;ll know that Part 1 of my little quest is complete!</p>
 <p>Um &hellip; okay, no. That didn&rsquo;t work. I got a couple syntax and library errors, but after fixing those I still got an error code <code>bX-y33b4h</code>. <a href="http://groups.google.com/group/bloggerDev/browse_thread/thread/5788317a11c21268">This thread</a> showed me that I wasn&rsquo;t alone, but didn&rsquo;t do much to solve my problem. I&rsquo;ll have to look at the sample code that is in the python gdata distribution.</p>
 <p>&hellip; later &hellip;</p>
 <p>That posted, but I lost all the line breaks in my <code>pre</code> blocks. I decided to pick a new  template, and that seemed to do the trick. I will <em>definitely</em> be fine tuning that template as I move along.</p>
 <p>At some point I&rsquo;ll figure out how to add labels.</p>
 <h2 id="the-code-so-far">The Code So Far</h2>
 <p>This is the code I used to publish this post. Definitely a work in progress - this version will submit your post as a draft, for example.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># post-to-blog.py</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">markdown</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
@@ -889,8 +925,8 @@ to make ConfigParser happy.</p>
 </span></span><span class="line"><span class="cl">        <span class="n">post</span><span class="o">.</span><span class="n">sendPost</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure>
   
 
 

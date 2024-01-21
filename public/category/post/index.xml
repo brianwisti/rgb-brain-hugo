@@ -114,7 +114,9 @@ an illustrative example</p>
 <p>{% codeblock(
 title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 ) %}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
 </span></span><span class="line"><span class="cl">{{- if isset .Attributes &#34;verbatim&#34; -}}
 </span></span><span class="line"><span class="cl">  {{- $isVerbatim = .Attributes.verbatim -}}
 </span></span><span class="line"><span class="cl">{{- end -}}
@@ -140,8 +142,8 @@ title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 </span></span><span class="line"><span class="cl">    <span class="p">&gt;&lt;</span><span class="nt">code</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;language-{{ .Type }}&#34;</span> <span class="na">data-lang</span><span class="o">=</span><span class="s">&#34;{{ .Type }}&#34;</span>
 </span></span><span class="line"><span class="cl">      <span class="p">&gt;</span>{{ .Inner }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{- end }}
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>{% end %}</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
 <p>My render hook looks for two attributes, <code>title</code> and <code>verbatim</code>. These attributes are added after the language identifier for the fenced code block.</p>
 <p>{% codeblock(
@@ -149,8 +151,10 @@ title=&ldquo;Titled code block&rdquo;
 verbatim=false
 collapsed=false
 )%}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}
-</span></span></code></pre></div><p>{% end %}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}</span></span></code></pre>
+</figure><p>{% end %}</p>
 <p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
 <p>Most of the time when I label code samples, I use a filename or identifier, and I&rsquo;m used to seeing those in monospace. So it makes sense to have code block captions as verbatim by default. So the <code>verbatim</code> flag only matters if I set it to false, such as for explanatory captions.</p>
 <p>{% codeblock(
@@ -158,8 +162,10 @@ title=&ldquo;non-verbatim code block&rdquo;
 verbatim=false
 collapsed=false
 )%}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}
-</span></span></code></pre></div><p>{% end %}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}</span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
 ]]></content:encoded>
 </item>
@@ -189,14 +195,16 @@ The language itself has evolved, of course. So have all the other languages. Wha
 </ul>
 <p>There are nearly always multiple answers to each, but here&rsquo;s a start.</p>
 <p>{% codeblock(title=&ldquo;greet_me.dart&rdquo;) %}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;dart:io&#39;</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;dart:io&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="n">name</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">.</span><span class="n">readLineSync</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Hello, </span><span class="si">$</span><span class="n">name</span><span class="s1">!&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>{% end %}</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>The basic answers to my basic questions:</p>
 <ul>
 <li><a href="https://api.dart.dev/stable/2.18.7/dart-io/dart-io-library.html">dart:io</a> gives us handles for standard output, standard error, and standard input</li>
@@ -206,26 +214,38 @@ The language itself has evolved, of course. So have all the other languages. Wha
 </ul>
 <p>The big question though is how do I even run the dang thing</p>
 <h3 id="running-my-dart-script">Running my Dart script</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart run greet_me.dart
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart run greet_me.dart
 </span></span><span class="line"><span class="cl"><span class="go">What is your name?
 </span></span></span><span class="line"><span class="cl"><span class="go">Brian
 </span></span></span><span class="line"><span class="cl"><span class="go">Hello, Brian!
-</span></span></span></code></pre></div><p>I <em>could</em> give it a <code>#!/usr/bin/env</code>​ shebang line at the top and <code>chmod 755 hello.dart</code>​. Then I&rsquo;d have a nice traditional script executable on any machine with the Dart runtime. But there&rsquo;s a better way, and that starts with using the Dart compiler.</p>
+</span></span></span></code></pre>
+</figure><p>I <em>could</em> give it a <code>#!/usr/bin/env</code>​ shebang line at the top and <code>chmod 755 hello.dart</code>​. Then I&rsquo;d have a nice traditional script executable on any machine with the Dart runtime. But there&rsquo;s a better way, and that starts with using the Dart compiler.</p>
 <h3 id="using-the-dart-compiler">Using the Dart compiler</h3>
 <p>Compiling this Dart code into an executable for my current machine takes one line.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart compile exe greet_me.dart
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart compile exe greet_me.dart
 </span></span><span class="line"><span class="cl"><span class="go">Info: Compiling with sound null safety
 </span></span></span><span class="line"><span class="cl"><span class="go">Generated: /Users/random/Projects/dart/running_dart_code/script/greet_me.exe
-</span></span></span></code></pre></div><p>Dart&rsquo;s executable compilation adds an <code>.exe</code>​ extension to the output file regardless of platforn by default. That extension doesn&rsquo;t matter to macOS or Linux – a filename is just a filename on those platforms – but I dislike seeing a <code>.exe</code>​ anywhere but on Windows.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart compile exe greet_me.dart -o greet_me
+</span></span></span></code></pre>
+</figure><p>Dart&rsquo;s executable compilation adds an <code>.exe</code>​ extension to the output file regardless of platforn by default. That extension doesn&rsquo;t matter to macOS or Linux – a filename is just a filename on those platforms – but I dislike seeing a <code>.exe</code>​ anywhere but on Windows.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart compile exe greet_me.dart -o greet_me
 </span></span><span class="line"><span class="cl"><span class="go">Info: Compiling with sound null safety
 </span></span></span><span class="line"><span class="cl"><span class="go">Generated: /Users/random/Projects/dart/running_dart_code/script/greet_me
-</span></span></span></code></pre></div><p>Anyways! I have an executable file. I can run it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./greet_me
+</span></span></span></code></pre>
+</figure><p>Anyways! I have an executable file. I can run it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./greet_me
 </span></span><span class="line"><span class="cl"><span class="go">What is your name?
 </span></span></span><span class="line"><span class="cl"><span class="go">Brian
 </span></span></span><span class="line"><span class="cl"><span class="go">Hello, Brian!
-</span></span></span></code></pre></div><p>I can put that on any macOS device and run it without installing Dart on it. Of course, I only have one macOS device, and it has Dart installed on it. But the <em>idea</em> is the important part.</p>
+</span></span></span></code></pre>
+</figure><p>I can put that on any macOS device and run it without installing Dart on it. Of course, I only have one macOS device, and it has Dart installed on it. But the <em>idea</em> is the important part.</p>
 <p>And the idea here is a simpler one: the same commands will compile the same code, regardless of what machine I&rsquo;m on. I wrote most of this post on a Windows desktop. I edited and fine-tuned on an Apple laptop. The code worked as-is. The only invocation change I made was the <code>-o</code>​ option for personal taste.</p>
 <blockquote>
 <p>[!NOTE] Compile Targets
@@ -279,7 +299,9 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 <p>Time to move from a standalone script file to a project, so I can more easily manage dependencies.</p>
 <h2 id="building-a-dart-project">Building a Dart Project</h2>
 <p><a href="https://dart.dev/tools/dart-create"><code>dart create</code></a> generates a project scaffold. It needs at least a project name. By default it creates what you need for a command line application, and those defaults are exactly what I need today. More than I need today, really.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ dart create greet_me
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ dart create greet_me
 </span></span><span class="line"><span class="cl">Creating greet_me using template console...
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  .gitignore
@@ -298,14 +320,18 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 </span></span><span class="line"><span class="cl">Created project greet_me in greet_me! In order to get started, run the following commands:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  cd greet_me
-</span></span><span class="line"><span class="cl">  dart run
-</span></span></code></pre></div><p>There&rsquo;s a lot going on in there, most of which I ignore in my dedicated pursuit of &ldquo;running some Dart code.&rdquo;</p>
+</span></span><span class="line"><span class="cl">  dart run</span></span></code></pre>
+</figure><p>There&rsquo;s a lot going on in there, most of which I ignore in my dedicated pursuit of &ldquo;running some Dart code.&rdquo;</p>
 <h3 id="add-a-project-dependency">Add a project dependency</h3>
 <p>The <a href="https://dart.dev/tools/pub/cmd"><code>dart pub</code></a> commands handle dependency management and publishing your project to Pub. So let&rsquo;s use that to add Dcli as a dependency.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">dart pub add dcli
-</span></span></code></pre></div><p>Since this is a <code>pub</code>​ command, it does not surprise me that this dependency detail has been added to <code>pubspec.yaml</code>​. That&rsquo;s where I&rsquo;ll find most information <em>about</em> the project.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">dart pub add dcli</span></span></code></pre>
+</figure><p>Since this is a <code>pub</code>​ command, it does not surprise me that this dependency detail has been added to <code>pubspec.yaml</code>​. That&rsquo;s where I&rsquo;ll find most information <em>about</em> the project.</p>
 <p>{% codeblock(title=&ldquo;greet_me/pubspec.yaml&rdquo;) %}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">greet_me</span><span class="w">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">greet_me</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">A sample command-line application.</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">1.0.0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># homepage: https://www.example.com</span><span class="w">
@@ -317,37 +343,47 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lints</span><span class="p">:</span><span class="w"> </span><span class="l">^2.0.0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="l">^1.16.0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dependencies</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dcli</span><span class="p">:</span><span class="w"> </span><span class="l">^1.36.0</span><span class="w">
-</span></span></span></code></pre></div><p>{% end %}</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dcli</span><span class="p">:</span><span class="w"> </span><span class="l">^1.36.0</span></span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>Back to the code! I&rsquo;ll write a cute little greeter function in <code>lib/greet_me.dart</code>​ which adds a lightly formatted prompt to my name request.</p>
-<div class="highlight" title="greet_me/lib/greet_me.dart"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;package:dcli/dcli.dart&#39;</span><span class="p">;</span>
+<figure class="highlight">
+  <figcaption><tt>greet_me/lib/greet_me.dart</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;package:dcli/dcli.dart&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">greetMe</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="n">prompt</span> <span class="o">=</span> <span class="n">red</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="n">name</span> <span class="o">=</span> <span class="n">ask</span><span class="p">(</span><span class="n">prompt</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Hello, </span><span class="si">$</span><span class="n">name</span><span class="s1">!&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I can just have <code>main</code>​ use that greeter function. When I start thinking in terms of projects rather than scripts, I tend to make the application entrypoint minimal, with the logic out in project library files where they&rsquo;re easier to test.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I can just have <code>main</code>​ use that greeter function. When I start thinking in terms of projects rather than scripts, I tend to make the application entrypoint minimal, with the logic out in project library files where they&rsquo;re easier to test.</p>
 <p>{% codeblock(title=&ldquo;greet_me/bin/greet_me.dart&rdquo;) %}</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;package:greet_me/greet_me.dart&#39;</span><span class="p">;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;package:greet_me/greet_me.dart&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">arguments</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">greetMe</span><span class="p">();</span>
-</span></span></code></pre></div><p>{% end %}</p>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">arguments</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">greetMe</span><span class="p">();</span></span></span></code></pre>
+</figure><p>{% end %}</p>
 <p>Not that I&rsquo;m writing any test code today.</p>
 <h3 id="run-the-project-application">Run the project application</h3>
 <p>​<code>dart run</code>​ works without arguments here, probably because I only have a single file with <code>main()</code>​ defined.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart run
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> dart run
 </span></span><span class="line"><span class="cl"><span class="go">Building package executable...
 </span></span></span><span class="line"><span class="cl"><span class="go">Built greet_me:greet_me.
 </span></span></span><span class="line"><span class="cl"><span class="go">What is your name? Brian
 </span></span></span><span class="line"><span class="cl"><span class="go">Hello, Brian!
-</span></span></span></code></pre></div><p>Neat. Okay there&rsquo;s not much in a straight paste of output. Here&rsquo;s a screenshot, so you can see the visual effect from <code>red()</code>​.</p>
+</span></span></span></code></pre>
+</figure><p>Neat. Okay there&rsquo;s not much in a straight paste of output. Here&rsquo;s a screenshot, so you can see the visual effect from <code>red()</code>​.</p>
 <p><img src="/post/2023/01/attachments/img/2023/dcli-dart-run.png" alt="The same output, with red bold text for the user prompt"/></p>
 <p>That&rsquo;s better than what I had.</p>
 <h3 id="compile-the-project-application">Compile the project application</h3>
 <p>What if I want to compile it? That&rsquo;s pretty much the same process as with the script. Dart doesn&rsquo;t make any assumptions about files when it comes to compiling an executable.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">dart compile exe bin/greet_me.dart -o ./greet_me
-</span></span></code></pre></div><p>I&rsquo;m sure there&rsquo;s some kind of build tool out there to simplify the process, but my knowledge hasn&rsquo;t gotten that far yet. Until then, this invocation could be put in a <a href="https://just.systems/man/en/">justfile</a>``​ for my normal project flow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">dart compile exe bin/greet_me.dart -o ./greet_me</span></span></code></pre>
+</figure><p>I&rsquo;m sure there&rsquo;s some kind of build tool out there to simplify the process, but my knowledge hasn&rsquo;t gotten that far yet. Until then, this invocation could be put in a <a href="https://just.systems/man/en/">justfile</a>``​ for my normal project flow.</p>
 <h2 id="what-now">What now?</h2>
 <p>I&rsquo;m still early in my exploration of Dart and Flutter, learning not just what Dart code looks like but what it <em>should</em> look like. I may add some notes about linting and code analysis tools later. I&rsquo;m sure to explore DCli, which has a wealth of functions relevant to command line utility scripts. And I definitely want to learn more about how big cross-platform Dart projects are handled.</p>
 <p>Meanwhile, I need to see more of the Dart world.</p>
@@ -400,7 +436,9 @@ By default, YJIT optimizes a method on the 30th time you call it.
 <li>Remove the build folder and move on to the next case</li>
 </ol>
 <p>First in 3.1.3 to set a baseline of sorts.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.1.3
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.1.3
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
@@ -408,9 +446,12 @@ By default, YJIT optimizes a method on the 30th time you call it.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">Site compiled in 43.87s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rm -r output/
-</span></span></code></pre></div><p>Don&rsquo;t judge those numbers too harshly. Nanoc site configuration is Ruby code, and mine was very sloppy Ruby code. Regardless, it&rsquo;s way slower than <a href="https://gohugo.io">Hugo</a>.</p>
+</span></span></code></pre>
+</figure><p>Don&rsquo;t judge those numbers too harshly. Nanoc site configuration is Ruby code, and mine was very sloppy Ruby code. Regardless, it&rsquo;s way slower than <a href="https://gohugo.io">Hugo</a>.</p>
 <p>Now in 3.2.0 without enabling YJIT, to see if just the plain old upgrade is quicker.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.2.0
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rbenv <span class="nb">local</span> 3.2.0
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
@@ -419,15 +460,19 @@ By default, YJIT optimizes a method on the 30th time you call it.
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 37.30s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> rm -r output/
-</span></span></code></pre></div><p>There&rsquo;s variation from one invocation to the next in 3.1.3, but 3.2.0&rsquo;s first build is consistently a sliver faster than 3.1.3&rsquo;s second build.</p>
+</span></span></code></pre>
+</figure><p>There&rsquo;s variation from one invocation to the next in 3.1.3, but 3.2.0&rsquo;s first build is consistently a sliver faster than 3.1.3&rsquo;s second build.</p>
 <p>Finally with YJIT.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 29.51s.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> <span class="nv">RUBY_YJIT_ENABLE</span><span class="o">=</span><span class="m">1</span> bundle <span class="nb">exec</span> nanoc
 </span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Site compiled in 23.28s.
-</span></span></span></code></pre></div><p>That is an impressive difference. We&rsquo;re still not talking Hugo numbers, of course.
+</span></span></span></code></pre>
+</figure><p>That is an impressive difference. We&rsquo;re still not talking Hugo numbers, of course.
 But under 30 seconds means I might be able to pay attention long enough to fix
 my terrible site configuration code.</p>
 ]]></content:encoded>
@@ -446,27 +491,42 @@ hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt It t
    <category>post</category> 
    <category>site</category>  <category>just</category> 
   <content:encoded><![CDATA[<h2>In which I make my justfile just a little fancier</h2><p><a href="/card/tldr/">card/tldr</a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
-</span></span></code></pre></div><p>Time to fiddle with my site setup some more.</p>
+</span></span></code></pre>
+</figure><p>Time to fiddle with my site setup some more.</p>
 <p>My site posts are organized by file slug: simplified file paths based on a title. <a href="https://gohugo.io">Hugo</a> itself directly supports creating new content by path.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt
-</span></span></code></pre></div><p>It takes thinking to map from a title to a slug. Sometimes I&rsquo;m not in the mood for that kind of thinking. And I&rsquo;m not always great about consistency in my slug choices.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt</span></span></code></pre>
+</figure><p>It takes thinking to map from a title to a slug. Sometimes I&rsquo;m not in the mood for that kind of thinking. And I&rsquo;m not always great about consistency in my slug choices.</p>
 <p>So I use a <a href="https://ruby-lang.org">Ruby</a> script to streamline adding new posts. I won&rsquo;t talk about that today. Maybe another day. All it does is use <a href="https://ttytoolkit.org">TTY::Toolkit</a> to save me a couple seconds of thought compared to <code>hugo new</code>, then fires up <code>$EDITOR</code> for me so I don&rsquo;t have to think about that either. Sometimes two seconds is the difference between writing an impulse post and writing a tweet.</p>
 <p>Right now the script needs a <code>--title</code> string it can use for frontmatter and file slug.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span>
-</span></span></code></pre></div><p>I don&rsquo;t have to figure out the slug, but it&rsquo;s still rather tedious. I use <a href="https://just.systems">just</a> to simplify those tedious site tasks. Putting the repeated bits of this invocation in a recipe — that&rsquo;s what <code>just</code> calls tasks — would cut down on the tedium. What about the title? Started thinking about TTY::Toolkit interactive prompts. Maybe some other time, because <code>just</code> lets you specify arguments for a recipe.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span></span></span></code></pre>
+</figure><p>I don&rsquo;t have to figure out the slug, but it&rsquo;s still rather tedious. I use <a href="https://just.systems">just</a> to simplify those tedious site tasks. Putting the repeated bits of this invocation in a recipe — that&rsquo;s what <code>just</code> calls tasks — would cut down on the tedium. What about the title? Started thinking about TTY::Toolkit interactive prompts. Maybe some other time, because <code>just</code> lets you specify arguments for a recipe.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
-</span></span></code></pre></div><p>Now I can <code>just add</code> a post.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">just add <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span>
-</span></span></code></pre></div><p>And here we are!</p>
+</span></span></code></pre>
+</figure><p>Now I can <code>just add</code> a post.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">just add <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span></span></span></code></pre>
+</figure><p>And here we are!</p>
 <p>I use a couple other Ruby scripts. Might as well refactor that <code>bundle exec ruby</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nv">ruby</span> <span class="o">:=</span> <span class="s1">&#39;bundle exec ruby&#39;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nv">ruby</span> <span class="o">:=</span> <span class="s1">&#39;bundle exec ruby&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">  <span class="o">{{</span> ruby <span class="o">}}</span> _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
-</span></span></code></pre></div><p>All right. This is better than what I had before. Sure I&rsquo;ve got multiple helpful layers to track now. That&rsquo;ll bite me if I get carried away. On the other hand, I actually wrote something for the site today.</p>
+</span></span></code></pre>
+</figure><p>All right. This is better than what I had before. Sure I&rsquo;ve got multiple helpful layers to track now. That&rsquo;ll bite me if I get carried away. On the other hand, I actually wrote something for the site today.</p>
 <p>Sometimes two seconds makes the difference.</p>
 ]]></content:encoded>
 </item>
@@ -485,7 +545,9 @@ If you think that’s weird, you should see what all these emoji have done to my
   <content:encoded><![CDATA[<h2>In which I write a Raku emoji reverse lookup tool.</h2><p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-14.png" alt="attachments/img/2022/cover-2022-08-14.png"/>
 If you think that&rsquo;s weird, you should see what all these emoji have done to my neovim session.</p>
 <p>Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This Raku script prints out code points for emoji characters with a little help from <a href="https://raku.land/cpan:ANTONOV/Pretty::Table">Pretty::Table</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Pretty::Table</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -521,32 +583,38 @@ If you think that&rsquo;s weird, you should see what all these emoji have done t
 </span></span><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$emoji</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="p">&#34;&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">say</span> <span class="nf">emoji-table</span><span class="p">(</span><span class="nv">$emoji</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And here&rsquo;s what it looks like in action:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🦋
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And here&rsquo;s what it looks like in action:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🦋
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">| Emoji Breakdown |
 </span></span><span class="line"><span class="cl">    Name      Code  Hex Code  Emoji
-</span></span><span class="line"><span class="cl"> BUTTERFLY  129419     1F98B    🦋
-</span></span></code></pre></div><h2 id="why">Why?</h2>
+</span></span><span class="line"><span class="cl"> BUTTERFLY  129419     1F98B    🦋</span></span></code></pre>
+</figure><h2 id="why">Why?</h2>
 <p>So I&rsquo;m doing a thing with a CSS stylesheet involving display of emojis. You don&rsquo;t want the emoji in a stylesheet though. More portable to use code points, the numeric value or values a computer uses to identify the character.</p>
 <p>The problem: I don&rsquo;t know the code point. I use a convenient emoji picker. All it gives me is a character.</p>
 <p>I&rsquo;ve had some luck looking this stuff up online. But why spend 10 seconds <a href="https://unicode-table.com/en/1F98B/">looking it up</a> when I could spend half an hour writing code and another hour rationalizing my decision in a blog post?</p>
 <p><a href="https://docs.raku.org/type/Str#%28Cool%29_routine_ord"><code>Str.ord</code></a> gets me the ordinal for a single character. That&rsquo;s not always what I need though. What looks like a single character could be composed of several codepoints.</p>
 <p>Unicode is weird.</p>
 <p><a href="https://docs.raku.org/type/Str#%28Cool%29_routine_ords"><code>Str.ords</code></a> gives me a list of all code points in the string, whether one or several. I get the name of the emoji as well with <a href="https://docs.raku.org/type/Str#%28Cool%29_routine_uniname"><code>str.uniname</code></a>. I can use that name with <a href="https://docs.raku.org/type/Str#routine_uniparse"><code>Str.uniparse</code></a> to get the emoji again.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ raku -e &#39;say &#34;butterfly&#34;.uniparse;&#39;
-</span></span><span class="line"><span class="cl">🦋
-</span></span></code></pre></div><p>Pretty::Table makes it look nice — or as nice as my terminal can manage — no matter how many code points are in the emoji.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🏄‍♀️
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ raku -e &#39;say &#34;butterfly&#34;.uniparse;&#39;
+</span></span><span class="line"><span class="cl">🦋</span></span></code></pre>
+</figure><p>Pretty::Table makes it look nice — or as nice as my terminal can manage — no matter how many code points are in the emoji.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">bsh ❯ rakumoji 🏄‍♀️
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">| Emoji Breakdown |
 </span></span><span class="line"><span class="cl">          Name            Code  Hex Code  Emoji
 </span></span><span class="line"><span class="cl">         SURFER         127940     1F3C4    🏄
 </span></span><span class="line"><span class="cl">   ZERO WIDTH JOINER      8205      200D    ‍
 </span></span><span class="line"><span class="cl">      FEMALE SIGN         9792      2640    ♀
-</span></span><span class="line"><span class="cl"> VARIATION SELECTOR-16   65039      FE0F    ️
-</span></span></code></pre></div><p>I helped the terminal out by putting the emoji character at the end of each line. Otherwise the pretty table layouts get offset weird.</p>
+</span></span><span class="line"><span class="cl"> VARIATION SELECTOR-16   65039      FE0F    ️</span></span></code></pre>
+</figure><p>I helped the terminal out by putting the emoji character at the end of each line. Otherwise the pretty table layouts get offset weird.</p>
 <p>Anyways I had fun. And now I&rsquo;m only two tangents away from the day&rsquo;s intended tasks.</p>]]></content:encoded>
 </item>
 <item>
@@ -572,7 +640,9 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 <p>I know the gist of SQL. Let&rsquo;s play with this.</p>
 <p>Made a custom <a href="https://github.com/zadam/trilium/wiki/Template">template</a> for notes about people. Assigned that template to the appropriate notes. Got curious about how my template-using notes were spread out.</p>
 <p>Copied the query from <em>Trilium Demo / Statistics / Note type count</em> and tweaked it a little for my needs.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">templateNote</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">note</span><span class="p">.</span><span class="n">isDeleted</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="w">
@@ -588,8 +658,8 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">attr</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;template&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">value</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="w"> </span><span class="k">desc</span><span class="w">
-</span></span></span></code></pre></div><table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="w"> </span><span class="k">desc</span></span></span></code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -626,8 +696,8 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 </tbody>
 </table>
 <blockquote>
-<p>[!NOTE]
-I renamed the Trilium demo&rsquo;s included <em>People template</em> to <em>Biography template</em>
+<p><strong>NOTE</strong></p>
+<p>I renamed the Trilium demo&rsquo;s included <em>People template</em> to <em>Biography template</em>
 for clarity here.</p>
 </blockquote>
 <p>I duplicated <em>Note type count</em>, pasted my new query, then adjusted the layout JS to reflect the tweaked query.</p>
@@ -658,12 +728,18 @@ histogram for post frequency by year using Nushell built-ins</p>
 <h2 id="nushell-feature-zero-showing-program-output">Nushell feature zero: showing program output</h2>
 <p>If you can&rsquo;t easily run a program and see its output, you are in a REPL, not a shell. I have not come across a command shell that fails that test yet, but I use it as an immediate reassurance that I haven&rsquo;t confused myself by launching <code>ipython</code> again.</p>
 <p>I&rsquo;m on <a href="https://gohugo.io">Hugo</a> again, which means I have the Hugo CLI. <code>hugo list all</code> prints out a <a href="/card/csv/">CSV</a> summary of your site, ready for processing by some other program.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
 <h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
 <p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv
-</code></pre><p>Of course, the result of that pipe is something a little different from other shells.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv</code></pre>
+</figure><p>Of course, the result of that pipe is something a little different from other shells.</p>
 <h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
 <p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
 <p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
@@ -673,25 +749,40 @@ histogram for post frequency by year using Nushell built-ins</p>
 <p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
 <p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | length
-</code></pre><pre tabindex="0"><code>421
-</code></pre><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | length</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >421</code></pre>
+</figure><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
 <h3 id="listing-command-categories-by-grouping">Listing command categories by grouping</h3>
 <p>All these commands are organized into categories. To see what categories, we can <code>group</code> the help table.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | group-by category
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | group-by category</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
 <h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
 <p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats
-</code></pre><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats</code></pre>
+</figure><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
 <blockquote>
-<p>[!NOTE]
-I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
+<p><strong>NOTE</strong></p>
+<p>I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
 </blockquote>
 <h3 id="viewing-only-select-columns-with-select">Viewing only select columns with <code>select</code></h3>
 <p>That&rsquo;s still a little busy. How about we <code>select</code> the name and usage? And heck — tables make for great screenshots, but let&rsquo;s try see what <code>to md</code> gives us.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats | select name usage | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help commands | where category =~ formats | select name usage | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>name</th>
@@ -813,14 +904,20 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>Note the pattern of commands and subcommands. The &ldquo;formats&rdquo; category includes two primary commands, <code>from</code> and <code>to</code>. Then many subcommands for converting <em>from</em> assorted formats to a table, and their counterparts for converting from a table <em>to</em> assorted formats.</p>
 <h3 id="getting-help-for-a-specific-command">Getting help for a specific command</h3>
 <p>We can ask for help with a specific command. Most shells offer this in one form or another, though they don&rsquo;t generally provide the command discovery path we just walked down.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help to md
-</code></pre><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >help to md</code></pre>
+</figure><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
 <p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
 <h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
 <p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
 <p>Remember Hugo? This was supposed to be a post about Hugo.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | last 5 | select title publishDate | to md
-</code></pre><table>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | last 5 | select title publishDate | to md</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -855,21 +952,36 @@ I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regu
 <p>The really basic idea is that <a href="https://www.nushell.sh/book/types_of_data.html#blocks">blocks</a> run arbitrary commands on a parameter, and let us do what we like with the result.</p>
 <p>I&rsquo;m going to do sort of a <a href="https://databricks.com/glossary/what-are-dataframes">dataframe</a> type of action here. That&rsquo;s not a normal state for my brain so I need to step through this slowly.</p>
 <p><code>hugo list all</code> gave me some CSV text.</p>
-<pre tabindex="0"><code>hugo list all
-</code></pre><p><code>from csv</code> turned that text into a table.</p>
-<pre tabindex="0"><code>hugo list all | from csv
-</code></pre><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at ...
-</code></pre><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at { |it| ... }
-</code></pre><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all</code></pre>
+</figure><p><code>from csv</code> turned that text into a table.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >hugo list all | from csv</code></pre>
+</figure><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at ...</code></pre>
+</figure><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >hugo list all | from csv | insert published-at { |it| ... }</code></pre>
+</figure><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
 <p>The block returns a column with dates for every value in my table&rsquo;s <code>publishDate</code> column.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime }
-)
-</code></pre><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
+)</code></pre>
+</figure><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
 <blockquote>
 <p>[!NOTE] Where did the parentheses come from?
 That&rsquo;s how Nushell does multi-line one-liners.</p>
@@ -878,22 +990,28 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 </blockquote>
 <p>Where were we? Oh right. I have a table with more columns than I care about.</p>
 <p>I only want the post titles and the dates they were published.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at
-)
-</code></pre><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+)</code></pre>
+</figure><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   select title published-at |
   last 5 |
   to md
-)
-</code></pre><p>Okay I think that covers it.</p>
+)</code></pre>
+</figure><p>Okay I think that covers it.</p>
 <table>
 <thead>
 <tr>
@@ -928,31 +1046,58 @@ That&rsquo;s how Nushell does multi-line one-liners.</p>
 <h2 id="nushell-feature-three-data-types">Nushell feature three: data types</h2>
 <p>My experience with data types in shells is limited and mostly unpleasant: values are strings that can be interchangeably treated as strings or numbers. Sometimes you can treat them like lists. Oops you broke something.</p>
 <p>Nushell <a href="https://www.nushell.sh/book/types_of_data.html">data type</a> support goes past that. For starters, values declared in the shell itself have the appropriate type.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">1.2 | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">float
-</code></pre><pre tabindex="0"><code class="language-nushell" data-lang="nushell">&#34;1.2&#34; | describe
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">string
-</code></pre><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >1.2 | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >float</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >&#34;1.2&#34; | describe</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >string</code></pre>
+</figure><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
 <p>What about conversions? In my fiddling so far, Nushell treats output from external programs like a string until you tell it otherwise, like a moment ago piping Hugo&rsquo;s output <code>from csv</code> and then the <code>publishDate</code> column <code>into datetime</code>.</p>
 <h3 id="date-math">Date math</h3>
 <p>All right. Let&rsquo;s figure this out. What datetime is it right now?</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">date now
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Mon, 04 Jul 2022 18:08:26 -0700 (now)
-</code></pre><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >date now</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Mon, 04 Jul 2022 18:08:26 -0700 (now)</code></pre>
+</figure><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
 <p>I arbitrarily picked three months as my threshold. Nushell provides numerous shorthands for durations, but so far nothing at an appropriate scale for ancient blogs. I haven&rsquo;t found a lazy way to say &ldquo;three months ago,&rdquo; but I can say &ldquo;90 days ago.&rdquo; Close enough for today.</p>
 <p>Need to make a subexpression out of <code>date now</code> so Nushell has a date it can use for the math.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(date now) - 90day
-</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)
-</code></pre><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(date now) - 90day</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-result" data-lang="result"
+      >Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)</code></pre>
+</figure><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
   hugo list all |
   from csv |
   insert published-at { |it| $it.publishDate | into datetime } |
   where published-at &gt; ((date now) - 90day) |
   select title published-at |
   to md
-)
-</code></pre><table>
+)</code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -1001,15 +1146,18 @@ Just realized it&rsquo;s been about a year since I started poking at Nushell as 
 <p>It&rsquo;s not my login <code>$SHELL</code> or anything yet — still need to figure out things like <code>pyenv</code> and <code>nvm</code> — but yeah I like using Nushell.
 Especially under Windows, where I know little enough about PowerShell that I can set up Nushell on Windows Terminal and pretend it&rsquo;s a login shell.</p>
 <p>Now I just need something that would make a cool cover image screenshot.</p>
-<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >(
     hugo list all |
     from csv |
     insert year { |it| $it.publishDate | into datetime | date to-record | get year } |
     where year &gt; 1 |
     histogram year --percentage-type relative |
     sort-by year
-)
-</code></pre>]]></content:encoded>
+)</code></pre>
+</figure>]]></content:encoded>
 </item>
 </channel>
 </rss>

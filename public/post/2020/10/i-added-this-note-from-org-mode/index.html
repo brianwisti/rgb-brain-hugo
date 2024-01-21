@@ -135,8 +135,8 @@ I built up the ox-hugo capture sample to get my preferred SECTION/YEAR/MONTH/STU
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/10/i-added-this-note-from-org-mode/">I added this note from org mode</a></li>
@@ -292,7 +297,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 
   <p>Trying an experiment with setting up a <a href="https://orgmode.org/manual/Capture-templates.html">capture template</a> so <a href="https://ox-hugo.scripter.co/">ox-hugo</a> can add short notes to the site from <a href="/card/org/">card/Org</a>.</p>
 <p>I built up the <a href="https://ox-hugo.scripter.co/doc/org-capture-setup/">ox-hugo capture sample</a> to get my preferred <code>SECTION/YEAR/MONTH/STUB</code> folder layout.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">org-hugo-note-capture-template</span> <span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">org-hugo-note-capture-template</span> <span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Returns </span><span class="ss">`org-capture&#39;</span><span class="s"> template string for new site note.&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">title</span> <span class="p">(</span><span class="nf">read-from-minibuffer</span> <span class="s">&#34;Title: &#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">fname</span> <span class="p">(</span><span class="nv">org-hugo-slug</span> <span class="nv">title</span><span class="p">))</span>
@@ -307,17 +314,21 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;:export_file_name: index&#34;</span>
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;:end:&#34;</span>
 </span></span><span class="line"><span class="cl">                 <span class="s">&#34;%?\n&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">               <span class="s">&#34;\n&#34;</span><span class="p">)))</span>
-</span></span></code></pre></div><p>Then the important bits of my capture template…</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">               <span class="s">&#34;\n&#34;</span><span class="p">)))</span></span></span></code></pre>
+</figure><p>Then the important bits of my capture template…</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-capture-templates</span>
 </span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="s">&#34;s&#34;</span> <span class="s">&#34;Site&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="s">&#34;sn&#34;</span> <span class="s">&#34;Note&#34;</span> <span class="nv">entry</span>
 </span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/org-site</span> <span class="s">&#34;Notes&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">function</span> <span class="nv">org-hugo-note-capture-template</span><span class="p">)))))</span>
-</span></span></code></pre></div><p>Eventually I got it right, and <code>C-c c s n</code> brought me to this buffer, where I&rsquo;m editing a note that&rsquo;s already longer than I usually intend these to be.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">function</span> <span class="nv">org-hugo-note-capture-template</span><span class="p">)))))</span></span></span></code></pre>
+</figure><p>Eventually I got it right, and <code>C-c c s n</code> brought me to this buffer, where I&rsquo;m editing a note that&rsquo;s already longer than I usually intend these to be.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
 </span></span><span class="line"><span class="cl"><span class="c">:properties:
 </span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="cs">:export_hugo_section: note
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
@@ -330,8 +341,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span></span><span class="line"><span class="cl"><span class="cs">:export_file_name: index
 </span></span></span><span class="line"><span class="cl"><span class="cs"></span><span class="c">:end:</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Trying an experiment: setting up a [[<span class="na">https://orgmode.org/manual/Capture-templates.html</span>][<span class="nt">capture template</span>]] so [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">ox-hugo</span>]] can add short notes to the site.
-</span></span></code></pre></div><p>Still loads to figure out — for example, how will I get cover images working? But at least I proved to myself that it works.</p>
+</span></span><span class="line"><span class="cl">Trying an experiment: setting up a [[<span class="na">https://orgmode.org/manual/Capture-templates.html</span>][<span class="nt">capture template</span>]] so [[<span class="na">https://ox-hugo.scripter.co/</span>][<span class="nt">ox-hugo</span>]] can add short notes to the site.</span></span></code></pre>
+</figure><p>Still loads to figure out — for example, how will I get cover images working? But at least I proved to myself that it works.</p>
 <p>Back to fixing the broken <a href="/card/indieweb/">card/IndieWeb</a> mentions, which is why I opened my editor a couple of hours ago.</p>
 
   

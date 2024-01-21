@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2015/">2015</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2015/09/restructuredtext-in-jekyll/">reStructuredText in Jekyll</a></li>
@@ -297,25 +302,33 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>I can write <a href="/card/jekyll/">Jekyll</a> posts with <a href="/card/restructuredtext/">reStructuredText</a> now.</p>
 <p>I spent the last few days fiddling with <a href="/card/pelican/">Pelican</a> and <a href="/card/nikola/">Nikola</a> to see how much work it would take to convert my site. So far? Lots of work. I  customized the build for this silly site quite a bit.</p>
 <p>Meanwhile I decided that I <em>must</em> have reStructuredText] available for my posts. I grabbed the <a href="https://github.com/xdissent/jekyll-rst">jekyll-rst</a> Jekyll plugin and followed its directions.</p>
-<pre tabindex="0"><code>$ mkvirtualenv jekyll-rst
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkvirtualenv jekyll-rst
 $ pip install docutils pygments
 $ gem install RbST
-$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst
-</code></pre><p>Let me just build real quick to make sure this works at all.</p>
+$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst</code></pre>
+</figure><p>Let me just build real quick to make sure this works at all.</p>
 <p>Well, no.</p>
-<pre tabindex="0"><code>$ bundle exec jekyll build -D
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ bundle exec jekyll build -D
 # ...
 TypeError: Unicode-objects must be encoded before hashing
 Exiting due to error.  Use &#34;--traceback&#34; to diagnose.
 Please report errors to &lt;docutils-users@lists.sf.net&gt;.
 Include &#34;--traceback&#34; output, Docutils version (0.12 [release]),
 Python version (3.4.3), your OS type &amp; version, and the
-command line used.
-</code></pre><p>Oh I know that smell. You get that with code that isn&rsquo;t completely ready for Python 3. Here&rsquo;s the smallest change to make that error go away.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># _plugins/jekyll-rst/directives.py line 54-55</span>
+command line used.</code></pre>
+</figure><p>Oh I know that smell. You get that with code that isn&rsquo;t completely ready for Python 3. Here&rsquo;s the smallest change to make that error go away.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># _plugins/jekyll-rst/directives.py line 54-55</span>
 </span></span><span class="line"><span class="cl"><span class="n">content_text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">cache_file_name</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lexer_name</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">content_text</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
-</span></span></code></pre></div><p><em>Now</em> it builds.</p>
+</span></span><span class="line"><span class="cl"><span class="n">cache_file_name</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lexer_name</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">content_text</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span></span></span></code></pre>
+</figure><p><em>Now</em> it builds.</p>
 <p>Then I ripped out all the special options because that was easier than adjusting my stylesheets to take them into account.</p>
 <p>So. It works. Yay! I can write Jekyll posts with reStructuredText!</p>
 <p>That should keep me a little happier while I continue porting the site to another generator.</p>

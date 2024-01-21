@@ -137,8 +137,8 @@ My daily journal template is a small mess of Markdown, HTML, and Templater direc
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2023/">2023</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2023/01/add-an-obsidian-css-snippet/">Add an Obsidian CSS Snippet</a></li>
@@ -296,7 +301,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 Reader view so you don&rsquo;t have to stare at YAML frontmatter</p>
 <p>I added a banner to my <a href="/card/obsidian/">Obsidian</a> daily journal template with the <a href="https://github.com/noatpad/obsidian-banners">Banners plugin</a>. I used a Creative Commons image from <a href="https://wordpress.org/openverse/">Openverse</a>, and I wanted to include attribution.</p>
 <p>My daily journal template is a small mess of Markdown, HTML, and Templater directives, but it gets the job done.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: <span class="err">&lt;</span>% tp.file.title %&gt;
 </span></span><span class="line"><span class="cl">created_at: <span class="err">&lt;</span>% tp.file.creation_date(&#34;YYYY-MM-DDTHH:mm:ssZ&#34;) %&gt;
 </span></span><span class="line"><span class="cl">banner: &#34;/assets/journal-entry-joel-montes-de-oca.jpg&#34;
@@ -339,14 +346,16 @@ Reader view so you don&rsquo;t have to stare at YAML frontmatter</p>
 </span></span><span class="line"><span class="cl">            <span class="p">&gt;&lt;</span><span class="nt">img</span>
 </span></span><span class="line"><span class="cl">                <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://mirrors.creativecommons.org/presskit/icons/sa.svg&#34;</span>
 </span></span><span class="line"><span class="cl">                <span class="na">style</span><span class="o">=</span><span class="s">&#34;height: 1em; margin-right: 0.125em; display: inline;&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>It should have its own style. A little smaller than the note text, and maybe centered for an aesthetic touch. After spending a little too long looking for some kind of theme or plugin magic, I realized Obsidian supports <a href="https://publish.obsidian.md/hub/04&#43;-&#43;Guides%2C&#43;Workflows%2C&#43;%26&#43;Courses/Guides/How&#43;to&#43;Style&#43;Obsidian#Where&#43;do&#43;I&#43;put&#43;my&#43;stylin%27&#43;declarations">custom CSS snippets</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>It should have its own style. A little smaller than the note text, and maybe centered for an aesthetic touch. After spending a little too long looking for some kind of theme or plugin magic, I realized Obsidian supports <a href="https://publish.obsidian.md/hub/04&#43;-&#43;Guides%2C&#43;Workflows%2C&#43;%26&#43;Courses/Guides/How&#43;to&#43;Style&#43;Obsidian#Where&#43;do&#43;I&#43;put&#43;my&#43;stylin%27&#43;declarations">custom CSS snippets</a>.</p>
 <p>So I added <code>.obsidian/snippets/attributions.css</code> for attribution paragraphs.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">attribution</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">attribution</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mf">0.8</span><span class="kt">em</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Needed to explicitly enable it under <em>Settings → Appearance → CSS Snippets</em>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Needed to explicitly enable it under <em>Settings → Appearance → CSS Snippets</em>.</p>
 <p><img src="/post/2023/01/../../../attachments/img/2023/obsidian-enable-css-snippet.png" alt="attachments/img/2023/obsidian-enable-css-snippet.png"/>
 Obsidian CSS snippets settings with attributions enabled</p>
 <p>Managing Obsidian CSS is a nice little feature. And it&rsquo;s got <em>just</em> enough steps that adding a note here for later seemed like a good idea.</p>

@@ -135,8 +135,8 @@ I sat on this draft for a couple weeks. Rather than change task dates to make it
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -249,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2017/">2017</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2017/12/taskwarrior/">Taskwarrior</a></li>
@@ -308,11 +313,14 @@ Nothing at all! <a href="/card/org/">card/Org</a> provides similar functionality
 </blockquote>
 <h2 id="starting-from-scratch">Starting from scratch</h2>
 <p>I archived my confused earlier attempts at usage. Here I am with a fresh slate.</p>
-<pre tabindex="0"><code>$ task –-version
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task –-version
 2.5.1
 $ task
-[task next] No matches.
-</code></pre><p>When you don’t tell <code>task</code> what you want, it assumes by default that you want to see your <code>next</code> report. You can customize many aspects of Taskwarrior, but for my own understanding I will not look at customization today.</p>
+[task next] No matches.</code></pre>
+</figure><p>When you don’t tell <code>task</code> what you want, it assumes by default that you want to see your <code>next</code> report. You can customize many aspects of Taskwarrior, but for my own understanding I will not look at customization today.</p>
 <h2 id="the-tutorial-summarized">The Tutorial, Summarized</h2>
 <p>Let’s review the <a href="https://taskwarrior.org/docs/30second.html">30-Second Tutorial</a>.</p>
 <dl>
@@ -327,7 +335,10 @@ $ task
 </dl>
 <p>Taskwarrior calculates <a href="https://taskwarrior.org/docs/urgency.html">Urgency</a> based on multiple factors, including your own <code>priority:</code> ranking. I plan to ignore Urgency and <code>priority</code> until life no longer seems sorted into &ldquo;it’s on fire&rdquo; and &ldquo;it’s just an idea.&rdquo;</p>
 <p>I’ll add a few tasks.</p>
-<pre tabindex="0"><code>$ task add knit fingerless gloves
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add knit fingerless gloves
 Created task 1.
 $ task add write about Taskwarrior
 Created task 2.
@@ -338,22 +349,31 @@ $ task next
 ID Age Description               Urg
  1 29s knit fingerless gloves       0
  2 14s write about Taskwarrior      0
- 3 1s  get a size G crochet hook    0
-</code></pre><p>I added that last one about the crochet hook to convince myself to get off my tush and go get that hook from my friendly Local Yarn Store. Give me a minute.</p>
+ 3 1s  get a size G crochet hook    0</code></pre>
+</figure><p>I added that last one about the crochet hook to convince myself to get off my tush and go get that hook from my friendly Local Yarn Store. Give me a minute.</p>
 <p>Okay, done.</p>
-<pre tabindex="0"><code>$ task 3 done
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 3 done
 Completed task 3 &#39;get a size G crochet hook&#39;.
-Completed 1 task.
-</code></pre><p>What about <code>delete</code>? Say I want to see a movie this weekend.</p>
-<pre tabindex="0"><code>$ task add go see that movie
-Created task 3.
-</code></pre><p>Turns out it’s not in theaters anymore. I need to pay closer attention to these things.</p>
+Completed 1 task.</code></pre>
+</figure><p>What about <code>delete</code>? Say I want to see a movie this weekend.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add go see that movie
+Created task 3.</code></pre>
+</figure><p>Turns out it’s not in theaters anymore. I need to pay closer attention to these things.</p>
 <p><code>delete</code> lets you abandon a task.</p>
-<pre tabindex="0"><code>$ task 3 delete
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 3 delete
 Delete task 3 &#39;go see that movie&#39;? (yes/no) yes
 Deleting task 3 &#39;go see that movie&#39;.
-Deleted 1 task.
-</code></pre><p>Those are the core Taskwarrior commands. It’s enough to make and manage a useful task list.</p>
+Deleted 1 task.</code></pre>
+</figure><p>Those are the core Taskwarrior commands. It’s enough to make and manage a useful task list.</p>
 <h2 id="a-few-more-core-commands">A few more &ldquo;core&rdquo; commands</h2>
 <p>I consider a few more features core to my own Taskwarrior experience.</p>
 <ul>
@@ -363,27 +383,39 @@ Deleted 1 task.
 </ul>
 <h3 id="modify"><code>modify</code></h3>
 <p>I see a typo in my task descriptions. <code>modify</code> helps there.</p>
-<pre tabindex="0"><code>$ task 1 modify crochet fingerless gloves
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 1 modify crochet fingerless gloves
 Modifying task 1 &#39;crochet fingerless gloves&#39;.
-Modified 1 task.
-</code></pre><h3 id="log-and-completed"><code>log</code> and <code>completed</code></h3>
+Modified 1 task.</code></pre>
+</figure><h3 id="log-and-completed"><code>log</code> and <code>completed</code></h3>
 <p>I don’t just track things I want to do. I track things I did. I feel better on days when I barely dent my <code>next</code> list but can point to other accomplishments.</p>
-<pre tabindex="0"><code>$ task log mailed presents
-Logged task 0ef63b0b-ba36-495c-8684-d2c45258ea3d.
-</code></pre><p>The <code>completed</code> report shows my completed tasks, including those I logged and those marked <code>done</code>.</p>
-<pre tabindex="0"><code>$ task completed
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task log mailed presents
+Logged task 0ef63b0b-ba36-495c-8684-d2c45258ea3d.</code></pre>
+</figure><p>The <code>completed</code> report shows my completed tasks, including those I logged and those marked <code>done</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task completed
 
 ID UUID     Created    Completed  Age Description
  - 20334a63 2017-12-01 2017-12-01 20h get a size G crochet hook
  - 0ef63b0b 2017-12-02 2017-12-02 19s mailed presents
 
-2 tasks
-</code></pre><p>Taskwarrior tells you all sorts of interesting things about your tasks with a wealth of reports] Explore them!</p>
+2 tasks</code></pre>
+</figure><p>Taskwarrior tells you all sorts of interesting things about your tasks with a wealth of reports] Explore them!</p>
 <h2 id="projects">Projects</h2>
 <p>It can be demoralizing to have one huge task that just sits there forever, even
 though you work on it and make progress. A good way to keep yourself motivated is to split it into smaller subtasks. Taskwarrior does that with projects.</p>
 <p>Let’s go with a knit vest that I have <em>almost</em> finished.</p>
-<pre tabindex="0"><code>$ task add knit vest project:ruana
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add knit vest project:ruana
 Created task 3.
 The project &#39;ruana&#39; has changed.  Project &#39;ruana&#39; is 0% complete (1 task remaining).
 $ task next
@@ -391,15 +423,21 @@ $ task next
 ID Age Project Description                Urg
  3 3s  ruana   knit vest                    1
  1 20h         crochet fingerless gloves    0
- 2 20h         write about Taskwarrior      0
-</code></pre><p>Hey look a column for <code>Urgency</code>. Ignoring that.</p>
-<pre tabindex="0"><code>$ task add finish vest project:ruana
+ 2 20h         write about Taskwarrior      0</code></pre>
+</figure><p>Hey look a column for <code>Urgency</code>. Ignoring that.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add finish vest project:ruana
 $ task add knit belt project:ruana
 $ task add block vest project:ruana
-$ task add blog about vest project:ruana
-</code></pre><p>Knitting the vest itself is still the largest task, but at least I have some additional information about the other tasks involved in the project.</p>
+$ task add blog about vest project:ruana</code></pre>
+</figure><p>Knitting the vest itself is still the largest task, but at least I have some additional information about the other tasks involved in the project.</p>
 <p>What does my task list look like now?</p>
-<pre tabindex="0"><code>$ task next
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task next
 
 ID Age  Project Description                Urg
  3 4min ruana   knit vest                    1
@@ -408,19 +446,25 @@ ID Age  Project Description                Urg
  6 3min ruana   block vest                   1
  7 2s   ruana   blog about vest              1
  1 20h          crochet fingerless gloves    0
- 2 20h          write about Taskwarrior      0
-</code></pre><blockquote>
-<p>[!NOTE]
-For the curious: &ldquo;finishing&rdquo; a knit project is a distinct step that involves sewing in the loose ends.</p>
+ 2 20h          write about Taskwarrior      0</code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>For the curious: &ldquo;finishing&rdquo; a knit project is a distinct step that involves sewing in the loose ends.</p>
 </blockquote>
 <h2 id="tags">Tags</h2>
 <p>Taskwarrior lets us add text tags to describe aspects of the task that may be useful beyond its description or project.</p>
 <p>Indicate a tag by prefixing it with <code>+</code>.</p>
-<pre tabindex="0"><code>$ task modify 1 +crochet
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task modify 1 &#43;crochet
 Modifying task 1 &#39;crochet fingerless gloves&#39;.
-Modified 1 task.
-</code></pre><p>The <code>next</code> report includes a new column for tags now.</p>
-<pre tabindex="0"><code>$ task next
+Modified 1 task.</code></pre>
+</figure><p>The <code>next</code> report includes a new column for tags now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task next
 
 ID Age  Project Tag     Description                Urg
  3 7min ruana           knit vest                    1
@@ -429,12 +473,15 @@ ID Age  Project Tag     Description                Urg
  6 6min ruana           block vest                   1
  7 3min ruana           blog about vest              1
  1 20h          crochet crochet fingerless gloves  0.8
- 2 20h                  write about Taskwarrior      0
-</code></pre><p>Oh look. Assigning a tag gave an <code>Urgency</code> to task the <code>+crochet</code> task. Still ignoring it.</p>
+ 2 20h                  write about Taskwarrior      0</code></pre>
+</figure><p>Oh look. Assigning a tag gave an <code>Urgency</code> to task the <code>+crochet</code> task. Still ignoring it.</p>
 <p>I added little information putting <code>+crochet</code> on a task that I already described with &ldquo;crochet,&rdquo; but tags make convenient filters for Taskwarrrior commands and reports.</p>
 <h3 id="filters">Filters</h3>
 <p>Filters let you work with a defined set of tasks.</p>
-<pre tabindex="0"><code>$ task 3-7 modify +knitting
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 3-7 modify &#43;knitting
   - Tags will be set to &#39;knitting&#39;.
 Modify task 3 &#39;knit vest&#39;? (yes/no/all/quit) all
 Modifying task 3 &#39;knit vest&#39;.
@@ -443,15 +490,21 @@ Modifying task 5 &#39;knit belt&#39;.
 Modifying task 6 &#39;block vest&#39;.
 Modifying task 7 &#39;blog about vest&#39;.
 Modified 5 tasks.
-Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).
-</code></pre><p>What if the tasks aren’t right next to each other? No problem.</p>
-<pre tabindex="0"><code>$ task 2,7 modify +blog
+Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).</code></pre>
+</figure><p>What if the tasks aren’t right next to each other? No problem.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 2,7 modify &#43;blog
 Modifying task 2 &#39;write about Taskwarrior&#39;.
 Modifying task 7 &#39;blog about vest&#39;.
 Modified 2 tasks.
-Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).
-</code></pre><p>How have these modifications changed my <code>next</code> report?</p>
-<pre tabindex="0"><code>$ task next
+Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).</code></pre>
+</figure><p>How have these modifications changed my <code>next</code> report?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task next
 
 ID Age   Project Tag           Description                Urg
  7 8min  ruana   blog knitting blog about vest            1.9
@@ -460,9 +513,12 @@ ID Age   Project Tag           Description                Urg
  5 12min ruana   knitting      knit belt                  1.8
  6 11min ruana   knitting      block vest                 1.8
  1 20h           crochet       crochet fingerless gloves  0.8
- 2 20h           blog          write about Taskwarrior    0.8
-</code></pre><p>Filters work on reports, too.</p>
-<pre tabindex="0"><code>$ task 3-7 next
+ 2 20h           blog          write about Taskwarrior    0.8</code></pre>
+</figure><p>Filters work on reports, too.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 3-7 next
 
 ID Age   Project Tag           Description      Urg
  7 11min ruana   blog knitting blog about vest  1.9
@@ -471,9 +527,12 @@ ID Age   Project Tag           Description      Urg
  5 15min ruana   knitting      knit belt        1.8
  6 14min ruana   knitting      block vest       1.8
 
-5 tasks
-</code></pre><p>What if I filter to a single ID without a command?</p>
-<pre tabindex="0"><code>$ task 1
+5 tasks</code></pre>
+</figure><p>What if I filter to a single ID without a command?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 1
 No command specified - assuming &#39;information&#39;.
 
 Name          Value
@@ -493,34 +552,46 @@ Urgency        0.8
 
 Date                Modification
 2017-12-02 10:51:12 Description changed from &#39;knit fingerless gloves&#39; to &#39;crochet fingerless gloves&#39;.
-2017-12-02 11:08:25 Tags set to &#39;crochet&#39;.
-</code></pre><p>I get a lot of stuff I’m not ready for yet. I’ll come back to this some other day.</p>
+2017-12-02 11:08:25 Tags set to &#39;crochet&#39;.</code></pre>
+</figure><p>I get a lot of stuff I’m not ready for yet. I’ll come back to this some other day.</p>
 <p>Filters don’t have to be task IDs. Use plain text to filter based on task description.</p>
-<pre tabindex="0"><code>$ task gloves
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task gloves
 [task next ( gloves )]
 
 ID Age Tag     Description                Urg
  1 20h crochet crochet fingerless gloves  0.8
 
-1 task
-</code></pre><p>Prefix with <code>+</code> for a tag filter.</p>
-<pre tabindex="0"><code>$ task +blog
-[task next ( +blog )]
+1 task</code></pre>
+</figure><p>Prefix with <code>+</code> for a tag filter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task &#43;blog
+[task next ( &#43;blog )]
 
 ID Age   Project Tag           Description             Urg
  7 12min ruana   blog knitting blog about vest          1.9
  2 20h           blog          write about Taskwarrior  0.8
 
-2 tasks
-</code></pre><p>Prefix with <code>-</code> to show tasks that <em>do not</em> have a particular tag.</p>
-<pre tabindex="0"><code>$ task -knitting
+2 tasks</code></pre>
+</figure><p>Prefix with <code>-</code> to show tasks that <em>do not</em> have a particular tag.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -knitting
 [task next ( -knitting )]
 
 ID Age Tag     Description               Urg
  1 20h crochet crochet fingerless gloves  0.8
- 2 20h blog    write about Taskwarrior    0.8
-</code></pre><p>Prefix with <code>project:</code> to list tasks associated with a particular project.</p>
-<pre tabindex="0"><code>$ task project:ruana
+ 2 20h blog    write about Taskwarrior    0.8</code></pre>
+</figure><p>Prefix with <code>project:</code> to list tasks associated with a particular project.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:ruana
 [task next ( project:ruana )]
 
 ID Age   Project Tag           Description     Urg
@@ -530,17 +601,23 @@ ID Age   Project Tag           Description     Urg
  5 15min ruana   knitting      knit belt        1.8
  6 15min ruana   knitting      block vest       1.8
 
-5 tasks
-</code></pre><p>Org mode lets you write quick notes about a task. Can Taskwarrior do that?</p>
+5 tasks</code></pre>
+</figure><p>Org mode lets you write quick notes about a task. Can Taskwarrior do that?</p>
 <p>Of course it can!</p>
 <h3 id="annotations">Annotations</h3>
 <p>Annotations let you add a one line note to a task.</p>
-<pre tabindex="0"><code>$ task knit vest annotate pattern at http://www.redheart.com/free-patterns/ruana-style-vest
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task knit vest annotate pattern at http://www.redheart.com/free-patterns/ruana-style-vest
 Annotating task 3 &#39;knit vest&#39;.
 Annotated 1 task.
-Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).
-</code></pre><p>Taskwarrior presents these annotations with their tasks in reports.</p>
-<pre tabindex="0"><code>$ task project:ruana
+Project &#39;ruana&#39; is 0% complete (5 of 5 tasks remaining).</code></pre>
+</figure><p>Taskwarrior presents these annotations with their tasks in reports.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task project:ruana
 [task next ( project:ruana )]
 
 ID Age   Project Tag           Description                                                                    Urg
@@ -549,40 +626,61 @@ ID Age   Project Tag           Description                                      
  7 20min ruana   blog knitting blog about vest                                                                 1.9
  4 24min ruana   knitting      finish vest                                                                     1.8
  5 24min ruana   knitting      knit belt                                                                       1.8
- 6 24min ruana   knitting      block vest                                                                      1.8
-</code></pre><p>Notice how a task’s Urgency automatically increases as we add more information to it? I know — I’m still ignoring it, but it does make it convenient that the tasks I spend more time on in Taskwarrior get pushed to the top.</p>
+ 6 24min ruana   knitting      block vest                                                                      1.8</code></pre>
+</figure><p>Notice how a task’s Urgency automatically increases as we add more information to it? I know — I’m still ignoring it, but it does make it convenient that the tasks I spend more time on in Taskwarrior get pushed to the top.</p>
 <p>Anyways I’m done knitting the vest.</p>
-<pre tabindex="0"><code>$ task 3 done
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 3 done
 Completed task 3 &#39;knit vest&#39;.
 Completed 1 task.
-The project &#39;ruana&#39; has changed.  Project &#39;ruana&#39; is 20% complete (4 of 5 tasks remaining).
-</code></pre><blockquote>
-<p>[!NOTE] <code>denotate</code>
-A couple days after posting this article I made an annotation on the wrong task.</p>
-<pre tabindex="0"><code>$ task annotate 5 edges done
-</code></pre><p>That’s when I learned about the <code>denotate</code> command, which removes a matching annotation from a task.</p>
-<pre tabindex="0"><code>$ task denotate 5 edges done
-$ task annotate 3 edges done
-</code></pre><p>Good to know!</p>
+The project &#39;ruana&#39; has changed.  Project &#39;ruana&#39; is 20% complete (4 of 5 tasks remaining).</code></pre>
+</figure><blockquote>
+<p><strong><code>denotate</code></strong></p>
+<p>A couple days after posting this article I made an annotation on the wrong task.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task annotate 5 edges done</code></pre>
+</figure><p>That’s when I learned about the <code>denotate</code> command, which removes a matching annotation from a task.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task denotate 5 edges done
+$ task annotate 3 edges done</code></pre>
+</figure><p>Good to know!</p>
 </blockquote>
 <h2 id="oops">Oops</h2>
 <p>Let’s go shopping!</p>
-<pre tabindex="0"><code>$ task add groceries +misc project:home
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task add groceries &#43;misc project:home
 Created task 7.
-The project &#39;home&#39; has changed.  Project &#39;home&#39; is 0% complete (1 task remaining).
-</code></pre><p>Sometimes I need to remove a tag, or remove a task from a project.</p>
+The project &#39;home&#39; has changed.  Project &#39;home&#39; is 0% complete (1 task remaining).</code></pre>
+</figure><p>Sometimes I need to remove a tag, or remove a task from a project.</p>
 <p>Prefixing the tag with <code>-</code> in a <code>modify</code> command removes that tag.</p>
-<pre tabindex="0"><code>$ task groceries modify -misc +food
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task groceries modify -misc &#43;food
 Modifying task 7 &#39;groceries&#39;.
 Modified 1 task.
-Project &#39;home&#39; is 0% complete (1 task remaining).
-</code></pre><p><code>home</code> isn’t a project — at least not in this context. Assigning an empty project removes a task’s project connection.</p>
-<pre tabindex="0"><code>$ task groceries modify project:
+Project &#39;home&#39; is 0% complete (1 task remaining).</code></pre>
+</figure><p><code>home</code> isn’t a project — at least not in this context. Assigning an empty project removes a task’s project connection.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task groceries modify project:
 Modifying task 7 &#39;groceries&#39;.
-Modified 1 task.
-</code></pre><h2 id="summary">Summary</h2>
+Modified 1 task.</code></pre>
+</figure><h2 id="summary">Summary</h2>
 <p>Here’s what I have so far for my task list, without <code>work</code> stuff because you don’t need to know about that.</p>
-<pre tabindex="0"><code>$ task -work
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task -work
 [task next ( -work )]
 
 ID Age   Project Tag              Description                                      Urg
@@ -599,13 +697,16 @@ ID Age   Project Tag              Description                                   
  1 21h           crochet          crochet fingerless gloves                         0.8
 16 9s                             visit library                                       0
 
-10 tasks
-</code></pre><p>That’s enough for now. I feel comfortable using Taskwarrior to manage and describe my tasks. Next time I write about Taskwarrior I might choose to focus on tiny pieces so I can post more often.</p>
-<pre tabindex="0"><code>$ task 2 done
+10 tasks</code></pre>
+</figure><p>That’s enough for now. I feel comfortable using Taskwarrior to manage and describe my tasks. Next time I write about Taskwarrior I might choose to focus on tiny pieces so I can post more often.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 2 done
 Completed task 2 &#39;Taskwarrior tags, projects, annotations, filters&#39;.
 Completed 1 task.
-You have more urgent tasks.
-</code></pre><p>Oh hush, you. I’ll get to <code>Urgency</code> when I feel like it.</p>
+You have more urgent tasks.</code></pre>
+</figure><p>Oh hush, you. I’ll get to <code>Urgency</code> when I feel like it.</p>
 
   
 

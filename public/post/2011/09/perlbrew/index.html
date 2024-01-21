@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2011/">2011</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2011/09/perlbrew/">perlbrew</a></li>
@@ -312,37 +317,63 @@ operating system.</p>
 <p>Fresh releases of some Linux distributions have perlbrew available as a package. I only know of a couple right now, but I will expand this if I learn of more.</p>
 <h4 id="installing-perlbrew-on-fedora-linux">Installing <code>perlbrew</code> on Fedora Linux</h4>
 <p>Current versions of <a href="http://fedoraproject.org">Fedora Linux</a> already have <code>perlbrew</code> available via <a href="http://fedoraproject.org/wiki/Yum"><code>yum</code></a>.</p>
-<pre tabindex="0"><code>$ su -
-# yum install perlbrew
-</code></pre><h4 id="installing-perlbrew-on-ubuntu-1110">Installing <code>perlbrew</code> on Ubuntu 11.10</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ su -
+# yum install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-ubuntu-1110">Installing <code>perlbrew</code> on Ubuntu 11.10</h4>
 <p>If you&rsquo;re on the bleeding edge of Ubuntu development, or are reading  this after October 2011, you&rsquo;ll be happy to know that there is an <a href="https://launchpad.net/ubuntu/oneiric/&#43;package/perlbrew">Ubuntu 11.10 perlbrew package</a>.</p>
-<pre tabindex="0"><code># Ubuntu 11.10 or later only!
-$ sudo apt-get install perlbrew
-</code></pre><h4 id="installing-perlbrew-on-other-unix-like-systems">Installing <code>perlbrew</code> on other UNIX-like systems</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Ubuntu 11.10 or later only!
+$ sudo apt-get install perlbrew</code></pre>
+</figure><h4 id="installing-perlbrew-on-other-unix-like-systems">Installing <code>perlbrew</code> on other UNIX-like systems</h4>
 <p>You will want to have a minimal development environment before you install <code>perlbrew</code>.</p>
 <h4 id="ubuntu">Ubuntu</h4>
 <p>The <code>build-essentials</code> package provides the basic command line tools you will need to build and install Perl via <code>perlbrew</code>.</p>
-<pre tabindex="0"><code>$ sudo apt-get install build-essentials
-</code></pre><p>Once <code>build-essentials</code> has been installed, you can install <code>perlbrew</code>.</p>
-<pre tabindex="0"><code>$ curl -L http://xrl.us/perlbrewinstall | bash
-</code></pre><h4 id="os-x">OS X</h4>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ sudo apt-get install build-essentials</code></pre>
+</figure><p>Once <code>build-essentials</code> has been installed, you can install <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><h4 id="os-x">OS X</h4>
 <p>Install <a href="https://developer.apple.com/xcode/">Xcode</a>. It&rsquo;s a simple step, but tends to take a while. Xcode is actually a huge Integrated Development environment. You can try <a href="https://github.com/sorin-ionescu/gcc-without-xcode">gcc without Xcode</a> if you&rsquo;re not interested in the IDE. I have not tested it yet. I just know that it exists.</p>
 <p>Once you have your development tools installed via Xcode, run the following command from a Terminal.</p>
-<pre tabindex="0"><code>$ curl -L http://xrl.us/perlbrewinstall | bash
-</code></pre><p>The official perlbrew page and the <a href="https://metacpan.org/module/App::perlbrew">App::perlbrew documentation</a> should help you get the details about fiddly bits of installing <code>perlbrew</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ curl -L http://xrl.us/perlbrewinstall | bash</code></pre>
+</figure><p>The official perlbrew page and the <a href="https://metacpan.org/module/App::perlbrew">App::perlbrew documentation</a> should help you get the details about fiddly bits of installing <code>perlbrew</code>.</p>
 <h3 id="initializing-perlbrew">Initializing Perlbrew</h3>
 <p>Regardless of how you installed perlbrew, now you will want to make sure it is set up for your account.</p>
-<pre tabindex="0"><code>$ perlbrew init
-</code></pre><p>You will get directions on the next step. It will probably be something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew init</code></pre>
+</figure><p>You will get directions on the next step. It will probably be something like this:</p>
 <p>Make sure you have something like the following line at the end of your  shell profile. That&rsquo;s <code>~/.bashrc</code> for me.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> /Users/brian/perl5/perlbrew/etc/bashrc
-</span></span></code></pre></div><p>Reload your settings either by opening a new Terminal or directly from
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">source</span> /Users/brian/perl5/perlbrew/etc/bashrc</span></span></code></pre>
+</figure><p>Reload your settings either by opening a new Terminal or directly from
 the shell:</p>
-<pre tabindex="0"><code>$ . ~/.bashrc
-</code></pre><p>Now you are ready to install your own Perl.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ . ~/.bashrc</code></pre>
+</figure><p>Now you are ready to install your own Perl.</p>
 <h2 id="using-perlbrew-to-install-perl">Using <code>perlbrew</code> To Install Perl</h2>
 <p>It&rsquo;s probably a good idea to see what Perl versions are available to  install.</p>
-<pre tabindex="0"><code>$ perlbrew available
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew available
    perl-5.15.3
    perl-5.14.2
    perl-5.12.4
@@ -351,16 +382,25 @@ the shell:</p>
    perl-5.6.2
    perl5.005_04
    perl5.004_05
-   perl5.003_07
-</code></pre><p>We&rsquo;re looking for the latest stable release. Stable releases use an even number for the second number (<code>perl-5.14.2</code>, <code>perl-5.12.4</code>). The development releases (<code>perl-5.15.3</code>) probably will not interest you unless you are curious about features and fixes that are being experimented with for the next stable Perl. It is very rare that I install a development Perl.</p>
+   perl5.003_07</code></pre>
+</figure><p>We&rsquo;re looking for the latest stable release. Stable releases use an even number for the second number (<code>perl-5.14.2</code>, <code>perl-5.12.4</code>). The development releases (<code>perl-5.15.3</code>) probably will not interest you unless you are curious about features and fixes that are being experimented with for the next stable Perl. It is very rare that I install a development Perl.</p>
 <p>Right now, the latest stable Perl is <code>perl-5.14.2</code>. Let&rsquo;s install it with <code>perlbrew install</code>.</p>
-<pre tabindex="0"><code>$ perlbrew install perl-5.14.2
-</code></pre><p>A little while later, it&rsquo;ll be complete. You can make this the default Perl for your account with <code>perlbrew switch</code>.</p>
-<pre tabindex="0"><code>$ perlbrew switch perl-5.14.2
-</code></pre><p>Let&rsquo;s verify just to be on the safe side.</p>
-<pre tabindex="0"><code>$ perl --version
-This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level
-</code></pre><p>There. Now we have the latest stable Perl, ready for us to use. The system Perl is completely safe.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew install perl-5.14.2</code></pre>
+</figure><p>A little while later, it&rsquo;ll be complete. You can make this the default Perl for your account with <code>perlbrew switch</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perlbrew switch perl-5.14.2</code></pre>
+</figure><p>Let&rsquo;s verify just to be on the safe side.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perl --version
+This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level</code></pre>
+</figure><p>There. Now we have the latest stable Perl, ready for us to use. The system Perl is completely safe.</p>
 <p>As far as I can tell, there is no official way to carry installed Perl modules over to a new Perl installed via perlbrew. You can set the <code>$PERL5LIB</code> environment variable or rely on <code>use lib</code> if it&rsquo;s important to use specific installed libraries.</p>
   
 

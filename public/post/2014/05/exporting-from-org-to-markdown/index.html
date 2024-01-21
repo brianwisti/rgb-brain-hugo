@@ -63,9 +63,11 @@
 
 
   
-    <meta name="twitter:description" content="[!NOTE] tldr C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
+    <meta name="twitter:description" content="tldr
+C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
 Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about Org mode, and I’m not ready to leave it just yet. There’s a problem, though.">
-    <meta property="og:description" content="[!NOTE] tldr C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
+    <meta property="og:description" content="tldr
+C-h v org-export-backends to ensure that card/Markdown export is available. C-c C-e m m invokes org-md-export-to-markdown. You may need to update card/Org, which could be a fussy process.
 Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about Org mode, and I’m not ready to leave it just yet. There’s a problem, though.">
   
 
@@ -133,8 +135,8 @@ Let’s say that I am supposed to be writing a blog post. Not this one, another 
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +249,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/05/exporting-from-org-to-markdown/">Exporting From Org to Markdown</a></li>
@@ -297,8 +304,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">tldr</a>
-<code>C-h v org-export-backends</code> to ensure that <a href="/card/markdown/">card/Markdown</a> export is available. <code>C-c C-e m m</code> invokes <code>org-md-export-to-markdown</code>. You may need to update <a href="/card/org/">card/Org</a>, which could be a fussy process.</p>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p><code>C-h v org-export-backends</code> to ensure that <a href="/card/markdown/">card/Markdown</a> export is available. <code>C-c C-e m m</code> invokes <code>org-md-export-to-markdown</code>. You may need to update <a href="/card/org/">card/Org</a>, which could be a fussy process.</p>
 </blockquote>
 <p>Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about <a href="http://orgmode.org">Org mode</a>, and I’m not ready to leave it just yet. There’s a problem, though. The blog that I’m supposed to be contributing to looks a bit like <a href="/card/jekyll/">Jekyll</a>. Specifically, it uses <a href="http://daringfireball.net/projects/markdown">Markdown</a> formatting. That’s nice, but I <em>really</em> like Org mode formatting this week.</p>
 <p>No problem!</p>
@@ -306,8 +313,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Except that <code>C-c C-e m m</code> just exported the post to a <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind mind map</a>. Cool, but not Markdown. <code>org-md-export-to-markdown</code> isn’t even available.</p>
 <p>Problem.</p>
 <p>Apparently I have <code>org-mode</code> 7.9.3f installed. The documentation on the Org Mode site is for the newest version: 8.2.6. How do I get the new version? The <a href="http://orgmode.org/manual/Installation.html">installation instructions</a> suggest it can be done with <code>package-install</code> before you’ve loaded any org files.</p>
-<pre tabindex="0"><code>package-install RET org
-</code></pre><p>And now I have 8.2.6.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >package-install RET org</code></pre>
+</figure><p>And now I have 8.2.6.</p>
 <p>No problem. Except now I’m getting an error with <code>C-c C-e m</code>. Oh, I see the problem. There are only a few <a href="http://orgmode.org/manual/Export-back_002dends.html#Export-back_002dends">export backends</a> enabled by default.</p>
 <ul>
 <li>ascii</li>
@@ -316,20 +326,30 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li>latex</li>
 </ul>
 <p>I need to set <code>org-export-backends</code>. The documentation specifies that I should use the Emacs customization interface. All righty.</p>
-<pre tabindex="0"><code>C-h v org-export-backends
-</code></pre><p>I end up with this in my <code>.init.el</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >C-h v org-export-backends</code></pre>
+</figure><p>I end up with this in my <code>.init.el</code></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; custom-set-variables was added by Custom.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; Your init file should contain only one such instance.</span>
 </span></span><span class="line"><span class="cl"> <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
-</span></span><span class="line"><span class="cl"> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-export-backends</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nv">ascii</span> <span class="nv">html</span> <span class="nv">icalendar</span> <span class="nv">latex</span> <span class="nv">md</span><span class="p">))))</span>
-</span></span></code></pre></div><p>The export interface is better, but now I get a <strong>different</strong> error.</p>
-<pre tabindex="0"><code>org-refresh-category-properties: Invalid function: org-with-silent-modifications
-</code></pre><p>This <a href="http://www.benjaminmgross.com/markdown-export-on-aquamacs/">Markdown Export on Aquamacs</a> post by Benjamin M. Gross was particularly helpful. He suggests you use the package manager to remove and reinstall the <code>org</code> package.</p>
+</span></span><span class="line"><span class="cl"> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-export-backends</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nv">ascii</span> <span class="nv">html</span> <span class="nv">icalendar</span> <span class="nv">latex</span> <span class="nv">md</span><span class="p">))))</span></span></span></code></pre>
+</figure><p>The export interface is better, but now I get a <strong>different</strong> error.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >org-refresh-category-properties: Invalid function: org-with-silent-modifications</code></pre>
+</figure><p>This <a href="http://www.benjaminmgross.com/markdown-export-on-aquamacs/">Markdown Export on Aquamacs</a> post by Benjamin M. Gross was particularly helpful. He suggests you use the package manager to remove and reinstall the <code>org</code> package.</p>
 <p>So I did. There was a confusing moment where the package manager didn’t seem to realize that a Org Mode was installed. Just turns out that a newer version was available. I installed the newer version and restarted emacs.</p>
 <p>Trying <code>C-c C-e m m</code> one more time before I give up for now.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Exporting From Org to Markdown
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Exporting From Org to Markdown
 </span></span></span><span class="line"><span class="cl"><span class="gh"></span>
 </span></span><span class="line"><span class="cl">Let&#39;s say that I am supposed to be writing a blog post. Not this
 </span></span><span class="line"><span class="cl">one, another one. I have spent a lot of time learning about
@@ -338,8 +358,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">to looks a bit like [<span class="nt">Jekyll</span>](<span class="na">http://jekyllrb.com/</span>). Specifically, it uses
 </span></span><span class="line"><span class="cl">[<span class="nt">Markdown</span>](<span class="na">http://daringfireball.net/projects/markdown/</span>)
 </span></span><span class="line"><span class="cl">formatting. That&#39;s nice, but I <span class="ge">*really*</span> like <span class="sb">`org-mode`</span> formatting
-</span></span><span class="line"><span class="cl">this week.
-</span></span></code></pre></div><p>See? No problem!</p>
+</span></span><span class="line"><span class="cl">this week.</span></span></code></pre>
+</figure><p>See? No problem!</p>
 <p>Now I just need to <em>write</em> the post. Not this one. The other one.</p>
 
   

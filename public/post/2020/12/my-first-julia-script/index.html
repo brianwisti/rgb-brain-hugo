@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/12/my-first-julia-script/">My first Julia script</a></li>
@@ -305,7 +310,9 @@ Drawn with <a href="http://juliagraphics.github.io/Luxor.jl/stable/">Luxor.jl</a
 <p>Been getting frustrated with <a href="/card/python/">card/Python</a>&rsquo;s type hinting system. I usually start with loose and informal code, but eventually I specify types. And when I do, I want the language to check my work. I dislike relying on an external tool like <a href="https://mypy.readthedocs.io/en/stable/">MyPy</a> that runs separately.</p>
 <p>I&rsquo;ve also been looking at <a href="https://pandas.pydata.org">Pandas</a> a lot recently for work stuff. Okay, Pandas looks interesting to my non-data science brain. I mainly use it to filter Excel files for database updates. But I can&rsquo;t help noticing how often the Julia programming language comes up in those posts about Data Science in Python.</p>
 <p>So I check out Julia. It intrigues me. The type system and concurrency tools look nice, of course. But what&rsquo;s this? Math code that looks more like math?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="o">√</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="o">√</span><span class="mi">2</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span>
 </span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">julia</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
@@ -313,15 +320,17 @@ Drawn with <a href="http://juliagraphics.github.io/Luxor.jl/stable/">Luxor.jl</a
 </span></span><span class="line"><span class="cl"> <span class="o">-</span><span class="mf">5.0</span>
 </span></span><span class="line"><span class="cl"> <span class="o">-</span><span class="mf">3.585786437626905</span>
 </span></span><span class="line"><span class="cl">  <span class="mf">0.6568542494923806</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">7.727922061357857</span>
-</span></span></code></pre></div><p>By way of contrast, this is Python&rsquo;s equivalent of those two lines of Julia code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">7.727922061357857</span></span></span></code></pre>
+</figure><p>By way of contrast, this is Python&rsquo;s equivalent of those two lines of Julia code.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
-</span></span></code></pre></div><p>It&rsquo;s similar enough that I don&rsquo;t feel massively disoriented. But the math stuff is just a little bit friendlier.</p>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span></span></span></code></pre>
+</figure><p>It&rsquo;s similar enough that I don&rsquo;t feel massively disoriented. But the math stuff is just a little bit friendlier.</p>
 <p>Time to run through the &ldquo;is this language worth my time&rdquo; checklist.</p>
 <ul>
 <li>Julia is <a href="https://docs.julialang.org/en/v1/">well-documented</a></li>
@@ -338,22 +347,33 @@ servers</li>
 <h2 id="the-setup">The setup</h2>
 <p>Julia treats environment and package management as core functionality. Everything I need is in <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/">Pkg</a>. Not to pick too much on Python — it really is a great language — but its environment management options are <a href="https://xkcd.com/1987/">infamously byzantine</a>.</p>
 <p>To set up a package for my existing site, I drop into the REPL&rsquo;s <code>pkg</code> mode.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">julia&gt; ]
-</span></span></code></pre></div><p>Here I can initialize my project and add dependencies.</p>
-<pre tabindex="0"><code>(v1.5) pkg&gt; initialize .
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">julia&gt; ]</span></span></code></pre>
+</figure><p>Here I can initialize my project and add dependencies.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >(v1.5) pkg&gt; initialize .
 (rgb-hugo-legacy)&gt; add Weave
-...
-</code></pre><p>Now I have <code>Project.toml</code> and <code>Manifest.toml</code> files describing my Hugo site&rsquo;s new Julia needs. I can start writing this post.</p>
+...</code></pre>
+</figure><p>Now I have <code>Project.toml</code> and <code>Manifest.toml</code> files describing my Hugo site&rsquo;s new Julia needs. I can start writing this post.</p>
 <h3 id="writing-with-weave">Writing with Weave</h3>
 <p>Write the stuff you want to write, using <a href="https://docs.julialang.org/en/v1/stdlib/Markdown/">Julia-flavored Markdown</a>. Any code block fenceposted with triple backticks and labeled as &ldquo;julia&rdquo; gets evaluated by
 Weave.</p>
 <p>Set different <a href="http://weavejl.mpastell.com/stable/chunk_options/">chunk options</a> for the block if you want to tweak the code&rsquo;s treatment.</p>
-<pre tabindex="0"><code>```julia; term = true
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >```julia; term = true
 f(x) = √2x^2 - 5
 [f(x) for x in [0, 1, 2, 3]]
-```
-</code></pre><p>Weave does its thing, and produces something interesting depending on what output options you use.</p>
-<pre tabindex="0"><code>```julia
+```</code></pre>
+</figure><p>Weave does its thing, and produces something interesting depending on what output options you use.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >```julia
 julia&gt; f(x) = √2x^2 - 5
 f (generic function with 1 method)
 
@@ -363,10 +383,12 @@ julia&gt; [f(x) for x in [0, 1, 2, 3]]
 -3.585786437626905
 0.6568542494923806
 7.727922061357857
-```
-</code></pre><h2 id="the-script">The script</h2>
+```</code></pre>
+</figure><h2 id="the-script">The script</h2>
 <p>AKA the point of this blog post. It looks in my content folder for recently modified <code>.jmd</code> files. Anything found gets handed off to <code>weave</code>, which does the hard work. Heck, <code>weave</code> even has a <code>hugo</code> option so I can generate Markdown specifically formatted to satisfy Hugo.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Logging</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Logging</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Weave</span>
 </span></span><span class="line"><span class="cl">
@@ -402,8 +424,8 @@ julia&gt; [f(x) for x in [0, 1, 2, 3]]
 </span></span><span class="line"><span class="cl">    <span class="nd">@info</span> <span class="s">&#34;Done?&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><p>This is probably not idiomatic Julia. Maybe it&rsquo;ll get there when I learn what idiomatic Julia even looks like.</p>
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure><p>This is probably not idiomatic Julia. Maybe it&rsquo;ll get there when I learn what idiomatic Julia even looks like.</p>
 <p>Obviously there&rsquo;s no error handlng of any kind. That can come later.</p>
 <p>A few things I noticed:</p>
 <ul>
@@ -411,7 +433,10 @@ julia&gt; [f(x) for x in [0, 1, 2, 3]]
 <li>I kept making my code more complicated than it needed to be, when both Julia and Weave were ready with reasonable defaults</li>
 <li>especially in regard to types; everything works fine without specifying  details; I can find out what happens when I add details later</li>
 </ul>
-<pre tabindex="0"><code>❯ just weave
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >❯ just weave
 julia --project=. scripts/weave-content.jl
 ┌ Info: Files that need weaving:
 │   weave_files =
@@ -428,12 +453,14 @@ julia --project=. scripts/weave-content.jl
 ┌ Info: Weaved all chunks
 └   progress = 1
 [ Info: Weaved to /home/random/Sites/rgb-hugo-legacy/content/post/2020/12/my-first-julia-script/index.md
-[ Info: Done?
-</code></pre><p>Okay. That&rsquo;s great. I mean — all that so I could do a little math, but whatever.</p>
+[ Info: Done?</code></pre>
+</figure><p>Okay. That&rsquo;s great. I mean — all that so I could do a little math, but whatever.</p>
 <h2 id="thats-it">That&rsquo;s it?</h2>
 <p>Hey. Maybe we could do something cool. Make a cover image for this post with <a href="http://juliagraphics.github.io/Luxor.jl/stable/">Luxor</a>.</p>
 <p>Let&rsquo;s try it out. I&rsquo;ll borrow heavily from the Luxor manual since I don&rsquo;t really know what I&rsquo;m doing,</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Colors</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-julia" data-lang="julia"><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Colors</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">Luxor</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">draw</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -463,14 +490,16 @@ julia --project=. scripts/weave-content.jl
 </span></span><span class="line"><span class="cl"><span class="n">setopacity</span><span class="p">(</span><span class="mf">.4</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">finish</span><span class="p">()</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-First off, PNG format works better than SVG when you&rsquo;re drawing 500 random circles.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ exa -l content/post/2020/12/my-first-julia-script/cover*
+</span></span><span class="line"><span class="cl"><span class="n">finish</span><span class="p">()</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>First off, PNG format works better than SVG when you&rsquo;re drawing 500 random circles.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ exa -l content/post/2020/12/my-first-julia-script/cover*
 </span></span><span class="line"><span class="cl">.rw-r--r--  99k random <span class="m">25</span> Dec 12:42 cover.png
-</span></span><span class="line"><span class="cl">.rw-r--r-- 4.8M random <span class="m">25</span> Dec 12:37 cover.svg
-</span></span></code></pre></div><p>Second, I added an <code>eval = false</code> chunk option after the image was good enough. No point regenerating the cover every time I fix a typo.</p>
+</span></span><span class="line"><span class="cl">.rw-r--r-- 4.8M random <span class="m">25</span> Dec 12:37 cover.svg</span></span></code></pre>
+</figure><p>Second, I added an <code>eval = false</code> chunk option after the image was good enough. No point regenerating the cover every time I fix a typo.</p>
 </blockquote>
 <p>That&rsquo;s enough writing about writing with Julia. I have a couple other drafts I want to revisit now.</p>
 <p>Besides, it&rsquo;s Christmas! Christmas 2020. Which means my only regret is forgetting to order Christmas-themed face masks.</p>

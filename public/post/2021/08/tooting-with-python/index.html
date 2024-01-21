@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/08/tooting-with-python/">Tooting with Python</a></li>
@@ -301,8 +306,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 account on <a href="https://hackers.town/@randomgeek">one</a> of many. You can find one suitable for your tastes at
 [Mastodon instances](<a href="https://instances.social">https://instances.social</a>.</p>
 <blockquote>
-<p>[!NOTE]
-If you don&rsquo;t already know Mastodon, think of it as island versions of <a href="https://twitter.com">Twitter</a>.  Each instance has its own practices and policies depending on who runs it, so it&rsquo;s very much a &ldquo;hanging out at a friend&rsquo;s house&rdquo; experience. Lots more details, but much more than I feel like covering.</p>
+<p><strong>NOTE</strong></p>
+<p>If you don&rsquo;t already know Mastodon, think of it as island versions of <a href="https://twitter.com">Twitter</a>.  Each instance has its own practices and policies depending on who runs it, so it&rsquo;s very much a &ldquo;hanging out at a friend&rsquo;s house&rdquo; experience. Lots more details, but much more than I feel like covering.</p>
 <p>It&rsquo;s fun. You should try it out maybe. You can even host your own instance if you&rsquo;re hard-core into DIY.</p>
 </blockquote>
 <h3 id="registering-your-application">Registering your application</h3>
@@ -316,33 +321,43 @@ If you don&rsquo;t already know Mastodon, think of it as island versions of <a h
 </dl>
 <p>That&rsquo;s enough to cover today&rsquo;s play.  I&rsquo;m not creating my own full-fledged Mastodon client so I don&rsquo;t need every permission.</p>
 <h3 id="connecting-your-application">Connecting your application</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">mastodon</span> <span class="kn">import</span> <span class="n">Mastodon</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.pretty</span> <span class="kn">import</span> <span class="n">pprint</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE]
-Spoiler alert: yes I&rsquo;ll be using <a href="https://rich.readthedocs.io">Rich</a> and <a href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a> along with Mastodon.py.  Nothing fancy planned with Rich today. It&rsquo;s just part of my regular toolkit.</p>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.pretty</span> <span class="kn">import</span> <span class="n">pprint</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>NOTE</strong></p>
+<p>Spoiler alert: yes I&rsquo;ll be using <a href="https://rich.readthedocs.io">Rich</a> and <a href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a> along with Mastodon.py.  Nothing fancy planned with Rich today. It&rsquo;s just part of my regular toolkit.</p>
 <p>The dataclasses library comes standard with Python these days, but you may need to install the others::</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade rich mastodon
-</span></span></code></pre></div></blockquote>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade rich mastodon</span></span></code></pre>
+</figure></blockquote>
 <p>The Mastodon instance developer panel gives me the details I need to connect. I set them as workspace environment variables with <a href="https://direnv.net">direnv</a> out of habit, but you could just as easily hard-code them in Python or define in a config file of your own.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">API_BASE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;API_BASE&#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">API_BASE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;API_BASE&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">CLIENT_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;CLIENT_KEY&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">CLIENT_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;CLIENT_SECRET&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;ACCESS_TOKEN&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>From my first few attempts writing this post, I know I&rsquo;ll want a class to organize views for the connection.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;ACCESS_TOKEN&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>From my first few attempts writing this post, I know I&rsquo;ll want a class to organize views for the connection.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Provides convenience methods for querying an instance and posting toots.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">mastodon</span><span class="p">:</span> <span class="n">Mastodon</span>
-</span></span></code></pre></div><p>Once I have a connection, I don&rsquo;t care about those application config details. Rather than storing them in the instance, I&rsquo;ll use a class method to handle the work and return my new App with only the details I <em>do</em> care about.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mastodon</span><span class="p">:</span> <span class="n">Mastodon</span></span></span></code></pre>
+</figure><p>Once I have a connection, I don&rsquo;t care about those application config details. Rather than storing them in the instance, I&rsquo;ll use a class method to handle the work and return my new App with only the details I <em>do</em> care about.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@classmethod</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="bp">cls</span><span class="p">,</span>
@@ -359,25 +374,29 @@ Spoiler alert: yes I&rsquo;ll be using <a href="https://rich.readthedocs.io">Ric
 </span></span><span class="line"><span class="cl">            <span class="n">client_secret</span><span class="o">=</span><span class="n">client_secret</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="n">access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">mastodon</span><span class="o">=</span><span class="n">mastodon</span><span class="p">)</span>
-</span></span></code></pre></div><p>Basic setup&rsquo;s done. Let&rsquo;s create an App and see if it worked.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">mastodon</span><span class="o">=</span><span class="n">mastodon</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Basic setup&rsquo;s done. Let&rsquo;s create an App and see if it worked.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</span></span></code></pre></div><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">&gt;)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></span></span></code></pre>
+</figure><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">&gt;)</span>
 </pre>
 <blockquote>
 <p>[!NOTE] Exporting Rich output
 My code doesn&rsquo;t look <em>exactly</em> like what I&rsquo;ve shared here. I take advantage of Rich&rsquo;s export features to simplify sharing program output.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">get_console</span><span class="p">()</span><span class="o">.</span><span class="n">save_html</span><span class="p">(</span><span class="s2">&#34;output.html&#34;</span><span class="p">,</span> <span class="n">inline_styles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span></code></pre></div><p>The extra bits change two aspects of Rich&rsquo;s default <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console">Console</a> behavior:</p>
+</span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">get_console</span><span class="p">()</span><span class="o">.</span><span class="n">save_html</span><span class="p">(</span><span class="s2">&#34;output.html&#34;</span><span class="p">,</span> <span class="n">inline_styles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></span></span></code></pre>
+</figure><p>The extra bits change two aspects of Rich&rsquo;s default <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console">Console</a> behavior:</p>
 <ul>
 <li>record output so it can be exported by <code>save_text</code> or <code>save_html</code> and I can add it here in my post</li>
 <li>set console width to 80, simplifying display of exported output within the confines of a Web page</li>
@@ -387,23 +406,27 @@ My code doesn&rsquo;t look <em>exactly</em> like what I&rsquo;ve shared here. I 
 <p>So anyways, we verified that our connection works. Let&rsquo;s take a look at what that connection provides.</p>
 <h3 id="the-instance">The instance</h3>
 <p>Mastodon.py provides methods specifically for <a href="https://mastodonpy.readthedocs.io/en/stable/#reading-data-instances">reading instance details</a>. For example, <a href="https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance_health"><code>instance_health</code></a> tells of if a quick health check succeeded.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">instance_health</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&#34;Connection instance is [green]healthy[/green]&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&#34;Connection instance is [red][b]not[/b] healthy![/red]&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span></code></pre></div><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></span></span></code></pre>
+</figure><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 </pre>
 <h4 id="instance-details">Instance details</h4>
 <p>Most of the querying methods return a dictionary or a list of dictionaries. <a href="https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance"><code>Mastodon.instance</code></a> returns an <a href="https://mastodonpy.readthedocs.io/en/stable/#instance-dicts">instance dict</a>.</p>
 <p>I don&rsquo;t feel like showing every item in that dictionary, though. Let&rsquo;s pick a few to make a decent summary. Oh hey, and let&rsquo;s cache that dictionary to disk so I&rsquo;m not making a fresh API query every time I check this post while I&rsquo;m writing it.</p>
 <blockquote>
-<p>[!NOTE]
-Be considerate about server resources for Mastodon. Most instances are run as personal projects. There&rsquo;s no need for us to run up their AWS bill.</p>
+<p><strong>NOTE</strong></p>
+<p>Be considerate about server resources for Mastodon. Most instances are run as personal projects. There&rsquo;s no need for us to run up their AWS bill.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">stored</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">stored</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.json&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">rich</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;stored.inner for </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
@@ -423,9 +446,11 @@ Be considerate about server resources for Mastodon. Most instances are run as pe
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inner</span>
-</span></span></code></pre></div><p>I can do proper memoization later. &ldquo;Look for a file before you hit the server&rdquo; is good enough for writing a blog post.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inner</span></span></span></code></pre>
+</figure><p>I can do proper memoization later. &ldquo;Look for a file before you hit the server&rdquo; is good enough for writing a blog post.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nd">@stored</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">instance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -441,9 +466,11 @@ Be considerate about server resources for Mastodon. Most instances are run as pe
 </span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="p">:</span> <span class="n">instance</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="s2">&#34;contact_account&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="s2">&#34;contact_account&#34;</span><span class="p">][</span><span class="s2">&#34;display_name&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data</span>
-</span></span></code></pre></div><p>Time to look at that instance summary.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data</span></span></span></code></pre>
+</figure><p>Time to look at that instance summary.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">instance_health</span><span class="p">():</span>
@@ -452,8 +479,8 @@ Be considerate about server resources for Mastodon. Most instances are run as pe
 </span></span><span class="line"><span class="cl">        <span class="n">rich</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&#34;Connection instance is [red][b]not[/b] healthy![/red]&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_summary</span><span class="p">())</span>
-</span></span></code></pre></div><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_summary</span><span class="p">())</span></span></span></code></pre>
+</figure><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 stored.inner for instance
 Calling instance
 Writing data to instance.json
@@ -466,12 +493,16 @@ Writing data to instance.json
 </pre>
 <h3 id="reading-the-timelines">Reading the timelines</h3>
 <p>Mastodon&rsquo;s <a href="https://mastodonpy.readthedocs.io/en/stable/#reading-data-timelines">timeline methods</a> provide different views of recent post activity, both public and private.  To simplify demonstration on this public blog post, I&rsquo;ll stick to <a href="https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.timeline_public"><code>timeline_public</code></a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@stored</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">timeline_public</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">timeline_public</span><span class="p">()</span>
-</span></span></code></pre></div><p>The <a href="https://mastodonpy.readthedocs.io/en/stable/#toot-dicts">toot dict</a> also contains far more information than I need, so let&rsquo;s summarize those like with instances.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">timeline_public</span><span class="p">()</span></span></span></code></pre>
+</figure><p>The <a href="https://mastodonpy.readthedocs.io/en/stable/#toot-dicts">toot dict</a> also contains far more information than I need, so let&rsquo;s summarize those like with instances.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"> <span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">timeline_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">timeline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeline_public</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">[</span>
@@ -481,9 +512,11 @@ Writing data to instance.json
 </span></span><span class="line"><span class="cl">                <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">toot</span><span class="p">[</span><span class="s2">&#34;content&#34;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">toot</span> <span class="ow">in</span> <span class="n">timeline</span>
-</span></span><span class="line"><span class="cl">        <span class="p">]</span>
-</span></span></code></pre></div><p>Adding <code>app.timeline_summary()</code> to the main block:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span></span></span></code></pre>
+</figure><p>Adding <code>app.timeline_summary()</code> to the main block:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">instance_health</span><span class="p">():</span>
@@ -493,8 +526,8 @@ Writing data to instance.json
 </span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_summary</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">timeline_summary</span><span class="p">(),</span> <span class="n">max_string</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
-</span></span></code></pre></div><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">timeline_summary</span><span class="p">(),</span> <span class="n">max_string</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span></span></span></code></pre>
+</figure><pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 stored.inner for instance
 Loading data from instance.json
 <span style="font-weight: bold">{</span>
@@ -525,13 +558,17 @@ Writing data to timeline_public.json
 <h3 id="writing">Writing</h3>
 <p>Mastodon <a href="https://mastodonpy.readthedocs.io/en/stable/#writing-data-statuses">write methods</a> let us add toots, polls, replies, reblogs, faves. All that good stuff.</p>
 <p>Let&rsquo;s stick with your basic toot for now.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">   <span class="k">def</span> <span class="nf">status_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visibility</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;direct&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 </span></span><span class="line"><span class="cl">       <span class="s2">&#34;&#34;&#34;Post a toot to our connection, private unless we say otherwise.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">status_post</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="p">)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">status_post</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">App</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">mastodon</span><span class="o">.</span><span class="n">instance_health</span><span class="p">():</span>
@@ -541,8 +578,8 @@ Writing data to timeline_public.json
 </span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">status_text</span> <span class="o">=</span> <span class="s2">&#34;Ignore me, just messing with Mastodon.py&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">status_post</span><span class="p">(</span><span class="n">status_text</span><span class="p">)</span>
-</span></span></code></pre></div><p><img src="/post/2021/08/attachments/img/2021/toot.jpg" title="It worked!" alt="toot screenshot"/></p>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span><span class="o">.</span><span class="n">status_post</span><span class="p">(</span><span class="n">status_text</span><span class="p">)</span></span></span></code></pre>
+</figure><p><img src="/post/2021/08/attachments/img/2021/toot.jpg" title="It worked!" alt="toot screenshot"/></p>
 <p>Okay my brain is fading. Should probably put away the keyboard soon.</p>
 <h2 id="wrap-it-up">Wrap it up</h2>
 <p>Am I done?</p>

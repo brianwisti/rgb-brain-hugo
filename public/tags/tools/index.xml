@@ -162,7 +162,10 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 <p>Yeah let&rsquo;s do that instead. Much less to remember.</p>
 <h2 id="what-are-we-printing">What are we printing?</h2>
 <p>How about a <a href="https://rich.readthedocs.io/en/stable/tables.html">Table</a> of the most popular pages on my site? I use <a href="https://plausible.io">Plausible</a> for stats, and I&rsquo;ve been meaning to play with their <a href="https://plausible.io/docs/stats-api">API</a>. But I&rsquo;m here to talk about Rich, not Plausible. Let&rsquo;s use a static copy of API results so everyone&rsquo;s using the same data.</p>
-<div class="highlight" title="showstats.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
+<figure class="highlight">
+  <figcaption><tt>showstats.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">STATS</span> <span class="o">=</span> <span class="p">{</span>
@@ -214,15 +217,20 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">show_stats</span><span class="p">()</span>
-</span></span></code></pre></div><p>Here&rsquo;s a screenshot, so you know what this produces in my own terminal.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">show_stats</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Here&rsquo;s a screenshot, so you know what this produces in my own terminal.</p>
 <p><img src="/post/2021/08/attachments/img/2021/showstats-table.png" title="table output" alt="table output"/></p>
 <p>Okay. Now let&rsquo;s start talking about exporting output.</p>
 <h2 id="xclip-is-usually-good-enough"><code>xclip</code> is usually good enough</h2>
 <p>This post focuses on the &ldquo;blog writing and pretty reports&rdquo; situations. For everyday sharing, all I need is a legibly formatted data dump. <a href="https://github.com/astrand/xclip"><code>xclip</code></a> works for those situations.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python showstats.py <span class="p">|</span> xclip
-</span></span></code></pre></div><p>I don&rsquo;t see anything on my screen, of course, because I piped everything to <code>xclip</code>. But when I paste from the clipboard:</p>
-<div class="highlight" title="output" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    Plausible.io Traffic Breakdown
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python showstats.py <span class="p">|</span> xclip</span></span></code></pre>
+</figure><p>I don&rsquo;t see anything on my screen, of course, because I piped everything to <code>xclip</code>. But when I paste from the clipboard:</p>
+<figure class="highlight">
+  <figcaption><span>output</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    Plausible.io Traffic Breakdown
 </span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">┃ Page                                                    ┃ Visitors ┃
 </span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -236,20 +244,24 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 </span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │      263 │
 </span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │      260 │
 </span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │      242 │
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
-</span></span></code></pre></div><p><code>xclip</code> preserves the basic shape of my output. I see a table. The <em>Visitors</em> column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.</p>
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘</span></span></code></pre>
+</figure><p><code>xclip</code> preserves the basic shape of my output. I see a table. The <em>Visitors</em> column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.</p>
 <blockquote>
-<p>[!NOTE]
-Also? This renders great on Chrome-based browsers and weird on Firefox.  There
+<p><strong>NOTE</strong></p>
+<p>Also? This renders great on Chrome-based browsers and weird on Firefox.  There
 are definite limitations to just copying and pasting from the terminal.</p>
 </blockquote>
 <p>Let&rsquo;s pull that clipboard management into the script with Al Sweigart&rsquo;s <a href="https://pypi.org/project/pyperclip/">Pyperclip</a> library.</p>
 <h2 id="let-rich-and-pyperclip-handle-the-clipboard">Let Rich and Pyperclip handle the clipboard</h2>
 <p>Pyperclip gives our code access to the system clipboard, letting us copy and paste from Python.  The Rich <a href="https://rich.readthedocs.io/en/stable/reference/console.html">Console</a> can <a href="https://rich.readthedocs.io/en/stable/console.html#capturing-output"><code>capture</code></a> the characters it would have printed, and hand them to us when needed. Sounds like a great team.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyperclip</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
-</span></span></code></pre></div><p>I set up Pyperclip and create a local Console to handle capturing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyperclip</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span></span></span></code></pre>
+</figure><p>I set up Pyperclip and create a local Console to handle capturing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">build_stats_table</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
@@ -261,10 +273,12 @@ are definite limitations to just copying and pasting from the terminal.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">text_output</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
-</span></span></code></pre></div><p>I need to tell Pyperclip about <code>xclip</code> or it gets a bit confused on WSL. Also, since I captured the output, I need to print it myself. Why <code>print</code> instead of <code>rich.print</code> or <code>console.print</code>?</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I need to tell Pyperclip about <code>xclip</code> or it gets a bit confused on WSL. Also, since I captured the output, I need to print it myself. Why <code>print</code> instead of <code>rich.print</code> or <code>console.print</code>?</p>
 <p>Let me answer that question by pasting the contents of my clipboard:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[3m                    Plausible.io Traffic Breakdown                    [0m
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">[3m                    Plausible.io Traffic Breakdown                    [0m
 </span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">┃[1m [0m[1mPage                                                   [0m[1m [0m┃[1m [0m[1mVisitors[0m[1m [0m┃
 </span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -278,13 +292,13 @@ are definite limitations to just copying and pasting from the terminal.</p>
 </span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │[32m [0m[32m     263[0m[32m [0m│
 </span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │[32m [0m[32m     260[0m[32m [0m│
 </span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │[32m [0m[32m     242[0m[32m [0m│
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
-</span></span></code></pre></div><p>Uh. Oops? <code>console</code> captured <em>exactly</em> what it would have printed, including terminal <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape codes</a>.</p>
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘</span></span></code></pre>
+</figure><p>Uh. Oops? <code>console</code> captured <em>exactly</em> what it would have printed, including terminal <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape codes</a>.</p>
 <p>Rich supports <a href="https://rich.readthedocs.io/en/stable/console.html#exporting">exporting</a> output beyond a raw dump, though.</p>
 <h2 id="let-rich-get-you-some-html">Let Rich get you some HTML</h2>
 <blockquote>
-<p>[!NOTE]
-For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.</p>
+<p><strong>NOTE</strong></p>
+<p>For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.</p>
 </blockquote>
 <p>A Console created with the <code>record</code> option enabled remembers everything it prints. You can get export your copy at any point. The <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_text"><code>export_text</code></a> method provides a copy with minimal formatting, while <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_html"><code>export_html</code></a> produces HTML pages. That&rsquo;s for sure something I can paste into my post source. Nice!</p>
 <p>One <em>slight</em> wrinkle. Unless you tell it otherwise, <code>export_html</code> produces a complete HTML file — with <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, and even a <code>&lt;style&gt;</code> section. All I want is the <code>&lt;pre&gt;...&lt;/pre&gt;</code> describing my output.</p>
@@ -294,7 +308,9 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 <li>turn on <code>inline_styles</code> to directly embed style rules; handy if I don&rsquo;t have my own CSS definitions for Rich-specific classes</li>
 </ul>
 <p>Let&rsquo;s make some HTML for Pyperclip to copy.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># print the stats</span>
@@ -307,8 +323,8 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 </span></span><span class="line"><span class="cl">    <span class="n">exported_html</span> <span class="o">=</span> <span class="n">console</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="n">inline_styles</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">code_format</span><span class="o">=</span><span class="s2">&#34;&lt;pre&gt;</span><span class="si">{code}</span><span class="s2">&lt;/pre&gt;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">exported_html</span><span class="p">)</span>
-</span></span></code></pre></div><p>What do the contents of my clipboard look like now?</p>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">exported_html</span><span class="p">)</span></span></span></code></pre>
+</figure><p>What do the contents of my clipboard look like now?</p>
 <pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span>
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃
@@ -326,7 +342,9 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 └─────────────────────────────────────────────────────────┴──────────┘</pre>
 <p>That works well enough for a blog post!</p>
 <p>If you&rsquo;re curious about the exported HTML, here&rsquo;s a chunk of it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-style: italic&#34;</span><span class="p">&gt;</span>                    Plausible.io Traffic Breakdown                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-style: italic&#34;</span><span class="p">&gt;</span>                    Plausible.io Traffic Breakdown                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">    ┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Page                                                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Visitors <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃
 </span></span><span class="line"><span class="cl">    ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -334,8 +352,8 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 </span></span><span class="line"><span class="cl">    ...
 </span></span><span class="line"><span class="cl">    │ /post/2019/01/circular-grids-with-python-and-pillow/    │<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color: #008000; text-decoration-color: #008000&#34;</span><span class="p">&gt;</span>      242 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>│
 </span></span><span class="line"><span class="cl">    └─────────────────────────────────────────────────────────┴──────────┘
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Anyways, this was just another thing I wanted to get down before I forgot again.</p>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Anyways, this was just another thing I wanted to get down before I forgot again.</p>
 <h2 id="what-else">What else?</h2>
 <p>There are a few more pieces that tie it into my particular workflow, but this covers what you&rsquo;d need to export output from your own Rich programs for easy blogging or information sharing.</p>
 ]]></content:encoded>
@@ -363,21 +381,26 @@ I won’t make you wait around for a proper post. Hugo lets you use reStructured
 <p>I won&rsquo;t make you wait around for a proper post. Hugo lets you use reStructuredText.  But Hugo&rsquo;s way is slow and hard to customize. Not their fault. reStructuredText is not their focus.</p>
 <p>Still — why not format it ahead of time?</p>
 <blockquote>
-<p>[!NOTE] Answer
-Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
+<p><strong>Answer</strong></p>
+<p>Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using <a href="/card/pelican/">card/Pelican</a> or <a href="/card/nikola/">card/Nikola</a>?</p>
 </blockquote>
 <p>Shush, me.</p>
 <h3 id="the-implementation">The Implementation</h3>
 <p>Start with <code>content/whatever/index.rst.txt</code>.</p>
 <p>Make sure Hugo won&rsquo;t track <code>rst.txt</code> files by explicitly adding an item the <a href="https://gohugo.io/getting-started/configuration/#ignore-content-and-data-files-when-rendering"><code>ignoreFiles</code></a> config setting.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
-</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># config.toml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignoreFiles</span> <span class="p">=</span> <span class="p">[</span><span class="s1">&#39;\.rst\.txt$&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>This way <code>hugo server --navigateToChanged</code> behaves how we expect.</p>
 <p>I tried setting <code>ignoreFiles = ['\.rst$']</code> but as far as I could tell, Hugo ignored my request to ignore the file. Looks like I&rsquo;m sticking with <code>.rst.txt</code> for now.</p>
 <p>With the code down below in my Neovim python3 — that&rsquo;s <em>python3</em> not <em>python</em> — rplugin folder, and remote plugins updated, I write <code>index.rst.txt</code> to disk.</p>
 <p>The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.</p>
 <h4 id="the-code">The Code</h4>
-<div class="highlight" title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <figcaption><tt>~/.config/nvim/rplugin/python3/rstbuild_hugo.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Give my reStructuredText posts in Hugo a little boost.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -412,11 +435,11 @@ Because it took a lot of work to figure this out? And most folks are perfectly h
 </span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frontmatter</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">post</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nvim</span><span class="o">.</span><span class="n">out_write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Wrote </span><span class="si">{</span><span class="n">target_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Lord knows this code ain&rsquo;t perfect. This post is its main test. Who knows what bugs and improvements will come later?</p>
 <blockquote>
-<p>[!NOTE]
-<em>You</em> will, if you skim the Updates at the end.</p>
+<p><strong>NOTE</strong></p>
+<p><em>You</em> will, if you skim the Updates at the end.</p>
 </blockquote>
 <p>If you grab a copy for your own nefarious plans — a similar template could get you fast Asciidoctor transforms as well — just remember a couple things:</p>
 <ul>
@@ -460,7 +483,8 @@ Because it took a lot of work to figure this out? And most folks are perfectly h
   
   <guid>https://randomgeekery.org/post/2021/05/joplin-cli-batch-processing-with-raku/</guid>
   <description>don’t get excited; these are the only notes I took
-[!NOTE] This sidetracks enough for three blog posts, mostly about card/Raku. Sorry about that. No time to make it shorter. You know how it is. There’s a little card/Joplin stuff in here.
+NOTE
+This sidetracks enough for three blog posts, mostly about card/Raku. Sorry about that. No time to make it shorter. You know how it is. There’s a little card/Joplin stuff in here.
 This is embarrassing. I fired up the Joplin desktop app this morning and it told me there was an update. Makes sense. I haven’t loaded the desktop app in a couple months.</description>
    <category>post</category> 
    <category>post</category> 
@@ -468,32 +492,43 @@ This is embarrassing. I fired up the Joplin desktop app this morning and it told
   <content:encoded><![CDATA[<h2>In which a minor update veers off on a Raku regex tangent</h2><p><img src="/post/2021/05/../../../attachments/img/2021/cover-2021-05-24.jpg" alt="attachments/img/2021/cover-2021-05-24.jpg"/>
 don&rsquo;t get excited; these are the only notes I took</p>
 <blockquote>
-<p>[!NOTE]
-This sidetracks enough for three blog posts, mostly about <a href="/card/raku/">card/Raku</a>.  Sorry about that.  No time to make it shorter.  You know how it is.  There&rsquo;s a little <a href="/card/joplin/">card/Joplin</a> stuff in here.</p>
+<p><strong>NOTE</strong></p>
+<p>This sidetracks enough for three blog posts, mostly about <a href="/card/raku/">card/Raku</a>.  Sorry about that.  No time to make it shorter.  You know how it is.  There&rsquo;s a little <a href="/card/joplin/">card/Joplin</a> stuff in here.</p>
 </blockquote>
 <p>This is embarrassing.  I fired up the Joplin <a href="https://joplinapp.org/desktop/">desktop app</a> this morning and it told me there was an update.  Makes sense.  I haven&rsquo;t loaded the desktop app in a couple months.</p>
 <p>Oh hang on.  What about the <a href="https://joplinapp.org/terminal/">terminal app</a> which I was just writing about over the last couple posts?</p>
 <p>Yep.  The <a href="https://joplinapp.org/changelog_cli">Changelog</a> shows updates, one of which includes batch processing.  Batch processing sounds like exactly the thing to address my many complaints about performance.</p>
 <h2 id="update-joplin-with-volta">Update Joplin with Volta</h2>
 <p>I use <a href="https://volta.sh">Volta</a> to manage my<a href="/card/node.js/">card/Node.js</a> resources.  Volta treats installing and updating as the same action.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">volta install joplin
-</span></span></code></pre></div><p>This is what I have now:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> joplin version
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">volta install joplin</span></span></code></pre>
+</figure><p>This is what I have now:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> joplin version
 </span></span><span class="line"><span class="cl"><span class="go">joplin 1.8.1 (prod)
-</span></span></span></code></pre></div><p>Now I&rsquo;m up to date.  Let&rsquo;s see what changes I can make to my journaling code.</p>
+</span></span></span></code></pre>
+</figure><p>Now I&rsquo;m up to date.  Let&rsquo;s see what changes I can make to my journaling code.</p>
 <h2 id="fix-the-one-liners">Fix the one-liners</h2>
 <p>The one-liner for adding journal entries works fine as-is.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
-</span></span></code></pre></div><p>Reading the entries needs improvement.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">raku -e <span class="s1">&#39;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span></span></span></code></pre>
+</figure><p>Reading the entries needs improvement.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">raku -e <span class="s1">&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s1">  qqx{joplin cat $_}.subst(/^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }).say for qx{ joplin ls }.lines.sort
 </span></span></span><span class="line"><span class="cl"><span class="s1">&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="p">|</span> python -m rich.markdown -
-</span></span></code></pre></div><p>Joplin CLI v1.8.1 added a <code>batch</code> command, which executes commands from a text file.  My challenge: <code>joplin batch</code> does not appear to have an option for standard input.  This means I can&rsquo;t casually pipe output from another process.  Here&rsquo;s what I came up with:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin batch &lt;<span class="o">(</span>raku -e <span class="s1">&#39;qx{joplin ls}.lines.sort.map({ &#34;cat $_&#34; }).join(&#34;\n&#34;).say&#39;</span><span class="o">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="p">|</span> python -m rich.markdown -</span></span></code></pre>
+</figure><p>Joplin CLI v1.8.1 added a <code>batch</code> command, which executes commands from a text file.  My challenge: <code>joplin batch</code> does not appear to have an option for standard input.  This means I can&rsquo;t casually pipe output from another process.  Here&rsquo;s what I came up with:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin batch &lt;<span class="o">(</span>raku -e <span class="s1">&#39;qx{joplin ls}.lines.sort.map({ &#34;cat $_&#34; }).join(&#34;\n&#34;).say&#39;</span><span class="o">)</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> raku -ne <span class="s1">&#39;.subst(/^(&lt;[\dT:\-]&gt;+)$/, { &#34;# $0&#34; }).say&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -
-</span></span></code></pre></div><p>We take advantage of a little shell magic to treat the output of another process as a file.</p>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -</span></span></code></pre>
+</figure><p>We take advantage of a little shell magic to treat the output of another process as a file.</p>
 <p>Don&rsquo;t ask me to understand the shell magic.  In <a href="https://www.gnu.org/software/bash/">GNU Bash</a>, <code>command &lt;(stuff)</code> means something along the lines of &ldquo;evaluate <em>stuff</em> and hand the output of that evaluation to <code>command</code> as if it was a file.&rdquo;</p>
 <p>It&rsquo;s all a little inside-out and twisty.  It might help if we break up the chunks.</p>
 <table>
@@ -532,27 +567,33 @@ This sidetracks enough for three blog posts, mostly about <a href="/card/raku/">
 </table>
 <p>We pull Raku in twice: once to build the command and again to parse the output. On the other hand we&rsquo;re only calling Joplin twice instead of forty or so times.</p>
 <p>That makes the one-liner downright zippy, all things considered.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time joplin batch &lt;(raku -e &#39;qx{joplin ls}.lines.sort.map({ &#34;cat $_&#34; }).join(&#34;\n&#34;).say&#39;) \
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time joplin batch &lt;(raku -e &#39;qx{joplin ls}.lines.sort.map({ &#34;cat $_&#34; }).join(&#34;\n&#34;).say&#39;) \
 </span></span><span class="line"><span class="cl">  | raku -ne &#39;.subst(/^(&lt;[\dT:\-]&gt;+)$/, { &#34;# $0&#34; }).say&#39; \
 </span></span><span class="line"><span class="cl">  | python -m rich.markdown -
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m1.407s
 </span></span><span class="line"><span class="cl">user    0m1.608s
-</span></span><span class="line"><span class="cl">sys     0m0.140s
-</span></span></code></pre></div><p>One and a half seconds for a formatted display of every journal entry.  Not bad, considering that I&rsquo;m running on <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>.  Plus I don&rsquo;t really know one-liners, Raku, or Joplin.</p>
+</span></span><span class="line"><span class="cl">sys     0m0.140s</span></span></code></pre>
+</figure><p>One and a half seconds for a formatted display of every journal entry.  Not bad, considering that I&rsquo;m running on <a href="https://docs.microsoft.com/en-us/windows/wsl/">WSL</a>.  Plus I don&rsquo;t really know one-liners, Raku, or Joplin.</p>
 <blockquote>
-<p>[!NOTE]
-The documentation for <code>joplin ls</code> mentions a <code>--sort</code> flag, but as of v1.8.1 I got no difference when using <code>joplin ls --sort title</code>. Didn&rsquo;t see a mention of the specific issue, so I overcame my shyness and filed <a href="https://github.com/laurent22/joplin/issues/5004">#5004</a>.</p>
+<p><strong>NOTE</strong></p>
+<p>The documentation for <code>joplin ls</code> mentions a <code>--sort</code> flag, but as of v1.8.1 I got no difference when using <code>joplin ls --sort title</code>. Didn&rsquo;t see a mention of the specific issue, so I overcame my shyness and filed <a href="https://github.com/laurent22/joplin/issues/5004">#5004</a>.</p>
 </blockquote>
 <h2 id="fix-the-script">Fix the script</h2>
 <p>Splitting up the Raku script into logical pieces the other day means that today I only need to fix a single function.  Thank goodness.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">@entries</span><span class="o">.</span><span class="nb">map</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">    <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">  <span class="p">})</span><span class="o">.</span><span class="nb">join</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>How much does this function need to improve?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>How much does this function need to improve?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m3.001s
 </span></span><span class="line"><span class="cl">user    0m3.281s
@@ -562,11 +603,11 @@ The documentation for <code>joplin ls</code> mentions a <code>--sort</code> flag
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m31.253s
 </span></span><span class="line"><span class="cl">user    0m31.779s
-</span></span><span class="line"><span class="cl">sys     0m4.616s
-</span></span></code></pre></div><p>Lots.  This function needs to be lots quicker.  It took three seconds to display today&rsquo;s lone entry, and over 30 seconds to display all 40 journal entries.  Every new entry slows the whole thing down, because every new entry means a new call to <code>joplin</code>.</p>
+</span></span><span class="line"><span class="cl">sys     0m4.616s</span></span></code></pre>
+</figure><p>Lots.  This function needs to be lots quicker.  It took three seconds to display today&rsquo;s lone entry, and over 30 seconds to display all 40 journal entries.  Every new entry slows the whole thing down, because every new entry means a new call to <code>joplin</code>.</p>
 <blockquote>
-<p>[!NOTE]
-I don&rsquo;t jot <em>that</em> many notes in a day. Some of that&rsquo;s from reorganizing my Joplin notebooks, putting daily journals in with the quick entries.</p>
+<p><strong>NOTE</strong></p>
+<p>I don&rsquo;t jot <em>that</em> many notes in a day. Some of that&rsquo;s from reorganizing my Joplin notebooks, putting daily journals in with the quick entries.</p>
 </blockquote>
 <p>I tried mimicking the shell magic but couldn&rsquo;t figure out how in the time I allowed myself.  This isn&rsquo;t work code where you have to get things just so. This is a fun little utility for my own amusement.</p>
 <p><code>joplin batch</code> expects a file?  Let&rsquo;s give it a file.  But I want that file to go away when I&rsquo;m done, so let&rsquo;s find a module to handle temporary files.</p>
@@ -581,17 +622,23 @@ I don&rsquo;t jot <em>that</em> many notes in a day. Some of that&rsquo;s from r
 <p>I like friendly. Let&rsquo;s see how <code>Temp::Path</code> does.</p>
 <h3 id="try-temppath">Try <code>Temp::Path</code></h3>
 <p>Need to install it, of course.  <a href="https://github.com/ugexe/zef"><code>zef</code></a> handles Raku modules.  I set that up a while back with [[post/2020/05/setting-up-raku-with-rakubrew|<code>rakubrew</code>]].</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">zef install Temp::Path
-</span></span></code></pre></div><p>Then we let Raku know we&rsquo;re using the module.  That traditionally goes near the top of our script.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Temp::Path</span><span class="p">;</span>
-</span></span></code></pre></div><p>More or less following along Temp::Path&rsquo;s sample usage.  <a href="https://docs.raku.org/language/control#index-entry-control_flow_with"><code>with</code></a> creates a block for our temporary file.  It even sets the <a href="https://docs.raku.org/language/variables#The_$__variable">topic variable</a> <code>$_</code>.  Don&rsquo;t need to come up with a temporary variable name for our temporary file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">zef install Temp::Path</span></span></code></pre>
+</figure><p>Then we let Raku know we&rsquo;re using the module.  That traditionally goes near the top of our script.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Temp::Path</span><span class="p">;</span></span></span></code></pre>
+</figure><p>More or less following along Temp::Path&rsquo;s sample usage.  <a href="https://docs.raku.org/language/control#index-entry-control_flow_with"><code>with</code></a> creates a block for our temporary file.  It even sets the <a href="https://docs.raku.org/language/variables#The_$__variable">topic variable</a> <code>$_</code>.  Don&rsquo;t need to come up with a temporary variable name for our temporary file.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">with</span> <span class="n">make-temp-path</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="nb">spurt</span><span class="p">(</span><span class="nv">@entries</span><span class="o">.</span><span class="nb">map</span><span class="p">({</span> <span class="p">&#34;</span><span class="s2">cat </span><span class="nv">$_</span><span class="p">&#34;</span> <span class="p">})</span><span class="o">.</span><span class="nb">join</span><span class="p">(&#34;</span><span class="se">\n</span><span class="p">&#34;));</span>
 </span></span><span class="line"><span class="cl">    <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin batch </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span> <span class="p">/</span><span class="ni">^^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)</span><span class="ni">$$</span><span class="p">/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>The regular expression is starting to look interesting.  <code>joplin batch</code> hands everything to us as one string.  We need to adjust the entry-oriented logic we had before.  Now we find any <em>line</em> containing a lone ISO-8601 timestamp, and convert it to a top-level Markdown header.  The <code>:g</code> flag tells <code>.subst</code> to replace every occurrence.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>The regular expression is starting to look interesting.  <code>joplin batch</code> hands everything to us as one string.  We need to adjust the entry-oriented logic we had before.  Now we find any <em>line</em> containing a lone ISO-8601 timestamp, and convert it to a top-level Markdown header.  The <code>:g</code> flag tells <code>.subst</code> to replace every occurrence.</p>
 <blockquote>
 <p>[!NOTE] <code>^..$</code> vs <code>^^..$$</code>
 Regular expressions in other languages treat <code>^</code> and <code>$</code> differently depending on whether you&rsquo;re applying the expression in a single-line or multiple-line context. Raku&rsquo;s <a href="https://docs.raku.org/language/regexes#Anchors">anchors</a> treat every expression as multi-line.</p>
@@ -628,7 +675,9 @@ Regular expressions in other languages treat <code>^</code> and <code>$</code> d
 <p>So what if my Raku notebook only has this one page with this one diagram. It&rsquo;s a good diagram.  Very professional.  High quality learning aid.</p>
 </blockquote>
 <p>Those few lines don&rsquo;t change anything for me as a user.  Maybe the speed?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m2.969s
 </span></span><span class="line"><span class="cl">user    0m3.385s
@@ -638,28 +687,36 @@ Regular expressions in other languages treat <code>^</code> and <code>$</code> d
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m3.034s
 </span></span><span class="line"><span class="cl">user    0m3.328s
-</span></span><span class="line"><span class="cl">sys     0m0.505s
-</span></span></code></pre></div><p>Huh. It&rsquo;s not any faster than the best case for the initial script, with a single entry taking roughly the same amount of time to load and display.  Then again, <code>batch</code> is clearly doing its job.  One entry takes almost exactly the same amount of time as 40.  Since most days I&rsquo;ll have multiple entries, that is an effective optimization for the common case.</p>
+</span></span><span class="line"><span class="cl">sys     0m0.505s</span></span></code></pre>
+</figure><p>Huh. It&rsquo;s not any faster than the best case for the initial script, with a single entry taking roughly the same amount of time to load and display.  Then again, <code>batch</code> is clearly doing its job.  One entry takes almost exactly the same amount of time as 40.  Since most days I&rsquo;ll have multiple entries, that is an effective optimization for the common case.</p>
 <p>But why is my one-liner twice as fast?  Is it Temp::Path?  Raku?  Joplin? Something to do with file I/O on WSL 2?  No idea.</p>
 <p>Let&rsquo;s find out if File::Temp does any better.</p>
 <h3 id="try-filetemp">Try File::Temp</h3>
 <p>Out comes <code>zef</code>…</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zef install File::Temp
-</span></span></code></pre></div><p>…then use File::Temp instead of Temp::Path…</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Temp</span><span class="p">;</span>
-</span></span></code></pre></div><p>…then rewrite <code>read-entries</code> one more time…</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zef install File::Temp</span></span></code></pre>
+</figure><p>…then use File::Temp instead of Temp::Path…</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Temp</span><span class="p">;</span></span></span></code></pre>
+</figure><p>…then rewrite <code>read-entries</code> one more time…</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">read-entries</span><span class="p">(</span><span class="nv">@entries</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="p">(</span><span class="nv">$filename</span><span class="o">,</span> <span class="nv">$filehandle</span><span class="p">)</span> <span class="o">=</span> <span class="n">tempfile</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">$filehandle</span><span class="o">.</span><span class="nb">spurt</span><span class="p">(</span> <span class="nv">@entries</span><span class="o">.</span><span class="nb">map</span><span class="p">({</span> <span class="p">&#34;</span><span class="s2">cat </span><span class="nv">$_</span><span class="p">&#34;</span> <span class="p">})</span><span class="o">.</span><span class="nb">join</span><span class="p">(&#34;</span><span class="se">\n</span><span class="p">&#34;)</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin batch </span><span class="nv">$filename</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(/</span><span class="ni">^^</span><span class="sr"> </span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)</span><span class="sr"> </span><span class="ni">$$</span><span class="p">/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><blockquote>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><blockquote>
 <p>[!NOTE] Space is insignificant in regular expressions
 Did you catch that?  Raku ignores whitespace in regular expressions unless you say otherwise with <a href="https://docs.raku.org/language/regexes#Sigspace"><code>:sigspace</code></a>.  Means you can make a regex easier to read.  This wasn&rsquo;t <em>much</em> easier to read, but at least we can tell where the anchors are and what I hope to find between those anchors.</p>
 <p>For Perl folks, this plus the multi-line thing is like giving every regex <code>/mx</code>.  For  Python folks, like <code>re.MULTILINE</code> and <code>re.VERBOSE</code>.  For JavaScript folks — um — it&rsquo;s like having useful regular expressions.  Okay, it&rsquo;s like having <a href="https://xregexp.com">XRegExp</a> installed and using <code>'x'</code>.</p>
 </blockquote>
 <p>…and try it out.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ time jj today
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m2.502s
 </span></span><span class="line"><span class="cl">user    0m2.771s
@@ -669,8 +726,8 @@ Did you catch that?  Raku ignores whitespace in regular expressions unless you s
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">real    0m2.611s
 </span></span><span class="line"><span class="cl">user    0m2.911s
-</span></span><span class="line"><span class="cl">sys     0m0.381s
-</span></span></code></pre></div><p>Ran each version a few times, just to be sure.  The version with File::Temp consistently finished a noticeable fraction of a section quicker than using Temp::Path.  Still nowhere near the one-liner&rsquo;s performance, but good enough
+</span></span><span class="line"><span class="cl">sys     0m0.381s</span></span></code></pre>
+</figure><p>Ran each version a few times, just to be sure.  The version with File::Temp consistently finished a noticeable fraction of a section quicker than using Temp::Path.  Still nowhere near the one-liner&rsquo;s performance, but good enough
 that I&rsquo;ll stick with File::Temp until I come up with something better.</p>
 <p>Do I care enough to reboot into Linux and see how much of a difference that makes?</p>
 <p>Not really.</p>
@@ -679,71 +736,89 @@ that I&rsquo;ll stick with File::Temp until I come up with something better.</p>
 <p>Speaking of trivia…</p>
 <h2 id="about-that-regular-expression">About that regular expression</h2>
 <p>I need to do something about this.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> ... </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(/</span><span class="ni">^^</span><span class="sr"> </span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)</span><span class="sr"> </span><span class="ni">$$</span><span class="p">/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span><span class="p">);</span>
-</span></span></code></pre></div><p>We already know that regular expressions are their own little language embedded in whatever programming language we happen to be getting work done in.  With Raku, we can treat regular expressions as part of the Raku language itself.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> ... </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(/</span><span class="ni">^^</span><span class="sr"> </span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)</span><span class="sr"> </span><span class="ni">$$</span><span class="p">/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span><span class="p">);</span></span></span></code></pre>
+</figure><p>We already know that regular expressions are their own little language embedded in whatever programming language we happen to be getting work done in.  With Raku, we can treat regular expressions as part of the Raku language itself.</p>
 <p>Let&rsquo;s tackle this backwards.  Top-down.  Whatever it is the fancy people say. I&rsquo;m going to split it out into its own function.  Makes it easier to think of this transformation in isolation.</p>
 <h3 id="hide-it-in-a-function">Hide it in a function</h3>
 <p>What do I want this function to do?  I want it to give me my <em>journal text</em>, but with <em>formatted headers</em> in the right places.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-headers</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-headers</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">$journal-text</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="p">/</span><span class="ni">^^</span><span class="sr"> </span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)</span><span class="sr"> </span><span class="ni">$$</span><span class="p">/</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="use-a-named-capture">Use a named capture</h3>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h3 id="use-a-named-capture">Use a named capture</h3>
 <p>Do I want to format every <code>$0</code>? No. I want to format every <em>entry title</em>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-journal</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-journal</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">$journal-text</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="o">...,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># $&lt;entry-title&gt;</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span>
 </span></span><span class="line"><span class="cl">  <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Of course Raku supports <a href="https://docs.raku.org/language/regexes#Named_captures">named captures</a>.  The part we care about is stored in the match object.  Behind the scenes, <code>$&lt;entry-title&gt;</code> is getting the value stored under the key <code>&quot;entry-title&quot;</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Of course Raku supports <a href="https://docs.raku.org/language/regexes#Named_captures">named captures</a>.  The part we care about is stored in the match object.  Behind the scenes, <code>$&lt;entry-title&gt;</code> is getting the value stored under the key <code>&quot;entry-title&quot;</code>.</p>
 <h2 id="an-rx-block-for-legibility">An <code>rx{}</code> block for legibility</h2>
 <p>How do I know the <em>entry title</em>?  I know the <em>entry title</em> because I found a
 <em>lone timestamp</em>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-journal</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">format-journal</span><span class="p">(</span><span class="nv">$journal-text</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">$journal-text</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="k">rx</span><span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">      </span><span class="nv">$&lt;entry-title&gt;</span><span class="sr"> </span><span class="o">=</span><span class="sr"> </span><span class="p">(</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">lone-timestamp</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">)</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">    </span><span class="p">}</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># $&lt;entry-title&gt;</span><span class="p">&#34;</span> <span class="p">}</span><span class="o">,</span> <span class="p">:</span><span class="s">g</span>
 </span></span><span class="line"><span class="cl">  <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><code>rx{ ... }</code> indicates an <a href="https://docs.raku.org/language/regexes#Anonymous_regex_definition_syntax">anonymous regex</a>.  &ldquo;Anonymous&rdquo; as opposed to what exactly?  I&rsquo;m getting there.  As our expressions get more complex, take advantage of all useful quoting mechanisms.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p><code>rx{ ... }</code> indicates an <a href="https://docs.raku.org/language/regexes#Anonymous_regex_definition_syntax">anonymous regex</a>.  &ldquo;Anonymous&rdquo; as opposed to what exactly?  I&rsquo;m getting there.  As our expressions get more complex, take advantage of all useful quoting mechanisms.</p>
 <p>Notice that instead of a <code>(?&lt;name&gt; pattern)</code> approach to named captures, in Raku it looks a lot more like assigning a pattern to a variable.  Okay fine. Assigning a pattern to the match object&rsquo;s hash, under the key <code>&quot;entry-title&quot;</code>.  But still.  It looks like a more familiar programming language assignment.</p>
 <p>But rather than the expected elaborate chain of metacharacters, the pattern we store is — another identifier?</p>
 <p>I told you I was getting there.</p>
 <h3 id="name-your-regex-not-just-your-capture">Name your regex, not just your capture</h3>
 <p>What&rsquo;s a <em>lone timestamp</em>? It&rsquo;s a <em>timestamp</em> on a line by itself.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">lone-timestamp</span> <span class="p">{</span><span class="sr">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">lone-timestamp</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">  </span><span class="ni">^^</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">timestamp</span><span class="p">&gt;</span><span class="sr"> </span><span class="ni">$$</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Now we have a regular expression as its own scoped code object.  The <a href="https://docs.raku.org/language/regexes#Named_regex_definition_syntax">regex</a> is the rawest component of a family that includes tokens, rules, and entire <a href="https://docs.raku.org/language/grammar_tutorial">grammars</a>.  I&rsquo;m not ready to get into grammars yet, but I am absolutely getting closer.</p>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>Now we have a regular expression as its own scoped code object.  The <a href="https://docs.raku.org/language/regexes#Named_regex_definition_syntax">regex</a> is the rawest component of a family that includes tokens, rules, and entire <a href="https://docs.raku.org/language/grammar_tutorial">grammars</a>.  I&rsquo;m not ready to get into grammars yet, but I am absolutely getting closer.</p>
 <h3 id="its-not-an-expression-its-a-composition">It&rsquo;s not an expression; it&rsquo;s a composition</h3>
 <p>What does a <em>timestamp</em> look like?  Well, a <a href="https://docs.raku.org/type/DateTime#method_Str">DateTime String</a> holds an <em>ISO 8601 date</em>, a <em>clock time</em>, and and <em>offset</em>, with a <code>'T'</code> between the date and the clock time.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">timestamp</span> <span class="p">{</span><span class="sr">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">timestamp</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">  </span><span class="p">&lt;</span><span class="nf">iso8601-date</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">T</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">clock-time</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">offset</span><span class="p">&gt;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>If we&rsquo;re looking for a literal string, it&rsquo;s okay to use a string literal.</p>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>If we&rsquo;re looking for a literal string, it&rsquo;s okay to use a string literal.</p>
 <p>Now we have a few regex patterns to define.  An <em>ISO 8601 date</em> includes a <em>year</em>, a <em>month</em>, and a <em>day of the month</em>, separated by <code>'-'</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">iso8601-date</span> <span class="p">{</span><span class="sr">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">iso8601-date</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">  </span><span class="p">&lt;</span><span class="nf">year</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">-</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">month</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">-</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">day-of-month</span><span class="p">&gt;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>Playing more with a language gives me a feel for how to use it based on what it makes easy.  Raku makes it easy to create a program by composing it from small pieces.  Tiny pieces, even.</p>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>Playing more with a language gives me a feel for how to use it based on what it makes easy.  Raku makes it easy to create a program by composing it from small pieces.  Tiny pieces, even.</p>
 <p>Mind you, I have no idea if that&rsquo;s what <code>raku</code> the <em>compiler</em> likes.  But the <em>syntax</em> loves it.</p>
 <p>A <em>year</em> is four digits, a <em>month</em> is two digits, and the <em>day of the month</em> is two digits.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">year</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">4</span><span class="sr"> </span><span class="p">}</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">year</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">4</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">month</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">day-of-month</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span>
-</span></span></code></pre></div><p>The <a href="https://docs.raku.org/language/regexes#General_quantifier:_**_min..max">general quantifier</a> <code>**</code> indicates how many times you expect a chunk to appear.  To this day I can&rsquo;t remember the exact syntax for quantifiers in old-school regular expressions.  But I can remember the number 4.</p>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">day-of-month</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span></span></span></code></pre>
+</figure><p>The <a href="https://docs.raku.org/language/regexes#General_quantifier:_**_min..max">general quantifier</a> <code>**</code> indicates how many times you expect a chunk to appear.  To this day I can&rsquo;t remember the exact syntax for quantifiers in old-school regular expressions.  But I can remember the number 4.</p>
 <blockquote>
-<p>[!NOTE]
-This regex is wrong for verifying real dates. It&rsquo;s not wrong enough to worry about today. I&rsquo;m identifying header lines, not validating forms. But if some day I decide to enforce zero-padded months from <code>01</code> to <code>12</code>, I know exactly which block to edit.</p>
+<p><strong>NOTE</strong></p>
+<p>This regex is wrong for verifying real dates. It&rsquo;s not wrong enough to worry about today. I&rsquo;m identifying header lines, not validating forms. But if some day I decide to enforce zero-padded months from <code>01</code> to <code>12</code>, I know exactly which block to edit.</p>
 </blockquote>
 <p>Looks like <em>clock time</em> gets saved as <em>hours</em>, <em>minutes</em>, and <em>seconds</em>.  In the interest of time, we&rsquo;ll oversimplify those too.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">hours</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">hours</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">minutes</span> <span class="p">{</span><span class="sr"> </span><span class="se">\d</span><span class="sr"> </span><span class="o">**</span><span class="sr"> </span><span class="mi">2</span><span class="sr"> </span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -751,14 +826,18 @@ This regex is wrong for verifying real dates. It&rsquo;s not wrong enough to wor
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">clock-time</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">  </span><span class="p">&lt;</span><span class="nf">hours</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">:</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">minutes</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">:</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">seconds</span><span class="p">&gt;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>And my offset holds an indicator, some <em>hours</em>, and some <em>minutes</em>.  Hey, I can reuse my existing regex definitions for those!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">offset</span> <span class="p">{</span><span class="sr">
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>And my offset holds an indicator, some <em>hours</em>, and some <em>minutes</em>.  Hey, I can reuse my existing regex definitions for those!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">my</span> <span class="k">regex</span> <span class="nf">offset</span> <span class="p">{</span><span class="sr">
 </span></span></span><span class="line"><span class="cl"><span class="sr">  </span><span class="p">&lt;[</span><span class="sr">+-</span><span class="p">]&gt;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">hours</span><span class="p">&gt;</span><span class="sr"> </span><span class="p">&#39;</span><span class="s1">:</span><span class="p">&#39;</span><span class="sr"> </span><span class="p">&lt;</span><span class="nf">minutes</span><span class="p">&gt;</span><span class="sr">
-</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span>
-</span></span></code></pre></div><p>All right.  I think that covers it.  I enjoyed reusing my expressions for <em>hours</em> and <em>minutes</em> like that.  Actual code reuse, in a regular expression. Who would&rsquo;ve thought?</p>
+</span></span></span><span class="line"><span class="cl"><span class="sr"></span><span class="p">}</span></span></span></code></pre>
+</figure><p>All right.  I think that covers it.  I enjoyed reusing my expressions for <em>hours</em> and <em>minutes</em> like that.  Actual code reuse, in a regular expression. Who would&rsquo;ve thought?</p>
 <p>When I take this <code>lone-timestamp</code> regex and match it against <code>&quot;2021-05-24T08:11:00-07:00&quot;</code> we can see those named expressions at work. The potential really starts to sink in for me.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">｢2021-05-24T08:11:00-07:00｣
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">｢2021-05-24T08:11:00-07:00｣
 </span></span><span class="line"><span class="cl"> lone-timestamp =&gt; ｢2021-05-24T08:11:00-07:00｣
 </span></span><span class="line"><span class="cl">  timestamp =&gt; ｢2021-05-24T08:11:00-07:00｣
 </span></span><span class="line"><span class="cl">   iso8601-date =&gt; ｢2021-05-24｣
@@ -771,8 +850,8 @@ This regex is wrong for verifying real dates. It&rsquo;s not wrong enough to wor
 </span></span><span class="line"><span class="cl">    seconds =&gt; ｢00｣
 </span></span><span class="line"><span class="cl">   offset =&gt; ｢-07:00｣
 </span></span><span class="line"><span class="cl">    hours =&gt; ｢07｣
-</span></span><span class="line"><span class="cl">    minutes =&gt; ｢00｣
-</span></span></code></pre></div><p>And this is just me composing regex objects.  Eventually I&rsquo;m going to try grammars and then look out world!</p>
+</span></span><span class="line"><span class="cl">    minutes =&gt; ｢00｣</span></span></code></pre>
+</figure><p>And this is just me composing regex objects.  Eventually I&rsquo;m going to try grammars and then look out world!</p>
 <blockquote>
 <p>[!NOTE] but why?
 This may all seem a little ridiculous, and for this use case — parsing my own entry titles — it is.  So why am I going through all this work? Aside from it being fun, of course.</p>
@@ -784,7 +863,9 @@ This may all seem a little ridiculous, and for this use case — parsing my own 
 <p>My script works. It&rsquo;s still not fast, but at least it&rsquo;s never slow. It&rsquo;s readable. And most important of all, I had fun.</p>
 <h2 id="the-complete-script">The complete script</h2>
 <p>Includes a couple more steps into composition that I didn&rsquo;t feel merited extra blog post paragraphs.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">File::Temp</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -881,8 +962,8 @@ This may all seem a little ridiculous, and for this use case — parsing my own 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">all</span><span class="p">&#34;)</span> <span class="p">{</span> <span class="k">#= </span><span class="sd">Read all entries (SLOW!)
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span> <span class="n">all-entries</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>]]></content:encoded>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>]]></content:encoded>
 </item>
 <item>
   <title>Post: CLI Journaling in Joplin with Raku</title>
@@ -907,37 +988,49 @@ the formatted output of my journal-reading one-liner</p>
 <p>Those apps and tools are yet another interface, another set of rules.  I already have Joplin handy.  Besides desktop, mobile, and terminal applications, Joplin has a CLI.  And an API, but I suspect I&rsquo;ll get to that later.</p>
 <p>With uncharacteristic restraint, today I choose to get better at the tools I have rather than installing a new one.</p>
 <h2 id="adding-a-journal-entry">Adding a journal entry</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
-</span></span></code></pre></div><p><a href="https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html#date-invocation">GNU Date</a> — from GNU Coreutils — gets us consistent timestamps, which simplify searching and filtering.  <code>--iso</code> produces an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp.  Very handy.  By default it prints the <code>YYYY-MM-DD</code> version of today&rsquo;s date, but you can opt for more granularity.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> date --iso<span class="o">=</span>minute
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span></span></span></code></pre>
+</figure><p><a href="https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html#date-invocation">GNU Date</a> — from GNU Coreutils — gets us consistent timestamps, which simplify searching and filtering.  <code>--iso</code> produces an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp.  Very handy.  By default it prints the <code>YYYY-MM-DD</code> version of today&rsquo;s date, but you can opt for more granularity.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> date --iso<span class="o">=</span>minute
 </span></span><span class="line"><span class="cl"><span class="go">2021-05-20T08:26-07:00
-</span></span></span></code></pre></div><p>I plan to make frequent small notes, so <code>minute</code> feels like a good choice.</p>
+</span></span></span></code></pre>
+</figure><p>I plan to make frequent small notes, so <code>minute</code> feels like a good choice.</p>
 <blockquote>
 <p>[!NOTE] <code>use Journal</code>?
 Yes, this came up.  Had the Joplin terminal app open in one terminal while I added a journal entry in another terminal.  Terminal app did some sort of state maintenance thing.  Next thing I know I&rsquo;m adding journal entries to &ldquo;Nerd Notes.&rdquo;</p>
 </blockquote>
 <p>Since it doesn&rsquo;t exist, <code>joplin</code> will ask for confirmation before creating it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="go">Note does not exist: &#34;2021-05-20T08:26-07:00&#34;. Create it? (Y/n)
-</span></span></span></code></pre></div><p>I&rsquo;m okay with the confirmation request for now. That way I have fewer moments of accidentally creating entries.</p>
+</span></span></span></code></pre>
+</figure><p>I&rsquo;m okay with the confirmation request for now. That way I have fewer moments of accidentally creating entries.</p>
 <p><img src="/post/2021/05/attachments/img/2021/editing-note.png" alt="Editing a journal entry"/></p>
 <h3 id="what-about-more-of-a-diary">What about more of a diary?</h3>
 <p>Leave <code>minute</code> off the <code>--iso</code> argument if you prefer a tidy collection of daily pages to my big stack of notes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin edit <span class="k">$(</span>date --iso<span class="k">)</span>
-</span></span></code></pre></div><p>Now you&rsquo;ll be editing the single entry for today&rsquo;s date.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin edit <span class="k">$(</span>date --iso<span class="k">)</span></span></span></code></pre>
+</figure><p>Now you&rsquo;ll be editing the single entry for today&rsquo;s date.</p>
 <h2 id="reading-journal-entries">Reading journal entries</h2>
 <p>The best review path will be via the Joplin app itself.  That way you can tag and edit.</p>
 <p><em>But</em> – if you just want a quick view of recent thoughts?  That is something we can do from the command line.</p>
 <p>This next bit gets a little fancy.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">&amp;&amp;</span> raku -e <span class="s1">&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s1">    for qx{ joplin ls }.lines.sort {
 </span></span></span><span class="line"><span class="cl"><span class="s1">      qqx{ joplin cat $_ }.subst(
 </span></span></span><span class="line"><span class="cl"><span class="s1">        /^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }
 </span></span></span><span class="line"><span class="cl"><span class="s1">      ).say
 </span></span></span><span class="line"><span class="cl"><span class="s1">    }&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -
-</span></span></code></pre></div><p>Let me stall for a second.</p>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -</span></span></code></pre>
+</figure><p>Let me stall for a second.</p>
 <h3 id="pretty-print-with-rich">Pretty print with Rich</h3>
 <p>We already talked about <code>joplin use Journal</code>. <a href="https://rich.readthedocs.io/en/stable/markdown.html">Rich Markdown</a> formats Markdown — Joplin&rsquo;s default format — for rich display in a terminal.  It can even run as a standalone application.  I take advantage of that here to get a pretty view of my Joplin entries:</p>
 <pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
@@ -989,28 +1082,40 @@ the easy copy buffer.
 <p>You can also use <a href="https://github.com/charmbracelet/glow">Glow</a> if you want a standalone Markdown pretty printer. It works.  Rich is already part of my toolkit, so I&rsquo;ll keep using it.</p>
 <h3 id="am-i-ready-to-explain-myself">Am I ready to explain myself?</h3>
 <p>Okay, I think I&rsquo;ve stalled enough.  That middle bit.  That&rsquo;s <a href="/card/raku/">card/Raku</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="p">/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">)</span><span class="o">.</span><span class="nb">say</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I don&rsquo;t often do one-liners. We&rsquo;ll have to break it down into tiny pieces.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>I don&rsquo;t often do one-liners. We&rsquo;ll have to break it down into tiny pieces.</p>
 <p>First, we need a sorted list of journal entries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span>  <span class="c1"># ask `joplin` to print note titles, saving the output</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span>  <span class="c1"># ask `joplin` to print note titles, saving the output</span>
 </span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">lines</span>         <span class="c1"># Split that output into lines, one per note</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">sort</span>          <span class="c1"># Sort those lines by note title</span>
-</span></span></code></pre></div><p>Things get unpredictable if I don&rsquo;t sort notes myself.  Joplin tends to sort notes by last activity.  Thank goodness for ISO 8601, which is easily sorted:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2021-05-20T08:26-07:00
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">sort</span>          <span class="c1"># Sort those lines by note title</span></span></span></code></pre>
+</figure><p>Things get unpredictable if I don&rsquo;t sort notes myself.  Joplin tends to sort notes by last activity.  Thank goodness for ISO 8601, which is easily sorted:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">2021-05-20T08:26-07:00
 </span></span><span class="line"><span class="cl">2021-05-21T09:00-07:00
 </span></span><span class="line"><span class="cl">2021-05-21T14:01-07:00
-</span></span><span class="line"><span class="cl">2021-05-21T20:20-07:00
-</span></span></code></pre></div><p>Next, we need to do something with each of those note titles.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
-</span></span></code></pre></div><p>Well? The content of each note is important.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span>
-</span></span></code></pre></div><p><code>qqx</code> interpolates variables before asking the system to run your command. The variable being interpolated is our old friend <code>$_</code>, this time around standing in for whichever of those sorted lines we reached.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">2021-05-20T08:26-07:00
+</span></span><span class="line"><span class="cl">2021-05-21T20:20-07:00</span></span></code></pre>
+</figure><p>Next, we need to do something with each of those note titles.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>Well? The content of each note is important.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span></span></span></code></pre>
+</figure><p><code>qqx</code> interpolates variables before asking the system to run your command. The variable being interpolated is our old friend <code>$_</code>, this time around standing in for whichever of those sorted lines we reached.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">2021-05-20T08:26-07:00
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Getting an idea for a CLI journaling tool using Joplin as the backend
 </span></span><span class="line"><span class="cl">
@@ -1023,30 +1128,41 @@ the easy copy buffer.
 </span></span><span class="line"><span class="cl"><span class="s">```</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">That&#39;s it, basically. There could be more functionality, such as reviewing
-</span></span><span class="line"><span class="cl">the log.
-</span></span></code></pre></div><p>I want to print this out in the terminal.  I need to massage it a little first. Even though the file is Markdown, the first line is the note&rsquo;s unformatted title.  It makes quick one-line notes easier.</p>
+</span></span><span class="line"><span class="cl">the log.</span></span></code></pre>
+</figure><p>I want to print this out in the terminal.  I need to massage it a little first. Even though the file is Markdown, the first line is the note&rsquo;s unformatted title.  It makes quick one-line notes easier.</p>
 <p>But it also means if <em>I</em> want that first line to look significant, I need to do something with this:</p>
-<pre tabindex="0"><code class="language-language" data-lang="language">2021-05-20T08:26-07:00
-</code></pre><p>The most obvious fix to me? Turn it into a level one Markdown header.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 2021-05-20T08:26-07:00
-</span></span></span></code></pre></div><p>That&rsquo;s a single <a href="https://docs.raku.org/routine/subst"><code>.subst</code></a> transformation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>  <span class="c1"># in printed note</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-language" data-lang="language"
+      >2021-05-20T08:26-07:00</code></pre>
+</figure><p>The most obvious fix to me? Turn it into a level one Markdown header.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"># 2021-05-20T08:26-07:00</span></span></code></pre>
+</figure><p>That&rsquo;s a single <a href="https://docs.raku.org/routine/subst"><code>.subst</code></a> transformation.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>  <span class="c1"># in printed note</span>
 </span></span><span class="line"><span class="cl">  <span class="p">/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span>          <span class="c1"># find the first line that looks like a timestamp</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span>                 <span class="c1"># and turn it into a Markdown header</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><p>Okay, I got a little lazy with the regular expression.  But my brain was in one-liner mode.  For a full script I&rsquo;d probably spell it out more clearly.</p>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><p>Okay, I got a little lazy with the regular expression.  But my brain was in one-liner mode.  For a full script I&rsquo;d probably spell it out more clearly.</p>
 <p>The last step is to display the transformed note contents.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="nb">say</span>
-</span></span></code></pre></div><p>Or ask them to display themselves.  However you want to think of it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="nb">say</span></span></span></code></pre>
+</figure><p>Or ask them to display themselves.  However you want to think of it.</p>
 <p>This whole thing would be rather clunky as a shell alias.  I could add it as a function to my <code>.bashrc</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jread<span class="o">()</span> <span class="o">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jread<span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  joplin use Journal <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="o">&amp;&amp;</span> raku -e <span class="s1">&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s1">      qqx{joplin cat $_}.subst(/^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }).say for qx{ joplin ls }.lines.sort
 </span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> python -m rich.markdown -
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Then again, maybe not.  This should probably be a script.  Check back in a few days.</p>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre>
+</figure><p>Then again, maybe not.  This should probably be a script.  Check back in a few days.</p>
 <blockquote>
 <p>[!NOTE] Oooh a cliffhanger!
 I have a working script already.  What I don&rsquo;t have much of is unallocated
@@ -1091,23 +1207,33 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 <p>So for today it’s Joplin.</p>
 <h2 id="setup">Setup</h2>
 <p>Joplin runs on NodeJS, so install it with <a href="/card/volta/">card/Volta</a>, Yarn, NPM, or whatever you install Node stuff with.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ volta install joplin
-</span></span><span class="line"><span class="cl">success: installed joplin@1.6.4 with executables: joplin
-</span></span></code></pre></div><p>Now there’s a <code>joplin</code> command in your path!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">joplin
-</span></span></code></pre></div><p>You get these four panes you can tab around in, and — look, Joplin’s <a href="https://joplinapp.org/terminal/#usage">usage</a> docs break it down better than I could.  Go look at those.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ volta install joplin
+</span></span><span class="line"><span class="cl">success: installed joplin@1.6.4 with executables: joplin</span></span></code></pre>
+</figure><p>Now there’s a <code>joplin</code> command in your path!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">joplin</span></span></code></pre>
+</figure><p>You get these four panes you can tab around in, and — look, Joplin’s <a href="https://joplinapp.org/terminal/#usage">usage</a> docs break it down better than I could.  Go look at those.</p>
 <h2 id="basic-usage">Basic usage</h2>
 <p>Joplin has a command line mode, which you get at with the colon character <code>:</code>.  Gonna focus on that command line mode.</p>
 <p>The first and most important command?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:help
-</span></span></code></pre></div><p>That gives you a list of commands, including the second most important command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:exit
-</span></span></code></pre></div><p>Not <code>:quit</code>.  Not <code>:wq</code>.  No.  Joplin’s terminal application is kind of inspired by <a href="/card/vim/">card/Vim</a>, but it is not Vim.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:help</span></span></code></pre>
+</figure><p>That gives you a list of commands, including the second most important command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:exit</span></span></code></pre>
+</figure><p>Not <code>:quit</code>.  Not <code>:wq</code>.  No.  Joplin’s terminal application is kind of inspired by <a href="/card/vim/">card/Vim</a>, but it is not Vim.</p>
 <h2 id="setting-up-note-synchronization">Setting up note synchronization</h2>
 <p>I’ve already been using Joplin elsewhere, so <em>my</em> first task is to configure <a href="https://joplinapp.org/terminal/#synchronisation">synchronization</a>.</p>
 <p>The <code>sync</code> needs no additional arguments when used with Dropbox, lucky for me.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:sync
-</span></span></code></pre></div><p>Joplin gives me:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:sync</span></span></code></pre>
+</figure><p>Joplin gives me:</p>
 <ul>
 <li>a URL to copy and paste into the browser</li>
 <li>a prompt to enter Dropbox’s validation code</li>
@@ -1120,14 +1246,20 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 </ol>
 <p>If you’re me, the leftmost pane fills with folders from your previous Joplin sessions.  The screenshot you already saw, pretty much.</p>
 <h3 id="creating-a-note">Creating a note</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mknote &#34;Terminal notes with Joplin&#34;
-</span></span></code></pre></div><p>The quotes aren’t needed for single-word notes.  But for multi-word notes it’s either wrap it in quotes or use CamelCase.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mknote &#34;Terminal notes with Joplin&#34;</span></span></code></pre>
+</figure><p>The quotes aren’t needed for single-word notes.  But for multi-word notes it’s either wrap it in quotes or use CamelCase.</p>
 <p>I can see it’s up there in the middle tab, but now I’m obsessing over the command line mode.  Is there an <code>ls</code> equivalent?  There sure is!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
-</span></span><span class="line"><span class="cl">Terminal notes with Joplin
-</span></span></code></pre></div><h3 id="editing-a-note">Editing a note</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:edit &#34;Terminal notes with Joplin&#34;
-</span></span></code></pre></div><p>Joplin offers a chance to autocomplete once I type enough in.  I accept that autocompletion with <code>[TAB]</code>, then hit <code>[ENTER]</code> to complete the command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
+</span></span><span class="line"><span class="cl">Terminal notes with Joplin</span></span></code></pre>
+</figure><h3 id="editing-a-note">Editing a note</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:edit &#34;Terminal notes with Joplin&#34;</span></span></code></pre>
+</figure><p>Joplin offers a chance to autocomplete once I type enough in.  I accept that autocompletion with <code>[TAB]</code>, then hit <code>[ENTER]</code> to complete the command.</p>
 <p>This passes the note buffer off to your default text editor — in my case,
 <a href="https://micro-editor.github.io/">micro</a>.</p>
 <p>The notes themselves are in a straightforward Markdown.  See <a href="https://joplinapp.org/markdown/">Joplin&rsquo;s Markdown guide</a> for those details.</p>
@@ -1135,28 +1267,42 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 <p>Edit.  Save.  Quit the editor.  You’re back in Joplin, and your updated content is in Joplin’s content pane.</p>
 <h3 id="deleting-a-note">Deleting a note</h3>
 <p>I forgot about the quotes and made myself a &ldquo;Terminal&rdquo; note.  How do I delete it?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rmnote Terminal
-</span></span></code></pre></div><p>Joplin asks for confirmation, defaulting to &ldquo;No&rdquo; because you can’t get the note back once deleted.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rmnote Terminal</span></span></code></pre>
+</figure><p>Joplin asks for confirmation, defaulting to &ldquo;No&rdquo; because you can’t get the note back once deleted.</p>
 <h3 id="organizing-notes-into-notebooks">Organizing notes into notebooks</h3>
 <p>I can see this becoming a whole series of notes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mkbook MyJoplinNotes
-</span></span></code></pre></div><p>Didn’t feel like using quotes this time.  Anyways, &ldquo;MyJoplinNotes&rdquo; gets created at the top level.  Joplin automatically sets it as the notebook I’m using.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mkbook MyJoplinNotes</span></span></code></pre>
+</figure><p>Didn’t feel like using quotes this time.  Anyways, &ldquo;MyJoplinNotes&rdquo; gets created at the top level.  Joplin automatically sets it as the notebook I’m using.</p>
 <p>&ldquo;Using&rdquo; a particular notebook means this is where your focus is.  Any new notes you create end up in the notebook you’re using.</p>
 <p>I need to get <em>this</em> note over to the right location.  First I <code>use</code> the random notebook I started in.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use &#39;Nerd notes&#39;
-</span></span></code></pre></div><p>My first round notebook names tend to be terrible. Sorry.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use &#39;Nerd notes&#39;</span></span></code></pre>
+</figure><p>My first round notebook names tend to be terrible. Sorry.</p>
 <h3 id="moving-notes">Moving notes</h3>
 <p>Now I can move it, letting Joplin help me with autocompletion.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mv &#39;Terminal notes with Joplin&#39; MyJoplinNotes
-</span></span></code></pre></div><p>Switch over to the new notebook:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use MyJoplinNotes
-</span></span></code></pre></div><p>And there it is.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
-</span></span><span class="line"><span class="cl">Terminal notes with Joplin
-</span></span></code></pre></div><h3 id="renaming-notes">Renaming notes</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mv &#39;Terminal notes with Joplin&#39; MyJoplinNotes</span></span></code></pre>
+</figure><p>Switch over to the new notebook:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use MyJoplinNotes</span></span></code></pre>
+</figure><p>And there it is.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
+</span></span><span class="line"><span class="cl">Terminal notes with Joplin</span></span></code></pre>
+</figure><h3 id="renaming-notes">Renaming notes</h3>
 <p>Of course, now that it’s in a dedicated notebook the name seems redundant. Let’s rename this note.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ren &#39;Terminal notes with Joplin&#39; &#39;Adding and Organizing Notes&#39;
-</span></span></code></pre></div><h2 id="parting-thought">Parting thought</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ren &#39;Terminal notes with Joplin&#39; &#39;Adding and Organizing Notes&#39;</span></span></code></pre>
+</figure><h2 id="parting-thought">Parting thought</h2>
 <p>Even though Joplin keeps a narrow focus, there’s much more than I looked at here.  I just wanted to take some notes.  You can manage tasks with it, and even extend it with an API.</p>
 <p>Keep your notes short, unless your editor supports folding.  If it does?  Go wild.  Have fun!</p>
 ]]></content:encoded>

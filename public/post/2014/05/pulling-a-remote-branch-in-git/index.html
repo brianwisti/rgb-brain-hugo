@@ -64,11 +64,11 @@
 
   
     <meta name="twitter:description" content="
-[!NOTE] tldr
+tldr
 git branch -r to list remote branches. git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt; to check your branch out.
 ">
     <meta property="og:description" content="
-[!NOTE] tldr
+tldr
 git branch -r to list remote branches. git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt; to check your branch out.
 ">
   
@@ -137,8 +137,8 @@ git branch -r to list remote branches. git checkout --track -b &lt;local-branch&
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2014/">2014</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/">Pulling a Remote Branch In Git</a></li>
@@ -297,26 +302,32 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <blockquote>
-<p>[!NOTE] <a href="/card/tldr/">tldr</a>
-<code>git branch -r</code> to list remote branches. <code>git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt;</code> to check your branch out.</p>
+<p><strong><a href="/card/tldr/">tldr</a></strong></p>
+<p><code>git branch -r</code> to list remote branches. <code>git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt;</code> to check your branch out.</p>
 </blockquote>
 <p>Because I know I&rsquo;ll forget it if I don&rsquo;t write it down now.</p>
 <p>I&rsquo;ve been doing a thing in a branch on one machine, but now I want to do that thing on another machine. I&rsquo;ve already pushed that branch to origin, so I don&rsquo;t need to - hold on. I better put that down as well.</p>
 <h2 id="on-one-machine">On One Machine</h2>
 <p>The main concern here is to ensure that my work isn&rsquo;t stuck on the one machine. The <code>-u</code> flag (or <code>--set-upstream</code> for the verbose) creates a tracking reference upstream, so that the remote repository remembers the branch.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
 </span></span><span class="line"><span class="cl"><span class="go">master
 </span></span></span><span class="line"><span class="cl"><span class="go">* oh-hai
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git push -u origin oh-hai
-</span></span></code></pre></div><h2 id="on-another-machine">On Another Machine</h2>
+</span></span></code></pre>
+</figure><h2 id="on-another-machine">On Another Machine</h2>
 <p>Now that I&rsquo;ve created the tracking reference upstream, I can pull it down from the other machine.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
 </span></span><span class="line"><span class="cl"><span class="go">* master
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git branch -r
 </span></span><span class="line"><span class="cl"><span class="go">origin/master
 </span></span></span><span class="line"><span class="cl"><span class="go">origin/oh-hai
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git checkout --track -b oh-hai origin/oh-hai
-</span></span></code></pre></div><p>Hope I didn&rsquo;t forget anything. I&rsquo;ll find out soon enough.</p>
+</span></span></code></pre>
+</figure><p>Hope I didn&rsquo;t forget anything. I&rsquo;ll find out soon enough.</p>
   
 
 

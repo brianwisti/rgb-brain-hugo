@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2019/">2019</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/">Circular Grids With Python and Pillow</a></li>
@@ -300,7 +305,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </ul>
 <h2 id="write-some-code">Write some code</h2>
 <p>I will save myself effort by grabbing some of the work used for drawing grids and putting into a new class.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">Utility script to draw concentric circle templates for drawing
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -350,11 +357,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="n">circle_template</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><p>My <code>CircleTemplate</code> class knows how to construct, save, and show a blank image. <a href="https://docs.python.org/3/library/argparse.html">argparse</a> processes the command line arguments for image size, number of circles, and number of slices. I added defaults so I don’t have to type in a value every time I tested the script for this post.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span></span></span></code></pre>
+</figure><p>My <code>CircleTemplate</code> class knows how to construct, save, and show a blank image. <a href="https://docs.python.org/3/library/argparse.html">argparse</a> processes the command line arguments for image size, number of circles, and number of slices. I added defaults so I don’t have to type in a value every time I tested the script for this post.</p>
 <p>I can build on this framework. Time to fill in the blanks.</p>
 <h2 id="draw-some-circles">Draw some circles</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
@@ -384,13 +393,15 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">            <span class="n">bounding_box</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">bounding_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
-</span></span></code></pre></div><p>I need to figure out my origin, the center for my circles and slices. Since the image is a square, it will be the same along both the X and Y axes. This means I only need to calculate a single midpoint.</p>
+</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">bounding_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I need to figure out my origin, the center for my circles and slices. Since the image is a square, it will be the same along both the X and Y axes. This means I only need to calculate a single midpoint.</p>
 <p>Each time we move on to a new radius, <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.arc">ImageDraw.arc</a> creates a circle by drawing a 360 degree arc within <code>bounding_box</code>, a square that extends <code>radius</code> pixels from a midpoint along the <code>x</code> and <code>y</code> axes.</p>
 <p><img src="/post/2019/01/attachments/img/2019/circle-600-10-0.png" alt="Concentric circles"/></p>
 <h2 id="add-some-pie-slices">Add some pie slices</h2>
 <p>Right. I could do some moderately clever math to calculate angles and draw lines from the midpoint, <em>or</em> I could use the existing <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.pieslice">ImageDraw.pieslice</a> method to accomplish pretty much the same thing. If you read the section title, you can probably guess what I chose.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Create circles and slices in-memory&#34;&#34;&#34;</span>
@@ -428,15 +439,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">pieslice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">            <span class="n">end_angle</span> <span class="o">=</span> <span class="n">angle</span> <span class="o">*</span> <span class="n">pieslice</span>
-</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">pieslice</span><span class="p">(</span><span class="n">pie_box</span><span class="p">,</span> <span class="n">start_angle</span><span class="p">,</span> <span class="n">end_angle</span><span class="p">)</span>
-</span></span></code></pre></div><p>I’m dividing the 360 degrees of a circle into <code>slice_count</code> pieces. <code>ImageDraw.pieslice</code> draws a tidy wedge at the angles we give it fitting the bounding box defined by my largest circle.</p>
+</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">pieslice</span><span class="p">(</span><span class="n">pie_box</span><span class="p">,</span> <span class="n">start_angle</span><span class="p">,</span> <span class="n">end_angle</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I’m dividing the 360 degrees of a circle into <code>slice_count</code> pieces. <code>ImageDraw.pieslice</code> draws a tidy wedge at the angles we give it fitting the bounding box defined by my largest circle.</p>
 <p>How does that look?</p>
 <p><img src="/post/2019/01/attachments/img/2019/circle-600-10-12.png" alt="Concentric circles divided by pie slices"/></p>
 <p>It looks pretty cool.</p>
 <p>I need more circles and slices for the drawings I’m thinking of, though. Many more.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> python3 circle_template.py --circles<span class="o">=</span><span class="m">30</span> --slices<span class="o">=</span><span class="m">36</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> python3 circle_template.py --circles<span class="o">=</span><span class="m">30</span> --slices<span class="o">=</span><span class="m">36</span>
 </span></span><span class="line"><span class="cl"><span class="go">Saving circle-600-30-36.png
-</span></span></span></code></pre></div><p>Yes, that’s more like it.</p>
+</span></span></span></code></pre>
+</figure><p>Yes, that’s more like it.</p>
 <p><img src="/post/2019/01/attachments/img/2019/circle-600-30-36.png" alt="Generated circle template"/></p>
 <p>This is all I need for a drawing template. Using transformation tools and the right blending modes, I can maneuver and manipulate my grid however I need for a drawing template!</p>
 <p><img src="/post/2019/01/attachments/img/2019/three-circle-template.png" alt="template prepared for drawing"/></p>

@@ -137,8 +137,8 @@ What’s the problem? What tasks am I working on right now?">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/01/a-quick-notes-script-for-taskwarrior/">A Quick Notes Script for Taskwarrior</a></li>
@@ -302,7 +307,10 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>I plan to work on that today, but — well — there’s another problem too.</p>
 <h2 id="whats-the-problem">What’s the problem?</h2>
 <p>What tasks am I working on right now? Let’s get the <a href="/post/2018/12/active-tasks-in-taskwarrior/">active</a> task report.</p>
-<pre tabindex="0"><code>$ task active
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task active
 
 ID  Started    Active Age P Project Tags        Due        Description
 232 2020-01-12 2min   2h  H         taskwarrior 2020-01-12 quick and easy notes script
@@ -311,20 +319,26 @@ ID  Started    Active Age P Project Tags        Due        Description
                                                              2019-12-28 reference
                                                            https://twitter.com/brianwi-
                                                            sti/status/1210771041783447-
-                                                           553
-</code></pre><p>This is a mess. My task descriptions can get verbose. That makes my reports look busy. Annotations give additional information, but at the cost of cluttering the report even more.</p>
+                                                           553</code></pre>
+</figure><p>This is a mess. My task descriptions can get verbose. That makes my reports look busy. Annotations give additional information, but at the cost of cluttering the report even more.</p>
 <p>The <a href="/post/2019/09/taskwarrior-editing-refinements/">edit</a> view isn’t any better, really.</p>
-<pre tabindex="0"><code>$ task 220 edit
-</code></pre><p><code>task edit</code> gives me something like this:</p>
-<pre tabindex="0"><code># Annotations look like this: &lt;date&gt; -- &lt;text&gt; and there can be any number of them.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task 220 edit</code></pre>
+</figure><p><code>task edit</code> gives me something like this:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># Annotations look like this: &lt;date&gt; -- &lt;text&gt; and there can be any number of them.
 # The &#39; -- &#39; separator between the date and text field should not be removed.
 # A &#34;blank slot&#34; for adding an annotation follows for your convenience.
   Annotation:        2019-12-28 14:33:53 -- reference https:\/\/twitter.com\/brianwisti\/status\/1210771041783447553
-  Annotation:        2020-01-12 13:43:40 --
-</code></pre><p>I want some way of adding and reviewing information about a particular task without cluttering my Taskwarrior reports.</p>
+  Annotation:        2020-01-12 13:43:40 --</code></pre>
+</figure><p>I want some way of adding and reviewing information about a particular task without cluttering my Taskwarrior reports.</p>
 <blockquote>
-<p>[!NOTE]
-Honestly <a href="/card/org/">card/Org</a> provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.</p>
+<p><strong>NOTE</strong></p>
+<p>Honestly <a href="/card/org/">card/Org</a> provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.</p>
 </blockquote>
 <h2 id="what-i-need-today">What I need today</h2>
 <p>I need the ability to open a text file with notes for a specific task. I shouldn’t have to find or name the file myself. If the file doesn’t exist yet, it should be created.</p>
@@ -348,10 +362,15 @@ Except <code>$EDITOR</code>.</li>
 </blockquote>
 <p>How can we identify tasks consistently? IDs change as we complete tasks. Task descriptions change as we modify them. Fortunately, Every task has a <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> — a Universally Unique Identifier.</p>
 <p>The <a href="https://taskwarrior.org/docs/commands/_get.html"><code>_get</code></a> command gives us access to specific attributes of a task.</p>
-<pre tabindex="0"><code>$ task _get 220.uuid
-7887cab7-5ec4-4e8f-a257-edbd28f61301
-</code></pre><p>But how do I get this information <em>from Python</em>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task _get 220.uuid
+7887cab7-5ec4-4e8f-a257-edbd28f61301</code></pre>
+</figure><p>But how do I get this information <em>from Python</em>?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Manage Taskwarrior notes&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -359,26 +378,38 @@ Except <code>$EDITOR</code>.</li>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">task_id</span> <span class="o">=</span> <span class="mi">220</span>
 </span></span><span class="line"><span class="cl"><span class="n">task_uuid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;task _get </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">.uuid&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Task </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> has UUID </span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ task-note.py
-Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301
-</code></pre><p>That wasn’t so hard. I got lost in <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> last time I tried anything interesting with Python and processes. Turns out <a href="https://docs.python.org/3/library/os.html#os.popen">os.popen</a> provides a relatively straightforward approach.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Task </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2"> has UUID </span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task-note.py
+Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301</code></pre>
+</figure><p>That wasn’t so hard. I got lost in <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> last time I tried anything interesting with Python and processes. Turns out <a href="https://docs.python.org/3/library/os.html#os.popen">os.popen</a> provides a relatively straightforward approach.</p>
 <p>Where will I put my notes? Maybe <code>~/task-notes</code>. No, <code>~/Dropbox/task-notes</code>. That way everything is synchronized across my machines.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&#34;~/Dropbox/task-notes&#34;</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&#34;~/Dropbox/task-notes&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">notes_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Saving notes to </span><span class="si">{</span><span class="n">notes_dir</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Later I might want to be more careful with directory creation. But today’s guideline is &ldquo;quick and dirty.&rdquo; <a href="https://docs.python.org/3/library/os.html#os.makedirs">os.makedirs</a> will recursively create <code>notes_dir</code> if needed. Since I specified <code>exist_ok=True</code>, we silently move on if <code>notes_dir</code> already exists.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Saving notes to </span><span class="si">{</span><span class="n">notes_dir</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Later I might want to be more careful with directory creation. But today’s guideline is &ldquo;quick and dirty.&rdquo; <a href="https://docs.python.org/3/library/os.html#os.makedirs">os.makedirs</a> will recursively create <code>notes_dir</code> if needed. Since I specified <code>exist_ok=True</code>, we silently move on if <code>notes_dir</code> already exists.</p>
 <p>I want the file to be named something like <code>UUID.md</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_basename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">.md&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">notes_basename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">task_uuid</span><span class="si">}</span><span class="s2">.md&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">notes_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">notes_dir</span><span class="p">,</span> <span class="n">notes_basename</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">notes_file</span><span class="p">)</span>
-</span></span></code></pre></div><pre tabindex="0"><code>$ task-note.py
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">notes_file</span><span class="p">)</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ task-note.py
 Task 220 has UUID 7887cab7-5ec4-4e8f-a257-edbd28f61301
 Saving notes to /home/randomgeek/Dropbox/task-notes
-/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md
-</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">editor</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;EDITOR&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execlp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">)</span>
-</span></span></code></pre></div><p>The various <code>exec*</code> functions of module <a href="https://docs.python.org/3/library/os.html">os</a> replace the Python process with a new command. The suffixes indicate additional details.</p>
+/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md</code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">editor</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;EDITOR&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execlp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">)</span></span></span></code></pre>
+</figure><p>The various <code>exec*</code> functions of module <a href="https://docs.python.org/3/library/os.html">os</a> replace the Python process with a new command. The suffixes indicate additional details.</p>
 <ul>
 <li>The <code>l</code> — that’s a lowercase <code>L</code> — simplifies the case when you know exactly what arguments to use. All I needed was <code>$EDITOR &lt;file&gt;</code>. <code>execl*</code> functions let me specify program arguments as arguments to the function itself.</li>
 <li>The <code>p</code> indicates that I expect <code>$EDITOR</code> to be somewhere in the current <code>$PATH</code>.</li>
@@ -387,23 +418,33 @@ Saving notes to /home/randomgeek/Dropbox/task-notes
 <p><img src="/post/2020/01/attachments/img/2020/task-notes-view.png" alt="Neovim launched by Python"/></p>
 <p>Sweet. It worked!</p>
 <blockquote>
-<p>[!NOTE]
-Specifying the program twice confused me at first. Things clicked for me when I tried the <code>v</code> variant:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execvp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="p">[</span><span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">])</span>
-</span></span></code></pre></div><p>With v, you construct your program arguments with a list or tuple. Now It looks we’re constructing the <code>ARGV</code> list — or <a href="https://docs.python.org/3/library/sys.html#sys.argv">sys.argv</a> in Python. The program itself usually gets the first slot in <code>ARGV</code>. For example, here’s sys.argv for my <code>task-note.py</code> invocation:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;/home/randomgeek/bin/task-note.py&#39;</span><span class="p">,</span> <span class="s1">&#39;220&#39;</span><span class="p">]</span>
-</span></span></code></pre></div><p>Most user-facing programs hide that detail from you — even Vim.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">echo</span> <span class="nx">argv</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">[<span class="s1">&#39;/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md&#39;</span>]
-</span></span></code></pre></div><p>I <em>think</em> that’s what’s going on anyways.</p>
+<p><strong>NOTE</strong></p>
+<p>Specifying the program twice confused me at first. Things clicked for me when I tried the <code>v</code> variant:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">execvp</span><span class="p">(</span><span class="n">editor</span><span class="p">,</span> <span class="p">[</span><span class="n">editor</span><span class="p">,</span> <span class="n">notes_file</span><span class="p">])</span></span></span></code></pre>
+</figure><p>With v, you construct your program arguments with a list or tuple. Now It looks we’re constructing the <code>ARGV</code> list — or <a href="https://docs.python.org/3/library/sys.html#sys.argv">sys.argv</a> in Python. The program itself usually gets the first slot in <code>ARGV</code>. For example, here’s sys.argv for my <code>task-note.py</code> invocation:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;/home/randomgeek/bin/task-note.py&#39;</span><span class="p">,</span> <span class="s1">&#39;220&#39;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>Most user-facing programs hide that detail from you — even Vim.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">echo</span> <span class="nx">argv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">[<span class="s1">&#39;/home/randomgeek/Dropbox/task-notes/7887cab7-5ec4-4e8f-a257-edbd28f61301.md&#39;</span>]</span></span></code></pre>
+</figure><p>I <em>think</em> that’s what’s going on anyways.</p>
 <p>I won’t lie. This <code>exec*</code> stuff is easier to say in Perl:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">exec</span><span class="p">(</span><span class="nv">$ENV</span><span class="p">{</span><span class="n">EDITOR</span><span class="p">},</span> <span class="nv">$notes_file</span><span class="p">);</span>
-</span></span></code></pre></div></blockquote>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">exec</span><span class="p">(</span><span class="nv">$ENV</span><span class="p">{</span><span class="n">EDITOR</span><span class="p">},</span> <span class="nv">$notes_file</span><span class="p">);</span></span></span></code></pre>
+</figure></blockquote>
 <h2 id="generalize-for-any-task">Generalize for any task</h2>
 <p>I learned what I needed to learn. Next is cleaning up and accepting command line arguments.</p>
 <p><a href="https://docs.python.org/3/library/argparse.html">argparse</a> will take care of the command line arguments. Might as well replace <code>print</code> with <a href="https://docs.python.org/3/library/logging.html">logging</a> calls. You know, just a little bit of tidying.</p>
 <p><strong><code>task-note.py</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Manage Taskwarrior notes&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -448,11 +489,11 @@ Specifying the program twice confused me at first. Things clicked for me when I 
 </span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;task_id&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;ID of the task to note&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">write_note</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
-</span></span></code></pre></div><p>I know. I didn’t want task metadata yet. It quickly became obvious that I would forget what task is involved unless I put <em>something</em>. So now the script adds the task description to a header line the first time a note is opened.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">write_note</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I know. I didn’t want task metadata yet. It quickly became obvious that I would forget what task is involved unless I put <em>something</em>. So now the script adds the task description to a header line the first time a note is opened.</p>
 <blockquote>
-<p>[!WARNING]
-Remember to <code>flush</code> your filehandles before handing control over to external processes like <a href="/card/vim/">card/Vim</a>. Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!</p>
+<p><strong>WARNING</strong></p>
+<p>Remember to <code>flush</code> your filehandles before handing control over to external processes like <a href="/card/vim/">card/Vim</a>. Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!</p>
 </blockquote>
 <p>Also threw in some error checking after the first time I tried writing notes for a nonexistent task.</p>
 <h2 id="whats-next">What’s Next?</h2>

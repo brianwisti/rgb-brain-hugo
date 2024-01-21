@@ -44,12 +44,21 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 <p>The names do not mean anything to Parrot. It does not force a particular way of organizing your namespaces. Nested namespaces are a convenience so that <em>we</em> know two chunks of code are somewhat related.</p>
 <h4 id="the-namespace-directive">The <code>.namespace</code> Directive</h4>
 <p>The <code>.namespace</code> directive is used to tell Parrot that the following code belongs in a particular namespace. Its argument is a hash index specifying the name.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;]
-</code></pre><p>Use a complex key to indicate a nested namespace.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
-</code></pre><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;]</code></pre>
+</figure><p>Use a complex key to indicate a nested namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]</code></pre>
+</figure><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
 <p>It&rsquo;s time to try it out in <code>spacetrade.pir</code>. All of the code written so far is for the shell, so I can probably get away with putting my <code>.namespace</code> directive at the top of the file.</p>
-<pre tabindex="0"><code># example-0e-01/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-01/lib/spacetrade.pir
 .namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
 
 .sub &#39;main&#39; :main
@@ -57,15 +66,18 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 .end
 
 .sub run_shell
-    # ...
-</code></pre><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
+    # ...</code></pre>
+</figure><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
 <p>Back to SpaceTrade. I run <code>setup.pir test</code> out of curiosity.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. ok
 All tests successful.
 Files=1, Tests=6,  0.015 wallclock secs
-Result: PASS
-</code></pre><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
+Result: PASS</code></pre>
+</figure><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
 defined a namespace in <code>spacetrade.pir</code>? The tests should complain about missing subroutines if they are in a different namespace, right?</p>
 <p>Yes, that is right. However, the <code>.include</code> directive effectively dumps the
 code from your included file right where you put the directive. The tests exist in the <code>['SpaceTrade';'Shell']</code> namespace because we never indicated that we were moving onto a new one.</p>
@@ -74,9 +86,15 @@ that the shell subroutines work, not that namespace handling works. The
 SpaceTrade namespaces are going to get more cluttered as time goes on, though. I am going to be more explicit in the namespace handling for my tests in order to prepare for that clutter.</p>
 <h3 id="the-default-namespace">The Default Namespace</h3>
 <p>To specify that you are going back to the default namespace, hand an empty key to the <code>.namespace</code> directive.</p>
-<pre tabindex="0"><code>.namespace [ ]
-</code></pre><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
-<pre tabindex="0"><code># example-0e-02/t/01-shell-metacommands.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [ ]</code></pre>
+</figure><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-02/t/01-shell-metacommands.pir
 
 .include &#39;lib/spacetrade.pir&#39;
 
@@ -84,9 +102,12 @@ SpaceTrade namespaces are going to get more cluttered as time goes on, though. I
 
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
-    # ...
-</code></pre><p>What happens if I run the tests now?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+    # ...</code></pre>
+</figure><p>What happens if I run the tests now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. Dubious, test returned 1
 Failed 6/6 subtests
 
@@ -100,10 +121,13 @@ Bad plan.  You planned 6 tests but ran 0.
 Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
-current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)
-</code></pre><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
+current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)</code></pre>
+</figure><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
 <p>Now I have library code tucked into a namespace and test code that doesn&rsquo;t know about the shell subroutines. A quick look at <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">07-writing-subroutines/</a> shows how to get those shell subroutines into our current namespace. The <code>get_global</code> opcode allows us to grab a variable from another namespace. We used it in to grab the <code>chomp</code> subroutine from the String::Utils namespace. Let&rsquo;s use <code>get_global</code> to make the tested subroutines available.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .namespace [ ]
@@ -126,9 +150,12 @@ current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379
 
     commands = register_default_commands()
 
-    # ...
-</code></pre><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
-<pre tabindex="0"><code>1..6
+    # ...</code></pre>
+</figure><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >1..6
 ok 1 - :help should be a registered default command
 ok 2 - :quit should be a registered default command that returns an empty string
 ok 3 - :help should reflect registered commands
@@ -136,9 +163,12 @@ not ok 4 - User command &#34;:dude&#34; should result in string &#34;Dude!&#34;
 # Have: Invalid command: :dude points to nonexistent sub say_dude
 # Want: Dude!
 ok 5 - Shell should warn about unknown commands
-ok 6 - Shell should warn about invalid commands
-</code></pre><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+ok 6 - Shell should warn about invalid commands</code></pre>
+</figure><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_command
     .param pmc    commands
     .param string name
@@ -157,10 +187,13 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_COMMANDS:
     .return(commands)
-.end
-</code></pre><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
+.end</code></pre>
+</figure><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
 <p>Naturally, that means <code>evaluate_command</code> is where the changes become obvious.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub evaluate_command
     .param pmc    commands
     .param string name
@@ -194,8 +227,8 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_OUTPUT:
     .return(output)
-.end
-</code></pre><p>We do a few simple checks when somebody tries to evaluate a command.</p>
+.end</code></pre>
+</figure><p>We do a few simple checks when somebody tries to evaluate a command.</p>
 <ul>
 <li>Do we have an entry for the command?</li>
 <li>Is there something actually <em>at</em> the entry?</li>
@@ -203,7 +236,10 @@ ok 6 - Shell should warn about invalid commands
 </ul>
 <p>That&rsquo;s what the <code>does</code> check handles, incidentally. Right now we only know about subroutines, but later on we may get into strange creations that aren&rsquo;t subroutines but can be invoked as if they were. From what the folks on IRC <code>#parrot</code> tell me, you would ask <code>command_sub</code> if it is invokable. All I know is that it worked and that I like the folks on <code>#parrot</code> very much.</p>
 <p>We should make one more change before heading over to the tests. <code>register_default_commands</code> needs to adjust to the new way of  registering commands.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_default_commands
     .local pmc commands
     .local pmc help_command
@@ -216,18 +252,24 @@ ok 6 - Shell should warn about invalid commands
     commands = register_command(commands, &#39;:quit&#39;, quit_command, &#39;Exit the shell&#39;)
 
     .return(commands)
-.end
-</code></pre><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
+.end</code></pre>
+</figure><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
 <p>We have to change the tests themselves now. There is actually only one test that needs to be changed. Look in <code>01-shell-metacommands.t</code> for the line that registers the <code>:dude</code> command.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 # ...
-commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
-<pre tabindex="0"><code># example-0e-04/t/01-shell-metacommands.t
+commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/t/01-shell-metacommands.t
 .local pmc my_sub
 my_sub = get_global &#39;say_dude&#39;
-commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
+commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
 <p>All right, the tests should run okay.</p>
 <p>It is possible to set and get truly global variables with <code>get_root_global</code> and <code>set_root_global</code>, but I do not recommend it. What happens if you decide that the global <code>my_config</code> should be an Array instead of a Hash? Every piece of code that uses a global variable must be updated.</p>
 <p>The same problem exists with package globals, even though it may be on a smaller scale. There&rsquo;s a solution - or at least a way to make the problem even smaller. Whenever I see data and several subroutines that need to work on that data, I start to see objects.</p>
@@ -316,12 +358,18 @@ finish it. I am certain there will be a lot of new Parrot territory to explore.<
 <p>Thanks to Stellar, I already know how I like to prepare my workspace for a new
 project.  The setup from <a href="/post/2010/04/parrot-babysteps-09-simple-projects/">Step 09</a> will provide the starting point for
 SpaceTrade.</p>
-<pre tabindex="0"><code>$ mkdir spacetrade
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir spacetrade
 $ mkdir spacetrade/t
 $ mkdir spacetrade/lib
-$ cd spacetrade
-</code></pre><p>The <code>setup.pir</code> script will start out the same as the one used for Stellar.</p>
-<pre tabindex="0"><code># example-0d-01/setup.pir
+$ cd spacetrade</code></pre>
+</figure><p>The <code>setup.pir</code> script will start out the same as the one used for Stellar.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -336,8 +384,8 @@ $ cd spacetrade
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>There is one basic feature I want to get out of the way before I start handling game logic. User interaction
+.end</code></pre>
+</figure><p>There is one basic feature I want to get out of the way before I start handling game logic. User interaction
 is important. Oh sure, there may eventually be interfaces in <a href="https://github.com/parrot/parrot/blob/master/runtime/parrot/library/Curses.pir">Curses</a> or <a href="https://github.com/parrot/parrot/tree/master/runtime/parrot/library/SDL">SDL</a>, but all that&rsquo;s needed for
 now is a simple command line <a href="http://en.wikipedia.org/wiki/Shell_%28computing%29">shell</a>. This shell will be used to examine the nuts and bolts of SpaceTrade
 and to play a simple text-based version of the game.</p>
@@ -349,7 +397,10 @@ and to play a simple text-based version of the game.</p>
 <li>A reasonable way to handle invalid input</li>
 </ul>
 <p>A sample session with such a minimal shell might look like this:</p>
-<pre tabindex="0"><code>$ parrot lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot lib/spacetrade.pir
 Welcome to SpaceTrade!
 Type &#39;:help&#39; for help, and &#39;:quit&#39; to quit.
 &gt; waffles!
@@ -361,13 +412,16 @@ COMMANDS
 :quit    Exit the shell
 &gt; :quit
 Goodbye!
-$
-</code></pre><p>Why do I imagine this shell having commands prefixed by a <code>:</code> character? Well, &ldquo;normal&rdquo; commands would look
+$</code></pre>
+</figure><p>Why do I imagine this shell having commands prefixed by a <code>:</code> character? Well, &ldquo;normal&rdquo; commands would look
 normal, but behavior like getting help or quitting the game are only important for dealing with the shell.
 I want those special shell commands to look different from the normal game commands.</p>
 <p>Of course, I may change my mind later. I am fickle.</p>
 <p>What is the smallest amount of code I can use to get this end result and still feel comfortable?</p>
-<pre tabindex="0"><code># example-0d-01/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-01/lib/spacetrade.pir
 .sub &#39;main&#39; :main
     run_shell()
 .end
@@ -405,8 +459,8 @@ I want those special shell commands to look different from the normal game comma
 
   EXIT:
     say &#34;Goodbye!&#34;
-.end
-</code></pre><p>This works, but it doesn&rsquo;t look right.</p>
+.end</code></pre>
+</figure><p>This works, but it doesn&rsquo;t look right.</p>
 <p>For a start, the commands are kind of a mess. When I add commands, I will have to add both an <code>if</code> check in the
 <code>READLINE</code> section and a line of output in the <code>SHOW_USAGE</code> section. Then there are the blocks I would have to
 add to provide that actual functionality. No, I do not like this at all. The shell commands should be better
@@ -416,7 +470,10 @@ organized so that adding and managing features is as easy as possible.</p>
 <p>The idea is that I could have a simple structure that stores information about available commands, and the
 application could add commands as needed. Let&rsquo;s start with a simple Hash and two subroutines for adding and
 evaluating shell commands.</p>
-<pre tabindex="0"><code># example-0d-02/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-02/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -437,10 +494,13 @@ evaluating shell commands.</p>
 
 .sub say_dude
     .return(&#34;Dude!&#34;)
-.end
-</code></pre><p>The first sub that&rsquo;s needed is <code>register_command</code>, which will add a <code>:dude</code> entry in the <code>commands</code> Hash with
+.end</code></pre>
+</figure><p>The first sub that&rsquo;s needed is <code>register_command</code>, which will add a <code>:dude</code> entry in the <code>commands</code> Hash with
 appropriate information.</p>
-<pre tabindex="0"><code># example-0d-02/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-02/lib/spacetrade.pir
 
 .sub register_command
     .param pmc    commands
@@ -458,8 +518,8 @@ appropriate information.</p>
 
   RETURN_COMMANDS:
     .return(commands)
-.end
-</code></pre><p>There is no special magic going on here. <code>command[':dude']</code> points to a Hash containing a subroutine name and
+.end</code></pre>
+</figure><p>There is no special magic going on here. <code>command[':dude']</code> points to a Hash containing a subroutine name and
 an explanation of the command. <code>commands</code> is returned to the caller once the new command has been added.</p>
 <p>You can probably figure out what I expect to happen from the test code. I have
 a <code>say_dude</code> sub, and somehow I expect the shell to figure out how to call that
@@ -467,7 +527,10 @@ sub when I ask for it by sending the <code>:dude</code> command. We&rsquo;ve act
 done this, back when we were grabbing the <code>chomp</code> sub in <a href="/post/2009/10/parrot-babysteps-06-files-and-hashes/">step 06</a>.
 The <code>get_global</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> will look for a variable with a specified
 name and return it to us if it exists.</p>
-<pre tabindex="0"><code># example-0d-02/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-02/lib/spacetrade.pir
 .sub evaluate_command
     .param pmc    commands
     .param string name
@@ -481,15 +544,21 @@ name and return it to us if it exists.</p>
     output = command_sub()
 
     .return(output)
-.end
-</code></pre><p>There is one new bit of strangeness here, though:</p>
-<pre tabindex="0"><code>sub_name = commands[name;&#39;sub_name&#39;]
-</code></pre><p>This is called a &ldquo;complex key,&rdquo; and lets us directly access the values in the Hash held at <code>commands[name]</code>.
+.end</code></pre>
+</figure><p>There is one new bit of strangeness here, though:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >sub_name = commands[name;&#39;sub_name&#39;]</code></pre>
+</figure><p>This is called a &ldquo;complex key,&rdquo; and lets us directly access the values in the Hash held at <code>commands[name]</code>.
 Each index in a complex key is separated by a semicolon (<code>;</code>) character.  Without a
 complex key, we might have to do something like this:</p>
-<pre tabindex="0"><code>$P1 = commands[name]
-sub_name = $P1[&#39;sub_name&#39;]
-</code></pre><p>I did not realize I could use a complex key until I scanned the <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch04_variables.pod.html">variables chapter</a> of the Parrot PIR Book.
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$P1 = commands[name]
+sub_name = $P1[&#39;sub_name&#39;]</code></pre>
+</figure><p>I did not realize I could use a complex key until I scanned the <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch04_variables.pod.html">variables chapter</a> of the Parrot PIR Book.
 It is important to keep reviewing documentation, even if you think you already know a solution. Remember:
 regardless of what you know, there is probably a better way.</p>
 <p>It is time to add basic error handling to the shell. <code>evaluate_command</code> needs to handle two major error cases.</p>
@@ -498,7 +567,10 @@ regardless of what you know, there is probably a better way.</p>
 <li>User tries a command that points to a nonexistent subroutine.</li>
 </ol>
 <p>Okay, let&rsquo;s add the tests.</p>
-<pre tabindex="0"><code># example-0d-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-03/t/01-shell-metacommands.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -524,9 +596,12 @@ regardless of what you know, there is probably a better way.</p>
     is(output, expected, &#39;Shell should warn about invalid commands&#39;)
 .end
 
-# ...
-</code></pre><p><code>evaluate_command</code> is a little more complicated now, but it is still manageable.</p>
-<pre tabindex="0"><code># example-0d-03/lib/spacetrade.pir
+# ...</code></pre>
+</figure><p><code>evaluate_command</code> is a little more complicated now, but it is still manageable.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-03/lib/spacetrade.pir
 
 # ...
 
@@ -558,10 +633,13 @@ regardless of what you know, there is probably a better way.</p>
     .return(output)
 .end
 
-# ...
-</code></pre><p>One thing that might catch your attention is the <code>if_null</code> opcode.</p>
-<pre tabindex="0"><code>if_null command_sub, INVALID_COMMAND
-</code></pre><p>This will check if <code>command_sub</code> is null, and branch to <code>INVALID_COMMAND</code> if
+# ...</code></pre>
+</figure><p>One thing that might catch your attention is the <code>if_null</code> opcode.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >if_null command_sub, INVALID_COMMAND</code></pre>
+</figure><p>This will check if <code>command_sub</code> is null, and branch to <code>INVALID_COMMAND</code> if
 the subroutine we just tried to grab is indeed null. To be perfectly honest
 with you, I&rsquo;m not sure if a branch is the same as a <code>goto</code>. It behaves the same
 in this code, so for now I will pretend that it is the same.</p>
@@ -572,7 +650,10 @@ no. This is not how we make programming languages in Parrot. This is a very
 simple shell which will have a few simple commands, but try to pass everything
 else off to the game itself. Proper language development is still a few
 Babysteps away.</p>
-<pre tabindex="0"><code># example-0d-04/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-04/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -616,11 +697,14 @@ EXPECTED
 
 .sub say_dude
     .return(&#34;Dude!&#34;)
-.end
-</code></pre><p>The test code that has already been written shows a clear path for registering
+.end</code></pre>
+</figure><p>The test code that has already been written shows a clear path for registering
 default commands. All that&rsquo;s needed is the subroutines that will be invoked
 when the command is called.</p>
-<pre tabindex="0"><code>example-0d-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >example-0d-04/lib/spacetrade.pir
 .sub register_default_commands
     .local pmc commands
 
@@ -647,14 +731,17 @@ OUTPUT
     .local string output
     output = &#39;&#39;
     .return(output)
-.end
-</code></pre><p>There&rsquo;s a problem.</p>
+.end</code></pre>
+</figure><p>There&rsquo;s a problem.</p>
 <p>The problem is that I had to cheat on <code>default_help</code>. See, the way that I set
 up <code>evaluate_commands</code> is to directly invoke the registered subroutine without
 any arguments. I would prefer that <code>default_help</code> examined the currently
 registered commands and provided a real summary. It should even include my
 magnificent <code>:dude</code> command in the summary.</p>
-<pre tabindex="0"><code># example-0d-05/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-05/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -708,11 +795,14 @@ EXPECTED
 
 .sub say_dude
     .return(&#34;Dude!&#34;)
-.end
-</code></pre><p>How am I supposed to do this? Let&rsquo;s start by rewriting <code>default_help</code> the way
+.end</code></pre>
+</figure><p>How am I supposed to do this? Let&rsquo;s start by rewriting <code>default_help</code> the way
 it should work: by preparing a sorted list of registered commands and their
 summaries.</p>
-<pre tabindex="0"><code># example-0d-05/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-05/lib/spacetrade.pir
 .sub default_help
     .param pmc    commands
     .local string output
@@ -750,32 +840,41 @@ summaries.</p>
 
   RETURN_OUTPUT:
     .return(output)
-.end
-</code></pre><p>A little explanation about <code>default_help</code> couldn&rsquo;t hurt. Hashes use their own
+.end</code></pre>
+</figure><p>A little explanation about <code>default_help</code> couldn&rsquo;t hurt. Hashes use their own
 special tricks to make storing their elements more effective, which means you
 have no guarantee of getting them in any particular order. I want to see the
 commands in alphabetical order, so I will have to handle the ordering myself. I
 did that by first building a list of keys.</p>
-<pre tabindex="0"><code>    command_keys = new &#39;ResizablePMCArray&#39;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >    command_keys = new &#39;ResizablePMCArray&#39;
     command_iter = iter commands
 
   NEXT_COMMAND:
     unless command_iter goto PREPARE_OUTPUT
     key = shift command_iter
     push command_keys, key
-    goto NEXT_COMMAND
-</code></pre><p>Once that list was constructed, it needed to be put in some sort of order.
+    goto NEXT_COMMAND</code></pre>
+</figure><p>Once that list was constructed, it needed to be put in some sort of order.
 Luckily, the Array PMCs come with a prepackaged <code>sort()</code> method - a special
 subroutine that works directly with the elements of the array.</p>
-<pre tabindex="0"><code>    command_keys.&#39;sort&#39;()
-</code></pre><p>The default sort behavior works for me. In this case they will be sorted more
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >    command_keys.&#39;sort&#39;()</code></pre>
+</figure><p>The default sort behavior works for me. In this case they will be sorted more
 or less alphabetically.</p>
 <p>Now, I could add a lot of code to <code>evaluate_command</code> that will magically
 determine what sort of arguments are required by the command, and to behave
 appropriately. But before I go doing a significant rewrite - how about an
 experiment? Maybe I can just call every command with <code>commands</code> as a parameter,
 and see what happens in the tests.</p>
-<pre tabindex="0"><code># example-0d-05/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-05/lib/spacetrade.pir
 
 # ...
 
@@ -805,18 +904,21 @@ and see what happens in the tests.</p>
 
   RETURN_OUTPUT:
     .return(output)
-.end
-</code></pre><p>You have to be willing to experiment, because the results may occasionally
+.end</code></pre>
+</figure><p>You have to be willing to experiment, because the results may occasionally
 surprise you.</p>
-<pre tabindex="0"><code>$ parrot t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot t/01-shell-metacommands.t
 1..6
 ok 1 - :help should be a registered default command
 ok 2 - :quit should be a registered default command that returns an empty string
 ok 3 - :help should reflect registered commands
 ok 4 - User command &#34;:dude&#34; should result in string &#34;Dude!&#34;
 ok 5 - Shell should warn about unknown commands
-ok 6 - Shell should warn about invalid commands
-</code></pre><p>How about that - it worked. PIR subroutines will apparently ignore positional
+ok 6 - Shell should warn about invalid commands</code></pre>
+</figure><p>How about that - it worked. PIR subroutines will apparently ignore positional
 parameters that they didn&rsquo;t ask for, which means that <code>evaluate_command</code> can
 call <code>say_dude</code> and <code>default_help</code> with the same parameter list and nothing bad
 will happen.</p>
@@ -824,7 +926,10 @@ will happen.</p>
 <p>A lot of work has gone into making the shell easier to use for me and people
 who want to hack on the game in the future. Let&rsquo;s apply that work to the
 <code>run_shell</code> subroutine itself.</p>
-<pre tabindex="0"><code># example-0d-05/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0d-05/lib/spacetrade.pir
 
 .sub run_shell
     .local pmc    commands
@@ -849,9 +954,12 @@ who want to hack on the game in the future. Let&rsquo;s apply that work to the
 
   EXIT:
     say &#34;Goodbye!&#34;
-.end
-</code></pre><p>It&rsquo;s certainly shorter than what I started with. How well does it work?</p>
-<pre tabindex="0"><code>$ parrot lib/spacetrade.pir
+.end</code></pre>
+</figure><p>It&rsquo;s certainly shorter than what I started with. How well does it work?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot lib/spacetrade.pir
 Welcome to SpaceTrade!
 Type &#39;:help&#39; for help, and &#39;:quit&#39; to quit.
 &gt; :dude
@@ -862,8 +970,8 @@ COMMANDS
 :quit    Exit the shell
 
 &gt; :quit
-Goodbye!
-</code></pre><p>It isn&rsquo;t perfect, but it will work for the moment. This new shell has most of
+Goodbye!</code></pre>
+</figure><p>It isn&rsquo;t perfect, but it will work for the moment. This new shell has most of
 the core behavior from the original, and we have shown that it will not be hard
 to add new commands. There is still a large part of me that thinks the code for
 the shell should be tucked into its own corner, where it cannot get mixed up
@@ -922,18 +1030,27 @@ learning more about Parrot.
 catalog. Instead, let&rsquo;s set up a small test catalog and write some tests.</p>
 <p>Where you put your test data is a matter of taste. I will be keeping my data in
 a folder named <code>data</code>. That seems reasonable.</p>
-<pre tabindex="0"><code>$ mkdir data
-</code></pre><p>Only a few entries are needed in the test catalog. We just need to be sure that
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir data</code></pre>
+</figure><p>Only a few entries are needed in the test catalog. We just need to be sure that
 the code works with a CSV file with the same structure as the HYG database.
 I&rsquo;ll grab Sol, another G2V spectrum star, and a K3V star.</p>
-<pre tabindex="0"><code># example-0c-01/data/test-catalog.csv
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/data/test-catalog.csv
 StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 80,80,224817,,,,,0.01611947,-11.82353722,64.143681847338,419.04,-82.83,,8.40,4.36423057594421,G2V,0.566,62.7822,0.26494,-13.14292,-5.827e-06,0.000130277,-2.5209e-05
-7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06
-</code></pre><p>The test data is out of the way, so now I feel comfortable writing the tests
+7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06</code></pre>
+</figure><p>The test data is out of the way, so now I feel comfortable writing the tests
 that use it.</p>
-<pre tabindex="0"><code># example-0c-01/t/05-search-catalog.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/t/05-search-catalog.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -960,12 +1077,15 @@ that use it.</p>
 
     matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;G2V&#39;, &#39;ColorIndex&#39;, &#39;0.566&#39;)
     is(matches, 1, &#39;There should be one G2V star with Spectrum G2V and ColorIndex 0.566&#39;)
-.end
-</code></pre><p>I am deliberately keeping the tests simple right now. The goal is to make sure
+.end</code></pre>
+</figure><p>I am deliberately keeping the tests simple right now. The goal is to make sure
 the basic functionality works rather than to guarantee behavior for every little
 detail. Tests can be added for those details as they become important.</p>
 <p>The actual <code>search_catalog</code> sub borrows quite a bit from <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>.</p>
-<pre tabindex="0"><code># example-0c-01/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-01/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -1004,8 +1124,8 @@ detail. Tests can be added for those details as they become important.</p>
   RETURN_MATCHES:
     close catalog
     .return(matches)
-.end
-</code></pre><p><code>search_catalog</code> will handle the task of reading the file and looking for
+.end</code></pre>
+</figure><p><code>search_catalog</code> will handle the task of reading the file and looking for
 stars that match the search conditions it has been given. After it defines
 a star from the current line, it asks <code>check_star</code> to compare that star
 to the set of conditions it has been given. It remembers the stars that
@@ -1019,7 +1139,10 @@ on that empty <code>main</code> that has been sitting in <code>stellar.pir</code
 want to make <code>hygxyz.csv</code> available now. I will be pushing my copy into the
 <code>data</code> folder, next to <code>test-catalog.csv</code>. You can place your copy wherever you
 like, but make sure that you set the path appropriately in <code>main</code>.</p>
-<pre tabindex="0"><code># example-0c-02/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0c-02/lib/stellar.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -1046,18 +1169,21 @@ like, but make sure that you set the path appropriately in <code>main</code>.</p
     match_count = matches
     print match_count
     say &#34; matches.&#34;
-.end
-</code></pre><p>Here is the result of all that work we have done setting up the project and
+.end</code></pre>
+</figure><p>Here is the result of all that work we have done setting up the project and
 support code. The main subroutine in <code>stellar</code> is downright civilized
 compared to what we had for <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>. All we do is search based on the
 command line parameters and display each of the matches.</p>
-<pre tabindex="0"><code>$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
 &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
 &lt;Name: HD 7186, Spectrum: G2V, Distance: 112.359550561798&gt;
 &lt;Name: HD 140235, Spectrum: G2V, Distance: 60.1684717208183&gt;
 &lt;Name: HD 169019, Spectrum: G2V, Distance: 108.108108108108&gt;
-4 matches.
-</code></pre><p>Hey, this thing is almost useful!</p>
+4 matches.</code></pre>
+</figure><p>Hey, this thing is almost useful!</p>
 <h2 id="conclusion">Conclusion</h2>
 <p><code>stellar</code> has reached a major milestone. When I started fiddling with the <a href="http://astronexus.com/node/34">HYG
 Database</a>, I wanted to write a command-line Parrot tool that could look up
@@ -1130,7 +1256,10 @@ as I want, as long as my program gives the right answer.</p>
 <h3 id="testing-a-condition">Testing a Condition</h3>
 <p>Our first approach to checking a star&rsquo;s details will be to check a single field.
 The star <code>ProperName</code> is a good field to start with:</p>
-<pre tabindex="0"><code># example-0b-01/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-01/t/04-check-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -1155,10 +1284,13 @@ The star <code>ProperName</code> is a good field to start with:</p>
     ok($I0, &#39;Sol should have ProperName of &#34;Sol&#34;&#39;)
     $I0 = check_star_proper_name(star, &#39;Arcturus&#39;)
     nok($I0, &#39;Sol should not have ProperName of &#34;Arcturus&#34;&#39;)
-.end
-</code></pre><p><code>check_star_proper_name</code> is an easy sub to write. My version is more verbose
+.end</code></pre>
+</figure><p><code>check_star_proper_name</code> is an easy sub to write. My version is more verbose
 than necessary, to be honest:</p>
-<pre tabindex="0"><code># example-0b-01/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-01/lib/stellar.pir
 
 # ...
 
@@ -1171,8 +1303,8 @@ than necessary, to be honest:</p>
     actual_value = star[&#39;ProperName&#39;]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>The sub returns the result of comparing our desired <code>ProperName</code> with the actual
+.end</code></pre>
+</figure><p>The sub returns the result of comparing our desired <code>ProperName</code> with the actual
 value held in the <code>star</code>. I rely on Parrot to do the right thing when comparing
 <code>desired_value</code> with <code>actual_value</code>. <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">Remember</a> that Parrot automatically
 handles any type conversions, so we can ignore type for now.</p>
@@ -1183,7 +1315,10 @@ is explicit behavior, which I like. Then again, it is also cluttering up my
 tests. The headers never change, yet I always include them. What if I could make
 the header string and delimiter optional?</p>
 <p>I <em>can</em> make those parameters optional. Let&rsquo;s reopen the test file <code>03-extract-from-csv.t</code>.</p>
-<pre tabindex="0"><code># example-0b-02/03-extract-from-csv.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-02/03-extract-from-csv.t
 .sub main &#39;:main&#39;
     # ...
     plan(4)
@@ -1195,10 +1330,13 @@ the header string and delimiter optional?</p>
     star = extract_from_csv_line(star_string)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;header_fields should be optional&#34;)
-.end
-</code></pre><p>How do we make those fields optional? We use the parameter modifiers <code>:optional</code>
+.end</code></pre>
+</figure><p>How do we make those fields optional? We use the parameter modifiers <code>:optional</code>
 and <code>:opt_flag</code>.</p>
-<pre tabindex="0"><code>.sub extract_from_csv_line
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub extract_from_csv_line
     .param string star_string
     .param pmc    header_fields     :optional
     .param int    has_header_fields :opt_flag
@@ -1221,14 +1359,17 @@ and <code>:opt_flag</code>.</p>
     star = extract_star_details(header_fields, star_fields)
 
     .return(star)
-.end
-</code></pre><p>The <code>:optional</code> modifier makes sense. Use it to tell Parrot that a particular
+.end</code></pre>
+</figure><p>The <code>:optional</code> modifier makes sense. Use it to tell Parrot that a particular
 parameter is not required for the sub to perform its duties. <code>:opt_flag</code> might
 require a little bit of explanation, though. It is a bookkeeping parameter
 provided by Parrot to let you know whether or not the preceding optional
 parameter was provided by the caller. You test the flag to see if the optional
 parameter was set. The name of the flag doesn&rsquo;t matter.</p>
-<pre tabindex="0"><code># example-0b-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-03.pir
 .sub &#39;main&#39; :main
     .local string eggs
     .local string topping 
@@ -1258,15 +1399,21 @@ parameter was set. The name of the flag doesn&rsquo;t matter.</p>
 
   SERVE_BREAKFAST:
     .return(breakfast_order)
-.end
-</code></pre><p>This program executes without a hitch. There is nothing important about the name
+.end</code></pre>
+</figure><p>This program executes without a hitch. There is nothing important about the name
 of the flag.</p>
-<pre tabindex="0"><code>$ parrot example-0b-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-0b-03.pir
 Eggs cooked over easy topped with Frank&#39;s RedHot
-Eggs cooked over easy
-</code></pre><p>Order <em>does</em> matter, though. You always want to put the flag after the optional
+Eggs cooked over easy</code></pre>
+</figure><p>Order <em>does</em> matter, though. You always want to put the flag after the optional
 parameter in your <code>.param</code> directives, or bad things will happen.</p>
-<pre tabindex="0"><code># example-0b-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-04.pir
 .sub &#39;main&#39; :main
     .local string eggs
     .local string topping 
@@ -1296,16 +1443,22 @@ parameter in your <code>.param</code> directives, or bad things will happen.</p>
 
   SERVE_BREAKFAST:
     .return(breakfast_order)
-.end
-</code></pre><p>See?</p>
-<pre tabindex="0"><code>$ parrot example-0b-04.pir
+.end</code></pre>
+</figure><p>See?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-0b-04.pir
 Eggs cooked over easy
 too few positional arguments: 1 passed, 2 (or more) expected
 current instr.: &#39;breakfast&#39; pc 34 (example-0b-04.pir:19)
-called from Sub &#39;main&#39; pc 26 (example-0b-04.pir:15)
-</code></pre><p>Back to <code>stellar</code>. <code>extract_from_csv_line</code> can work the headers out for itself now. Let&rsquo;s clean up
+called from Sub &#39;main&#39; pc 26 (example-0b-04.pir:15)</code></pre>
+</figure><p>Back to <code>stellar</code>. <code>extract_from_csv_line</code> can work the headers out for itself now. Let&rsquo;s clean up
 our test code.</p>
-<pre tabindex="0"><code># example-0b-05/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-05/t/04-check-star.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -1323,11 +1476,14 @@ our test code.</p>
     ok($I0, &#39;Sol should have ProperName of &#34;Sol&#34;&#39;)
     $I0 = check_star_proper_name(star, &#39;Arcturus&#39;)
     nok($I0, &#39;Sol should not have ProperName of &#34;Arcturus&#34;&#39;)
-.end
-</code></pre><p>It is a little easier now to tell what I am actually testing in this code. Good.
+.end</code></pre>
+</figure><p>It is a little easier now to tell what I am actually testing in this code. Good.
 I know I should be all methodical and orderly about checking my star fields, but
 I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Spectrum</code>.</p>
-<pre tabindex="0"><code># example-0b-06/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/t/04-check-star.t
 
 .sub &#39;main&#39; :main
     # ...
@@ -1337,9 +1493,12 @@ I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Sp
     ok($I0, &#39;Sol should have Spectrum of &#34;G2V&#34;&#39;)
     $I0 = check_star_spectrum(star, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have Spectrum of &#34;K3V&#34;&#39;)
-.end
-</code></pre><p>Meanwhile, in <code>stellar.pir</code>:</p>
-<pre tabindex="0"><code># example-0b-06/lib/stellar.pir
+.end</code></pre>
+</figure><p>Meanwhile, in <code>stellar.pir</code>:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/lib/stellar.pir
 .sub check_star_spectrum
     .param pmc star
     .param string desired_value
@@ -1349,12 +1508,15 @@ I have not had enough sleep for that to be practical. Let&rsquo;s check <code>Sp
     actual_value = star[&#39;Spectrum&#39;]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>This works perfectly, but compare <code>check_star_spectrum</code> to
+.end</code></pre>
+</figure><p>This works perfectly, but compare <code>check_star_spectrum</code> to
 <code>check_star_proper_name</code>. They are almost identical. In fact, the only difference between
 the code for the two subs is which field gets grabbed for <code>actual_value</code>.
 It seems to me that the same behavior could be described by a single sub.</p>
-<pre tabindex="0"><code># example-0b-06/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/t/04-check-star.t
 .sub &#39;main&#39; :main
     # ...
 
@@ -1370,10 +1532,13 @@ It seems to me that the same behavior could be described by a single sub.</p>
     ok($I0, &#39;Sol should have Spectrum of &#34;G2V&#34;&#39;)
     $I0 = check_star_field(star, &#39;Spectrum&#39;, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have Spectrum of &#34;K3V&#34;&#39;)
-.end
-</code></pre><p><code>check_star_field</code> looks like a generic version of <code>check_star_proper_name</code> and
+.end</code></pre>
+</figure><p><code>check_star_field</code> looks like a generic version of <code>check_star_proper_name</code> and
 <code>check_star_spectrum</code>.</p>
-<pre tabindex="0"><code># example-0b-06/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-06/lib/stellar.pir
 
 # ...
 
@@ -1387,8 +1552,8 @@ It seems to me that the same behavior could be described by a single sub.</p>
     actual_value = star[field]
     check_result = desired_value == actual_value
     .return(check_result)
-.end
-</code></pre><p>All tests are still passing. You <em>are</em> working along with me and running tests,
+.end</code></pre>
+</figure><p>All tests are still passing. You <em>are</em> working along with me and running tests,
 right? It&rsquo;s time to decide what to do with those specific subs now that we have
 a nice general purpose field checker. You could argue that those subs should
 stick around but as wrappers that call <code>check_star_field</code>. That is entirely
@@ -1397,7 +1562,10 @@ though. I will delete the specific subs and their tests in my code.</p>
 <h3 id="testing-multiple-conditions">Testing Multiple Conditions</h3>
 <p><code>stellar</code> does a convincing job of checking a single field in a star. The next
 step is figuring out how to check multiple fields.</p>
-<pre tabindex="0"><code># example-0b-07/t/04-check-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-07/t/04-check-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -1432,8 +1600,8 @@ step is figuring out how to check multiple fields.</p>
     nok($I0, &#39;Sol should not have ProperName &#34;Sol&#34; and Spectrum &#34;K3V&#34;&#39;)
     $I0 = check_star(star, &#39;ProperName&#39;, &#39;Arcturus&#39;, &#39;Spectrum&#39;, &#39;K3V&#39;)
     nok($I0, &#39;Sol should not have ProperName &#34;Arcturus&#34; and Spectrum &#34;K3V&#34;&#39;)
-.end
-</code></pre><p>Yes, I did go through several variations on testing multiple fields. I wanted to
+.end</code></pre>
+</figure><p>Yes, I did go through several variations on testing multiple fields. I wanted to
 make sure that <code>check_star</code> behaved <em>exactly</em> the way I expected. How am I going
 to make those tests succeed?</p>
 <h4 id="slurpy-and-flat-save-the-day"><code>:slurpy</code> and <code>:flat</code> Save the Day</h4>
@@ -1444,7 +1612,10 @@ that is the <code>:flat</code> modifier in subroutine calls, which lets us say &
 this array of stuff. Just tack its elements to the param list for the sub I&rsquo;m
 about to call.&rdquo;</p>
 <p>Enough imaginary dialog. Here&rsquo;s what <code>check_star</code> looks like.</p>
-<pre tabindex="0"><code># example-0b-07/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-07/lib/stellar.pir
 .sub check_star
     .param pmc    star
     .param string field
@@ -1467,8 +1638,8 @@ about to call.&rdquo;</p>
 
   RETURN_RESULT:
     .return(match_result)
-.end
-</code></pre><p>I tried to make it clear what was going on the comments. <code>check_star</code> is given a
+.end</code></pre>
+</figure><p>I tried to make it clear what was going on the comments. <code>check_star</code> is given a
 star and a handful of conditions. It only cares about the first condition, and
 stuffs the rest into <code>extra_fields</code>. If the first condition fails, we&rsquo;re done.
 There&rsquo;s no point in checking any more fields, so jump down to return the failure.
@@ -1491,7 +1662,10 @@ of evaluating the sub rather than storing it in memory. It may not do much in a
 case like <code>check_star</code>, but you should see a difference in complex problems.</p>
 <p>Then again, it might help <code>check_star</code> immensely. I don&rsquo;t really know about
 Parrot optimization effects yet.</p>
-<pre tabindex="0"><code># example-0b-08/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0b-08/lib/stellar.pir
 .sub &#39;main&#39; :main
     # ...
 
@@ -1500,8 +1674,8 @@ Parrot optimization effects yet.</p>
 
   RETURN_RESULT:
     .return(match_result)
-.end
-</code></pre><h2 id="conclusion">Conclusion</h2>
+.end</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>We can now examine multiple fields to determine if a star matches a description
 we&rsquo;ve provided. Along the way, we explored subroutine parameters. We learned how
 to make a parameter optional. We learned how to grab all of a subroutine&rsquo;s
@@ -1538,12 +1712,18 @@ foundation. Today we&rsquo;re going to get that step our of the way.</p>
 <h2 id="set-up-the-project">Set up the project</h2>
 <p>Let&rsquo;s apply what we learned last time putting together <a href="/post/2010/04/parrot-babysteps-09-simple-projects">larger projects</a>, and
 set up a project named <code>stellar</code>.</p>
-<pre tabindex="0"><code>$ mkdir stellar
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir stellar
 $ mkdir stellar/t
-$ mkdir stellar/lib
-</code></pre><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
+$ mkdir stellar/lib</code></pre>
+</figure><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
 for anything more elaborate.</p>
-<pre tabindex="0"><code># example-0a-01/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -1558,8 +1738,8 @@ for anything more elaborate.</p>
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
+.end</code></pre>
+</figure><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
 empty. We will steadily build up all of our functionality in the Stellar library
 and eventually add a very simple file to act as the face of Stellar for
 Parrot. Right now, we just have an empty <code>lib/stellar.pir</code>.</p>
@@ -1584,7 +1764,10 @@ to think of the numbering as simply presenting the order that I came up with the
 stories. It provides a simple history of sorts. First I came up with that test,
 and I wrote this test after I was comfortable with the first.</p>
 <p>In that spirit, I will name the first test story <code>01-extract-details.t</code>.</p>
-<pre tabindex="0"><code># example-0a-01/t/01-extract-details.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/t/01-extract-details.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -1608,12 +1791,15 @@ and I wrote this test after I was comfortable with the first.</p>
 
     $S0 = star[&#39;Proper Name&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
+.end</code></pre>
+</figure><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
 <code>ProperName</code>. We&rsquo;ll come back to that.</p>
 <p>What happens if this test is run while <code>stellar.pir</code> is still empty? It fails,
 of course. It might be useful to look at <em>how</em> it fails.</p>
-<pre tabindex="0"><code>stellar $ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >stellar $ parrot setup.pir test
 t/01-extract-details.t .. Dubious, test returned 1
 Failed 1/1 subtests
 
@@ -1625,14 +1811,17 @@ Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
 written yet. This is different from a regular test failure, because Parrot
 couldn&rsquo;t even get to the tests. I&rsquo;m showing this so that you recognize what&rsquo;s
 going on when you see errors like this in your own library.</p>
 <p>Adding <code>extract_star_details</code> is easy enough. Just copy the code from the
 earlier step.</p>
-<pre tabindex="0"><code># stellar/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># stellar/lib/stellar.pir
 
 .sub extract_star_details
     .param pmc    headers
@@ -1653,14 +1842,17 @@ earlier step.</p>
     current_header = headers[current_index]
     current_value = values[current_index]
     star[current_header] = current_value
-    current_index += 1
+    current_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   RETURN_STAR:
     .return(star)
-.end
-</code></pre><p>Let&rsquo;s run the test again.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>Let&rsquo;s run the test again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. Failed 1/1 subtests
 
 Test Summary Report
@@ -1671,31 +1863,40 @@ Files=1, Tests=1,  0.020 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
 little vague for larger test stories, though. Let&rsquo;s run the test file directly.</p>
-<pre tabindex="0"><code>#!text
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot t/01-extract-details.t
 1..1
 not ok 1 - ProperName should be Sol
 # Have:
-# Want: Sol
-</code></pre><p>Okay, <em>now</em> we can fix the typo.</p>
-<pre tabindex="0"><code>#!parrot
+# Want: Sol</code></pre>
+</figure><p>Okay, <em>now</em> we can fix the typo.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # t/01-extract-details.t
 .sub &#39;main&#39; :main
     ...
     $S0 = star[&#39;ProperName&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>The test should pass now that the correction has been made.</p>
-<pre tabindex="0"><code>#!text
+.end</code></pre>
+</figure><p>The test should pass now that the correction has been made.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot setup.pir test
 t/01-extract-details.t .. ok
 All tests successful.
 Files=1, Tests=1,  0.014 wallclock secs
-Result: PASS
-</code></pre><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
+Result: PASS</code></pre>
+</figure><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
 to know what failure looks like before we can reach success.</p>
 <p>What have we accomplished so far? We now have a story in which the user, armed
 with a header line and a line describing a star, gets an object that she can
@@ -1716,7 +1917,10 @@ they have it. They might want to print it, but they might also want to feed it
 to an unmanned orbiter for some reason.</p>
 <p>Because we can&rsquo;t predict with certainty what someone will do with the string
 summary of a star, this test story will focus on asking for that string.</p>
-<pre tabindex="0"><code># t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># t/02-summarize-star.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -1740,11 +1944,14 @@ summary of a star, this test story will focus on asking for that string.</p>
     summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
     $S0 = summarize_star(star)
     is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
-.end
-</code></pre><p>It&rsquo;s not hard to create the code which will make this story true, but it does
+.end</code></pre>
+</figure><p>It&rsquo;s not hard to create the code which will make this story true, but it does
 involve a little more work than the simple copy and paste for
 <code>extract_star_details</code>.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -1813,13 +2020,16 @@ involve a little more work than the simple copy and paste for
     summary .= &#34;&gt;&#34;
 
     .return(summary)
-.end
-</code></pre><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
+.end</code></pre>
+</figure><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
 change the focus from displaying the details to returning them as a simple
 string.</p>
 <p>What&rsquo;s most important is that this test passes when handed Sol. How about some
 of those stars that don&rsquo;t have proper names?</p>
-<pre tabindex="0"><code># example-0a-04/t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/02-summarize-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -1859,21 +2069,27 @@ of those stars that don&rsquo;t have proper names?</p>
     star = extract_star_details(header_fields, star_fields)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>It does indeed work.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>It does indeed work.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. ok
 t/02-summarize-star.t ... ok
 All tests successful.
 Files=2, Tests=4,  0.030 wallclock secs
-Result: PASS
-</code></pre><p>I am concerned about the heft of this test code. The concern is that I
+Result: PASS</code></pre>
+</figure><p>I am concerned about the heft of this test code. The concern is that I
 had to split the CSV text, extract star details, and summarize the star
 manually for each star string. Each of those times is an opportunity for me to
 make a mistake. I <em>think</em> I would like to have a subroutine which would take the
 header fields and a CSV line of star data, and return the extracted details.
 Let&rsquo;s make a new test story for that.</p>
-<pre tabindex="0"><code># example-0a-04/t/03-extract-from-csv.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/03-extract-from-csv.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -1908,9 +2124,12 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_from_csv_line(star_string, header_fields, delimiter)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>The code to make this work is simple enough.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+.end</code></pre>
+</figure><p>The code to make this work is simple enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -1925,8 +2144,8 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_star_details(header_fields, star_fields)
 
     .return(star)
-.end
-</code></pre><p>I do not know if I have saved much work, but it is easier for me to read the
+.end</code></pre>
+</figure><p>I do not know if I have saved much work, but it is easier for me to read the
 test story. That is important to me, because debugging and improving the code is
 easier if I can easily understand what is happening.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -1956,15 +2175,21 @@ can simplify testing or other tasks.</p>
 <h2 id="creating-a-simple-project">Creating a Simple Project</h2>
 <p>A nice Parrot project layout includes a <code>t</code> folder for tests, a <code>lib</code> folder for
 library code, and a <code>setup.pir</code> file to drive the whole thing.</p>
-<pre tabindex="0"><code>$ mkdir simple-pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir simple-pir
 $ mkdir simple-pir/t
 $ mkdir simple-pir/lib
-$ cd simple-pir
-</code></pre><p>What gets placed in <code>setup.pir</code>? Not much, considering how much it does.
+$ cd simple-pir</code></pre>
+</figure><p>What gets placed in <code>setup.pir</code>? Not much, considering how much it does.
 <code>setup.pir</code> takes advantage of the Parrot <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/distutils.pir">distutils</a> module for a whole range
 of tasks. All I&rsquo;m concerned about today is <em>testing</em>, so my setup is going to be
 rather lightweight.</p>
-<pre tabindex="0"><code># example-09-01/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -1975,15 +2200,18 @@ rather lightweight.</p>
     directive = shift args
 
     setup(directive)
-.end
-</code></pre><p>This is not exciting code, but it is enough to see what distutils <em>can</em> give me.
+.end</code></pre>
+</figure><p>This is not exciting code, but it is enough to see what distutils <em>can</em> give me.
 The first command line parameter is shifted onto a dummy register variable,
 because I don&rsquo;t really care about the name of <code>setup.pir</code> from within
 <code>setup.pir</code>.  Then I load the <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/distutils.pir">distutils</a> bytecode so I can get access to the <code>setup</code> subroutine.</p>
 <p>This <code>setup.pir</code> will get more complicated as we go on, and you will
 <em>definitely</em> see more complex <code>setup.pir</code> files out in the wild, but this will
 get us started.</p>
-<pre tabindex="0"><code>$ parrot setup.pir help
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir help
 usage: parrot setup.pir [target|--key value]*
 
     Default targets are :
@@ -2006,15 +2234,21 @@ usage: parrot setup.pir [target|--key value]*
 
         bdist:          Create a binary distribution
 
-        help:           Print this help message.
-</code></pre><p>What happens when I tell <code>setup.pir</code> that I want to test?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+        help:           Print this help message.</code></pre>
+</figure><p>What happens when I tell <code>setup.pir</code> that I want to test?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 Files=0, Tests=0,  0.000 wallclock secs
-Result: NOTESTS
-</code></pre><p>Well of course it failed. There aren&rsquo;t any test files, and <code>setup.pir</code> wouldn&rsquo;t
+Result: NOTESTS</code></pre>
+</figure><p>Well of course it failed. There aren&rsquo;t any test files, and <code>setup.pir</code> wouldn&rsquo;t
 know how to run them if there were!</p>
 <p>I&rsquo;ll fix the second part first.</p>
-<pre tabindex="0"><code># example-09-02/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-02/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -2029,16 +2263,22 @@ know how to run them if there were!</p>
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>Parrot allows you to use <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html#Named_Parameters">named parameters</a> for some subroutines, and <code>setup</code>
+.end</code></pre>
+</figure><p>Parrot allows you to use <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html#Named_Parameters">named parameters</a> for some subroutines, and <code>setup</code>
 takes full advantage of that feature. If you&rsquo;re used to <a href="/tags/perl/">Perl</a> or <a href="/tags/ruby/">Ruby</a>,
 named parameters look a lot like a hash. That&rsquo;s close enough for our purposes. A
 named parameter generally follows a simple format:</p>
-<pre tabindex="0"><code>&#39;&lt;key-1&gt;&#39; =&gt; &#39;&lt;value-1&gt;&#39;
-</code></pre><p>Thankfully, <code>distutils.pir</code> is a well-documented module, and you
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#39;&lt;key-1&gt;&#39; =&gt; &#39;&lt;value-1&gt;&#39;</code></pre>
+</figure><p>Thankfully, <code>distutils.pir</code> is a well-documented module, and you
 can find details about the many options by checking the documentation.</p>
-<pre tabindex="0"><code>$ perldoc /usr/local/lib/parrot/3.0.0/library/distutils.pir
-</code></pre><p>I only care about a single option: <code>prove_exec</code>, which tells <code>setup</code> what program
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ perldoc /usr/local/lib/parrot/3.0.0/library/distutils.pir</code></pre>
+</figure><p>I only care about a single option: <code>prove_exec</code>, which tells <code>setup</code> what program
 will be used to run the tests. Why does <code>setup</code> care? Well, Parrot is a VM. Your
 tests can be in PIR, NQP, <a href="/tags/raku-lang/">Rakudo</a>, or even a language of your own design.
 These <a href="/post/2009/07/parrot-babysteps">Babysteps</a> are about Parrot PIR, so it makes sense that the tests will be in
@@ -2046,7 +2286,10 @@ the same language.</p>
 <p>Oh yes, the tests. Let&rsquo;s write one. I&rsquo;ll follow the convention I see in the Perl
 world of a number followed by a description for the test filename, and the test
 itself will be for a simple area calculating function.</p>
-<pre tabindex="0"><code># example-09-02/t/01-radius.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-02/t/01-radius.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local num radius
@@ -2058,9 +2301,12 @@ itself will be for a simple area calculating function.</p>
     expected_area = 3.1415926
     actual_area = area_of_circle(radius)
     is(expected_area, actual_area, &#39;Circle with radius 1 should have area PI&#39;, 1e-6)
-.end
-</code></pre><p>So - this should fail, right?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>So - this should fail, right?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-radius.t .. Dubious, test returned 1
 Failed 1/1 subtests 
 
@@ -2076,13 +2322,16 @@ Files=1, Tests=0,  0.021 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:18)
-</code></pre><p>Excellent. Parrot didn&rsquo;t just tell us that the test failed. It also told us
+called from Sub &#39;main&#39; pc 29 (setup.pir:18)</code></pre>
+</figure><p>Excellent. Parrot didn&rsquo;t just tell us that the test failed. It also told us
 about some unexpected output from our test script. What&rsquo;s that unexpected
 output? Oh, something about not having a subroutine called <code>area_of_circle</code>.
 Let&rsquo;s fix that by adding a new library file called <code>lib/area.pir</code>, and adding
 the missing subroutine.</p>
-<pre tabindex="0"><code># example-09-03/lib/area.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-03/lib/area.pir
 
 .sub area_of_circle
     .param num radius
@@ -2094,23 +2343,29 @@ the missing subroutine.</p>
     area *= radius
 
     .return(area)
-.end
-</code></pre><p>This is code borrowed from <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">step 2</a> and dropped into a subroutine.</p>
+.end</code></pre>
+</figure><p>This is code borrowed from <a href="/post/2009/07/parrot-babysteps-02-variables-and-types">step 2</a> and dropped into a subroutine.</p>
 <p>Don&rsquo;t forget to include this library code from your test file.</p>
-<pre tabindex="0"><code># example-09-03/lib/area.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-09-03/lib/area.pir
 
 .include &#39;lib/area.pir&#39;
 
 .sub &#39;main&#39; :main
     # ...
-.end
-</code></pre><p>Did it work?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>Did it work?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-radius.t .. ok
 All tests successful.
 Files=1, Tests=1,  0.016 wallclock secs
-Result: PASS
-</code></pre><p>Yay!</p>
+Result: PASS</code></pre>
+</figure><p>Yay!</p>
 <p>Hold on a second. I snuck an extra argument back when I wrote the <code>is</code> assertion. What was that
 all about? Well, <a href="http://leto.net">Jonathan Leto</a> explained to me that <code>is</code> takes an additional argument
 for precision, which is useful in the fuzzy world of <a href="http://en.wikipedia.org/wiki/Floating_point#Accuracy_problems">floating point
@@ -2174,29 +2429,41 @@ The other five might not have run for a number of reasons: the test script faile
 Parrot failed in some mysterious way, or you just forgot to mention that you
 removed half of your tests.</p>
 <p>We don&rsquo;t plan to have any tests yet, so let&rsquo;s be honest.</p>
-<pre tabindex="0"><code># example-08-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-01.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(0)
-.end
-</code></pre><p>The <code>.include</code> directive will insert the contents of <code>test_more.pir</code> into the
+.end</code></pre>
+</figure><p>The <code>.include</code> directive will insert the contents of <code>test_more.pir</code> into the
 subroutine, which saves us a lot of namespace wrangling. The testing starts
 when a <em>plan</em> is declared.</p>
 <p>Of course, this is <em>not</em> the most exciting test plan in the world to run.</p>
-<pre tabindex="0"><code>$ parrot example-08-01.pir
-$
-</code></pre><p>What if we lie?</p>
-<pre tabindex="0"><code># example-08-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-01.pir
+$</code></pre>
+</figure><p>What if we lie?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-02.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(10)
-.end
-</code></pre><p>Running this is a little different.</p>
-<pre tabindex="0"><code>$ parrot example-08-02.pir
-1..10
-</code></pre><p>Now Parrot is telling whoever cares that there will be ten tests in this file.
+.end</code></pre>
+</figure><p>Running this is a little different.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-02.pir
+1..10</code></pre>
+</figure><p>Now Parrot is telling whoever cares that there will be ten tests in this file.
 It&rsquo;s true that nothing exploded. For right now, you&rsquo;re going to have to trust me
 when I say that honesty is the best policy. You&rsquo;ll see later that some tools
 do care about how many tests you claim to run.</p>
@@ -2204,54 +2471,72 @@ do care about how many tests you claim to run.</p>
 <p>All right. Sometimes we want to make a comment in our test for the world to see.
 We could just <code>say</code> what we want to say, but Test::More provides the <code>diag</code>
 subroutine to produce those comments in a manner that will make testers happy later.</p>
-<pre tabindex="0"><code># example-08-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-03.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(10)
     diag(&#39;There are no tests. The plan is a lie.&#39;)
-.end
-</code></pre><p>What does this produce?</p>
-<pre tabindex="0"><code>$ parrot example-08-03.pir
+.end</code></pre>
+</figure><p>What does this produce?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-03.pir
 1..10
-# There are no tests. The plan is a lie.
-</code></pre><p>See the <code>#</code>? That&rsquo;s supposed to make our diagnostic comment stand out from
+# There are no tests. The plan is a lie.</code></pre>
+</figure><p>See the <code>#</code>? That&rsquo;s supposed to make our diagnostic comment stand out from
 the test results without confusing anyone. But the diagnostic makes me sad.
 Let&rsquo;s write an actual test.</p>
 <h3 id="ok"><code>ok</code></h3>
-<pre tabindex="0"><code># example-08-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-04.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(1)
     ok(1, &#39;`ok` tests for simple truth&#39;)
-.end
-</code></pre><p><code>ok</code> takes two arguments:</p>
+.end</code></pre>
+</figure><p><code>ok</code> takes two arguments:</p>
 <ul>
 <li>The value you are testing</li>
 <li>A description of the test</li>
 </ul>
 <p>The value being tested is obviously the most important part, but don&rsquo;t underestimate
 the helpfulness of those descriptions. They are a form of documentation.</p>
-<pre tabindex="0"><code>$ parrot example-08-04.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-04.pir
 1..1
-ok 1 - `ok` tests for simple truth
-</code></pre><p>The test in <code>ok</code> is one of simple truth as seen by Parrot. <a href="/post/2009/09/parrot-babysteps-03-simple-control-structures/">parrot-babysteps-03-simple-control-structures</a> showed us that anything which looks like <code>0</code> or an empty string is considered false by Parrot, while everything else is considered true.</p>
+ok 1 - `ok` tests for simple truth</code></pre>
+</figure><p>The test in <code>ok</code> is one of simple truth as seen by Parrot. <a href="/post/2009/09/parrot-babysteps-03-simple-control-structures/">parrot-babysteps-03-simple-control-structures</a> showed us that anything which looks like <code>0</code> or an empty string is considered false by Parrot, while everything else is considered true.</p>
 <p>What happens when we introduce a test that we know will fail?</p>
-<pre tabindex="0"><code># example-08-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-05.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
     plan(2)
     ok(1, &#39;`ok` tests for simple truth&#39;)
     ok(0, &#39;0 is false, so this should fail.&#39;)
-.end
-</code></pre><p>You updated your plan, right? Anyways, let&rsquo;s see what this produces.</p>
-<pre tabindex="0"><code>$ parrot example-08-05.pir
+.end</code></pre>
+</figure><p>You updated your plan, right? Anyways, let&rsquo;s see what this produces.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-05.pir
 1..2
 ok 1 - `ok` tests for simple truth
-not ok 2 - 0 is false, so this should fail.
-</code></pre><p>Oh hey, this is starting to get interesting! Now we can see clearly that the output
+not ok 2 - 0 is false, so this should fail.</code></pre>
+</figure><p>Oh hey, this is starting to get interesting! Now we can see clearly that the output
 from <code>ok</code> is a line split into three parts:</p>
 <ul>
 <li>The result of the test: &ldquo;<code>ok</code>&rdquo; or &ldquo;<code>not ok</code>&rdquo;</li>
@@ -2266,7 +2551,10 @@ example, let&rsquo;s say we have a Web site building script. It builds temporary
 cache files to save time when building subpage links, but those cache files
 need to go away when it&rsquo;s done. So we would test for existence of a cache file
 and fail if the file exists.</p>
-<pre tabindex="0"><code># example-08-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-06.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -2278,26 +2566,38 @@ and fail if the file exists.</p>
     plan(1)
     cache_file_exists = stat &#39;subpages.data&#39;, 0
     nok(cache_file_exists, &#39;Cache files should be cleaned up&#39;)
-.end
-</code></pre><p>The assertion may be <code>nok</code>, but the output is still <code>ok</code> or not based on whether
+.end</code></pre>
+</figure><p>The assertion may be <code>nok</code>, but the output is still <code>ok</code> or not based on whether
 the assertion was true.</p>
-<pre tabindex="0"><code>$ parrot example-08-06.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-06.pir
 1..1
-ok 1 - Cache files should be cleaned up
-</code></pre><p>What does it look like if we deliberately confuse things?</p>
-<pre tabindex="0"><code>$ touch subpages.data
+ok 1 - Cache files should be cleaned up</code></pre>
+</figure><p>What does it look like if we deliberately confuse things?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ touch subpages.data
 $ parrot example-08-06.pir
 1..1
-not ok 1 - Cache files should be cleaned up
-</code></pre><p>Yes. That&rsquo;s what I hoped to see. Let&rsquo;s clean up after ourselves to avoid future
+not ok 1 - Cache files should be cleaned up</code></pre>
+</figure><p>Yes. That&rsquo;s what I hoped to see. Let&rsquo;s clean up after ourselves to avoid future
 confusion.</p>
-<pre tabindex="0"><code>$ rm subpages.data
-</code></pre><h3 id="is"><code>is</code></h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ rm subpages.data</code></pre>
+</figure><h3 id="is"><code>is</code></h3>
 <p>There are many times where we want to compare two values. Let&rsquo;s continue with our Web site
 building tool. This tool sets the title of a page in metadata. We obviously want to be
 certain that it reads the metadata correctly. We would use the <code>is</code> assertion for
 that kind of test.</p>
-<pre tabindex="0"><code># example-08-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-07.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2311,13 +2611,19 @@ that kind of test.</p>
     # Okay, let&#39;s pretend we got this result by running the builder.
     actual_title = &#39;08 - Test::More and Tapir&#39;
     is(actual_title, expected_title, &#39;The title should be correct.&#39;)
-.end
-</code></pre><p>Anybody know what we should see?</p>
-<pre tabindex="0"><code>$ parrot example-08-07.pir
+.end</code></pre>
+</figure><p>Anybody know what we should see?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-07.pir
 1..1
-ok 1 - The title should be correct.
-</code></pre><p>Let&rsquo;s deliberately mess things up again so we know what failure of <code>is</code> looks like.</p>
-<pre tabindex="0"><code># example-08-08.pir
+ok 1 - The title should be correct.</code></pre>
+</figure><p>Let&rsquo;s deliberately mess things up again so we know what failure of <code>is</code> looks like.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-08.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2331,14 +2637,17 @@ ok 1 - The title should be correct.
     # Okay, let&#39;s pretend we got this result by running the builder.
     actual_title = &#39;I am a Walrus&#39;
     is(actual_title, expected_title, &#39;The title should be correct.&#39;)
-.end
-</code></pre><p>A failed <code>is</code> produces some useful information.</p>
-<pre tabindex="0"><code>$ parrot example-08-08.pir
+.end</code></pre>
+</figure><p>A failed <code>is</code> produces some useful information.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-08.pir
 1..1
 not ok 1 - The title should be correct.
 # Have: I am a Walrus
-# Want: 08 - Test::More and Tapir
-</code></pre><p>There&rsquo;s the test result line, which shows &rsquo;not ok&rsquo;, just like we expected.
+# Want: 08 - Test::More and Tapir</code></pre>
+</figure><p>There&rsquo;s the test result line, which shows &rsquo;not ok&rsquo;, just like we expected.
 We also have a couple of diagnostic lines describing what we want and what we
 actually have.</p>
 <p><code>ok</code> has its opposite assertion <code>nok</code>, so there must be an opposite for <code>is</code>, right?
@@ -2349,7 +2658,10 @@ in particular. Maybe we have a user registration process that uses social securi
 to satisfy an obscure corporate tracking requirement, but can&rsquo;t save them as-is because of
 privacy concerns. In this case we don&rsquo;t care what the stored value is. We want to be certain
 that it&rsquo;s not the social security number.</p>
-<pre tabindex="0"><code># example-08-09.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-09.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2363,12 +2675,18 @@ that it&rsquo;s not the social security number.</p>
     # Okay, let&#39;s pretend we got this result via user registration
     stored_ssn = &#39;wxdfk$!&#39;
     isnt(provided_ssn, stored_ssn, &#39;SSN should not be stored as-is&#39;)
-.end
-</code></pre><p>Really, nobody should be surprised by the output at this point.</p>
-<pre tabindex="0"><code>1..1
-ok 1 - SSN should not be stored as-is
-</code></pre><p>What does a failed <code>isnt</code> look like?</p>
-<pre tabindex="0"><code># example-08-10.pir
+.end</code></pre>
+</figure><p>Really, nobody should be surprised by the output at this point.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >1..1
+ok 1 - SSN should not be stored as-is</code></pre>
+</figure><p>What does a failed <code>isnt</code> look like?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-10.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2382,16 +2700,22 @@ ok 1 - SSN should not be stored as-is
     # Okay, let&#39;s pretend we got this result via user registration
     stored_ssn = provided_ssn
     isnt(provided_ssn, stored_ssn, &#39;SSN should not be stored as-is&#39;)
-.end
-</code></pre><p>The output diagnostic is once again straightforward.</p>
-<pre tabindex="0"><code>$ parrot example-08-10.pir
+.end</code></pre>
+</figure><p>The output diagnostic is once again straightforward.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-10.pir
 1..1
 not ok 1 - SSN should not be stored as-is
 # Have: 5551234567
-# Want: not 5551234567
-</code></pre><h3 id="is_deeply"><code>is_deeply</code></h3>
+# Want: not 5551234567</code></pre>
+</figure><h3 id="is_deeply"><code>is_deeply</code></h3>
 <p><code>is</code> fails us when we need to compare PMCs. Well, it <em>sort of</em> works:</p>
-<pre tabindex="0"><code># example-08-11.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-11.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2409,16 +2733,22 @@ not ok 1 - SSN should not be stored as-is
     plan(1)
 
     is(expected_details, actual_details, &#39;Super Man is not Super Woman&#39;)
-.end
-</code></pre><p>The output isn&rsquo;t incredibly useful, though.</p>
-<pre tabindex="0"><code>$ parrot example-08-11.pir
+.end</code></pre>
+</figure><p>The output isn&rsquo;t incredibly useful, though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-11.pir
 1..1
 not ok 1 - Super Man is not Super Woman
 # Have: Hash[0x25ee84]
-# Want: Hash[0x25ee48]
-</code></pre><p>Thankfully, we have the <code>is_deeply</code> assertion to tell use exactly how a test
+# Want: Hash[0x25ee48]</code></pre>
+</figure><p>Thankfully, we have the <code>is_deeply</code> assertion to tell use exactly how a test
 has failed.</p>
-<pre tabindex="0"><code># example-08-12.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-08-12.pir
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
 
@@ -2436,13 +2766,16 @@ has failed.</p>
     plan(1)
 
     is_deeply(expected_details, actual_details, &#39;Super Man is not Super Woman&#39;)
-.end
-</code></pre><p>Now we can see exactly which value in the PMC was different.</p>
-<pre tabindex="0"><code>$ parrot example-08-12.pir
+.end</code></pre>
+</figure><p>Now we can see exactly which value in the PMC was different.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-08-12.pir
 1..1
 not ok 1 - Super Man is not Super Woman
-# Mismatch at [last]: expected Man, received Woman
-</code></pre><p>With <code>is_deeply</code> under our belt, we now know enough assertions to get started putting them to use in real
+# Mismatch at [last]: expected Man, received Woman</code></pre>
+</figure><p>With <code>is_deeply</code> under our belt, we now know enough assertions to get started putting them to use in real
 projects.</p>
 <h3 id="what-about-the-other-assertions-and-commands">What About The Other Assertions and Commands?</h3>
 <p>We won&rsquo;t be talking about them. I may eventually visit more as we get
@@ -2492,7 +2825,10 @@ powerful and worth deeper exploration on your own.</p>
 <h2 id="subroutines">Subroutines</h2>
 <p>We&rsquo;ve been working with subroutines since <a href="/post/2009/07/parrot-babysteps-01-getting-started/">parrot-babysteps-01-getting-started</a> Every Parrot application has a subroutine tagged as <code>:main</code> to show that it contains the main logic for the program. Let&rsquo;s start adding our own supplementary subroutines.</p>
 <p>Our first function will encapsulate the display of star highlights.</p>
-<pre tabindex="0"><code># example-07-01
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-01
 
 .loadlib &#39;io_ops&#39;
 
@@ -2538,7 +2874,7 @@ powerful and worth deeper exploration on your own.</p>
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     sol[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
@@ -2561,7 +2897,7 @@ powerful and worth deeper exploration on your own.</p>
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
@@ -2570,10 +2906,10 @@ powerful and worth deeper exploration on your own.</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -2608,23 +2944,32 @@ powerful and worth deeper exploration on your own.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>To create a subroutine that will get used by your <code>:main</code> sub, all
+.end</code></pre>
+</figure><p>To create a subroutine that will get used by your <code>:main</code> sub, all
 you need to do is declare a <code>.sub</code>.</p>
-<pre tabindex="0"><code>.sub say_star_details
-.end
-</code></pre><p>I like my subroutine names to clearly describe the task being accomplished,
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
+.end</code></pre>
+</figure><p>I like my subroutine names to clearly describe the task being accomplished,
 to minimize the guesswork when I come back to code later.</p>
 <p>This subroutine accepts a single parameter: a Hash describing the star to be
 printed. We learned <a href="/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">a few steps ago</a>
 that the <code>.param</code> directive declares a parameter for your subroutine.</p>
-<pre tabindex="0"><code>.sub say_star_details
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
     .param pmc star
-.end
-</code></pre><p>The subroutine body in this case is going to be a copy and paste of the
+.end</code></pre>
+</figure><p>The subroutine body in this case is going to be a copy and paste of the
 <code>DISPLAY_STAR_DETAILS</code> code chunk, along with declarations of <code>.local</code>
 variables needed to make it work.</p>
-<pre tabindex="0"><code>.sub say_star_details
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.sub say_star_details
     .param pmc star
 
     .local string star_name
@@ -2642,33 +2987,48 @@ variables needed to make it work.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>We no longer care about stellar distances in our main code, so we can safely
+.end</code></pre>
+</figure><p>We no longer care about stellar distances in our main code, so we can safely
 remove the <code>.local string star_distance</code> directive from <code>main</code>.</p>
 <p>Now we can rewrite our code to display Sol&rsquo;s details. Remember that subroutines
 require that their parameters be wrapped in parentheses.</p>
-<pre tabindex="0"><code># We want to show Sol&#39;s details as well as other matches.
-say_star_details(sol)
-</code></pre><p>We could have also wrapped <code>say_star_details</code> in quotes, but it&rsquo;s only required
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># We want to show Sol&#39;s details as well as other matches.
+say_star_details(sol)</code></pre>
+</figure><p>We could have also wrapped <code>say_star_details</code> in quotes, but it&rsquo;s only required
 when our subroutines have non-ASCII characters - that is, characters outside the
 range of what we consider &ldquo;normal&rdquo; characters in the United States. Still, I won&rsquo;t
 complain if you&rsquo;re devoted to good form and prefer to show those subroutine calls
 as:</p>
-<pre tabindex="0"><code>&#39;say_star_details&#39;(sol)
-</code></pre><p>The <code>DISPLAY_STAR_DETAILS</code> chunk becomes just a few lines:</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&#39;say_star_details&#39;(sol)</code></pre>
+</figure><p>The <code>DISPLAY_STAR_DETAILS</code> chunk becomes just a few lines:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   say_star_details(star) # or &#39;say_star_details&#39;(star)
-  goto LOAD_NEXT_STAR
-</code></pre><p>Does it produce the same result as the code we ran before?</p>
-<pre tabindex="0"><code>$ parrot example-07-01.pir 
+  goto LOAD_NEXT_STAR</code></pre>
+</figure><p>Does it produce the same result as the code we ran before?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-07-01.pir 
 &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
 &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
 568 stars exactly matched Sol&#39;s spectrum G2V
-567 have no proper name
-</code></pre><p>It sure does. The code is still rather awkward, though. How about we add a
+567 have no proper name</code></pre>
+</figure><p>It sure does. The code is still rather awkward, though. How about we add a
 subroutine for transforming a line from the text file into star data?</p>
 <h2 id="returning-values">Returning Values</h2>
-<pre tabindex="0"><code># example-07-02
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-02
 
 .loadlib &#39;io_ops&#39;
 
@@ -2723,11 +3083,11 @@ subroutine for transforming a line from the text file into star data?</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     unless star_name goto LOAD_NEXT_STAR
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -2763,7 +3123,7 @@ subroutine for transforming a line from the text file into star data?</p>
     current_header = headers[current_index]
     current_value = values[current_index]
     star[current_header] = current_value
-    current_index += 1
+    current_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
 
@@ -2773,19 +3133,25 @@ subroutine for transforming a line from the text file into star data?</p>
 
 .sub say_star_details
     # ...
-.end
-</code></pre><p>The code is starting to get a little long, so I am adopting the habit
+.end</code></pre>
+</figure><p>The code is starting to get a little long, so I am adopting the habit
 of replacing subroutine blocks with <code># ...</code> when the code is unchanged from
 the previous example.</p>
 <p>Most of the code in our new <code>extract_star_details</code> subroutine looks familiar, but we do
 have one noteworthy addition:</p>
-<pre tabindex="0"><code>.return(star)
-</code></pre><p>This directive hands the Hash we&rsquo;ve just built back to whoever called the function.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.return(star)</code></pre>
+</figure><p>This directive hands the Hash we&rsquo;ve just built back to whoever called the function.</p>
 <p>Is our application cleaner? Yes, a little bit. I&rsquo;m tired of having so many unnamed
 stars, though. Let&rsquo;s add a little logic to attempt an alternate name if no proper
 name is available.</p>
 <h3 id="making-say_star_details-smarter">Making <code>say_star_details</code> Smarter</h3>
-<pre tabindex="0"><code># example-07-03
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-07-03
 .sub &#39;main&#39; :main
 
     load_bytecode &#39;String/Utils.pbc&#39;
@@ -2834,7 +3200,7 @@ name is available.</p>
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     say_star_details(star)
     goto LOAD_NEXT_STAR
 
@@ -2911,20 +3277,23 @@ name is available.</p>
     print &#34;, Distance: &#34;
     print star_distance
     say &#34;&gt;&#34;
-.end
-</code></pre><p>Now <em>this</em> version of the app displays everything along with some kind of
+.end</code></pre>
+</figure><p>Now <em>this</em> version of the app displays everything along with some kind of
 designation. The order I look for names is arbitrary, and is based
 roughly in order of how familiar they looked to me. The tediousness of
 determining which reference to use has been hidden away in the <code>say_star_details</code>
 subroutine, and consists of simply checking each field for a value until
 something useful is found. I knew there would be some kind of name to display,
 so I removed the name-counting functionality from <code>main</code>.</p>
-<pre tabindex="0"><code>$ parrot example-07-03.pir | more
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-07-03.pir | more
 # ... much text omitted
 &lt;Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713&gt;
 &lt;Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427&gt;
-568 stars exactly matched Sol&#39;s spectrum G2V
-</code></pre><h2 id="conclusion">Conclusion</h2>
+568 stars exactly matched Sol&#39;s spectrum G2V</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>Right. Our script has grown to the point where it shows every <code>G2V</code> star
 in the HYG database, and some of the complexity of this task has been
 tucked away behind subroutines. Is there more to be done? You bet! I would
@@ -2954,20 +3323,29 @@ Introduction We have inched our way forward in our understanding of Parrot and P
 <p>After nearly 15 minutes of dedicated research - once you subtract the hours spent admiring the <a href="http://apod.nasa.gov/apod/archivepix.html">Astronomy Picture of the Day archives</a> - I came across David Nash&rsquo;s <a href="http://astronexus.com">Astronomy Nexus</a>. This is a great resource for amateur astronomers, space trivia buffs, and people who enjoy geeky pictures like the view of Earth from <a href="http://astronexus.com/node/157">Gliese 581</a>. It also has a nice, easily parsed file listing almost 120,000 stars. At roughly 20 Megabytes uncompressed, that&rsquo;s big enough to be interesting.</p>
 <p>Enough jabbering. Let&rsquo;s start downloading. The latest version of the catalog is available from the <a href="http://www.astronexus.com/node/34">HYG Database</a> page. I grabbed <a href="http://astronexus.com/files/downloads/hygxyz.csv.gz">version 2.0</a>, which is currently the most recent.</p>
 <p>The file is compressed in <code>gz</code> format. Uncompressing it on Linux or OS X is easy:</p>
-<pre tabindex="0"><code>$ gunzip hygxyz.csv.gz
-</code></pre><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ gunzip hygxyz.csv.gz</code></pre>
+</figure><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
 <p>Put the resulting <a href="/card/csv/">CSV</a> (Comma-Separated Values) file in your project directory after uncompressing. Now  we have a file full of comma-separated values which look something like this:</p>
-<pre tabindex="0"><code>StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
 Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
 0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
 1,1,224700,,,,,6.079e-05,01.08901332,282.485875706215,-5.20,-1.88,,9.10,1\
 .84501631012894,F5,0.482,282.43485,0.00449,5.36884,4.9e-08,-7.12e-06,-2.5\
-74e-06
-</code></pre><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
+74e-06</code></pre>
+</figure><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
 <p>Let&rsquo;s start small, by counting the number of stars listed in the HYG database.</p>
 <h2 id="counting-stars">Counting Stars</h2>
 <p>To count stars, we can read each line of the file and count the number of lines read. Remember not to count the header line!</p>
-<pre tabindex="0"><code># example-06-01
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-01
 
 .loadlib &#39;io_ops&#39;
 
@@ -2987,7 +3365,7 @@ Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -2996,23 +3374,38 @@ Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
     print star_count
     say &#39; stars in the HYG catalog.&#39;
 
-.end
-</code></pre><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
-<pre tabindex="0"><code>data_file = open filename, &#39;r&#39;
-</code></pre><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
+.end</code></pre>
+</figure><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >data_file = open filename, &#39;r&#39;</code></pre>
+</figure><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
 <p>What will we use to read a line from the file? How about the <code>readline</code>?</p>
-<pre tabindex="0"><code>current_line = readline data_file
-</code></pre><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
-<pre tabindex="0"><code>unless data_file goto SHOW_STAR_COUNT
-</code></pre><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
-<pre tabindex="0"><code>close data_file
-</code></pre><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line = readline data_file</code></pre>
+</figure><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >unless data_file goto SHOW_STAR_COUNT</code></pre>
+</figure><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >close data_file</code></pre>
+</figure><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
 <p>I&rsquo;ll probably continue closing finished files even after somebody tells me otherwise, truthfully.  I am one of those people who likes explicit code and ties his shoelaces with a tidy little double-knot. I can&rsquo;t help it - it&rsquo;s in my nature.</p>
 <p>That&rsquo;s all the important information about reading files. Oh sure, there are details we&rsquo;ll need to look at eventually, such as what happens when the file doesn&rsquo;t exist or you don&rsquo;t have permission. But for reading a file that we know exists and that we can read, <code>open</code>, <code>readline</code>, and <code>close</code> are the main bits.</p>
 <p>How many stars are in HYG?</p>
-<pre tabindex="0"><code>$ example-06-01.pir
-There are 119618 stars in the HYG catalog.
-</code></pre><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ example-06-01.pir
+There are 119618 stars in the HYG catalog.</code></pre>
+</figure><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
 <h3 id="intermission-file-mode-indicators">Intermission: File Mode Indicators</h3>
 <p>Now is as good a time as any to summarize the indicator codes that <code>open</code> accepts.</p>
 <table>
@@ -3046,7 +3439,10 @@ There are 119618 stars in the HYG catalog.
 <p>We will just be reading files today, but you might as well remember it now. It will come up eventually.</p>
 <h2 id="counting-names">Counting Names</h2>
 <p>All right. I&rsquo;m manually counting commas in HYG. It looks like &ldquo;ProperName&rdquo; is the seventh field. It also looks like there are quite a few stars in the catalog that have no proper name. How many?</p>
-<pre tabindex="0"><code># example-06-02
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-02
 
 .loadlib &#39;io_ops&#39;
 
@@ -3072,15 +3468,15 @@ There are 119618 stars in the HYG catalog.
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     star_data = split &#39;,&#39;, current_line
     star_name = star_data[6]
     if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
+    unnamed_count &#43;= 1
     goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
+    named_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -3093,18 +3489,30 @@ There are 119618 stars in the HYG catalog.
     print unnamed_count
     say &#39; of them do not have proper names.&#39;
 
-.end
-</code></pre><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
-<pre tabindex="0"><code>star_data = split &#39;,&#39;, current_line
-</code></pre><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
-<pre tabindex="0"><code>star_name = star_data[6]
-</code></pre><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
-<pre tabindex="0"><code>$ parrot example-06-02.pir
+.end</code></pre>
+</figure><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_data = split &#39;,&#39;, current_line</code></pre>
+</figure><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_name = star_data[6]</code></pre>
+</figure><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-02.pir
 There are 119618 stars in the HYG catalog.
 87 of them have proper names.
-119531 of them do not have proper names.
-</code></pre><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
-<pre tabindex="0"><code># example-06-03
+119531 of them do not have proper names.</code></pre>
+</figure><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-03
 
 .loadlib &#39;io_ops&#39;
 
@@ -3138,7 +3546,7 @@ There are 119618 stars in the HYG catalog.
     if name_index &gt;= field_count goto NAME_INDEX_ERROR
     current_field = field_names[name_index]
     if current_field == NAME_FIELD goto NEXT_STAR
-    name_index += 1
+    name_index &#43;= 1
     goto FIND_NAME_INDEX
 
   NAME_INDEX_ERROR:
@@ -3148,15 +3556,15 @@ There are 119618 stars in the HYG catalog.
   NEXT_STAR:
     unless data_file goto SHOW_STAR_COUNT
     current_line = readline data_file
-    star_count += 1
+    star_count &#43;= 1
     star_data = split DELIMITER, current_line
     star_name = star_data[name_index]
     if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
+    unnamed_count &#43;= 1
     goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
+    named_count &#43;= 1
     goto NEXT_STAR
 
   SHOW_STAR_COUNT:
@@ -3171,18 +3579,24 @@ There are 119618 stars in the HYG catalog.
     goto END
 
   END:
-.end
-</code></pre><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
-<pre tabindex="0"><code>.const string DELIMITER  = &#39;,&#39;
-.const string NAME_FIELD = &#39;ProperName&#39;
-</code></pre><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
+.end</code></pre>
+</figure><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.const string DELIMITER  = &#39;,&#39;
+.const string NAME_FIELD = &#39;ProperName&#39;</code></pre>
+</figure><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
 <ol>
 <li>I know the purpose of the value. The semantics of it appeals to me: &ldquo;split with    DELIMITER, which is <code>','</code>&rdquo; rather than &ldquo;split with <code>','</code> which is the delimiter&rdquo;.</li>
 <li>I only have to change one spot. If someday David Nash wants to switch to tab    delimited files, I will not have to find and replace <code>','</code> throughout my code.</li>
 </ol>
 <p>As far as <code>NAME_FIELD</code>, that&rsquo;s just because I prefer referring to things by name. It doesn&rsquo;t really serve any other purpose. Choose your own style, but make sure others can read it.</p>
 <p>The next task is to find which field holds the star name. We&rsquo;ll split the header line and step through each field until we either find the field we&rsquo;re looking for or hit the end.</p>
-<pre tabindex="0"><code>  current_line  = readline data_file
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  current_line  = readline data_file
   field_names   = split DELIMITER, current_line
   field_count   = field_names
 
@@ -3190,24 +3604,33 @@ FIND_NAME_INDEX:
   if name_index &gt;= field_count goto NAME_INDEX_ERROR
   current_field = field_names[name_index]
   if current_field == NAME_FIELD goto NEXT_STAR
-  name_index += 1
+  name_index &#43;= 1
   goto FIND_NAME_INDEX
 
 NAME_INDEX_ERROR:
   say &#39;Went through available fields without finding name index!&#39;
-  goto END
-</code></pre><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
+  goto END</code></pre>
+</figure><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
 <p>Now that Parrot knows which field holds the names, we can use it in our name counting.</p>
-<pre tabindex="0"><code>star_name = star_data[name_index]
-</code></pre><p>Let&rsquo;s run the new code.</p>
-<pre tabindex="0"><code>$ parrot example-06-03.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >star_name = star_data[name_index]</code></pre>
+</figure><p>Let&rsquo;s run the new code.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-03.pir
 There are 119618 stars in the HYG catalog.
 87 of them have proper names.
-119531 of them do not have proper names.
-</code></pre><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
+119531 of them do not have proper names.</code></pre>
+</figure><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
 <h2 id="understanding-the-data-by-looking-at-sol">Understanding the Data by Looking at Sol</h2>
 <p>I want to get a lot more information from this data, but in order to do that I&rsquo;ll need a nice way to understand the information about each star in the set. We&rsquo;re going to go about that by focusing on Sol, our own sun.</p>
-<pre tabindex="0"><code># example-06-04
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-04
 
 .loadlib &#39;io_ops&#39;
 
@@ -3241,25 +3664,31 @@ There are 119618 stars in the HYG catalog.
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto DISPLAY_NEXT_FIELD
 
   END:
 
-.end
-</code></pre><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
+.end</code></pre>
+</figure><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
 <p>In order to display the field names and values together, we step through the header and star data arrays at the same time.</p>
-<pre tabindex="0"><code>  DISPLAY_NEXT_FIELD:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  DISPLAY_NEXT_FIELD:
     if current_field_index &gt;= field_count goto END
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
-    goto DISPLAY_NEXT_FIELD
-</code></pre><p>What does the HYG data for Sol look like?</p>
-<pre tabindex="0"><code>$ parrot example-06-04.pir
+    current_field_index &#43;= 1
+    goto DISPLAY_NEXT_FIELD</code></pre>
+</figure><p>What does the HYG data for Sol look like?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-04.pir
 StarID: 0
 HIP:
 HD:
@@ -3285,15 +3714,21 @@ VY: 0
 VZ
 : 0
 
-$
-</code></pre><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
-<pre tabindex="0"><code>VZ
+$</code></pre>
+</figure><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >VZ
 : 0
 
-$
-</code></pre><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
+$</code></pre>
+</figure><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
 <p>Perl has the builtin <a href="http://perldoc.perl.org/functions/chomp.html"><code>chomp</code></a> function which is perfect for exactly this situation. Parrot doesn&rsquo;t have <code>chomp</code> as a builtin, but it is available via the standard <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/String/Utils.pir">String/Utils</a> library. There&rsquo;s no need to download anything extra, because &ldquo;String/Utils&rdquo; ships with Parrot.</p>
-<pre tabindex="0"><code># example-06-05
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-05
 
 .loadlib &#39;io_ops&#39;
 
@@ -3334,27 +3769,45 @@ $
     print current_field_name
     print &#39;: &#39;
     say current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto DISPLAY_NEXT_FIELD
 
   END:
 
-.end
-</code></pre><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
-<pre tabindex="0"><code>load_bytecode &#39;String/Utils.pbc&#39;
-</code></pre><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
+.end</code></pre>
+</figure><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >load_bytecode &#39;String/Utils.pbc&#39;</code></pre>
+</figure><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
 <p>The actual <code>chomp</code> functionality is still just beyond our reach, though. We need to make room for it in our own program by reserving a PMC.</p>
-<pre tabindex="0"><code>.local pmc    chomp
-</code></pre><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
-<pre tabindex="0"><code>chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
-</code></pre><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc    chomp</code></pre>
+</figure><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;</code></pre>
+</figure><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
 <p>Now that we&rsquo;ve got that loading business out of the way, we can actually use <code>chomp</code>.  <code>chomp</code> is a subroutine, and not an opcode. You&rsquo;ll need to use parentheses when you use it.</p>
-<pre tabindex="0"><code>current_line  = chomp(current_line)
-</code></pre><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line  = chomp(current_line)</code></pre>
+</figure><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
 <p>Remember to use it again when reading the data line for Sol.</p>
-<pre tabindex="0"><code>current_line  = chomp(current_line)
-</code></pre><p>How does the data look now?</p>
-<pre tabindex="0"><code>$ parrot example-06-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >current_line  = chomp(current_line)</code></pre>
+</figure><p>How does the data look now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-06-05.pir
 StarID: 0
 HIP:
 HD:
@@ -3377,11 +3830,14 @@ Y: 0
 Z: 0
 VX: 0
 VY: 0
-VZ: 0
-</code></pre><p>That&rsquo;s better.</p>
+VZ: 0</code></pre>
+</figure><p>That&rsquo;s better.</p>
 <p>Now it would be nice to ask for specific data for our star in a meaningful way. For example, I want to just see the name and spectrum information. We could dig through the fields the way we have been, but I think it would be better if we could just ask for them by name.</p>
 <p>One way to do that is with a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/hash.pmc.html">Hash</a>. This is a collection structure similar to an array. The difference is that you get data from the hash using string keys instead of looking things up by index. Python programmers know it as a &ldquo;dictionary&rdquo;.</p>
-<pre tabindex="0"><code># example-06-06
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-06
 
 .loadlib &#39;io_ops&#39;
 
@@ -3422,7 +3878,7 @@ VZ: 0
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_FIELD
 
   DISPLAY_STAR_DETAILS:
@@ -3439,21 +3895,30 @@ VZ: 0
 
   END:
 
-.end
-</code></pre><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
-<pre tabindex="0"><code>.local pmc star
+.end</code></pre>
+</figure><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc star
 # ...
-star = new &#39;Hash&#39;
-</code></pre><p>Instead of reading and printing the fields, we assign them to the hash.</p>
-<pre tabindex="0"><code>ASSIGN_NEXT_FIELD:
+star = new &#39;Hash&#39;</code></pre>
+</figure><p>Instead of reading and printing the fields, we assign them to the hash.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >ASSIGN_NEXT_FIELD:
   if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
   current_field_name = field_names[current_field_index]
   current_field_value = star_data[current_field_index]
   star[current_field_name] = current_field_value
-  current_field_index += 1
-  goto ASSIGN_NEXT_FIELD
-</code></pre><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  current_field_index &#43;= 1
+  goto ASSIGN_NEXT_FIELD</code></pre>
+</figure><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   $S0 = star[&#39;ProperName&#39;]
   $S1 = star[&#39;Spectrum&#39;]
   $S2 = star[&#39;Distance&#39;]
@@ -3463,15 +3928,21 @@ star = new &#39;Hash&#39;
   print $S1
   print &#34;, Distance: &#34;
   print $S2
-  say &#34;&gt;&#34;
-</code></pre><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
+  say &#34;&gt;&#34;</code></pre>
+</figure><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
 <p>What does our output look like now?</p>
-<pre tabindex="0"><code> $ parrot example-06-06.pir
- &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
-</code></pre><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      > $ parrot example-06-06.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;</code></pre>
+</figure><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
 <h2 id="stars-like-ours">Stars Like Ours</h2>
 <p>Now that we have a Hash to describe characteristics of our own Sun, we can build Hashes for other stars and look for the ones that are similar to ours. We&rsquo;ll use the spectrum as our guideline, and look for an exact match rather than just a vague similarity. We&rsquo;re also going to filter out the ones that don&rsquo;t have a name, because we know that many of the stars in this set don&rsquo;t have proper names.</p>
-<pre tabindex="0"><code># example-06-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-06-07.pir
 
 .loadlib &#39;io_ops&#39;
 
@@ -3518,7 +3989,7 @@ star = new &#39;Hash&#39;
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     sol[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
@@ -3542,7 +4013,7 @@ star = new &#39;Hash&#39;
     current_field_name = field_names[current_field_index]
     current_field_value = star_data[current_field_index]
     star[current_field_name] = current_field_value
-    current_field_index += 1
+    current_field_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
@@ -3551,10 +4022,10 @@ star = new &#39;Hash&#39;
     goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
+    unnamed_match_count &#43;= 1
     goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
@@ -3578,21 +4049,30 @@ star = new &#39;Hash&#39;
     print unnamed_match_count
     say &#39; have no proper name&#39;
 
-.end
-</code></pre><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
-<pre tabindex="0"><code>  EXAMINE_STAR:
+.end</code></pre>
+</figure><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  EXAMINE_STAR:
     star_spectrum = star[&#39;Spectrum&#39;]
     if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
-</code></pre><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
-<pre tabindex="0"><code>  REMEMBER_MATCH:
-    matching_count += 1
+    goto LOAD_NEXT_STAR</code></pre>
+</figure><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  REMEMBER_MATCH:
+    matching_count &#43;= 1
     star_name = star[&#39;ProperName&#39;]
     if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
-</code></pre><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
-<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+    unnamed_match_count &#43;= 1
+    goto LOAD_NEXT_STAR</code></pre>
+</figure><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >DISPLAY_STAR_DETAILS:
   star_name = star[&#39;ProperName&#39;]
   star_spectrum = star[&#39;Spectrum&#39;]
   star_distance = star[&#39;Distance&#39;]
@@ -3603,14 +4083,17 @@ star = new &#39;Hash&#39;
   print &#34;, Distance: &#34;
   print star_distance
   say &#34;&gt;&#34;
-  goto LOAD_NEXT_STAR
-</code></pre><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
-<pre tabindex="0"><code> $ parrot example-06-07.pir
+  goto LOAD_NEXT_STAR</code></pre>
+</figure><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      > $ parrot example-06-07.pir
  &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
  &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
  568 stars exactly matched Sol&#39;s spectrum G2V
- 567 have no proper name
-</code></pre><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
+ 567 have no proper name</code></pre>
+</figure><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Wow. There has been a lot of new stuff today. Not only did we learn how to read files and use Hashes, we also saw how to load bytecode libraries. We counted, searched through, and displayed data from a 20 Megabyte text file with nearly 120,000 entries. We also learned that <a href="http://en.wikipedia.org/wiki/Alpha_Centauri">Rigel Kentaurus A</a> is the only named neighbor in the database that is the same spectral type as our Sun.</p>
 <p>I think we&rsquo;re reaching the limits of what I want to do with <code>goto</code> as my primary  tool for guiding program flow. PIR Code is getting harder to write and edit. The next step really should be creating subroutines to abstract some of the more complicated or tedious processes.</p>
@@ -3639,7 +4122,10 @@ Wait. Let me think about that for a moment. The phrase &ldquo;done&rdquo; may be
 to remember, but &ldquo;quit&rdquo; is more common for leaving an interactive shell. I guess
 we should use &ldquo;quit&rdquo;.</p>
 <p>Okay, let&rsquo;s make the basic shell.</p>
-<pre tabindex="0"><code># example-05-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-01.pir
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -3662,10 +4148,13 @@ we should use &ldquo;quit&rdquo;.</p>
 
   EXIT:
 
-.end
-</code></pre><p>There&rsquo;s a little debugging output that won&rsquo;t be necessary once the program is
+.end</code></pre>
+</figure><p>There&rsquo;s a little debugging output that won&rsquo;t be necessary once the program is
 filled out a little more, but we&rsquo;ve got the basics.</p>
-<pre tabindex="0"><code>$ parrot example-05-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-01.pir
 Enter a number (or &#34;quit&#34; to quit): 23
 23
 Enter a number (or &#34;quit&#34; to quit): 12
@@ -3674,15 +4163,18 @@ Enter a number (or &#34;quit&#34; to quit): q
 0
 Enter a number (or &#34;quit&#34; to quit): quit
 Average goes here
-$
-</code></pre><p>Notice that the string is converted to a number using normal Perl rules: if it
+$</code></pre>
+</figure><p>Notice that the string is converted to a number using normal Perl rules: if it
 doesn&rsquo;t have any numbers, it&rsquo;s treated as zero. We could put in some error
 checking to chastise the user for bad input, but I don&rsquo;t feel like it right now.</p>
 <h2 id="averaging-with-no-arrays">Averaging With No Arrays</h2>
 <p>I would like to point something out before we start digging into array features.
 We don&rsquo;t <em>need</em> to use arrays when calculating something like an average. Here&rsquo;s
 a perfectly useful example that never uses a single array:</p>
-<pre tabindex="0"><code># example-05-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-02.pir
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -3701,8 +4193,8 @@ a perfectly useful example that never uses a single array:</p>
 	user_input = stdin.&#39;readline_interactive&#39;(PROMPT)
 	if user_input == EXIT_STRING goto SHOW_AVERAGE
 	latest_number = user_input
-	numbers_entered += 1
-	total += latest_number
+	numbers_entered &#43;= 1
+	total &#43;= latest_number
 	goto GET_INPUT
 
   SHOW_AVERAGE:
@@ -3712,16 +4204,19 @@ a perfectly useful example that never uses a single array:</p>
 
   EXIT:
 
-.end
-</code></pre><p>Here&rsquo;s what it looks like in action.</p>
-<pre tabindex="0"><code>$ parrot example-05-02.pir
+.end</code></pre>
+</figure><p>Here&rsquo;s what it looks like in action.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-02.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
 Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
-12.5
-</code></pre><p>Why did I show this? Well, basically because &ldquo;write an averaging program
+12.5</code></pre>
+</figure><p>Why did I show this? Well, basically because &ldquo;write an averaging program
 without using an Array in the language of your choice&rdquo; is an interview
 question I&rsquo;ve been asked a couple of times. It&rsquo;s been a while, but I
 thought I&rsquo;d be ready in case somebody asked me again. They&rsquo;ll probably
@@ -3742,7 +4237,10 @@ results in what? Yes, that&rsquo;s right. It results in an empty stack.</p>
 <p>Still, the stack structure is good enough for a lot of collection handling,
 and will definitely work for our averaging application.</p>
 <p>I&rsquo;ll show you the code first, then we can talk about it.</p>
-<pre tabindex="0"><code># example-05-03
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-03
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -3770,46 +4268,61 @@ and will definitely work for our averaging application.</p>
 
   CALCULATE_SUM:
 	latest_number = pop numbers
-	total += latest_number
-	number_count += 1
+	total &#43;= latest_number
+	number_count &#43;= 1
 	if numbers goto CALCULATE_SUM
 
 	average = total / number_count
 	say average
 
-.end
-</code></pre><p>We use the <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/resizablefloatarray.pmc.html">ResizableFloatArray</a> PMC to hold our user&rsquo;s numeric input. That is a built-in PMC, so we don&rsquo;t need to do any special includes to access it. Just create a new one with the <code>new</code> opcode.</p>
-<pre tabindex="0"><code>.local pmc    numbers
+.end</code></pre>
+</figure><p>We use the <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/resizablefloatarray.pmc.html">ResizableFloatArray</a> PMC to hold our user&rsquo;s numeric input. That is a built-in PMC, so we don&rsquo;t need to do any special includes to access it. Just create a new one with the <code>new</code> opcode.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc    numbers
 # ...
-numbers = new &#39;ResizableFloatArray&#39;
-</code></pre><p>After creating <code>numbers</code>, we can push new values onto the array with the <code>push</code>
+numbers = new &#39;ResizableFloatArray&#39;</code></pre>
+</figure><p>After creating <code>numbers</code>, we can push new values onto the array with the <code>push</code>
 opcode. We use this to collect user input.</p>
-<pre tabindex="0"><code>push numbers, latest_number
-</code></pre><p>Later on, when we&rsquo;re calculating the average, we use <code>pop</code> to grab the most
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >push numbers, latest_number</code></pre>
+</figure><p>Later on, when we&rsquo;re calculating the average, we use <code>pop</code> to grab the most
 recently pushed value from the stack. We keep doing that until we&rsquo;re out of
 numbers, as judged by a simple <code>if</code> test.</p>
-<pre tabindex="0"><code>  CALCULATE_SUM:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  CALCULATE_SUM:
 	latest_number = pop numbers
-	total += latest_number
-	number_count += 1
-	if numbers goto CALCULATE_SUM
-</code></pre><p>If <code>numbers</code> is empty and that test looks false to Parrot, the program falls
+	total &#43;= latest_number
+	number_count &#43;= 1
+	if numbers goto CALCULATE_SUM</code></pre>
+</figure><p>If <code>numbers</code> is empty and that test looks false to Parrot, the program falls
 through to the next statement. That next statement is where we actually
 calculate the average.</p>
-<pre tabindex="0"><code>$ parrot example-05-03.pir
-Enter a number (or &#34;quit&#34; to quit): 1e+5
-Enter a number (or &#34;quit&#34; to quit): 1e+3
-Enter a number (or &#34;quit&#34; to quit): 1e+1
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-03.pir
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;5
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;3
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;1
 Enter a number (or &#34;quit&#34; to quit): quit
-33670
-</code></pre><p>Yes, I was being more clever than I needed to with this example session, but I wanted to remind you that Parrot accepts <a href="http://en.wikipedia.org/wiki/Scientific_notation#E_notation">E notation</a> for numbers. Here&rsquo;s the same session with the numbers looking more like you might have expected.</p>
-<pre tabindex="0"><code>$ parrot example-05-03.pir
+33670</code></pre>
+</figure><p>Yes, I was being more clever than I needed to with this example session, but I wanted to remind you that Parrot accepts <a href="http://en.wikipedia.org/wiki/Scientific_notation#E_notation">E notation</a> for numbers. Here&rsquo;s the same session with the numbers looking more like you might have expected.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-03.pir
 Enter a number (or &#34;quit&#34; to quit): 100000
 Enter a number (or &#34;quit&#34; to quit): 1000
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): quit
-33670
-</code></pre><h3 id="shift-and-unshift---the-bottom-of-the-stack"><code>shift</code> and <code>unshift</code> - The Bottom of the Stack</h3>
+33670</code></pre>
+</figure><h3 id="shift-and-unshift---the-bottom-of-the-stack"><code>shift</code> and <code>unshift</code> - The Bottom of the Stack</h3>
 <p>While <code>push</code> and <code>pop</code> work on the end of an array, Parrot also provides <code>unshift</code>
 and <code>shift</code> which handle corresponding functionality on the front of an array.
 Let&rsquo;s go back to the stack image for a moment. We already have the basic idea
@@ -3821,7 +4334,10 @@ stack. Now that unshifted item is the new first in the collection, and the old
 first item is now the second.</p>
 <p>I really need to get some illustrations in here. The idea is very easy to show,
 but my language skills aren&rsquo;t adequate for the task.</p>
-<pre tabindex="0"><code># example-05-04
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-04
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -3849,15 +4365,15 @@ but my language skills aren&rsquo;t adequate for the task.</p>
 
   CALCULATE_SUM:
     latest_number = shift numbers
-    total += latest_number
-    number_count += 1
+    total &#43;= latest_number
+    number_count &#43;= 1
     if numbers goto CALCULATE_SUM
 
     average = total / number_count
     say average
 
-.end
-</code></pre><p>Which is better? I&rsquo;ll be honest with you. I don&rsquo;t really know. I stick to pushing
+.end</code></pre>
+</figure><p>Which is better? I&rsquo;ll be honest with you. I don&rsquo;t really know. I stick to pushing
 and popping because it&rsquo;s easier to visualize.</p>
 <p>However, when you combine <code>push</code> and <code>shift</code> you get a whole new structure called
 a queue.</p>
@@ -3867,7 +4383,10 @@ a queue.</p>
 different, because they&rsquo;re still producing the same final result.
 Let&rsquo;s write an example that clearly demonstrates the difference
 between a queue and a stack:</p>
-<pre tabindex="0"><code># example-05-05
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-05
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -3907,16 +4426,16 @@ between a queue and a stack:</p>
     stack_popped = pop stack
     print &#34;Popped: &#34;
     say stack_popped
-    stack_sum += stack_popped
-    stack_count += 1
+    stack_sum &#43;= stack_popped
+    stack_count &#43;= 1
     if stack goto CALCULATE_STACK_SUM
 
   CALCULATE_QUEUE_SUM:
     queue_dequeued = shift queue
     print &#34;Dequeued: &#34;
     say queue_dequeued
-    queue_sum += queue_dequeued
-    queue_count += 1
+    queue_sum &#43;= queue_dequeued
+    queue_count &#43;= 1
     if queue goto CALCULATE_QUEUE_SUM
 
     stack_average = stack_sum / stack_count
@@ -3926,10 +4445,13 @@ between a queue and a stack:</p>
     print &#34;Queue average: &#34;
     say queue_average
 
-.end
-</code></pre><p>Now we can see exactly what numbers are being grabbed as our program calculates
+.end</code></pre>
+</figure><p>Now we can see exactly what numbers are being grabbed as our program calculates
 the sums.</p>
-<pre tabindex="0"><code>$ parrot example-05-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-05.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -3944,8 +4466,8 @@ Dequeued: 10
 Dequeued: 15
 Dequeued: 20
 Stack average: 12.5
-Queue average: 12.5
-</code></pre><p>That output could fill up the screen if I had a lot of values. I might want to
+Queue average: 12.5</code></pre>
+</figure><p>That output could fill up the screen if I had a lot of values. I might want to
 fine-tune the debug output. Then again, I might want to just move on to the next
 subject.</p>
 <h2 id="accessing-by-index">Accessing by Index</h2>
@@ -3960,7 +4482,10 @@ without changing them. One way to do that is by accessing contents via an index.
 <p>We&rsquo;ll build up our array in the same way that we have been, because I want the user
 to have some flexibility in deciding how many numbers to average. After that we&rsquo;ll
 step through the array by incrementing an index.</p>
-<pre tabindex="0"><code># example-05-06
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-06
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -3991,8 +4516,8 @@ step through the array by incrementing an index.</p>
   CALCULATE_SUM:
     if number_index &gt;= number_count goto CALCULATE_AVERAGE
     latest_number = numbers[number_index]
-    total += latest_number
-    number_index += 1
+    total &#43;= latest_number
+    number_index &#43;= 1
     goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
@@ -4005,9 +4530,12 @@ step through the array by incrementing an index.</p>
     say total
     print &#34;Average:        &#34;
     say average
-.end
-</code></pre><p>A little more information is displayed in this version.</p>
-<pre tabindex="0"><code>$ parrot example-05-06.pir
+.end</code></pre>
+</figure><p>A little more information is displayed in this version.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-06.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -4015,15 +4543,18 @@ Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
 Values entered: 4
 Sum of values:  50
-Average:        12.5
-</code></pre><p>Notice that we check to see if we&rsquo;ve stepped outside of bounds right away. We
+Average:        12.5</code></pre>
+</figure><p>Notice that we check to see if we&rsquo;ve stepped outside of bounds right away. We
 could test at the end of that section, but the truth is that I don&rsquo;t trust my
 own code. The sooner I can see if I need to move on, the happier I&rsquo;ll be. I
 could even test if we&rsquo;ve somehow gone below zero if I was feeling especially
 paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
 <h2 id="using-an-iterator">Using an Iterator</h2>
 <p>We&rsquo;re nearly done. There is only one more way of traversing arrays that I want to look at. Parrot <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/iterator.pmc.html">Iterators</a> allow you to step through the contents of an array without doing anything to the array itself, while ignoring the details of array indexing.</p>
-<pre tabindex="0"><code># example-05-07
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-07
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -4053,7 +4584,7 @@ paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
   CALCULATE_SUM:
     unless numbers_iterator goto CALCULATE_AVERAGE
     latest_number = shift numbers_iterator
-    total += latest_number
+    total &#43;= latest_number
     goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
@@ -4068,8 +4599,8 @@ paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
     print &#34;Average:        &#34;
     say average
 
-.end
-</code></pre><p>All right. This example is easier for me to read than the others for some reason.
+.end</code></pre>
+</figure><p>All right. This example is easier for me to read than the others for some reason.
 That could be due to the simple fact that I&rsquo;ve been looking at Parrot arrays for
 a couple of hours now. Maybe it&rsquo;s because my blocks are more clearly labelled.
 Maybe it&rsquo;s because using an iterator allowed me to build up a sum and still get
@@ -4077,7 +4608,10 @@ the length the length of <code>numbers</code> later, rather than building up two
 at the same time. I&rsquo;m not really sure. I do know that I feel like the iterator
 has given me a nice little convenience layer for handling my array. The output
 is still the same.</p>
-<pre tabindex="0"><code>$ parrot example-05-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-07.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -4085,8 +4619,8 @@ Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
 Values entered: 4
 Sum of values:  50
-Average:        12.5
-</code></pre><h2 id="conclusion">Conclusion</h2>
+Average:        12.5</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>We had already taken a glance at arrays when we worked with the command line. Today we dove a little deeper, looking into different ways we can access the contents of an array. Now you understand how to treat a &lsquo;ResizableFloatArray&rsquo; like a stack, a queue, a plain old array, or an iterable collection. These principles should work for other array types as well. Parrot has many array PMCs, and you can find them on the list of core PMCs <a href="http://docs.parrot.org/parrot/devel/html/pmc.html">here</a>.</p>
 ]]></content:encoded>
 </item>

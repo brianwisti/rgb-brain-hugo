@@ -139,8 +139,8 @@ to create a section for it on card/coolnamehere.">
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -253,11 +253,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2011/">2011</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2011/08/moose/">Moose</a></li>
@@ -306,7 +311,9 @@ application to work at all. Fortunately, <a href="https://metacpan.org/module/Mo
 significantly on the boilerplate. You can cut it down even more by taking
 advantage of the features available in recent versions of Perl, and
 that is exactly what I do in my code templates.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
 </span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
@@ -322,40 +329,57 @@ that is exactly what I do in my code templates.</p>
 </span></span></span><span class="line"><span class="cl"><span class="cm">
 </span></span></span><span class="line"><span class="cl"><span class="cm">MyClass
 </span></span></span><span class="line"><span class="cl"><span class="cm">
-</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
-</span></span></code></pre></div><p>Since I am not being paid by the word, I ignored most of the Perldoc
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span></span></span></code></pre>
+</figure><p>Since I am not being paid by the word, I ignored most of the Perldoc
 boilerplate that I use.</p>
 <p>That&rsquo;s it, really. You can move on if you&rsquo;re not interested in my rambling
 explanations.</p>
 <h2 id="the-rambling-explanation">The Rambling Explanation</h2>
 <p>Let&rsquo;s examine the boilerplate code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
-</span></span></code></pre></div><p>This tells <code>perl</code> that the program requires features that only become
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span></span></span></code></pre>
+</figure><p>This tells <code>perl</code> that the program requires features that only become
 available in <a href="http://perldoc.perl.org/perl5140delta.html">Perl 5.14</a>. If I tried to load this library in an
 application using a different version of Perl, it simply would not work:</p>
-<pre tabindex="0"><code>Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
-BEGIN failed--compilation aborted at MyClass.pm line 1.
-</code></pre><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
+BEGIN failed--compilation aborted at MyClass.pm line 1.</code></pre>
+</figure><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
 haven&rsquo;t been made redundant by a change in the newest Perl.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
-</span></span></code></pre></div><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span></span></span></code></pre>
+</figure><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
 Here&rsquo;s my package. It&rsquo;s called &ldquo;MyClass&rdquo;. It has a <code>$VERSION</code> of <code>1.0</code>.
 I suppose I could use <a href="https://metacpan.org/module/MooseX::Declare">MooseX::Declare</a>, but I&rsquo;m still getting the
 hang of core <a href="https://metacpan.org/module/Moose">Moose</a> functionality.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span>
-</span></span></code></pre></div><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
 A <em>lot</em> of stuff is going on the background now, as all the Moose support
 structure is loaded and set up.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span>
-</span></span></code></pre></div><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span>
-</span></span></code></pre></div><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span></span></span></code></pre>
+</figure><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span></span></span></code></pre>
+</figure><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
 out of the way.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span>
-</span></span></code></pre></div><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span></span></span></code></pre>
+</figure><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
 <em>need</em> that flexibility, I should make the class a little lighter.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
 that has ended Perl modules for years. As far as I can tell, the new <code>package</code> syntax
 makes it unnecessary. Perl 5.14 doesn&rsquo;t complain about it missing.</p>
   

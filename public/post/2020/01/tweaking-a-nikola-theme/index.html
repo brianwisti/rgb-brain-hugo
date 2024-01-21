@@ -137,8 +137,8 @@ In the live site, cover images are prominently displayed at the top of their pag
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -251,11 +251,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2020/">2020</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2020/01/tweaking-a-nikola-theme/">Tweaking a Nikola Theme</a></li>
@@ -309,7 +314,9 @@ The <a href="/now/">now</a> page, in Nikola</p>
 <p>Nikola starts with a few assumptions I can work with. bootblog4 already looks for <code>previewimage</code> <a href="https://getnikola.com/handbook.html#metadata-fields">metadata</a> to build thumbnails for <a href="https://getnikola.com/handbook.html#featured-posts">featured posts</a>. Nikola also expects to find image files in your site’s <code>images/</code> folder. Makes sense.</p>
 <p>I’ll mirror the content path with images, and add <code>previewimage</code> metadata which points to the right spot.</p>
 <p><strong><code>posts/2019/12/again-with-the-manual-symmetry/index.md</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2019-12-15 12:37:51</span><span class="m">-08</span><span class="p">:</span><span class="m">00</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">drawing</span><span class="w">
@@ -318,8 +325,8 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Again with the manual symmetry</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l">note</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">previewimage</span><span class="p">:</span><span class="w"> </span><span class="l">/images/2019/12/again-with-the-manual-symmetry/cover.jpg</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span></code></pre></div><p>I prefer how <a href="/card/hugo/">card/Hugo</a> handles <a href="https://gohugo.io/content-management/page-bundles/">page bundles</a>. Everything for your content is in the same folder. Many other static site generators — including Nikola — keep supplemental content separate from posts.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre>
+</figure><p>I prefer how <a href="/card/hugo/">card/Hugo</a> handles <a href="https://gohugo.io/content-management/page-bundles/">page bundles</a>. Everything for your content is in the same folder. Many other static site generators — including Nikola — keep supplemental content separate from posts.</p>
 <p>Hugo uses a powerful but sometimes confusing <a href="https://gohugo.io/content-management/taxonomies/">taxonomy</a> system in layout customization. Nikola prefers a powerful but sometimes confusing &ldquo;theme inheritance&rdquo; system. Look. They’re all confusing. It’s just a matter of finding the kind of confusing you don’t mind.</p>
 <p>With theme inheritance, my tweaks <em>are</em> a new theme. But the new theme basically says &ldquo;I’m like that theme, except that I changed these templates.&rdquo;</p>
 <p>So let’s inherit a theme.</p>
@@ -379,22 +386,29 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </tbody>
 </table>
 <p>So I ask Nikola for a new theme, using bootblog4 as the parent.</p>
-<pre tabindex="0"><code>$ nikola theme --new rgb-bootblog4 --parent bootblog4
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola theme --new rgb-bootblog4 --parent bootblog4
 ...
-[2020-01-21T15:35:33Z] NOTICE: theme: Remember to set THEME=&#34;rgb-bootblog4&#34; in conf.py to use this theme.
-</code></pre><p>Because I didn’t specify a template engine, rgb-bootblog4 uses <a href="https://www.makotemplates.org/">Mako</a>.</p>
+[2020-01-21T15:35:33Z] NOTICE: theme: Remember to set THEME=&#34;rgb-bootblog4&#34; in conf.py to use this theme.</code></pre>
+</figure><p>Because I didn’t specify a template engine, rgb-bootblog4 uses <a href="https://www.makotemplates.org/">Mako</a>.</p>
 <p>Let’s remember to update <code>conf.py</code> as directed, so we can <em>see</em> the theme as we tweak it. The <a href="https://getnikola.com/creating-a-theme.html">theme tutorial</a> also mentions disabling <code>USE_BUNDLES</code> during theme development. I thought they meant page bundles for a second and got excited, until I realized <a href="https://getnikola.com/creating-a-theme.html#bundles">bundles</a> meant bundled JavaScript and CSS for quicker HTTP/1 downloads.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Name of the theme to use.</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Name of the theme to use.</span>
 </span></span><span class="line"><span class="cl"><span class="n">THEME</span> <span class="o">=</span> <span class="s2">&#34;rgb-bootblog4&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">USE_BUNDLES</span> <span class="o">=</span> <span class="kc">False</span>
-</span></span></code></pre></div><p>Sweet. I have a new <code>themes/rgb-bootblog4</code> folder. Wait. It has no templates.</p>
+</span></span><span class="line"><span class="cl"><span class="n">USE_BUNDLES</span> <span class="o">=</span> <span class="kc">False</span></span></span></code></pre>
+</figure><p>Sweet. I have a new <code>themes/rgb-bootblog4</code> folder. Wait. It has no templates.</p>
 <p>Oh that’s right. This is what they were talking about with <em>template inheritance</em>. The templates are still in the parent. It’s up to me to copy and change specific templates. That’s both good and a little risky when the parent theme updates. What if my tweak turns out to be incompatible? Okay, not going to worry about it today. If you’re going to veer wildly from the parent, you should probably use <a href="https://themes.getnikola.com/v8/base/">base</a> as the parent.</p>
 <h2 id="editing-templates">Editing templates</h2>
 <blockquote>
-<p>[!NOTE]
-The <a href="https://marketplace.visualstudio.com/items?itemName=tommorris.mako">Mako extension</a> for <a href="https://code.visualstudio.com/">Visual Studio Code</a> associates itself with <code>.mako</code> files. You can add <code>.tmpl</code> to that with the <code>files.associations</code> <a href="https://code.visualstudio.com/docs/getstarted/settings">setting</a>. Might not want to do that globally though. <code>.tmpl</code> could be Mako here, but <a href="https://jinja.palletsprojects.com/">Jinja2</a> in another site.</p>
+<p><strong>NOTE</strong></p>
+<p>The <a href="https://marketplace.visualstudio.com/items?itemName=tommorris.mako">Mako extension</a> for <a href="https://code.visualstudio.com/">Visual Studio Code</a> associates itself with <code>.mako</code> files. You can add <code>.tmpl</code> to that with the <code>files.associations</code> <a href="https://code.visualstudio.com/docs/getstarted/settings">setting</a>. Might not want to do that globally though. <code>.tmpl</code> could be Mako here, but <a href="https://jinja.palletsprojects.com/">Jinja2</a> in another site.</p>
 <p>Instead, change it in the workspace file for your Nikola site.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;folders&#34;</span><span class="p">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span>
@@ -405,29 +419,39 @@ The <a href="https://marketplace.visualstudio.com/items?itemName=tommorris.mako"
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;*.tmpl&#34;</span><span class="p">:</span> <span class="s2">&#34;mako&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></blockquote>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure></blockquote>
 <p>So which of the <a href="https://getnikola.com/theming.html#built-in-templates">built-in templates</a> do I want? Since both posts and pages have cover images on my site, I’ll start with the most general template. Everything starts with <code>base.tmpl</code>. Let’s look there.</p>
-<pre tabindex="0"><code>$ nikola theme -c base.tmpl
-</code></pre><p>Can I find anything interesting in the base template?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">${</span><span class="n">template_hooks</span><span class="p">[</span><span class="s1">&#39;page_header&#39;</span><span class="p">]()</span><span class="cp">}</span><span class="x">
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola theme -c base.tmpl</code></pre>
+</figure><p>Can I find anything interesting in the base template?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">${</span><span class="n">template_hooks</span><span class="p">[</span><span class="s1">&#39;page_header&#39;</span><span class="p">]()</span><span class="cp">}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;content&#34;</span><span class="cp">&gt;&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
-</span></span></span></code></pre></div><p>Over here on the live site, I put cover images above the main content. <code>extra_header</code> looks promising. Where to set it? I prefer to make my changes in the most relevant template instead of the most general.</p>
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;content&#34;</span><span class="cp">&gt;&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
+</figure><p>Over here on the live site, I put cover images above the main content. <code>extra_header</code> looks promising. Where to set it? I prefer to make my changes in the most relevant template instead of the most general.</p>
 <p>Give me a minute to explore…</p>
 <p>Okay. Pages ultimately inherit from posts — Mako supports <a href="https://docs.makotemplates.org/en/latest/inheritance.html">template inheritance</a>, letting the parent define some blocks while overriding others. We might be able to do this with one change.</p>
-<pre tabindex="0"><code>$ nikola theme -c post.tmpl
-</code></pre><p>Nikola provides a large number of <a href="https://getnikola.com/template-variables.html">template variables</a> to work with, but today I focus on <code>post</code>. How about the preview image? It gets set in post metadata, so I <em>could</em> use <code>post.meta(&quot;previewimage&quot;)</code>. Don’t have to do that though.  <code>previewimage</code> metadata is important enough that it gets promoted to an attribute of the <a href="https://getnikola.com/template-variables.html#post-object-attributes">post object</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ nikola theme -c post.tmpl</code></pre>
+</figure><p>Nikola provides a large number of <a href="https://getnikola.com/template-variables.html">template variables</a> to work with, but today I focus on <code>post</code>. How about the preview image? It gets set in post metadata, so I <em>could</em> use <code>post.meta(&quot;previewimage&quot;)</code>. Don’t have to do that though.  <code>previewimage</code> metadata is important enough that it gets promoted to an attribute of the <a href="https://getnikola.com/template-variables.html#post-object-attributes">post object</a>.</p>
 <p><strong><code>post.tmpl</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="cp">%</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="p">:</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;div class=&#34;figure&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">          &lt;img src=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="cp">}</span><span class="x">&#34; alt=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="cp">}</span><span class="x">&#34; width=&#34;1000&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">          &lt;p class=&#34;caption&#34;&gt;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="cp">}</span><span class="x">&lt;/p&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/figure&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
-</span></span></span></code></pre></div><p>Keep in mind what I noticed <a href="/post/2020/01/restructuredtext-basics-for-blogging/">the other day</a>about these not being real figures in reStructuredText. For now I match RST output, as if I’d used a <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure directive</a>. That way I don’t have to find the CSS for this theme.</p>
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
+</figure><p>Keep in mind what I noticed <a href="/post/2020/01/restructuredtext-basics-for-blogging/">the other day</a>about these not being real figures in reStructuredText. For now I match RST output, as if I’d used a <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure directive</a>. That way I don’t have to find the CSS for this theme.</p>
 <p><img src="/post/2020/01/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/></p>
 <p>It has a cover image, placed right by the title. It doesn’t <em>quite</em> match today’s view of <a href="/post/2019/12/again-with-the-manual-symmetry/">that post</a>, but this has the basic idea. And I only had to edit a single template file!</p>
 <p><img src="/post/2020/01/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/></p>
@@ -436,15 +460,17 @@ The <a href="https://marketplace.visualstudio.com/items?itemName=tommorris.mako"
 <p>Excellent. I thought that would take much more work.</p>
 <h2 id="remember-bootstrap">Remember Bootstrap?</h2>
 <p>bootblog4 <em>is</em> based off of Bootstrap. I feel compelled to make the cover image a <a href="https://getbootstrap.com/docs/4.4/components/jumbotron/">Jumbotron</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="cp">%</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="p">:</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;div class=&#34;figure jumbotron&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">          &lt;img src=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="cp">}</span><span class="x">&#34; alt=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="cp">}</span><span class="x">&#34; width=1000&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">          &lt;p class=&#34;caption&#34;&gt;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="cp">}</span><span class="x">&lt;/p&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
-</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
-</span></span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/></p>
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
+</figure><p><img src="/post/2020/01/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/></p>
 <p>Hm. Maybe, maybe not. I’m tempted to tweak it some more, but my task list is long and my time is short.</p>
 <h2 id="did-i-miss-anything">Did I miss anything?</h2>
 <p>Sort of. On the live site, I let Hugo resize cover images to fit in my design and avoid large downloads. Nikola has thumbnails, but that’s not quite the same thing. I’d have to do it myself, maybe with a <a href="https://getnikola.com/handbook.html#custom-plugins">plugin</a>.</p>

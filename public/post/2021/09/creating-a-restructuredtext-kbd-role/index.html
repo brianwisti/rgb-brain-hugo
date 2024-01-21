@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/09/creating-a-restructuredtext-kbd-role/">Creating a reStructuredText kbd Role</a></li>
@@ -293,11 +298,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>Today&rsquo;s the day I learn how to create custom roles in <a href="/card/restructuredtext/">card/reStructuredText</a>. There&rsquo;s already <a href="https://docutils.sourceforge.io/docs/howto/rst-roles.html">documentation</a> on how to do this. I&rsquo;m just applying it for my specific case.</p>
 <h2 id="prologue-setup">Prologue: Setup</h2>
 <p>Install some stuff if you want to play along.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -U docutils invoke
-</span></span></code></pre></div><p>Some of the requirements are specific to my writing flow.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install python-frontmatter
-</span></span></code></pre></div><p>For experimentation, I copied the build code from my <a href="/post/2021/08/trying-a-thing-with-neovim/">Neovim rst plugin</a> into the site&rsquo;s <a href="https://www.pyinvoke.org">Invoke</a> task file. Easier than updating remote plugins and restarting the editor with every change.</p>
-<div class="highlight" title="tasks.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Site generation tasks for randomgeekery.org&#34;&#34;&#34;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -U docutils invoke</span></span></code></pre>
+</figure><p>Some of the requirements are specific to my writing flow.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install python-frontmatter</span></span></code></pre>
+</figure><p>For experimentation, I copied the build code from my <a href="/post/2021/08/trying-a-thing-with-neovim/">Neovim rst plugin</a> into the site&rsquo;s <a href="https://www.pyinvoke.org">Invoke</a> task file. Easier than updating remote plugins and restarting the editor with every change.</p>
+<figure class="highlight">
+  <figcaption><tt>tasks.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Site generation tasks for randomgeekery.org&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">locale</span>
 </span></span><span class="line"><span class="cl">
@@ -337,45 +349,66 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rst</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Transform a single reStructuredText file.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">convert_rst_file_for_hugo</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-</span></span></code></pre></div><p>Then I use Invoke to do the transform:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv content/draft/creating-a-restructuredtext-kbd-role/index.rst.txt
+</span></span><span class="line"><span class="cl">    <span class="n">convert_rst_file_for_hugo</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Then I use Invoke to do the transform:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv content/draft/creating-a-restructuredtext-kbd-role/index.rst.txt
 </span></span><span class="line"><span class="cl"><span class="go">🖍 content/draft/creating-a-restructuredtext-kbd-role/index.html
-</span></span></span></code></pre></div><p>Some variation of this is bound to work for you.</p>
+</span></span></span></code></pre>
+</figure><p>Some variation of this is bound to work for you.</p>
 <p>Let&rsquo;s get started!</p>
 <h2 id="what-even-is-a-role">What even is a role?</h2>
 <p>First, we need the background. There&rsquo;s this thing called <em>interpreted text</em>. It&rsquo;s a reserved bit of functionality for specially marked text. Folks coming to reStructuredText from Markdown mostly know it as the weird reason they have to use double backticks for <code>code</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="nv">`interpreted text`</span><span class="err">
-</span></span></span></code></pre></div><p>Interpreted text has all sorts of fancy potential. I mainly know it for the fact that rst links use it. Unless told otherwise, <a href="https://docutils.sourceforge.io/">Docutils</a> treats interpreted text as a citation.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>interpreted text<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>It assumes any interpreted text is <code>:title-reference:</code> — that is, it references the title of a book, movie, song, or other publication.  The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><code>cite</code></a> element is a perfectly reasonable choice for that.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="nv">`interpreted text`</span></span></span></code></pre>
+</figure><p>Interpreted text has all sorts of fancy potential. I mainly know it for the fact that rst links use it. Unless told otherwise, <a href="https://docutils.sourceforge.io/">Docutils</a> treats interpreted text as a citation.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>interpreted text<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>It assumes any interpreted text is <code>:title-reference:</code> — that is, it references the title of a book, movie, song, or other publication.  The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><code>cite</code></a> element is a perfectly reasonable choice for that.</p>
 <p>But what if you aren&rsquo;t specifically talking about a title? <em>Roles</em> provide an explicit label for your interpreted text.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:term:</span><span class="nv">`Roles`</span><span class="err">
-</span></span></span></code></pre></div><p>What&rsquo;s a <code>:term:</code> in rst? Nothing. I made it up. Seems like a good role for when I introduce a new name and I want it to stand out.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:term:</span><span class="nv">`Roles`</span></span></span></code></pre>
+</figure><p>What&rsquo;s a <code>:term:</code> in rst? Nothing. I made it up. Seems like a good role for when I introduce a new name and I want it to stand out.</p>
 <p>I need to define the role to use it. Otherwise?</p>
 <p><img src="/post/2021/09/../../../attachments/img/2021/docutils-unknown-role.png" alt="attachments/img/2021/docutils-unknown-role.png"/>
 Docutils embeds an error message below the offending block</p>
 <p>So up at the top of my document use the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#custom-interpreted-text-roles">role directive</a> to create <code>:term:</code> and register it with the parser.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term<span class="err">
-</span></span></span></code></pre></div><p>Now that Docutils knows about the role, it can turn it into HTML.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>It still doesn&rsquo;t have any inherent <em>meaning</em>, but I can put some style rules on it so that anything I label with the <code>:term:</code> role shows up a little differently.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term</span></span></code></pre>
+</figure><p>Now that Docutils knows about the role, it can turn it into HTML.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>It still doesn&rsquo;t have any inherent <em>meaning</em>, but I can put some style rules on it so that anything I label with the <code>:term:</code> role shows up a little differently.</p>
 <h2 id="inline-roles-in-your-document">Inline roles in your document</h2>
 <p>If I want the term to stand out a little more, I can adjust my role definition.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term(strong)<span class="err">
-</span></span></span></code></pre></div><p>Now it inherits from the <code>:strong:</code> role, keeping the <code>&quot;term&quot;</code> CSS class.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>You can inherit from any role. That makes it a nice way to create aliases or slight variations to existing roles.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="p">..</span> <span class="ow">role</span><span class="p">::</span> term(strong)</span></span></code></pre>
+</figure><p>Now it inherits from the <code>:strong:</code> role, keeping the <code>&quot;term&quot;</code> CSS class.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">strong</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;term&#34;</span><span class="p">&gt;</span>Roles<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>You can inherit from any role. That makes it a nice way to create aliases or slight variations to existing roles.</p>
 <p>But I want to get fancy. Let&rsquo;s look at defining reStructuredText roles in Python.</p>
 <h2 id="defining-roles-in-your-code">Defining roles in your code</h2>
 <p>Defining a role has two main steps. Okay, three. Because first we need to import some libraries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span>
-</span></span></code></pre></div><p><em>Now</em> we create a function that knows what to do when given a role and some preprocessed parameters.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">roles</span></span></span></code></pre>
+</figure><p><em>Now</em> we create a function that knows what to do when given a role and some preprocessed parameters.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return text marked as domain terminology.&#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">...</span>
-</span></span></code></pre></div><p>That&rsquo;s quite a function signature to take in without context, so here&rsquo;s a breakdown of what got sent when Docutils saw my first <code>:term:`Roles</code>:</p>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span></span></span></code></pre>
+</figure><p>That&rsquo;s quite a function signature to take in without context, so here&rsquo;s a breakdown of what got sent when Docutils saw my first <code>:term:`Roles</code>:</p>
 <table>
 <thead>
 <tr>
@@ -429,12 +462,18 @@ Docutils embeds an error message below the offending block</p>
 <li><code>options</code> — just in case</li>
 </ul>
 <p>I chose to mirror the inline directive I made earlier, creating a <code>strong</code> node with a class of <code>&quot;term&quot;</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">term_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;term&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>Anyone calling <code>role_term</code> expects a tuple with two node lists: one for content, and another holding any error nodes I may need to create. In this case the content list has my term node and the error list is empty.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span>
-</span></span></code></pre></div><p>With our role implementation defined, we register it and the name associated with it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">term_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;term&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Anyone calling <code>role_term</code> expects a tuple with two node lists: one for content, and another holding any error nodes I may need to create. In this case the content list has my term node and the error list is empty.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span></span></span></code></pre>
+</figure><p>With our role implementation defined, we register it and the name associated with it.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_term</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return text marked as domain terminology.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">term_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">strong</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
@@ -442,14 +481,16 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">term_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">role_term</span><span class="p">)</span>
-</span></span></code></pre></div><p>I don&rsquo;t need my inline <code>role</code> directive anymore, so I remove it. Registering <code>role_term</code> makes it available to every document processed by this particular Python script.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="n">role_term</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I don&rsquo;t need my inline <code>role</code> directive anymore, so I remove it. Registering <code>role_term</code> makes it available to every document processed by this particular Python script.</p>
 <p>Okay, now I basically know how to implement a reStructuredText role. Let&rsquo;s keep going.</p>
 <h3 id="tag-references"><code>:tag:</code> references</h3>
 <p>I link to tags on this site frequently. Since I&rsquo;m the main audience for this site, it&rsquo;s mostly to give me a shortcut to related content. But hey it may help <em>you</em> find related content to if you happen to click through.</p>
 <p>Couple of problems with those tag links, though. First off, they look exactly like every other link in my published HTML. It would be nice for them to stand out a bit when I&rsquo;m reading. Second, they look like every other link in my post source. It would be nice for them to stand out a bit when I&rsquo;m <em>writing</em>.</p>
 <p>So let&rsquo;s make a <code>:tag:</code> reference role.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_reference_tag</span><span class="p">(</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_reference_tag</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a reference to a site tag.&#34;&#34;&#34;</span>
@@ -460,30 +501,42 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">tag_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="n">role_reference_tag</span><span class="p">)</span>
-</span></span></code></pre></div><p>I thought about putting the <code>#</code> in CSS, but not every <code>p-category</code> is a tag. I can always change my mind later, maybe make a distinct <code>tag</code> CSS class.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;tag&#39;</span><span class="p">,</span> <span class="n">role_reference_tag</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I thought about putting the <code>#</code> in CSS, but not every <code>p-category</code> is a tag. I can always change my mind later, maybe make a distinct <code>tag</code> CSS class.</p>
 <p>It looks similar to <code>:term:</code>, except because I&rsquo;m referencing something I use a <code>reference</code> node and give it a link to that tag&rsquo;s page as <code>refuri</code>.  The <code>p-category</code> class is a <a href="/card/microformats/">card/microformats</a> thing for <a href="/card/indieweb/">card/IndieWeb</a>. I also decided to prefix my tag text with the traditional octothorpe used to mark tags out in the wild.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:tag:</span><span class="nv">`microformats`</span><span class="err">
-</span></span></span></code></pre></div><p>Oh yes that is <em>much</em> nicer to read than a standard reStructuredText link.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category reference external&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/microformats&#34;</span><span class="p">&gt;</span>#microformats<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>There&rsquo;s my <code>p-category</code> class, along with an unsurprising <code>reference</code> — since it&rsquo;s a clear way to indicate the reference node I used — and a slightly confusing <code>external</code> class. Pretty sure that means &ldquo;external to the document.&rdquo;</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:tag:</span><span class="nv">`microformats`</span></span></span></code></pre>
+</figure><p>Oh yes that is <em>much</em> nicer to read than a standard reStructuredText link.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category reference external&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/microformats&#34;</span><span class="p">&gt;</span>#microformats<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>There&rsquo;s my <code>p-category</code> class, along with an unsurprising <code>reference</code> — since it&rsquo;s a clear way to indicate the reference node I used — and a slightly confusing <code>external</code> class. Pretty sure that means &ldquo;external to the document.&rdquo;</p>
 <h3 id="a-kbd-role">A <code>:kbd:</code> role</h3>
 <p>Something I need rather often is a way to indicate keyboard input. <kbd>Control</kbd> <kbd>c</kbd>, stuff like that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return literal text marked as keyboard input.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">kbd_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">kbd_node</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="s2">&#34;keyboard&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:kbd:</span><span class="nv">`Control c`</span><span class="err">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">tt</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;keyboard docutils literal&#34;</span><span class="p">&gt;</span>Control c<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Well that was easy. A bit verbose, but okay. That&rsquo;s not the real problem though.</p>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:kbd:</span><span class="nv">`Control c`</span></span></span></code></pre>
+</figure><figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">tt</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;keyboard docutils literal&#34;</span><span class="p">&gt;</span>Control c<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Well that was easy. A bit verbose, but okay. That&rsquo;s not the real problem though.</p>
 <h3 id="theres-a-perfectly-good-kbd-element">There&rsquo;s a perfectly good <code>&lt;kbd&gt;</code> element</h3>
 <p>This blog is HTML, right? Can&rsquo;t I just use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd"><code>kbd</code></a> element in my role?</p>
 <p>Yes, but kind of no. It&rsquo;s considered poor form to put raw HTML in your output nodes. Docutils writes all sorts of content, and a <code>&lt;kbd&gt;</code> would be pretty ungainly sitting in a PDF. Ideally you&rsquo;d take care of writing HTML in an HTML Writer. Unfortunately, I have no idea how to work an HTML Writer yet.</p>
 <p>But we <em>can</em> output raw HTML in a role implementation. It would be frowned on slightly less if we flagged it as a raw role.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">html</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">html</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">role_raw_kbd</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rawtext</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">inliner</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="n">content</span><span class="o">=</span><span class="p">[]):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return literal text marked as keyboard input.&#34;&#34;&#34;</span>
@@ -496,12 +549,16 @@ Docutils embeds an error message below the offending block</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">kbd_node</span><span class="p">],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;raw-kbd&#39;</span><span class="p">,</span> <span class="n">role_raw_kbd</span><span class="p">)</span>
-</span></span></code></pre></div><p>Better pull in the <a href="https://docs.python.org/3/library/html.html">html</a> standard library and escape that text. Otherwise I&rsquo;d feel awful silly when talking about indenting with <code>&gt;&gt;</code> in <a href="/card/vim/">card/Vim</a> or something and it breaks the whole page.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:raw-kbd:</span><span class="nv">`&gt;&gt;`</span><span class="err">
-</span></span></span></code></pre></div><p>Yeah, that works. It&rsquo;s not too bad to look at while writing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span><span class="ni">&amp;lt;&amp;lt;</span><span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>And there we go. An honest to goodness <code>&lt;kbd&gt;</code> element. And <code>:raw-kbd:</code> will be easier to search for if and when I get around to custom HTML Writers.</p>
+</span></span><span class="line"><span class="cl"><span class="n">roles</span><span class="o">.</span><span class="n">register_canonical_role</span><span class="p">(</span><span class="s1">&#39;raw-kbd&#39;</span><span class="p">,</span> <span class="n">role_raw_kbd</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Better pull in the <a href="https://docs.python.org/3/library/html.html">html</a> standard library and escape that text. Otherwise I&rsquo;d feel awful silly when talking about indenting with <code>&gt;&gt;</code> in <a href="/card/vim/">card/Vim</a> or something and it breaks the whole page.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:raw-kbd:</span><span class="nv">`&gt;&gt;`</span></span></span></code></pre>
+</figure><p>Yeah, that works. It&rsquo;s not too bad to look at while writing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span><span class="ni">&amp;lt;&amp;lt;</span><span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>And there we go. An honest to goodness <code>&lt;kbd&gt;</code> element. And <code>:raw-kbd:</code> will be easier to search for if and when I get around to custom HTML Writers.</p>
 <p>Figuring out a role for keyboard input was the reason I started writing this post — though my favorite new role is <code>:tag:</code>. Anyways, I think this is a good spot to stop writing and start editing.</p>
 <h2 id="wrap-it-up">Wrap it up</h2>
 <p>…pardon me while I copy those role functions back into my Neovim plugin…</p>

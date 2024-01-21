@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2022/">2022</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2022/05/2022-05-24-tue-0854/">[2022-05-24 Tue 08:54]</a></li>
@@ -293,17 +298,21 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p>Brain insists on a CLI flow for this tumblelog. So of course I have to mess up my perfectly functional flow.</p>
 <p>I know I&rsquo;ll fiddle with it more later, but here&rsquo;s what I got at the moment.</p>
 <p>I consider the Org inactive timestamps title core to the tumblelog flow. Better let <a href="https://gohugo.io/functions/dateformat/"><code>time.Format</code></a> produce something plausible in my <code>posts.md</code> Hugo archetype.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-md" data-lang="md"><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: &#34;[{{ time.Format &#34;2006-01-02 Mon 15:04&#34; .Date }}]&#34;
 </span></span><span class="line"><span class="cl">author:
 </span></span><span class="line"><span class="cl"><span class="k">-</span> Brian Wisti
 </span></span><span class="line"><span class="cl">date: {{ .Date }}
 </span></span><span class="line"><span class="cl">tags: []
 </span></span><span class="line"><span class="cl">draft: false
-</span></span><span class="line"><span class="cl">---
-</span></span></code></pre></div><p>The archetype uses <a href="/card/yaml/">card/YAML</a> frontmatter instead of <a href="https://ox-hugo.scripter.co">ox-hugo</a>&rsquo;s default <a href="/card/toml/">card/TOML</a>. I find manually managing the tags is easier that way.</p>
+</span></span><span class="line"><span class="cl">---</span></span></code></pre>
+</figure><p>The archetype uses <a href="/card/yaml/">card/YAML</a> frontmatter instead of <a href="https://ox-hugo.scripter.co">ox-hugo</a>&rsquo;s default <a href="/card/toml/">card/TOML</a>. I find manually managing the tags is easier that way.</p>
 <p>My brain picked <a href="/card/ruby/">Ruby</a> for the script to generate and open a new post, thanks mainly to the convenience of Piotr Murach&rsquo;s <a href="https://ttytoolkit.org">TTY toolkit</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env ruby</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env ruby</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;tty-command&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;tty-editor&#34;</span>
@@ -314,8 +323,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl"><span class="n">cmd</span> <span class="o">=</span> <span class="no">TTY</span><span class="o">::</span><span class="no">Command</span><span class="o">.</span><span class="n">new</span>
 </span></span><span class="line"><span class="cl"><span class="n">cmd</span><span class="o">.</span><span class="n">run</span> <span class="s2">&#34;hugo new </span><span class="si">#{</span><span class="n">post_path</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="no">TTY</span><span class="o">::</span><span class="no">Editor</span><span class="o">.</span><span class="n">open</span> <span class="n">post_path</span>
-</span></span></code></pre></div><p>All it does is ask Hugo to create a new post based on the archetype, and then open that post file in my <code>$EDITOR</code>.</p>
+</span></span><span class="line"><span class="cl"><span class="no">TTY</span><span class="o">::</span><span class="no">Editor</span><span class="o">.</span><span class="n">open</span> <span class="n">post_path</span></span></span></code></pre>
+</figure><p>All it does is ask Hugo to create a new post based on the archetype, and then open that post file in my <code>$EDITOR</code>.</p>
 <p>I&rsquo;ll get to more later. I know from past experience I can use <code>tty-command</code> to manage the git bits after I&rsquo;m done writing.</p>
 <p>But apparently if I want to pay rent I need to <em>work</em>.</p>
   

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/04/joplin-terminal-basics/">Joplin Terminal Basics</a></li>
@@ -316,23 +321,33 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 <p>So for today it’s Joplin.</p>
 <h2 id="setup">Setup</h2>
 <p>Joplin runs on NodeJS, so install it with <a href="/card/volta/">card/Volta</a>, Yarn, NPM, or whatever you install Node stuff with.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ volta install joplin
-</span></span><span class="line"><span class="cl">success: installed joplin@1.6.4 with executables: joplin
-</span></span></code></pre></div><p>Now there’s a <code>joplin</code> command in your path!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">joplin
-</span></span></code></pre></div><p>You get these four panes you can tab around in, and — look, Joplin’s <a href="https://joplinapp.org/terminal/#usage">usage</a> docs break it down better than I could.  Go look at those.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ volta install joplin
+</span></span><span class="line"><span class="cl">success: installed joplin@1.6.4 with executables: joplin</span></span></code></pre>
+</figure><p>Now there’s a <code>joplin</code> command in your path!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">joplin</span></span></code></pre>
+</figure><p>You get these four panes you can tab around in, and — look, Joplin’s <a href="https://joplinapp.org/terminal/#usage">usage</a> docs break it down better than I could.  Go look at those.</p>
 <h2 id="basic-usage">Basic usage</h2>
 <p>Joplin has a command line mode, which you get at with the colon character <code>:</code>.  Gonna focus on that command line mode.</p>
 <p>The first and most important command?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:help
-</span></span></code></pre></div><p>That gives you a list of commands, including the second most important command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:exit
-</span></span></code></pre></div><p>Not <code>:quit</code>.  Not <code>:wq</code>.  No.  Joplin’s terminal application is kind of inspired by <a href="/card/vim/">card/Vim</a>, but it is not Vim.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:help</span></span></code></pre>
+</figure><p>That gives you a list of commands, including the second most important command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:exit</span></span></code></pre>
+</figure><p>Not <code>:quit</code>.  Not <code>:wq</code>.  No.  Joplin’s terminal application is kind of inspired by <a href="/card/vim/">card/Vim</a>, but it is not Vim.</p>
 <h2 id="setting-up-note-synchronization">Setting up note synchronization</h2>
 <p>I’ve already been using Joplin elsewhere, so <em>my</em> first task is to configure <a href="https://joplinapp.org/terminal/#synchronisation">synchronization</a>.</p>
 <p>The <code>sync</code> needs no additional arguments when used with Dropbox, lucky for me.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:sync
-</span></span></code></pre></div><p>Joplin gives me:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:sync</span></span></code></pre>
+</figure><p>Joplin gives me:</p>
 <ul>
 <li>a URL to copy and paste into the browser</li>
 <li>a prompt to enter Dropbox’s validation code</li>
@@ -345,14 +360,20 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 </ol>
 <p>If you’re me, the leftmost pane fills with folders from your previous Joplin sessions.  The screenshot you already saw, pretty much.</p>
 <h3 id="creating-a-note">Creating a note</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mknote &#34;Terminal notes with Joplin&#34;
-</span></span></code></pre></div><p>The quotes aren’t needed for single-word notes.  But for multi-word notes it’s either wrap it in quotes or use CamelCase.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mknote &#34;Terminal notes with Joplin&#34;</span></span></code></pre>
+</figure><p>The quotes aren’t needed for single-word notes.  But for multi-word notes it’s either wrap it in quotes or use CamelCase.</p>
 <p>I can see it’s up there in the middle tab, but now I’m obsessing over the command line mode.  Is there an <code>ls</code> equivalent?  There sure is!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
-</span></span><span class="line"><span class="cl">Terminal notes with Joplin
-</span></span></code></pre></div><h3 id="editing-a-note">Editing a note</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:edit &#34;Terminal notes with Joplin&#34;
-</span></span></code></pre></div><p>Joplin offers a chance to autocomplete once I type enough in.  I accept that autocompletion with <code>[TAB]</code>, then hit <code>[ENTER]</code> to complete the command.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
+</span></span><span class="line"><span class="cl">Terminal notes with Joplin</span></span></code></pre>
+</figure><h3 id="editing-a-note">Editing a note</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:edit &#34;Terminal notes with Joplin&#34;</span></span></code></pre>
+</figure><p>Joplin offers a chance to autocomplete once I type enough in.  I accept that autocompletion with <code>[TAB]</code>, then hit <code>[ENTER]</code> to complete the command.</p>
 <p>This passes the note buffer off to your default text editor — in my case,
 <a href="https://micro-editor.github.io/">micro</a>.</p>
 <p>The notes themselves are in a straightforward Markdown.  See <a href="https://joplinapp.org/markdown/">Joplin&rsquo;s Markdown guide</a> for those details.</p>
@@ -360,28 +381,42 @@ Joplin&rsquo;s terminal view of my notebooks</p>
 <p>Edit.  Save.  Quit the editor.  You’re back in Joplin, and your updated content is in Joplin’s content pane.</p>
 <h3 id="deleting-a-note">Deleting a note</h3>
 <p>I forgot about the quotes and made myself a &ldquo;Terminal&rdquo; note.  How do I delete it?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rmnote Terminal
-</span></span></code></pre></div><p>Joplin asks for confirmation, defaulting to &ldquo;No&rdquo; because you can’t get the note back once deleted.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:rmnote Terminal</span></span></code></pre>
+</figure><p>Joplin asks for confirmation, defaulting to &ldquo;No&rdquo; because you can’t get the note back once deleted.</p>
 <h3 id="organizing-notes-into-notebooks">Organizing notes into notebooks</h3>
 <p>I can see this becoming a whole series of notes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mkbook MyJoplinNotes
-</span></span></code></pre></div><p>Didn’t feel like using quotes this time.  Anyways, &ldquo;MyJoplinNotes&rdquo; gets created at the top level.  Joplin automatically sets it as the notebook I’m using.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mkbook MyJoplinNotes</span></span></code></pre>
+</figure><p>Didn’t feel like using quotes this time.  Anyways, &ldquo;MyJoplinNotes&rdquo; gets created at the top level.  Joplin automatically sets it as the notebook I’m using.</p>
 <p>&ldquo;Using&rdquo; a particular notebook means this is where your focus is.  Any new notes you create end up in the notebook you’re using.</p>
 <p>I need to get <em>this</em> note over to the right location.  First I <code>use</code> the random notebook I started in.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use &#39;Nerd notes&#39;
-</span></span></code></pre></div><p>My first round notebook names tend to be terrible. Sorry.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use &#39;Nerd notes&#39;</span></span></code></pre>
+</figure><p>My first round notebook names tend to be terrible. Sorry.</p>
 <h3 id="moving-notes">Moving notes</h3>
 <p>Now I can move it, letting Joplin help me with autocompletion.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mv &#39;Terminal notes with Joplin&#39; MyJoplinNotes
-</span></span></code></pre></div><p>Switch over to the new notebook:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use MyJoplinNotes
-</span></span></code></pre></div><p>And there it is.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
-</span></span><span class="line"><span class="cl">Terminal notes with Joplin
-</span></span></code></pre></div><h3 id="renaming-notes">Renaming notes</h3>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:mv &#39;Terminal notes with Joplin&#39; MyJoplinNotes</span></span></code></pre>
+</figure><p>Switch over to the new notebook:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:use MyJoplinNotes</span></span></code></pre>
+</figure><p>And there it is.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ls
+</span></span><span class="line"><span class="cl">Terminal notes with Joplin</span></span></code></pre>
+</figure><h3 id="renaming-notes">Renaming notes</h3>
 <p>Of course, now that it’s in a dedicated notebook the name seems redundant. Let’s rename this note.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ren &#39;Terminal notes with Joplin&#39; &#39;Adding and Organizing Notes&#39;
-</span></span></code></pre></div><h2 id="parting-thought">Parting thought</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">:ren &#39;Terminal notes with Joplin&#39; &#39;Adding and Organizing Notes&#39;</span></span></code></pre>
+</figure><h2 id="parting-thought">Parting thought</h2>
 <p>Even though Joplin keeps a narrow focus, there’s much more than I looked at here.  I just wanted to take some notes.  You can manage tasks with it, and even extend it with an API.</p>
 <p>Keep your notes short, unless your editor supports folding.  If it does?  Go wild.  Have fun!</p>
 

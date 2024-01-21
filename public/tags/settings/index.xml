@@ -26,10 +26,15 @@ setxcbmap takes care of adding Control functionality and removing Caps Lock beha
   <content:encoded><![CDATA[<h2>Getting Control and Escape keys where I want them</h2><p>I like my Caps Lock key to not be a Caps Lock key. Act as Escape when I tap on it. Act as Control when I press it with another key. And never ever enable SHOUT MODE.</p>
 <p>This is the third time I’ve done this. This is also the third time I had to look up how to do this. Better save it on the site.</p>
 <p><a href="https://linux.die.net/man/1/setxkbmap">setxcbmap</a> takes care of adding Control functionality and removing Caps Lock behavior. I need <a href="https://github.com/alols/xcape">xcape</a> for Escape key behavior. Since I’m running <a href="https://manjaro.org/">Manjaro</a> on my Linux partition this week, I’ll use <a href="https://wiki.manjaro.org/index.php?title=Pamac">pamac</a> to install.</p>
-<pre tabindex="0"><code>$ pamac install xcape
-</code></pre><p>I set up an <a href="https://wiki.archlinux.org/index.php/Awesome#Autostart">autostart</a> script to get this in every Awesomewm session.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ pamac install xcape</code></pre>
+</figure><p>I set up an <a href="https://wiki.archlinux.org/index.php/Awesome#Autostart">autostart</a> script to get this in every Awesomewm session.</p>
 <p><strong><code>~/.config/awesome/autorun.sh</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="k">function</span> run <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> ! pgrep -f <span class="nv">$1</span> <span class="p">;</span>
@@ -39,15 +44,20 @@ setxcbmap takes care of adding Control functionality and removing Caps Lock beha
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">run setxkbmap -option ctrl:nocaps
-</span></span><span class="line"><span class="cl">run xcape -e <span class="s1">&#39;Control_L=Escape&#39;</span>
-</span></span></code></pre></div><p>It’s a script, so make sure it’s executable.</p>
-<pre tabindex="0"><code>$ chmod 755 ~/.config/awesome/autorun.sh
-</code></pre><p>Add one line of code to my <code>rc.lua</code> to make sure <code>autorun.sh</code> gets spawned on startup.</p>
+</span></span><span class="line"><span class="cl">run xcape -e <span class="s1">&#39;Control_L=Escape&#39;</span></span></span></code></pre>
+</figure><p>It’s a script, so make sure it’s executable.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ chmod 755 ~/.config/awesome/autorun.sh</code></pre>
+</figure><p>Add one line of code to my <code>rc.lua</code> to make sure <code>autorun.sh</code> gets spawned on startup.</p>
 <p><strong><code>~/.config/awesome/rc.lua</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- {{{ Autorun</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- {{{ Autorun</span>
 </span></span><span class="line"><span class="cl"><span class="n">awful.spawn</span><span class="p">.</span><span class="n">with_shell</span><span class="p">(</span><span class="s2">&#34;~/.config/awesome/autorun.sh&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- }}}</span>
-</span></span></code></pre></div><p>And that’s it!</p>
+</span></span><span class="line"><span class="cl"><span class="c1">-- }}}</span></span></span></code></pre>
+</figure><p>And that’s it!</p>
 ]]></content:encoded>
 </item>
 </channel>

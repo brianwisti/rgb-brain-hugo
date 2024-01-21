@@ -32,7 +32,9 @@ whole thing into my workflow with a bash script.</p>
 <h3 id="my-default-archetype-template">My Default Archetype Template</h3>
 <p>My archetype focuses on <a href="http://gohugo.io/content/front-matter/">front matter</a>. Since the site sections share taxonomy rules, I use a single default archetype.</p>
 <p><strong><code>archetypes/default.md</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">title: &#34;{{ replace .TranslationBaseName &#34;-&#34; &#34; &#34; | title }}&#34;
 </span></span><span class="line"><span class="cl">date: {{ dateFormat &#34;2006-01-02&#34; .Date }}
 </span></span><span class="line"><span class="cl">year: &#34;{{ dateFormat &#34;2006&#34; .Date }}&#34;
@@ -43,8 +45,8 @@ whole thing into my workflow with a bash script.</p>
 </span></span><span class="line"><span class="cl"><span class="k">-</span>
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">tl;dr
-</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- more --&gt;</span>
-</span></span></code></pre></div><h3 id="notes">Notes</h3>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- more --&gt;</span></span></span></code></pre>
+</figure><h3 id="notes">Notes</h3>
 <ul>
 <li>Hugo provides <code>title</code> and <code>date</code> if you leave them out. My <code>title</code> looks the   same as the default, but I add it to the template to remember what   transformations are being done.</li>
 <li>I prefer a specific format for date in my front matter, so I add my own   version.</li>
@@ -55,8 +57,11 @@ whole thing into my workflow with a bash script.</p>
 <li>That last line is really <code>&lt;!&ndash;more&ndash;&gt;</code>  with no spaces, but if I skip the spaces here Hugo thinks I want another summary block in this post.</li>
 </ul>
 <p>That&rsquo;s good enough for <code>hugo new</code>. Since I have <code>newContentEditor</code> set to &ldquo;vim&rdquo; in my <a href="http://gohugo.io/overview/configuration/">config</a>, Hugo opens the new file in my editor after creating it.</p>
-<pre tabindex="0"><code>$ hugo new post/2017/23-things-i-hate-about-lists.md
-</code></pre><p>My workflow is a little more complicated than &ldquo;create a draft and edit it&rdquo; though.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ hugo new post/2017/23-things-i-hate-about-lists.md</code></pre>
+</figure><p>My workflow is a little more complicated than &ldquo;create a draft and edit it&rdquo; though.</p>
 <h2 id="my-workflow">My Workflow</h2>
 <p>I create and edit site content in its own git branch. With multiple drafts going at any one time, using separate branches lets me focus on the current content.</p>
 <p>I follow these steps every time I add a new post.</p>
@@ -68,7 +73,9 @@ whole thing into my workflow with a bash script.</p>
 <p>I can ignore the publishing part of the workflow for today, which involves running some tests and pushing to <a href="https://aws.amazon.com/s3/">AWS S3</a>. That deserves its own post.</p>
 <p>I originally automated this with a small Ruby script which would create the branch and generate a content file for me. The file generating code is not needed now that Hugo archetypes are templates. My small, slightly clunky Ruby script can be replaced with a smaller, hopefully less clunky <a href="https://www.gnu.org/software/bash/">Bash</a> script.</p>
 <p><strong><code>scripts/add</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="c1"># stricter bash</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  see http://redsymbol.net/articles/unofficial-bash-strict-mode/</span>
@@ -89,15 +96,18 @@ whole thing into my workflow with a bash script.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git checkout -b <span class="s2">&#34;</span><span class="nv">$STUB</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">hugo new <span class="s2">&#34;</span><span class="nv">$STUB</span><span class="s2">.md&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># newContentEditor set in Hugo config, expect Vim here.</span>
-</span></span></code></pre></div><h3 id="notes-1">Notes</h3>
+</span></span><span class="line"><span class="cl"><span class="c1"># newContentEditor set in Hugo config, expect Vim here.</span></span></span></code></pre>
+</figure><h3 id="notes-1">Notes</h3>
 <p>Applying details like <a href="http://redsymbol.net/articles/unofficial-bash-strict-mode/">unofficial strict mode</a> is part my process for getting more comfortable scripting Bash. The bit that&rsquo;s important to me: this script fails loudly on encountering bad variables and bad processes.</p>
 <p>The fun little slug-generating <code>sed</code> and <code>tr</code> pipe came directly from <a href="https://bigmachine.io/products/the-imposters-handbook/">The Imposter&rsquo;s Handbook</a>. I know that I will lose punctuation and unusual capitalization between this and Hugo&rsquo;s manipulation of <code>.TranslationBaseName</code>. It encourages me to keep titles simple. The title can edited in the front matter later if it is that important to me.</p>
 <p><a href="https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html#date-invocation"><code>date</code></a> comes from <a href="https://www.gnu.org/software/coreutils/manual/html_node/index.html#Top">GNU Coreutils</a>. I knew I could use <code>date</code> to get a simple description of the date. I recently discovered that it also accepts a format string! Turns out that GNU Coreutils gives the shell quite a bit of functionality that I usually ran to some programming language and its libraries for. Being self-taught produces weird gaps in my knowledge.</p>
-<pre tabindex="0"><code>$ ./script/add post &#34;23 Things I Hate About Lists&#34;
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ ./script/add post &#34;23 Things I Hate About Lists&#34;
 Switched to a new branch &#39;post/2017/23-things-i-hate-about-lists&#39;
-/home/brian/Sites/rgb-hugo/content/post/2017/23-things-i-hate-about-lists.md created
-</code></pre><p>Excuse me while I go write my masterpiece. Have fun!</p>
+/home/brian/Sites/rgb-hugo/content/post/2017/23-things-i-hate-about-lists.md created</code></pre>
+</figure><p>Excuse me while I go write my masterpiece. Have fun!</p>
 ]]></content:encoded>
 </item>
 </channel>

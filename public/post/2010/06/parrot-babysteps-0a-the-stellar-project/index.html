@@ -133,8 +133,8 @@ I know - you really want to start adding features and working on cool new stuff.
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -247,11 +247,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/06/parrot-babysteps-0a-the-stellar-project/">Parrot Babysteps 0a - The Stellar Project</a></li>
@@ -312,12 +317,18 @@ foundation. Today we&rsquo;re going to get that step our of the way.</p>
 <h2 id="set-up-the-project">Set up the project</h2>
 <p>Let&rsquo;s apply what we learned last time putting together <a href="/post/2010/04/parrot-babysteps-09-simple-projects">larger projects</a>, and
 set up a project named <code>stellar</code>.</p>
-<pre tabindex="0"><code>$ mkdir stellar
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mkdir stellar
 $ mkdir stellar/t
-$ mkdir stellar/lib
-</code></pre><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
+$ mkdir stellar/lib</code></pre>
+</figure><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
 for anything more elaborate.</p>
-<pre tabindex="0"><code># example-0a-01/setup.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/setup.pir
 .sub &#39;main&#39; :main
     .param pmc args
     $S0 = shift args # Ignore my own filename
@@ -332,8 +343,8 @@ for anything more elaborate.</p>
     prove_exec = get_parrot()
 
     setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
-.end
-</code></pre><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
+.end</code></pre>
+</figure><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
 empty. We will steadily build up all of our functionality in the Stellar library
 and eventually add a very simple file to act as the face of Stellar for
 Parrot. Right now, we just have an empty <code>lib/stellar.pir</code>.</p>
@@ -358,7 +369,10 @@ to think of the numbering as simply presenting the order that I came up with the
 stories. It provides a simple history of sorts. First I came up with that test,
 and I wrote this test after I was comfortable with the first.</p>
 <p>In that spirit, I will name the first test story <code>01-extract-details.t</code>.</p>
-<pre tabindex="0"><code># example-0a-01/t/01-extract-details.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-01/t/01-extract-details.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -382,12 +396,15 @@ and I wrote this test after I was comfortable with the first.</p>
 
     $S0 = star[&#39;Proper Name&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
+.end</code></pre>
+</figure><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
 <code>ProperName</code>. We&rsquo;ll come back to that.</p>
 <p>What happens if this test is run while <code>stellar.pir</code> is still empty? It fails,
 of course. It might be useful to look at <em>how</em> it fails.</p>
-<pre tabindex="0"><code>stellar $ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >stellar $ parrot setup.pir test
 t/01-extract-details.t .. Dubious, test returned 1
 Failed 1/1 subtests
 
@@ -399,14 +416,17 @@ Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
 written yet. This is different from a regular test failure, because Parrot
 couldn&rsquo;t even get to the tests. I&rsquo;m showing this so that you recognize what&rsquo;s
 going on when you see errors like this in your own library.</p>
 <p>Adding <code>extract_star_details</code> is easy enough. Just copy the code from the
 earlier step.</p>
-<pre tabindex="0"><code># stellar/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># stellar/lib/stellar.pir
 
 .sub extract_star_details
     .param pmc    headers
@@ -427,14 +447,17 @@ earlier step.</p>
     current_header = headers[current_index]
     current_value = values[current_index]
     star[current_header] = current_value
-    current_index += 1
+    current_index &#43;= 1
     goto ASSIGN_NEXT_STAR_FIELD
 
   RETURN_STAR:
     .return(star)
-.end
-</code></pre><p>Let&rsquo;s run the test again.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>Let&rsquo;s run the test again.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. Failed 1/1 subtests
 
 Test Summary Report
@@ -445,31 +468,40 @@ Files=1, Tests=1,  0.020 wallclock secs
 Result: FAIL
 test fails
 current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
-called from Sub &#39;main&#39; pc 29 (setup.pir:17)
-</code></pre><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)</code></pre>
+</figure><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
 little vague for larger test stories, though. Let&rsquo;s run the test file directly.</p>
-<pre tabindex="0"><code>#!text
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot t/01-extract-details.t
 1..1
 not ok 1 - ProperName should be Sol
 # Have:
-# Want: Sol
-</code></pre><p>Okay, <em>now</em> we can fix the typo.</p>
-<pre tabindex="0"><code>#!parrot
+# Want: Sol</code></pre>
+</figure><p>Okay, <em>now</em> we can fix the typo.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!parrot
 # t/01-extract-details.t
 .sub &#39;main&#39; :main
     ...
     $S0 = star[&#39;ProperName&#39;]
     is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
-.end
-</code></pre><p>The test should pass now that the correction has been made.</p>
-<pre tabindex="0"><code>#!text
+.end</code></pre>
+</figure><p>The test should pass now that the correction has been made.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >#!text
 $ parrot setup.pir test
 t/01-extract-details.t .. ok
 All tests successful.
 Files=1, Tests=1,  0.014 wallclock secs
-Result: PASS
-</code></pre><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
+Result: PASS</code></pre>
+</figure><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
 to know what failure looks like before we can reach success.</p>
 <p>What have we accomplished so far? We now have a story in which the user, armed
 with a header line and a line describing a star, gets an object that she can
@@ -490,7 +522,10 @@ they have it. They might want to print it, but they might also want to feed it
 to an unmanned orbiter for some reason.</p>
 <p>Because we can&rsquo;t predict with certainty what someone will do with the string
 summary of a star, this test story will focus on asking for that string.</p>
-<pre tabindex="0"><code># t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># t/02-summarize-star.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -514,11 +549,14 @@ summary of a star, this test story will focus on asking for that string.</p>
     summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
     $S0 = summarize_star(star)
     is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
-.end
-</code></pre><p>It&rsquo;s not hard to create the code which will make this story true, but it does
+.end</code></pre>
+</figure><p>It&rsquo;s not hard to create the code which will make this story true, but it does
 involve a little more work than the simple copy and paste for
 <code>extract_star_details</code>.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -587,13 +625,16 @@ involve a little more work than the simple copy and paste for
     summary .= &#34;&gt;&#34;
 
     .return(summary)
-.end
-</code></pre><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
+.end</code></pre>
+</figure><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
 change the focus from displaying the details to returning them as a simple
 string.</p>
 <p>What&rsquo;s most important is that this test passes when handed Sol. How about some
 of those stars that don&rsquo;t have proper names?</p>
-<pre tabindex="0"><code># example-0a-04/t/02-summarize-star.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/02-summarize-star.t
 .include &#39;lib/stellar.pir&#39;
 
 .sub &#39;main&#39; :main
@@ -633,21 +674,27 @@ of those stars that don&rsquo;t have proper names?</p>
     star = extract_star_details(header_fields, star_fields)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>It does indeed work.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+.end</code></pre>
+</figure><p>It does indeed work.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-extract-details.t .. ok
 t/02-summarize-star.t ... ok
 All tests successful.
 Files=2, Tests=4,  0.030 wallclock secs
-Result: PASS
-</code></pre><p>I am concerned about the heft of this test code. The concern is that I
+Result: PASS</code></pre>
+</figure><p>I am concerned about the heft of this test code. The concern is that I
 had to split the CSV text, extract star details, and summarize the star
 manually for each star string. Each of those times is an opportunity for me to
 make a mistake. I <em>think</em> I would like to have a subroutine which would take the
 header fields and a CSV line of star data, and return the extracted details.
 Let&rsquo;s make a new test story for that.</p>
-<pre tabindex="0"><code># example-0a-04/t/03-extract-from-csv.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/t/03-extract-from-csv.t
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
     .local string header_string
@@ -682,9 +729,12 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_from_csv_line(star_string, header_fields, delimiter)
     $S0 = summarize_star(star)
     is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
-.end
-</code></pre><p>The code to make this work is simple enough.</p>
-<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+.end</code></pre>
+</figure><p>The code to make this work is simple enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0a-04/lib/stellar.pir
 
 # ...
 
@@ -699,8 +749,8 @@ Let&rsquo;s make a new test story for that.</p>
     star = extract_star_details(header_fields, star_fields)
 
     .return(star)
-.end
-</code></pre><p>I do not know if I have saved much work, but it is easier for me to read the
+.end</code></pre>
+</figure><p>I do not know if I have saved much work, but it is easier for me to read the
 test story. That is important to me, because debugging and improving the code is
 easier if I can easily understand what is happening.</p>
 <h2 id="conclusion">Conclusion</h2>

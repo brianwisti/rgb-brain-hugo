@@ -34,7 +34,9 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 <p>I know the gist of SQL. Let&rsquo;s play with this.</p>
 <p>Made a custom <a href="https://github.com/zadam/trilium/wiki/Template">template</a> for notes about people. Assigned that template to the appropriate notes. Got curious about how my template-using notes were spread out.</p>
 <p>Copied the query from <em>Trilium Demo / Statistics / Note type count</em> and tweaked it a little for my needs.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">templateNote</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">note</span><span class="p">.</span><span class="n">isDeleted</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="w">
@@ -50,8 +52,8 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">attr</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;template&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">value</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="w"> </span><span class="k">desc</span><span class="w">
-</span></span></span></code></pre></div><table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="w"> </span><span class="k">desc</span></span></span></code></pre>
+</figure><table>
 <thead>
 <tr>
 <th>title</th>
@@ -88,8 +90,8 @@ Trilium also embeds its scripting as notes, which takes some getting used to.</p
 </tbody>
 </table>
 <blockquote>
-<p>[!NOTE]
-I renamed the Trilium demo&rsquo;s included <em>People template</em> to <em>Biography template</em>
+<p><strong>NOTE</strong></p>
+<p>I renamed the Trilium demo&rsquo;s included <em>People template</em> to <em>Biography template</em>
 for clarity here.</p>
 </blockquote>
 <p>I duplicated <em>Note type count</em>, pasted my new query, then adjusted the layout JS to reflect the tweaked query.</p>

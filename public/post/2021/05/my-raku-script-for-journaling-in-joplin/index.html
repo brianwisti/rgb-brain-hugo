@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/05/my-raku-script-for-journaling-in-joplin/">My Raku script for Journaling in Joplin</a></li>
@@ -302,57 +307,78 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <h2 id="setting-the-scene">Setting the scene</h2>
 <p>So yesterday I wrote a couple of <a href="/post/2021/05/cli-journaling-in-joplin-with-raku/">one-liners</a> for managing journal entries in the <a href="/card/joplin/">card/Joplin</a> note-taking application, with help from <a href="/card/raku/">card/Raku</a>.</p>
 <p>I made one for writing:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
-</span></span></code></pre></div><p>I made one for reading:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="se">\
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span></span></span></code></pre>
+</figure><p>I made one for reading:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">&amp;&amp;</span> raku -e <span class="s1">&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s1">    for qx{ joplin ls }.lines.sort {
 </span></span></span><span class="line"><span class="cl"><span class="s1">      qqx{ joplin cat $_ }.subst(
 </span></span></span><span class="line"><span class="cl"><span class="s1">        /^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }
 </span></span></span><span class="line"><span class="cl"><span class="s1">      ).say
 </span></span></span><span class="line"><span class="cl"><span class="s1">    }&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -
-</span></span></code></pre></div><p>They work.  That&rsquo;s great.</p>
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -</span></span></code></pre>
+</figure><p>They work.  That&rsquo;s great.</p>
 <p>They don&rsquo;t work great, though.  Mainly the one-liner for reading.  It dumps every journal entry, which is both overwhelming and slow.  Overwhelming because I only want to see today&rsquo;s journal entries most of the time.  Slow because every one of those entries requires a separate call to <code>joplin</code>.  Joplin is lovely, but it expects to be used as a persistent application.  The command line functionality is optimized for convenience.  It is <em>not</em> optimized for being hammered repeatedly by an overenthusiastic command line script.</p>
 <p>I can fix the overwhelming.  I can&rsquo;t properly fix the slow until I learn more about the <a href="https://joplinapp.org/api/overview/">Joplin API</a>.  At least I can make the experience less awful.</p>
 <h2 id="make-it-less-awful">Make it less awful</h2>
 <h3 id="less-hard-coding-please">Less hard-coding please</h3>
 <p>First things first.  I might change the name of my journal notebook.  You might want a daily diary rather than a giant stack of entries.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$notebook</span>     <span class="o">=</span> <span class="p">&#34;</span><span class="s2">Journal</span><span class="p">&#34;;</span>
-</span></span><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$entry-window</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">minute</span><span class="p">&#34;;</span>
-</span></span></code></pre></div><p>Focusing on daily journals? Set <code>$entry-window</code> to <code>&quot;day&quot;</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$notebook</span>     <span class="o">=</span> <span class="p">&#34;</span><span class="s2">Journal</span><span class="p">&#34;;</span>
+</span></span><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$entry-window</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">minute</span><span class="p">&#34;;</span></span></span></code></pre>
+</figure><p>Focusing on daily journals? Set <code>$entry-window</code> to <code>&quot;day&quot;</code>.</p>
 <h3 id="adding-an-entry">Adding an entry</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">add-entry</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">add-entry</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$timestamp</span> <span class="o">=</span> <span class="kt">DateTime</span><span class="o">.</span><span class="nb">now</span><span class="o">.</span><span class="nb">truncated-to</span><span class="p">(</span><span class="nv">$entry-window</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$command</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">joplin use </span><span class="nv">$notebook</span><span class="s2"> &amp;&amp; joplin edit </span><span class="nv">$timestamp</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">shell</span><span class="p">(</span> <span class="nv">$command</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Raku&rsquo;s <a href="https://docs.raku.org/type/DateTime">DateTime</a> classes provide the gist of what we got with GNU Date. <a href="https://docs.raku.org/type/DateTime#method_truncated-to"><code>truncated-to</code></a> rounds our current timestamp — <a href="https://docs.raku.org/type/DateTime#method_now"><code>now</code></a> — down to the minute.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku -e <span class="s1">&#39;DateTime.now.say&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Raku&rsquo;s <a href="https://docs.raku.org/type/DateTime">DateTime</a> classes provide the gist of what we got with GNU Date. <a href="https://docs.raku.org/type/DateTime#method_truncated-to"><code>truncated-to</code></a> rounds our current timestamp — <a href="https://docs.raku.org/type/DateTime#method_now"><code>now</code></a> — down to the minute.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku -e <span class="s1">&#39;DateTime.now.say&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">2021-05-22T11:52:28.380996-07:00
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="gp">$</span> raku -e <span class="s1">&#39;DateTime.now.truncated-to(&#34;minute&#34;).say&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="go">2021-05-22T11:52:00-07:00
-</span></span></span></code></pre></div><p>It doesn&rsquo;t print exactly the same as <code>date</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> date --iso<span class="o">=</span>minute
+</span></span></span></code></pre>
+</figure><p>It doesn&rsquo;t print exactly the same as <code>date</code>:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> date --iso<span class="o">=</span>minute
 </span></span><span class="line"><span class="cl"><span class="go">2021-05-22T11:52-07:00
-</span></span></span></code></pre></div><p>It wouldn&rsquo;t take excessive effort to make them match, but I&rsquo;m just not concerned about it at the moment.</p>
+</span></span></span></code></pre>
+</figure><p>It wouldn&rsquo;t take excessive effort to make them match, but I&rsquo;m just not concerned about it at the moment.</p>
 <h4 id="use-a-main-sub">Use a <code>MAIN</code> sub</h4>
 <p>Well, we went and put the logic for adding an entry into a function.  We want to call that function at some point, right?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nb">MAIN</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">add-entry</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>We don&rsquo;t need <a href="https://docs.raku.org/routine/MAIN"><code>MAIN</code></a> yet.  If present, it&rsquo;s your Raku script&rsquo;s official entry point.  If not, you have a plain old script.  You&rsquo;re good either way.  Having that entry point will make things easier to manage in a minute, though.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>We don&rsquo;t need <a href="https://docs.raku.org/routine/MAIN"><code>MAIN</code></a> yet.  If present, it&rsquo;s your Raku script&rsquo;s official entry point.  If not, you have a plain old script.  You&rsquo;re good either way.  Having that entry point will make things easier to manage in a minute, though.</p>
 <p>If we run this as-is, it adds a new entry.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal
 </span></span><span class="line"><span class="cl"><span class="go">Note does not exist: &#34;2021-05-22T12:18:00-07:00&#34;. Create it? (Y/n) y
 </span></span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Note has been saved.
-</span></span></span></code></pre></div><p>Okay, fine.  It works.  So far it&rsquo;s neither tidier nor more readable than the initial one-liner.  But writing an entry was never the problem.</p>
+</span></span></span></code></pre>
+</figure><p>Okay, fine.  It works.  So far it&rsquo;s neither tidier nor more readable than the initial one-liner.  But writing an entry was never the problem.</p>
 <p>The problem was reading the entries.</p>
 <h3 id="read-all-the-entries">Read all the entries?</h3>
 <p>Back in our one-liner, collecting entries and reading them got smushed together.  They&rsquo;re two distinct actions, though.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">all-entries</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">all-entries</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2">joplin use </span><span class="nv">$notebook</span><span class="s2"> &amp;&amp; joplin ls</span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -360,34 +386,43 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">  <span class="nv">@entries</span><span class="o">.</span><span class="nb">map</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">    <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span> <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">  <span class="p">})</span><span class="o">.</span><span class="nb">join</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Right.  Now we have subs for writing, and subs for reading.  How do we want to get at them?  Maybe a callback table with action keywords? Maybe a fancy <a href="https://modules.raku.org">module</a>?</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Right.  Now we have subs for writing, and subs for reading.  How do we want to get at them?  Maybe a callback table with action keywords? Maybe a fancy <a href="https://modules.raku.org">module</a>?</p>
 <p>Nope!  Well — we <em>could</em>.  But we don&rsquo;t need to.  Raku has <a href="https://docs.raku.org/language/functions#Multi-dispatch">multi-dispatch</a>!</p>
 <h4 id="use-multiple-main-subs">Use multiple <code>MAIN</code> subs!</h4>
 <p>We replace the initial <code>MAIN</code> definition with these:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">add</span><span class="p">&#34;)</span> <span class="p">{</span>   <span class="k">#= </span><span class="sd">Add an entry
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">add</span><span class="p">&#34;)</span> <span class="p">{</span>   <span class="k">#= </span><span class="sd">Add an entry
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="n">add-entry</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">read</span><span class="p">&#34;)</span> <span class="p">{</span>  <span class="k">#= </span><span class="sd">Read all entries
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span><span class="n">all-entries</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><code>multi</code> tells Raku to expect multiple definitions for this sub.  Without it, the compiler gets annoyed.</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p><code>multi</code> tells Raku to expect multiple definitions for this sub.  Without it, the compiler gets annoyed.</p>
 <p><a href="https://en.wikipedia.org/wiki/Multiple_dispatch">Multiple dispatch</a> means a few things depending on which language you&rsquo;re using — or which computer scientist you&rsquo;re asking.  Basically it lets you avoid having one giant glob of a function with all sorts of special logic.  You do that by having a different version of the function for different situations.</p>
 <p>Where I got surprised?  Most of the tiny amount I&rsquo;ve read out there for multiple dispatch talks about basing on types or pattern matching against variables.  You could absolutely do that with Raku.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$action</span> <span class="k">where</span> <span class="p">{</span> <span class="nv">$action</span> <span class="o">==</span> <span class="p">&#34;</span><span class="s2">add</span><span class="p">&#34;</span> <span class="p">})</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$action</span> <span class="k">where</span> <span class="p">{</span> <span class="nv">$action</span> <span class="o">==</span> <span class="p">&#34;</span><span class="s2">add</span><span class="p">&#34;</span> <span class="p">})</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$action</span> <span class="k">where</span> <span class="p">{</span> <span class="nv">$action</span> <span class="o">==</span> <span class="p">&#34;</span><span class="s2">read</span><span class="p">&#34;</span> <span class="p">})</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
-</span></span></code></pre></div><p>Thing is, we&rsquo;re not doing anything with <code>$action</code>.  We <em>read</em> if the first command line argument is <code>read</code>.  We <em>add</em> if it&rsquo;s <code>add</code>.  Raku is happy enough matching that first argument against literal strings.  I assume other multi-dispatch languages can to the same, but nobody&rsquo;s been uncouth enough to bring it up in polite company.  It&rsquo;s always &ldquo;this type&rdquo; and &ldquo;that pattern&rdquo; or &ldquo;this enum.&rdquo;</p>
+</span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$action</span> <span class="k">where</span> <span class="p">{</span> <span class="nv">$action</span> <span class="o">==</span> <span class="p">&#34;</span><span class="s2">read</span><span class="p">&#34;</span> <span class="p">})</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>Thing is, we&rsquo;re not doing anything with <code>$action</code>.  We <em>read</em> if the first command line argument is <code>read</code>.  We <em>add</em> if it&rsquo;s <code>add</code>.  Raku is happy enough matching that first argument against literal strings.  I assume other multi-dispatch languages can to the same, but nobody&rsquo;s been uncouth enough to bring it up in polite company.  It&rsquo;s always &ldquo;this type&rdquo; and &ldquo;that pattern&rdquo; or &ldquo;this enum.&rdquo;</p>
 <p>What happens if we try to run the script with no arguments?  Well, if we didn&rsquo;t remove that initial version of <code>MAIN</code> we get a compiler error about redefining the sub.  But once that&rsquo;s out of the way, we no longer have a default path into the application!</p>
 <p>No worries.  Raku&rsquo;s special handling of the entry point sub shows us the accepted usage.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku
 </span></span><span class="line"><span class="cl"><span class="go">Usage:
 </span></span></span><span class="line"><span class="cl"><span class="go">  journal.raku add -- Add an entry
 </span></span></span><span class="line"><span class="cl"><span class="go">  journal.raku read -- Read all entries
-</span></span></span></code></pre></div><p>And that&rsquo;s where those <code>#=</code> comments come in.  They provide extra detail for the usage message displayed.</p>
+</span></span></span></code></pre>
+</figure><p>And that&rsquo;s where those <code>#=</code> comments come in.  They provide extra detail for the usage message displayed.</p>
 <p>Let&rsquo;s try them out.  We&rsquo;ll <code>add</code> an entry and then make sure it shows up when we <code>read</code> them.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku add
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku add
 </span></span><span class="line"><span class="cl"><span class="go">Note does not exist: &#34;2021-05-22T12:55:00-07:00&#34;. Create it? (Y/n)
 </span></span></span><span class="line"><span class="cl"><span class="go">...
 </span></span></span><span class="line"><span class="cl"><span class="go">Note has been saved.
@@ -398,30 +433,39 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">[multi-dispatch]: https://docs.raku.org/language/functions#Multi-dispatch
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">Raku Joplin journaling script, now with [multi-dispatch][]!
-</span></span></span></code></pre></div><p>Nice.  Of course, at this point I&rsquo;m being handed 142 lines of text, and it&rsquo;s taking about 12 seconds to do it.  All that work and we finally reached the full &ldquo;overwhelming and slow&rdquo; point we were at this morning.</p>
+</span></span></span></code></pre>
+</figure><p>Nice.  Of course, at this point I&rsquo;m being handed 142 lines of text, and it&rsquo;s taking about 12 seconds to do it.  All that work and we finally reached the full &ldquo;overwhelming and slow&rdquo; point we were at this morning.</p>
 <p>Things are about to improve!</p>
 <h3 id="i-just-want-today">I just want today</h3>
 <p>I&rsquo;ve been carefully using <em>inbox/ISO 8601</em> format for my entries.  That means I can filter to a specific date — or year, month, hour, etc — by constructing a date fragment and grabbing each entry that starts with the fragment.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">filtered-entries</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$date-funnel</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">filtered-entries</span><span class="p">(</span><span class="kt">Str</span> <span class="nv">$date-funnel</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">all-entries</span><span class="o">.</span><span class="nb">grep</span><span class="p">({</span> <span class="o">.</span><span class="nb">starts-with</span><span class="p">(</span><span class="nv">$date-funnel</span><span class="p">)</span> <span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Getting today&rsquo;s entries then becomes a matter of extracting a <code>yyyy-mm-dd</code> string from the ever-so-helpful DateTime.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">entries-for-today</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Getting today&rsquo;s entries then becomes a matter of extracting a <code>yyyy-mm-dd</code> string from the ever-so-helpful DateTime.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">entries-for-today</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">filtered-entries</span> <span class="kt">DateTime</span><span class="o">.</span><span class="nb">now</span><span class="o">.</span><span class="nb">yyyy-mm-dd</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><blockquote>
-<p>[!NOTE] 2021-05-24
-<a href="https://twitter.com/b2gills">@b2gills</a> mentioned that I could also use <a href="https://docs.raku.org/type/Date#method_today[Date.today]"><code>Date.today</code></a>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><blockquote>
+<p><strong>2021-05-24</strong></p>
+<p><a href="https://twitter.com/b2gills">@b2gills</a> mentioned that I could also use <a href="https://docs.raku.org/type/Date#method_today[Date.today]"><code>Date.today</code></a>
 here!</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Why didn&#39;t you use Date.​today?<br><br>If you had a coercive parameter, you wouldn&#39;t even need to do anything more than Date.​today.<br><br> sub filtered-entries(Str(Date) $​date-funnel) {…}<br><br> sub entries-for-today() {<br> filtered-entries Date.​today<br> }</p>&mdash; Brad Gilbert (@b2gills) <a href="https://twitter.com/b2gills/status/1397038905405452296?ref_src=twsrc%5Etfw">May 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </blockquote>
 <p>I haven&rsquo;t messed with <a href="https://docs.raku.org/syntax/Coercion%20type">parameter coercion</a> yet, but that looks like it will come in handy.</p>
 <p>Need to touch up my reading <code>MAIN</code> definition, though.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">read</span><span class="p">&#34;)</span> <span class="p">{</span>  <span class="k">#= </span><span class="sd">Read today&#39;s entries
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">read</span><span class="p">&#34;)</span> <span class="p">{</span>  <span class="k">#= </span><span class="sd">Read today&#39;s entries
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span> <span class="n">entries-for-today</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Does it work?  Is it fast?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> raku journal.raku <span class="nb">read</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Does it work?  Is it fast?</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">time</span> raku journal.raku <span class="nb">read</span>
 </span></span><span class="line"><span class="cl"><span class="gp">#</span> 2021-05-22T08:12:00-07:00
 </span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">Millie let me sleep in until 7:54. How gracious.
@@ -448,24 +492,31 @@ here!</p>
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">real    0m3.815s
 </span></span></span><span class="line"><span class="cl"><span class="go">user    0m3.966s
 </span></span></span><span class="line"><span class="cl"><span class="go">sys     0m0.502s
-</span></span></span></code></pre></div><p>It works.  It&rsquo;s — it&rsquo;s not <em>fast</em> by any means, but 3.8 seconds is much faster than 12.  Again, there&rsquo;s an API waiting for when I&rsquo;m bored of abusing Joplin&rsquo;s command line conveniences.</p>
+</span></span></span></code></pre>
+</figure><p>It works.  It&rsquo;s — it&rsquo;s not <em>fast</em> by any means, but 3.8 seconds is much faster than 12.  Again, there&rsquo;s an API waiting for when I&rsquo;m bored of abusing Joplin&rsquo;s command line conveniences.</p>
 <h3 id="and-maybe-yesterday">And maybe yesterday</h3>
 <p>Most of my deep dives into the journal will be from inside the Joplin app.  A quick glance at yesterday&rsquo;s notes could still be useful.</p>
 <p>Of course a DateTime lets me ask for an <a href="https://docs.raku.org/type/DateTime#%28Dateish%29_method_earlier"><code>earlier</code></a> DateTime.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">entries-for-yesterday</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">sub</span> <span class="nf">entries-for-yesterday</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$yesterday</span> <span class="o">=</span> <span class="kt">DateTime</span><span class="o">.</span><span class="nb">now</span><span class="o">.</span><span class="nb">earlier</span><span class="p">(</span><span class="s">days</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1"># or :1day for the terse</span>
 </span></span><span class="line"><span class="cl">  <span class="n">filtered-entries</span> <span class="nv">$yesterday</span><span class="o">.</span><span class="nb">yyyy-mm-dd</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>For <code>MAIN</code> I <em>could</em> add and match against a subcommand.  I think instead I will adjust my top-level commands to reflect the most common cases.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">today</span><span class="p">&#34;)</span> <span class="p">{</span>  <span class="k">#= </span><span class="sd">Read today&#39;s entries
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>For <code>MAIN</code> I <em>could</em> add and match against a subcommand.  I think instead I will adjust my top-level commands to reflect the most common cases.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">today</span><span class="p">&#34;)</span> <span class="p">{</span>  <span class="k">#= </span><span class="sd">Read today&#39;s entries
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span> <span class="n">entries-for-today</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">yesterday</span><span class="p">&#34;)</span> <span class="p">{</span> <span class="k">#= </span><span class="sd">Read yesterday&#39;s entries
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span> <span class="n">entries-for-yesterday</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>And it works!</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku yesterday
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>And it works!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> raku journal.raku yesterday
 </span></span><span class="line"><span class="cl"><span class="gp">#</span> 2021-05-21T09:00-07:00
 </span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">Alarm 07:00, stayed in bed as long as I could. Thanks to the dogs, that was 15
@@ -485,7 +536,8 @@ here!</p>
 </span></span></span><span class="line"><span class="cl"><span class="go">screenshots? People love screenshots.
 </span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">Maybe they do. Maybe they don&#39;t. *I* love screenshots.
-</span></span></span></code></pre></div><h3 id="what-about-formatting">What about formatting?</h3>
+</span></span></span></code></pre>
+</figure><h3 id="what-about-formatting">What about formatting?</h3>
 <p>Honestly?  I&rsquo;m not going to worry about it right now.  Piping to <a href="/card/rich/">card/Rich</a>
 or <a href="/card/glow/">card/Glow</a> suffices when I want it pretty.</p>
 <pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
@@ -526,7 +578,9 @@ joys of hyperfocus.
 Better stretch my legs and get back to the official task list after.
 </pre>
 <h2 id="the-complete-script">The complete script</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$notebook</span>     <span class="o">=</span> <span class="p">&#34;</span><span class="s2">Journal</span><span class="p">&#34;;</span>
 </span></span><span class="line"><span class="cl"><span class="k">constant</span> <span class="nv">$entry-window</span> <span class="o">=</span> <span class="p">&#34;</span><span class="s2">minute</span><span class="p">&#34;;</span>
@@ -574,8 +628,8 @@ Better stretch my legs and get back to the official task list after.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">multi</span> <span class="k">sub</span> <span class="nb">MAIN</span><span class="p">(&#34;</span><span class="s2">all</span><span class="p">&#34;)</span> <span class="p">{</span> <span class="k">#= </span><span class="sd">Read all entries (SLOW!)
 </span></span></span><span class="line"><span class="cl"><span class="sd"></span>  <span class="nb">say</span> <span class="nf">read-entries</span><span class="p">(</span> <span class="n">all-entries</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure>
   
 
 

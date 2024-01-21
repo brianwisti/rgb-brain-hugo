@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2009/">2009</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-05-more-about-arrays/">Parrot Babysteps 05 - More About Arrays</a></li>
@@ -307,7 +312,10 @@ Wait. Let me think about that for a moment. The phrase &ldquo;done&rdquo; may be
 to remember, but &ldquo;quit&rdquo; is more common for leaving an interactive shell. I guess
 we should use &ldquo;quit&rdquo;.</p>
 <p>Okay, let&rsquo;s make the basic shell.</p>
-<pre tabindex="0"><code># example-05-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-01.pir
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -330,10 +338,13 @@ we should use &ldquo;quit&rdquo;.</p>
 
   EXIT:
 
-.end
-</code></pre><p>There&rsquo;s a little debugging output that won&rsquo;t be necessary once the program is
+.end</code></pre>
+</figure><p>There&rsquo;s a little debugging output that won&rsquo;t be necessary once the program is
 filled out a little more, but we&rsquo;ve got the basics.</p>
-<pre tabindex="0"><code>$ parrot example-05-01.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-01.pir
 Enter a number (or &#34;quit&#34; to quit): 23
 23
 Enter a number (or &#34;quit&#34; to quit): 12
@@ -342,15 +353,18 @@ Enter a number (or &#34;quit&#34; to quit): q
 0
 Enter a number (or &#34;quit&#34; to quit): quit
 Average goes here
-$
-</code></pre><p>Notice that the string is converted to a number using normal Perl rules: if it
+$</code></pre>
+</figure><p>Notice that the string is converted to a number using normal Perl rules: if it
 doesn&rsquo;t have any numbers, it&rsquo;s treated as zero. We could put in some error
 checking to chastise the user for bad input, but I don&rsquo;t feel like it right now.</p>
 <h2 id="averaging-with-no-arrays">Averaging With No Arrays</h2>
 <p>I would like to point something out before we start digging into array features.
 We don&rsquo;t <em>need</em> to use arrays when calculating something like an average. Here&rsquo;s
 a perfectly useful example that never uses a single array:</p>
-<pre tabindex="0"><code># example-05-02.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-02.pir
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -369,8 +383,8 @@ a perfectly useful example that never uses a single array:</p>
 	user_input = stdin.&#39;readline_interactive&#39;(PROMPT)
 	if user_input == EXIT_STRING goto SHOW_AVERAGE
 	latest_number = user_input
-	numbers_entered += 1
-	total += latest_number
+	numbers_entered &#43;= 1
+	total &#43;= latest_number
 	goto GET_INPUT
 
   SHOW_AVERAGE:
@@ -380,16 +394,19 @@ a perfectly useful example that never uses a single array:</p>
 
   EXIT:
 
-.end
-</code></pre><p>Here&rsquo;s what it looks like in action.</p>
-<pre tabindex="0"><code>$ parrot example-05-02.pir
+.end</code></pre>
+</figure><p>Here&rsquo;s what it looks like in action.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-02.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
 Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
-12.5
-</code></pre><p>Why did I show this? Well, basically because &ldquo;write an averaging program
+12.5</code></pre>
+</figure><p>Why did I show this? Well, basically because &ldquo;write an averaging program
 without using an Array in the language of your choice&rdquo; is an interview
 question I&rsquo;ve been asked a couple of times. It&rsquo;s been a while, but I
 thought I&rsquo;d be ready in case somebody asked me again. They&rsquo;ll probably
@@ -410,7 +427,10 @@ results in what? Yes, that&rsquo;s right. It results in an empty stack.</p>
 <p>Still, the stack structure is good enough for a lot of collection handling,
 and will definitely work for our averaging application.</p>
 <p>I&rsquo;ll show you the code first, then we can talk about it.</p>
-<pre tabindex="0"><code># example-05-03
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-03
 .sub &#39;main&#39; :main
 	.const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
 	.const string EXIT_STRING = &#39;quit&#39;
@@ -438,46 +458,61 @@ and will definitely work for our averaging application.</p>
 
   CALCULATE_SUM:
 	latest_number = pop numbers
-	total += latest_number
-	number_count += 1
+	total &#43;= latest_number
+	number_count &#43;= 1
 	if numbers goto CALCULATE_SUM
 
 	average = total / number_count
 	say average
 
-.end
-</code></pre><p>We use the <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/resizablefloatarray.pmc.html">ResizableFloatArray</a> PMC to hold our user&rsquo;s numeric input. That is a built-in PMC, so we don&rsquo;t need to do any special includes to access it. Just create a new one with the <code>new</code> opcode.</p>
-<pre tabindex="0"><code>.local pmc    numbers
+.end</code></pre>
+</figure><p>We use the <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/resizablefloatarray.pmc.html">ResizableFloatArray</a> PMC to hold our user&rsquo;s numeric input. That is a built-in PMC, so we don&rsquo;t need to do any special includes to access it. Just create a new one with the <code>new</code> opcode.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.local pmc    numbers
 # ...
-numbers = new &#39;ResizableFloatArray&#39;
-</code></pre><p>After creating <code>numbers</code>, we can push new values onto the array with the <code>push</code>
+numbers = new &#39;ResizableFloatArray&#39;</code></pre>
+</figure><p>After creating <code>numbers</code>, we can push new values onto the array with the <code>push</code>
 opcode. We use this to collect user input.</p>
-<pre tabindex="0"><code>push numbers, latest_number
-</code></pre><p>Later on, when we&rsquo;re calculating the average, we use <code>pop</code> to grab the most
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >push numbers, latest_number</code></pre>
+</figure><p>Later on, when we&rsquo;re calculating the average, we use <code>pop</code> to grab the most
 recently pushed value from the stack. We keep doing that until we&rsquo;re out of
 numbers, as judged by a simple <code>if</code> test.</p>
-<pre tabindex="0"><code>  CALCULATE_SUM:
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >  CALCULATE_SUM:
 	latest_number = pop numbers
-	total += latest_number
-	number_count += 1
-	if numbers goto CALCULATE_SUM
-</code></pre><p>If <code>numbers</code> is empty and that test looks false to Parrot, the program falls
+	total &#43;= latest_number
+	number_count &#43;= 1
+	if numbers goto CALCULATE_SUM</code></pre>
+</figure><p>If <code>numbers</code> is empty and that test looks false to Parrot, the program falls
 through to the next statement. That next statement is where we actually
 calculate the average.</p>
-<pre tabindex="0"><code>$ parrot example-05-03.pir
-Enter a number (or &#34;quit&#34; to quit): 1e+5
-Enter a number (or &#34;quit&#34; to quit): 1e+3
-Enter a number (or &#34;quit&#34; to quit): 1e+1
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-03.pir
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;5
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;3
+Enter a number (or &#34;quit&#34; to quit): 1e&#43;1
 Enter a number (or &#34;quit&#34; to quit): quit
-33670
-</code></pre><p>Yes, I was being more clever than I needed to with this example session, but I wanted to remind you that Parrot accepts <a href="http://en.wikipedia.org/wiki/Scientific_notation#E_notation">E notation</a> for numbers. Here&rsquo;s the same session with the numbers looking more like you might have expected.</p>
-<pre tabindex="0"><code>$ parrot example-05-03.pir
+33670</code></pre>
+</figure><p>Yes, I was being more clever than I needed to with this example session, but I wanted to remind you that Parrot accepts <a href="http://en.wikipedia.org/wiki/Scientific_notation#E_notation">E notation</a> for numbers. Here&rsquo;s the same session with the numbers looking more like you might have expected.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-03.pir
 Enter a number (or &#34;quit&#34; to quit): 100000
 Enter a number (or &#34;quit&#34; to quit): 1000
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): quit
-33670
-</code></pre><h3 id="shift-and-unshift---the-bottom-of-the-stack"><code>shift</code> and <code>unshift</code> - The Bottom of the Stack</h3>
+33670</code></pre>
+</figure><h3 id="shift-and-unshift---the-bottom-of-the-stack"><code>shift</code> and <code>unshift</code> - The Bottom of the Stack</h3>
 <p>While <code>push</code> and <code>pop</code> work on the end of an array, Parrot also provides <code>unshift</code>
 and <code>shift</code> which handle corresponding functionality on the front of an array.
 Let&rsquo;s go back to the stack image for a moment. We already have the basic idea
@@ -489,7 +524,10 @@ stack. Now that unshifted item is the new first in the collection, and the old
 first item is now the second.</p>
 <p>I really need to get some illustrations in here. The idea is very easy to show,
 but my language skills aren&rsquo;t adequate for the task.</p>
-<pre tabindex="0"><code># example-05-04
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-04
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -517,15 +555,15 @@ but my language skills aren&rsquo;t adequate for the task.</p>
 
   CALCULATE_SUM:
     latest_number = shift numbers
-    total += latest_number
-    number_count += 1
+    total &#43;= latest_number
+    number_count &#43;= 1
     if numbers goto CALCULATE_SUM
 
     average = total / number_count
     say average
 
-.end
-</code></pre><p>Which is better? I&rsquo;ll be honest with you. I don&rsquo;t really know. I stick to pushing
+.end</code></pre>
+</figure><p>Which is better? I&rsquo;ll be honest with you. I don&rsquo;t really know. I stick to pushing
 and popping because it&rsquo;s easier to visualize.</p>
 <p>However, when you combine <code>push</code> and <code>shift</code> you get a whole new structure called
 a queue.</p>
@@ -535,7 +573,10 @@ a queue.</p>
 different, because they&rsquo;re still producing the same final result.
 Let&rsquo;s write an example that clearly demonstrates the difference
 between a queue and a stack:</p>
-<pre tabindex="0"><code># example-05-05
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-05
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -575,16 +616,16 @@ between a queue and a stack:</p>
     stack_popped = pop stack
     print &#34;Popped: &#34;
     say stack_popped
-    stack_sum += stack_popped
-    stack_count += 1
+    stack_sum &#43;= stack_popped
+    stack_count &#43;= 1
     if stack goto CALCULATE_STACK_SUM
 
   CALCULATE_QUEUE_SUM:
     queue_dequeued = shift queue
     print &#34;Dequeued: &#34;
     say queue_dequeued
-    queue_sum += queue_dequeued
-    queue_count += 1
+    queue_sum &#43;= queue_dequeued
+    queue_count &#43;= 1
     if queue goto CALCULATE_QUEUE_SUM
 
     stack_average = stack_sum / stack_count
@@ -594,10 +635,13 @@ between a queue and a stack:</p>
     print &#34;Queue average: &#34;
     say queue_average
 
-.end
-</code></pre><p>Now we can see exactly what numbers are being grabbed as our program calculates
+.end</code></pre>
+</figure><p>Now we can see exactly what numbers are being grabbed as our program calculates
 the sums.</p>
-<pre tabindex="0"><code>$ parrot example-05-05.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-05.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -612,8 +656,8 @@ Dequeued: 10
 Dequeued: 15
 Dequeued: 20
 Stack average: 12.5
-Queue average: 12.5
-</code></pre><p>That output could fill up the screen if I had a lot of values. I might want to
+Queue average: 12.5</code></pre>
+</figure><p>That output could fill up the screen if I had a lot of values. I might want to
 fine-tune the debug output. Then again, I might want to just move on to the next
 subject.</p>
 <h2 id="accessing-by-index">Accessing by Index</h2>
@@ -628,7 +672,10 @@ without changing them. One way to do that is by accessing contents via an index.
 <p>We&rsquo;ll build up our array in the same way that we have been, because I want the user
 to have some flexibility in deciding how many numbers to average. After that we&rsquo;ll
 step through the array by incrementing an index.</p>
-<pre tabindex="0"><code># example-05-06
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-06
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -659,8 +706,8 @@ step through the array by incrementing an index.</p>
   CALCULATE_SUM:
     if number_index &gt;= number_count goto CALCULATE_AVERAGE
     latest_number = numbers[number_index]
-    total += latest_number
-    number_index += 1
+    total &#43;= latest_number
+    number_index &#43;= 1
     goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
@@ -673,9 +720,12 @@ step through the array by incrementing an index.</p>
     say total
     print &#34;Average:        &#34;
     say average
-.end
-</code></pre><p>A little more information is displayed in this version.</p>
-<pre tabindex="0"><code>$ parrot example-05-06.pir
+.end</code></pre>
+</figure><p>A little more information is displayed in this version.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-06.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -683,15 +733,18 @@ Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
 Values entered: 4
 Sum of values:  50
-Average:        12.5
-</code></pre><p>Notice that we check to see if we&rsquo;ve stepped outside of bounds right away. We
+Average:        12.5</code></pre>
+</figure><p>Notice that we check to see if we&rsquo;ve stepped outside of bounds right away. We
 could test at the end of that section, but the truth is that I don&rsquo;t trust my
 own code. The sooner I can see if I need to move on, the happier I&rsquo;ll be. I
 could even test if we&rsquo;ve somehow gone below zero if I was feeling especially
 paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
 <h2 id="using-an-iterator">Using an Iterator</h2>
 <p>We&rsquo;re nearly done. There is only one more way of traversing arrays that I want to look at. Parrot <a href="http://docs.parrot.org/parrot/devel/html/src/pmc/iterator.pmc.html">Iterators</a> allow you to step through the contents of an array without doing anything to the array itself, while ignoring the details of array indexing.</p>
-<pre tabindex="0"><code># example-05-07
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-05-07
 .sub &#39;main&#39; :main
     .const string PROMPT      = &#39;Enter a number (or &#34;quit&#34; to quit): &#39;
     .const string EXIT_STRING = &#39;quit&#39;
@@ -721,7 +774,7 @@ paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
   CALCULATE_SUM:
     unless numbers_iterator goto CALCULATE_AVERAGE
     latest_number = shift numbers_iterator
-    total += latest_number
+    total &#43;= latest_number
     goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
@@ -736,8 +789,8 @@ paranoid. I won&rsquo;t do that today, though. You&rsquo;re welcome.</p>
     print &#34;Average:        &#34;
     say average
 
-.end
-</code></pre><p>All right. This example is easier for me to read than the others for some reason.
+.end</code></pre>
+</figure><p>All right. This example is easier for me to read than the others for some reason.
 That could be due to the simple fact that I&rsquo;ve been looking at Parrot arrays for
 a couple of hours now. Maybe it&rsquo;s because my blocks are more clearly labelled.
 Maybe it&rsquo;s because using an iterator allowed me to build up a sum and still get
@@ -745,7 +798,10 @@ the length the length of <code>numbers</code> later, rather than building up two
 at the same time. I&rsquo;m not really sure. I do know that I feel like the iterator
 has given me a nice little convenience layer for handling my array. The output
 is still the same.</p>
-<pre tabindex="0"><code>$ parrot example-05-07.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot example-05-07.pir
 Enter a number (or &#34;quit&#34; to quit): 5
 Enter a number (or &#34;quit&#34; to quit): 10
 Enter a number (or &#34;quit&#34; to quit): 15
@@ -753,8 +809,8 @@ Enter a number (or &#34;quit&#34; to quit): 20
 Enter a number (or &#34;quit&#34; to quit): quit
 Values entered: 4
 Sum of values:  50
-Average:        12.5
-</code></pre><h2 id="conclusion">Conclusion</h2>
+Average:        12.5</code></pre>
+</figure><h2 id="conclusion">Conclusion</h2>
 <p>We had already taken a glance at arrays when we worked with the command line. Today we dove a little deeper, looking into different ways we can access the contents of an array. Now you understand how to treat a &lsquo;ResizableFloatArray&rsquo; like a stack, a queue, a plain old array, or an iterable collection. These principles should work for other array types as well. Parrot has many array PMCs, and you can find them on the list of core PMCs <a href="http://docs.parrot.org/parrot/devel/html/pmc.html">here</a>.</p>
 
   

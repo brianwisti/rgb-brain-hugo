@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2008/">2008</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2008/01/reinstalling-jruby/">Reinstalling JRuby</a></li>
@@ -290,7 +295,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li><code>sudo ln -s /usr/local/jruby-1.0.3/ /usr/local/jruby</code></li>
 <li>Add JRuby details to my (somewhat busy) bash profile</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ~/.bash_profile</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ~/.bash_profile</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JRUBY_HOME</span><span class="o">=</span><span class="s2">&#34;/usr/local/jruby&#34;</span>&lt;/strong&gt;
 </span></span><span class="line"><span class="cl"><span class="c1"># OS X is normally conservative about paths, while I am generous about them.</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LOCALBINS</span><span class="o">=</span>/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/X11R6/bin
@@ -299,15 +306,20 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -r ~/.bashrc <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">    . ~/.bashrc
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Source the file and test my path &hellip;</p>
-<pre tabindex="0"><code>$ . ~/.bash_profile
+</span></span><span class="line"><span class="cl"><span class="k">fi</span></span></span></code></pre>
+</figure><p>Source the file and test my path &hellip;</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ . ~/.bash_profile
 $ which jruby
 /usr/local/jruby/bin/jruby
 $ which gem
-/usr/local/jruby/bin/gem
-</code></pre><p>Test with the sample code from <a href="https://github.com/jruby/jruby/wiki/GettingStarted">Getting Started</a> on the JRuby wiki.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;java&#34;</span>
+/usr/local/jruby/bin/gem</code></pre>
+</figure><p>Test with the sample code from <a href="https://github.com/jruby/jruby/wiki/GettingStarted">Getting Started</a> on the JRuby wiki.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s2">&#34;java&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">include_class</span> <span class="s2">&#34;java.util.TreeSet&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -316,16 +328,22 @@ $ which gem
 </span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="s2">&#34;foo&#34;</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="s2">&#34;Bar&#34;</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="s2">&#34;baz&#34;</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">&#34;value: </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span>
-</span></span></code></pre></div><p>Run it.</p>
-<pre tabindex="0"><code>$ jruby call_java.rb
-</code></pre><p>Wait a very long time (why does Java startup have to be so slow on our Mac and how the heck can I make it faster? It&rsquo;s one thing that&rsquo;s significantly worse on our Mac compared to my PC). <em>Eventually</em> see:</p>
-<pre tabindex="0"><code>$ jruby call_java.rb
+</span></span><span class="line"><span class="cl"><span class="n">set</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">&#34;value: </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span></span></span></code></pre>
+</figure><p>Run it.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ jruby call_java.rb</code></pre>
+</figure><p>Wait a very long time (why does Java startup have to be so slow on our Mac and how the heck can I make it faster? It&rsquo;s one thing that&rsquo;s significantly worse on our Mac compared to my PC). <em>Eventually</em> see:</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ jruby call_java.rb
 Hello from JRuby
 value: Bar
 value: baz
-value: foo
-</code></pre><p>Excellent, it worked. It&rsquo;s 2:46 now. I better post this and go to bed.</p>
+value: foo</code></pre>
+</figure><p>Excellent, it worked. It&rsquo;s 2:46 now. I better post this and go to bed.</p>
   
 
 

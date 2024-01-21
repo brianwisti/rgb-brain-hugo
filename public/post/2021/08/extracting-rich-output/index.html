@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2021/">2021</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2021/08/extracting-rich-output/">Extracting Rich Output for fun and profit</a></li>
@@ -302,7 +307,10 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 <p>Yeah let&rsquo;s do that instead. Much less to remember.</p>
 <h2 id="what-are-we-printing">What are we printing?</h2>
 <p>How about a <a href="https://rich.readthedocs.io/en/stable/tables.html">Table</a> of the most popular pages on my site? I use <a href="https://plausible.io">Plausible</a> for stats, and I&rsquo;ve been meaning to play with their <a href="https://plausible.io/docs/stats-api">API</a>. But I&rsquo;m here to talk about Rich, not Plausible. Let&rsquo;s use a static copy of API results so everyone&rsquo;s using the same data.</p>
-<div class="highlight" title="showstats.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
+<figure class="highlight">
+  <figcaption><tt>showstats.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">STATS</span> <span class="o">=</span> <span class="p">{</span>
@@ -354,15 +362,20 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">show_stats</span><span class="p">()</span>
-</span></span></code></pre></div><p>Here&rsquo;s a screenshot, so you know what this produces in my own terminal.</p>
+</span></span><span class="line"><span class="cl">    <span class="n">show_stats</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Here&rsquo;s a screenshot, so you know what this produces in my own terminal.</p>
 <p><img src="/post/2021/08/attachments/img/2021/showstats-table.png" title="table output" alt="table output"/></p>
 <p>Okay. Now let&rsquo;s start talking about exporting output.</p>
 <h2 id="xclip-is-usually-good-enough"><code>xclip</code> is usually good enough</h2>
 <p>This post focuses on the &ldquo;blog writing and pretty reports&rdquo; situations. For everyday sharing, all I need is a legibly formatted data dump. <a href="https://github.com/astrand/xclip"><code>xclip</code></a> works for those situations.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python showstats.py <span class="p">|</span> xclip
-</span></span></code></pre></div><p>I don&rsquo;t see anything on my screen, of course, because I piped everything to <code>xclip</code>. But when I paste from the clipboard:</p>
-<div class="highlight" title="output" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    Plausible.io Traffic Breakdown
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python showstats.py <span class="p">|</span> xclip</span></span></code></pre>
+</figure><p>I don&rsquo;t see anything on my screen, of course, because I piped everything to <code>xclip</code>. But when I paste from the clipboard:</p>
+<figure class="highlight">
+  <figcaption><span>output</span></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    Plausible.io Traffic Breakdown
 </span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">┃ Page                                                    ┃ Visitors ┃
 </span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -376,20 +389,24 @@ I initially posted a version of this post using <a href="https://www.crummy.com/
 </span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │      263 │
 </span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │      260 │
 </span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │      242 │
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
-</span></span></code></pre></div><p><code>xclip</code> preserves the basic shape of my output. I see a table. The <em>Visitors</em> column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.</p>
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘</span></span></code></pre>
+</figure><p><code>xclip</code> preserves the basic shape of my output. I see a table. The <em>Visitors</em> column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.</p>
 <blockquote>
-<p>[!NOTE]
-Also? This renders great on Chrome-based browsers and weird on Firefox.  There
+<p><strong>NOTE</strong></p>
+<p>Also? This renders great on Chrome-based browsers and weird on Firefox.  There
 are definite limitations to just copying and pasting from the terminal.</p>
 </blockquote>
 <p>Let&rsquo;s pull that clipboard management into the script with Al Sweigart&rsquo;s <a href="https://pypi.org/project/pyperclip/">Pyperclip</a> library.</p>
 <h2 id="let-rich-and-pyperclip-handle-the-clipboard">Let Rich and Pyperclip handle the clipboard</h2>
 <p>Pyperclip gives our code access to the system clipboard, letting us copy and paste from Python.  The Rich <a href="https://rich.readthedocs.io/en/stable/reference/console.html">Console</a> can <a href="https://rich.readthedocs.io/en/stable/console.html#capturing-output"><code>capture</code></a> the characters it would have printed, and hand them to us when needed. Sounds like a great team.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyperclip</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
-</span></span></code></pre></div><p>I set up Pyperclip and create a local Console to handle capturing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyperclip</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span></span></span></code></pre>
+</figure><p>I set up Pyperclip and create a local Console to handle capturing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">build_stats_table</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
@@ -401,10 +418,12 @@ are definite limitations to just copying and pasting from the terminal.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">text_output</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
-</span></span></code></pre></div><p>I need to tell Pyperclip about <code>xclip</code> or it gets a bit confused on WSL. Also, since I captured the output, I need to print it myself. Why <code>print</code> instead of <code>rich.print</code> or <code>console.print</code>?</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I need to tell Pyperclip about <code>xclip</code> or it gets a bit confused on WSL. Also, since I captured the output, I need to print it myself. Why <code>print</code> instead of <code>rich.print</code> or <code>console.print</code>?</p>
 <p>Let me answer that question by pasting the contents of my clipboard:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[3m                    Plausible.io Traffic Breakdown                    [0m
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">[3m                    Plausible.io Traffic Breakdown                    [0m
 </span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">┃[1m [0m[1mPage                                                   [0m[1m [0m┃[1m [0m[1mVisitors[0m[1m [0m┃
 </span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -418,13 +437,13 @@ are definite limitations to just copying and pasting from the terminal.</p>
 </span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │[32m [0m[32m     263[0m[32m [0m│
 </span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │[32m [0m[32m     260[0m[32m [0m│
 </span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │[32m [0m[32m     242[0m[32m [0m│
-</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
-</span></span></code></pre></div><p>Uh. Oops? <code>console</code> captured <em>exactly</em> what it would have printed, including terminal <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape codes</a>.</p>
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘</span></span></code></pre>
+</figure><p>Uh. Oops? <code>console</code> captured <em>exactly</em> what it would have printed, including terminal <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape codes</a>.</p>
 <p>Rich supports <a href="https://rich.readthedocs.io/en/stable/console.html#exporting">exporting</a> output beyond a raw dump, though.</p>
 <h2 id="let-rich-get-you-some-html">Let Rich get you some HTML</h2>
 <blockquote>
-<p>[!NOTE]
-For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.</p>
+<p><strong>NOTE</strong></p>
+<p>For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.</p>
 </blockquote>
 <p>A Console created with the <code>record</code> option enabled remembers everything it prints. You can get export your copy at any point. The <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_text"><code>export_text</code></a> method provides a copy with minimal formatting, while <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_html"><code>export_html</code></a> produces HTML pages. That&rsquo;s for sure something I can paste into my post source. Nice!</p>
 <p>One <em>slight</em> wrinkle. Unless you tell it otherwise, <code>export_html</code> produces a complete HTML file — with <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, and even a <code>&lt;style&gt;</code> section. All I want is the <code>&lt;pre&gt;...&lt;/pre&gt;</code> describing my output.</p>
@@ -434,7 +453,9 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 <li>turn on <code>inline_styles</code> to directly embed style rules; handy if I don&rsquo;t have my own CSS definitions for Rich-specific classes</li>
 </ul>
 <p>Let&rsquo;s make some HTML for Pyperclip to copy.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># print the stats</span>
@@ -447,8 +468,8 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 </span></span><span class="line"><span class="cl">    <span class="n">exported_html</span> <span class="o">=</span> <span class="n">console</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="n">inline_styles</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">code_format</span><span class="o">=</span><span class="s2">&#34;&lt;pre&gt;</span><span class="si">{code}</span><span class="s2">&lt;/pre&gt;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">exported_html</span><span class="p">)</span>
-</span></span></code></pre></div><p>What do the contents of my clipboard look like now?</p>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">exported_html</span><span class="p">)</span></span></span></code></pre>
+</figure><p>What do the contents of my clipboard look like now?</p>
 <pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span>
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃
@@ -466,7 +487,9 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 └─────────────────────────────────────────────────────────┴──────────┘</pre>
 <p>That works well enough for a blog post!</p>
 <p>If you&rsquo;re curious about the exported HTML, here&rsquo;s a chunk of it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-style: italic&#34;</span><span class="p">&gt;</span>                    Plausible.io Traffic Breakdown                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-html" data-lang="html"><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-style: italic&#34;</span><span class="p">&gt;</span>                    Plausible.io Traffic Breakdown                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 </span></span><span class="line"><span class="cl">    ┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Page                                                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Visitors <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃
 </span></span><span class="line"><span class="cl">    ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
@@ -474,8 +497,8 @@ For safety reasons, most Markdown converters must be explicitly configured to al
 </span></span><span class="line"><span class="cl">    ...
 </span></span><span class="line"><span class="cl">    │ /post/2019/01/circular-grids-with-python-and-pillow/    │<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color: #008000; text-decoration-color: #008000&#34;</span><span class="p">&gt;</span>      242 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>│
 </span></span><span class="line"><span class="cl">    └─────────────────────────────────────────────────────────┴──────────┘
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>Anyways, this was just another thing I wanted to get down before I forgot again.</p>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
+</figure><p>Anyways, this was just another thing I wanted to get down before I forgot again.</p>
 <h2 id="what-else">What else?</h2>
 <p>There are a few more pieces that tie it into my particular workflow, but this covers what you&rsquo;d need to export output from your own Rich programs for easy blogging or information sharing.</p>
 

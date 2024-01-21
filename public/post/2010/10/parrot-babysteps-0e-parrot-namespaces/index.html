@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2010/">2010</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2010/10/parrot-babysteps-0e-parrot-namespaces/">Parrot Babysteps 0e - Parrot Namespaces</a></li>
@@ -317,12 +322,21 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 <p>The names do not mean anything to Parrot. It does not force a particular way of organizing your namespaces. Nested namespaces are a convenience so that <em>we</em> know two chunks of code are somewhat related.</p>
 <h4 id="the-namespace-directive">The <code>.namespace</code> Directive</h4>
 <p>The <code>.namespace</code> directive is used to tell Parrot that the following code belongs in a particular namespace. Its argument is a hash index specifying the name.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;]
-</code></pre><p>Use a complex key to indicate a nested namespace.</p>
-<pre tabindex="0"><code>.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
-</code></pre><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;]</code></pre>
+</figure><p>Use a complex key to indicate a nested namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]</code></pre>
+</figure><p>All of the code after the <code>.namespace</code> directive gets filed in the namespace associated with the key you handed to it. This lasts until you declare a new namespace.</p>
 <p>It&rsquo;s time to try it out in <code>spacetrade.pir</code>. All of the code written so far is for the shell, so I can probably get away with putting my <code>.namespace</code> directive at the top of the file.</p>
-<pre tabindex="0"><code># example-0e-01/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-01/lib/spacetrade.pir
 .namespace [&#39;SpaceTrade&#39;;&#39;Shell&#39;]
 
 .sub &#39;main&#39; :main
@@ -330,15 +344,18 @@ support <a href="http://en.wikipedia.org/wiki/Namespace_%28computer_science%29">
 .end
 
 .sub run_shell
-    # ...
-</code></pre><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
+    # ...</code></pre>
+</figure><p>Why do I say &ldquo;SpaceTrade::Shell&rdquo; rather than <code>['SpaceTrade';'Shell']</code> when talking about my namespace in this article? That is mainly because I am lazy. My fingers do not enjoy typing out all the characters to say <code>['SpaceTrace';'Shell']</code>, so I want to use a shorthand. &ldquo;SpaceTrade::Shell&rdquo; mimics a convention used by some Parrot programmers when talking about namespaces. It is a convention derived from the way that namespaces - or &ldquo;packages&rdquo; - are declared in <a href="/card/perl/">Perl</a>, which is another language of choice for many Parrot developers. I will switch to another convention if I see one that is both widely used and easy to type.</p>
 <p>Back to SpaceTrade. I run <code>setup.pir test</code> out of curiosity.</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. ok
 All tests successful.
 Files=1, Tests=6,  0.015 wallclock secs
-Result: PASS
-</code></pre><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
+Result: PASS</code></pre>
+</figure><p>The tests pass, which is kind of cool. But <em>why</em> do they pass, if I have
 defined a namespace in <code>spacetrade.pir</code>? The tests should complain about missing subroutines if they are in a different namespace, right?</p>
 <p>Yes, that is right. However, the <code>.include</code> directive effectively dumps the
 code from your included file right where you put the directive. The tests exist in the <code>['SpaceTrade';'Shell']</code> namespace because we never indicated that we were moving onto a new one.</p>
@@ -347,9 +364,15 @@ that the shell subroutines work, not that namespace handling works. The
 SpaceTrade namespaces are going to get more cluttered as time goes on, though. I am going to be more explicit in the namespace handling for my tests in order to prepare for that clutter.</p>
 <h3 id="the-default-namespace">The Default Namespace</h3>
 <p>To specify that you are going back to the default namespace, hand an empty key to the <code>.namespace</code> directive.</p>
-<pre tabindex="0"><code>.namespace [ ]
-</code></pre><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
-<pre tabindex="0"><code># example-0e-02/t/01-shell-metacommands.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >.namespace [ ]</code></pre>
+</figure><p>I understand the idea here. The default namespace is no namespace at all, so it gets an empty key. Let&rsquo;s put that line in <code>01-shell-metacommands.pir</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-02/t/01-shell-metacommands.pir
 
 .include &#39;lib/spacetrade.pir&#39;
 
@@ -357,9 +380,12 @@ SpaceTrade namespaces are going to get more cluttered as time goes on, though. I
 
 .sub &#39;main&#39; :main
     .include &#39;test_more.pir&#39;
-    # ...
-</code></pre><p>What happens if I run the tests now?</p>
-<pre tabindex="0"><code>$ parrot setup.pir test
+    # ...</code></pre>
+</figure><p>What happens if I run the tests now?</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ parrot setup.pir test
 t/01-shell-metacommands.t .. Dubious, test returned 1
 Failed 6/6 subtests
 
@@ -373,10 +399,13 @@ Bad plan.  You planned 6 tests but ran 0.
 Files=1, Tests=0,  0.014 wallclock secs
 Result: FAIL
 test fails
-current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)
-</code></pre><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
+current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379)</code></pre>
+</figure><p>This is the error I was expecting to see initially, so I am happy. I suppose I could have put that <code>.namespace [ ]</code> directive at the end of <code>spacetrade.pir</code> - Parrot does not have any rules about where to end one namespace and start another - but I feel like that would have broken the way <code>.include</code> behaves. I will probably learn a better way to handle these little namespace issues eventually.</p>
 <p>Now I have library code tucked into a namespace and test code that doesn&rsquo;t know about the shell subroutines. A quick look at <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">07-writing-subroutines/</a> shows how to get those shell subroutines into our current namespace. The <code>get_global</code> opcode allows us to grab a variable from another namespace. We used it in to grab the <code>chomp</code> subroutine from the String::Utils namespace. Let&rsquo;s use <code>get_global</code> to make the tested subroutines available.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 .include &#39;lib/spacetrade.pir&#39;
 
 .namespace [ ]
@@ -399,9 +428,12 @@ current instr.: &#39;setup&#39; pc 829 (runtime/parrot/library/distutils.pir:379
 
     commands = register_default_commands()
 
-    # ...
-</code></pre><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
-<pre tabindex="0"><code>1..6
+    # ...</code></pre>
+</figure><p>As we can see, that&rsquo;s <em>almost</em> good enough.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >1..6
 ok 1 - :help should be a registered default command
 ok 2 - :quit should be a registered default command that returns an empty string
 ok 3 - :help should reflect registered commands
@@ -409,9 +441,12 @@ not ok 4 - User command &#34;:dude&#34; should result in string &#34;Dude!&#34;
 # Have: Invalid command: :dude points to nonexistent sub say_dude
 # Want: Dude!
 ok 5 - Shell should warn about unknown commands
-ok 6 - Shell should warn about invalid commands
-</code></pre><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+ok 6 - Shell should warn about invalid commands</code></pre>
+</figure><p>Up until now we have been using subroutine names when registering commands, but that is not going to work anymore. SpaceTrade no longer knows exactly where it should look for the subroutines with those names. Instead of names, let&rsquo;s try using the subroutines themselves.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_command
     .param pmc    commands
     .param string name
@@ -430,10 +465,13 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_COMMANDS:
     .return(commands)
-.end
-</code></pre><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
+.end</code></pre>
+</figure><p><code>register_command</code> doesn&rsquo;t look a lot different. The names have changed to show what is going on, but we are still just building a Hash of commands and relying on <code>evaluate_command</code> to sort out any problems.</p>
 <p>Naturally, that means <code>evaluate_command</code> is where the changes become obvious.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub evaluate_command
     .param pmc    commands
     .param string name
@@ -467,8 +505,8 @@ ok 6 - Shell should warn about invalid commands
 
   RETURN_OUTPUT:
     .return(output)
-.end
-</code></pre><p>We do a few simple checks when somebody tries to evaluate a command.</p>
+.end</code></pre>
+</figure><p>We do a few simple checks when somebody tries to evaluate a command.</p>
 <ul>
 <li>Do we have an entry for the command?</li>
 <li>Is there something actually <em>at</em> the entry?</li>
@@ -476,7 +514,10 @@ ok 6 - Shell should warn about invalid commands
 </ul>
 <p>That&rsquo;s what the <code>does</code> check handles, incidentally. Right now we only know about subroutines, but later on we may get into strange creations that aren&rsquo;t subroutines but can be invoked as if they were. From what the folks on IRC <code>#parrot</code> tell me, you would ask <code>command_sub</code> if it is invokable. All I know is that it worked and that I like the folks on <code>#parrot</code> very much.</p>
 <p>We should make one more change before heading over to the tests. <code>register_default_commands</code> needs to adjust to the new way of  registering commands.</p>
-<pre tabindex="0"><code># example-0e-04/lib/spacetrade.pir
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/lib/spacetrade.pir
 .sub register_default_commands
     .local pmc commands
     .local pmc help_command
@@ -489,18 +530,24 @@ ok 6 - Shell should warn about invalid commands
     commands = register_command(commands, &#39;:quit&#39;, quit_command, &#39;Exit the shell&#39;)
 
     .return(commands)
-.end
-</code></pre><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
+.end</code></pre>
+</figure><p>If you don&rsquo;t explicitly hand a namespace to <code>get_global</code>, it will use whatever namespace it&rsquo;s called from. In this case, that is the SpaceTrade::Shell namespace.</p>
 <p>We have to change the tests themselves now. There is actually only one test that needs to be changed. Look in <code>01-shell-metacommands.t</code> for the line that registers the <code>:dude</code> command.</p>
-<pre tabindex="0"><code># example-0e-03/t/01-shell-metacommands.t
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-03/t/01-shell-metacommands.t
 # ...
-commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
-<pre tabindex="0"><code># example-0e-04/t/01-shell-metacommands.t
+commands = register_command(commands, &#39;:dude&#39;, &#39;say_dude&#39;, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Instead of handing a string, create a PMC to hold the <code>say_dude</code> subroutine and had <em>that</em> to <code>register_command</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      ># example-0e-04/t/01-shell-metacommands.t
 .local pmc my_sub
 my_sub = get_global &#39;say_dude&#39;
-commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)
-</code></pre><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
+commands = register_command(commands, &#39;:dude&#39;, my_sub, &#39;Say &#34;Dude!&#34;&#39;)</code></pre>
+</figure><p>Once again, we&rsquo;re using <code>get_global</code> to grab from the current namespace, which is the default namespace now.</p>
 <p>All right, the tests should run okay.</p>
 <p>It is possible to set and get truly global variables with <code>get_root_global</code> and <code>set_root_global</code>, but I do not recommend it. What happens if you decide that the global <code>my_config</code> should be an Array instead of a Hash? Every piece of code that uses a global variable must be updated.</p>
 <p>The same problem exists with package globals, even though it may be on a smaller scale. There&rsquo;s a solution - or at least a way to make the problem even smaller. Whenever I see data and several subroutines that need to work on that data, I start to see objects.</p>

@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2016/">2016</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2016/01/all-the-hugo-themes/">All The Hugo Themes</a></li>
@@ -293,9 +298,12 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   <p><img src="/post/2016/01/../../../attachments/img/2016/cover-2016-01-02.png" alt="attachments/img/2016/cover-2016-01-02.png"/></p>
 <p>My site does well enough with <a href="/card/hugo/">card/Hugo</a> and a custom theme, but I wanted to explore the <a href="https://themes.gohugo.io">themes repository</a>. So I wrote some <a href="/card/python/">card/Python</a>.</p>
 <p>If you followed the <a href="https://gohugo.io/overview/quickstart/">HugoQuickstart</a> then you probably already have your own copy of the themes to use. Otherwise you might want to clone the <a href="https://github.com/spf13/hugoThemes/">hugoThemes</a> repo with git.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">cd</span> mysite/
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">cd</span> mysite/
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> git clone --depth <span class="m">1</span> --recursive https://github.com/spf13/hugoThemes.git themes
-</span></span></code></pre></div><h2 id="code">Code</h2>
+</span></span></code></pre>
+</figure><h2 id="code">Code</h2>
 <p>The idea here is to ask Hugo to build and serve the site once for each theme. For each built theme, ask the browser to load and screenshot the site with that theme.</p>
 <p>I chose Python for this task. No special reason. I was just in a Python mood that day.</p>
 <p><a href="https://splinter.readthedocs.org">Splinter</a> provided the browser controlling API. Since I’m using Chrome for this, I installed the <a href="https://splinter.readthedocs.org/en/latest/drivers/chrome.html">Chrome WebDriver</a>. The <a href="https://docs.python.org/3.5/library/subprocess.html">subprocess</a> standard library module allowed me to control Hugo, restarting with a fresh theme once the browser had enough time to grab a screenshot.</p>
@@ -304,10 +312,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 available for your platform, but I still need to double check that. Here
 are the steps I followed to get things working with
 <a href="https://brew.sh">Homebrew</a> on my Mac.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> brew install python3 imagemagick chromedriver
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> brew install python3 imagemagick chromedriver
 </span></span><span class="line"><span class="cl"><span class="gp">$</span> pip3 install splinter
-</span></span></code></pre></div><p>All right - that’s out of the way. Now for some code.</p>
-<div class="highlight" title="show-themes.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span></code></pre>
+</figure><p>All right - that’s out of the way. Now for some code.</p>
+<figure class="highlight">
+  <figcaption><tt>show-themes.py</tt></figcaption>
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os.path</span>
@@ -368,8 +382,8 @@ are the steps I followed to get things working with
 </span></span><span class="line"><span class="cl">            <span class="s2">&#34;-scale&#34;</span><span class="p">,</span> <span class="s1">&#39;50%&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="s2">&#34;screenshots/*.png&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="s2">&#34;hugo-themes.gif&#34;</span> <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">convert_command</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="the-result">The Result</h2>
+</span></span><span class="line"><span class="cl">    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">convert_command</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="the-result">The Result</h2>
 <p>Aside from a few dozen PNG files? Well, there’s that nifty animation. Animated GIFs give me a headache sometimes, so I will <a href="attachments/img/2016/hugo-themes.gif">link to the GIF</a> instead.</p>
 <h2 id="observations">Observations</h2>
 <p>I noticed a few things with this experiment.</p>

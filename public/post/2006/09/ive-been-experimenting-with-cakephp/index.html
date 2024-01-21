@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2006/">2006</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/">I&#39;ve Been Experimenting With CakePHP</a></li>
@@ -290,18 +295,26 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>Since CakePHP is so accessible, I thought it would be fun to explore the framework a little bit more, and document what&rsquo;s going on here. Now, I&rsquo;m not the greatest at remembering to update this blog, but I&rsquo;ll do my best.</p>
 <p>My goal is straightforward: create a forum application, similar in purpose to <a href="http://www.phpbb.com/">phpBB</a>. I&rsquo;m sure it has already been done, but I&rsquo;m in this strictly for the educational exercise.</p>
 <p>The first task - assuming you already have Web space with support for PHP and MySQL - is to get CakePHP. That&rsquo;s easy enough. Just grab the latest archive from the download section of the CakePHP site, and unpack it to your server space. I&rsquo;m fond of using my personal machine as a development site, so I won&rsquo;t be worrying about issues like uploading or editing remote files.</p>
-<pre tabindex="0"><code>$ cd /var/www
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ cd /var/www
 $ sudo tar xfvz ~/cake_1.1.7.3363.tar.gz
 ...
 $ mv cake_1.1.7.3363.tar.gz cakebb
-$ sudo chown --recursive brianwisti cakebb
-</code></pre><p>Okay, there are much safer approaches to setting things up, but I am only doing quick and dirty development on my home machine.</p>
+$ sudo chown --recursive brianwisti cakebb</code></pre>
+</figure><p>Okay, there are much safer approaches to setting things up, but I am only doing quick and dirty development on my home machine.</p>
 <p>Next I need to manage the database connections. CakePHP uses PHP code for configuration, following along with the Rails idea of &ldquo;convention over configuration.&rdquo; The theory is that a handful of PHP files are easier to sort through than a handful of XML configuration files.</p>
 <p>Configuration files are kept in <tt>cakebb/app/config</tt>. The first one I&rsquo;ll be looking at is database.php, except that there is no <tt>database.php</tt> when Cake is first extracted. We have a file <tt>database.php.default</tt> instead. I&rsquo;ll move it over to <tt>database.php</tt> so that Cake has something to look at on startup.</p>
-<pre tabindex="0"><code>$ mv database.php.default database.php
-</code></pre><p>Of course now I need to edit the file to establish the database connection details. I&rsquo;ll also need to set up the appropriate databases on my local MySQL server.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mv database.php.default database.php</code></pre>
+</figure><p>Of course now I need to edit the file to establish the database connection details. I&rsquo;ll also need to set up the appropriate databases on my local MySQL server.</p>
 <p>So here&rsquo;s the important part of <tt>database.php</tt>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DATABASE_CONFIG</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DATABASE_CONFIG</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$default</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                <span class="s1">&#39;connect&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql_connect&#39;</span><span class="p">,</span>
@@ -318,9 +331,12 @@ $ sudo chown --recursive brianwisti cakebb
 </span></span><span class="line"><span class="cl">                            <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my secret password&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                            <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_test&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                            <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Then I go into the MySQL shell to create the databases and accounts needed by CakeBB.</p>
-<pre tabindex="0"><code>$ mysql -uroot -p
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><p>Then I go into the MySQL shell to create the databases and accounts needed by CakeBB.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ mysql -uroot -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 6 to server version: 5.0.22-Debian_0ubuntu6.06.2-log
@@ -336,10 +352,13 @@ mysql&gt; grant all on cakebb.* to &#39;cakebb_user&#39;@&#39;%&#39; identified 
 Query OK, 0 rows affected (0.00 sec)
 
 mysql&gt; grant all on cakebb_test.* to &#39;cakebb_user&#39;@&#39;%&#39; identified by &#39;my secret password&#39;;
-Query OK, 0 rows affected (0.00 sec)
-</code></pre><p>I feel like skipping mod_rewrite for now, so I&rsquo;ll uncomment the following line (around line 40 of <tt>app/config/core.php</tt>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">//  define (&#39;BASE_URL&#39;, env(&#39;SCRIPT_NAME&#39;));
-</span></span></span></code></pre></div><p>All I&rsquo;ve got at this point is the basic setup, but I should test it just to make sure everything is connecting. I send my browser to <code>http://localhost/cakebb/</code> and get a lovely status page telling me that CakePHP is installed and able to connect to the database.</p>
+Query OK, 0 rows affected (0.00 sec)</code></pre>
+</figure><p>I feel like skipping mod_rewrite for now, so I&rsquo;ll uncomment the following line (around line 40 of <tt>app/config/core.php</tt>):</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">//  define (&#39;BASE_URL&#39;, env(&#39;SCRIPT_NAME&#39;));
+</span></span></span></code></pre>
+</figure><p>All I&rsquo;ve got at this point is the basic setup, but I should test it just to make sure everything is connecting. I send my browser to <code>http://localhost/cakebb/</code> and get a lovely status page telling me that CakePHP is installed and able to connect to the database.</p>
 <p>Great. I&rsquo;m set up and functional. The next step will be to build the application models. But that will have to wait until tomorrow, because I need to get to work now.</p>
   
 

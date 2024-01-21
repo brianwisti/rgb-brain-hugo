@@ -65,9 +65,11 @@ ${workspaceFolder}/.pylintrc
    <category>python</category>  <category>vscode</category>  <category>editors</category> 
   <content:encoded><![CDATA[<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> doesn’t seem to pick up my environment’s <a href="https://docs.python.org/3.8/using/cmdline.html#envvar-PYTHONPATH">PYTHONPATH</a> when running <a href="https://www.pylint.org/">pylint</a>. Makes project-local modules a headache. The solution: put it in your pylint config.</p>
 <p><strong><code>${workspaceFolder}/.pylintrc</code></strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[MASTER]</span>
-</span></span><span class="line"><span class="cl"><span class="na">init-hook</span><span class="o">=</span><span class="s">&#39;import sys; sys.path.append(&#34;pylib&#34;)&#39;</span>
-</span></span></code></pre></div><p>Okay, I got more planned for today than messing with code. Back to that other stuff.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[MASTER]</span>
+</span></span><span class="line"><span class="cl"><span class="na">init-hook</span><span class="o">=</span><span class="s">&#39;import sys; sys.path.append(&#34;pylib&#34;)&#39;</span></span></span></code></pre>
+</figure><p>Okay, I got more planned for today than messing with code. Back to that other stuff.</p>
 ]]></content:encoded>
 </item>
 <item>
@@ -90,9 +92,12 @@ You can install the remote-atom package from Atom’s Settings View.</descriptio
 <p><code>rmate</code> communicates with the Remote Atom service, which you need to manage yourself. You can do this from the <em>Packages</em> menu, but I want to get comfortable with the <a href="https://atom.io/packages/command-palette">Command Palette</a>.</p>
 <p><img src="/post/2015/07/attachments/img/2015/remote-atom-start-server.png" alt="Start Remote Atom Server from Command Palette"/></p>
 <p>Once the server is available, you can <code>rmate</code> files to your heart’s content.</p>
-<pre tabindex="0"><code>$ rmate lib/secret-work-stuff
-$ rmate test/secret-work-tests
-</code></pre><p>No point showing a screenshot of <code>lib/secret-work-stuff</code>. It’s just another tab as far as the Atom user interface is concerned. Saving correctly updated the file on my virtual machine. Simple and straightforward.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ rmate lib/secret-work-stuff
+$ rmate test/secret-work-tests</code></pre>
+</figure><p>No point showing a screenshot of <code>lib/secret-work-stuff</code>. It’s just another tab as far as the Atom user interface is concerned. Saving correctly updated the file on my virtual machine. Simple and straightforward.</p>
 <p>Eventually you may want to stop the server. Again, from the Command Palette.</p>
 <p><img src="/post/2015/07/attachments/img/2015/remote-atom-stop-server.png" alt="Stop Server from the Command Palette"/></p>
 <p>I’m still not ready to use Atom as my primary or even secondary editor. However, it’s starting to feel useful — thanks to packages like remote-atom.</p>

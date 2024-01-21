@@ -131,8 +131,8 @@
 
 <link
     rel="stylesheet"
-    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
-    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
     crossorigin="anonymous">
 
 
@@ -245,11 +245,16 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   
     
   
+    
+  
 
     <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
   
 
     <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/2007/">2007</a></li>
   
 
     <li><a class="active" href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/">Python Interactive Fiction - 02 Tying the Scenes Together</a></li>
@@ -303,7 +308,9 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <li>A list of actions the user can take, leading to other scenes.</li>
 </ol>
 <p>We need both of these items any time we deal with a scene. It makes sense to store them together. The easiest way to do that with our current knowledge would be to use a list, and grab <code>description</code> and <code>paths</code> from that list.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
@@ -352,11 +359,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span>
-</span></span></code></pre></div><p>Did you see that array just sitting there in the middle of <code>scene</code>? Arrays can hold anything, even other arrays. But why didn&rsquo;t I declare an array variable to hold the paths? Well, the answer boils down to &ldquo;why bother?&rdquo; The array of paths doesn&rsquo;t really have a meaning outside of the scene, so I don&rsquo;t want to clutter up the names by adding a variable I will only use once. Why do I then go and declare a <code>path</code> array later on? To make it easier to use the paths of different scenes when that becomes an issue for me.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span></span></span></code></pre>
+</figure><p>Did you see that array just sitting there in the middle of <code>scene</code>? Arrays can hold anything, even other arrays. But why didn&rsquo;t I declare an array variable to hold the paths? Well, the answer boils down to &ldquo;why bother?&rdquo; The array of paths doesn&rsquo;t really have a meaning outside of the scene, so I don&rsquo;t want to clutter up the names by adding a variable I will only use once. Why do I then go and declare a <code>path</code> array later on? To make it easier to use the paths of different scenes when that becomes an issue for me.</p>
 <p>Go ahead and try that code out. It still functions exactly the same. That&rsquo;s good. You don&rsquo;t want the whole thing collapsing just because you made one change. So, why did I keep <code>description</code> and <code>paths</code> instead of referring to <code>scene[0]</code> and <code>scene[1]</code> in this version? The answer is as easy as you think it is. No way am I going to remember that <code>scene[1]</code> refers to the paths for that scene. I kept the variable name because it&rsquo;s easy to remember, and works the same regardless of what scene I use.</p>
 <p>Don&rsquo;t believe me? Here, let&rsquo;s add another scene.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
@@ -390,10 +399,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">mountain_scene</span>
 </span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></span></code></pre></div><p>Hey, we have two scenes! Did you notice that I added yet another variable layer, by remembering one of the scenes in <code>scene</code>? I am very lazy, and will work extremely hard to avoid extra work. We still haven&rsquo;t had to do anything to the logic of our application, and we didn&rsquo;t even have to change how <code>description</code> and <code>paths</code> get assigned.</p>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></span></span></code></pre>
+</figure><p>Hey, we have two scenes! Did you notice that I added yet another variable layer, by remembering one of the scenes in <code>scene</code>? I am very lazy, and will work extremely hard to avoid extra work. We still haven&rsquo;t had to do anything to the logic of our application, and we didn&rsquo;t even have to change how <code>description</code> and <code>paths</code> get assigned.</p>
 <p>Oh, did you run it?</p>
-<pre tabindex="0"><code>$ python ifiction.py
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python ifiction.py
 You are standing at the foot of a mountain range. Huge impassable
 peaks loom over you. There is a cave to the east, and a field south of
 you leading into a valley.
@@ -402,9 +414,11 @@ you leading into a valley.
         (0 Quit)
 Make a selection: 2
 Choice 2 - Go south into the field
-You decided to: Go south into the field
-</code></pre><p>We have confirmed that our code works equally well regardless of which scene we use. It is time to start tying all the scenes together. First, let&rsquo;s get all the scenes into the code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">field_scene</span> <span class="o">=</span> <span class="p">[</span>
+You decided to: Go south into the field</code></pre>
+</figure><p>We have confirmed that our code works equally well regardless of which scene we use. It is time to start tying all the scenes together. First, let&rsquo;s get all the scenes into the code.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">field_scene</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># description</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
@@ -461,15 +475,20 @@ You decided to: Go south into the field
 </span></span><span class="line"><span class="cl">    <span class="p">[</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">valley_scene</span>
-</span></span></code></pre></div><p>Experiment with using different scenes for <code>scene</code> in the game, just to make sure everything works.</p>
-<pre tabindex="0"><code>You are standing in the middle of a huge, beautiful valley. Standing
+</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">valley_scene</span></span></span></code></pre>
+</figure><p>Experiment with using different scenes for <code>scene</code> in the game, just to make sure everything works.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >You are standing in the middle of a huge, beautiful valley. Standing
 right before you is ... whatever it was you were looking for. Success!
         (0 Quit)
 Make a selection: 0
-You decided to: quit
-</code></pre><p>How do we go from selecting a path to describing the selected scene? The easiest way to do that right now is to expand the list of paths for each list, turning a path into a list holding the string describing the path and the name of the scene which the path points to. Another one which is easier to show than to describe.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">field_scene</span> <span class="o">=</span> <span class="p">[</span>
+You decided to: quit</code></pre>
+</figure><p>How do we go from selecting a path to describing the selected scene? The easiest way to do that right now is to expand the list of paths for each list, turning a path into a list holding the string describing the path and the name of the scene which the path points to. Another one which is easier to show than to describe.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">field_scene</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># description</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
@@ -526,68 +545,94 @@ You decided to: quit
 </span></span><span class="line"><span class="cl">    <span class="p">[</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">field_scene</span>
-</span></span></code></pre></div><p>Of course, my changes broke our code.</p>
-<pre tabindex="0"><code>$ python ifiction.py
+</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">field_scene</span></span></span></code></pre>
+</figure><p>Of course, my changes broke our code.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >$ python ifiction.py
 Traceback (most recent call last):
   File &#34;ifiction.py&#34;, line 6, in ?
     field_scene = [
-NameError: name &#39;mountain_scene&#39; is not defined
-</code></pre><p>Oh, that&rsquo;s no good at all. Of course we can&rsquo;t use <code>mountain_scene</code> before we tell Python what <code>mountain_scene</code> actually <em>is</em>. What are we going to do? We could make a handful of <code>None</code> assignments at the beginning of the code, but that fights against the flexibility of a language like Python. We could also create a big list called <code>scenes</code> and use the index of each scene instead of a variable name. That <em>would</em> work, but it&rsquo;s inconvenient. Everything could break again if we change the number of scenes. We&rsquo;ll also have to keep good notes in order to remember that <code>scenes[0]</code> is the &ldquo;field scene&rdquo;, <code>scenes[1]</code> is the &ldquo;mountain scene,&rdquo; and so on. Besides, do we really care what order the scenes are stored in? Everything should fall into place automatically once we decide what the starting scene is.</p>
+NameError: name &#39;mountain_scene&#39; is not defined</code></pre>
+</figure><p>Oh, that&rsquo;s no good at all. Of course we can&rsquo;t use <code>mountain_scene</code> before we tell Python what <code>mountain_scene</code> actually <em>is</em>. What are we going to do? We could make a handful of <code>None</code> assignments at the beginning of the code, but that fights against the flexibility of a language like Python. We could also create a big list called <code>scenes</code> and use the index of each scene instead of a variable name. That <em>would</em> work, but it&rsquo;s inconvenient. Everything could break again if we change the number of scenes. We&rsquo;ll also have to keep good notes in order to remember that <code>scenes[0]</code> is the &ldquo;field scene&rdquo;, <code>scenes[1]</code> is the &ldquo;mountain scene,&rdquo; and so on. Besides, do we really care what order the scenes are stored in? Everything should fall into place automatically once we decide what the starting scene is.</p>
 <p>Python has a wonderful type for collecting things where the order doesn&rsquo;t matter. That type is called a <em>dictionary</em>, and it will be the subject of the next section.</p>
 <h3 id="dictionaries">Dictionaries</h3>
 <p>A dictionary is also the most perfectly named type. We have to think about what strings, integers, and arrays are, but a <em>dictionary</em> is easy.  You know how to use a dictionary, right? You want to know the meaning of a word, so you look it up by name, and there is the definition. The dictionary type works the same way. It uses <em>keys</em> instead of indexes. You look up values in a dictionary using their keys. Hey, we haven&rsquo;t gone to the console recently, and now&rsquo;s the perfect time.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; letters = {
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; letters = {
 ...     &#34;a&#34;: &#34;The first letter in the alphabet&#34;,
 ...     &#34;b&#34;: &#34;The second letter in the alphabet&#34;,
 ...     &#34;banana pancakes&#34;: &#34;A tasty and nutritious breakfast treat&#34;
-... }
-</code></pre><p>Python recognizes that you are creating a hash when you use the curly brackets <code>{}</code>. Your initial keys and values will go within those brackets, much like when creating a list. The items in a hash — sorry, they&rsquo;re called dictionaries in Python, but hashes in many other languages. Dictionary is a much more sensible name, since it describes how you use it. Still, I do occasionally use the word &ldquo;hash&rdquo; instead of dictionary because I&rsquo;m so used to it from other languages. I could have corrected myself and you never need know, but I thought it seemed nice to take a second and point it out. Now when you hear somebody talking about hashes in Perl or Ruby, you will already know that they are describing what you know as dictionaries.</p>
+... }</code></pre>
+</figure><p>Python recognizes that you are creating a hash when you use the curly brackets <code>{}</code>. Your initial keys and values will go within those brackets, much like when creating a list. The items in a hash — sorry, they&rsquo;re called dictionaries in Python, but hashes in many other languages. Dictionary is a much more sensible name, since it describes how you use it. Still, I do occasionally use the word &ldquo;hash&rdquo; instead of dictionary because I&rsquo;m so used to it from other languages. I could have corrected myself and you never need know, but I thought it seemed nice to take a second and point it out. Now when you hear somebody talking about hashes in Perl or Ruby, you will already know that they are describing what you know as dictionaries.</p>
 <p>What was I saying? Oh, right. The items in a <em>dictionary</em> are pairs of keys and values. The bit on the left of the <code>:</code> character is the <em>key</em>, and that&rsquo;s what we use to look up a value. The <em>value</em> is the item on the right, and that&rsquo;s the bit you&rsquo;ll usually cared about. The values are strings in this case, but they can be anything. Actually, the same thing is true for the keys, but string keys are the most common. I will definitely be sticking with string keys in the near future.</p>
 <p>Once you&rsquo;ve defined your dictionary, use square brackets <code>[]</code> to get to individual values. This is similar to the way you get at values in a list. This little bit of consistency is provided because both lists and dictionaries are <em>collection</em> types, and it&rsquo;s important to provide a consistent interface for similar tasks. The task in this case is accessing individual items in the collection.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; letters[&#34;a&#34;]
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; letters[&#34;a&#34;]
 &#34;The first letter in the alphabet&#34;
 &gt;&gt;&gt; letters[&#34;b&#34;]
 &#34;The second letter in the alphabet&#34;
 &gt;&gt;&gt; letters[&#34;banana pancakes&#34;]
-&#39;A tasty and nutritious breakfast treat&#39;
-</code></pre><p>Oh yeah, our keys are strings, so we need to remember the quotes when using them to access a value.</p>
+&#39;A tasty and nutritious breakfast treat&#39;</code></pre>
+</figure><p>Oh yeah, our keys are strings, so we need to remember the quotes when using them to access a value.</p>
 <p>The logic here is straightforward. Again, think of a dictionary. You flip through the pages to look up &ldquo;banana pancakes&rdquo; and you find &ldquo;A tasty and nutritious breakfast treat&rdquo;.</p>
 <p>What happens when you try to use a key that doesn&rsquo;t exist? TIAS! <em>(Try It And See, for those of you who don&rsquo;t turn every phrase into an acronym)</em></p>
-<pre tabindex="0"><code>&gt;&gt;&gt; letters[&#34;c&#34;]
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; letters[&#34;c&#34;]
 Traceback (most recent call last):
   File &#34;&lt;stdin&gt;&#34;, line 1, in ?
-KeyError: &#39;c&#39;
-</code></pre><p>Python won&rsquo;t try to do anything clever when you use a key that hasn&rsquo;t been defined. It simply raises a <code>KeyError</code> exception.</p>
+KeyError: &#39;c&#39;</code></pre>
+</figure><p>Python won&rsquo;t try to do anything clever when you use a key that hasn&rsquo;t been defined. It simply raises a <code>KeyError</code> exception.</p>
 <p>Using a dictionary is straightforward, as you can see. There is one quirk you need to be aware of, though. Remember how I said that dictionaries were a good collection type for those situations where the order of things collected doesn&rsquo;t matter? That&rsquo;s because you cannot assume that the keys in a dictionary have any kind of order.</p>
 <p>See for yourself with the dictionary method <code>keys</code>.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; letters.keys()
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; letters.keys()
 [&#39;a&#39;, &#39;banana pancakes&#39;, &#39;b&#39;]
-&gt;&gt;&gt;               
-</code></pre><p>You can see that the keys are not in the alphabetical order you might expect. The reason is a little technical for my mood right now, but basically Python does a little preparation which makes it easier to store and access the keys later. The cost for us is that the keys look unsorted. It&rsquo;s a small cost, and one that we can work around easily if it&rsquo;s that important.</p>
+&gt;&gt;&gt;               </code></pre>
+</figure><p>You can see that the keys are not in the alphabetical order you might expect. The reason is a little technical for my mood right now, but basically Python does a little preparation which makes it easier to store and access the keys later. The cost for us is that the keys look unsorted. It&rsquo;s a small cost, and one that we can work around easily if it&rsquo;s that important.</p>
 <p>Okay, fine. But what was I saying earlier about <em>methods</em>, and why does it look like I have a function call pressed up against <code>letters</code>? That is our first peek at Object Oriented Programming, a popular approach which makes a lot of programs easier to describe.</p>
 <p>I am having a hard time coming up with a description for objects, even though the basic idea is easy. You have been dealing so far with simple values for variables, like the number <code>3</code> or the string <code>&quot;bananagram&quot;</code>. Well, an object is <em>like</em> a simple value, but you can ask it to do things. Take a dictionary for example. You can ask it for its keys, you can ask it if it has a particular key, and a few other things. Many of those requests are done with <em>methods</em>. A method looks like an ordinary function, but it is associated with a particular type of object.</p>
 <p>I have been lying a little bit about strings, actually. They are objects, not simple values.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; &#34;surprise&#34;.upper()
-&#39;SURPRISE&#39;
-</code></pre><p>An easy way to get at all of the values in a dictionary is to get the list of keys and iterate through the list with <code>for</code>.</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; keys = letters.keys()
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; &#34;surprise&#34;.upper()
+&#39;SURPRISE&#39;</code></pre>
+</figure><p>An easy way to get at all of the values in a dictionary is to get the list of keys and iterate through the list with <code>for</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; keys = letters.keys()
 &gt;&gt;&gt; for key in keys:
 ...     print key, &#34;is&#34;, letters[key]
 ...
 a is The first letter in the alphabet
 banana pancakes is A tasty and nutritious breakfast treat
-b is The second letter in the alphabet
-</code></pre><p>And if the order is important to us, we can sort the list of keys with the <code>sort</code> method common to all lists. See, you have been using objects quite a bit already!</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; keys.sort()
+b is The second letter in the alphabet</code></pre>
+</figure><p>And if the order is important to us, we can sort the list of keys with the <code>sort</code> method common to all lists. See, you have been using objects quite a bit already!</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; keys.sort()
 &gt;&gt;&gt; for key in keys:
 ...     print key, &#34;is&#34;, letters[key]
 ...
 a is The first letter in the alphabet
 b is The second letter in the alphabet
-banana pancakes is A tasty and nutritious breakfast treat
-</code></pre><p>I think it&rsquo;s been too long since we worked on our game. Let&rsquo;s put everything in a dictionary and make our game code work with that. Some big changes are coming to the code, so prepare yourself.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scenes</span> <span class="o">=</span> <span class="p">{</span>
+banana pancakes is A tasty and nutritious breakfast treat</code></pre>
+</figure><p>I think it&rsquo;s been too long since we worked on our game. Let&rsquo;s put everything in a dictionary and make our game code work with that. Some big changes are coming to the code, so prepare yourself.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scenes</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;field&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
 </span></span><span class="line"><span class="cl">                       <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
@@ -629,28 +674,34 @@ banana pancakes is A tasty and nutritious breakfast treat
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span>
-</span></span></code></pre></div><p>We are now using key names instead of variable names. This makes Python happier, since we aren&rsquo;t using variable names that haven&rsquo;t been defined yet. There is a pleasant side effect, too. Instead of having half a dozen different <code>scene</code> variables, we have contained all of them in a single <code>scenes</code> dictionary. I like to think that this makes the code a little cleaner. We use a convenient name as the key for each scene. Each scene is a dictionary as well, containing the description and paths for that scene. And then the paths collection for each scene is an array of dictionaries. Each element of the <code>paths</code> list contains the destination and a phrase describing the command. <em>(I&rsquo;m not comfortable with the
+</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>We are now using key names instead of variable names. This makes Python happier, since we aren&rsquo;t using variable names that haven&rsquo;t been defined yet. There is a pleasant side effect, too. Instead of having half a dozen different <code>scene</code> variables, we have contained all of them in a single <code>scenes</code> dictionary. I like to think that this makes the code a little cleaner. We use a convenient name as the key for each scene. Each scene is a dictionary as well, containing the description and paths for that scene. And then the paths collection for each scene is an array of dictionaries. Each element of the <code>paths</code> list contains the destination and a phrase describing the command. <em>(I&rsquo;m not comfortable with the
 names I used for the path dictionaries. Let&rsquo;s revisit that later.)</em></p>
 <p>It all sounds a little confusing, and eventually I&rsquo;ll come up with a better way to explain it. I think you&rsquo;ll find that dictionaries provide an incredibly convenient way to store information that is more complicated than a simple string or number as you get comfortable with them.</p>
 <p>Now we need to fix our scene handling code so that it works with our new dictionary-based scenes.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
-</span></span></code></pre></div><p>I used an array <em>(right name for a list &ndash; search and replace through text)</em> for a scene&rsquo;s paths because I still want to use numbers in our menu listing. This means that order is important, which is the best time to use an array.</p>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I used an array <em>(right name for a list &ndash; search and replace through text)</em> for a scene&rsquo;s paths because I still want to use numbers in our menu listing. This means that order is important, which is the best time to use an array.</p>
 <p>Printing the menu is easy. We adjust the <code>print</code> statement so that it prints the value associated with the &ldquo;phrase&rdquo; key of <code>path</code>. You know what? That is too much of a mouthful. How about I start saying &ldquo;the &lsquo;phrase&rsquo; for this <code>path</code>&rdquo; or something like that? It means the same thing, and is probably easier to understand since it is so much shorter.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Show the menu for this scene.</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Show the menu for this scene.</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span></code></pre></div><p>Processing the input is going to be a little trickier. We need to get the right assignment for <code>next_step</code>, but we also need to correctly handle a user decision to quit.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl"><span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span></span></span></code></pre>
+</figure><p>Processing the input is going to be a little trickier. We need to get the right assignment for <code>next_step</code>, but we also need to correctly handle a user decision to quit.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Get the user selection from the menu.</span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
@@ -667,20 +718,25 @@ names I used for the path dictionaries. Let&rsquo;s revisit that later.)</em></p
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
-</span></span></code></pre></div><p>That exception handling code is starting to bother me. It catches errors well enough, but it doesn&rsquo;t give any useful information to the user. We have provided the user with a menu and some numbers, but we are assuming that she knows what she is supposed to enter. Our user needs to know what we expect from her so that she can enjoy the game. Please remember: we are <em>not</em> going to assume that the user is stupid, but we <em>are</em> going to assume that she has better things to do with her time than decipher our menu.</p>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span></span></span></code></pre>
+</figure><p>That exception handling code is starting to bother me. It catches errors well enough, but it doesn&rsquo;t give any useful information to the user. We have provided the user with a menu and some numbers, but we are assuming that she knows what she is supposed to enter. Our user needs to know what we expect from her so that she can enjoy the game. Please remember: we are <em>not</em> going to assume that the user is stupid, but we <em>are</em> going to assume that she has better things to do with her time than decipher our menu.</p>
 <p>I think we&rsquo;ll be safe by adding a little bit of direction as part of our input prompt.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-</span></span></code></pre></div><p>Our prompt message is a little more complicated now, so we put it into its own variable. And I have introduced yet another way to construct strings.</p>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Our prompt message is a little more complicated now, so we put it into its own variable. And I have introduced yet another way to construct strings.</p>
 <p>String formatting gives us a mini-language for exact control over the contents of a string. It is a fairly simple language, consisting of placeholders marked with <code>%</code> and a conversion rule. I want to display the length of <code>paths</code> as an integer number, so my conversion rule is <code>i</code>. The string is followed by another <code>%</code> symbol and the value you want converted and placed in the string. Use a tuple after the <code>%</code> if you have more than one conversion to handle in your string:</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; str = &#34;%s are better for you than %s, but I don&#39;t care&#34; % (&#34;apples&#34;, &#34;pancakes&#34;)
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-" data-lang=""
+      >&gt;&gt;&gt; str = &#34;%s are better for you than %s, but I don&#39;t care&#34; % (&#34;apples&#34;, &#34;pancakes&#34;)
 &gt;&gt;&gt; str
-&#39;apples are better for you than pancakes&#39;
-</code></pre><p>Your rules can become very elaborate, and I encourage you to play with them more. I&rsquo;ve rambled enough and there is a lot more to cover. Let&rsquo;s move on.</p>
+&#39;apples are better for you than pancakes&#39;</code></pre>
+</figure><p>Your rules can become very elaborate, and I encourage you to play with them more. I&rsquo;ve rambled enough and there is a lot more to cover. Let&rsquo;s move on.</p>
 <p>Guess what? It&rsquo;s time to create the game loop, which means that we are about to have a playable version of our interactive fiction game! Take another break. Shake your fingers out. Have a taste of coffee, juice, or whatever your beverage of choice is. We&rsquo;ll pick this up again soon.</p>
   
 
