@@ -1,0 +1,856 @@
+/*
+ *                        ___
+ *                       /\_ \
+ *  _____     ___     ___\//\ \      __
+ * /\ '__`\  / __`\  / __`\\ \ \   /'__`\
+ * \ \ \_\ \/\ \_\ \/\ \_\ \\_\ \_/\  __/
+ *  \ \ ,__/\ \____/\ \____//\____\ \____\
+ *   \ \ \/  \/___/  \/___/ \/____/\/____/
+ *    \ \_\
+ *     \/_/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/poole.
+ */
+
+/*
+ *  __                  __
+ * /\ \                /\ \
+ * \ \ \___   __  __   \_\ \     __
+ *  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+ *   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+ *    \ \_\ \_\/`____ \ \___,_\ \____\
+ *     \/_/\/_/`/___/> \/__,_ /\/____/
+ *                /\___/
+ *                \/__/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/hyde.
+ */
+
+
+// global resets
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Atkinson", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+
+  @media (min-width: 38em) {
+    font-size: 20px;
+  }
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;
+  color: #515151;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+
+  @media (max-width: 48em) {
+    overflow: auto !important;
+    height: auto !important;
+  }
+}
+
+// inline
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+
+  /* `:focus` is linked to `:hover` for basic accessibility */
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+strong {
+  color: var(--text-color);
+}
+
+abbr {
+  font-size: 85%;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase;
+
+  &[title] {
+    cursor: help;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+}
+
+code {
+  padding: .25em .5em;
+  font-size: 85%;
+  color: var(--code-color);
+  background-color: var(--code-background-color);
+  border-radius: 3px;
+}
+
+// blocks
+
+figcaption {
+  font-size: small;
+  text-align: right;
+}
+
+img {
+  display: block;
+  margin: 0 0 1rem;
+  border-radius: 5px;
+  max-width: 100%;
+  height: auto;
+}
+
+code, pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+pre {
+  tab-size:4;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  font-size: .8rem;
+  line-height: 1.4;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+
+  code {
+    padding: 0;
+    font-size: 100%;
+    color: inherit;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-weight: 400;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+}
+
+h4, h5, h6 {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul, ol, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: .5rem;
+}
+
+blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  background-color: var(--table-stripe-color);
+  border-left: .25rem solid var(--table-border-color);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 30em) {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
+  }
+}
+
+
+hr {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 2px solid var(--table-stripe-color);
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+
+// Super small header above the content for site name and short description.
+.masthead {
+  margin-bottom: 1em;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: smaller;
+    margin: 0 0 0.5em 0;
+    padding: 0;
+    list-style-type: "/";
+    
+    li {
+      padding: 0 .25em;
+      margin: 0 .25em;
+
+      &:first-child {
+        margin: 0 .25em 0 0;
+      }
+
+      a.active {
+        color: var(--table-border-color);
+      }
+    }
+  }
+
+}
+
+table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid var(--table-border-color);
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: .25rem .5rem;
+  border: 1px solid var(--table-border-color);
+}
+
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: var(--table-stripe-color);
+}
+
+
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+
+.sidebar {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--sidebar-bg-color);
+  flex-shrink: 0;
+
+  @media (min-width: 48em) {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+    text-align: left;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(70, 70, 70) auto;
+  }
+}
+
+@media (min-width: 48em) {
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color:rgb(70, 70, 70);
+    border-radius: 10px;
+  }
+
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color:rgb(150, 150, 150);
+  }
+}
+
+/* Sidebar links */
+.sidebar a, li {
+  color: var(--sidebar-a-color);
+}
+
+/* About section */
+.sidebar-about {
+  text-align: center;
+  color: var(--sidebar-p-color);
+
+  h1 {
+    color: var(--sidebar-h1-color);
+    margin-top: 0;
+    font-weight:300;
+    font-size: 1.5em;
+    font-family: "Abril Fatface", serif;
+  }
+
+  img {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 2px solid var(--sidebar-img-border-color);
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+  }
+}
+
+/* Sidebar nav */
+.sidebar-nav {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.subnav {
+ list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-nav-item {
+  display: block;
+
+  &.active {
+    font-weight: bold;
+  }
+}
+
+a.sidebar-nav-item:hover,
+a.sidebar-nav-item:focus {
+  text-decoration: underline;
+}
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ */
+
+@media (min-width: 48em) {
+  .sidebar-sticky {
+    top: 1rem;
+    width: 16rem;
+  }
+}
+
+/* Content
+ *
+ * Align the contents of the site above the proper threshold with some margin-fu
+ * with a 25%-wide `.sidebar`.
+ */
+
+.content {
+  padding-top:    2rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: 48em) {
+    max-width: 38rem;
+    margin-left: 1.75rem;
+    margin-right: 2rem;
+  }
+
+  @media (min-width: 64em) {
+    max-width: 44rem;
+    margin-left: 1.75rem;
+    margin-right: 2rem;
+  }
+
+  div, p, table {
+      color: var(--text-color);
+  }
+
+  li, li > p {
+      color: var(--list-color);
+  }
+
+  code {
+      color: var(--code-color);
+      background-color: var(--code-background-color);
+  }
+
+  a code{
+      color: var(--link-color);
+  }
+
+  pre {
+    code {
+      background-color: transparent;
+      white-space: pre;
+    }
+  }
+
+}
+
+// centers content in page
+.container {
+  max-width: 75ch;
+  padding-left:  1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 30em) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: 48em) {
+    &.content {
+      overflow-y: auto;
+      padding-right: 2rem;
+      flex-grow: 1;
+    }
+  }
+
+  &.content {
+    overflow-y: auto;
+    flex-grow: 1;
+
+  }
+}
+
+.footnote {
+  font-size: 0.7em;
+  margin-top: 0.5rem;
+  color: var(--sidebar-p-color);
+}
+
+.go {
+  color: #444444;
+}
+
+.badge {
+  display:inline;
+  vertical-align: bottom;
+}
+ 
+.badges {
+  float: right;
+}
+
+.brand {
+  font-size: 4.0em;
+  margin-bottom: 0;
+}
+
+// highlighted code blocks
+.highlight {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+
+  pre {
+    margin-bottom: 0;
+    overflow-x: auto;
+  }
+}
+
+/*
+ * Posts and pages
+ *
+ * Each post is wrapped in `.post` and is used on default and post layouts. Each
+ * page is wrapped in `.page` and is only used on the page layout.
+ */
+
+.page, .post {
+  margin-bottom: 4em;
+}
+
+/* Blog post or page title */
+.page-title,
+.post-title,
+.post-title a {
+  color: var(--post-title-color);
+}
+
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+/* Meta data line below post title */
+.post-date {
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  color: var(--date-color);
+}
+
+.tags {
+  padding-left: 0em;
+
+  li {
+    display: inline;
+    text-decoration: none;
+
+    a {
+      color: var(--table-stripe-color);
+      display: inline-block;
+      padding: 0em 0.7em;
+      text-align: center;
+      font-size: 0.7em;
+      background-color: var(--list-color);
+      border-radius: 0.2em;
+    }
+  }
+}
+
+/* Related posts */
+.related {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid var(--table-border-color);
+}
+
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  li {
+    font-size: 75%;
+  }
+}
+
+.comments {
+    margin-top: 3em;
+}
+
+.info {
+  span {
+    display: inline-block;
+  }
+
+  ul {
+    display: inline-block;
+    float: right;
+
+    li {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.next-post {
+    text-align: right;
+    float: right;
+}
+
+.previous-post {
+    float: left;
+}
+
+#page-nav {
+  text-align: center;
+
+  a {
+    margin: 0 0.2em;
+  }
+
+  span {
+    margin: 0 0.2em;
+  }
+}
+
+.next {
+    float: right;
+    display: inline;
+}
+
+.prev {
+    float: left;
+    display: inline;
+}
+
+
+.current {
+    color: var(--text-color);
+}
+
+/*
+ * Pagination
+ *
+ * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
+ * there are no more previous or next posts to show.
+ */
+
+.pagination {
+  overflow: hidden; /* clearfix */
+  margin-left: -1rem;
+  margin-right: -1rem;
+  font-family: "Atkinson", sans-serif;
+  color: #ccc;
+  text-align: center;
+
+  @media (min-width: 30em) {
+    margin: 3rem 0;
+  }
+}
+
+/* Pagination items can be `span`s or `a`s */
+.pagination-item {
+  display: block;
+  padding: 1rem;
+  border: 1px solid var(--table-border-color);
+
+  &:first-child {
+    margin-bottom: -1px;
+
+    @media (min-width: 30em) {
+      margin-bottom: 0;
+      border-top-left-radius:    4px;
+      border-bottom-left-radius: 4px;
+    }
+  }
+
+  &:last-child {
+    @media (min-width: 30em) {
+      margin-left: -1px;
+      border-top-right-radius:    4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+
+  @media (min-width: 30em) {
+    float: left;
+    width: 50%;
+  }
+}
+
+/* Only provide a hover state for linked pagination items */
+a.pagination-item:hover {
+  background-color: #f5f5f5;
+}
+
+// Custom types
+
+.heading {
+  margin-top: 1em;
+
+  @media (max-width: 48em) {
+    font-weight: 400;
+  }
+}
+
+.sub-heading {
+  color: var(--sidebar-p-color);
+
+  @media (min-width: 48em) {
+    margin-left: 1em;
+  }
+}
+
+.entries {
+  @media (max-width: 48em) {
+    padding-left: 0em;
+  }
+
+  li {
+    display: flex;
+
+    &::after {
+      background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+      background-position: bottom;
+      background-size: 1ex 3.5px;
+      background-repeat: space no-repeat;
+      content: "";
+      flex-grow: 1;
+      height: 1.1em;
+      order: 2;
+    }
+
+    .title {
+      order: 1;
+    }
+
+    .published {
+        order: 3;
+    }
+  }
+}
+
+.article-toc {
+    display: none;
+    font-size: 0.9em;
+    width: 20em;
+    margin-top: 5em;
+    overflow-y: auto;
+    line-height: 1.4em;
+    max-height: 85%;
+
+  .toc-wrapper{
+      position: fixed;
+  }
+
+  nav {
+      margin-left: 1em;
+  }
+
+  h4 {
+      margin-left: 0;
+  }
+
+  ul {
+      margin-bottom: 0;
+      padding: 0;
+  }
+
+  li {
+      list-style: none;
+      margin-left: 20px;
+      margin-top: 2px;
+
+      &.active {
+        font-weight: bold;
+      }
+
+      &.inactive {
+        font-weight: 300;
+      }
+
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+  }
+
+  @media screen and (min-width: 100em) {
+    display: block;
+  }
+}
+
+
+// extend paragraphs with `.lead` for larger introductory text.
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--sidebar-p-color);
+}
+
+aside {
+  padding: 1rem 2rem;
+
+  &.dark-theme {
+    background-color: oklch(28.64% 0 0);
+    color: oklch(97.77% 0 0);
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+// body wrapper
+body > .wrapper {
+  display: flex;
+  height: 100%;
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+  }
+}
+
+// reverse layout
+body.layout-reverse {
+  .container.content {
+    direction: rtl;
+    padding-right: 0;
+    padding-left: 2rem;
+  }
+
+  .wrapper {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+
+    @media (max-width: 48em) {
+      flex-direction: column;
+    }
+  }
+}
+
+// theme changer
+.btn-light-dark {
+  padding: 0;
+  margin: 1em;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--moon-sun-background-color);
+
+  .moon {
+    color: var(--moon-sun-color);
+  }
+
+  .sun {
+    color: var(--moon-sun-color);
+  }
+
+  svg {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    color: black;
+  }
+}
+
+.social {
+    margin-right: 0.5em;
+    text-decoration: none !important;
+    color: var(--sidebar-socials-color) !important;
+}
+
+@media (min-width: 48em) {
+    .bullet {
+        margin-left: 1em;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-decoration-thickness: 1%;
+    }
+}
+

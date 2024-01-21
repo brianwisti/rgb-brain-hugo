@@ -1,0 +1,18 @@
+{{- $class := $.Scratch.Get "class" -}}
+{{- $title := $.Scratch.Get "title" -}}
+{{- $body := $.Scratch.Get "body" -}}
+<aside{{ with $class }} class="{{ . }}"{{ end }}>
+  {{- if (or $title $class) }}
+    <header>
+      <h3>
+        {{- with $title -}}
+          {{ . | markdownify}}
+        {{- else -}}
+          {{ $class }}
+        {{- end -}}
+      </h3>
+    </header>
+  {{- end }}
+
+  {{ $body }}
+</aside>

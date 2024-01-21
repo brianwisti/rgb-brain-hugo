@@ -1,0 +1,65 @@
+{{ define "main" -}}
+<div class="post">
+  {{ partial "breadcrumb-trail.html" . }}
+  {{ partial "post/info.html" . }}
+  {{- $cover_image := .Page.Params.cover_image -}}
+
+  {{ with $cover_image }}
+    {{- $image := $.Resources.GetMatch .path -}}
+    {{- $caption := .caption -}}
+    {{- with $image -}}
+      {{- $resized := .Resize "1280x" -}}
+      <figure>
+        <img src="{{ $resized.RelPermalink }}" class="u-photo">
+        <figcaption class="text-small align-right pb-1 pr-2">
+        {{ with $cover_image.caption }} {{ . | markdownify }} {{ end }}
+        <a href="{{ $image.RelPermalink }}" target="_blank" rel="noopener noreferrer">
+          (view full size)
+        </a>
+        </figcaption>
+      </figure>
+    {{- else -}}
+      <div class="alert alert-warning">No image '<tt>{{ .path }}</tt>'</div>
+    {{- end -}}
+  {{ end }}
+  {{ .Content }}
+  {{ partial "backlinks.html" . }}
+  <hr>
+  {{ if (.Site.Params.listmonk) }}
+    {{ partial "post/listmonk_email_newsletters.html" . }}
+  {{ end }}
+
+  {{ with .Params.syndication }}
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        {{ range $service, $url := . }}
+          {{ if ne $service "twitter" }}
+            <a
+              href="{{ $url }}"
+              class="u-syndication label centered fa fa-{{ $service }}"
+              title="{{ title $service }}"
+              rel="syndication"
+              aria-label="{{ title $service }}"
+            >
+              <span class="sr-only">{{ $service }}</span>
+            </a>
+          {{ end }}
+        {{ end }}
+      </p>
+    </section>
+  {{ end }}
+  {{ partial "post/navigation.html" . }}
+  {{ if or (.Site.Params.remark42) (.Site.DisqusShortname) }}
+    {{ partial "post/comments.html" . }}
+  {{ end }}
+</div>
+{{- end }}
+{{ define "sidebar" }}
+  {{ if and (not .Params.hideToc) (not .Site.Params.hideToc) }}
+    {{ partial "table_of_contents.html" . }}
+  {{ end }}
+{{ end }}

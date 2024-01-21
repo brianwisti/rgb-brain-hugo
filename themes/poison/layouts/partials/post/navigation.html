@@ -1,0 +1,21 @@
+{{ $typePages := where .Site.RegularPages "Type" .Type }}
+<hr>
+<div class="footer">
+    {{ range .Params.series }}
+      <p>Series: <a href="/series/{{ . | urlize }}">{{ . }}</a></p>
+    {{ end }}
+    {{ with $typePages.Prev . }}
+      <a class="previous-post" href="{{ .Permalink }}?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>{{ .Title | truncate 50 "..."}}
+      </a>
+    {{ end }}
+    {{ with $typePages.Next . }}
+      <div class="next-post">
+        <a href="{{ .Permalink }}?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>{{ .Title | truncate 50 "..." }}
+        </a>
+      </div>
+    {{ end }}
+</div>

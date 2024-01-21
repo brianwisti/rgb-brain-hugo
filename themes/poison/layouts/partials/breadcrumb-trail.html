@@ -1,0 +1,12 @@
+<nav class="masthead">
+    <ul>
+    {{ partial "breadcrumb-parent" . }}
+    <li><a class="active" href="{{ .Permalink }}">{{ .Title }}</a></li>
+</nav>
+
+{{ define "partials/breadcrumb-parent" }}
+  {{ with .Parent }}
+    {{ partial "breadcrumb-parent" . }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+  {{ end }}
+{{ end }}

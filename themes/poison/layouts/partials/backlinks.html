@@ -1,0 +1,19 @@
+{{ $page := . }}
+{{ $backlinks := slice }}
+{{ $path_base := .File.Path }}
+
+{{ if isset .Site.Data.backlinks $path_base }}
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      {{ range (index .Site.Data.backlinks $path_base) }}
+      <li>
+        <a href="{{- relref $page .path | safeURL -}}">{{ .title }}</a>
+      </li>
+      {{ end }}
+      </ul>
+    </nav>
+  </section>
+{{ end }}
+

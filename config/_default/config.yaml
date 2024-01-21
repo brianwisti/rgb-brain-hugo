@@ -1,0 +1,115 @@
+baseUrl: "https://randomgeekery.org"
+languageCode: "en-us"
+metaDataFormat: "yaml"
+# module:
+#   imports:
+#     - path: github.com/brianwisti/rgbModTheme
+preserveTaxonomyNames: false
+rssLimit: 20
+# theme: "github.com/brianwisti/rgbModTheme"
+theme: "poison"
+title: "Random Geekery"
+Author:
+  name: Brian Wisti
+frontmatter:
+  date:
+    - "date"
+    - ":fileModTime"
+markup:
+  goldmark:
+    extensions:
+      footnote: true
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+output:
+  home:
+    - "HTML"
+    - "RSS"
+  section:
+    - "HTML"
+    - "RSS"
+  category:
+    - "HTML"
+  tag:
+    - "HTML"
+related:
+  includeNewer: true
+  indices:
+  - applyFilter: false
+    cardinalityThreshold: 0
+    name: keywords
+    pattern: ""
+    toLower: false
+    type: basic
+    weight: 100
+  - applyFilter: false
+    cardinalityThreshold: 0
+    name: date
+    pattern: ""
+    toLower: false
+    type: basic
+    weight: 10
+  - applyFilter: false
+    cardinalityThreshold: 0
+    name: tags
+    pattern: ""
+    toLower: false
+    type: basic
+    weight: 80
+  threshold: 80
+  toLower: false
+Menu:
+  main:
+  - identifier: follow
+    name: follow
+    title: Follow
+    url: /follow/
+  - identifier: now
+    name: now
+    title: Now
+    url: /now/
+Params:
+  DateForm: "Monday, 2 January, 2006"
+  ISODateForm: "2006-01-02"
+  TimeForm: "Monday, 2 January, 2006, at 3:04 pm"
+  TimestampForm: "2006-01-02T15:04:00-07:00"
+  dateFormat: "2006-01-02"
+  slogan: "Collecting my attempts to improve at tech, art, and life"
+  author:
+    name: "Brian Wisti"
+    email: "brianwisti@pobox.com"
+    twitter: "brianwisti"
+    social:
+      - service: "Telegram"
+        href: "https://t.me/RandomGeek"
+        class: "u-url"
+        icon: "fa fa-telegram"
+      - service: "Mastodon"
+        href: "https://hackers.town/@randomgeek"
+        class: "u-url"
+        icon: "fa fa-mastodon"
+      - service: "Liberapay"
+        href: "https://liberapay.com/randomgeek"
+        class: "u-url"
+        icon: "fa fa-liberapay"
+  menu:
+    - URL: post
+      Name: Post
+      HasChildren: false
+    - URL: /now/
+      Name: Now
+      HasChildren: false
+    - URL: follow
+      Name: Follow
+      HasChildren: false
+
+permalinks:
+  post: "/post/:year/:month/:slug/"
+  note: "/note/:year/:month/:slug/"
+taxonomies:
+  draft: "drafts"
+  category: "category"
+  tag: "tags"
+  series: "series"
