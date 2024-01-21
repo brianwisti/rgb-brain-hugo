@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import logging
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -16,9 +17,28 @@ NOTE_LINK = r"""
     (?<path> [^\)]+? \.md)
   \)
 """
+CALLOUT = re.compile(
+    r"""> \s
+        \\\[\! (?P<callout_type>[A-Z]+) \\\]
+        (?: \s (?P<title> [^ \n ]+?))?
+        \n
+    """, re.VERBOSE
+)
 
 logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 
+def callout_title(match):
+    """Return a formatted title for callouts."""
+    groups = match.groupdict()
+    callout_type = groups["callout_type"]
+
+    if matched_title := groups.get("title"):
+        title = matched_title
+    else:
+        title = callout_type
+
+    logging.info("Found %s, using %s", groups, title)
+    return f"> **{title}**\n>\n"
 
 @dataclass
 class VaultNote:
@@ -34,15 +54,22 @@ class VaultNote:
             post.metadata["title"] = self.path.stem
             self.is_dirty = True
 
+        updated_content = re.sub(CALLOUT, callout_title, post.content)
+
+        if updated_content != post.content:
+            post.content = updated_content
+            logging.info("updated content")
+            self.is_dirty = True
+
+
         self.post = post
 
 
 def main():
-    logging.info("Yo")
     content_path = Path(CONTENT_DIR)
 
     for note_path in content_path.glob("**/*.md"):
-        logging.info("Path: %s", note_path)
+        logging.debug("Path: %s", note_path)
         note = VaultNote(note_path)
 
         if note.is_dirty:

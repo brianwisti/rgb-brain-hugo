@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mostly-railsonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/mostly-rails/</link>
+    <description>
+      Recent contentinmostly-rails on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Mon, 04 May 2020 23:26:21 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/mostly-rails/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Got a Working glitch-soc Rails Dev Environment</title>
+  <link>https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/</link>
+  <pubDate>Mon, 04 May 2020 23:26:21 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/</guid>
+  <description>I wanted to build and test a development instance of glitch-soc, a friendly fork of Mastodon. I succeeded. But I am very tired now. Here are my notes, along with some after-the-fact editorializing.
+It’s less tutorial and more confessional. I haven’t used Rails much since 4.0 was shiny. So there’s likely some common practice workflow that I don’t know yet. But I got it to work.
+Install glitch-soc locally glitch-soc documentation refers you to Mastodon docs, Mastodon’s installation instructions seem focused on production installations.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>rails</category>  <category>mastodon</category>  <category>ruby</category>  <category>sort-of</category>  <category>mostly-rails</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>I remain ambivalent about Rails development</h2><p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-04.png" alt="attachments/img/2020/cover-2020-05-04.png"/></p>
+<p>I wanted to build and test a development instance of <a href="https://glitch-soc.github.io/docs/"><code>glitch-soc</code></a>, a friendly fork of <a href="https://joinmastodon.org/">Mastodon</a>.  I succeeded.  But I am very tired now.  Here are my notes, along with some after-the-fact editorializing.</p>
+<p>It’s less tutorial and more confessional.  I haven’t used Rails much since 4.0 was shiny.  So there’s likely some common practice workflow that I don’t know yet.  But I got it to work.</p>
+<h2 id="install-glitch-soc-locally">Install glitch-soc locally</h2>
+<p><code>glitch-soc</code> documentation refers you to <a href="https://docs.joinmastodon.org">Mastodon docs</a>, Mastodon’s <a href="https://docs.joinmastodon.org/admin/install/">installation instructions</a> seem focused on production installations.  I bounce back and forth between Mastodon’s <a href="https://github.com/tootsuite/mastodon">README</a> and its <a href="https://docs.joinmastodon.org/dev/setup/">developer documentation</a>.</p>
+<p>The README says I need:</p>
+<ul>
+<li><a href="https://www.postgresql.org/">PostgreSQL</a> 9.5+</li>
+<li><a href="https://redis.io/">Redis</a> 4+</li>
+<li><a href="/card/ruby/">card/Ruby</a> 2.5+</li>
+<li><a href="/card/node.js/">card/Node.js</a> 10.13+</li>
+</ul>
+<p><a href="https://github.com/rbenv/rbenv">rbenv</a> and <a href="https://github.com/nvm-sh/nvm">nvm</a> help with the language requirements, but this fresh <a href="https://manjaro.org/">Manjaro</a> partition lacks the other requirements.</p>
+<h3 id="install-redis">Install Redis</h3>
+<p>Used the <a href="https://wiki.archlinux.org/index.php/Redis">Arch wiki</a> as a guide.  Didn’t need to edit config, though.  Instance installed via <a href="https://wiki.manjaro.org/index.php?title=Pamac">Pamac</a> is already configured to only listen to <code>127.0.0.1</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install redis
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl start redis
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> redis
+</span></span></code></pre></div><dl>
+<dt>Version installed</dt>
+<dd>6.0</dd>
+</dl>
+<h3 id="install-postgresql">Install Postgresql</h3>
+<p>Once again, going off the <a href="https://wiki.archlinux.org/index.php/PostgreSQL">Arch wiki entry</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install postgresql
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo -iu postgres
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> initdb -D /var/lib/postgres/data
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl start postgresql.service
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> postgresql.service
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo -iu postgres
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> createuser --interactive
+</span></span><span class="line"><span class="cl"><span class="go">Enter name of role to add: random
+</span></span></span><span class="line"><span class="cl"><span class="go">Shall the new role be a superuser? (y/n) y
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">&gt;</span> <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> createdb random
+</span></span></code></pre></div><p>That reminds me.  I want to finish reading <a href="https://theartofpostgresql.com/">The Art of PostgreSQL</a>.</p>
+<dl>
+<dt>Version installed</dt>
+<dd>12.2</dd>
+</dl>
+<h3 id="clone-project-and-install-dev-dependencies">Clone project and install dev dependencies</h3>
+<p>Not the required services.  I just installed those.  Languages and libraries.</p>
+<h4 id="fork--clone-repo">fork &amp; clone repo</h4>
+<p>Since I hope to contribute bug fixes someday, I’ll fork the <a href="https://github.com/glitch-soc/mastodon">repo</a> rather than just clone it.  I clone my fork instead.</p>
+<p>Dev language is weird.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git clone git@github.com:brianwisti/mastodon.git
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">cd</span> mastodon
+</span></span></code></pre></div><p>The project’s <code>.ruby-version</code> file specifies Ruby 2.6.6.  Rbenv immediately
+warns me that I lack the correct installed version.  It also doesn’t recognize
+the version when I try installing it, so I must refresh <a href="https://github.com/rbenv/ruby-build">ruby-build</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git -c ~/.rbenv/plugins/ruby-build pull
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> rbenv install
+</span></span></code></pre></div><p>2.6.6 is a bit more specific than &ldquo;2.5+&rdquo; but no big deal. Got the right Ruby
+version. Time to install the gems.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> bundle install
+</span></span></code></pre></div><p>Oh hey what’s this? It seems relevant to my <a href="/card/indieweb/">interests</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">Post-install message from microformats:
+</span></span><span class="line"><span class="cl">Prior to version 4.0.0, the microformats gem was named &#34;microformats2.&#34;
+</span></span></code></pre></div><p>Adding a task to look more closely at <a href="https://github.com/microformats/microformats-ruby">microformats-ruby</a>.  It’s more active than <a href="https://github.com/microformats/mf2py">mf2py</a>.</p>
+<p><a href="v">Yarn</a> manages the node-specific project dependencies.  Better install that.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> npm install -g yarn
+</span></span></code></pre></div><p>Okay now I can install the Node stuff.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> yarn install
+</span></span><span class="line"><span class="cl"><span class="go">yarn install v1.22.4
+</span></span></span><span class="line"><span class="cl"><span class="go">[1/6] Validating package.json...
+</span></span></span><span class="line"><span class="cl"><span class="go">error @tootsuite/mastodon@: The engine &#34;node&#34; is incompatible with this module. Expected version &#34;&gt;=10.13 &lt;13&#34;. Got &#34;13.11.0&#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">error Found incompatible module.
+</span></span></span><span class="line"><span class="cl"><span class="go">info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+</span></span></span></code></pre></div><p>At some point I should <a href="https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file">enable</a> automatic <code>nvm use</code>.  Meanwhile I’ll just install.</p>
+<blockquote>
+<p>[!NOTE]
+Or maybe I could play with <a href="/card/volta/">card/Volta</a>.  Not today. Maybe later.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> nvm install
+</span></span><span class="line"><span class="cl"><span class="go">Found &#39;/home/random/Projects/mastodon/.nvmrc&#39; with version &lt;12&gt;
+</span></span></span><span class="line"><span class="cl"><span class="go">Downloading and installing node v12.16.3...
+</span></span></span><span class="line"><span class="cl"><span class="go">⋮
+</span></span></span><span class="line"><span class="cl"><span class="go">Now using node v12.16.3 (npm v6.14.4)
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> npm install -g yarn
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> yarn install
+</span></span></code></pre></div><p>No complaints about Node.js versions now.  Good.  Time to actually set up the application?</p>
+<p>Dev docs say <code>rails db:setup</code>, so that’s what I type.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rails db:setup
+</span></span><span class="line"><span class="cl"><span class="go">zsh: command not found: rails
+</span></span></span></code></pre></div><p>Oh right.  Because I’m not using a fresh Rails app, but an existing project.  I could use <code>bundle exec</code> but for some reason I feel stubborn.  I must make at least one step of my installation process match the documentation.</p>
+<p>I use <a href="https://direnv.net">direnv</a>, so I can add the path locally.</p>
+<div class="highlight" title=".envrc"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">PATH_add <span class="s2">&#34;bin&#34;</span>
+</span></span></code></pre></div><p>Then I need to let direnv know this change is acceptable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> direnv allow
+</span></span></code></pre></div><p>There’s probably a better Rails-specific or Zsh-specific approach, but I’m in a hurry.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rails db:setup
+</span></span></code></pre></div><p>Loads of text follows. That’s good, right?</p>
+<p>Instructions go straight to running the application, but that’s not my style.</p>
+<h2 id="getting-tests-to-pass">Getting tests to pass</h2>
+<p>I want to run tests first. Blame <a href="/card/perl/">card/Perl</a>. I have certain expectations after years of watching <code>cpan</code> run tests before declaring something installed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ rspec
+</span></span><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">332) Auth::ChallengesController POST #create with incorrect password renders challenge
+</span></span><span class="line"><span class="cl">       Failure/Error: = javascript_pack_tag &#34;locales&#34;, integrity: true, crossorigin: &#39;anonymous&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       ActionView::Template::Error:
+</span></span><span class="line"><span class="cl">         Webpacker can&#39;t find locales in /home/random/Projects/mastodon/public/packs-test/manifest.json. Possible causes:
+</span></span><span class="line"><span class="cl">         1. You want to set webpacker.yml value of compile to true for your environment
+</span></span><span class="line"><span class="cl">            unless you are using the `webpack -w` or the webpack-dev-server.
+</span></span><span class="line"><span class="cl">         2. webpack has not yet re-run to reflect updates.
+</span></span><span class="line"><span class="cl">         3. You have misconfigured Webpacker&#39;s config/webpacker.yml file.
+</span></span><span class="line"><span class="cl">         4. Your webpack configuration is not creating a manifest.
+</span></span><span class="line"><span class="cl">         Your manifest contains:
+</span></span><span class="line"><span class="cl">         {
+</span></span><span class="line"><span class="cl">         }
+</span></span><span class="line"><span class="cl">       # ./app/views/layouts/application.html.haml:23:in `_app_views_layouts_application_html_haml___4376952060303332774_47460103924140&#39;
+</span></span><span class="line"><span class="cl">       # ./app/views/layouts/auth.html.haml:13:in `_app_views_layouts_auth_html_haml___1721087443773625754_47460102744080&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/challengable_concern.rb:47:in `render_challenge&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/auth/challenges_controller.rb:20:in `create&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/localized.rb:18:in `block in set_locale&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/localized.rb:17:in `set_locale&#39;
+</span></span><span class="line"><span class="cl">       # ./spec/controllers/auth/challenges_controller_spec.rb:31:in `block (4 levels) in &lt;top (required)&gt;&#39;
+</span></span><span class="line"><span class="cl">       # ------------------
+</span></span><span class="line"><span class="cl">       # --- Caused by: ---
+</span></span><span class="line"><span class="cl">       # Webpacker::Manifest::MissingEntryError:
+</span></span><span class="line"><span class="cl">       #   Webpacker can&#39;t find locales in /home/random/Projects/mastodon/public/packs-test/manifest.json. Possible causes:
+</span></span><span class="line"><span class="cl">       #   1. You want to set webpacker.yml value of compile to true for your environment
+</span></span><span class="line"><span class="cl">       #      unless you are using the `webpack -w` or the webpack-dev-server.
+</span></span><span class="line"><span class="cl">       #   2. webpack has not yet re-run to reflect updates.
+</span></span><span class="line"><span class="cl">       #   3. You have misconfigured Webpacker&#39;s config/webpacker.yml file.
+</span></span><span class="line"><span class="cl">       #   4. Your webpack configuration is not creating a manifest.
+</span></span><span class="line"><span class="cl">       #   Your manifest contains:
+</span></span><span class="line"><span class="cl">       #   {
+</span></span><span class="line"><span class="cl">       #   }
+</span></span><span class="line"><span class="cl">       #   ./app/views/layouts/application.html.haml:23:in `_app_views_layouts_application_html_haml___4376952060303332774_47460103924140&#39;
+</span></span><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Finished in 4 minutes 4.3 seconds (files took 6.07 seconds to load)
+</span></span><span class="line"><span class="cl">2680 examples, 332 failures, 23 pending
+</span></span></code></pre></div><p>Mhm.  That’s what I thought.  I’m going to need to write a post about getting this to work, aren’t I?</p>
+<p>Let’s skip the hour or two of flailing and digging into past <code>glitch-soc</code> and Mastodon tickets.</p>
+<p>The problem?  <a href="https://github.com/rails/webpacker">Webpacker</a> doesn’t compile assets for the test environment, because <a href="https://circleci.com/">CircleCI</a> already does that.</p>
+<div class="highlight" title=".config/webpacker.yml"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">test</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># CircleCI precompiles packs prior to running the tests.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Also avoids race conditions in parallel_tests.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">compile</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Compile test packs to a separate directory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">public_output_path</span><span class="p">:</span><span class="w"> </span><span class="l">packs-test</span><span class="w">
+</span></span></span></code></pre></div><p>Set <code>compile</code> to <code>true</code> and everything passes.  Except they need that as <code>false</code> for CircleCI.  That — does this mean they never run any tests locally in development?  That tests only run after a commit is pushed?</p>
+<p>Inconceivable.  The very thought is like fingernails on a chalkboard.  Surely I missed something in the documentation.</p>
+<p>Well I’m going to run tests locally one way or another.</p>
+<p>Gimme a second.</p>
+<p>Okay how about this?</p>
+<p>First, clean up the compiled assets from my config experiment.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test</span> rake assets:clobber
+</span></span></code></pre></div><p>Next, precompile the assets and run tests again.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test</span> rake assets:precompile
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> rspec
+</span></span><span class="line"><span class="cl"><span class="go">⋮
+</span></span></span><span class="line"><span class="cl"><span class="go">Finished in 4 minutes 10.6 seconds (files took 6.04 seconds to load)
+</span></span></span><span class="line"><span class="cl"><span class="go">2680 examples, 0 failures, 23 pending
+</span></span></span></code></pre></div><p>Huzzah! Aside from that ghastly test time.  I’ve seen worse.  I’ve <em>written</em> worse.</p>
+<p>Clearly I need to automate this.  Maybe something to do with Foreman.  Maybe just a shell script that clobbers, precompiles, and runs tests.</p>
+<p>A real fix — if one is needed, and I didn’t just miss a vital paragraph of documentation — would be to give CircleCI its own environment distinct from the default test environment.</p>
+<h2 id="good-enough">Good enough</h2>
+<p>Will I actually do anything with my <code>glitch-soc</code> fork?  No idea.  But I want to share this for other dusty Ruby folks whose Rails applications predate <a href="https://webpack.js.org/">Webpack</a>.</p>
+<p>I should at least fiddle with instance settings enough to get a cute screenshot.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

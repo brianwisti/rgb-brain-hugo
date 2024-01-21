@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2020/01/taskwarrior-sync/">
+<meta property="og:title" content="Taskwarrior Sync">
+<meta name="twitter:title" content="Taskwarrior Sync">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="inthe.AM is pretty, that&rsquo;s for sure.
+[!WARNING] 2024-01-14 This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
+The problem You’ve been doing great with your Taskwarrior tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.
+Everything’s great until the day you need to get at your tasks on a different machine: laptop, work computer, whatever.">
+    <meta property="og:description" content="inthe.AM is pretty, that&rsquo;s for sure.
+[!WARNING] 2024-01-14 This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
+The problem You’ve been doing great with your Taskwarrior tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.
+Everything’s great until the day you need to get at your tasks on a different machine: laptop, work computer, whatever.">
+  
+
+
+
+<title itemprop="name">Taskwarrior Sync - Random Geekery</title>
+<meta property="og:title" content=Taskwarrior&#32;Sync&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Taskwarrior&#32;Sync&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Taskwarrior&#32;Sync&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Taskwarrior&#32;Sync&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2020/01/taskwarrior-sync/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2020/01/taskwarrior-sync/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2020/01/taskwarrior-sync/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2020/01/taskwarrior-sync/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2020/01/taskwarrior-sync/" />
+
+
+<meta property="og:updated_time" content=26001-26-12T10:00:20-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2020/04/taskwarrior-custom-reports/">Taskwarrior Custom Reports</a></li>
+        
+          <li><a href="/post/2019/09/taskwarrior-editing-refinements/">Taskwarrior Editing Refinements</a></li>
+        
+          <li><a href="/post/2019/05/turning-taskwarrior-posts-into-a-series/">Turning Taskwarrior Posts Into a Series</a></li>
+        
+          <li><a href="/post/2019/02/taskwarrior-projects/">Taskwarrior Projects</a></li>
+        
+          <li><a href="/post/2018/12/active-tasks-in-taskwarrior/">Active Tasks in Taskwarrior</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2020/01/taskwarrior-sync/">Taskwarrior Sync</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2020/01/taskwarrior-sync/">Taskwarrior Sync</a>
+    </h1>
+    
+        <time datetime="2020-01-26T00:00:00-0800" class="post-date">
+            January 26, 2020
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-taskwarrior">
+            <a href="https://randomgeekery.org/tags/taskwarrior">taskwarrior</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Taskwarrior Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-26.png" alt="attachments/img/2020/cover-2020-01-26.png"/>
+inthe.AM is pretty, that&rsquo;s for sure.</p>
+<blockquote>
+<p>[!WARNING] 2024-01-14
+This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!</p>
+</blockquote>
+<h2 id="the-problem">The problem</h2>
+<p>You’ve been doing great with your <a href="/card/taskwarrior/">Taskwarrior</a> tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.</p>
+<p>Everything’s great until the day you need to get at your tasks on a different machine: laptop, work computer, whatever.</p>
+<p>How do you get at your carefully maintained task list from another machine?</p>
+<blockquote>
+<p>[!NOTE] Why not just use your phone?
+Well, the mobile Taskwarrior experience is not great. There are a couple Android apps, but they lack the polish of other mobile task managers. So far I haven’t seen anything for iOS except a couple seemingly abandoned projects. You <em>could</em> use the mobile web interface for <code>inthe.AM</code>. Some folks type in <code>task</code> commands through a mobile terminal emulator like <a href="https://termux.com/">Termux</a>.</p>
+<p>Me? Mostly I take notes when out and about. Sometimes those notes become tasks when I’m in front of a computer.</p>
+</blockquote>
+<h2 id="a-solution-taskservers">A solution: taskservers</h2>
+<p>Technically, you could keep your task files on a shared folder like <code>Sync/</code>, <code>Dropbox/</code>. I do not recommend it. Eventually your task management gets ahead of folder synchronization. Now you’re sorting out file conflicts.</p>
+<p>Taskwarrior provides a better solution with <a href="https://taskwarrior.org/docs/taskserver/why.html">taskservers</a>. Taskservers manage the details of accessing the task list. They help you avoid file conflicts, and — even better — give you a backup of your task history.</p>
+<h3 id="run-your-own-task-server">Run your own task server</h3>
+<p>I’ve done this. It’s fiddly. Not impossible. Just fiddly. Anyone who wants to host their own taskserver should just play along with <a href="https://gitpitch.com/GothenburgBitFactory/taskserver-setup#/">this slide deck</a>. It provides explicit and careful instructions for setup.</p>
+<p>I also suggest you put the taskserver on a host or VPS — something you can reach from outside your home. I put mine on a Raspberry Pi at home, but never exposed it to the outside world. Made it difficult to stay properly synchronized.</p>
+<h3 id="hosted-taskservers">Hosted taskservers</h3>
+<p>They did the hard work of setting up a taskserver, and made it easy for you to connect. Hosted taskservers are easy to reach anywhere you have Internet access.</p>
+<p>On the other hand, a copy of your data is on someone else’s server. If you want total control, you may want to go ahead and run your own.</p>
+<p>I’m comfortable with hosted services, so let’s look at a couple I’ve tried.</p>
+<h4 id="freecinc">Freecinc</h4>
+<p><img src="/post/2020/01/attachments/img/2020/freecinc.png" alt="freecinc.com"/></p>
+<p>Freecinc seems to have one goal: make it easy to connect to a taskserver. There are no frills or extra features. It only serves tasks. But it does that well, with clear and friendly instructions on setting yourself up. Depending on how long it takes you to click, copy, and paste, you could be synchronizing tasks in under a minute. Freecinc is also open source. <a href="https://github.com/freecinc/freecinc-web">freecinc-web</a> is available under the <a href="https://github.com/freecinc/freecinc-web/blob/master/LICENSE">MIT License</a>. Clone the repo and deploy your own instance!</p>
+<p>Though yeah — that’s a bit more involved than just connecting to theirs.</p>
+<h4 id="intheam">inthe.AM</h4>
+<p><img src="/post/2020/01/attachments/img/2020/inthe-am.png" alt="inthe.AM Web interface"/></p>
+<p><code>inthe.AM</code> provides features, that’s for sure. You get task synchronization. Like Freecinc, it provides a hosted taskserver and makes the <a href="https://github.com/coddingtonbear/inthe.am">source code</a> available, using GNU’s <a href="https://github.com/coddingtonbear/inthe.am/blob/development/LICENSE">AGPL license</a>. You get a decent — if occasionally sluggish — Web interface. You get <a href="https://trello.com/">Trello</a> integration. You get <a href="https://github.com/coddingtonbear/taskwarrior-inthe.am">taskwarrior-inthe.am</a>, a helpful command line setup tool.</p>
+<p><img src="/post/2020/01/attachments/img/2020/inthe-am-trello.png" alt="Trello showing my active tasks"/></p>
+<p>This is fantastic if you use those features. I have not. For my usage style, Freecinc and inthe.AM are pretty much the same.</p>
+<h2 id="using-task-sync">Using <code>task sync</code></h2>
+<p>Since I’m not really using inthe.AM’s features, let’s set myself up on Freecinc. I click the big friendly &ldquo;Generate My Keys&rdquo; link, and the site tells me what to do.</p>
+<p><img src="/post/2020/01/attachments/img/2020/freecinc-setup.png" alt="The first couple steps of Freecinc setup"/></p>
+<p>There are six total steps, consistently almost entirely of downloading some small files and copying and pasting some commands. Once the <code>.pem</code> files are safe and I set the <code>taskd</code> settings, I initialize synchronization.</p>
+<pre tabindex="0"><code>$ task sync init
+Please confirm that you wish to upload all your pending tasks to the Taskserver (yes/no) yes
+Syncing with freecinc.com:53589
+
+Sync successful.  1516 changes uploaded.
+</code></pre><p>Follow their instructions to set up any other machines you need connected to the Freecinc taskserver.</p>
+<p>Once you go through all that work to set things up, how hard is it to <em>use</em> the <a href="https://taskwarrior.org/docs/commands/synchronize.html">synchronize</a> command?</p>
+<pre tabindex="0"><code>$ task log +taskwarrior set up freecinc
+Logged task f053e7ab-1332-4131-8ceb-c2e121e8b00e.
+$ task sync
+Syncing with freecinc.com:53589
+
+Sync successful.  1 changes uploaded.
+</code></pre><p>That’s it. Run <code>task sync</code> occasionally and you’re golden.</p>
+<h2 id="nits-and-tips">Nits and tips</h2>
+<p>Task servers dramatically improve life with Taskwarrior. Some little annoyances become more apparent though. Let’s deal with those now.</p>
+<h3 id="cutting-down-on-the-verbosity">Cutting down on the verbosity</h3>
+<p>You get tired of this pretty quick:</p>
+<pre tabindex="0"><code>226 tasks, truncated to 61 lines
+There are local changes.  Sync required.
+</code></pre><p>The second you need to make a change, you get that message about local changes. Configure verbosity in your <code>.taskrc</code> if you don’t care about that particular update.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">verbose</span><span class="o">=</span><span class="s">blank,header,footnote,label,new-id,affected,edit,special,project,filter,unwait</span>
+</span></span></code></pre></div><p>This removes messages about sync while leaving everything else. If you want more quiet, try <code>verbose=off</code> or even <code>verbose=nothing</code>.</p>
+<blockquote>
+<p>[!NOTE]
+See <code>man taskrc</code> for more details about Taskwarrior configuration.</p>
+</blockquote>
+<h3 id="sync-automatically-with-a-cron-job">Sync automatically with a cron job</h3>
+<p>The hardest part of synchronization is remembering to do it. Let’s set up a <a href="https://opensource.com/article/17/11/how-use-cron-linux">cron</a> job so I don’t have to remember.</p>
+<pre tabindex="0"><code>$ crontab -e
+</code></pre><p>Hourly should suffice. The <a href="https://crontab.guru/#0_*">https://crontab.guru/#0_*</a><em>*</em>*_*[crontab guru] says &ldquo;hourly&rdquo; would look like this:</p>
+<pre tabindex="0"><code>0 * * * * /usr/bin/task sync
+</code></pre><p>And that works. But I haven’t gotten around to setting up mail on that machine, so <code>cron</code> discards the output. I have no idea what the sync result was.</p>
+<pre tabindex="0"><code>0 * * * * { printf &#34;\%s: &#34; &#34;$(date &#34;+\%F \%T&#34;)&#34;; /usr/bin/task sync } &gt;&gt; /home/randomgeek/logs/task-sync.log 2&gt;&amp;1
+</code></pre><p>This appends a timestamp and the result of <code>task sync</code> — including standard and error ouputs — to a log file.</p>
+<pre tabindex="0"><code>2020-01-26 16:00:00: Sync successful.  1 changes uploaded.
+</code></pre><p><em>There</em> we go. I better turn this into a script before I get any more elaborate with it though. Except I have to go take care of something else.</p>
+<p>No problem, I’ll make a task.</p>
+<pre tabindex="0"><code>$ task add +ops +taskwarrior priority:M refactor sync cronjob to script
+</code></pre>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/taskwarrior-babysteps">Taskwarrior Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2020/01/tweaking-a-nikola-theme/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Tweaking a Nikola Theme
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2020/01/choosing-a-static-site-generator/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Choosing a static site generator
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The problem</a></li>
+    <li><a href="#a-solution-taskservers">A solution: taskservers</a>
+      <ul>
+        <li><a href="#run-your-own-task-server">Run your own task server</a></li>
+        <li><a href="#hosted-taskservers">Hosted taskservers</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-task-sync">Using <code>task sync</code></a></li>
+    <li><a href="#nits-and-tips">Nits and tips</a>
+      <ul>
+        <li><a href="#cutting-down-on-the-verbosity">Cutting down on the verbosity</a></li>
+        <li><a href="#sync-automatically-with-a-cron-job">Sync automatically with a cron job</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

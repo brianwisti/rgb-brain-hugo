@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>microformatsonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/microformats/</link>
+    <description>
+      Recent contentinmicroformats on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sun, 26 Apr 2020 13:02:33 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/microformats/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: h-entry Microformat for Indieweb Posts</title>
+  <link>https://randomgeekery.org/post/2020/04/h-entry-microformat-for-indieweb-posts/</link>
+  <pubDate>Sun, 26 Apr 2020 13:02:33 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/04/h-entry-microformat-for-indieweb-posts/</guid>
+  <description>looking at the interpreted microformats for a post, in bat
+h-entry? Like h-card, h-entry provides an attribute vocabulary. While h-card focuses on people and organizations, h-entry describes shared content — blog posts and comments in particular, but you could expand it as far as you like. Want to generate a feed of git commits? You could use h-entry to describe a commit!
+[!NOTE] But I want to try Webmentions! You totally can!</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>indieweb</category>  <category>microformats</category>  <category>hugo</category>  <category>python</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>In which I go overboard with Hugo and Python for a quick Sunday task</h2><p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-26.png" alt="attachments/img/2020/cover-2020-04-26.png"/>
+looking at the interpreted microformats for a post, in <a href="https://github.com/sharkdp/bat">bat</a></p>
+<h2 id="h-entry">h-entry?</h2>
+<p>Like <a href="/post/2020/04/indieweb-h-cards/">h-card</a>, <a href="https://microformats.org/wiki/h-entry">h-entry</a> provides an attribute vocabulary. While h-card focuses on people and organizations, h-entry describes shared content — blog posts and comments in particular, but you could expand it as far as you like. Want to generate a feed of git commits? You could use h-entry to describe a commit!</p>
+<blockquote>
+<p>[!NOTE] But I want to try Webmentions!
+You totally can!</p>
+<p>I plan to examine <em>inbox/Webmention</em> — the mechanism behind replies, likes, reposts, etc. They’re the fun conversation part of <a href="/card/indieweb/">card/IndieWeb</a> after all. But I need to make sure that when I get to the conversation I have a clear understanding of who is taking part — the h-cards — and where the discussions take place — the h-entries.</p>
+<p>But you don’t need to wait for me. There are fine tutorials out there to walk you through the process. <a href="https://IndieWebify.me">https://IndieWebify.me</a> in particular tells you everything you need to know.</p>
+</blockquote>
+<h2 id="fine-lets-get-on-with-it">Fine. Let’s get on with it</h2>
+<p>IndieWeb entries identify themselves with the <code>h-entry</code> class. <code>e-content</code> marks the <em>content</em> of the entry. You could always mark the same element as both. In fact that’s basically what I’ve been doing for a while.</p>
+<p>I’m trying to move away from that though. Let’s give it a little structure.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-entry&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    ... metadata like title and tags ...
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;e-content&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    ... my insightful post ...
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    ... supplemental content like social links ...
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Time to focus on putting useful metadata in the article header. Might as well expose some of the <a href="/card/hugo/">card/Hugo</a> templating as well.</p>
+<div class="highlight" title="layouts/_default/single.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ define &#34;main&#34; }}
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-entry&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      {{ .Render &#34;article-header&#34; }}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;e-content&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      {{ .Content }}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      {{ .Render &#34;social&#34; }}
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{ end }}
+</span></span></code></pre></div><h3 id="the-bare-minimum">The bare minimum</h3>
+<p>For IndieWeb purposes, we need to know at least two things about every entry:</p>
+<dl>
+<dt><code>u-url</code></dt>
+<dd>where it was published</dd>
+<dt><code>dt-published</code></dt>
+<dd>when it was published</dd>
+</dl>
+<p>I’ll put both in a
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time"><code>time</code></a>
+element.</p>
+<div class="highlight" title="layouts/post/article-header.html"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">time</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dt-published&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;{{ .Format $.Site.Params.TimestampForm }}&#34;</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .Permalink }}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{ .Format $.Site.Params.DateForm }} 
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+</span></span></code></pre></div><ul>
+<li><code>$TimestampForm</code> is set in <code>config.toml</code> as <code>&quot;2006-01-02T15:04:00-07:00&quot;</code></li>
+<li><code>$DateForm</code> is set to <code>&quot;Monday, January 2, 2006&quot;</code></li>
+</ul>
+<p><code>time</code> lets me include a machine-readable timestamp and a human-readable date string. I play a lot with what I consider &ldquo;human-readable,&rdquo; so a consistent format for machines is good.</p>
+<p>My blog follows mundane convention, assigning a title to every post. I also like to add a description to clarify the topic. These are good candidates for <code>p-name</code> and <code>p-summary</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>{{ .Title }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{- with .Params.Description -}}
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-summary&#34;</span><span class="p">&gt;</span>{{ . | markdownify }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">⋮
+</span></span></code></pre></div><p>Let’s see that in action with my post on <a href="/post/2019/06/weighing-files-with-python/">weighing files in Python</a></p>
+<p><img src="/post/2020/04/attachments/img/2020/h-entry-with-title.png" alt="post header with minimal h-entry info"/></p>
+<h3 id="who-wrote-this-anyways">Who wrote this, anyways?</h3>
+<p>Seems a bit silly on my single-author site, but explicit authorship <em>does</em> make things clearer to casual visitors.</p>
+<p>Fortunately I have a canonical h-card that I can link to.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">— by
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-author h-card&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;author&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .Site.BaseURL }}&#34;</span><span class="p">&gt;</span>{{ .Site.Author.name }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h3 id="how-do-i-classify-my-entry">How do I classify my entry?</h3>
+<p>Now to sprinkle some <code>p-category</code> items in to help folks understand where the post fits with the rest of my site.</p>
+<p>I organize my Hugo content by <a href="https://gohugo.io/content-management/types">type</a> — currently Note or Post — and then add optional details with categories and tags. The post should probably show each of those as a <code>p-category</code>.</p>
+<blockquote>
+<p>[!NOTE] 2022-03-27
+Now the main type is Post. Posts and notes are categories within the blog. All that timestamped stuff goes in one section with this version of the site. Category and tag are still <code>p-category</code> though.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- with .Type -}} 
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="na">href</span><span class="o">=</span><span class="s">&#34;/{{ . | urlize }}&#34;</span><span class="p">&gt;</span>{{ . | title }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{- end -}}
+</span></span><span class="line"><span class="cl">{{ with .Params.category }} 
+</span></span><span class="line"><span class="cl">  — <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="na">href</span><span class="o">=</span><span class="s">&#34;/categories/{{ . | urlize }}&#34;</span><span class="p">&gt;</span>{{ . | title }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{ end }}
+</span></span><span class="line"><span class="cl">{{ with .Params.tags }}
+</span></span><span class="line"><span class="cl">  —
+</span></span><span class="line"><span class="cl">  {{ range . }}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category tag&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/{{ . | urlize }}&#34;</span><span class="p">&gt;</span>{{ . }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  {{ end }}
+</span></span><span class="line"><span class="cl">{{ end }}
+</span></span></code></pre></div><ul>
+<li><code>.Type</code> is a Hugo <a href="https://gohugo.io/variables/page/">page variable</a></li>
+<li>Category and tag <a href="https://gohugo.io/content-management/taxonomies/">taxonomies</a> get   set in front matter.</li>
+</ul>
+<p><img src="/post/2020/04/attachments/img/2020/h-entry-with-categories.png" alt="h-entry with categories"/></p>
+<h3 id="what-about-cover-images">What about cover images?</h3>
+<p>Many — but not all — of my posts include a cover image. Cover images should almost definitely be <code>u-photo</code>. There’s a <strong>lot</strong> of image processing with it though. To make a long story short — <em>too late!</em> — I’ll just show the microformat-specific addition.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;img {{ if $isCover }}class=&#34;u-photo&#34;{{ end }}
+</span></span></code></pre></div><p><img src="/post/2020/04/attachments/img/2020/h-entry-full.png" alt="full h-entry"/></p>
+<p>Yep, that’s a post header all right. What about validation? Did I get the microformats right?</p>
+<h2 id="examining-my-microformats-locally">Examining my microformats locally</h2>
+<p>I know I can <a href="https://indiewebify.me/validate-h-entry">validate</a> my h-entry at IndieWebify or copy and paste to <a href="https://microformats.io">https://microformats.io</a>, but I want to look at this stuff from the shell. Preferably with a single command. <em>Ideally</em> with something I can stash in my [[inbox/Pyinvoke|<code>tasks.py</code>]] file.</p>
+<p><a href="https://github.com/microformats/mf2py">mfpy</a> and <a href="https://mf2util.readthedocs.io/en/latest/">mf2util</a> provide microformats2 handling for <a href="/card/python/">card/Python</a> code.</p>
+<p>I mainly want a dump of microformats found in a given URL, in a format easier for me to read than JSON. Here’s what I came up with.</p>
+<p>I got carried away. This could have been its own post. Oh well. It’s like a two-for-one deal!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">mf2py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">mf2util</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">ruamel.yaml</span> <span class="kn">import</span> <span class="n">YAML</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">toml</span>
+</span></span></code></pre></div><p>I need different formats for different purposes, so I import Python libraries for <a href="/card/yaml/">card/YAML</a> and <a href="/card/toml/">card/TOML</a> along with the standard library <a href="https://docs.python.org/3/library/json.html">JSON</a> support.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">shorten_properties</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Find text in `d`, shortening it to fit in `width` columns&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">shorten_properties</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">d</span> <span class="o">=</span> <span class="p">[</span> <span class="n">shorten_properties</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">d</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">shorten</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">d</span>
+</span></span></code></pre></div><p>Sometimes microformat info is a wall of text. Quite often, in fact, since <code>e-content</code> includes the full content of any post. <code>shorten_properties</code> uses <a href="https://docs.python.org/3/library/textwrap.html">textwrap</a> to keep large text properties from overwhelming me.</p>
+<p>Now that I have the support code I need, it&rsquo;s time for the Pyinvoke task.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">help</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;Web address to examine&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;preferred output format&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;interpret&#34;</span><span class="p">:</span> <span class="s2">&#34;whether to interpret the parsed entries&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;everything&#34;</span><span class="p">:</span> <span class="s2">&#34;whether to display items only or everything parsed&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;shorten&#34;</span><span class="p">:</span> <span class="s2">&#34;whether to shorten text found to 80 characters&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mf2</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&#34;json&#34;</span><span class="p">,</span> <span class="n">interpret</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">everything</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shorten</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display any microformats2 data from `url`&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">entry</span> <span class="o">=</span> <span class="n">mf2py</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wants_json</span> <span class="o">=</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&#34;json&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Usually I just care about the h-* items</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">everything</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;items&#34;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&#34;items&#34;</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Sometimes I want mf2util&#39;s summarized version</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">interpret</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entry</span> <span class="o">=</span> <span class="n">mf2util</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">want_json</span><span class="o">=</span><span class="n">wants_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># I usually don&#39;t want a wall of text</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">shorten</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">entry</span> <span class="o">=</span> <span class="n">shorten_properties</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&#34;yml&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">YAML</span><span class="p">()</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&#34;toml&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">toml</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&#34;json&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Unknown format &#39;</span><span class="si">{</span><span class="nb">format</span><span class="si">}</span><span class="s2">&#39; requested&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>I could have made this a small script, but I’m pretty sure I’ll check microformats routinely while working on the site. Makes sense to have it readily available.</p>
+<p>Let’s try out my new <code>mf2</code> task.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> invoke mf2 http://localhost:1313/2019/06/01/weighing-files-with-python/ -f yml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">items</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">h-entry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">properties</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Weighing Files With Python</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">summary</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">I want to optimize this site’s file sizes, but first I should see if I need</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">to.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">published</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;2019-06-01T00:00:00+00:00&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">http://localhost:1313/2019/06/01/weighing-files-with-python/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">author</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">type</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">h-card</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">properties</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Brian Wisti</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">url</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">http://localhost:1313/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">Brian Wisti</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Post</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">Programming</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">python</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">site</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">files</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">photo</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">http://localhost:1313/2019/06/01/weighing-files-with-python/cover.png</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">html</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;div class=&#34;sidebarblock&#34;&gt; &lt;div class=&#34;content&#34;&gt; &lt;div [...]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">Updates 2019-06-02 adjusted a couple clumsy property methods with [...]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">syndication</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://hackers.town/@randomgeek/102199106551447993</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">https://twitter.com/brianwisti/status/1134977256684761089</span><span class="w">
+</span></span></span></code></pre></div><p>What about default JSON output and letting mf2util interpret the results?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv mf2 http://localhost:1313/2019/06/01/weighing-files-with-python -i
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Brian Wisti&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:1313/&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;div class=\&#34;sidebarblock\&#34;&gt; &lt;div class=\&#34;content\&#34;&gt; &lt;div [...]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;content-plain&#34;</span><span class="p">:</span> <span class="s2">&#34;Updates 2019-06-02 adjusted a couple clumsy property methods with [...]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Weighing Files With Python&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;photo&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:1313/2019/06/01/weighing-files-with-python/cover.png&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;published&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-06-01T00:00:00+00:00&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;summary&#34;</span><span class="p">:</span> <span class="s2">&#34;I want to optimize this site\u2019s file sizes, but first I should see if I need to.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;syndication&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://twitter.com/brianwisti/status/1134977256684761089&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://hackers.town/@randomgeek/102199106551447993&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;entry&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:1313/2019/06/01/weighing-files-with-python/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><em>Nice</em>. I can tidy it up a bit later. Probably end up using those mf2util functions. But this works great for now. And my h-entry looks good!</p>
+<h3 id="examine-microformats-on-other-sites">Examine microformats on other sites</h3>
+<p>Oh hey I can grab any URL. This handles another issue I had: trying to
+examine microformats on other sites.</p>
+<p>Let’s grab <a href="https://v2.jacky.wtf">Jacky Alciné</a>&rsquo;s h-card!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> inv mf2 https://v2.jacky.wtf -f toml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;h-card&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">items</span><span class="p">.</span><span class="nx">properties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;Jacky Alciné&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">photo</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf/media/profile-image&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;h-feed&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;h-entry&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">author</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf/post/a53bb7c4-2831-4666-ad85-75433ab2b1c3&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">published</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;2020-04-26T08:57:39-07:00&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">in-reply-to</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;h-cite&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;https://twitter.com/tiffani/status/1254438450897530882&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">in-reply-to</span><span class="p">.</span><span class="nx">properties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://twitter.com/tiffani/status/1254438450897530882&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">in-reply-to</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">author</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;h-card&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;https://twitter.com/tiffani&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">in-reply-to</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">author</span><span class="p">.</span><span class="nx">properties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;Tiffani Ashley Bell&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://twitter.com/tiffani&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">in-reply-to</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">content</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">html</span> <span class="p">=</span> <span class="s2">&#34;Definitely need to take a long walk today. Staying in the house all day is [...]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;Definitely need to take a long walk today. Staying in the house all day is [...]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">items</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">content</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">html</span> <span class="p">=</span> <span class="s2">&#34;&lt;p&gt;Just came back from one and I felt so much better about this with the [...]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;Just came back from one and I felt so much better about this with the way [...]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">items</span><span class="p">.</span><span class="nx">properties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;Last Note&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">uid</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf/stream&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf/stream&#34;</span><span class="p">,]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">author</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;https://v2.jacky.wtf&#34;</span><span class="p">,]</span>
+</span></span></code></pre></div><p>Neat. Now I can collect more h-cards for a blogroll idea I had. Better post this first.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Indieweb h-cards</title>
+  <link>https://randomgeekery.org/post/2020/04/indieweb-h-cards/</link>
+  <pubDate>Sat, 11 Apr 2020 00:16:34 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/04/indieweb-h-cards/</guid>
+  <description>My h-card as of a few minutes ago
+You did what now? I updated my home page h-card for the card/IndieWeb.
+What? h-card is a microformats2 vocabulary to describe people and organizations. I added terms from that vocabulary as HTML classes to elements of a profile section on the front page.
+Why? It helps identify me for other folks on the IndieWeb. Some have written tools and services that speak h-card.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>indieweb</category>  <category>microformats</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Using microformats to build a profile page</h2><p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-11.png" alt="attachments/img/2020/cover-2020-04-11.png"/>
+My h-card as of a few minutes ago</p>
+<h2 id="you-did-what-now">You did what now?</h2>
+<p>I updated my home page h-card for the <a href="/card/indieweb/">card/IndieWeb</a>.</p>
+<h3 id="what">What?</h3>
+<p><a href="http://microformats.org/wiki/h-card">h-card</a> is a <a href="/card/microformats/">microformats2</a> vocabulary to describe people and organizations. I added terms from that vocabulary as HTML classes to elements of a profile section on the front page.</p>
+<h3 id="why">Why?</h3>
+<p>It helps identify me for other folks on the IndieWeb. Some have written tools and services that speak h-card. Mostly, the h-card vocabulary gives me a convenient way to organize my biographical details for visitors to this site.</p>
+<h2 id="what-are-you-talking-about">What are you talking about?</h2>
+<p>Describing yourself in a useful way presents a challenge, especially online. Prose has the greatest clarity for human readers — assuming they know the language you write in. Social networks give you a profile page with slots for important details — assuming they include fields for the details <em>you</em> consider important.</p>
+<p>We can use h-card to identify ourselves and others in the IndieWeb. Officially, it’s a collection of properties for detailing individuals and groups of people. Informally, it’s also the descriptions we create with those properties. I used the h-card vocabulary to create a profile. That profile included details that I consider important.</p>
+<h3 id="a-minimal-h-card">A minimal h-card</h3>
+<p>I have a name that I commonly use both online and off.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Brian Wisti
+</span></span></code></pre></div><blockquote>
+<p>[!NOTE]
+Really that’s my &ldquo;good enough&rdquo; name. It’s not the full legal name on my social security card. Most of my friends don’t use it for me unless they’re trying to tell me apart from all the other people named Brian. Now is not the time for <a href="https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/">Falsehoods Programmers Believe About Names</a>, but know that h-card handles this dilemma better than many solutions.</p>
+</blockquote>
+<p>In a stroke of good fortune, this name conforms to local convention. A surname disambiguates my family from others. A given name disambiguates me from other members of my family.</p>
+<p>Some clarity might help people unfamiliar with my local naming convention, though.</p>
+<p>Wrap the name in any element, give that element an <code>h-card</code> class, and it’s an h-card!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Now we’re definitely talking about a person. Or maybe an organization. We’re talking about a named entity. We know that much.</p>
+<p>But where can we get useful information about this entity? Over in Twitter we say <code>@brianwisti</code> and it points to <a href="https://twitter.com/brianwisti">my Twitter profile</a>. What’s an IndieWeb equivalent?</p>
+<p>Since any element can hold an h-card, replace the <code>&lt;span&gt;</code> with a link to my site.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>This tells anyone that Brian Wisti — that’s me — considers <code>https://randomgeekery.org</code> — that’s here, or rather <a href="https://randomgeekery.org">here</a> — the center of his online identity.</p>
+<p>This is sufficient to uniquely identify me online. It’s the form I’d use when referencing someone else online. I could even get away with using that form for my own card.</p>
+<h3 id="a-profile-card">A profile card</h3>
+<p>Where do I put my card?</p>
+<p>I use my site’s root URL, but not everyone identifies so closely with their Web site. Put your h-card on what you consider your profile page. If your profile page is <code>yoursite.info/yourname</code>, then that’s where you put the h-card.</p>
+<p>Just make sure the location matches the URL specified in the card itself!</p>
+<p>This abbreviated form contains more assumptions than I like. We can assume that &ldquo;Brian Wisti&rdquo; is a name. The format calls that an <em>implied property</em>. There’s honestly nothing wrong with that. I spend enough time in <a href="/card/python/">card/Python</a> that I prefer explicit to implicit when practical.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card p-name u-url&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>microformats2 <a href="http://microformats.org/wiki/microformats2-prefixes">prefixes</a> confuse me, but they have a consistent pattern and rules for <a href="http://microformats.org/wiki/microformats2-parsing">parsing</a>.</p>
+<p><strong>Rules for microformats2 properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>What it&rsquo;s called</th>
+<th>What we expect them to describe</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h-*</code></td>
+<td>root class name</td>
+<td>Details about a person, post, event, etc.</td>
+<td><code>h-card</code>, <code>h-entry</code>, <code>h-event</code></td>
+</tr>
+<tr>
+<td><code>p-*</code></td>
+<td>plain text property</td>
+<td>Names, bios, descriptive text</td>
+<td><code>p-name</code>, <code>p-note</code>, <code>p-x-pronoun-nominative</code></td>
+</tr>
+<tr>
+<td><code>u-*</code></td>
+<td>URL property</td>
+<td>where to find sites, images, or other resources</td>
+<td><code>u-url</code>, <code>u-uid</code>, <code>u-photo</code></td>
+</tr>
+<tr>
+<td><code>dt-*</code></td>
+<td>datetime value</td>
+<td>Calendar entries for events, birthdays, anniversaries</td>
+<td><code>dt-bday</code>, <code>dt-start</code>, <code>dt-end</code></td>
+</tr>
+<tr>
+<td><code>e-*</code></td>
+<td>embedded markup property</td>
+<td>entire document subtrees</td>
+<td><code>e-content</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now we can see that the link is an h-card, the link is a home page, and the contents are a name. This says exactly the same thing as the previous version. Do the extra classes add any real value here?</p>
+<p>For a parser, maybe. For a human reader, no. I can clarify things for this human writer, though.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>I still haven’t added much in the way of useful information. This structure shows me where I can add other elements, and that’s progress. Remember that microformats focuses on making life easier for the people using them. It’s just that some of us are a little odd.</p>
+<p>Let’s add some stuff. Profile cards usually have an image and a bio, right?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-photo&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/img/avatar-thumbnail.jpg&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Brian Wisti&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>:
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-note&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      caffeinated, occasionally crafty geek in Seattle
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>microformats clarify intent — once you know them. I might have a dozen photos in an h-card. Assigning <code>u-photo</code> lets me say &ldquo;This one matters when talking about me.&rdquo; Regardless of how many paragraphs of text I put in my card, we know that the <code>p-note</code> text is describing me.</p>
+<p>Okay, that’s actually worth looking at. There’s some CSS styling, but I won’t get into that. Just spend a few days on <a href="https://css-tricks.com/">CSS-Tricks</a> and have fun.</p>
+<p><img src="/post/2020/04/attachments/img/2020/hcard-photo.png" title="h-card with bio and photo" alt="simple h-card screenshot"/></p>
+<h3 id="linking-your-card-to-other-services">Linking your card to other services</h3>
+<p><a href="https://randomgeekery.org">https://randomgeekery.org</a> may be my home page, but it’s not the only place folks find me. I routinely post on Mastodon and Twitter. I sometimes peek my head in to see what’s new on Github and LinkedIn. h-card can help integrate with those as well.</p>
+<p>Add them as <a href="https://indieweb.org/rel-me">rel-me</a> links!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://hackers.town/@randomgeek&#34;</span><span class="p">&gt;</span>Mastodon<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">a element</a>&rsquo;s <code>rel</code> attribute describes a relationship between your page and the link. Use <a href="http://microformats.org/wiki/rel-me">me</a> to tell people that this link is also about you. It’s a way to <a href="http://microformats.org/wiki/identity-consolidation">consolidate</a> the online identities you want connected.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://hackers.town/@randomgeek&#34;</span><span class="p">&gt;</span>Mastodon<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://twitter.com/brianwisti&#34;</span><span class="p">&gt;</span>Twitter<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/brianwisti&#34;</span><span class="p">&gt;</span>Github<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>My <a href="https://hackers.town/@randomgeek">hackers.town</a> Mastodon profile has a link to this site. The site includes a rel-me link to my hackers.town profile. Mastodon users looking at my profile see a verified connection between each.</p>
+<p><img src="/post/2020/04/../../../attachments/img/2020/hackers-town-profile.png" alt="attachments/img/2020/hackers-town-profile.png"/>
+That&rsquo;s how you get a verified check on Mastodon sites</p>
+<h3 id="relmeauth">RelMeAuth</h3>
+<p><a href="https://indieweb.org/RelMeAuth">RelMeAuth</a> takes advantage of the relation between your site and <a href="https://oauth.net/">OAuth</a> providers. If IndieWeb authenticators like <a href="https://indielogin.com/">IndieLogin</a> and <a href="https://indieauth.net/">IndieAuth</a> see rel-me links to known providers, they let you verify your site and yourself through those providers.</p>
+<p><img src="/post/2020/04/../../../attachments/img/2020/indielogin-auth.png" alt="attachments/img/2020/indielogin-auth.png"/>
+I can use my Twitter or Github accounts to authenticate</p>
+<h4 id="specifying-my-main-page">Specifying my main page</h4>
+<p>New problem. My h-card now includes several <code>u-url</code> links that are all me. Which one is the real me? I make that link the <code>u-uid</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url u-uid&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>:
+</span></span></code></pre></div><p><img src="/post/2020/04/attachments/img/2020/hcard-relme.png" title="Now my name links to my `u-uid`" alt="screenshot of updated h-card"/></p>
+<h3 id="add-some-details">Add some details</h3>
+<p>This is a reasonable stopping point for a profile h-card. It names, shows, and describes me, including links to find me on assorted social networks. But I’d like to add some more information. Using microformats, of course.</p>
+<h4 id="where-do-i-live">Where do I live?</h4>
+<p>I live in the city of Seattle. My <code>p-note</code> already says so. But again: it might be useful to highlight it as a location. Several h-card options describe locations in all the detail you could want — right down to latitude and longitude. But no. I’ll use <code>p-locality</code> and <em>maybe</em> revisit later if I want more specificity.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-note&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    Caffeinated, occasionally crafty geek in <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-locality&#34;</span><span class="p">&gt;</span>Seattle<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>.
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="what-interests-me">What interests me?</h4>
+<p>We all have hobbies, right? With <code>p-category</code> I list things we could discuss. Let’s make links out of some that I’ve posted about.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-note&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  Caffeinated, occasionally crafty geek in <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-locality&#34;</span><span class="p">&gt;</span>Seattle<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>.
+</span></span><span class="line"><span class="cl">  I like <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span><span class="p">&gt;</span>FOSS<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>,
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/drawing&#34;</span><span class="p">&gt;</span>drawing<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>,
+</span></span><span class="line"><span class="cl">  and <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/knitting&#34;</span><span class="p">&gt;</span>yarn<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h4 id="what-should-you-call-me">What should you call me?</h4>
+<p>What about pronouns? That’s one way to specify I’m a person instead of an organization.</p>
+<p>Maybe I could skip it. My picture is beardy and my name is masculine. Obviously I’m male. Then again, what’s obvious to me may be less so to someone else. Explicit versus implicit.</p>
+<p>Do I just tag myself &ldquo;male&rdquo; and move on? I could use <code>p-sex</code> or <code>p-gender-identity</code>. That sounds unusably clunky to me. I’m unconcerned what folks think about my chromosomes. I just want them to know it’s okay to call me <a href="https://pronoun.is/he">&ldquo;he&rdquo;</a>.</p>
+<p>That’s one of my favorite things about h-cards and microformats. You can opt-in to the pieces you care about, and leave the rest alone.</p>
+<p>I thought about Jamie Tanna&rsquo;s <a href="https://www.jvt.me/posts/2019/04/10/pronouns-microformats/">example</a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-x-pronoun-nominative&#34;</span><span class="p">&gt;</span>he<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>/
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-x-pronoun-oblique&#34;</span><span class="p">&gt;</span>him<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>/
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-x-pronoun-possessive&#34;</span><span class="p">&gt;</span>his<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>I like it, but that’s more markup than I want. What about using the link to <a href="https://pronoun.is">Pronoun Island</a> I used a moment ago? Let me look over the microformats <a href="http://microformats.org/wiki/h-card-brainstorming#Pronouns">pronouns brainstorming</a> and come up with something I like.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-pronoun&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://pronoun.is/he&#34;</span><span class="p">&gt;</span>he / him / his<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p><code>u-pronoun</code> isn’t an official property. Even so, it follows the microformats2 style by using the <code>u-</code> prefix to indicate a link.</p>
+<p>Okay so what do I have now?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h-card&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-photo&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/img/avatar-thumbnail.jpg&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Brian Wisti&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url u-uid&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>:
+</span></span><span class="line"><span class="cl">    (
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-pronoun&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://pronoun.is/he&#34;</span><span class="p">&gt;</span>he / him / his<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    )
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-note&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      Caffeinated, occasionally crafty geek in <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-locality&#34;</span><span class="p">&gt;</span>Seattle<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>.
+</span></span><span class="line"><span class="cl">      I like <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span><span class="p">&gt;</span>FOSS<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>,
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/drawing&#34;</span><span class="p">&gt;</span>drawing<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>,
+</span></span><span class="line"><span class="cl">      and <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-category&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tags/knitting&#34;</span><span class="p">&gt;</span>yarn<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://hackers.town/@randomgeek&#34;</span><span class="p">&gt;</span>Mastodon<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://twitter.com/brianwisti&#34;</span><span class="p">&gt;</span>Twitter<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;me&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/brianwisti&#34;</span><span class="p">&gt;</span>Github<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p><img src="/post/2020/04/attachments/img/2020/hcard-details.png" title="Some styling distinguishes identity links from details" alt="image"/></p>
+<h3 id="validate-me">Validate me</h3>
+<p>Now my h-card includes all the information I care about. Time to make sure I put it together correctly! h-cards exist in the context of other documents, like my Web page. Validation is less formal: mainly, check that microformats2-aware parsers find your information.</p>
+<p>The <a href="https://pin13.net/mf2/">mf2 validator</a> shows you the results of parsing either a URL or text provided by you, which makes it useful for double-checking your h-card while building it.</p>
+<p><img src="/post/2020/04/../../../attachments/img/2020/mf2-validator.png" alt="attachments/img/2020/mf2-validator.png"/>
+The mv2 validator produces JSON from your h-card</p>
+<p>The <a href="https://indiewebify.me/validate-h-card/">IndieWebify.me validator</a> styles its report for readability. It even offers suggestions for common details you could add.</p>
+<p><img src="/post/2020/04/attachments/img/2020/validated-hcard.png" title="IndieWebify.me h-card summary" alt="IndieWebify.me h-card suggestion screenshot"/></p>
+<p>It doesn’t accept raw HTML, though. You need to provide a URL, which is less handy for an in-development h-card.</p>
+<h2 id="what-about-some-other-h-cards">What about some other h-cards?</h2>
+<p>I’m pretty much done, other than a plan to incorporate <a href="https://forkaweso.me/Fork-Awesome/">Fork Awesome</a> for me rel-me links. But that’s a topic for another day, if ever.</p>
+<p>Do you want to see more h-cards out in the world? The IndieWeb wiki maintains a list of <a href="https://indieweb.org/h-card#IndieWeb_Examples">example h-cards</a>, including links to other collections.</p>
+<p>Most h-cards I see are small, but they don’t have to be. <a href="https://vanderven.se/martijn/">Martijn van der Ven&rsquo;a h-card</a> fills an entire page. Have fun coming up with something that works for
+you!</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

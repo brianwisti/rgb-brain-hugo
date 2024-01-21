@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>disqusonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/disqus/</link>
+    <description>
+      Recent contentindisqus on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Wed, 14 Jun 2017 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/disqus/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Disqus Again</title>
+  <link>https://randomgeekery.org/post/2017/06/disqus-again/</link>
+  <pubDate>Wed, 14 Jun 2017 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2017/06/disqus-again/</guid>
+  <description>sigh
+Disqus discussions are hooking up to the wrong URLs again. Assigning discussions for posts to URLs that don’t point anywhere. Working on it, and also looking at alternate discussion tools.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>disqus</category>  <category>marginalia</category> 
+  <content:encoded><![CDATA[<p><em>sigh</em></p>
+<p><img src="/post/2017/06/../../../attachments/img/2017/cover-2017-06-14.png" alt="attachments/img/2017/cover-2017-06-14.png"/></p>
+<p><a href="https://disqus.com/">Disqus</a> discussions are hooking up to the wrong URLs again.
+Assigning discussions for posts to URLs that don’t point anywhere.
+Working on it, and also looking at alternate discussion tools.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Using Disqus in Hugo</title>
+  <link>https://randomgeekery.org/post/2016/06/using-disqus-in-hugo/</link>
+  <pubDate>Thu, 23 Jun 2016 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2016/06/using-disqus-in-hugo/</guid>
+  <description>&lt;p&gt;All right fine. Some visitor may want to leave a comment about one or another of my posts. I can do that with Hugo.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>hugo</category>  <category>site</category>  <category>disqus</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p>All right fine. Some visitor may want to leave a comment about one or another of my posts. I can do that with Hugo.</p>
+<p>I used the <a href="http://gohugo.io/extras/comments/">documented steps</a> for adding <a href="https://disqus.com/">Disqus</a> comments to <a href="/card/hugo/">card/Hugo</a>. Though Hugo provides a usable internal template for Disqus, using it as-is will result in a record-keeping headache if you test your site locally.</p>
+<ul>
+<li>You look at the page locally</li>
+<li>The Disqus code is loaded</li>
+<li>Disqus creates a new comment thread for your local page</li>
+<li>Before you know it you have dozens of <code>localhost:1313</code> comment threads obscuring the live threads.</li>
+</ul>
+<p>To avoid that, use the following <code>partials/disqus.html</code> fragment described in the Hugo documentation. It will skip loading comments when viewing your content from localhost.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;disqus_thread&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// Don&#39;t ever inject Disqus on localhost--it creates unwanted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// discussions from &#39;localhost:1313&#39; on your Disqus account...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span> <span class="o">==</span> <span class="s2">&#34;localhost&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="kr">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;{{ .Site.DisqusShortname }}&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;//&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">})();</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>Please enable JavaScript to view the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://disqus.com/?ref_noscript&#34;</span><span class="p">&gt;</span>comments powered by Disqus.<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://disqus.com/&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dsq-brlink&#34;</span><span class="p">&gt;</span>comments powered by <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;logo-disqus&#34;</span><span class="p">&gt;</span>Disqus<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>That template needs <code>.Site.DisqusShortname</code>, which you set in your site config.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">disqusShortName</span><span class="p">:</span><span class="w"> </span><span class="l">yourshortname</span><span class="w"> </span><span class="c"># whatever you set up on Disqus</span><span class="w">
+</span></span></span></code></pre></div><p>Now you can use the partial in the appropriate template. I put the call for mine in <code>_default/single.ace</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">    footer
+</span></span></span><span class="line"><span class="cl"><span class="x">      = include partials/timeline.html .
+</span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">partial</span> <span class="s2">&#34;disqus.html&#34;</span> <span class="err">.</span> <span class="cp">}}</span><span class="x">
+</span></span></span></code></pre></div><p>There. Now if you really want to say anything, are viewing the live site, and have JavaScript enabled, you can in the section below.</p>
+<p>I will probably adjust the template over time, since I don&rsquo;t want to burden non-commenting visitors with the extra load from calling out to Disqus. I like the approach <a href="http://theory.pm/">David Wheeler</a> took with his site: do nothing until visitor directly uses the &ldquo;Load Comments&rdquo; button.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

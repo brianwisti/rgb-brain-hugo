@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/">
+<meta property="og:title" content="Getting File Info From The Shell">
+<meta name="twitter:title" content="Getting File Info From The Shell">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I could right click for properties but the mouse is way over there">
+    <meta property="og:description" content="I could right click for properties but the mouse is way over there">
+  
+
+
+
+<title itemprop="name">Getting File Info From The Shell - Random Geekery</title>
+<meta property="og:title" content=Getting&#32;File&#32;Info&#32;From&#32;The&#32;Shell&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Getting&#32;File&#32;Info&#32;From&#32;The&#32;Shell&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Getting&#32;File&#32;Info&#32;From&#32;The&#32;Shell&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Getting&#32;File&#32;Info&#32;From&#32;The&#32;Shell&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I could right click for properties but the mouse is way over there" />
+<meta itemprop="description" content="I could right click for properties but the mouse is way over there" />
+<meta property="og:description" content="I could right click for properties but the mouse is way over there" />
+<meta name="twitter:description" content="I could right click for properties but the mouse is way over there" />
+
+
+<base href="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/" />
+
+
+<meta property="og:updated_time" content=21004-21-03T411:17:20-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/">Pretty File Summaries with Rich and ExifTool</a></li>
+        
+          <li><a href="/post/2020/11/naming-things-in-tmux/">Naming things in tmux</a></li>
+        
+          <li><a href="/post/2020/04/from-dotfiles-to-org-file/">From Dotfiles to Org File</a></li>
+        
+          <li><a href="/post/2021/05/joplin-cli-batch-processing-with-raku/">Joplin CLI Batch Processing With Raku</a></li>
+        
+          <li><a href="/post/2021/05/cli-journaling-in-joplin-with-raku/">CLI Journaling in Joplin with Raku</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/">Getting File Info From The Shell</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2020/04/getting-file-info-from-the-shell/">Getting File Info From The Shell</a>
+    </h1>
+    
+        <time datetime="2020-04-21T15:11:17-0700" class="post-date">
+            April 21, 2020
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-files">
+            <a href="https://randomgeekery.org/tags/files">files</a>
+        </li>
+        
+        <li class="tag-shell">
+            <a href="https://randomgeekery.org/tags/shell">shell</a>
+        </li>
+        
+        <li class="tag-exiftool">
+            <a href="https://randomgeekery.org/tags/exiftool">exiftool</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-21.jpg" alt="attachments/img/2020/cover-2020-04-21.jpg"/>
+also, it is time to vacuum my desk again</p>
+<p>Use <a href="https://en.wikipedia.org/wiki/File_%28command%29"><code>file</code></a> for everyday summaries. Use <a href="https://exiftool.org/">ExifTool</a> when you need to know <strong>everything</strong>.</p>
+<h2 id="the-problem">The problem</h2>
+<p>I am once again puttering around with my site.</p>
+<p>I have an image here.</p>
+<p><img src="/post/2020/04/../../../attachments/img/2020/basement-original.jpg" alt="attachments/img/2020/basement-original.jpg"/>
+I lived in this basement <a href="/post/2017/03/geekish-update/">a few years ago</a></p>
+<p>Do I need to resize it? Should find out how big it is first.</p>
+<pre tabindex="0"><code>$ exa basement-original.jpg
+Permissions Size User   Date Modified Git Name
+.rw-rw-r--  131k random 20 Apr  9:04   -- basement-original.jpg
+</code></pre><p>No I don’t mean file size. I mean geometry. How many pixels wide, and how many high? <a href="https://the.exa.website/">exa</a> <em>is</em> nifty though. You should try it out.</p>
+<p>I don’t want to leave my shell session to do it either. Sure that’s just stubbornness on my part. I <em>could</em> get the necessary information from my desktop’s file browser, but I type quicker than I click.</p>
+<h2 id="file-is-everywhere"><code>file</code> is everywhere</h2>
+<p><code>file</code> is a standard utility, which means it’s available on pretty much any Unix or Unix-like system you use. It works by matching a file’s internal details to entries in a <a href="https://linux.die.net/man/5/magic"><code>magic</code></a> database and reporting its findings. <code>magic</code> can be extended, though the details are beyond me for now.</p>
+<pre tabindex="0"><code>$ file basement-original.jpg
+basement-original.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 800x487, frames 3
+</code></pre><p><code>basement-original.jpg</code> is a jpeg image. Yep, that checks out. Let’s see — 800x487. That looks like a geometry value. 800 pixels wide and 487 pixels high, if I remember the order right.</p>
+<p>I want more detail, but this is all I can get from <code>file</code>. That’s what ExifTool is for.</p>
+<h2 id="exiftool-knows-everything">ExifTool knows everything</h2>
+<p>ExifTool lets me read and edit metadata for images, music, PDF, Word files, videos — a dizzying assortment of files are <a href="https://exiftool.org/#supported">supported</a>.</p>
+<p>You can install ExifTool with the downloads listed on <a href="https://exiftool.org/">its site</a> or using your favorite package manager.</p>
+<pre tabindex="0"><code>$ brew install exiftool
+</code></pre><p>Default usage returns every bit of information ExifTool thinks is relevant for the file type.</p>
+<pre tabindex="0"><code>$ exiftool basement-original.jpg
+ExifTool Version Number         : 11.85
+File Name                       : basement-original.jpg
+Directory                       : .
+File Size                       : 129 kB
+File Modification Date/Time     : 2020:04:20 09:04:28-07:00
+File Access Date/Time           : 2020:04:21 10:08:57-07:00
+File Inode Change Date/Time     : 2020:04:20 09:04:28-07:00
+File Permissions                : rw-rw-r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+JFIF Version                    : 1.01
+Resolution Unit                 : inches
+X Resolution                    : 72
+Y Resolution                    : 72
+Image Width                     : 800
+Image Height                    : 487
+Encoding Process                : Progressive DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)
+Image Size                      : 800x487
+Megapixels                      : 0.390
+</code></pre><p>800 pixels wide, 487 pixels high. I remembered correctly! While I’m here, let’s look at ways to fine-tune the output.</p>
+<p>We could cut down on the noise by specifying the fields or tags we want to see.</p>
+<pre tabindex="0"><code>$ exiftool -ImageWidth -ImageHeight basement-original.jpg
+Image Width                     : 800
+Image Height                    : 487
+</code></pre><p>We could use <code>-S</code> for more compact output focused less on tabular layout.</p>
+<pre tabindex="0"><code>$ exiftool -S -ImageWidth -ImageHeight basement-original.jpg
+ImageWidth: 800
+ImageHeight: 487
+</code></pre><p>We could tell ExifTool to format its report for processing by <a href="/card/csv/">CSV</a> or <a href="https://github.com/burningtree/awesome-json">JSON</a> tools.</p>
+<pre tabindex="0"><code>$ exiftool -j basement-original.jpg
+[{
+  &#34;SourceFile&#34;: &#34;basement-original.jpg&#34;,
+  &#34;ExifToolVersion&#34;: 11.85,
+  &#34;FileName&#34;: &#34;basement-original.jpg&#34;,
+  &#34;Directory&#34;: &#34;.&#34;,
+  &#34;FileSize&#34;: &#34;129 kB&#34;,
+  &#34;FileModifyDate&#34;: &#34;2020:04:20 09:04:28-07:00&#34;,
+  &#34;FileAccessDate&#34;: &#34;2020:04:21 10:08:57-07:00&#34;,
+  &#34;FileInodeChangeDate&#34;: &#34;2020:04:20 09:04:28-07:00&#34;,
+  &#34;FilePermissions&#34;: &#34;rw-rw-r--&#34;,
+  &#34;FileType&#34;: &#34;JPEG&#34;,
+  &#34;FileTypeExtension&#34;: &#34;jpg&#34;,
+  &#34;MIMEType&#34;: &#34;image/jpeg&#34;,
+  &#34;JFIFVersion&#34;: 1.01,
+  &#34;ResolutionUnit&#34;: &#34;inches&#34;,
+  &#34;XResolution&#34;: 72,
+  &#34;YResolution&#34;: 72,
+  &#34;ImageWidth&#34;: 800,
+  &#34;ImageHeight&#34;: 487,
+  &#34;EncodingProcess&#34;: &#34;Progressive DCT, Huffman coding&#34;,
+  &#34;BitsPerSample&#34;: 8,
+  &#34;ColorComponents&#34;: 3,
+  &#34;YCbCrSubSampling&#34;: &#34;YCbCr4:4:4 (1 1)&#34;,
+  &#34;ImageSize&#34;: &#34;800x487&#34;,
+  &#34;Megapixels&#34;: 0.390
+}]
+</code></pre><p>Hang on. I feel compelled to be a bit fancy.</p>
+<p><strong>Piping to <a href="https://github.com/BurntSushi/xsv">xsv</a> for aggregate information about site images.</strong></p>
+<pre tabindex="0"><code>$ exiftool -csv -r content \
+  | xsv search -s MIMEType &#39;image/.+&#39; \
+  | xsv select ImageWidth,ImageHeight \
+  | xsv stats \
+  | xsv select field,min,max,mean \
+  | xsv table
+  682 directories scanned
+  419 image files read
+field        min  max   mean
+ImageWidth   27   5120  1337.1172248803825
+ImageHeight  27   4032  1009.7368421052624
+</code></pre><p>Hm. I must have some icon files in there somewhere.</p>
+<p>For more fun, point it at some music files. Heck, it will try to give useful information for text!</p>
+<pre tabindex="0"><code>$ exiftool index.adoc
+ExifTool Version Number         : 11.85
+File Name                       : index.adoc
+Directory                       : .
+File Size                       : 4.8 kB
+File Modification Date/Time     : 2020:04:21 12:58:13-07:00
+File Access Date/Time           : 2020:04:21 12:58:14-07:00
+File Inode Change Date/Time     : 2020:04:21 12:58:13-07:00
+File Permissions                : rw-rw-r--
+File Type                       : TXT
+File Type Extension             : txt
+MIME Type                       : text/plain
+MIME Encoding                   : us-ascii
+Newlines                        : Unix LF
+Line Count                      : 189
+Word Count                      : 619
+</code></pre><p>Here’s the <code>file</code> output in comparison.</p>
+<pre tabindex="0"><code>$ file index.adoc
+index.adoc: ASCII text
+</code></pre><p>I could probably write some <code>magic</code> configuration to get more information. But installing ExifTool was easier.</p>
+<h2 id="good-enough">Good enough?</h2>
+<p><code>file</code> is universally available and gave me the details I needed today. ExifTool gives me everything I needed and then some. I’ll most likely keep it available on my systems.</p>
+<p>And no, I’m not going to worry about resizing that image for now.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/">pretty-file-summaries-with-rich-and-exiftool</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/104038902820824748"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2020/04/how-mom-stays-creative/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>How Mom stays creative
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2020/04/why-do-i-blog/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Why Do I Blog?
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The problem</a></li>
+    <li><a href="#file-is-everywhere"><code>file</code> is everywhere</a></li>
+    <li><a href="#exiftool-knows-everything">ExifTool knows everything</a></li>
+    <li><a href="#good-enough">Good enough?</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

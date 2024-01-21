@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/">
+<meta property="og:title" content="PageTemplate for Site Generation">
+<meta name="twitter:title" content="PageTemplate for Site Generation">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="So I was looking at my Python Blogger client and I tried implementing the same thing in Ruby. gdata-ruby confusion stymied me. I still don&rsquo;t know whether library issues or my own ignorance blocked me.">
+    <meta property="og:description" content="So I was looking at my Python Blogger client and I tried implementing the same thing in Ruby. gdata-ruby confusion stymied me. I still don&rsquo;t know whether library issues or my own ignorance blocked me.">
+  
+
+
+
+<title itemprop="name">PageTemplate for Site Generation - Random Geekery</title>
+<meta property="og:title" content=PageTemplate&#32;for&#32;Site&#32;Generation&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=PageTemplate&#32;for&#32;Site&#32;Generation&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=PageTemplate&#32;for&#32;Site&#32;Generation&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=PageTemplate&#32;for&#32;Site&#32;Generation&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/" />
+
+
+<meta property="og:updated_time" content=6001-06-12T10:00:08-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2008/01/pagetemplate-for-site-generation-part-2/">PageTemplate for Site Generation Part 2</a></li>
+        
+          <li><a href="/post/2008/01/another-link/">Another Link</a></li>
+        
+          <li><a href="/post/2007/02/mp4info-issues/">Mp4Info issues</a></li>
+        
+          <li><a href="/post/2006/03/aliases/">Aliases</a></li>
+        
+          <li><a href="/post/2006/01/new-pagetemplate-release/">New PageTemplate Release</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/">PageTemplate for Site Generation</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation/">PageTemplate for Site Generation</a>
+    </h1>
+    
+        <time datetime="2008-01-06T00:00:00-0800" class="post-date">
+            January 6, 2008
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-pagetemplate">
+            <a href="https://randomgeekery.org/tags/pagetemplate">pagetemplate</a>
+        </li>
+        
+        <li class="tag-ruby">
+            <a href="https://randomgeekery.org/tags/ruby">ruby</a>
+        </li>
+        
+        <li class="tag-blogspot">
+            <a href="https://randomgeekery.org/tags/blogspot">blogspot</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>So I was looking at my <a href="/post/2007/12/python-loves-blogger-part-1/">Python Blogger client</a> and I tried implementing the same thing in <a href="/card/ruby/">Ruby</a>. <a href="https://code.google.com/p/gdata-ruby-util/">gdata-ruby</a> confusion stymied me. I still don&rsquo;t know whether library issues or my own ignorance blocked me.</p>
+<p>That, of course, set me off on yet another thought. What if I tried to define my posts in a <a href="/post/2002/06/pagetemplate/">pagetemplate</a> file and used filters to handle the dirty work? Well, that might be a little challenge. But what if I used this approach to generate a whole Web site? Okay, yeah. That may have come out of nowhere for you. The truth is that I love static site generation tools, from <a href="http://zenspider.com/ZSS/Products/ZenWeb/index.html">ZenWeb</a> to <a href="http://webmake.taint.org">WebMake</a>. These tools appeal to me because <a href="/card/coolnamehere/">coolnamehere</a> is a static site and I love anything which can give that pile of pages a common format without making heavy server demands. Honestly, loading up PHP just so I can have a templated site seems like overkill.</p>
+<p>Let&rsquo;s see if I can build a site like coolnamehere with Ruby and PageTemplate. I plan to borrow heavily from ZenWeb, since there are a lot of things to like about the ZenSpider approach. I especially like   building a site from a collection of pages and a chain of filters. Hey, PageTemplate has filters thanks to Greg Millam. Why don&rsquo;t I try <em>using</em> them?</p>
+<h2 id="start-small">Start Small</h2>
+<p>I am going to start small, by teaching SiteTemplate about <a href="https://github.com/bhollis/maruku">Maruku</a>.</p>
+<p>It took me a bit of time to get that much done, because I needed to relearn how PageTemplate initializes. <em>Note to self: don&rsquo;t ever go a full year without using your own library.</em></p>
+<p>The test is simple: create a template using the Maruku filter. Compare the output of that template with the text minus PageTemplate directives and fed into Maruku. The test passes if they look alike, or close enough.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;sitetemplate&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TC_MarukuFilter</span> <span class="o">&lt;</span> <span class="no">Test</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">require</span> <span class="s1">&#39;maruku&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">test_maruku_filter</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content</span> <span class="o">=</span> <span class="s2">&#34;This is a paragraph&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># template_file contains the text &#34;[%filter :maruku%]This is a paragraph[%end%]&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">template_file</span> <span class="o">=</span> <span class="s2">&#34;maruku.txt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maruku_doc</span> <span class="o">=</span> <span class="no">Maruku</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pt</span> <span class="o">=</span> <span class="no">PageTemplate</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pt</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">template_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assert_equal</span><span class="p">(</span><span class="n">maruku_doc</span><span class="o">.</span><span class="n">to_html</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;Check if Maruku filter ran successfully&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Then the code I needed to make that test pass:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="ch">#!/usr/local/bin/ruby</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Utility for generating a static site with PageTemplate</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;maruku&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;pagetemplate&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PageTemplate</span>
+</span></span><span class="line"><span class="cl">  <span class="k">class</span> <span class="nc">DefaultPreprocessor</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span></span><span class="line"><span class="cl">      <span class="k">def</span> <span class="nf">maruku</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="no">Maruku</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span>
+</span></span><span class="line"><span class="cl">      <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>I cut corners by adding the <code>maruku</code> filter method to PageTemplate&rsquo;s DefaultPreprocessor. PageTemplate&rsquo;s internals need a little work, since this isn&rsquo;t the prettiest way a person might want to add filters. It works well, but it&rsquo;s not pretty.</p>
+<p>That works well enough. Next time I&rsquo;ll try a template filter, which puts the Maruku output into a template file of my choosing. That way we get the standard look for pages.</p>
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2008/01/pagetemplate-for-site-generation-part-2/">pagetemplate-for-site-generation-part-2</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2008/01/another-link/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Another Link
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2008/01/pagetemplate-for-site-generation-part-2/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>PageTemplate for Site Generation Part 2
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#start-small">Start Small</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>crystalonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/crystal/</link>
+    <description>
+      Recent contentincrystal on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sun, 21 Feb 2021 20:13:07 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/crystal/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Got different benchmarks from Programming Crystal</title>
+  <link>https://randomgeekery.org/post/2021/02/got-different-benchmarks-from-programming-crystal/</link>
+  <pubDate>Sun, 21 Feb 2021 20:13:07 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2021/02/got-different-benchmarks-from-programming-crystal/</guid>
+  <description>Finally reading Programming Crystal, by Ivo Balbaert and Simon St. Laurent. Good stuff. The card/Crystal language has advanced some since the book came out, but nearly all the code runs as-is.
+Something that jumped out at me was the difference between their results and mine with the benchmarking example. Not the raw numbers. I’d be a little confused if those were exactly the same. The ratios caught my attention.
+Given this source:</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>crystal</category>  <category>benchmarking</category>  <category>not-quite-errata</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>just a note, but too long to post as a note</h2><p>Finally reading <a href="https://pragprog.com/titles/crystal/programming-crystal/">Programming Crystal</a>, by Ivo Balbaert and <a href="http://simonstl.com/">Simon St.  Laurent</a>.  Good stuff.  The <a href="/card/crystal/">card/Crystal</a> language has advanced some since the book came out, but nearly all the code runs as-is.</p>
+<p>Something that jumped out at me was the difference between their results and mine with the <a href="https://github.com/Ivo-Balbaert/programming_crystal/blob/master/code/managing_projects/benchmarking.cr">benchmarking</a> example.  Not the raw numbers.  I&rsquo;d be a little confused if those were exactly the same.  The ratios caught my attention.</p>
+<p>Given this source:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="k">require</span> <span class="s2">&#34;benchmark&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">IOM</span> <span class="o">=</span> <span class="no">IO</span><span class="o">::</span><span class="n">Memory</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Benchmark</span><span class="o">.</span><span class="n">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&#34;Appending&#34;</span><span class="p">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">append</span>
+</span></span><span class="line"><span class="cl">    <span class="no">IOM</span><span class="o">.</span><span class="n">clear</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&#34;Using to_s&#34;</span><span class="p">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">to_s</span>
+</span></span><span class="line"><span class="cl">    <span class="no">IOM</span><span class="o">.</span><span class="n">clear</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&#34;Interpolation&#34;</span><span class="p">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interpolation</span>
+</span></span><span class="line"><span class="cl">    <span class="no">IOM</span><span class="o">.</span><span class="n">clear</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">append</span>
+</span></span><span class="line"><span class="cl">  <span class="no">IOM</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">to_s</span>
+</span></span><span class="line"><span class="cl">  <span class="no">IOM</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span><span class="o">.</span><span class="n">to_s</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">interpolation</span>
+</span></span><span class="line"><span class="cl">  <span class="no">IOM</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="mi">42</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Here&rsquo;s what we&rsquo;re told to expect.</p>
+<blockquote>
+<p>Build the code for production using <code>$ crystal build benchmarking.cr —release</code> and execute that with: <code>$ ./benchmarking</code></p>
+<p>You’ll get results like this:</p>
+<pre tabindex="0"><code>Appending    34.06M ( 29.36ns) (± 3.97%) fastest
+Using to_s   12.67M ( 78.92ns) (± 7.55%) 2.69× slower
+Interpolation  2.8M (356.75ns) (± 3.84%) 12.15× slower
+</code></pre></blockquote>
+<p>But in Crystal 0.36.1 on Ubuntu 20.04, running on Windows WSL2:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
+</span></span><span class="line"><span class="cl">    Appending 110.36M (  9.06ns) (± 3.70%)   0.0B/op        fastest
+</span></span><span class="line"><span class="cl">   Using to_s  18.52M ( 54.00ns) (± 5.36%)  16.0B/op   5.96× slower
+</span></span><span class="line"><span class="cl">Interpolation  19.19M ( 52.12ns) (± 2.99%)  16.0B/op   5.75× slower
+</span></span></code></pre></div><p>Sure, my numbers are bigger than the book&rsquo;s.  That&rsquo;s cool.  But <code>interpolation</code> and <code>to_s</code> are so close to each other on my machine!</p>
+<p>Maybe that&rsquo;s WSL?  After I get the day&rsquo;s tasks done, I revisit on my computer&rsquo;s Manjaro partition.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./benchmarking
+</span></span><span class="line"><span class="cl">    Appending 123.54M (  8.09ns) (± 2.57%)   0.0B/op        fastest
+</span></span><span class="line"><span class="cl">   Using to_s  56.57M ( 17.68ns) (± 3.49%)  16.0B/op   2.18× slower
+</span></span><span class="line"><span class="cl">Interpolation  56.55M ( 17.68ns) (± 4.32%)  16.0B/op   2.18× slower
+</span></span></code></pre></div><p>Well heck.</p>
+<p>It&rsquo;s faster on native Linux than WSL.  That&rsquo;s hardly surprising.  But the differences between <code>to_s</code> and <code>interpolation</code> are now negligible.  For that matter, both of them are closer to the speed of <code>append</code> than <code>to_s</code> was in the book&rsquo;s example!</p>
+<p>Is the difference because of changes in Crystal?  Some dependency, like LLVM? My computer&rsquo;s 40GB of RAM compared to whatever the authors used?  My hard drive?  GPU?  Is Mercury in retrograde?</p>
+<p><em>I don&rsquo;t know!</em> I just saw different numbers and thought it was curious.</p>
+<p>My point isn&rsquo;t that the book&rsquo;s wrong.  Heck no.  The example&rsquo;s supposed to remind you that testing your assumptions is important.  All I&rsquo;ve done is emphasized the validity of the lesson.</p>
+<p>Anyways.</p>
+<p>Good book.  Fun language.  Don&rsquo;t forget to try out the example code.  And if you need to care about performance?  Don&rsquo;t assume — benchmark.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Directory Listings With Crystal</title>
+  <link>https://randomgeekery.org/post/2019/11/directory-listings-with-crystal/</link>
+  <pubDate>Fri, 29 Nov 2019 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2019/11/directory-listings-with-crystal/</guid>
+  <description>&lt;p&gt;Okay, I know how to &lt;a href=&#34;https://randomgeekery.org/post/2019/11/summarizing-a-file-with-crystal/&#34;&gt;summarize one file&lt;/a&gt; with &lt;a href=&#34;https://randomgeekery.org/card/crystal/&#34;&gt;card/Crystal&lt;/a&gt;. What about directories?&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>crystal</category>  <category>files</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>I swear I'm not reinventing `ls`.</h2><p>Okay, I know how to <a href="/post/2019/11/summarizing-a-file-with-crystal/">summarize one file</a> with <a href="/card/crystal/">card/Crystal</a>. What about directories?</p>
+<h2 id="list-files-in-a-directory">List files in a directory</h2>
+<p>Let’s start with a list of the directory’s contents. We can worry about summarizing them later.</p>
+<p><a href="https://crystal-lang.org/api/Dir.html">Dir</a> knows all about directories and their contents. Open a directory with a string containing a path, and ask for its children.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="n">dirname</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Sync/Books/computer&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">children</span>
+</span></span></code></pre></div><pre tabindex="0"><code>[&#34;programmingvoiceinterfaces.pdf&#34;, &#34;Databases&#34;, &#34;task-2.5.1.ref.pdf&#34;, &#34;Perl&#34;, &#34;Tools&#34;,
+&#34;devopsish&#34;, &#34;diy&#34;, &#34;Hacking_ The Art of Exploitation, 2nd Edition.pdf&#34;,
+&#34;The Linux Programming Interface.pdf&#34;, &#34;Web Layout&#34;, &#34;Java&#34;, &#34;JavaScript&#34;, &#34;Generative_Art.pdf&#34;,
+&#34;Mac OS X Lion_ The Missing Manual.PDF&#34;, &#34;highperformanceimages.pdf&#34;, &#34;jsonatwork.pdf&#34;,
+&#34;Microsoftish&#34;, &#34;Python&#34;, &#34;Ruby&#34;, &#34;PHP&#34;, &#34;Misc-lang&#34;, &#34;tools&#34;, &#34;Data Science&#34;, &#34;Principles&#34;, &#34;cs&#34;,
+&#34;vistaguidesv2&#34;]
+</code></pre><p><a href="https://crystal-lang.org/api/Dir.html#children:Array%28String%29-instance-method">Dir#children</a> gets you all the files in a directory except the special <code>.</code> and <code>..</code> items. If you need those, use <a href="https://crystal-lang.org/api/Dir.html#entries:Array%28String%29-instance-method">Dir#entries</a>.</p>
+<p>I need to look at each child if I want a readable summary of the directory. I could mess with the <a href="https://crystal-lang.org/api/Array.html">Array</a> returned by <code>Dir#children</code>. There’s a better way, though. Crystal provides a handy <a href="https://en.wikipedia.org/wiki/Iterator">iterator</a> with
+<a href="https://crystal-lang.org/api/Dir.html#each_child%28dirname,&amp;block%29-class-method">Dir#each_child</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="p">{</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">child</span> <span class="p">}</span>
+</span></span></code></pre></div><pre tabindex="0"><code>programmingvoiceinterfaces.pdf
+Databases
+task-2.5.1.ref.pdf
+Perl
+Tools
+devopsish
+diy
+Hacking_ The Art of Exploitation, 2nd Edition.pdf
+The Linux Programming Interface.pdf
+Web Layout
+Java
+JavaScript
+Generative_Art.pdf
+Mac OS X Lion_ The Missing Manual.PDF
+highperformanceimages.pdf
+jsonatwork.pdf
+Microsoftish
+Python
+Ruby
+PHP
+Misc-lang
+tools
+Data Science
+Principles
+cs
+vistaguidesv2
+</code></pre><p>That’s <em>much</em> easier to read. Yes. I can work with <code>Dir#each_child</code> to create a summary.</p>
+<h2 id="summarize-the-directory-contents">Summarize the directory contents</h2>
+<p>I want file names, sizes, and modification times. I already have the names. <a href="https://crystal-lang.org/api/File/Info.html">File.info</a> provides size and time details. Formatting can be handled with a mix of <a href="https://crystal-lang.org/api/toplevel.html#sprintf%28format_string,args:Array%7CTuple%29:String-class-method">sprintf</a> and <a href="https://crystal-lang.org/api/Number.html#format%28separator=%27.%27,delimiter=%27,%27,decimal_places:Int?=nil,*,group:Int=3,only_significant:Bool=false%29:String-instance-method">Number#format</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">each_child</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">dirname</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">child</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;%-50s %10d %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>I worked these column widths out manually. There are more robust approaches. In fact, I’ll get to one of them in a few paragraphs.</p>
+<pre tabindex="0"><code>programmingvoiceinterfaces.pdf                     18,597,798  2019-02-17 15:32:27 UTC
+Databases                                               4,096  2019-10-26 04:31:25 UTC
+task-2.5.1.ref.pdf                                    130,899  2019-02-17 15:32:27 UTC
+Perl                                                    4,096  2019-10-26 04:31:25 UTC
+Tools                                                   4,096  2019-10-25 14:44:36 UTC
+devopsish                                               4,096  2019-10-26 04:31:25 UTC
+diy                                                     4,096  2019-10-19 07:27:54 UTC
+Hacking_ The Art of Exploitation, 2nd Edition.pdf   4,218,534  2019-02-17 15:32:26 UTC
+The Linux Programming Interface.pdf                19,628,791  2019-02-17 15:32:26 UTC
+Web Layout                                              4,096  2019-10-19 07:27:57 UTC
+Java                                                    4,096  2019-10-26 04:31:25 UTC
+JavaScript                                              4,096  2019-10-26 04:31:25 UTC
+Generative_Art.pdf                                 22,777,770  2019-02-17 15:32:26 UTC
+Mac OS X Lion_ The Missing Manual.PDF              43,051,912  2019-02-17 15:32:26 UTC
+highperformanceimages.pdf                          51,412,248  2019-02-17 15:32:26 UTC
+jsonatwork.pdf                                     10,193,473  2019-02-17 15:32:26 UTC
+Microsoftish                                            4,096  2019-10-19 07:28:00 UTC
+Python                                                  4,096  2019-10-26 04:31:25 UTC
+Ruby                                                    4,096  2019-10-26 04:31:25 UTC
+PHP                                                     4,096  2019-10-26 04:31:25 UTC
+Misc-lang                                               4,096  2019-10-26 04:31:25 UTC
+tools                                                   4,096  2019-10-25 14:41:26 UTC
+Data Science                                            4,096  2019-10-26 04:31:25 UTC
+Principles                                              4,096  2019-10-20 01:23:43 UTC
+cs                                                      4,096  2019-10-19 01:37:08 UTC
+vistaguidesv2                                           4,096  2019-10-19 06:56:45 UTC
+</code></pre><p>This is nice and tidy! Of course, now I have more thoughts. The items need to be sorted — by name is good enough. I also want a more obvious indicator which ones are directories.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dir</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">dirname</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">child</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">child</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">directory?</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;%-50s %10s %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>If a trailing <code>/</code> for directories is good enough for <code>ls -F</code>, it’s good enough for me.</p>
+<pre tabindex="0"><code>Data Science/                                           4,096  2019-10-26 04:31:25 UTC
+Databases/                                              4,096  2019-10-26 04:31:25 UTC
+Generative_Art.pdf                                 22,777,770  2019-02-17 15:32:26 UTC
+Hacking_ The Art of Exploitation, 2nd Edition.pdf   4,218,534  2019-02-17 15:32:26 UTC
+Java/                                                   4,096  2019-10-26 04:31:25 UTC
+JavaScript/                                             4,096  2019-10-26 04:31:25 UTC
+Mac OS X Lion_ The Missing Manual.PDF              43,051,912  2019-02-17 15:32:26 UTC
+Microsoftish/                                           4,096  2019-10-19 07:28:00 UTC
+Misc-lang/                                              4,096  2019-10-26 04:31:25 UTC
+PHP/                                                    4,096  2019-10-26 04:31:25 UTC
+Perl/                                                   4,096  2019-10-26 04:31:25 UTC
+Principles/                                             4,096  2019-10-20 01:23:43 UTC
+Python/                                                 4,096  2019-10-26 04:31:25 UTC
+Ruby/                                                   4,096  2019-10-26 04:31:25 UTC
+The Linux Programming Interface.pdf                19,628,791  2019-02-17 15:32:26 UTC
+Tools/                                                  4,096  2019-10-25 14:44:36 UTC
+Web Layout/                                             4,096  2019-10-19 07:27:57 UTC
+cs/                                                     4,096  2019-10-19 01:37:08 UTC
+devopsish/                                              4,096  2019-10-26 04:31:25 UTC
+diy/                                                    4,096  2019-10-19 07:27:54 UTC
+highperformanceimages.pdf                          51,412,248  2019-02-17 15:32:26 UTC
+jsonatwork.pdf                                     10,193,473  2019-02-17 15:32:26 UTC
+programmingvoiceinterfaces.pdf                     18,597,798  2019-02-17 15:32:27 UTC
+task-2.5.1.ref.pdf                                    130,899  2019-02-17 15:32:27 UTC
+tools/                                                  4,096  2019-10-25 14:41:26 UTC
+vistaguidesv2/                                          4,096  2019-10-19 06:56:45 UTC
+</code></pre><p>This is better! I can use this information. Time to look at arbitrary directories.</p>
+<h2 id="specifying-a-directory-via-argv">Specifying a directory via <code>ARGV</code></h2>
+<p><a href="https://crystal-lang.org/api/toplevel.html#ARGV">ARGV</a> is a top level array holding arguments intended for your program. If we called a compiled Crystal program like this:</p>
+<pre tabindex="0"><code>$ ./list ~/Sync/Books/computer
+</code></pre><p><code>~/Sync/Books/computer</code> would be the first and only item in <code>ARGV</code>.</p>
+<blockquote>
+<p>[!NOTE]
+Some languages include the program name in their list of arguments. Crystal keeps the program name in <code>PROGRAM_NAME</code>, and the arguments in <code>ARGV</code>.</p>
+</blockquote>
+<p>If I needed anything more than &ldquo;grab the first item in <code>ARGV</code>,&rdquo; I’d probably use <a href="https://crystal-lang.org/api/OptionParser.html">OptionParser</a>. But all I need is &ldquo;grab the first item in <code>ARGV</code>.&rdquo;</p>
+<p><strong><code>list.cr</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># list information about a directory&#39;s contents</span>
+</span></span><span class="line"><span class="cl"><span class="n">dirname</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dir</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">dirname</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">child</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">child</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">directory?</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;%-50s %10s %24s&#34;</span> <span class="o">%</span> <span class="p">{</span> <span class="n">child</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">info</span><span class="o">.</span><span class="n">modification_time</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><pre tabindex="0"><code>$ crystal run list.cr -- ~/Sync/pictures/
+1/                                                      4,096  2019-10-18 15:28:30 UTC
+1999/                                                   4,096  2019-10-18 15:28:30 UTC
+2001/                                                   4,096  2019-10-18 15:28:30 UTC
+2007/                                                   4,096  2019-10-18 15:28:30 UTC
+2009/                                                   4,096  2019-10-18 15:28:30 UTC
+2010/                                                   4,096  2019-10-18 15:28:30 UTC
+2011/                                                   4,096  2019-10-18 15:28:30 UTC
+2012/                                                   4,096  2019-10-18 15:28:30 UTC
+2013/                                                   4,096  2019-10-18 15:28:30 UTC
+2014/                                                   4,096  2019-10-18 15:28:30 UTC
+2015/                                                   4,096  2019-10-18 15:28:30 UTC
+2016/                                                   4,096  2019-10-18 15:28:30 UTC
+2017/                                                   4,096  2019-10-18 15:28:30 UTC
+2018/                                                   4,096  2019-10-18 15:28:30 UTC
+digikam4.db                                         4,386,816  2019-02-17 15:58:19 UTC
+recognition.db                                      4,755,456  2019-02-17 15:58:19 UTC
+thumbnails-digikam.db                              197,328,896  2019-02-17 15:58:21 UTC
+</code></pre><blockquote>
+<p>[!NOTE]
+When using <code>crystal run</code> to execute a script, use <code>--</code> to split arguments for <code>crystal</code> and those for your script. <code>list.cr</code> is for Crystal. <code>~/Sync/pictures/</code> is for the script.</p>
+</blockquote>
+<p>This works, if you use it exactly right. Right now is where I’m tempted to say &ldquo;Error handling is left as an exercise for the reader.&rdquo; But no. Not this time.</p>
+<p>Let’s build this up so it handles common errors and concerns.</p>
+<h2 id="writing-listcr">Writing <code>list.cr</code></h2>
+<p>There are a few things I want this program to do.</p>
+<ul>
+<li>Tell me if I forgot the argument.</li>
+<li>Tell me if the argument isn’t a real path.</li>
+<li>If the argument is a directory, summarize the contents of that directory.</li>
+<li>If the argument is a file, not a directory? Um — make a listing with one entry for the file.</li>
+<li>I really want to be a little more precise with the column sizes.</li>
+</ul>
+<p>That covers the likeliest possibilities running this program on my own computer. Besides, Crystal will let me know I forgot something.</p>
+<p>I assembled this <a href="https://en.wikipedia.org/wiki/Top-down_and_bottom-up_design">top-down</a>, describing what I want to do and then describing how to do it. And even though Crystal doesn’t require a main method, that seems like a good place to start. If nothing else, it keeps the core logic in one place.</p>
+<p>What does <code>main</code> do? It displays a <code>summary_table</code> of whatever I hand to it. If anything goes wrong, it quits with a <code>fatal_error</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print a brief file or directory summary specified via command line argument</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fatal_error</span><span class="p">(</span><span class="s2">&#34;Missing FILENAME&#34;</span><span class="p">)</span> <span class="k">if</span> <span class="no">ARGV</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="n">summary_table</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">rescue</span> <span class="n">ex</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fatal_error</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>I don’t need to consider every possible error. But I should make sure we’re polite about the errors we do encounter. Rescue any <a href="https://crystal-lang.org/reference/syntax_and_semantics/exception_handling.html">exceptions</a> that occur and hand them to <code>fatal_error</code>.</p>
+<p><code>fatal_error</code> prints its <code>error</code> message and usage info to <a href="https://crystal-lang.org/api/toplevel.html#STDERR">STDERR</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Quit with an error and usage info</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="n">error</span>
+</span></span><span class="line"><span class="cl">  <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;USAGE: </span><span class="si">#{</span><span class="no">PROGRAM_NAME</span><span class="si">}</span><span class="s2"> FILENAME&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>That non-zero <a href="https://crystal-lang.org/api/toplevel.html#exit%28status=0%29:NoReturn-class-method">exit</a> tells the shell something went wrong. Handy for piped commands and customized shell prompts that incorporate execution status.</p>
+<p>The summary table glues together a collection of summary rows — even if it’s just a collection of one — composed from file summaries and formatted according to some basic guidelines about column size.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a string description of a file or directory</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">summary_table</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">summaries</span> <span class="o">=</span> <span class="n">dir_summaries</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="o">||</span> <span class="p">{</span> <span class="n">file_summary</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">columns</span> <span class="o">=</span> <span class="n">column_sizes</span><span class="p">(</span><span class="n">summaries</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">summaries</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">summary_row</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p><a href="https://dev.to/walpolesj/short-circuit-assignment-25ik">Short-circuit assignment</a> uses the <a href="https://crystal-lang.org/reference/syntax_and_semantics/or.html">or</a> operator <code>||</code> to succinctly set our summaries. We got a directory summary? Use it. No? Okay, try treating it as a single file. Whichever one returns a useful value first gets assigned to <code>summaries</code>.</p>
+<p>Since we’re going top-down, we can say that a directory summary is a sorted collection of files summaries and move on.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a multiline description of a directory</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dir_summaries</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">unless</span> <span class="nb">File</span><span class="o">.</span><span class="n">directory?</span> <span class="n">dirname</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">Dir</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dir</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span> <span class="n">file_summary</span> <span class="nb">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Returning early for non-directories simplifies short-circuit assignment. This method knows it may be handed a regular file. Stopping right away prevents that from being treated the same as an error.</p>
+<p>Oh <em>here’s</em> the work of summarizing. Build a name. Describe the size. Turn the file’s modification time into something we can read.</p>
+<p>Okay that’s not much work after all. Especially considering that I already figured out how to describe size.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_summary</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">basename</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">basename</span> <span class="n">filename</span>
+</span></span><span class="line"><span class="cl"><span class="n">size</span> <span class="o">=</span> <span class="n">describe_size</span> <span class="nb">File</span><span class="o">.</span><span class="n">size</span> <span class="n">filename</span>
+</span></span><span class="line"><span class="cl"><span class="n">mod_time</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">modification_time</span><span class="o">.</span><span class="n">to_local</span><span class="o">.</span><span class="n">to_s</span> <span class="s2">&#34;%F %T&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">basename</span> <span class="o">+=</span> <span class="s2">&#34;/&#34;</span> <span class="k">if</span> <span class="nb">File</span><span class="o">.</span><span class="n">directory?</span> <span class="n">filename</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="n">basename</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">mod_time</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>That’s a lot of <a href="https://en.wikipedia.org/wiki/Method_chaining">methodchaining</a>. Method chains are useful, but brittle. Temped to at least hide it in a new describe_time method. Oh well. Next time.</p>
+<p>Yep. Turned that Proc from the other day into a method.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return string description of byte size as bytes/KB/MB/GB</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">describe_size</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scales</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;GB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;MB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="p">,</span> <span class="s2">&#34;KB&#34;</span><span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">bytes</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span><span class="p">,</span> <span class="n">term</span> <span class="o">=</span> <span class="k">if</span> <span class="n">scale</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">{</span> <span class="n">bytes</span> <span class="o">/</span> <span class="n">scale</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">scale</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">{</span> <span class="n">bytes</span><span class="p">,</span> <span class="s2">&#34;bytes&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">scale</span><span class="o">.</span><span class="n">humanize</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">term</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p><a href="https://crystal-lang.org/api/Number.html#humanize%28io:IO,precision=3,separator=%27.%27,delimiter=%27,%27,*,base=10**3,significant=true,prefixes:Indexable=SI_PREFIXES%29:Nil-instance-method">Number#humanize</a> is a delightful convenience method for readable numbers. It adds commas where expected. It trims floating point numbers to more digestible precision. No word yet on whether it slices or dices.</p>
+<p><code>column_sizes</code> is dangerously close to clever — the bad kind of smart where I’m likely to miss a mistake. The intent is reasonable enough. Find how long each field is in each summary. Figure out which is the longest value for each column. But there’s probably a more legible way to do it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a list containing the size needed to fit each field.</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">column_sizes</span><span class="p">(</span><span class="n">summaries</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">sizes</span> <span class="o">=</span> <span class="n">summaries</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span> <span class="n">field</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span> <span class="n">field</span><span class="o">.</span><span class="n">size</span> <span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">sizes</span><span class="o">.</span><span class="n">max_of</span> <span class="p">{</span> <span class="o">|</span><span class="n">column</span><span class="o">|</span> <span class="n">column</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Oh thank goodness. Back to fairly legible code with <code>summary_row</code>. Although. Honestly? I’m being so specific with how each item in the summary is treated. That calls out for a class, or at least a <a href="https://crystal-lang.org/reference/syntax_and_semantics/structs.html">struct</a>.</p>
+<p>Not enough time to rewrite the whole program, though. Sometimes it’s more important to get to the next task than to get this one perfect.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Return a one-line description of a file</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">summary_row</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">path_column</span><span class="p">,</span> <span class="n">size_column</span><span class="p">,</span> <span class="n">mod_column</span> <span class="o">=</span> <span class="n">columns</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">String</span><span class="o">.</span><span class="n">build</span> <span class="k">do</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">ljust</span><span class="p">(</span><span class="n">path_column</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">rjust</span><span class="p">(</span><span class="n">size_column</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">summary</span><span class="o">[</span><span class="mi">2</span><span class="o">].</span><span class="n">ljust</span><span class="p">(</span><span class="n">mod_column</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Like most languages, Crystal’s <a href="https://crystal-lang.org/api/String.html">String</a> class has <em>many</em> methods to make life easier. <a href="https://crystal-lang.org/api/String.html#ljust%28len,char:Char=%27%27%29-instance-method">String#ljust</a> pads the end of a string. <a href="https://crystal-lang.org/api/String.html#rjust%28len,char:Char=%27%27%29-instance-method">String#rjust</a> pads at the start, which is nice for number columns. Though my humanized numbers do reduce the effectiveness of a numeric column.</p>
+<p>That’s it? I’m done? Excellent!</p>
+<p>Let’s build it and look at a random folder in my Sync archive.</p>
+<pre tabindex="0"><code>$ crystal build list.cr
+$ ./list ~/Sync/music-stuff/
+examine-iTunes.py 564 bytes 2019-02-17 07:58:19
+itunes.xml          29.8 MB 2019-02-17 07:58:19
+ratings.rb          1.02 KB 2019-02-17 07:58:19
+rhythmdb.xml        14.8 MB 2019-02-17 07:58:19
+</code></pre><p>Oh hey. Stuff from a couple old music management posts. Getting back to those is on the task list. I’ll get there.</p>
+<p>Anyways. My <code>list</code> program works!</p>
+<p>I learned a fair bit about managing collections in Crystal. Also, the &ldquo;small methods&rdquo; approach that served me well in Ruby seems just as handy here.</p>
+<h2 id="yeah-i-know">Yeah, I know</h2>
+<p>If file information was all I needed, I could get the same details and more with
+<a href="https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation">ls</a>.</p>
+<pre tabindex="0"><code>$ ls -gGhp ~/Sync/pictures/
+total 197M
+drwxr-xr-x  3 4.0K Oct 18 08:28 1/
+drwxr-xr-x  7 4.0K Oct 18 08:28 1999/
+drwxr-xr-x  3 4.0K Oct 18 08:28 2001/
+drwxr-xr-x  8 4.0K Oct 18 08:28 2007/
+drwxr-xr-x  8 4.0K Oct 18 08:28 2009/
+drwxr-xr-x  5 4.0K Oct 18 08:28 2010/
+drwxr-xr-x  5 4.0K Oct 18 08:28 2011/
+drwxr-xr-x  8 4.0K Oct 18 08:28 2012/
+drwxr-xr-x 14 4.0K Oct 18 08:28 2013/
+drwxr-xr-x 14 4.0K Oct 18 08:28 2014/
+drwxr-xr-x 14 4.0K Oct 18 08:28 2015/
+drwxr-xr-x 13 4.0K Oct 18 08:28 2016/
+drwxr-xr-x 12 4.0K Oct 18 08:28 2017/
+drwxr-xr-x 11 4.0K Oct 18 08:28 2018/
+-rw-r--r--  1 4.2M Feb 17  2019 digikam4.db
+-rw-r--r--  1 4.6M Feb 17  2019 recognition.db
+-rw-r--r--  1 189M Feb 17  2019 thumbnails-digikam.db
+</code></pre><p>But I wouldn’t have learned anything about Crystal. I wouldn’t have had nearly as much fun, either. And — not counting other concerns like &ldquo;paying rent&rdquo; or &ldquo;eating&rdquo; — fun is the most important part!</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Summarizing A File With Crystal</title>
+  <link>https://randomgeekery.org/post/2019/11/summarizing-a-file-with-crystal/</link>
+  <pubDate>Sun, 17 Nov 2019 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2019/11/summarizing-a-file-with-crystal/</guid>
+  <description>Okay, I don’t have a lot of time here. We’re on a tight schedule. But hey tests are running so I’ll write a tiny bit of card/Crystal.
+How would I print a quick summary of a file? Besides ls, of course. I mean how would I print a quick summary of a file using Crystal?
+filename = &#34;#{ENV[&#34;HOME&#34;]}/Dropbox/Camera Uploads/2019-11-13 08.11.12.png&#34; puts `ls -l #{filename}` -rw-r--r-- 1 randomgeek randomgeek 3346960 Nov 13 08:11 /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>crystal</category>  <category>files</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>Been busy, but let's take a minute to summarize a file's details with [Crystal](https://crystal-lang.org/)</h2><p><img src="/post/2019/11/../../../attachments/img/2019/cover-2019-11-17.png" alt="attachments/img/2019/cover-2019-11-17.png"/></p>
+<p>Okay, I don’t have a lot of time here. We’re on a tight schedule. But hey tests are running so I’ll write a tiny bit of <a href="/card/crystal/">card/Crystal</a>.</p>
+<p>How would I print a quick summary of a file? Besides <a href="http://www.man7.org/linux/man-pages/man1/ls.1.html"><code>ls</code></a>, of course. I mean how would I print a quick summary of a file using Crystal?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Dropbox/Camera Uploads/2019-11-13 08.11.12.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="sb">`ls -l </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="sb">`</span>
+</span></span></code></pre></div><pre tabindex="0"><code>-rw-r--r-- 1 randomgeek randomgeek 3346960 Nov 13 08:11 /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
+</code></pre><p>We already looked at <a href="/post/2019/08/trying-the-crystal-language/">Crystal as a glue language</a>. No, I’m wondering more about how I would get this information using Crystal’s <a href="https://crystal-lang.org/api/">standard library</a>.</p>
+<p>Turns out I can get the same information with <a href="https://crystal-lang.org/api/File/Info.html"><code>File::Info</code></a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="nb">puts</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Dropbox/Camera Uploads/2019-11-13 08.11.12.png&#34;</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Crystal::System::FileInfo(@stat=LibC::Stat(@st_dev=2051, @st_ino=6983901, \
+  @st_nlink=1, @st_mode=33188, @st_uid=1000, @st_gid=1000, @__pad0=0,     \
+  @st_rdev=0, @st_size=3346960, @st_blksize=4096, @st_blocks=6552,        \
+  @st_atim=LibC::Timespec(@tv_sec=1573661608, @tv_nsec=641856438),        \
+  @st_mtim=LibC::Timespec(@tv_sec=1573661472, @tv_nsec=0),                \
+  @st_ctim=LibC::Timespec(@tv_sec=1573661609, @tv_nsec=941857986),        \
+  @__glibc_reserved=StaticArray[0, 0, 0]))
+</code></pre><p>This is both more and less information than I was hoping for. Clearly whoever wrote <code>to_s</code> for <code>File::Info</code> figured the main time you would need to directly print the object is when you were debugging. That makes sense, and they provide methods to get at the information I care about most.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1"># Returns a multiline string summary of a single file</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">describe_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">bytes</span> <span class="p">:</span> <span class="nb">UInt64</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">scales</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;GB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;MB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="p">,</span> <span class="s2">&#34;KB&#34;</span><span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">bytes</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="n">scale</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">bytes</span><span class="si">}</span><span class="s2"> bytes&#34;</span> <span class="p">:</span> <span class="s2">&#34;%.2f %s&#34;</span> <span class="o">%</span> <span class="o">[</span><span class="n">bytes</span> <span class="o">/</span> <span class="n">scale</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">scale</span><span class="o">[</span><span class="mi">1</span><span class="o">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">String</span><span class="o">.</span><span class="n">build</span> <span class="k">do</span> <span class="o">|</span><span class="n">str</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34;Filename: </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34;Size:     </span><span class="si">#{</span><span class="n">size</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="s2">&#34;Modified: </span><span class="si">#{</span><span class="n">info</span><span class="o">.</span><span class="n">modification_time</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Dropbox/Camera Uploads/2019-11-13 08.11.12.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="n">describe_file</span> <span class="n">filename</span>
+</span></span></code></pre></div><pre tabindex="0"><code>Filename: /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
+Size:     3.19 MB
+Modified: 2019-11-13 16:11:12 UTC
+</code></pre><p>I grabbed the logic from <a href="/post/2019/06/weighing-files-with-python/">post/2019/06/weighing-files-with-python</a> to get a description of the size in kilobytes, megabytes, or gigabytes. That is easier for my brain to understand than the <a href="https://crystal-lang.org/api/UInt64.html"><code>UInt64</code></a> integer byte count provided by <a href="https://crystal-lang.org/api/File/Info.html#size:UInt64-instance-method"><code>File::Info.size</code></a>.</p>
+<p>Yes, the whole thing is more clever than the situation requires, but I <em>am</em> trying to  learn the language here. Using a <a href="https://crystal-lang.org/api/Proc.html"><code>Proc</code></a> was one way to basically copy and paste the logic from my earlier post and reformat for Crystal. Sure, I could have — and probably should have — defined a new, separate method. At the same time, Procs are great to show that there’s this bit of behavior you want to encapsulate, but you don’t plan to use anywhere else.</p>
+<p>But really it was just a bit of late night silliness so I could see Crystal Procs in action. Silliness for the sake of learning is okay.</p>
+<p>And what did I learn?</p>
+<ul>
+<li><a href="https://crystal-lang.org/api/File/Info.html"><code>File::Info</code></a> gives me what I want for file summaries.</li>
+<li>Crystal supports <a href="https://crystal-lang.org/api/Tuple.html">Tuples</a>: special immutable lists that can be more efficient than a full <a href="https://crystal-lang.org/api/Array.html"><code>Array</code></a></li>
+<li><a href="https://crystal-lang.org/api/String.html#build%28capacity=64,&amp;block%29:self-class-method"><code>String.build</code></a> is a nice-looking way to make multiline strings without heredocs or <code>+=</code>. Apparently there are <a href="https://crystal-lang.org/reference/guides/performance.html">performance reasons</a> to use it too, but I’ll never see them in this short program. Same with Tuples really, but the type you specify can tell people what your intentions are.</li>
+<li><a href="https://crystal-lang.org/api/Proc.html"><code>Proc</code></a> argument types must be specified. That must mean the compiler treats them differently than normal methods.</li>
+</ul>
+<p>Hang on. I’m curious to explore that last one. Procs are treated differently. Are they faster?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="k">require</span> <span class="s2">&#34;benchmark&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;HOME&#34;</span><span class="o">]</span><span class="si">}</span><span class="s2">/Dropbox/Camera Uploads/2019-11-13 08.11.12.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">bytes</span> <span class="o">=</span> <span class="nb">File</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">describe_size</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scales</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;GB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;MB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="p">,</span> <span class="s2">&#34;KB&#34;</span><span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">bytes</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">bytes</span><span class="si">}</span><span class="s2"> bytes&#34;</span> <span class="p">:</span> <span class="s2">&#34;%.2f %s&#34;</span> <span class="o">%</span> <span class="o">[</span><span class="n">bytes</span> <span class="o">/</span> <span class="n">scale</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">scale</span><span class="o">[</span><span class="mi">1</span><span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">size_proc</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">bytes</span> <span class="p">:</span> <span class="nb">UInt64</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scales</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;GB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;MB&#34;</span><span class="p">},</span> <span class="p">{</span><span class="mi">1024</span><span class="p">,</span> <span class="s2">&#34;KB&#34;</span><span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span> <span class="o">=</span> <span class="n">scales</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">bytes</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">scale</span><span class="o">.</span><span class="n">nil?</span> <span class="p">?</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">bytes</span><span class="si">}</span><span class="s2"> bytes&#34;</span> <span class="p">:</span> <span class="s2">&#34;%.2f %s&#34;</span> <span class="o">%</span> <span class="o">[</span><span class="n">bytes</span> <span class="o">/</span> <span class="n">scale</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">scale</span><span class="o">[</span><span class="mi">1</span><span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Benchmark</span><span class="o">.</span><span class="n">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">benchmark</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">benchmark</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&#34;using method&#34;</span><span class="p">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">describe_size</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">benchmark</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&#34;using proc&#34;</span><span class="p">)</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">size_proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><pre tabindex="0"><code>$ crystal run --release proc_vs_def.cr
+using method   2.20M (455.45ns) (± 6.08%)  352B/op        fastest
+  using proc   2.18M (458.85ns) (± 5.46%)  352B/op   1.01× slower
+</code></pre><p>The method is almost three whole nanoseconds faster than the Proc. I wonder…</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal run --release proc_vs_def.cr
+</span></span><span class="line"><span class="cl"><span class="go">using method   2.15M (465.37ns) (± 5.93%)  352B/op   1.01× slower
+</span></span></span><span class="line"><span class="cl"><span class="go">  using proc   2.16M (462.10ns) (± 6.04%)  352B/op        fastest
+</span></span></span></code></pre></div><p>Yeah, that’s what I thought. For this case at least, local environment variations — did Spotify just hit a new track? — will have a bigger impact than whether I choose a Proc or a method.</p>
+<p>Okay, tests are done. Everything passed, yay! Back to it. Maybe back to the drawing, actually.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Trying the Crystal Language</title>
+  <link>https://randomgeekery.org/post/2019/08/trying-the-crystal-language/</link>
+  <pubDate>Sun, 25 Aug 2019 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2019/08/trying-the-crystal-language/</guid>
+  <description>card/Crystal is a statically typed, compiled programming language that looks a lot like card/Ruby. Let’s try it out! Maybe even work on a Taskwarrior thing I’ve been wanting to do.
+Motivation I want to play with a compiled language, but I’m not in the mood for Go or Rust.
+Crystal looks friendly. Similar syntax to Ruby. Statically typed, ruling out a category of silly mistakes I always make (passing the wrong kind of value).</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>crystal</category>  <category>taskwarrior</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>In which I use Crystal for a simple shell task</h2><p><img src="/post/2019/08/../../../attachments/img/2019/cover-2019-08-25.png" alt="attachments/img/2019/cover-2019-08-25.png"/></p>
+<p><a href="/card/crystal/">card/Crystal</a> is a statically typed, compiled programming language that looks a <em>lot</em> like <a href="/card/ruby/">card/Ruby</a>. Let’s try it out! Maybe even work on a <a href="/card/taskwarrior/">Taskwarrior</a> thing I’ve been wanting to do.</p>
+<h2 id="motivation">Motivation</h2>
+<p>I want to play with a compiled language, but I’m not in the mood for Go or Rust.</p>
+<p>Crystal looks friendly. Similar syntax to Ruby. Statically typed, ruling out a category of silly mistakes I always make (passing the wrong kind of value). Uses type inference, which means it can figure out what type a variable is without us telling it. Compiled, so you can run things quicker than in Ruby.</p>
+<p>The philosophy summarized on the front page of the Crystal home page is &ldquo;Fast as C, slick as Ruby&rdquo;. That works for me.</p>
+<p>I don’t care if it compiles super fast or the executable is super fast. An executable that runs quicker than my utility scripts, written in a language just as friendly, will be nice.</p>
+<h2 id="installation">Installation</h2>
+<p>The documentation provides instructions on <a href="https://crystal-lang.org/reference/installation/">how to install Crystal</a> across
+several platforms. Today I’m on my Windows partition. Though they’re working on a full Windows port, the best path for now is to use <a href="https://brew.sh/">Homebrew</a> on <em>inbox/WSL</em>.</p>
+<pre tabindex="0"><code>$ brew install crystal
+...
+$ crystal version
+Crystal 0.30.1 (2019-08-15)
+LLVM: 8.0.1
+Default target: x86_64-unknown-linux-gnu
+</code></pre><p><code>crystal</code> provides a collection of subcommands.</p>
+<pre tabindex="0"><code>$ crystal help
+
+Usage: crystal [command] [switches] [program file] [--] [arguments]
+
+Command:
+    init                     generate a new project
+    build                    build an executable
+    docs                     generate documentation
+    env                      print Crystal environment information
+    eval                     eval code from args or standard input
+    play                     starts Crystal playground server
+    run (default)            build and run program
+    spec                     build and run specs (in spec directory)
+    tool                     run a tool
+    help, --help, -h         show this help
+    version, --version, -v   show version
+</code></pre><p>Oh my there are some interesting commands in there! I’ll just focus on the ones that result in me running code.</p>
+<h2 id="one-liners-with-eval">One-liners with <code>eval</code></h2>
+<p>Crystal does not ship with an interactive shell. Makes sense, considering that it’s supposed to be a compiled language. Still, it’s more flexible than I expected. If all I want is a one-liner, Crystal can do that!</p>
+<pre tabindex="0"><code>$ crystal eval &#39;puts &#34;Hi!&#34;&#39;
+Hi!
+</code></pre><p>Okay, that wasn’t super exciting. What about pretty-printing the current environment variables?</p>
+<pre tabindex="0"><code>$ crystal eval &#39;pp ENV&#39;
+{&#34;BF&#34; =&gt; &#34;$albumartist | $album | $track/$tracktotal | $title&#34;,
+&#34;BREW_PREFIX&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew&#34;,
+&#34;CLICOLOR&#34; =&gt; &#34;1&#34;,
+...
+&#34;_&#34; =&gt; &#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;,
+&#34;wg_date&#34; =&gt; &#34;#[]%Y-%m-%d %H:%M%z#[default]&#34;}
+</code></pre><p><a href="https://crystal-lang.org/api/ENV.html">ENV</a> is a Hash-like accessor. You can access and iterate through environment variables as if they were keys in a Hash.</p>
+<pre tabindex="0"><code>$ crystal eval &#39;ENV.each { |k, v| puts &#34;#{k}: #{v}&#34; }&#39;
+</code></pre><p>Except that the <code>pp</code> output was sorted. That’s fine. We’ll sort the keys.</p>
+<pre tabindex="0"><code>$ crystal eval &#39;ENV.keys.sorted.each { |k| puts &#34;#{k}: #{ENV[k]}&#34; }&#39;
+</code></pre><p>Printing data as JSON is a pretty common task. Common enough that it’s a Hash method here. Except ENV isn’t a <a href="https://crystal-lang.org/api/Hash.html">Hash</a>. It’s a &ldquo;Hash-like accessor.&rdquo;</p>
+<p>No problem, we can make a Hash from <code>ENV</code>.</p>
+<pre tabindex="0"><code>$ crystal eval &#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;
+{&#34;NVM_DIR&#34;:&#34;/home/random/.nvm&#34;,&#34;HOSTTYPE&#34;:&#34;x86_64&#34;,&#34;PYENV_HOME&#34;:&#34;/home/random/.pyenv&#34;, ...
+&#34;WSLENV&#34;:&#34;&#34;,&#34;_&#34;:&#34;/home/linuxbrew/.linuxbrew/bin/crystal&#34;}
+</code></pre><p>Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I know I can fix this from inside Crystal, but my one-liner would get clunky. Hey, this is a one-liner. Let’s pipe it to <a href="https://stedolan.github.io/jq/">jq</a>!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
+</span></span></code></pre></div><p>There, now it’s all pretty-printed.</p>
+<p><img src="/post/2019/08/attachments/img/2019/crystal-env-jq.png" alt="Colorized JSON via jq"/></p>
+<p>One-liners are fun.</p>
+<p>What was I doing next? Oh right. Crystal source files.</p>
+<h2 id="shell-scripts-with-run">Shell scripts with <code>run</code></h2>
+<p>I have no idea how to do dependency management in Crystal yet. Something
+about <a href="https://crystal-lang.org/reference/the_shards_command/">shards</a>. But even stock Crystal looks like it would work as a glue language for shell scripts. Plus, the <code>run</code> command lets you ignore the build process and pretend your code is being run directly.</p>
+<p><strong><code>hello-user.cr</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env crystal</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Who are you? &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="nb">gets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&#34;USER&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;Hey there </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tasks</span> <span class="o">=</span> <span class="sb">`task +DUE count`</span><span class="o">.</span><span class="n">to_i</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;You have </span><span class="si">#{</span><span class="n">tasks</span><span class="si">}</span><span class="s2"> tasks due.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;Better get on it!&#34;</span> <span class="k">if</span> <span class="n">tasks</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="s2">&#34;I was not expecting you to say </span><span class="se">\&#34;</span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><ul>
+<li>Since <code>run</code> is the default command, you could make a plain old Crystal script! What can I say, I like the old ways.</li>
+<li>Crystal ignores trailing whitespace in <code>to_i</code>. You’ll still want to <code>chomp</code> when examining the output of a command.</li>
+</ul>
+<pre tabindex="0"><code>$ chmod 700 hello-user.cr
+$ ./hello-user.cr
+Who are you? random
+Hey there random!
+You have 3 tasks due.
+Better get on it!
+</code></pre><p>Remember, this is just me using <code>#!</code> to say <code>crystal run hello-user.cr</code></p>
+<p>It looks a <em>lot</em> like Ruby. You could take out that <code>#!</code> and it would <em>almost</em> work as-is.</p>
+<pre tabindex="0"><code>$ ruby hello-user.cr
+Who are you? random
+I was not expecting you to say &#34;random
+&#34;!
+</code></pre><p>Almost.</p>
+<h2 id="build"><code>build</code></h2>
+<p>Okay, directly running scripts is great for testing or quick tasks, but Crystal <em>is</em> a compiled language. Let’s compile something.</p>
+<p><a href="https://twitter.com/pjf/status/852466839145795584">Paul Fenwick</a> and <a href="https://jacoby.github.io/2017/10/25/making-taskwarrior-work-for-me.html">Dave Jacoby</a> have — or had, no idea if they still do — a neat trick to show quick task status in their shell prompt. I’ll do the same thing, but in Crystal.</p>
+<p><strong><code>task-indicator.cr</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-crystal" data-lang="crystal"><span class="line"><span class="cl"><span class="no">URGENT</span>       <span class="o">=</span> <span class="sc">&#39;\u{2757}&#39;</span>  <span class="c1"># exclamation</span>
+</span></span><span class="line"><span class="cl"><span class="no">DUE_TOMORROW</span> <span class="o">=</span> <span class="sc">&#39;\u{1f4c5}&#39;</span> <span class="c1"># calendar</span>
+</span></span><span class="line"><span class="cl"><span class="no">DUE_TODAY</span>    <span class="o">=</span> <span class="sc">&#39;\u{1f631}&#39;</span> <span class="c1"># screaming</span>
+</span></span><span class="line"><span class="cl"><span class="no">OVERDUE</span>      <span class="o">=</span> <span class="sc">&#39;\u{2620}&#39;</span>  <span class="c1"># ded</span>
+</span></span><span class="line"><span class="cl"><span class="no">OK</span>           <span class="o">=</span> <span class="s2">&#34;$&#34;</span>         <span class="c1"># normal</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">has_ready_tasks</span><span class="p">(</span><span class="n">extra_filter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="sb">`task +READY </span><span class="si">#{</span><span class="n">extra_filter</span><span class="si">}</span><span class="sb"> count`</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">task_indicator</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span>
+</span></span><span class="line"><span class="cl">  <span class="k">when</span> <span class="n">has_ready_tasks</span><span class="p">(</span><span class="s2">&#34;+OVERDUE&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="no">OVERDUE</span>
+</span></span><span class="line"><span class="cl">  <span class="k">when</span> <span class="n">has_ready_tasks</span><span class="p">(</span><span class="s2">&#34;+TODAY&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="no">DUE_TODAY</span>
+</span></span><span class="line"><span class="cl">  <span class="k">when</span> <span class="n">has_ready_tasks</span><span class="p">(</span><span class="s2">&#34;+TOMORROW&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="no">DUE_TOMORROW</span>
+</span></span><span class="line"><span class="cl">  <span class="k">when</span> <span class="n">has_ready_tasks</span><span class="p">(</span><span class="s2">&#34;urgency </span><span class="se">\\</span><span class="s2">&gt; 10&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="no">URGENT</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;$&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">task_indicator</span>
+</span></span></code></pre></div><p>Does it work?</p>
+<pre tabindex="0"><code>$ crystal run task-indicator.cr
+{{}}
+</code></pre><p>Yeah, I know. I’m working on it. <em>Anyways</em> let’s build this thing.</p>
+<pre tabindex="0"><code>$ crystal build task-indicator.cr
+$ ls -lhF
+total 1.3M
+-rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
+</code></pre><p>There’s a new executable called <code>task-indicator</code>. It’s not exactly small, but it produces the same output. Yes, the screaming face.</p>
+<h2 id="build---release"><code>build --release</code></h2>
+<p>The default build includes a lot of debugging information that I won’t need in my daily usage. I’ll make a release version.</p>
+<pre tabindex="0"><code>$ crystal build --release task-indicator.cr -o task-indicator-release
+$ ls -lhF
+total 2.0M
+-rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
+-rwxrwxr-x 1 random random 665K Aug 25 14:23 task-indicator-release*
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
+</code></pre><p>I didn’t <em>have</em> to give it a different name. I wanted to see the size difference between debug and release builds.</p>
+<pre tabindex="0"><code>$ cp task-indicator-release ~/bin/task-indicator
+</code></pre><p>Then over in my <code>.bashrc</code>:</p>
+<p><strong><code>~/.bashrc</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Terminal colours (after installing GNU coreutils)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NM</span><span class="o">=</span><span class="s2">&#34;\[\033[0;38m\]&#34;</span>  <span class="c1"># means no background and white lines</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;34m\]&#34;</span>  <span class="c1"># change this for username letter colors</span>
+</span></span><span class="line"><span class="cl"><span class="nv">HII</span><span class="o">=</span><span class="s2">&#34;\[\033[0;31m\]&#34;</span> <span class="c1"># change this for hostname letter colors</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SI</span><span class="o">=</span><span class="s2">&#34;\[\033[0;33m\]&#34;</span>  <span class="c1"># this is for the current directory</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IN</span><span class="o">=</span><span class="s2">&#34;\[\033[0;0m\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span>
+</span></span></code></pre></div><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
+<p>Nice.</p>
+<p>At first I put the output of <code>task-indicator</code> in a variable, and put the variable in <code>$PS1</code>. Except that variable was only evaluated on shell start. Instead put the invocation directly in <code>$PS1</code> with a leading backslash. Now the indicator is live, as I expected it to be.</p>
+<h2 id="done">Done!</h2>
+<p>I wanted to learn some basic Crystal usage and find ways to work the language into my daily shell routine. With <code>eval</code>, <code>run</code>, and <code>build</code> all at my disposal, it sure looks like a success! I even used Crystal to make a Taskwarrior indicator, which has been on my task list since last year.</p>
+<p>I don’t know yet if Crystal is <em>better</em> than Ruby. Even at this early point it’s just as useful and just as much fun. Since &ldquo;be useful and have fun&rdquo; is a major thing for me, I’ll be exploring Crystal more!</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

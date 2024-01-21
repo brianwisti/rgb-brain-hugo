@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>emacsonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/emacs/</link>
+    <description>
+      Recent contentinemacs on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 11 Jun 2022 10:05:12 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: [2022-06-11 Sat 10:05]</title>
+  <link>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</link>
+  <pubDate>Sat, 11 Jun 2022 10:05:12 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</guid>
+  <description>&lt;p&gt;Got Org Babel playing nice with TypeScript thanks to &lt;a href=&#34;https://github.com/lurdan/ob-typescript&#34;&gt;ob-typescript&lt;/a&gt;. It’s a wild Saturday morning here.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png&#34; alt=&#34;attachments/img/2022-06-11-emacs-typescript.png&#34;/&gt;
+Takes a bit to get there on WSL but the code &lt;em&gt;does&lt;/em&gt; run&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Got Org Babel playing nice with TypeScript thanks to <a href="https://github.com/lurdan/ob-typescript">ob-typescript</a>. It&rsquo;s a wild Saturday morning here.</p>
+<p><img src="/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png" alt="attachments/img/2022-06-11-emacs-typescript.png"/>
+Takes a bit to get there on WSL but the code <em>does</em> run</p>
+<p>That required a few more lines in my config, but not <em>too</em> many.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ob-typescript</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="cl">  <span class="ss">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">&#39;org-babel-load-languages</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&#39;</span><span class="p">((</span><span class="nv">typescript</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span>
+</span></span></code></pre></div><p>I also followed my own  <a href="/post/2022/05/2022-05-12-thu-2302/">advice</a> and added <a href="https://github.com/ananthakumaran/tide">Tide</a> for TypeScript support in Emacs. Just copied and pasted from all the links, so config&rsquo;s a bit of a mess.</p>
+<p>Oh hey that&rsquo;s right I still need to take my ADHD meds. I&rsquo;ll go do that now.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-21 Sat 17:44]  My basic org-roam-dailies capture template</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-21-sat-1744-my-basic-org-roam-dailies-capture-template/</link>
+  <pubDate>Sat, 21 May 2022 17:51:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-21-sat-1744-my-basic-org-roam-dailies-capture-template/</guid>
+  <description>Just a really mild adjustment to the org-roam-dailies “sane default configuration.” Main difference is an inactive timestamp like I have for the tumblelog — I like having a chronology — and some file tags.
+(setq org-roam-dailies-capture-templates &#39;((&#34;j&#34; &#34;Jot&#34; entry &#34;* %U %?&#34; :target (file&#43;head &#34;%&lt;%Y-%m-%d&gt;.org&#34; &#34;#&#43;title: %&lt;%Y-%m-%d&gt;\n#&#43;filetags: %&lt;:%Y:%B&gt;\n&#34;) :unarrowed t))) I may go past this with specific templates for tasks and bookmarks. But first I need to make sure this basic setup works for me.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Just a really mild adjustment to the <a href="https://www.orgroam.com/manual.html#org_002droam_002ddailies">org-roam-dailies</a> &ldquo;sane default configuration.&rdquo; Main difference is an inactive timestamp like I have for the tumblelog &mdash; I like having a chronology &mdash; and some file tags.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-dailies-capture-templates</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;j&#34;</span> <span class="s">&#34;Jot&#34;</span> <span class="nv">entry</span> <span class="s">&#34;* %U %?&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:target</span> <span class="p">(</span><span class="nv">file+head</span> <span class="s">&#34;%&lt;%Y-%m-%d&gt;.org&#34;</span>
+</span></span><span class="line"><span class="cl">                            <span class="s">&#34;#+title: %&lt;%Y-%m-%d&gt;\n#+filetags: %&lt;:%Y:%B&gt;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:unarrowed</span> <span class="no">t</span><span class="p">)))</span>
+</span></span></code></pre></div><p>I may go past this with specific templates for tasks and bookmarks. But first I need to make sure this basic setup works for me.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-12 Thu 23:02]</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-12-thu-2302/</link>
+  <pubDate>Thu, 12 May 2022 23:04:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-12-thu-2302/</guid>
+  <description>Promised I’d go to bed before 11pm. Oops. Okay but just getting this link to Tide — TypeScript Interactive Development Environment for Emacs — before I go brush my teeth.
+Also? I need to fiddle with my capture template logic for these notes, so it exports the subtree when I file from wherever.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>emacs</category>  <category>typescript</category> 
+  <content:encoded><![CDATA[<p>Promised I&rsquo;d go to bed before 11pm. Oops. Okay but just getting this link to <a href="https://github.com/ananthakumaran/tide">Tide</a> &mdash; <em>TypeScript Interactive Development Environment</em> for Emacs &mdash; before I go brush my teeth.</p>
+<p>Also? I need to fiddle with my capture template logic for these notes, so it exports the subtree when I file from wherever.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-12 Thu 09:17]</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-12-thu-0917/</link>
+  <pubDate>Thu, 12 May 2022 09:21:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-12-thu-0917/</guid>
+  <description>Seeing if I set up ox-hugo auto-export correctly. Yep, though it didn’t apply until I reverted / reloaded this Org buffer.
+SITE/.dir-locals.el looks like this:
+((&#34;content-org/&#34; . ((org-mode . ((eval . (org-hugo-auto-export-mode))))))) Now ox-hugo exports the current subtree every time I save.
+Saving file /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md... Wrote /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md Okay cool. Anyways, back to work.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Seeing if I set up <code>ox-hugo</code> <a href="https://ox-hugo.scripter.co/doc/auto-export-on-saving/">auto-export</a> correctly. Yep, though it didn&rsquo;t apply until I reverted / reloaded this Org buffer.</p>
+<p><code>SITE/.dir-locals.el</code> looks like this:</p>
+<p><a id="code-snippet--.dir-locals.el"></a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">((</span><span class="s">&#34;content-org/&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span> <span class="p">((</span><span class="nv">org-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nf">eval</span> <span class="o">.</span> <span class="p">(</span><span class="nv">org-hugo-auto-export-mode</span><span class="p">)))))))</span>
+</span></span></code></pre></div><p>Now <code>ox-hugo</code> exports the current subtree every time I save.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Saving file /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md...
+</span></span><span class="line"><span class="cl">Wrote /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md
+</span></span></code></pre></div><p>Okay cool. Anyways, back to work.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-10 Tue 05:51]</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-10-tue-0551/</link>
+  <pubDate>Tue, 10 May 2022 05:56:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-10-tue-0551/</guid>
+  <description>&lt;p&gt;Oh, and I’m working up yet another Emacs config reset, to simplify the learning process while reading &lt;a href=&#34;https://www.masteringemacs.org&#34;&gt;Mastering Emacs&lt;/a&gt;. Using &lt;a href=&#34;https://git.sr.ht/~technomancy/better-defaults&#34;&gt;better-defaults&lt;/a&gt; as the core.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Oh, and I&rsquo;m working up yet another Emacs config reset, to simplify the learning process while reading <a href="https://www.masteringemacs.org">Mastering Emacs</a>. Using <a href="https://git.sr.ht/~technomancy/better-defaults">better-defaults</a> as the core.</p>
+<p>Much more modest than my <a href="https://randomgeekery.org/config/emacs/nano/">nano-based</a> config. For now, at least. I&rsquo;ll add it to my config pages eventually. First I need to catch up with work stuff.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-05 Thu 11:46]</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-05-thu-1146/</link>
+  <pubDate>Thu, 05 May 2022 11:50:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-05-thu-1146/</guid>
+  <description>My only intentional use of Emacs at the moment is assorted Org mode tools, but even at that level it’d sure help to get more comfortable with it.
+Got myself a copy of Mastering Emacs to fill in a few of the gaps between C-h t and wherever I’ve been at for the last few years.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>reading</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<p>My only <em>intentional</em> use of Emacs at the moment is assorted <a href="https://orgmode.org">Org mode</a> tools, but even at that level it&rsquo;d sure help to get more comfortable with it.</p>
+<p>Got myself a copy of <a href="https://masteringemacs.org">Mastering Emacs</a> to fill in a few of the gaps between <code>C-h t</code> and wherever I&rsquo;ve been at for the last few years.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-05-02 Mon 14:56]</title>
+  <link>https://randomgeekery.org/post/2022/05/2022-05-02-mon-1456/</link>
+  <pubDate>Mon, 02 May 2022 15:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/05/2022-05-02-mon-1456/</guid>
+  <description>Note added with a capture template, though I still need to manually assemble a bit.
+(setq org-capture-templates &#39;((&#34;t&#34; &#34;Tumblelog&#34; entry (file&#43;olp&#43;datetree bmw/tumble-log) &#34;* %U %?\n:properties:\n:export_file_name: nnn.md\n:end:\n&#34;) )) Less manual construction than a couple minutes ago!
+I’ll have to learn some Elisp to make it work how it does in my head.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Note added with a capture template, though I still need to manually assemble a bit.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-capture-templates</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;t&#34;</span> <span class="s">&#34;Tumblelog&#34;</span> <span class="nv">entry</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/tumble-log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;* %U %?\n:properties:\n:export_file_name: nnn.md\n:end:\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span>
+</span></span></code></pre></div><p>Less manual construction than a couple minutes ago!</p>
+<p>I&rsquo;ll have to learn some Elisp to make it work how it does in my head.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Added an Emacs config based off of nano-emacs</title>
+  <link>https://randomgeekery.org/post/2022/02/added-nano-based-emacs-config/</link>
+  <pubDate>Sat, 19 Feb 2022 23:30:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/02/added-nano-based-emacs-config/</guid>
+  <description>screenshot of the Emacs setup in question, with org-roam-ui nearby
+A lot of fiddling with Emacs today. Thought I’d try something not so much “vanilla” as on fewer predetermined rails than the average Doom Emacs config.
+This new config starts from nano-emacs, a rather streamlined setup. Of course I enjoyed cluttering it up.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>org-config</category>  <category>emacs</category>  <category>it-keeps-me-out-of-trouble</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2022/02/../../../attachments/img/2022/cover-2022-02-19.png" alt="attachments/img/2022/cover-2022-02-19.png"/>
+screenshot of the Emacs setup in question, with org-roam-ui nearby</p>
+<p>A <em>lot</em> of fiddling with Emacs today. Thought I&rsquo;d try something not so much &ldquo;vanilla&rdquo; as on fewer predetermined rails than the average <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> config.</p>
+<p>This new config starts from <a href="https://github.com/rougier/nano-emacs">nano-emacs</a>, a rather streamlined setup. Of <em>course</em> I enjoyed cluttering it up.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Learning a little elisp</title>
+  <link>https://randomgeekery.org/post/2020/12/learning-a-little-elisp/</link>
+  <pubDate>Sat, 19 Dec 2020 16:30:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/12/learning-a-little-elisp/</guid>
+  <description>&lt;p&gt;Excuse me while I share a sleep-deprived ramble from last night through about five lines of &lt;a href=&#34;https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html&#34;&gt;Emacs Lisp&lt;/a&gt;, the extension language for &lt;a href=&#34;https://randomgeekery.org/card/emacs/&#34;&gt;Emacs&lt;/a&gt;&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>elisp</category>  <category>emacs</category>  <category>org-mode</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<h2>Don't get impressed yet</h2><p>Excuse me while I share a sleep-deprived ramble from last night through about five lines of <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html">Emacs Lisp</a>, the extension language for <a href="/card/emacs/">Emacs</a></p>
+<p>There&rsquo;s <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html">tons</a> of <a href="https://caiorss.github.io/Emacs-Elisp-Programming/">detailed</a> information about Emacs LISP — aka Emacs Lisp, elisp, ELisp, and &ldquo;oh my god they love parentheses&rdquo; — out there.  I just want my old &ldquo;Babysteps&rdquo; approach, so all the detailed sites won&rsquo;t be so intimidating.</p>
+<p>Gotta do it myself, I guess.</p>
+<h2 id="why">Why</h2>
+<p>So far I have treated elisp as an arcane configuration language.  But it’s so much more than that.  It’s also an arcane <em>programming</em> language.  I do love learning programming languages.</p>
+<p>I’ll have an easier time configuring Emacs, and most likely get strange new ideas for ways to extend my frenemy text editing environment.</p>
+<h2 id="how">How</h2>
+<p>Using <a href="https://www.gnu.org/software/emacs/">Emacs</a>, of course!  A little bit with the deep integration for both <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/emacs/Lisp-Eval.html#Lisp-Eva">evaluation</a> and documentation_ of Lisp.  Probably a bit more with <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Org Babel</a>, which provides a layer for evaluating code and exporting the results — say, for example, to a blog post like this one.</p>
+<p>Expect side notes about <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, since that’s the flavor I use lately.</p>
+<h2 id="lets-get-started">Let’s get started</h2>
+<p>I looked up &ldquo;Hello World in ELisp&rdquo; and found something like this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hey World!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="elisp-evaluation">ELisp evaluation</h3>
+<p>Want to write some Emacs Lisp? Here you go.</p>
+<ul>
+<li>open Emacs</li>
+<li>type <code>(message &quot;Hey World!&quot;)</code></li>
+<li>put your cursor — the <em>point</em> — just outside the closing parenthesis.</li>
+<li>Hit <em>C-x e</em></li>
+<li>Emacs prints <code>Hey World!</code></li>
+</ul>
+<p>Boom.  Done.</p>
+<p>The <code>()</code> indicate an <a href="https://en.wikipedia.org/wiki/S-expression">s-expression</a>.  That’s a <em>symbolic expression</em>, or <em>sexpr</em> if you’re cool.  S-expressions aren’t quite the atoms of a Lisp program.  There are smaller bits, like the symbol <code>message</code> or the value <code>&quot;Hey World!&quot;</code>.  But it’s the smallest <em>useful</em> element.  Oh I know.  S-expressions are the <em>molecules</em> of a Lisp program.</p>
+<p>No?  How about words vs sentences?  Okay, whatever.</p>
+<p>This particular s-expression holds an <em>ordered pair</em>, <code>message</code> and <code>&quot;Hey World!&quot;</code>.  <em>Pair</em> because there are two items.  <em>Ordered</em> because the order matters.</p>
+<p>When ELisp sees an ordered pair, it knows what to do:</p>
+<ul>
+<li>figure out what it gets from the second thing</li>
+<li>hand that to the first thing</li>
+<li>hand <em>that</em> result to you</li>
+</ul>
+<p>The part that feels magic is each of the items in the pair can be s-expressions too!  Try <code>(sqrt (* 37 37))</code>.  <code>37.0</code>, right?</p>
+<p>That <code>*</code> is for multiplication.  So we’re multiplying <code>37</code> by <code>37</code> and proving to ourselves that <code>sqrt</code> hands us back <code>37</code>.  It’s a bit of a pointless example, but hey welcome to me learning stuff.  And there’s my first lesson:</p>
+<p>A Lisp program is pretty much just infinitely nested s-expressions.</p>
+<p>And macros.  Macros, near as I can tell, are infinitely nested s-expressions with gloves and a nice hat.</p>
+<p>BTW I don’t know Lisp.  I hope you did not come here expecting a tutorial.</p>
+<h3 id="elisp-documentation">ELisp documentation</h3>
+<p>When we have a question about ELisp functions, we don’t need to look everything up online.  Emacs comes with notes.</p>
+<ul>
+<li>put <em>point</em> over <code>message</code> in <code>(message &quot;Hey world!&quot;)</code></li>
+<li>hit <code>C-h f</code></li>
+<li>see the prompt asking me to specify a function, with <code>message</code> pre-filled</li>
+<li>hit <code>ENTER</code></li>
+<li>Learn things!</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!</p>
+</blockquote>
+<h3 id="elisp-in-org-babel">ELisp in Org Babel</h3>
+<p>This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my <a href="/config/">config</a> smarter.  For example, only tangle a section if it’s relevant for that machine.</p>
+<p>And, of course, really handy for blogging about ELisp.</p>
+<blockquote>
+<p>[!NOTE]
+Configuration of Org and Babel is traditionally an elaborate ritual.  In Doom, it’s enough for this post to enable <code>org</code>.</p>
+<p>Somewhere in my <code>init.el</code> I have these lines.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="nb">:lang</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">org</span> <span class="nv">+roam</span> <span class="nv">+hugo</span><span class="p">)</span>
+</span></span></code></pre></div><p>Okay, I added <code>+hugo</code> since I’m using <code>ox-hugo</code> to integrate with my workflow. And <code>+roam</code> because <a href="https://www.orgroam.com/">org-roam</a> is kinda cool.  But not relevant for today.</p>
+</blockquote>
+<p>I need a code block written in a language that Babel knows.  It should not
+surprise us that Babel knows ELisp.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+begin_src elisp
+</span></span><span class="line"><span class="cl">(message &#34;Hey World!&#34;)
+</span></span><span class="line"><span class="cl">#+end_src
+</span></span></code></pre></div><p>I press <kbd>C-c C-c</kbd> with <em>point</em> over the code block.</p>
+<blockquote>
+<p>[!NOTE]
+Or <kbd>ENTER</kbd> in Doom.</p>
+</blockquote>
+<p>Suddenly: a <code>#+RESULTS:</code> block!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+RESULTS:
+</span></span><span class="line"><span class="cl">: Hey World!
+</span></span></code></pre></div><p>I can also write my ELisp inline:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">src_elisp{(sqrt (* 37 37))}, right?
+</span></span></code></pre></div><p>Written like this, Babel replaces my code with its result when <code>ox-hugo</code> exports the post.</p>
+<p>All right. That’s the very basics of evaluating ELisp in Emacs generally and Org mode in particular.</p>
+<p>Let’s get back to the code, please. How do I do variables?</p>
+<h2 id="displaying-a-variable">Displaying a variable</h2>
+<p>Let’s see. <code>setq</code> to set a variable for my name. identifiers can be pretty much whatever. I’ll use lowercase letters and a hyphen.</p>
+<p>Looks like <code>format</code> can smush it into a string for <code>message</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">my-name</span> <span class="s">&#34;Brian&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;hello %s&#34;</span> <span class="nv">my-name</span><span class="p">))</span>
+</span></span></code></pre></div><p><code>format</code> does its work and hands the result back to <code>message</code>, which displays the result.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">hello Brian
+</span></span></code></pre></div><p>Thing is, now <code>my-name</code> is floating around forever what with being a global variable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="nv">my-name</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Brian
+</span></span></code></pre></div><p>What if I used a local variable instead?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">new-name</span> <span class="s">&#34;Whozzomongo&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">message</span> <span class="nv">new-name</span><span class="p">))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Whozzomongo
+</span></span></code></pre></div><p>But back out here it doesn’t exist.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">new-name</span><span class="p">)</span>
+</span></span></code></pre></div><p>You don’t see anything out here, but when I tried to <kbd>C-c C-c</kbd> that, Emacs complained:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Symbol’s function definition is void: new-name
+</span></span></code></pre></div><p>I consider that a good thing. Global variables make me nervous, especially in long-running applications.</p>
+<p>So I know how to set global or local variables.  I know how to display them.</p>
+<p>How to get them from the user?</p>
+<h2 id="getting-user-input">Getting user input</h2>
+<p><a href="http://www.ergoemacs.org/emacs/elisp%5Fidioms%5Fprompting%5Finput.html">Xah Lee</a> gives a nice rundown on how to get user input. <code>read-string</code> is the one I want.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-string</span> <span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>read-string</code> returns whatever I answer.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Waffle Smasher The Magnificent Pineapple
+</span></span></code></pre></div><p>Let’s make a question prompt.  The inside-out approach of nested evaluation confuses me a bit, so I’ll happily let Emacs indent things however it wants.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">let</span>
+</span></span><span class="line"><span class="cl">     <span class="p">((</span><span class="nv">question</span> <span class="s">&#34;What&#39;s your name?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Go to bed, %s!&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nf">message</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question</span><span class="p">)))))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Go to bed, Dude!
+</span></span></code></pre></div><p>I did some things.  <code>read-string</code> puts the cursor right after the <code>question</code> prompt.  So to help myself while I’m figuring all this out, I created some local variables.  <code>question</code> holds the question to be answered. <code>message</code> holds the —</p>
+<p>Wait, there’s already a global <em>standard</em> function called <code>message</code>!</p>
+<p>It’s cool.  By the time I need the function, <code>let</code> is done and my variable
+doesn’t exist.  Still.  I shouldn’t make this a habit.</p>
+<h2 id="wrapping-it-in-a-function">Wrapping it in a function</h2>
+<p>I wasn’t planning on looking at functions today, but I’m more than halfway there already.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">ask-and-respond</span> <span class="p">(</span><span class="nv">question-for-user</span> <span class="nv">our-response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Ask the user a question and show them a response.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nv">our-response</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question-for-user</span><span class="p">)))))</span>
+</span></span></code></pre></div><p>Use the <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/defun.html#defun">defun</a> macro to <em>define functions</em>. It’s similar enough to function definitions in other languages.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">NAME</span> <span class="p">(</span><span class="nv">ARGUMENTS</span><span class="err">…</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;A docstring&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">THE</span> <span class="nv">CODE</span><span class="p">)</span>
+</span></span></code></pre></div><p>Though there are some differences right off the bat.  <code>ask-and-respond</code> needs user input.  ELisp requires I mark those as interactive_.</p>
+<p>Other than <em>that</em> it’s similar enough to function definitions in other languages.</p>
+<p>I already know how to call a function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ask-and-respond</span> <span class="s">&#34;What&#39;s your name?&#34;</span> <span class="s">&#34;Goodnight, %s!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Goodnight, Brian!
+</span></span></code></pre></div><p>Okay, time to take my own hint.  Good night!</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Emacs in a Box</title>
+  <link>https://randomgeekery.org/post/2020/12/caiorss-github-io/</link>
+  <pubDate>Sun, 13 Dec 2020 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/12/caiorss-github-io/</guid>
+  <description>Emacs In a Box - Elisp Programming and Customization
+Maybe the bookmark should have been to the Elisp Snippets page. That’s the one I keep going back to. The whole site is a well-organized collection of notes on using and extending Emacs.</description>
+   <category>post</category> 
+   <category>bookmark</category> 
+   <category>emacs</category>  <category>elisp</category> 
+  <content:encoded><![CDATA[<p><a href="https://caiorss.github.io/Emacs-Elisp-Programming/">Emacs In a Box - Elisp Programming and Customization</a></p>
+<p>Maybe the bookmark should have been to the <a href="https://caiorss.github.io/Emacs-Elisp-Programming/Elisp_Snippets.html">Elisp Snippets</a> page.
+That&rsquo;s the one I keep going back to. The whole site is a well-organized collection of notes on using and extending <a href="/card/emacs/">Emacs</a>.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

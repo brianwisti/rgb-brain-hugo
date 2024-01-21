@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>unixonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/unix/</link>
+    <description>
+      Recent contentinunix on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Fri, 29 Jun 2007 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/unix/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: I&#39;m too cheap to buy a radio alarm</title>
+  <link>https://randomgeekery.org/post/2007/06/im-too-cheap-to-buy-a-radio-alarm/</link>
+  <pubDate>Fri, 29 Jun 2007 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2007/06/im-too-cheap-to-buy-a-radio-alarm/</guid>
+  <description>&lt;p&gt;I have trouble waking up on time. That’s probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it’s 1:40 in the morning right now and I’m writing a little blog post instead of going to bed.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>applescript</category>  <category>os-x</category>  <category>unix</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I have trouble waking up on time. That&rsquo;s probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it&rsquo;s 1:40 in the morning right now and I&rsquo;m writing a little blog post instead of going to bed.</p>
+<p>I&rsquo;m working on getting to sleep earlier. Hey, I might even be to bed by 2, instead of 3 or 3:30. Waking up takes a few tricks. Say, for example: an alarm clock that&rsquo;s too big for me to pick it up and stuff under my pillow like a gift for the tooth fairy. A loud annoying beeping gift. How about getting a bigger alarm and putting across the room? Well you would expect that to work, but apparently I can get up, walk over to the alarm, hit the snooze, pick up the alarm, bring it back to bed, and stuff the alarm under the bed for the tooth fairy again, all without actually waking up.</p>
+<p>Yes, one issue is that the alarm clocks are battery powered. We live in a small, old apartment, and there just aren&rsquo;t enough outlets to go around. I had to unplug the lamp so that I could plug the computer in and type this.</p>
+<p>But I have found a solution, or at least something which is not so easily circumvented. I&rsquo;ve turned our beautiful iMac G4 into a glorified radio alarm. Turns out that it was actually quite simple. First I needed an application that plays music. Right, that would be iTunes. Next, I need a radio station that both of us like. Why not just use a playlist? I don&rsquo;t know, I guess I actually wanted this to be a <span style="font-style: italic;">radio</span> alarm. I&rsquo;m odd. I do crazy things. I stash timepieces under my pillow, and blog in the middle of the night. Really, a radio station feed is not the strangest idea I&rsquo;ve had.</p>
+<p>Should I use our local <a href="http://npr.org/">NPR</a>affiliate? No, I don&rsquo;t think so. Light jazz mixed with news and traffic reports are <em>not</em> going to make us jump out of bed all energized. I decided to use my favorite college station, <a href="/card/kexp/">card/KEXP</a>. The morning DJ is good, and
+the morning selection is fantastic unless it&rsquo;s Winter and his <a href="http://www.sada.org.uk/">SAD</a>has kicked in.</p>
+<p>I&rsquo;ve got my app, I&rsquo;ve got my radio station feed. Now a little AppleScript to automate the process of firing up and playing the station. I haven&rsquo;t experimented much with AppleScript, but there&rsquo;s no time like the present for putting a simple script together:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-applescript" data-lang="applescript"><span class="line"><span class="cl"><span class="c">-- PlayKEXP.applescript</span>
+</span></span><span class="line"><span class="cl"><span class="c">--  Play the KEXP live stream</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&#34;iTunes&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">set</span> <span class="na">sound</span> <span class="na">volume</span> <span class="k">to</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">play</span> <span class="nv">user</span> <span class="nv">playlist</span> <span class="s2">&#34;KEXP Live&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span> <span class="k">tell</span>
+</span></span></code></pre></div><p>I test it with <code>osascript PlayKEXP.applescript</code>. It works like a charm.</p>
+<p>Now to set this alarm so it goes off at a set time every day. This is the part where I really love the UNIXy goodness of OS X. I can just use crontab. So here&rsquo;s my new crontab file:</p>
+<pre tabindex="0"><code># minute/hour/mday/month/wday/command
+30  6   *   *   *   osascript /Users/brian/iTunesScripts/PlayKEXP.applescript
+</code></pre><p>Then I make sure that crontab knows about the task:</p>
+<pre tabindex="0"><code>$ crontab mycrontab
+</code></pre><p>This was my first time using crontab for a personal task as well. It&rsquo;s awesome. Every morning at 6:30 iTunes will set the volume and start playing the KEXP broadcast.</p>
+<p>So there you have it. It&rsquo;s simple and it works. I&rsquo;m going to bed now.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: GNU screen</title>
+  <link>https://randomgeekery.org/post/2007/01/gnu-screen/</link>
+  <pubDate>Thu, 25 Jan 2007 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2007/01/gnu-screen/</guid>
+  <description>&lt;p&gt;Sometimes it’s helpful to have multiple consoles open during a &lt;em&gt;Linux&lt;/em&gt; session. The best example I can think of is when you are logged in to a machine via &lt;code&gt;ssh&lt;/code&gt;. There are other ways, of course. You could try to log in to the server with ‘-X’ so that X11 applications can run on the remote host but display on your computer. That’s not always easy, though. The administrator of the server may not allow X11 forwarding. Your machine may not allow or even understand X11 requests. You could log in to multiple &lt;code&gt;ssh&lt;/code&gt; sessions. This is what I did for several years. It works, but it’s not the most convenient approach, since it clutters up your desktop. &lt;code&gt;screen&lt;/code&gt; is a better option.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>unix</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>Sometimes it&rsquo;s helpful to have multiple consoles open during a <em>Linux</em> session. The best example I can think of is when you are logged in to a machine via <code>ssh</code>. There are other ways, of course. You could try to log in to the server with &lsquo;-X&rsquo; so that X11 applications can run on the remote host but display on your computer. That&rsquo;s not always easy, though. The administrator of the server may not allow X11 forwarding. Your machine may not allow or even understand X11 requests. You could log in to multiple <code>ssh</code> sessions. This is what I did for several years. It works, but it&rsquo;s not the most convenient approach, since it clutters up your desktop. <code>screen</code> is a better option.</p>
+<p><code>screen</code> lets you log in once, and have multiple command line consoles open and controlled from within your single <code>ssh</code> session. It even keeps your session active as an added bonus. This means that after the inevitable network hiccup that hoses your <code>ssh</code> login, you can log in once more and simple start from where you left off with a simple <code>screen -Dr</code>.</p>
+<h2 id="where-to-find-screen">Where To Find <code>screen</code></h2>
+<p><code>screen</code> is part of the <a href="http://www.gnu.org/">GNU</a> project. You can find more info at the <a href="https://savannah.gnu.org/projects/screen/">GNU Screen project page</a>. It&rsquo;s also on many distributions, so search with your package manager before
+you download and install the source package.</p>
+<h2 id="how-to-use-screen">How To Use <code>screen</code></h2>
+<p>Once you&rsquo;ve installed screen by whatever approach needed, starting a screen session is as simple as invoking the <code>screen</code> command.</p>
+<pre tabindex="0"><code>$ screen
+</code></pre><p>From there the best way to learn is to monkey around with screen, using the quick list of commands below as your guide. All <code>screen</code> commands start with <code>Ctrl-A</code>, as seen below.</p>
+<h3 id="common-screen-commands">Common <code>screen</code> Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl-A C</code></td>
+<td>Create a new window</td>
+</tr>
+<tr>
+<td><code>Ctrl-A A</code></td>
+<td>Switch to the last window you were in</td>
+</tr>
+<tr>
+<td><code>Ctrl-A N</code></td>
+<td>Switch to the next window in <code>screen</code> internal list</td>
+</tr>
+<tr>
+<td><code>Ctrl-A P</code></td>
+<td>Switch to the previous window in <code>screen</code> internal list</td>
+</tr>
+<tr>
+<td><code>Ctrl-A K</code></td>
+<td>Kill the current window</td>
+</tr>
+<tr>
+<td><code>Ctrl-A D</code></td>
+<td>Detach your <code>screen</code> session</td>
+</tr>
+<tr>
+<td><code>Ctrl-A ?</code></td>
+<td>Get the help screen</td>
+</tr>
+<tr>
+<td><code>Ctrl-A A</code></td>
+<td>Send an actual <code>Ctrl-A</code> signal to your current shell</td>
+</tr>
+</tbody>
+</table>
+<aside>
+Note that using `exit` to quit the shell for that window will also close the window.
+</aside>
+<p>The commands are fairly straightforward. For example, to create a new window:</p>
+<ol>
+<li>Hold down the Control key</li>
+<li>Press &ldquo;A&rdquo;</li>
+<li>Release the Control key</li>
+<li>Press &ldquo;C&rdquo;</li>
+</ol>
+<p>You may already know this particular shorthand for key combos, but I wanted to have the information just in case you didn&rsquo;t.</p>
+<p>Detaching your session may be the coolest aspect of <code>screen</code>. Your screen session stays in the same state until you can come back and resume later. This lasts days - I know, I have tested it - and won&rsquo;t actually go away unless forcibly killed by you or an admin. Well, shutting down the computer <em>will</em> end your screen session completely, so try to bear that in mind whenever you are about to reboot.</p>
+<p>You reattach a session with <code>screen -r</code> from the command line. You can also reattach a session that you lost because of network failure or some other minor accident with <code>screen -Dr</code>.</p>
+<p>Be careful with <code>Ctrl-A Ctrl-K</code>! If you are used to working in Emacs or using emacs-style movement in your shell, you may be accustomed to that key combo moving you to the beginning of the current line and cutting that line into the kill ring. In the screen
+world, you would use <code>Ctrl-A A Ctrl-K</code> to get the same effect.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: UNIX</title>
+  <link>https://randomgeekery.org/post/2004/09/unix/</link>
+  <pubDate>Wed, 15 Sep 2004 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2004/09/unix/</guid>
+  <description>People who come to UNIX (or Linux) from the world of Windows are often disappointed by the apparent clunkiness and lack of unified tools. “Where’s Visual Studio? Where’s C&#43;&#43; Builder? Heck, Notepad would be nice.” These folks are looking all around for an IDE, or Integrated Development Environment. What they don’t realize is that UNIX is an Integrated Development Environment. You can’t get around the fact that this environment was made for geeks, by geeks.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>unix</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>People who come to UNIX (or <em>Linux</em>) from the world of Windows are often disappointed by the apparent clunkiness and lack of unified tools. &ldquo;Where’s Visual Studio? Where’s C++ Builder? Heck, Notepad would be nice.&rdquo; These folks are looking all around for an IDE, or Integrated Development Environment. What they don’t realize is that UNIX <em>is</em> an Integrated Development Environment. You can’t get around the fact that this environment was made for geeks, by geeks. That means a lot of the programs that seem so clunky and awkward to the Windows person are, in fact, intended to work together to make development easier. Okay, so they aren’t all pointy-clicky and pretty, but that’s because pointy-clicky and pretty aren’t as important to these particular folks.</p>
+<p>That’s not to say the graphical IDE’s aren’t out there if you want them. Try <a href="http://www.kdevelop.org/">KDevelop</a> or <a href="http://anjuta.org/">Anjuta</a>. They are excellent environments, providing a layer of comfortable friendliness on top of the powerful UNIX toolkit. But this section of COOLNAMEHERE isn’t about these GUI environments. It’s about UNIX itself, and the huge assortment of tools available to streamline life for the determined geek. I’ll start by examining the tools one at a time, as I use them and discover nifty new things about them myself. It’s possible that I will add articles about using the tools in tandem with each other, to really explore the power available. But first I need to discover some of that power myself :smile:</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/">
+<meta property="og:title" content="Parrot Babysteps 03 - Simple Control Structures">
+<meta name="twitter:title" content="Parrot Babysteps 03 - Simple Control Structures">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I won&rsquo;t spend a whole lot of time on what control structures are and more time on how to implement them in Parrot.
+This material follows pretty much the same steps as the Parrot book chapter on control structures. You could follow that chapter and end up with the same knowledge that you would get from reading today&rsquo;s step. Maybe even a little more.
+Sequence As usual for many programming languages, the the sequence control structure is implemented in Parrot as a pattern of one instruction following another.">
+    <meta property="og:description" content="I won&rsquo;t spend a whole lot of time on what control structures are and more time on how to implement them in Parrot.
+This material follows pretty much the same steps as the Parrot book chapter on control structures. You could follow that chapter and end up with the same knowledge that you would get from reading today&rsquo;s step. Maybe even a little more.
+Sequence As usual for many programming languages, the the sequence control structure is implemented in Parrot as a pattern of one instruction following another.">
+  
+
+
+
+<title itemprop="name">Parrot Babysteps 03 - Simple Control Structures - Random Geekery</title>
+<meta property="og:title" content=Parrot&#32;Babysteps&#32;03&#32;-&#32;Simple&#32;Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Parrot&#32;Babysteps&#32;03&#32;-&#32;Simple&#32;Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Parrot&#32;Babysteps&#32;03&#32;-&#32;Simple&#32;Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Parrot&#32;Babysteps&#32;03&#32;-&#32;Simple&#32;Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/" />
+
+
+<meta property="og:updated_time" content=11009-11-12T90:00:09-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2009/12/parrot-babysteps-08-testing-with-testmore/">Parrot Babysteps 08 - Testing With Test::More</a></li>
+        
+          <li><a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">Parrot Babysteps 07 - Writing Subroutines</a></li>
+        
+          <li><a href="/post/2009/10/parrot-babysteps-06-files-and-hashes/">Parrot Babysteps 06 - Files and Hashes</a></li>
+        
+          <li><a href="/post/2009/09/parrot-babysteps-05-more-about-arrays/">Parrot Babysteps 05 - More About Arrays</a></li>
+        
+          <li><a href="/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">Parrot Babysteps 04 - Adding Command Line Arguments</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/">Parrot Babysteps 03 - Simple Control Structures</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/">Parrot Babysteps 03 - Simple Control Structures</a>
+    </h1>
+    
+        <time datetime="2009-09-11T00:00:00-0700" class="post-date">
+            September 11, 2009
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-parrot">
+            <a href="https://randomgeekery.org/tags/parrot">parrot</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Parrot Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p>I won&rsquo;t spend a whole lot of time on what control structures <em>are</em> and more time on how to implement them in <a href="/card/parrot/">Parrot</a>.</p>
+<p>This material follows pretty much the same steps as the Parrot book chapter on <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch05_control_structures.pod.html">control structures</a>. You could follow that chapter and end up with the same knowledge that you would get from reading today&rsquo;s step. Maybe even a little more.</p>
+<h2 id="sequence">Sequence</h2>
+<p>As usual for many programming languages, the the sequence control structure is
+implemented in Parrot as a pattern of one instruction following another.</p>
+<pre tabindex="0"><code># example-03-01.pir
+.sub main :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+    response = &#34;Hello, &#34; . name
+    say response
+.end
+</code></pre><h2 id="selection">Selection</h2>
+<p>Parrot uses simple mechanisms for building selection and repetition structures. Why is this?
+This is because Parrot and PIR are built for designing new programming languages. The
+designers opted to have the core control structures be simplistic so you wouldn&rsquo;t be stuck
+with what Parrot thinks a repetition loop - as one example - should look like. This does
+mean that moderately experienced developers such as myself must release some of our prejudices
+about what is &ldquo;good&rdquo; or &ldquo;bad&rdquo; in code. Very experienced developers and complete newcomers
+should have an easier time with Parrot&rsquo;s controls, due to broadened horizons or lack of
+preconceptions.</p>
+<p>Selection structures are created in Parrot with a combination of labels, <code>goto</code>, and <code>if</code> test
+instructions. Yes, the <a href="http://www.c2.com/cgi/wiki?GotoConsideredHarmful">infamous <code>goto</code></a>. Let&rsquo;s
+relinquish our <a href="http://en.wikipedia.org/wiki/Cargo_cult_programming">cargo cult</a>
+habits and start learning how <code>goto</code> is used in Parrot.</p>
+<p>We&rsquo;ll look at labels first, which are how we tell <code>goto</code> where to go.</p>
+<h2 id="labels">Labels</h2>
+<p>Labels consist of a series of letters, numbers, and underscores followed by a colon <code>:</code> character.
+Although it&rsquo;s not strictly required, I use uppercase letters for label identifiers.
+You will generally find labels by themselves, outdented from the other instructions around it.</p>
+<pre tabindex="0"><code>&lt;IDENTIFIER&gt;:
+    # Code following instruction
+</code></pre><p>Again: this is not required. I follow this convention because I believe it makes my
+code easier to read. You could just as easily have the following instruction on the same line,
+but it has the risk of making your code visually cluttered.</p>
+<pre tabindex="0"><code>SET_NAME: $S0 = &#39;Brian&#39;
+say $S0
+</code></pre><p>Labels serve as markers in your code. They don&rsquo;t accomplish much by themselves, but can
+show some of your program structure if named and placed intelligently.</p>
+<pre tabindex="0"><code># example-03-02.pir
+.sub main :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+
+GET_NAME:
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+
+    response = &#34;Hello, &#34; . name
+    say response
+.end
+</code></pre><h3 id="goto"><code>goto</code></h3>
+<p>A <code>goto</code> instruction sends Parrot execution to a specific labelled location
+in your code.</p>
+<pre tabindex="0"><code>goto &lt;LABEL_IDENTIFIER&gt;
+</code></pre><p>When it follows a <code>goto</code>, Parrot picks up by executing the first
+instruction following the label. In this example, it creates an
+infinite loop which can only be interrupted by pressing
+Control-C.</p>
+<pre tabindex="0"><code># example-03-03.pir
+.sub main :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+
+GET_NAME:
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+
+    goto GET_NAME
+
+    response = &#34;Hello, &#34; . name
+    say response
+.end
+</code></pre><p>Infinite loops have their occasional uses, but most of the time they&rsquo;re just
+annoying.</p>
+<pre tabindex="0"><code>$ parrot example-03-03.pir
+What is your name? Brian
+What is your name? Brian
+What is your name? I said &#34;Brian!&#34;
+What is your name? &lt;Control-C&gt;
+</code></pre><h3 id="if"><code>if</code></h3>
+<p>The <code>if</code> operation lets us perform specific instructions when a particular
+condition is true by branching control. At our level of expertise, that
+branching is performed with <code>goto</code>. So for us, the general <code>if</code> syntax looks
+like this:</p>
+<pre tabindex="0"><code>if &lt;conditional&gt; goto &lt;LABEL&gt;
+</code></pre><p>Let&rsquo;s see <code>if</code> in action by adding a little control logic to our name
+prompt.</p>
+<pre tabindex="0"><code># example-03-04.pir
+.sub &#39;main&#39; :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+    if name == &#34;Brian&#34; goto GREETING_FOR_BRIAN
+    response = &#34;Hello, &#34; . name
+    goto SAY_IT
+
+  GREETING_FOR_BRIAN:
+    response = &#34;Hey, Brian!&#34;
+
+  SAY_IT:
+    say response
+
+.end
+</code></pre><p>I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while
+another greeting is prepared for everybody else. The program accomplishes this by examining the value of <code>name</code>.
+If <code>name</code> is &ldquo;Brian&rdquo;, the program is instructed to <code>goto</code> the label <code>GREETING_FOR_BRIAN</code>. Otherwise it continues
+on, preparing a generic response and going to the <code>SAY_IT</code> label. <code>GREETING_FOR_BRIAN</code> prepares a custom response
+and follows up to the next instruction, which happens to be the <code>SAY_IT</code> code. Remember that labels are just markers.
+They don&rsquo;t cut the labeled code off from the rest of your code.</p>
+<h4 id="conditionals">Conditionals</h4>
+<p>The conditional in an <code>if</code> operation is checked to see if it looks false. The
+conditional can be a simple variable, in which case the value of the variable
+is examined. False looks a little different for each of the types.</p>
+<table>
+<thead>
+<tr>
+<th>For This Type</th>
+<th>False looks like this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Number</td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td>String</td>
+<td><code>&quot;&quot;</code>, <code>&quot;0&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Anything that doesn&rsquo;t look false is considered true.</p>
+<p>You can also use comparison operators to compare two values in your conditional.</p>
+<pre tabindex="0"><code># example-03-05.pir
+.sub main :main
+    .local int    a
+    .local int    b
+    .local pmc    stdin
+
+    stdin = getstdin
+
+    a = stdin.&#39;readline_interactive&#39;(&#39;a: &#39;)
+    b = stdin.&#39;readline_interactive&#39;(&#39;b: &#39;)
+
+    if a &gt; b goto A_IS_GREATER
+    if b &gt; a goto B_IS_GREATER
+    goto BOTH_EQUAL
+
+A_IS_GREATER:
+    say &#34;a is greater&#34;
+    goto END
+B_IS_GREATER:
+    say &#34;b is greater&#34;
+    goto END
+BOTH_EQUAL:
+    say &#34;a and b are the same&#34;
+    goto END
+
+END:
+    say &#34;Wasn&#39;t that fun?&#34;
+.end
+</code></pre><p>This little script grabs two values from the user and reports which one is greater -
+or reports the special case when they are the same.</p>
+<pre tabindex="0"><code>$ parrot example-03-05.pir
+a: 5
+b: 10
+b is greater
+Wasn&#39;t that fun?
+</code></pre><p>Here are the comparison operators that are available for your conditionals.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a == b</code></td>
+<td>Are <code>a</code> and <code>b</code> the same value?</td>
+</tr>
+<tr>
+<td><code>a !== b</code></td>
+<td>Are <code>a</code> and <code>b</code> different values?</td>
+</tr>
+<tr>
+<td><code>a &gt; b</code></td>
+<td>Is <code>a</code> greater than <code>b</code>?</td>
+</tr>
+<tr>
+<td><code>a &lt; b</code></td>
+<td>Is <code>a</code> less than <code>b</code>?</td>
+</tr>
+<tr>
+<td><code>a &gt;= b</code></td>
+<td>Is <code>a</code> greater than or equal to <code>b</code>?</td>
+</tr>
+<tr>
+<td><code>a &lt;= b</code></td>
+<td>Is <code>a</code> less than or equal to <code>b</code>?</td>
+</tr>
+</tbody>
+</table>
+<p>What about having multiple tests? For example, maybe you will only accept
+a number if it&rsquo;s within a certain range. Parrot does not let us chain
+comparisons, but we can still use multiple tests with the <code>and</code> and <code>or</code>
+opcodes.</p>
+<pre tabindex="0"><code># example-03-06.pir
+.sub main :main
+    .const int MINIMUM = 10
+    .const int MAXIMUM = 100
+    .local int input
+    .local int input_is_valid
+    .local pmc stdin
+
+    stdin = getstdin
+
+GET_NUMBER:
+    print &#34;Enter a number (&#34;
+    print MINIMUM
+    print &#34; - &#34;
+    print MAXIMUM
+    print &#34;)&#34;
+    input = stdin.&#39;readline_interactive&#39;(&#39;: &#39;)
+    $I0 = input &gt;= MINIMUM
+    $I1 = input &lt;= MAXIMUM
+    input_is_valid = and $I0, $I1
+    if input_is_valid goto VALID_INPUT
+    say &#34;That is not in the acceptable range!&#34;
+    goto END_PROGRAM
+
+  VALID_INPUT:
+    say &#34;That is in the acceptable range.&#34;
+
+  END_PROGRAM:
+    say &#34;Thank you!&#34;
+.end
+</code></pre><p><code>and</code> compares its arguments, and returns true if the arguments all look true.
+Parrot lets you store test results in a variable, as you can see. Then you can
+examine the truthiness of the variable in your <code>if</code> condition.</p>
+<pre tabindex="0"><code>$ parrot example-03-06.pir
+Enter a number (10 - 100): 990
+That is not in the acceptable range!
+Thank you!
+$ parrot example-03-06.pir
+Enter a number (10 - 100): 82
+That is in the acceptable range.
+Thank you!
+</code></pre><p>This approach looked odd enough to me that I thought I&rsquo;d show the equivalent
+Perl code.</p>
+<p>This Parrot code:</p>
+<pre tabindex="0"><code>  $I0 = input &gt;= MINIMUM
+  $I1 = input &lt;= MAXIMUM
+  input_is_valid = and $I0, $I1
+  if input_is_valid goto VALID_INPUT
+  say &#34;That is not in the acceptable range!&#34;
+  goto END_PROGRAM
+
+VALID_INPUT:
+  say &#34;That is in the acceptable range.&#34;
+
+END_PROGRAM:
+  say &#34;Thank you!&#34;
+</code></pre><p>is roughly equivalent to the following Perl code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span> <span class="o">&gt;=</span> <span class="nv">$MINIMUM</span> <span class="o">&amp;&amp;</span> <span class="nv">$input</span> <span class="o">&lt;=</span> <span class="nv">$MAXIMUM</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">say</span> <span class="s">&#34;That is in the acceptable range.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">say</span> <span class="s">&#34;That is not in the acceptable range.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Thank you!&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>We could also use <code>or</code>, which compares its arguments and returns true if <em>either</em>
+argument looks true.</p>
+<pre tabindex="0"><code># example-03-07.pir
+.sub &#39;main&#39; :main
+    .const int MINIMUM = 10
+    .const int MAXIMUM = 100
+    .local int input
+    .local int input_is_invalid
+    .local pmc stdin
+
+    stdin = getstdin
+
+GET_NUMBER:
+    print &#34;Enter a number (&#34;
+    print MINIMUM
+    print &#34; - &#34;
+    print MAXIMUM
+    print &#34;)&#34;
+    input = stdin.&#39;readline_interactive&#39;(&#39;: &#39;)
+    $I0 = input &lt;= MINIMUM
+    $I1 = input &gt;= MAXIMUM
+    input_is_invalid = or $I0, $I1
+    if input_is_invalid goto WARN_USER_ABOUT_INPUT
+    goto END_PROGRAM
+
+WARN_USER_ABOUT_INPUT:
+    say &#34;That is not in the acceptable range!&#34;
+
+END_PROGRAM:
+    say &#34;Thank you!&#34;
+.end
+</code></pre><h3 id="unless"><code>unless</code></h3>
+<p>Sometimes the normal <code>if</code> test does not clearly describe your needs. You
+may only want to branch if a test fails. While you <em>can</em> do this with <code>if</code>,
+Parrot also provides the <code>unless</code> test for exactly this situation. <code>unless</code>
+looks similar to <code>if</code>:</p>
+<pre tabindex="0"><code>unless &lt;conditional&gt; goto &lt;LABEL&gt;
+</code></pre><p>I can use it in the user prompt program to streamline the description of
+the application&rsquo;s response to anyone but me.</p>
+<pre tabindex="0"><code># example-03-08.pir
+.sub main :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+    unless name == &#34;Brian&#34; goto GENERIC_GREETING
+    response = &#34;Hey, Brian!&#34;
+    goto SAY_IT
+
+  GENERIC_GREETING:
+    response = &#34;Hello, &#34; . name
+
+  SAY_IT:
+    say response
+.end
+</code></pre><p>The program will run the same after this little change. Try it and see.</p>
+<p>Usage of <code>unless</code> is a personal choice. I like it because it lets me describe
+my program a little more concisely. Others don&rsquo;t like to use <code>unless</code> because
+it adds to the mental load of reading application code: &ldquo;let&rsquo;s see, <code>unless</code>
+means &lsquo;<code>if</code> this is not true.&rdquo; Both points of view are valid, and ultimately
+it&rsquo;s up to you whether <code>unless</code> belongs in your code.</p>
+<h3 id="repetition">Repetition</h3>
+<p>We saw the infinite loop earlier when we first looked at <code>goto</code>. Let&rsquo;s
+explore more controlled loops.</p>
+<p>Believe it or not, the combination of <code>if</code> and <code>goto</code> provide us with the
+core features we need for a wide range of control structures. Things can
+get interesting now that we&rsquo;ve added these tools to our kit.</p>
+<p>How about a countdown?</p>
+<pre tabindex="0"><code># example-03-09.pir
+.sub &#39;main&#39; :main
+    .const int start = 10
+    .const int stop  = 0
+    .local int current
+
+    current = start
+  COUNTDOWN:
+    if current &lt; stop goto LIFTOFF
+    say current
+    current -= 1
+    goto COUNTDOWN
+
+  LIFTOFF:
+    say &#34;Liftoff!&#34;
+.end
+</code></pre><p>This presents a simple count-controlled loop. We set a loop counter <code>current</code> to a reasonable start value before we
+start looping. We check the value of the loop counter each time we start the loop, quitting if <code>current</code> is less
+than our stopping value. After our check, we display the value, subtract one, and run the loop again.</p>
+<p>A condition-controlled loop is easy, too.</p>
+<pre tabindex="0"><code># example-03-10.pir
+.sub main :main
+    .const string PROMPT = &#34;What is your name? &#34;
+    .local string name
+    .local string response
+    .local pmc    stdin
+
+    stdin = getstdin
+
+GET_NAME:
+    name = stdin.&#39;readline_interactive&#39;(PROMPT)
+    if name goto GREET_USER
+    goto GET_NAME
+
+GREET_USER:
+    response = &#34;Hello, &#34; . name
+    say response
+.end
+</code></pre><p>Our script will now continue to check to see if the user actually entered
+anything for a name. If the user has entered a name, control goes to
+the <code>GREET_USER</code> label. Otherwise, control is sent backwards to the
+<code>GET_USER</code> label.</p>
+<pre tabindex="0"><code>$ parrot example-03-10.pir
+What is your name? 
+What is your name? Brian
+Hello, Brian
+</code></pre><p>Collection loops such as list iterators will have to wait until we examine PMCs.</p>
+<h2 id="summary">Summary</h2>
+<p>Adding <code>if</code> and <code>goto</code> to our toolkit has given us the means to build fundamental
+control structures in our Parrot programs. We know how to use simple conditionals
+as well as how to create more complex conditionals using <code>and</code> and <code>or</code>. We have
+<code>unless</code> for those situations when <code>if</code> doesn&rsquo;t describe our intent clearly
+enough. We can use the simple combination of <code>if</code> and <code>goto</code> to create counter
+and condition controlled loops. A really determined person could create useful
+programs with just this information. However, even simple useful
+programs would benefit from using the library of PMCs that are available.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2009/12/parrot-babysteps-08-testing-with-testmore/">parrot-babysteps-08-testing-with-testmore</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/parrot-babysteps">Parrot Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2009/08/perl-5101-is-available/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Perl 5.10.1 is available
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Parrot Babysteps 04 - Adding Command Line...
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sequence">Sequence</a></li>
+    <li><a href="#selection">Selection</a></li>
+    <li><a href="#labels">Labels</a>
+      <ul>
+        <li><a href="#goto"><code>goto</code></a></li>
+        <li><a href="#if"><code>if</code></a></li>
+        <li><a href="#unless"><code>unless</code></a></li>
+        <li><a href="#repetition">Repetition</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

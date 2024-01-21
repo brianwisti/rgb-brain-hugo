@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/">
+<meta property="og:title" content="Perl 5 Babysteps 02 - User Input">
+<meta name="twitter:title" content="Perl 5 Babysteps 02 - User Input">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Having a Perl program that displays the exact same message every time you run is nice when it comes to being consistent, but not so entertaining as a program. &ldquo;What does it do?&rdquo; &ldquo;It prints out my name.&rdquo; &ldquo;Oh.&rdquo; Let&rsquo;s make things a little more interesting. We could change the value  of $name in the code, but it might be a little tiresome to do this before  showing it to each new person. How about making the program ask for a name? User interaction - a neat idea.">
+    <meta property="og:description" content="Having a Perl program that displays the exact same message every time you run is nice when it comes to being consistent, but not so entertaining as a program. &ldquo;What does it do?&rdquo; &ldquo;It prints out my name.&rdquo; &ldquo;Oh.&rdquo; Let&rsquo;s make things a little more interesting. We could change the value  of $name in the code, but it might be a little tiresome to do this before  showing it to each new person. How about making the program ask for a name? User interaction - a neat idea.">
+  
+
+
+
+<title itemprop="name">Perl 5 Babysteps 02 - User Input - Random Geekery</title>
+<meta property="og:title" content=Perl&#32;5&#32;Babysteps&#32;02&#32;-&#32;User&#32;Input&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Perl&#32;5&#32;Babysteps&#32;02&#32;-&#32;User&#32;Input&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Perl&#32;5&#32;Babysteps&#32;02&#32;-&#32;User&#32;Input&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Perl&#32;5&#32;Babysteps&#32;02&#32;-&#32;User&#32;Input&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/" />
+
+
+<meta property="og:updated_time" content=5005-05-12T50:00:09-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2007/06/perldoc/">Perldoc</a></li>
+        
+          <li><a href="/post/2005/01/perl-5-babysteps-01-getting-started/">Perl 5 Babysteps 01 - Getting Started</a></li>
+        
+          <li><a href="/post/2005/01/perl-babysteps/">Perl Babysteps</a></li>
+        
+          <li><a href="/post/2009/12/parrot-babysteps-08-testing-with-testmore/">Parrot Babysteps 08 - Testing With Test::More</a></li>
+        
+          <li><a href="/post/2009/12/nqp-not-quite-perl/">NQP - Not Quite Perl</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/">Perl 5 Babysteps 02 - User Input</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2009/05/perl-5-babysteps-02-user-input/">Perl 5 Babysteps 02 - User Input</a>
+    </h1>
+    
+        <time datetime="2009-05-05T00:00:00-0700" class="post-date">
+            May 5, 2009
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-perl">
+            <a href="https://randomgeekery.org/tags/perl">perl</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>Having a <a href="/card/perl/">Perl</a> program that displays the exact same message every time you run is nice when it comes to being consistent, but not so entertaining as a program. &ldquo;What does it do?&rdquo; &ldquo;It prints out my name.&rdquo; &ldquo;Oh.&rdquo; Let&rsquo;s make things a little more interesting. We could change the value  of <code>$name</code> in the code, but it might be a little tiresome to do this before  showing it to each new person. How about making the program ask for a name? User interaction - a neat idea.</p>
+<p>It&rsquo;s so neat that I&rsquo;m going to show you two ways to do it.</p>
+<h2 id="traditional">Traditional</h2>
+<p>Here&rsquo;s how I got user input before Perl 5.10. You&rsquo;ll find a lot of code that looks like this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm message.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Follow some common-sense guidelines for Perl coding.</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Modern::Perl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;What is your name? &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">chomp</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>Why don&rsquo;t we run this before we start trying to decipher it?</p>
+<pre tabindex="0"><code>$ perl hello.pl
+What is your name? Brian[ENTER]
+Hello, Brian!
+</code></pre><p>There is a lot going on in the few lines we added. Let&rsquo;s look at them one by one.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;What is your name? &#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p><code>print</code> is how we used to get messages displayed on the console. It&rsquo;s still useful when you want to say something but you don&rsquo;t want to start a whole new line when it&rsquo;s done. We use <code>print</code> so that our answer to the question will display on the same line as the question itself. That is a common approach to user prompts.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">;</span>
+</span></span></code></pre></div><p>We&rsquo;ve got some funny-looking thing instead of &ldquo;Brian&rdquo;. What is it?  Here&rsquo;s the short explanation:</p>
+<blockquote>
+<p><code>&lt;STDIN&gt;</code> gets input from the user that you can save in a variable.</p>
+</blockquote>
+<p>There&rsquo;s also a long version. Feel free to skip it if you just want to get on with it. The long version works out like this:</p>
+<blockquote>
+<p>The scalar <code>$name</code> is assigned the value of <code>&lt;STDIN&gt;</code>. <code>&lt;...&gt;</code> tells Perl
+that we want it to read a <em>filehandle</em> and hand the results back to us. A
+<em>filehandle</em> is a source of information. It could be an open file, but in
+this case it is <code>STDIN</code>. <em><code>STDIN</code></em> is the <em>standard input stream</em> - geek talk
+for &ldquo;wherever we expect user input to be coming from.&rdquo; <code>STDIN</code> usually just
+means &ldquo;keys the user enters from the keyboard.&rdquo; The result of reading from
+the filehandle - which is <code>STDIN</code> in this case, which is the keys you entered
+from the keyboard in this case - is stored in <code>$name</code>.</p>
+</blockquote>
+<p>There&rsquo;s a really long version, but I&rsquo;m getting bored so we&rsquo;ll skip it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nb">chomp</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+</span></span></code></pre></div><p><code>chomp</code> removes the last character from a string if that character is a newline - whatever a newline is defined as on your platform. Why do we need that? Well, when Perl reads with the <code>&lt;...&gt;</code> operator, it gives you <em>everything</em>. That includes the <code>[ENTER]</code> key that you pressed to send your name to the program. What that ENTER actually looks like depends on your platform: but the end result is a line break in the text. Sometimes we like that, but not today. Here&rsquo;s what you would see if you left out <code>chomp</code>:</p>
+<pre tabindex="0"><code>$ perl hello.pl
+What is your name? Brian[ENTER]
+Hello, Brian
+!
+$
+</code></pre><p>You can see that you&rsquo;re going to use <code>chomp</code> a lot when getting user input. But what if there were an easier way? There is &hellip; sort of.</p>
+<h2 id="a-new-way">A new way</h2>
+<p>The new way looks better to my eyes, but I&rsquo;m willing to admit that there&rsquo;s a lot going on for a beginner. You can feel free to ignore this section if you like, and my feelings won&rsquo;t be hurt at all.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="cm">=pod
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=head1 hello.pl
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Displays a warm message.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Follow some common-sense guidelines for Perl coding.</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Modern::Perl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::UI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::ReadLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$console</span> <span class="o">=</span> <span class="nn">Term::ReadLine</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span>    <span class="o">=</span> <span class="nv">$console</span><span class="o">-&gt;</span><span class="n">get_reply</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=&gt;</span> <span class="s">&#34;What is your name? &#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">say</span> <span class="s">&#34;Hello, $name!&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>The program is doing nearly the same thing as before, but the code looks a lot different. We <code>use</code> some new stuff, added a new variable, and have changed the way we get the user&rsquo;s name. On the other hand, we don&rsquo;t have to <code>chomp</code> anything.</p>
+<h3 id="looking-at-the-changes">Looking at the changes</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::UI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Term::ReadLine</span><span class="p">;</span>
+</span></span></code></pre></div><p>These lines tell Perl to load a couple of modules for some additional functionality. This is different from when we called <code>use</code> before. With Modern::Perl we were giving Perl a new personality. This time we&rsquo;re just making some new functions available. Module names are usually capitalized like proper names, and that <code>::</code> is conventionally used to indicate related modules within a category.</p>
+<p>Why do we want those modules? So we can create an object that reads user input.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$console</span> <span class="o">=</span> <span class="nn">Term::ReadLine</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$name</span>    <span class="o">=</span> <span class="nv">$console</span><span class="o">-&gt;</span><span class="n">get_reply</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=&gt;</span> <span class="s">&#34;What is your name? &#34;</span> <span class="p">);</span>
+</span></span></code></pre></div><p>There are a lot of things to learn in these two lines of code, so please forgive me if I rush through them too quickly.</p>
+<p>What&rsquo;s an object? Oh boy. That is a tricky question for a beginner tutorial. It&rsquo;s so tricky that I&rsquo;ve decided to skip it completely. Almost completely. Objects are basically magic scalar variables that hold extra information such as data (the <em>fields</em>) and subroutines (the <em>methods</em>). Intelligent use of objects allow you to quickly write powerful programs while hiding the complexity of what&rsquo;s going on behind a sweet and smiling face.</p>
+<p><em>Classes</em> define the structure of a particular type of object. You create an object with a <em>constructor</em> method defined in the class. The constructor is usually called <code>new</code>, and you access it with the <code>-&gt;</code> operator. The same operator is used to access the methods of your <code>$console</code> object.</p>
+<p>The last source of confusion in this new example is the way we asked <code>$console</code> to present its prompt to the user. The quick way to think of it is that we are giving a dictionary to <code>get_reply</code>. <code>get_reply</code> looks at this dictionary for keywords that are important to it, such as <code>prompt</code>. We use that <code>=&gt;</code> operator to tell <code>$console-&gt;get_reply</code> that we want the <code>prompt</code> to be &ldquo;What is your name? &quot;</p>
+<p>I&rsquo;ll get more into dictionaries later, but that&rsquo;s the basic idea for now. Wait, one more thing. It&rsquo;s helpful to think of those special keyword lookup collections as dictionaries, but they&rsquo;re really called <em>hashes</em>.</p>
+<p>Enough babbling. Let&rsquo;s run it.</p>
+<pre>
+$ perl hello.pl
+<u>What is your name?</u> <b>Brian</b>
+Hello, Brian!
+</pre>
+<p>Nice, it adds some formatting to the process! Well, it does for me. You might  not get the formatting if your console doesn&rsquo;t support it.</p>
+<p>We only added a few lines to our program, but it made a significant difference in the end. Maybe you don&rsquo;t understand what is going on behind those changes. That&rsquo;s okay. Perl is a strange language, full of things that are very easy and fairly challenging at the same time. Give yourself time to learn the language and explore its features. Definitely explore the available libraries, because you will be amazed by how much you can improve your programs. And I don&rsquo;t forget to explore <a href="https://www.cpan.org/">CPAN</a>, the gigantic repository of libraries for Perl.</p>
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2005/01/perl-babysteps/">perl-babysteps</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2009/02/brookes-socks-not-sarahs/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Brooke&#39;s Socks - Not Sarah&#39;s
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2009/05/quick-praise-for-jvm-languages/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Quick Praise for JVM languages
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#traditional">Traditional</a></li>
+    <li><a href="#a-new-way">A new way</a>
+      <ul>
+        <li><a href="#looking-at-the-changes">Looking at the changes</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

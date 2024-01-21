@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>perlishonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/perlish/</link>
+    <description>
+      Recent contentinperlish on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 06 Feb 2021 00:00:00 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/perlish/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Pretty File Summaries with Rich and ExifTool</title>
+  <link>https://randomgeekery.org/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/</link>
+  <pubDate>Sat, 06 Feb 2021 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/</guid>
+  <description>Hoku hopes for scraps
+A while back I shared how I use ExifTool to get extensive metadata for any file. I want to make that info dump pretty with card/Rich, a text formatting library for card/Python.
+“But Brian,”&#34; I hear you cry. “ExifTool is card/Perl. Why would I want to use both Perl and Python?”
+Because it’s fun, obviously.
+You want a “real” reason? Okay fine. I haven’t found anything that can get the depth of file information I get from ExifTool.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>files</category>  <category>python</category>  <category>perlish</category>  <category>rich</category>  <category>exiftool</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Want to see something cool?</h2><p><img src="/post/2021/02/../../../attachments/img/2021/cover-2021-02-06.jpg" alt="attachments/img/2021/cover-2021-02-06.jpg"/>
+Hoku hopes for scraps</p>
+<p>A while back I <a href="/post/2020/04/getting-file-info-from-the-shell/">shared</a> how I use <a href="https://exiftool.org">ExifTool</a> to get extensive metadata for any file.  I want to make that info dump pretty with <a href="/card/rich/">card/Rich</a>, a text formatting library for <a href="/card/python/">card/Python</a>.</p>
+<p>&ldquo;But Brian,&rdquo;&quot; I hear you cry.  &ldquo;ExifTool is <a href="/card/perl/">card/Perl</a>. Why would I want to use both Perl and Python?&rdquo;</p>
+<p>Because it’s fun, obviously.</p>
+<p>You want a &ldquo;real&rdquo; reason?  Okay fine.  I haven’t found anything that can get the depth of file information I get from ExifTool.  I haven’t found a formatting library that’s as pleasant to use as Rich — maybe <a href="https://ttytoolkit.org">TTY Toolkit</a>?</p>
+<p>Besides — ExifTool is a standalone command line tool.  We don’t need to write any Perl to <em>use</em> it.  Heck, we don’t even need to figure out the system calls. <a href="https://github.com/smarnach">Sven Marnach</a> is way ahead of us with the extremely helpful <a href="https://smarnach.github.io/pyexiftool/">pyexiftool</a>.</p>
+<p>Rich and pyexiftool make Python an easy choice for this task.</p>
+<h2 id="setting-up">Setting up</h2>
+<p>If you want to play along at home, make sure you have the dependencies.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> brew install exiftool
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> pip install pyexiftool rich typer
+</span></span></code></pre></div><p><a href="https://typer.tiangolo.com">Typer</a> simplifies turning this random idea into a useful command line tool.</p>
+<blockquote>
+<p>[!NOTE]
+If you’re already a fan of Perl, consider <a href="https://metacpan.org/pod/App::cpanminus"><code>cpanm</code></a> instead of <a href="https://brew.sh">Homebrew</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> cpanm Image::ExifTool
+</span></span></code></pre></div><p>Now you can use <a href="https://metacpan.org/pod/distribution/Image-ExifTool/lib/Image/ExifTool.pod">Image::ExifTool</a> in your own Perl projects.</p>
+</blockquote>
+<h2 id="some-scaffolding">Some scaffolding</h2>
+<p>Even though I’m the only user, I still need to figure out how I plan to use it. At minimum?  I hand my script a filename.  It hands me metadata.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">richexif FILENAME [OPTIONS]
+</span></span></code></pre></div><p>I can hook some <a href="https://typer.tiangolo.com/tutorial/first-steps/#add-a-cli-argument">minimal</a> Typer argument handling around that flow.</p>
+<div class="highlight" title="richexif.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.logging</span> <span class="kn">import</span> <span class="n">RichHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">typer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">format</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">%(message)s</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&#34;[</span><span class="si">%X</span><span class="s2">]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">RichHandler</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;filename: </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span></code></pre></div><p>Can I run it?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">chmod 755 richexif.py
+</span></span><span class="line"><span class="cl">./richexif.py hoku-hopes-for-snacksjpg.jpg
+</span></span></code></pre></div><p>I can!  What happens if I use it wrong?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./richexif.py
+</span></span><span class="line"><span class="cl">Usage: richexif.py [OPTIONS] FILENAME
+</span></span><span class="line"><span class="cl">Try &#39;richexif.py --help&#39; for help.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Error: Missing argument &#39;FILENAME&#39;.
+</span></span></code></pre></div><p>I get an error message telling me what <code>richexif.py</code> needs to do its thing. Nice.</p>
+<p>I confirmed that Typer handles the CLI bits, and Rich handles the formatting. Now for pyexiftool.</p>
+<p>Oh and I’ll skip logging output from here on.  Rich’s <a href="https://rich.readthedocs.io/en/latest/logging.html">logging handler</a> output is a joy to look at, but really that stuff is for me.  For you it’ll just add noise.</p>
+<h2 id="some-metadata">Some metadata</h2>
+<p>I need exiftool, of course.  Plus a Rich <a href="https://rich.readthedocs.io/en/latest/console.html">Console</a> object, masterminding the display details for my terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">exiftool</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
+</span></span></code></pre></div><p>exiftool’s <a href="https://smarnach.github.io/pyexiftool/#exiftool.ExifTool.get_metadata"><code>get_metadata</code></a> grabs everything ExifTool sees about a file.  It also provides methods for ExifTool <a href="https://exiftool.org/TagNames/index.html">tags</a>, but I won’t mess with them today. Tags — the official name for our metadata keys — are most useful when you already know what you’re looking for.  We’re just checking stuff out.</p>
+<p>For now, a little abstraction layer over pyexiftool’s <code>ExifTool</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a dictionary of file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">exiftool</span><span class="o">.</span><span class="n">ExifTool</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">et</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>main</code> gets the metadata and asks <code>console</code> to print it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></div><p>And here’s what that looks like.</p>
+<pre class="rich"><span style="font-weight: bold">{</span>
+    <span style="color: #008000">'SourceFile'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
+    <span style="color: #008000">'ExifTool:ExifToolVersion'</span>: <span style="color: #000080; font-weight: bold">12.15</span>,
+    <span style="color: #008000">'File:FileName'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
+    <span style="color: #008000">'File:Directory'</span>: <span style="color: #008000">'.'</span>,
+    <span style="color: #008000">'File:FileSize'</span>: <span style="color: #000080; font-weight: bold">918330</span>,
+    <span style="color: #008000">'File:FileModifyDate'</span>: <span style="color: #008000">'2021:02:06 00:54:29-08:00'</span>,
+    <span style="color: #008000">'File:FileAccessDate'</span>: <span style="color: #008000">'2021:02:06 11:30:33-08:00'</span>,
+    <span style="color: #008000">'File:FileInodeChangeDate'</span>: <span style="color: #008000">'2021:02:06 11:30:33-08:00'</span>,
+    <span style="color: #008000">'File:FilePermissions'</span>: <span style="color: #000080; font-weight: bold">775</span>,
+    <span style="color: #008000">'File:FileType'</span>: <span style="color: #008000">'JPEG'</span>,
+    <em>…skipping 62 lines…</em>
+    <span style="color: #008000">'Composite:ScaleFactor35efl'</span>: <span style="color: #000080; font-weight: bold">6.04651162790698</span>,
+    <span style="color: #008000">'Composite:ShutterSpeed'</span>: <span style="color: #000080; font-weight: bold">0.05</span>,
+    <span style="color: #008000">'Composite:GPSLatitude'</span>: <span style="color: #000080; font-weight: bold">47.5750857997222</span>,
+    <span style="color: #008000">'Composite:GPSLongitude'</span>: <span style="color: #000080; font-weight: bold">-122.386441</span>,
+    <span style="color: #008000">'Composite:CircleOfConfusion'</span>: <span style="color: #008000">'0.00496918925785101'</span>,
+    <span style="color: #008000">'Composite:FOV'</span>: <span style="color: #000080; font-weight: bold">69.3903656740024</span>,
+    <span style="color: #008000">'Composite:FocalLength35efl'</span>: <span style="color: #000080; font-weight: bold">26</span>,
+    <span style="color: #008000">'Composite:GPSPosition'</span>: <span style="color: #008000">'47.5750857997222 -122.386441'</span>,
+    <span style="color: #008000">'Composite:HyperfocalDistance'</span>: <span style="color: #000080; font-weight: bold">2.48061927751922</span>,
+    <span style="color: #008000">'Composite:LightValue'</span>: <span style="color: #000080; font-weight: bold">3.81378119121704</span>
+<span style="font-weight: bold">}</span>
+</pre>
+<p>Holy crap that’s a lot.  Some of it could be considered sensitive information — unless you read my <a href="/now/">now</a> page.  But it’s all there!  Even in the snipped version you can learn a lot.  Hello from my Windows partition in West Seattle during February of 2021!</p>
+<blockquote>
+<p>[!TIP]
+Uncomfortable sharing that much with every photo you upload?  You can scrub
+those tags right out.  <a href="https://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Remove-EXIF-Metadata-from-Photos-with-exiftool">With ExifTool</a>, of course.</p>
+</blockquote>
+<p>But back to the other gripe about all this metadata.  It’s way too much for me to take in all at once.  I need some kind of filter!</p>
+<h3 id="filtering-the-firehose">Filtering the firehose</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a copy of the metadata where fields contain the substring `filter`.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">filter</span> <span class="ow">in</span> <span class="n">k</span><span class="p">}</span>
+</span></span></code></pre></div><p>There’s no kind of transformation here.  If a field constrains the exact substring described in <code>filter</code>, use it.</p>
+<p>Adding a Typer <a href="https://typer.tiangolo.com/tutorial/options/">Option</a> lets us ask for a filter from the command line.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Substring to restrict displayed fields&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">metadata</span> <span class="o">=</span> <span class="n">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></div><p>If use <code>--filter</code>, we should only get matching tags.  Leaving out the filter gets us everything.</p>
+<p>Try it out!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacks.jpg --filter<span class="o">=</span>Image
+</span></span></code></pre></div><p>Now that I’m not overwhelmed by the quantity of output, I’m a little underwhelmed by the quality.</p>
+<pre class="rich"><span style="font-weight: bold">{</span>
+    <span style="color: #008000">'File:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">3672</span>,
+    <span style="color: #008000">'File:ImageHeight'</span>: <span style="color: #000080; font-weight: bold">2066</span>,
+    <span style="color: #008000">'EXIF:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">4032</span>,
+    <span style="color: #008000">'EXIF:ImageHeight'</span>: <span style="color: #000080; font-weight: bold">2268</span>,
+    <span style="color: #008000">'EXIF:ExifImageWidth'</span>: <span style="color: #000080; font-weight: bold">4032</span>,
+    <span style="color: #008000">'EXIF:ExifImageHeight'</span>: <span style="color: #000080; font-weight: bold">2268</span>,
+    <span style="color: #008000">'EXIF:ImageUniqueID'</span>: <span style="color: #008000">'J12LLKL00SM'</span>,
+    <span style="color: #008000">'EXIF:ThumbnailImage'</span>: <span style="color: #008000">'(Binary data 6788 bytes, use -b option to extract)'</span>,
+    <span style="color: #008000">'Composite:ImageSize'</span>: <span style="color: #008000">'3672 2066'</span>
+<span style="font-weight: bold">}</span></pre>
+<p>It’s nice.  Don’t get me wrong.  But all we’ve added to default <code>exiftool</code> behavior is some color.</p>
+<p>I’ve played with Rich a bit.  I know we can do better.</p>
+<h2 id="a-metadata-table">A metadata table!</h2>
+<p>Rich lets us create and display <a href="https://rich.readthedocs.io/en/stable/tables.html">tables</a> in the terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
+</span></span></code></pre></div><p>We need to <em>build</em> the table, defining columns and adding values row by row.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_table</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a Rich Table showing the metadata for a file.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s2">&#34;Field&#34;</span><span class="p">,</span> <span class="s2">&#34;Value&#34;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">table</span>
+</span></span></code></pre></div><blockquote>
+<p>[!WARNING]
+Hey, don’t miss that <code>str(value)</code>!  Rich tables need strings, and take nothing for granted with the values you give it.  Numeric values won’t necessarily convert straight to strings without a little help.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">metadata</span> <span class="o">=</span> <span class="n">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">file_table</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span></code></pre></div><p>What does our filtered view look like as a table?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacksjpg.jpg --filter<span class="o">=</span>Image
+</span></span></code></pre></div><pre class="rich"><span style="font-style: italic">                        hoku-hopes-for-snacksjpg.jpg                         </span>
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Field                </span>┃<span style="font-weight: bold"> Value                                              </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ File:ImageWidth      │ 3672                                               │
+│ File:ImageHeight     │ 2066                                               │
+│ EXIF:ImageWidth      │ 4032                                               │
+│ EXIF:ImageHeight     │ 2268                                               │
+│ EXIF:ExifImageWidth  │ 4032                                               │
+│ EXIF:ExifImageHeight │ 2268                                               │
+│ EXIF:ImageUniqueID   │ J12LLKL00SM                                        │
+│ EXIF:ThumbnailImage  │ (Binary data 6788 bytes, use -b option to extract) │
+│ Composite:ImageSize  │ 3672 2066                                          │
+└──────────────────────┴────────────────────────────────────────────────────┘
+</pre>
+<p>Pretty nifty.</p>
+<h2 id="a-metadata-tree">A metadata tree!</h2>
+<p>We can do more than tables though.  with that <code>type:tag</code> split, there&rsquo;s kind of a heirarchy.  We <em>could</em> add a column for the tag type, but why not use a <a href="https://rich.readthedocs.io/en/stable/tree.html">Tree</a>?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+</span></span></code></pre></div><p>Hang on a second while we build our little tree with its branches.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_tree</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[bold]</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">branches</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tagged_values</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">tags</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tagged_values</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root_tag</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">root_tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">root_tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[bold]</span><span class="si">{</span><span class="n">root_tag</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">root_tag</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[italic]</span><span class="si">{</span><span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">:[/italic] </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tree</span>
+</span></span></code></pre></div><p>Except now we have two ways to display metadata.  Three, if you count the dictionary we started with.  How are we going to show this tree without discarding our table code?</p>
+<p>For now, a callback table that says what to call for each of the options.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DISPLAYS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;table&#34;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">file_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;tree&#34;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">file_tree</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>We don’t <em>need</em> to use lambdas here.  Functions can be passed around same as any other value.  But if I wrap them in a lambda I can build my constant table before Python knows the functions exist.</p>
+<p>Typer uses <a href="https://typer.tiangolo.com/tutorial/options/callback-and-context/">callback</a> functions to validate options.  They do any processing or checks they need to, then return the supplied value if everything goes well.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">validate_display</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return value if valid, or panic if it isn&#39;t.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DISPLAYS</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Format must be one of: </span><span class="si">{</span><span class="n">DISPLAYS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">value</span>
+</span></span></code></pre></div><p>Add the <code>--display</code> Option, making sure to point Typer at the callback. <code>main</code> itself knows the value is safe, or the script never would have reached it.  So I can grab the displayer and call it without fear of consequence.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">display</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;table&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">help</span><span class="o">=</span><span class="s2">&#34;How to display the metadata&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">callback</span><span class="o">=</span><span class="n">validate_display</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">displayer</span> <span class="o">=</span> <span class="n">FORMATS</span><span class="p">[</span><span class="n">display</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="n">displayer</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span></code></pre></div><p>Okay!  What do we have now?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacks.jpg --filter<span class="o">=</span>Image --display<span class="o">=</span>tree
+</span></span></code></pre></div><pre class="rich"><span style="font-weight: bold">hoku-hopes-for-snacks.jpg</span>
+├── <span style="font-weight: bold">File</span>
+│   ├── <span style="font-style: italic">ImageWidth:</span> 3672
+│   └── <span style="font-style: italic">ImageHeight:</span> 2066
+├── <span style="font-weight: bold">EXIF</span>
+│   ├── <span style="font-style: italic">ImageWidth:</span> 4032
+│   ├── <span style="font-style: italic">ImageHeight:</span> 2268
+│   ├── <span style="font-style: italic">ExifImageWidth:</span> 4032
+│   ├── <span style="font-style: italic">ExifImageHeight:</span> 2268
+│   ├── <span style="font-style: italic">ImageUniqueID:</span> J12LLKL00SM
+│   └── <span style="font-style: italic">ThumbnailImage:</span> (Binary data 6788 bytes, use -b option to extract)
+└── <span style="font-weight: bold">Composite</span>
+    └── <span style="font-style: italic">ImageSize:</span> 3672 2066
+</pre>
+<p>Oooooh.</p>
+<p>Anyways, that’s what I wanted to show you.  Got plenty more ideas for mashing ExifTool and Rich together, as I’m sure you can imagine.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

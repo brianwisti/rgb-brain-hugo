@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>nikolaonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/nikola/</link>
+    <description>
+      Recent contentinnikola on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sun, 16 May 2021 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/nikola/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Not sure why I keep fussing with every single SSG. It&#39;s fun, I guess?</title>
+  <link>https://randomgeekery.org/post/2021/05/not-sure-why-i-keep-fussing-with-ssgs/</link>
+  <pubDate>Sun, 16 May 2021 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2021/05/not-sure-why-i-keep-fussing-with-ssgs/</guid>
+  <description>So after bouncing back to card/Hugo from a brief card/Statamic experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?
+No of course not.
+I spent the weekend messing with Nanoc and Nikola. Still chasing the high of the perfect site generator? Maybe.
+Nikola’s got the convenience thing down. Someone can sit and start a fresh blog quick.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>static-site-generators</category>  <category>nikola</category>  <category>nanoc</category>  <category>spinning-wheels</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2021/05/../../../attachments/img/2021/cover-2021-05-16.png" alt="attachments/img/2021/cover-2021-05-16.png"/></p>
+<p>So after bouncing back to <a href="/card/hugo/">card/Hugo</a> from a brief <a href="/card/statamic/">card/Statamic</a> experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?</p>
+<p>No of course not.</p>
+<p>I spent the weekend messing with <a href="https://nanoc.app">Nanoc</a> and <a href="https://getnikola.com">Nikola</a>. Still chasing the high of the perfect site generator? Maybe.</p>
+<p>Nikola&rsquo;s got the convenience thing down. Someone can sit and start a fresh blog quick.</p>
+<p>Nanoc&rsquo;s got this sort of friendly flexibility. It&rsquo;s been able to handle every idea so far. Obviously not nearly as fast as Hugo, but fast enough if you don&rsquo;t get carried away with images and templates.</p>
+<p>Guess what I like to do. I like to get carried away with images and templates.</p>
+<p>Might play more with Nanoc. Might get back to tuning the Hugo site.</p>
+<p>Been sort of eyeballing <a href="https://elderguide.com/tech/elderjs/">Elder.js</a> and <a href="https://vitepress.vuejs.org/">Vitepress</a> too. Sort-of-static sounds like fun.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Stealing a Hugo Shortcode for Nikola</title>
+  <link>https://randomgeekery.org/post/2020/02/stealing-a-hugo-shortcode-for-nikola/</link>
+  <pubDate>Wed, 12 Feb 2020 20:39:43 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/02/stealing-a-hugo-shortcode-for-nikola/</guid>
+  <description>I keep waffling on whether to switch from [Hugo][hugo] to [Nikola][nikola] or some other card/Static Site Generator. Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.
+[!NOTE] nikola check -l looks for broken internal links on your build output. It found a few in the imported files. I fixed them.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>nikola</category>  <category>site</category>  <category>hugo</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>I needed a YouTube shortcode for Nikola, so I adapted Hugo's.</h2><p><img src="/post/2020/02/../../../attachments/img/2020/cover-2020-02-12.png" alt="attachments/img/2020/cover-2020-02-12.png"/></p>
+<p>I keep waffling on whether to switch from [Hugo][hugo] to [Nikola][nikola] or some other <a href="/card/static-site-generator/">card/Static Site Generator</a>. Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.</p>
+<blockquote>
+<p>[!NOTE]
+<code>nikola check -l</code> looks for broken internal links on your build output. It found a few in the imported files. I fixed them.</p>
+<p>And yes. I wrote a <a href="/post/2017/04/making-a-mojo-link-checker/">post/2017/04/making-a-mojo-link-checker</a> in 2017. No, I haven’t used it since.</p>
+</blockquote>
+<h2 id="the-shortcode">The shortcode</h2>
+<p>Some posts included embedded YouTube videos. Nikola’s <a href="https://getnikola.com/handbook.html#restructuredtext-extensions">RST extensions</a> include a <a href="https://getnikola.com/handbook.html#youtube">youtube directive</a>, but I needed something for the Markdown files. Well, okay. <code>media</code> from the <a href="https://getnikola.com/handbook.html#built-in-shortcodes">built-in shortcodes</a> would work. I wanted to make a template shortcode, okay?</p>
+<p>Here’s what the <a href="https://github.com/gohugoio/hugo/blob/00297085db48cbb7949c9867012f6df38817fc29/tpl/tplimpl/embedded/templates/shortcodes/youtube.html">Hugo shortcode</a> looks like.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{{- $pc := .Page.Site.Config.Privacy.YouTube -}}
+</span></span><span class="line"><span class="cl">{{- if not $pc.Disable -}}
+</span></span><span class="line"><span class="cl">{{- $ytHost := cond $pc.PrivacyEnhanced  &#34;www.youtube-nocookie.com&#34; &#34;www.youtube.com&#34; -}}
+</span></span><span class="line"><span class="cl">{{- $id := .Get &#34;id&#34; | default (.Get 0) -}}
+</span></span><span class="line"><span class="cl">{{- $class := .Get &#34;class&#34; | default (.Get 1) }}
+</span></span><span class="line"><span class="cl">&lt;div {{ with $class }}class=&#34;{{ . }}&#34;{{ else }}style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;{{ end }}&gt;
+</span></span><span class="line"><span class="cl">    &lt;iframe src=&#34;https://{{ $ytHost }}/embed/{{ $id }}{{ with .Get &#34;autoplay&#34; }}{{ if eq . &#34;true&#34; }}?autoplay=1{{ end }}{{ end }}&#34; {{ if not $class }}style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; {{ end }}allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+</span></span><span class="line"><span class="cl">&lt;/div&gt;
+</span></span><span class="line"><span class="cl">{{ end -}}
+</span></span></code></pre></div><p>I never knew about YouTube privacy configuration for the shortcode. Ah. That’s because it’s not in the <a href="https://gohugo.io/content-management/shortcodes/#youtube">shortcode documentation</a>. I like it though. I think I’ll use it.</p>
+<blockquote>
+<p>[!NOTE]
+Ah. It’s documented in <a href="https://gohugo.io/about/hugo-and-gdpr/">Hugo and the GDPR</a>.</p>
+</blockquote>
+<p>If you want a Nikola configuration available to your shortcode, add it to <code>conf.py’s `GLOBAL_CONTEXT</code> dictionary.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Put in global_context things you want available on all your templates.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># It can be anything, data, functions, modules, etc.</span>
+</span></span><span class="line"><span class="cl"><span class="n">GLOBAL_CONTEXT</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;youtube_privacy_enhanced&#34;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>And here’s <code>shortcodes/youtube.tmpl</code>, adapted for Mako.</p>
+<div class="highlight" title="shortcodes/youtube.tmpl"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="x">&lt;%
+</span></span></span><span class="line"><span class="cl"><span class="x">    id = _args[0]
+</span></span></span><span class="line"><span class="cl"><span class="x">    root_url = &#34;www.youtube-nocookie.com&#34; if youtube_privacy_enhanced else &#34;www.youtube.com&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">    embed_url = f&#34;https://{root_url}/embed/{id}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">    style_in_page = &#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">    player_style = &#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">%</span><span class="o">&gt;</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">&lt;div style=&#34;</span><span class="cp">${</span><span class="n">style_in_page</span><span class="cp">}</span><span class="x">&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">    &lt;iframe src=&#34;</span><span class="cp">${</span><span class="n">embed_url</span><span class="cp">}</span><span class="x">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">        style=&#34;</span><span class="cp">${</span><span class="n">player_style</span><span class="cp">}</span><span class="x">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="x">        allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/div&gt;
+</span></span></span></code></pre></div><p>Not much needed here. It takes the YouTube ID as an argument, picks a host based on <code>youtube_privacy_enhanced</code>, and adds some HTML.</p>
+<p><img src="/post/2020/02/attachments/img/2020/miyazaki.png" alt="Note to self: clicking play in a screenshot does nothing"/></p>
+<p>It works!</p>
+<h2 id="what-now">What Now?</h2>
+<p>I’m not sure. The Nikola experiment is fun, but I have ideas for the Hugo flow too.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Tweaking a Nikola Theme</title>
+  <link>https://randomgeekery.org/post/2020/01/tweaking-a-nikola-theme/</link>
+  <pubDate>Sat, 25 Jan 2020 12:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/01/tweaking-a-nikola-theme/</guid>
+  <description>I adjusted the default Nikola theme to show cover images!
+The now page, in Nikola
+Motivation I am a visual person. You might not know that from all the typing and my enthusiasm for command line tools. But many of my posts and pages have cover images. Sometimes the cover images are even relevant to the post.
+In the live site, cover images are prominently displayed at the top of their pages.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>nikola</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p>I adjusted the default <a href="https://getnikola.com">Nikola</a> theme to show cover images!</p>
+<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-25.png" alt="attachments/img/2020/cover-2020-01-25.png"/>
+The <a href="/now/">now</a> page, in Nikola</p>
+<h2 id="motivation">Motivation</h2>
+<p>I am a visual person. You might not know that from all the typing and my enthusiasm for command line tools. But many of my posts and pages have cover images. Sometimes the cover images are even relevant to the post.</p>
+<p>In the live site, cover images are prominently displayed at the top of their pages. They get referenced when a post gets shared on social media. A cropped and adjusted version of the cover image gets displayed in post summaries.</p>
+<p>So if I’m using <a href="/card/nikola/">card/Nikola</a> to build something like my current site, I need cover images.</p>
+<p>Nikola site uses the <a href="https://themes.getnikola.com/v8/bootblog4/">bootblog4</a> theme by default, taking advantage of the <a href="https://getbootstrap.com/">Bootstrap</a> toolkit. bootblog4 doesn’t support cover images, so I’ll make a version that does.</p>
+<p>Mind you, I don’t want to build a whole new theme. That can come later. There’s even a nice tutorial for <a href="https://getnikola.com/creating-a-theme.html">creating a theme</a>. For now I just want to tweak the default a little.</p>
+<h2 id="set-up-files-and-metadata">Set up files and metadata</h2>
+<p>Nikola starts with a few assumptions I can work with. bootblog4 already looks for <code>previewimage</code> <a href="https://getnikola.com/handbook.html#metadata-fields">metadata</a> to build thumbnails for <a href="https://getnikola.com/handbook.html#featured-posts">featured posts</a>. Nikola also expects to find image files in your site’s <code>images/</code> folder. Makes sense.</p>
+<p>I’ll mirror the content path with images, and add <code>previewimage</code> metadata which points to the right spot.</p>
+<p><strong><code>posts/2019/12/again-with-the-manual-symmetry/index.md</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2019-12-15 12:37:51</span><span class="m">-08</span><span class="p">:</span><span class="m">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">drawing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">Procreate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">symmetry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Again with the manual symmetry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l">note</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">previewimage</span><span class="p">:</span><span class="w"> </span><span class="l">/images/2019/12/again-with-the-manual-symmetry/cover.jpg</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span></code></pre></div><p>I prefer how <a href="/card/hugo/">card/Hugo</a> handles <a href="https://gohugo.io/content-management/page-bundles/">page bundles</a>. Everything for your content is in the same folder. Many other static site generators — including Nikola — keep supplemental content separate from posts.</p>
+<p>Hugo uses a powerful but sometimes confusing <a href="https://gohugo.io/content-management/taxonomies/">taxonomy</a> system in layout customization. Nikola prefers a powerful but sometimes confusing &ldquo;theme inheritance&rdquo; system. Look. They’re all confusing. It’s just a matter of finding the kind of confusing you don’t mind.</p>
+<p>With theme inheritance, my tweaks <em>are</em> a new theme. But the new theme basically says &ldquo;I’m like that theme, except that I changed these templates.&rdquo;</p>
+<p>So let’s inherit a theme.</p>
+<h2 id="nikolas-theme-command">Nikola’s <code>theme</code> command</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-i ARG, --install=ARG</code></td>
+<td>Install a theme. (config: install)</td>
+</tr>
+<tr>
+<td><code>-r ARG, --uninstall=ARG</code></td>
+<td>Uninstall a theme.  (config: uninstall)</td>
+</tr>
+<tr>
+<td><code>-l, --list</code></td>
+<td>Show list of available themes. (config: list)</td>
+</tr>
+<tr>
+<td><code>--list-installed</code></td>
+<td>List the installed themes with their location. (config: list_installed)</td>
+</tr>
+<tr>
+<td><code>-u ARG, --url=ARG</code></td>
+<td>URL for the theme repository (default: <a href="https://themes.getnikola.com/v8/themes.json">https://themes.getnikola.com/v8/themes.json</a>) (config: url)</td>
+</tr>
+<tr>
+<td><code>-g ARG, --get-path=ARG</code></td>
+<td>Print the path for installed theme (config: getpath)</td>
+</tr>
+<tr>
+<td><code>-c ARG, --copy-template=ARG</code></td>
+<td>Copy a built-in template into templates/ or your theme (config: copy-template)</td>
+</tr>
+<tr>
+<td><code>-n ARG, --new=ARG</code></td>
+<td>Create a new theme (config: new)</td>
+</tr>
+<tr>
+<td><code>--engine=ARG</code></td>
+<td>Engine to use for new theme (mako or jinja &ndash; default: mako) (config: new_engine)</td>
+</tr>
+<tr>
+<td><code>--parent=ARG</code></td>
+<td>Parent to use for new theme (default: base) (config: new_parent)</td>
+</tr>
+<tr>
+<td><code>--legacy-meta</code></td>
+<td>Create legacy meta files for new theme (config: new_legacy_meta)</td>
+</tr>
+</tbody>
+</table>
+<p>So I ask Nikola for a new theme, using bootblog4 as the parent.</p>
+<pre tabindex="0"><code>$ nikola theme --new rgb-bootblog4 --parent bootblog4
+...
+[2020-01-21T15:35:33Z] NOTICE: theme: Remember to set THEME=&#34;rgb-bootblog4&#34; in conf.py to use this theme.
+</code></pre><p>Because I didn’t specify a template engine, rgb-bootblog4 uses <a href="https://www.makotemplates.org/">Mako</a>.</p>
+<p>Let’s remember to update <code>conf.py</code> as directed, so we can <em>see</em> the theme as we tweak it. The <a href="https://getnikola.com/creating-a-theme.html">theme tutorial</a> also mentions disabling <code>USE_BUNDLES</code> during theme development. I thought they meant page bundles for a second and got excited, until I realized <a href="https://getnikola.com/creating-a-theme.html#bundles">bundles</a> meant bundled JavaScript and CSS for quicker HTTP/1 downloads.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Name of the theme to use.</span>
+</span></span><span class="line"><span class="cl"><span class="n">THEME</span> <span class="o">=</span> <span class="s2">&#34;rgb-bootblog4&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USE_BUNDLES</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span></code></pre></div><p>Sweet. I have a new <code>themes/rgb-bootblog4</code> folder. Wait. It has no templates.</p>
+<p>Oh that’s right. This is what they were talking about with <em>template inheritance</em>. The templates are still in the parent. It’s up to me to copy and change specific templates. That’s both good and a little risky when the parent theme updates. What if my tweak turns out to be incompatible? Okay, not going to worry about it today. If you’re going to veer wildly from the parent, you should probably use <a href="https://themes.getnikola.com/v8/base/">base</a> as the parent.</p>
+<h2 id="editing-templates">Editing templates</h2>
+<blockquote>
+<p>[!NOTE]
+The <a href="https://marketplace.visualstudio.com/items?itemName=tommorris.mako">Mako extension</a> for <a href="https://code.visualstudio.com/">Visual Studio Code</a> associates itself with <code>.mako</code> files. You can add <code>.tmpl</code> to that with the <code>files.associations</code> <a href="https://code.visualstudio.com/docs/getstarted/settings">setting</a>. Might not want to do that globally though. <code>.tmpl</code> could be Mako here, but <a href="https://jinja.palletsprojects.com/">Jinja2</a> in another site.</p>
+<p>Instead, change it in the workspace file for your Nikola site.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;folders&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;files.associations&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;*.tmpl&#34;</span><span class="p">:</span> <span class="s2">&#34;mako&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></blockquote>
+<p>So which of the <a href="https://getnikola.com/theming.html#built-in-templates">built-in templates</a> do I want? Since both posts and pages have cover images on my site, I’ll start with the most general template. Everything starts with <code>base.tmpl</code>. Let’s look there.</p>
+<pre tabindex="0"><code>$ nikola theme -c base.tmpl
+</code></pre><p>Can I find anything interesting in the base template?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">${</span><span class="n">template_hooks</span><span class="p">[</span><span class="s1">&#39;page_header&#39;</span><span class="p">]()</span><span class="cp">}</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;content&#34;</span><span class="cp">&gt;&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
+</span></span></span></code></pre></div><p>Over here on the live site, I put cover images above the main content. <code>extra_header</code> looks promising. Where to set it? I prefer to make my changes in the most relevant template instead of the most general.</p>
+<p>Give me a minute to explore…</p>
+<p>Okay. Pages ultimately inherit from posts — Mako supports <a href="https://docs.makotemplates.org/en/latest/inheritance.html">template inheritance</a>, letting the parent define some blocks while overriding others. We might be able to do this with one change.</p>
+<pre tabindex="0"><code>$ nikola theme -c post.tmpl
+</code></pre><p>Nikola provides a large number of <a href="https://getnikola.com/template-variables.html">template variables</a> to work with, but today I focus on <code>post</code>. How about the preview image? It gets set in post metadata, so I <em>could</em> use <code>post.meta(&quot;previewimage&quot;)</code>. Don’t have to do that though.  <code>previewimage</code> metadata is important enough that it gets promoted to an attribute of the <a href="https://getnikola.com/template-variables.html#post-object-attributes">post object</a>.</p>
+<p><strong><code>post.tmpl</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="cp">%</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="p">:</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">      &lt;div class=&#34;figure&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">          &lt;img src=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="cp">}</span><span class="x">&#34; alt=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="cp">}</span><span class="x">&#34; width=&#34;1000&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">          &lt;p class=&#34;caption&#34;&gt;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="cp">}</span><span class="x">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/figure&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
+</span></span></span></code></pre></div><p>Keep in mind what I noticed <a href="/post/2020/01/restructuredtext-basics-for-blogging/">the other day</a>about these not being real figures in reStructuredText. For now I match RST output, as if I’d used a <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure directive</a>. That way I don’t have to find the CSS for this theme.</p>
+<p><img src="/post/2020/01/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/></p>
+<p>It has a cover image, placed right by the title. It doesn’t <em>quite</em> match today’s view of <a href="/post/2019/12/again-with-the-manual-symmetry/">that post</a>, but this has the basic idea. And I only had to edit a single template file!</p>
+<p><img src="/post/2020/01/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/></p>
+<p>Looks good for posts that have a cover image. How about pages?</p>
+<p><img src="/post/2020/01/attachments/img/2020/cover-in-page.png" title="Cover image in a non-post page" alt="screenshot of /now page with nikola style"/></p>
+<p>Excellent. I thought that would take much more work.</p>
+<h2 id="remember-bootstrap">Remember Bootstrap?</h2>
+<p>bootblog4 <em>is</em> based off of Bootstrap. I feel compelled to make the cover image a <a href="https://getbootstrap.com/docs/4.4/components/jumbotron/">Jumbotron</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mako" data-lang="mako"><span class="line"><span class="cl"><span class="cp">&lt;%</span><span class="nb">block</span> <span class="na">name=</span><span class="s">&#34;extra_header&#34;</span><span class="cp">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="cp">%</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="p">:</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x">      &lt;div class=&#34;figure jumbotron&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">          &lt;img src=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">previewimage</span><span class="cp">}</span><span class="x">&#34; alt=&#34;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="cp">}</span><span class="x">&#34; width=1000&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">          &lt;p class=&#34;caption&#34;&gt;</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="cp">}</span><span class="x">&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span><span class="x">
+</span></span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/></p>
+<p>Hm. Maybe, maybe not. I’m tempted to tweak it some more, but my task list is long and my time is short.</p>
+<h2 id="did-i-miss-anything">Did I miss anything?</h2>
+<p>Sort of. On the live site, I let Hugo resize cover images to fit in my design and avoid large downloads. Nikola has thumbnails, but that’s not quite the same thing. I’d have to do it myself, maybe with a <a href="https://getnikola.com/handbook.html#custom-plugins">plugin</a>.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Random Geekery a la Nikola</title>
+  <link>https://randomgeekery.org/post/2020/01/random-geekery-a-la-nikola/</link>
+  <pubDate>Mon, 20 Jan 2020 23:01:04 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/01/random-geekery-a-la-nikola/</guid>
+  <description>Told you I was checking out card/Nikola. Importing the live site has been fun. I may have outgrown the default theme though, nice though it is.
+No, I haven’t replaced Hugo yet. Just exploring.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>nikola</category>  <category>site</category>  <category>having-fun</category>  <category>killing-time-while-scripts-run</category> 
+  <content:encoded><![CDATA[<p>Told you I was checking out <a href="/card/nikola/">card/Nikola</a>. Importing the live site has been fun. I may have outgrown the default theme though, nice though it is.</p>
+<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-20.png" alt="attachments/img/2020/cover-2020-01-20.png"/></p>
+<p>No, I haven’t replaced Hugo yet. Just exploring.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Building a starter blog with Nikola</title>
+  <link>https://randomgeekery.org/post/2020/01/building-a-starter-blog-with-nikola/</link>
+  <pubDate>Sun, 05 Jan 2020 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/01/building-a-starter-blog-with-nikola/</guid>
+  <description>I messed with card/Nikola a while back, but ended up going with card/Hugo. Nikola has evolved in the last couple years, though. Let’s check it out!
+Nikola is a static site generator written in card/Python. Its features support a flexible workflow while still providing a solid blogging experience “out of the box.” You can extend that flexibility further via plugins.
+That focused flexibility intrigues me. Cleaning my site after Hugo deprecated the mmark format was a chore.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>python</category>  <category>site</category>  <category>nikola</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>In which I play with another site builder</h2><p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-05.png" alt="attachments/img/2020/cover-2020-01-05.png"/></p>
+<p>I messed with <a href="/card/nikola/">card/Nikola</a> a while back, but ended up going with <a href="/card/hugo/">card/Hugo</a>. Nikola has evolved in the last couple years, though. Let’s check it out!</p>
+<p>Nikola is a static site generator written in <a href="/card/python/">card/Python</a>. Its <a href="https://getnikola.com/features">features</a> support a flexible workflow while still providing a solid blogging experience &ldquo;out of the box.&rdquo; You can extend that flexibility further via plugins.</p>
+<p>That focused flexibility intrigues me. <a href="/post/2019/12/removing-mmark-has-me-grumbly/">Cleaning</a> my site after Hugo <a href="https://gohugo.io/news/0.60.0-relnotes/">deprecated</a> the <a href="https://mmark.miek.nl/">mmark</a> format was a chore. My site has too many moving parts for me to casually port it, but I can still play a little.</p>
+<h2 id="setup">Setup</h2>
+<p>It’s generally a good idea to have a dedicated Python environment for each of your projects. So I’ll set something up with <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>.</p>
+<pre tabindex="0"><code>$ pyenv virtualenv 3.8.0 nikola
+$ pyenv activate nikola
+</code></pre><p>Next is Nikola itself. I’ll follow the <a href="https://getnikola.com/getting-started.html">suggestion</a> to install Nikola[Extras], which includes all sorts of niftiness.</p>
+<pre tabindex="0"><code>$ pip install --upgrade &#34;Nikola[Extras]&#34;
+</code></pre><h2 id="initialize-the-site">Initialize the site</h2>
+<p>Let’s initialize an empty site.</p>
+<pre tabindex="0"><code>$ nikola init starter-blog
+Creating Nikola Site
+====================
+
+This is Nikola v8.0.3.  We will now ask you a few easy questions about your new site.
+If you do not want to answer and want to go with the defaults instead, simply restart with the `-q` parameter.
+--- Questions about the site ---
+...
+--- Questions about languages and locales ---
+...
+--- Questions about comments ---
+...
+That&#39;s it, Nikola is now configured.  Make sure to edit conf.py to your liking.
+If you are looking for themes and addons, check out https://themes.getnikola.com/ and https://plugins.getnikola.com/.
+Have fun!
+[2020-01-04T07:08:02Z] INFO: init: Created empty site at starter-blog.
+</code></pre><p>Okay, no need to paste the entire exchange. Suffice to say that many questions are asked. And as Nikola itself mentions, we can skip those questions questions with <code>nikola init -q</code>.</p>
+<p>We get a configuration file written in Python and a handful of empty directories.
+I see nothing for themes, but that’s okay. Nikola starts us off with the <a href="https://themes.getnikola.com/v8/bootblog4/">bootblog4</a> theme. We can pick or make new themes later.</p>
+<pre tabindex="0"><code>$ tree
+.
+├── conf.py
+├── files
+├── galleries
+├── listings
+├── pages
+└── posts
+
+5 directories, 1 file
+</code></pre><p>My answers to Nikola’s setup questions sit up there near the top of <code>conf.py</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Data about this site</span>
+</span></span><span class="line"><span class="cl"><span class="n">BLOG_AUTHOR</span> <span class="o">=</span> <span class="s2">&#34;Brian Wisti&#34;</span>  <span class="c1"># (translatable)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BLOG_TITLE</span> <span class="o">=</span> <span class="s2">&#34;Random Geekery&#34;</span>  <span class="c1"># (translatable)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This is the main URL for your site. It will be used</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in a prominent link. Don&#39;t forget the protocol (http/https)!</span>
+</span></span><span class="line"><span class="cl"><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&#34;https://randomgeekery.org/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This is the URL where Nikola&#39;s output will be deployed.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If not set, defaults to SITE_URL</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># BASE_URL = &#34;https://randomgeekery.org/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BLOG_EMAIL</span> <span class="o">=</span> <span class="s2">&#34;brianwisti@pobox.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BLOG_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&#34;The Random Geekery Blog, built with Nikola&#34;</span>  <span class="c1"># (translatable)</span>
+</span></span></code></pre></div><p>The rest of the file lists and explains default configuration. You could learn <em>almost</em> everything you need about Nikola from the configuration file. Nevertheless, I plan to keep the <a href="https://getnikola.com/documentation.html">documentation</a> handy.</p>
+<h3 id="local-development">Local Development</h3>
+<p>Nikola includes a built-in server to check your site locally. We have no content yet, but let’s take a look anyways.</p>
+<pre tabindex="0"><code>$ nikola auto --browser
+[2020-01-04T17:51:45Z] INFO: serve: Serving on http://127.0.0.1:8000/ ...
+[2020-01-04T17:51:45Z] INFO: serve: Opening http://127.0.0.1:8000/ in the default web browser...
+</code></pre><p>The <code>auto</code> command instructs Nikola to serve your site, refreshing whenever you save a change. With the <code>--browser</code> flag, it also opens a new browser tab to your development site.</p>
+<blockquote>
+<p>[!NOTE]
+Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run <code>nikola auto --browser</code> from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.</p>
+</blockquote>
+<p><code>http://127.0.0.1:8000</code> shows a basically empty front page. Nikola filled in the templates for the default theme with values from <code>conf.py</code>.</p>
+<p><img src="/post/2020/01/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/></p>
+<p>Each of the &ldquo;Archive,&rdquo; &ldquo;Tags,&rdquo; and &ldquo;RSS Feed&rdquo; links lead to summary pages with nothing listed. Since I have no content for Nikola to summarize yet, that makes sense.</p>
+<p>Following the &ldquo;Random Geekery&rdquo; link at the top takes me to the live site. I consider this incorrect behavior. We want to see how the development site works, not the live site.</p>
+<p>We can probably fix that in theme templates or with an option, but for the moment let’s just update <code>config.py</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&#34;/&#34;</span>
+</span></span></code></pre></div><p>And now the site title header links to the front page. Perfect for today.</p>
+<p>Let’s start blogging!</p>
+<h2 id="blogging-with-nikola">Blogging with Nikola</h2>
+<p>Nikola supports an overwhelming number of options, especially when you start looking at plugins. That works great for someone like me. I constantly get new ideas not quite covered by the expected workflow, regardless of what that flow is.</p>
+<p>Of course, &ldquo;an overwhelming number of options&rsquo; is not the same as &ldquo;unopinionated.&rdquo; Unopinionated tools expect you to create your own workflow — or copy someone else’s. Despite its many options, Nikola includes a default workflow.</p>
+<h3 id="writing-a-blog-post">Writing a blog post</h3>
+<p>The <code>new_post</code> command asks you for a title and uses that to create a file from your settings.</p>
+<pre tabindex="0"><code>$ nikola new_post
+Creating New Post
+-----------------
+
+Title: Trying Out Nikola
+Scanning posts........done!
+[2020-01-04T20:39:06Z] INFO: new_post: Your post&#39;s text is at: posts/trying-out-nikola.rst
+</code></pre><p>Fire up an editor — or do it automatically with <code>nikola new_post -e</code> — and add something!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. title: Trying Out Nikola</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. slug: trying-out-nikola</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. date: 2020-01-04 12:39:06 UTC-08:00</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. tags: nikola</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. category:</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. link:</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. description:</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="cp">.. type: text
+</span></span></span><span class="line"><span class="cl"><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>I can&#39;t think of anything to write here.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>How about some filler with Perl and Text::Lorem?<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">vim</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    :<span class="nx">r</span> <span class="p">!</span><span class="nx">perl</span> <span class="p">-</span><span class="nx">mText</span>::<span class="nx">Lorem</span> <span class="p">-</span><span class="nx">E</span> <span class="s1">&#39;say Text::Lorem-&gt;new-&gt;paragraphs(3)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">...</span><span class="err">
+</span></span></span></code></pre></div><p>Unless you configure it differently, Nikola uses <a href="/card/restructuredtext/">card/reStructuredText</a> for new posts.
+RestructuredText, or ReST, is a formatting language similar in spirit to <a href="/card/markdown/">card/Markdown</a>. The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.</p>
+<p>Nikola reads our post’s metadata from ReST comments at the front of the file. I know I will miss something important if I tried summarizing it. Let’s just link to Nikola’s own <a href="https://getnikola.com/handbook.html#metadata-fields">metadata documentation</a>.</p>
+<p>What does the site look like now that it has a post?</p>
+<p><img src="/post/2020/01/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/></p>
+<p>This theme shows post content. I prefer showing a quick summary of posts on the front page.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Show teasers (instead of full posts) in indexes? Defaults to False.</span>
+</span></span><span class="line"><span class="cl"><span class="n">INDEX_TEASERS</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>And a comment in the post to show where the cutoff point is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="cp">.. TEASER_END
+</span></span></span><span class="line"><span class="cl"><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>Delectus ut aut ea et dolore autem. Sint nihil sapiente voluptate id aut quo impedit. Aut<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>numquam delectus pariatur non accusantium. Aperiam aspernatur nemo sequi in est. Expedita<span class="err">
+</span></span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/></p>
+<p>Now the index has a summary and the main content is on the post page.
+The tag rests at the bottom, and a source link sits with the headline.</p>
+<p><img src="/post/2020/01/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/></p>
+<p>What about that &ldquo;Source&rdquo; link? Nikola lets you download the ReST source of a post. Neat, but not a feature I care about.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Copy the source files for your pages?</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Setting it to False implies SHOW_SOURCELINK = False</span>
+</span></span><span class="line"><span class="cl"><span class="n">COPY_SOURCES</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span></code></pre></div><p>Okay I need to stop. I intended to focus on the default Nikola flow. But here I am poking at <code>config.py</code>. Oh well. I gotta be me.</p>
+<p>But still let’s move on.</p>
+<p>The Archive, Tags, and RSS Feed links work, listing posts as expected. The lists aren’t very interesting with only one post though. I’ll see what I can come up with for next time. Oh and I’m not sure I can properly describe how excited I am that Archive automatically generates pages for years. I didn’t have to make a special-purpose taxonomy or anything!</p>
+<h2 id="adding-pages">Adding Pages</h2>
+<p>Anyways. Blogging is good, but a site needs more than blog posts. Let’s use <code>nikola new_post -p</code> to create a page instead of a post.</p>
+<pre tabindex="0"><code>$ nikola new_post -p
+Creating New Page
+-----------------
+
+Title: Now
+Scanning posts........done!
+[2020-01-05T09:37:40Z] INFO: new_page: Your page&#39;s text is at: pages/now.rst
+</code></pre><p>Everybody could use a <a href="/now/">now</a> page. Excuse me a moment while I edit <code>pages/now.rst</code>. Oh! Since it’s not a post, it won’t show up unless we link to it. The <code>/now</code> page is significant enough that it should go on the site menu.</p>
+<p>Back over to <code>config.py</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NAVIGATION_LINKS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DEFAULT_LANG</span><span class="p">:</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/pages/now/&#34;</span><span class="p">,</span> <span class="s2">&#34;Now&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/archive.html&#34;</span><span class="p">,</span> <span class="s2">&#34;Archive&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/categories/&#34;</span><span class="p">,</span> <span class="s2">&#34;Tags&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/rss.xml&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS feed&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img src="/post/2020/01/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/></p>
+<h2 id="whats-left">What’s left?</h2>
+<p>If this was a really real site, we would build and deploy.</p>
+<pre tabindex="0"><code>$ nikola build
+$ nikola deploy
+</code></pre><p>Nikola has a <code>deploy</code> command? Well sure! You can configure multiple <a href="https://getnikola.com/handbook.html#deployment">deployment</a> options. <a href="https://rsync.samba.org/">rsync</a> — my favorite — even gets highlighted in the commented example.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># DEPLOY_COMMANDS = {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     &#39;default&#39;: [</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         &#34;rsync -rav --delete output/ joe@my.site:/srv/www/site&#34;,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     ]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># }</span>
+</span></span></code></pre></div><p>But I’m leaving that section of <code>config.py</code> alone for now.</p>
+<p>This was fun! Will I replace Hugo with Nikola? I don’t know yet. I’d have to try importing and building the current site.</p>
+<p>That sounds like a project for another day.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

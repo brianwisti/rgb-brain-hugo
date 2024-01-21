@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2020/02/python-invoke/">
+<meta property="og:title" content="Python Invoke">
+<meta name="twitter:title" content="Python Invoke">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I got to know the Python `invoke` task runner a little better.">
+    <meta property="og:description" content="I got to know the Python `invoke` task runner a little better.">
+  
+
+
+
+<title itemprop="name">Python Invoke - Random Geekery</title>
+<meta property="og:title" content=Python&#32;Invoke&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Python&#32;Invoke&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Python&#32;Invoke&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Python&#32;Invoke&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I got to know the Python `invoke` task runner a little better." />
+<meta itemprop="description" content="I got to know the Python `invoke` task runner a little better." />
+<meta property="og:description" content="I got to know the Python `invoke` task runner a little better." />
+<meta name="twitter:description" content="I got to know the Python `invoke` task runner a little better." />
+
+
+<base href="https://randomgeekery.org/post/2020/02/python-invoke/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2020/02/python-invoke/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2020/02/python-invoke/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2020/02/python-invoke/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2020/02/python-invoke/" />
+
+
+<meta property="og:updated_time" content=17002-17-11T256:29:20-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2020/05/querying-hugo-content-with-python/">Querying Hugo Content With Python</a></li>
+        
+          <li><a href="/post/2020/04/h-entry-microformat-for-indieweb-posts/">h-entry Microformat for Indieweb Posts</a></li>
+        
+          <li><a href="/post/2021/08/trying-a-thing-with-neovim/">trying a thing with neovim</a></li>
+        
+          <li><a href="/post/2020/11/using-the-webmentionio-api/">Using the Webmention.io API</a></li>
+        
+          <li><a href="/post/2020/05/alias-templates-in-hugo/">Alias Templates in Hugo</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2020/02/python-invoke/">Python Invoke</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2020/02/python-invoke/">Python Invoke</a>
+    </h1>
+    
+        <time datetime="2020-02-17T11:56:29-0800" class="post-date">
+            February 17, 2020
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-site">
+            <a href="https://randomgeekery.org/tags/site">site</a>
+        </li>
+        
+        <li class="tag-pyinvoke">
+            <a href="https://randomgeekery.org/tags/pyinvoke">pyinvoke</a>
+        </li>
+        
+        <li class="tag-hugo">
+            <a href="https://randomgeekery.org/tags/hugo">hugo</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <h2 id="the-problem">The problem</h2>
+<p>I manage my site with <a href="https://www.gnu.org/software/make/manual/make.html">make</a> and a hodgepodge of shell scripts. This approach sort of collapsed under its own weight the other day. I needed to update the &ldquo;ask Hugo to create a new post or note&rdquo; scripts to accommodate a change in folder layout. I wrote one of the scripts in bash, and the other in Perl. All of it managed by <code>make</code>, with a string of <code>.PHONY</code> targets.</p>
+<p>Not that there’s anything wrong with that.</p>
+<h2 id="a-solution-invoke">A solution: Invoke</h2>
+<p>But I want to try a more unified approach. I also decided that 2020 is my year of <a href="/card/python/">card/Python</a>.</p>
+<aside class="admonition">
+<p>Don’t hold me to that &ldquo;year of Python&rdquo; thing. I get distracted.</p>
+</aside>
+<p>I could use the <em>inbox/Pyinvoke</em> tool created by <a href="http://bitprophet.org/">Jeff Forcier</a> for this unified approach.</p>
+<p>Invoke gives you a task runner and support library for managing those tasks. It works a bit like Make, except that you define tasks with Python. Decorate some functions in a <code>tasks.py</code> file and you’re ready to go!</p>
+<p>I like Invoke’s approach to little annoyances like options and external commands, too. I no longer need to care about <a href="https://docs.python.org/3/library/argparse.html">argparse</a> or <a href="https://docs.python.org/3/library/subprocess.html">subprocess</a> for so many little projects.</p>
+<p>Let’s get started.</p>
+<h3 id="installing-it">Installing it</h3>
+<p>Mercifully simple. Do you have <a href="https://brew.sh/">Homebrew</a>? Use that.</p>
+<pre tabindex="0"><code>$ brew install pyinvoke
+</code></pre><p>You can also use <code>pip</code> if you want Invoke in a particular Python environment.</p>
+<pre tabindex="0"><code>(rgbhugo) $ pip install pyinvoke
+</code></pre><p>Using Invoke with or near pyenv</p>
+<p>No matter how I installed Invoke, I couldn’t get it to run in any environment at first. That’s more likely my mistake than any fault of pyenv or Invoke. Installing <a href="https://github.com/pyenv/pyenv-which-ext">pyenv-which-ext</a> fixed that problem. pyenv-which-ext looks for an executable in your regular path if it can’t be found in your pyenv stubs.</p>
+<p>Thought I’d mention it in case you saw similar issues.</p>
+<h3 id="the-taskspy-file">The tasks.py file</h3>
+<p>Tasks are defined in a <code>tasks.py</code> file. Seems reasonable so far. Import the <a href="http://docs.pyinvoke.org/en/stable/api/tasks.html#invoke.tasks.task">task decorator</a> to use Invoke’s powers.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+</span></span></code></pre></div><h3 id="a-hello-world-task">A &ldquo;Hello World&rdquo; task</h3>
+<p>There’s not <em>much</em> boilerplate to a task, but there’s still a little.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>@task</code> is important. It tells Invoke to pay attention. Without the decoration, <code>hello</code> is just another function. That’s great for adding support logic, but not so much for &ldquo;Hello World.&rdquo;</p>
+<p>The <code>c</code> argument is Invoke’s <a href="http://docs.pyinvoke.org/en/stable/api/context.html">context</a>. We’ll get to that. The thing to remember for now is that every task gets called with context as its first argument.</p>
+<p>To <em>run</em> that task?</p>
+<pre tabindex="0"><code>$ invoke hello
+Hello, world!
+</code></pre><p>My Makefile uses a clever bit of <a href="https://www.grymoire.com/Unix/Sed.html">sed</a> to list available targets when you call <code>make help</code>. With Invoke? No cleverness needed.</p>
+<pre tabindex="0"><code>$ invoke --list
+Available tasks:
+
+  hello
+</code></pre><p>I strongly prefer Invoke’s built-in behavior to my <code>sed</code> one-liner.</p>
+<h4 id="documenting-the-task">Documenting the task</h4>
+<p>This list could be more helpful, though. We know what the <code>hello</code> task does because I wrote it a few minutes ago. What about in a few months, when I have dozens of tasks?</p>
+<p>Trust me. In a few months I will have dozens of tasks. Maybe in a few hours.</p>
+<p>Add a docstring!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Print the standard greeting
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;Hello world&#34; is the classic first program to see what a language looks like.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    So of course I used it to understand Invoke.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Invoke takes the first line from that docstring and uses it to summarize our task in <code>--list</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> invoke --list
+</span></span><span class="line"><span class="cl"><span class="go">Available tasks:
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">  hello   Print the standard greeting
+</span></span></span></code></pre></div><p>Nice.</p>
+<blockquote>
+<p>[!TIP]
+Since Invoke only uses the docstring’s first line for the summary, keep it short and to the point. Deep dives and technical explanations can go in following paragraphs. But you should be doing that anyways. It’s a good documentation habit.</p>
+</blockquote>
+<h4 id="task-parameters">Task parameters</h4>
+<p>Your task is a Python function. Add arguments to your function and you’ve added <a href="http://docs.pyinvoke.org/en/stable/getting-started.html#task-parameters">parameters</a> to the task.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Print the standard greeting
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;Hello world&#34; is the classic first program to see what a language looks like.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    So of course I used it to understand Invoke.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Invoke accepts both long and short form parameters. Either <code>--name</code> or <code>-n</code> count for <code>name</code>. I’ll use the long form today to keep things clear.</p>
+<pre tabindex="0"><code>$ invoke hello --name Rumpelstiltskin
+Hello, Rumpelstiltskin!
+</code></pre><p>If we ask Invoke about a specific task, it tells us about available parameters — along with the rest of the task function’s docstring.</p>
+<pre tabindex="0"><code>$ invoke --help hello
+Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
+
+Docstring:
+  Print the standard greeting
+
+  &#34;Hello world&#34; is the classic first program to see what a language looks like.
+  So of course I used it to understand Invoke.
+
+Options:
+  -n STRING, --name=STRING
+</code></pre><p>We can document the parameters by handing a dictionary of names and summary strings to the decorator.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Who or what is being greeted&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></div><pre tabindex="0"><code>invoke --help hello
+Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
+
+Docstring:
+  Print the standard greeting
+
+  &#34;Hello world&#34; is the classic first program to see what a language looks like.
+  So of course I used it to understand Invoke.
+
+Options:
+  -n STRING, --name=STRING   Who or what is being greeted
+</code></pre><h4 id="optional-parameters">Optional parameters</h4>
+<p>Right now, the <code>name</code> option is required. Invoke gets confused when we skip it.</p>
+<pre tabindex="0"><code>$ invoke hello
+&#39;hello&#39; did not receive required positional arguments: &#39;name&#39;
+</code></pre><p>Positional? Well yeah. You don’t <em>need</em> the name for a required parameter.</p>
+<pre tabindex="0"><code>$ invoke hello world
+Hello, world!
+</code></pre><p>I prefer to be explicit about things. But we weren’t talking about positional parameters. Not on purpose anyways.</p>
+<p>It’s reasonable to want a default parameter for your task. Do that by giving your function argument a default value.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s2">&#34;world&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;Who or what is being greeted (default &#39;</span><span class="si">{</span><span class="n">DEFAULT_NAME</span><span class="si">}</span><span class="s2">&#39;)&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">DEFAULT_NAME</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></div><p>Now we have a default name. Setting it as a variable makes it easier to identify and update later. We even noted the default in <code>name</code> documentation, as a special favor to future us.</p>
+<p>And hey — we can invoke the <code>hello</code> task without a name!</p>
+<pre tabindex="0"><code>$ invoke hello
+Hello, world!
+</code></pre><p>It gets confusing again if we try a positional parameter though.</p>
+<pre tabindex="0"><code>$ invoke hello Canute
+No idea what &#39;Canute&#39; is!
+</code></pre><p>And that’s why I prefer explicit invocations. But if you must know:</p>
+<ul>
+<li>Parameters without defaults <em>can</em> be specified by position rather than name.</li>
+<li>Parameters with defaults <em>must</em> be specified by name.</li>
+</ul>
+<h4 id="running-multiple-tasks">Running multiple tasks</h4>
+<p>Thankfully Invoke supports another useful feature of Make: requesting more than one task at a time.</p>
+<blockquote>
+<p>[!NOTE]
+Took me years to learn <code>make build &amp;&amp; make test &amp;&amp; make install</code> could be said <code>make build test install</code></p>
+</blockquote>
+<p>Let’s add a setup task.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Get things ready for hello&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Creating the world&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></div><p>We can ask Invoke to run both of them.</p>
+<pre tabindex="0"><code>$ invoke setup hello --name Enobarbus
+Creating the world
+Hello, Enobarbus!
+</code></pre><h4 id="pre-tasks">Pre-tasks</h4>
+<p>If we find ourselves running the same tasks in the same sequence all the time, we may be describing a dependency. Invoke lets us make the dependency explicit.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">setup</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Who or what is being greeted (default </span><span class="si">{DEFAULT_NAME}</span><span class="s2">)&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">DEFAULT_NAME</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></div><p>The decorator takes <code>pre</code> as a list of task names. Invoke calls each of these pre-tasks in order — using their default options if any — before calling the specified task.</p>
+<blockquote>
+<p>[!NOTE]
+Make sure your pre-tasks have been defined <em>before</em> listing them in <code>pre</code>!</p>
+</blockquote>
+<pre tabindex="0"><code>$ invoke hello
+Creating the world
+Hello, world!
+</code></pre><p>Pre-tasks can be chained: if <code>setup</code> had its own dependencies, they would be called before <code>setup</code>. Invoke’s documentation on <a href="http://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html#how-tasks-run">how tasks run</a> explains task dependencies much better than I could.</p>
+<h4 id="setting-the-default-task">Setting the default task</h4>
+<p>We have default parameters. What about default tasks?</p>
+<p>Sure thing. Just let the decorator know.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setup</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;Who or what is being greeted (default &#39;world&#39;)&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;world&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></div><p>Run <code>invoke</code> without specifying a task, and it calls <code>hello</code> using default parameters.</p>
+<pre tabindex="0"><code>$ invoke
+Creating the world
+Hello, world!
+</code></pre><p>Thankfully Invoke mentions its default when listing tasks.</p>
+<pre tabindex="0"><code>$ invoke --list
+Available tasks:
+
+  hello    Print the standard greeting
+  setup    Get things ready for hello
+
+Default task: hello
+</code></pre><p>You can’t pass task arguments to the default task. Why? Well, once you add an argument you’re no longer asking for default behavior.</p>
+<pre tabindex="0"><code>$ invoke --name Rapunzel
+No idea what &#39;--name&#39; is!
+</code></pre><h3 id="a-useful-task">A useful task</h3>
+<p>Here’s what we have for our &ldquo;Hello World&rdquo; <code>tasks.py</code> file.</p>
+<p><strong><code>tasks.py</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Tasks for exploring Invoke&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_NAME</span> <span class="o">=</span> <span class="s2">&#34;world&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Get things ready for hello&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Creating the world&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pre</span><span class="o">=</span><span class="p">[</span><span class="n">setup</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Who or what it being greeted (default </span><span class="si">{DEFAULT_NAME}</span><span class="s2">)&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">DEFAULT_NAME</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Print the standard greeting
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;Hello world&#34; is the classic first program to see what a language looks like.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    So of course I used it to understand Invoke.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>It’s all nice and educational, but there isn’t anything useful yet. That’s the problem with &ldquo;Hello World&rdquo;. It can only give us the general idea.</p>
+<p>I’ll wrap up today by starting a fresh <code>tasks.py</code> for my Hugo site.</p>
+<p>What am I doing most often while developing my site? At some point I need to preview the site, right? Need to make sure the layout and content looks how I expect.</p>
+<p>That’s the answer I was looking for: running the Hugo server in drafts mode. That will be my first site task. Let’s make it the default while we’re at it.</p>
+<p>Hugo’s built-in development <a href="https://gohugo.io/commands/hugo_server/">server</a> takes many options, but I care about these:</p>
+<pre tabindex="0"><code>-D, --buildDrafts   include content marked as draft
+--navigateToChanged navigate to changed content file on live browser reload
+--bind string       interface to which the server will bind (default &#34;127.0.0.1&#34;)
+</code></pre><p>That way I can see the post I’m writing, and can preview from my phone
+if needed. Assuming my phone is on local wifi, which it usually is.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;Tasks for managing my Hugo site.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@task</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Run hugo server in drafts mode&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&#34;hugo server --buildDrafts --navigateToChanged --bind 0.0.0.0&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>We’re finally using the <a href="http://docs.pyinvoke.org/en/stable/api/context.html">context</a> object! Invoke’s context holds details about the environment our tasks run in. Most important for today, they give us a way to <a href="http://docs.pyinvoke.org/en/stable/api/context.html#invoke.context.Context.run">run</a> shell commands.</p>
+<pre tabindex="0"><code>$ invoke server
+SHOW_INFO=1 hugo server --buildDrafts --bind 0.0.0.0 --navigateToChanged
+Building sites …
+                   |  EN
+-------------------+-------
+  Pages            | 1114
+  Paginator pages  |    7
+  Non-page files   |  452
+  Static files     |   25
+  Processed images | 1338
+  Aliases          |  452
+  Sitemaps         |    1
+  Cleaned          |    0
+
+Built in 4092 ms
+Watching for changes in /home/randomgeek/Sites/random-geekery-blog/{archetypes,content,data,layouts,static,themes}
+Watching for config changes in /home/randomgeek/Sites/random-geekery-blog/config.toml
+Environment: &#34;development&#34;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
+</code></pre><p>Technically a <a href="http://docs.pyinvoke.org/en/stable/api/runners.html#invoke.runners.Runner">Runner</a> subclass takes care of running the shell command. We don’t have to care about that though. We can pass a command string to <code>c.run</code> and let <em>it</em> care.</p>
+<p><em>Now</em> I feel like I can post this.</p>
+<h2 id="whats-next">What’s next?</h2>
+<p>How about the rest of the workflow? Let me get back to you on that. I need to reread my Makefile.</p>
+<p>As for you, why not check out <a href="https://www.pyinvoke.org/">Invoke</a> and set up a <code>tasks.py</code> to drive your own workflow? It’s fun!</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2020/02/stealing-a-hugo-shortcode-for-nikola/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Stealing a Hugo Shortcode for Nikola
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2020/02/i-have-one-like-somewhere/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>I have one like somewhere
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The problem</a></li>
+    <li><a href="#a-solution-invoke">A solution: Invoke</a>
+      <ul>
+        <li><a href="#installing-it">Installing it</a></li>
+        <li><a href="#the-taskspy-file">The tasks.py file</a></li>
+        <li><a href="#a-hello-world-task">A &ldquo;Hello World&rdquo; task</a></li>
+        <li><a href="#a-useful-task">A useful task</a></li>
+      </ul>
+    </li>
+    <li><a href="#whats-next">What’s next?</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

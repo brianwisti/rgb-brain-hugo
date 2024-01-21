@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>bashonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/bash/</link>
+    <description>
+      Recent contentinbash on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sat, 01 Jul 2017 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/bash/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Hugo Archetype Templates</title>
+  <link>https://randomgeekery.org/post/2017/07/hugo-archetype-templates/</link>
+  <pubDate>Sat, 01 Jul 2017 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2017/07/hugo-archetype-templates/</guid>
+  <description>I try out archetype templates from the card/Hugo static site generator, smoothing the whole thing into my workflow with a bash script.
+Hugo Archetypes Hugo archetypes are templates that Hugo uses when you tell it to create new content. Hugo allows both default archetypes and section archetypes for content that belongs in a particular section (such as Posts or Crafts).
+As of release v0.24, archetypes are full templates. You can use variables and functions to fine-tune details of your archetype.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>hugo</category>  <category>site</category>  <category>bash</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2017/07/../../../attachments/img/2017/cover-2017-07-01.png" alt="attachments/img/2017/cover-2017-07-01.png"/></p>
+<p>I try out archetype templates from the <a href="/card/hugo/">card/Hugo</a> static site generator, smoothing the
+whole thing into my workflow with a bash script.</p>
+<h2 id="hugo-archetypes">Hugo Archetypes</h2>
+<p><a href="http://gohugo.io/content/archetypes/">Hugo archetypes</a> are templates that Hugo uses when you tell it to create new content. Hugo allows both default archetypes and <a href="http://gohugo.io/content/archetypes/#section-archetypes">section archetypes</a> for content that belongs in a particular section (such as Posts or Crafts).</p>
+<p>As of release <a href="https://github.com/gohugoio/hugo/releases/tag/v0.24">v0.24</a>, archetypes are full templates. You can use <a href="http://gohugo.io/templates/variables/">variables</a> and <a href="http://gohugo.io/templates/functions/">functions</a>  to fine-tune details of your archetype. This gives me a chance to simplify my content creation workflow.</p>
+<h3 id="my-default-archetype-template">My Default Archetype Template</h3>
+<p>My archetype focuses on <a href="http://gohugo.io/content/front-matter/">front matter</a>. Since the site sections share taxonomy rules, I use a single default archetype.</p>
+<p><strong><code>archetypes/default.md</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: &#34;{{ replace .TranslationBaseName &#34;-&#34; &#34; &#34; | title }}&#34;
+</span></span><span class="line"><span class="cl">date: {{ dateFormat &#34;2006-01-02&#34; .Date }}
+</span></span><span class="line"><span class="cl">year: &#34;{{ dateFormat &#34;2006&#34; .Date }}&#34;
+</span></span><span class="line"><span class="cl">draft: true
+</span></span><span class="line"><span class="cl">tags:
+</span></span><span class="line"><span class="cl"><span class="k">-</span>
+</span></span><span class="line"><span class="cl">categories:
+</span></span><span class="line"><span class="cl"><span class="k">-</span>
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">tl;dr
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- more --&gt;</span>
+</span></span></code></pre></div><h3 id="notes">Notes</h3>
+<ul>
+<li>Hugo provides <code>title</code> and <code>date</code> if you leave them out. My <code>title</code> looks the   same as the default, but I add it to the template to remember what   transformations are being done.</li>
+<li>I prefer a specific format for date in my front matter, so I add my own   version.</li>
+<li>I use a <code>year</code> taxonomy for archives.</li>
+<li>Everything is a <code>draft</code> until I specify otherwise.</li>
+<li>All my content should be tagged and categorized.</li>
+<li>I try to summarize the post in an initial paragraph that gets shown in list   views.</li>
+<li>That last line is really <code>&lt;!&ndash;more&ndash;&gt;</code>  with no spaces, but if I skip the spaces here Hugo thinks I want another summary block in this post.</li>
+</ul>
+<p>That&rsquo;s good enough for <code>hugo new</code>. Since I have <code>newContentEditor</code> set to &ldquo;vim&rdquo; in my <a href="http://gohugo.io/overview/configuration/">config</a>, Hugo opens the new file in my editor after creating it.</p>
+<pre tabindex="0"><code>$ hugo new post/2017/23-things-i-hate-about-lists.md
+</code></pre><p>My workflow is a little more complicated than &ldquo;create a draft and edit it&rdquo; though.</p>
+<h2 id="my-workflow">My Workflow</h2>
+<p>I create and edit site content in its own git branch. With multiple drafts going at any one time, using separate branches lets me focus on the current content.</p>
+<p>I follow these steps every time I add a new post.</p>
+<ol>
+<li>Create a branch</li>
+<li>Add a draft content file</li>
+<li>Start editing the draft file!</li>
+</ol>
+<p>I can ignore the publishing part of the workflow for today, which involves running some tests and pushing to <a href="https://aws.amazon.com/s3/">AWS S3</a>. That deserves its own post.</p>
+<p>I originally automated this with a small Ruby script which would create the branch and generate a content file for me. The file generating code is not needed now that Hugo archetypes are templates. My small, slightly clunky Ruby script can be replaced with a smaller, hopefully less clunky <a href="https://www.gnu.org/software/bash/">Bash</a> script.</p>
+<p><strong><code>scripts/add</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># stricter bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  see http://redsymbol.net/articles/unofficial-bash-strict-mode/</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n\t&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">SECTION</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TITLE</span><span class="o">=</span><span class="si">${</span><span class="nv">2</span><span class="k">:-</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -z <span class="s2">&#34;</span><span class="nv">$SECTION</span><span class="s2">&#34;</span> <span class="o">||</span> -z <span class="s2">&#34;</span><span class="nv">$TITLE</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> SECTION TITLE&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">TITLE_SLUG</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&#34;</span><span class="nv">$TITLE</span><span class="s2">&#34;</span> <span class="p">|</span> sed -e <span class="s1">&#39;s/[^[:alnum:]]/-/g&#39;</span> <span class="p">|</span> tr -s <span class="s1">&#39;-&#39;</span> <span class="p">|</span> tr A-Z a-z<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">YEAR</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>date +<span class="s2">&#34;%Y&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">STUB</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$SECTION</span><span class="s2">/</span><span class="nv">$YEAR</span><span class="s2">/</span><span class="nv">$TITLE_SLUG</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git checkout -b <span class="s2">&#34;</span><span class="nv">$STUB</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">hugo new <span class="s2">&#34;</span><span class="nv">$STUB</span><span class="s2">.md&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># newContentEditor set in Hugo config, expect Vim here.</span>
+</span></span></code></pre></div><h3 id="notes-1">Notes</h3>
+<p>Applying details like <a href="http://redsymbol.net/articles/unofficial-bash-strict-mode/">unofficial strict mode</a> is part my process for getting more comfortable scripting Bash. The bit that&rsquo;s important to me: this script fails loudly on encountering bad variables and bad processes.</p>
+<p>The fun little slug-generating <code>sed</code> and <code>tr</code> pipe came directly from <a href="https://bigmachine.io/products/the-imposters-handbook/">The Imposter&rsquo;s Handbook</a>. I know that I will lose punctuation and unusual capitalization between this and Hugo&rsquo;s manipulation of <code>.TranslationBaseName</code>. It encourages me to keep titles simple. The title can edited in the front matter later if it is that important to me.</p>
+<p><a href="https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html#date-invocation"><code>date</code></a> comes from <a href="https://www.gnu.org/software/coreutils/manual/html_node/index.html#Top">GNU Coreutils</a>. I knew I could use <code>date</code> to get a simple description of the date. I recently discovered that it also accepts a format string! Turns out that GNU Coreutils gives the shell quite a bit of functionality that I usually ran to some programming language and its libraries for. Being self-taught produces weird gaps in my knowledge.</p>
+<pre tabindex="0"><code>$ ./script/add post &#34;23 Things I Hate About Lists&#34;
+Switched to a new branch &#39;post/2017/23-things-i-hate-about-lists&#39;
+/home/brian/Sites/rgb-hugo/content/post/2017/23-things-i-hate-about-lists.md created
+</code></pre><p>Excuse me while I go write my masterpiece. Have fun!</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

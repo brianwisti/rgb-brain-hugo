@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>spaceonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/space/</link>
+    <description>
+      Recent contentinspace on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Fri, 02 Oct 2015 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/space/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Half a Life</title>
+  <link>https://randomgeekery.org/post/2015/10/half-a-life/</link>
+  <pubDate>Fri, 02 Oct 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/10/half-a-life/</guid>
+  <description>Scientists discovered Pluto had a moon when I was six years old. This is what they had to work with.
+via US Naval Observatory / NASA
+All sorts of adults wondered what discoveries I could look forward to by the time I was their age. No idea how old they were. I was a kid. They were ancient. Let us say they were middle-aged.
+I turned 43 in 2015 - statistically speaking, past the halfway point for someone like me.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>space</category>  <category>marginalia</category> 
+  <content:encoded><![CDATA[<h2>Brian ponders midlife and plutoids</h2><p>Scientists discovered Pluto had a moon when I was six years old. This is what they had to work with.</p>
+<p><img src="/post/2015/10/attachments/img/2015/Charon_Discovery.jpg" alt="Discovery of Charon"/></p>
+<p><em>via <a href="http://solarsystem.nasa.gov/galleries/charon-discovery-image">US Naval Observatory / NASA</a></em></p>
+<p>All sorts of adults wondered what discoveries I could look forward to by the time I was their age. No idea how old they were. I was a kid. They were <em>ancient</em>. Let us say they were middle-aged.</p>
+<p>I turned 43 in 2015 - statistically speaking, past the halfway point for someone like me. So that makes me middle aged. What do Pluto and  Charon look like now?</p>
+<p>Thanks to <a href="https://www.nasa.gov">NASA</a>&rsquo;s <a href="https://www.nasa.gov/mission_pages/newhorizons/main/index.html">New Horizons</a> we know what Pluto and Charon look like up close. NASA made us a nice family montage photo.</p>
+<p><img src="/post/2015/10/attachments/img/2015/nh-pluto-charon-v2-10-1-15.jpg" alt="Pluto and Charon"/></p>
+<p><em>via <a href="https://www.nasa.gov/feature/pluto-s-big-moon-charon-reveals-a-colorful-and-violent-history">NASA</a></em></p>
+<p>But this Pluto picture blows my mind every time I look at it. We see ice and mountains and an atmosphere. This is a <em>planet</em>!</p>
+<p><img src="/post/2015/10/attachments/img/2015/new-horizons-pluto.png" alt="Pluto&rsquo;s Landscape"/></p>
+<p><em>via <a href="http://solarsystem.nasa.gov/galleries/closer-look-majestic-mountains-and-frozen-plains">NASA Solar System</a></em></p>
+<p>Okay &ldquo;dwarf planet.&rdquo; That blob on the outermost reach of my childhood solar system is now a dwarf planet with moons, a landscape, and thousands of Kuiper belt neighbors.</p>
+<p>And that is just Pluto. So much amazing stuff has been discovered and witnessed since my childhood.</p>
+<p>I live across the street from a K-8 school. Some of those kids are about six years old. I wonder what discoveries they will see by the time they reach my age?</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Parrot Babysteps 0c - The Stellar App</title>
+  <link>https://randomgeekery.org/post/2010/07/parrot-babysteps-0x-the-stellar-app/</link>
+  <pubDate>Thu, 15 Jul 2010 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2010/07/parrot-babysteps-0x-the-stellar-app/</guid>
+  <description>Our search journey continues. We have accomplished the hard part: checking a single star to see if it has the traits we’re looking for. Today we just have to use that logic to search a set of stars. First we’ll examine a handpicked selection. Guess what happens after that? We finally get back into the full HYG Catalog and search for stars from the command line. That’s right. After all this work, stellar grows up and becomes an application.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>parrot</category>  <category>learn</category>  <category>space</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>Our search journey continues. We have accomplished the hard
+part: <a href="/post/2010/06/parrot-babysteps-0b-subroutine-params">checking a single star</a> to see if it has the traits we&rsquo;re looking for.
+Today we just have to use that logic to search a set of stars. First we&rsquo;ll
+examine a handpicked selection. Guess what happens after that? We finally get
+back into the full <a href="http://www.astronexus.com">HYG Catalog</a> and search for stars from the command line.
+That&rsquo;s right. After all this work, <code>stellar</code> grows up and becomes an
+application.</p>
+<h3 id="note">Note</h3>
+<p>There are easier ways to get searches out of a large CSV file. If
+that was really all I wanted to do, I could use a higher level language like
+<a href="/tags/perl/">Perl</a> or <a href="/tags/python/">Python</a> to feed the CSV into a <a href="http://sqlite.org">SQLite</a> database and directly
+query the database. However, we are not building a SQL database. We are learning
+how to do interesting things with <a href="/card/parrot/">Parrot</a>.</p>
+<h2 id="building-a-catalog-and-searching-it">Building a Catalog and Searching It</h2>
+<p>The first thing that&rsquo;s tripping me up is how to set up the catalog itself. You
+know the &ldquo;set of stars&rdquo; I was talking about? The easy way to do this from a test
+is to have a few CSV strings for some sample stars, apply <code>extract_from_csv</code> to
+each of them, push each star into an array, then search through the array. Thing
+is, I <em>know</em> that this is not going to be acceptable when I get to the real data.
+I expect this application to be one where you run it from the command line,
+using your search conditions as command line arguments. Loading all the data
+before searching it takes time. I should write this code so that it searches
+while reading in data. That would be much faster.</p>
+<p>On the other hand, what if I add an interactive prompt to this application later?
+Loading the full catalog into memory before applying searches could be
+faster in the long run compared to reading the data file for every search.</p>
+<p>That is trying to predict the future, though. I know how I want to use this
+catalog today. I want to run a search and see the results as soon as the
+application knows about them.</p>
+<aside>
+I will share a secret. I spent a day writing the "load then
+search" approach to building the catalog. Guess what? It is unbearably slow at
+my current Parrot skill level. I am confident that this is only
+slow because my code overall is simplistic. Maybe I can revisit this idea after
+learning more about Parrot.
+</aside>
+<h3 id="searching-the-catalog">Searching The Catalog</h3>
+<p>I do not want to dig right into searching the full 119,617 entries of the real
+catalog. Instead, let&rsquo;s set up a small test catalog and write some tests.</p>
+<p>Where you put your test data is a matter of taste. I will be keeping my data in
+a folder named <code>data</code>. That seems reasonable.</p>
+<pre tabindex="0"><code>$ mkdir data
+</code></pre><p>Only a few entries are needed in the test catalog. We just need to be sure that
+the code works with a CSV file with the same structure as the HYG database.
+I&rsquo;ll grab Sol, another G2V spectrum star, and a K3V star.</p>
+<pre tabindex="0"><code># example-0c-01/data/test-catalog.csv
+StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
+0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
+80,80,224817,,,,,0.01611947,-11.82353722,64.143681847338,419.04,-82.83,,8.40,4.36423057594421,G2V,0.566,62.7822,0.26494,-13.14292,-5.827e-06,0.000130277,-2.5209e-05
+7358,7372,9770,,Gl  60 A,,,1.58359898,-29.91056753,23.6462520690471,85.56,96.58,34.2,7.11,5.2411884257345,K3V,0.909,18.76027,8.25627,-11.79114,2.8852e-05,2.3413e-05,-7.844e-06
+</code></pre><p>The test data is out of the way, so now I feel comfortable writing the tests
+that use it.</p>
+<pre tabindex="0"><code># example-0c-01/t/05-search-catalog.t
+.include &#39;lib/stellar.pir&#39;
+
+.sub &#39;main&#39; :main
+    .include &#39;test_more.pir&#39;
+
+    plan(5)
+
+    .local string csv_filename 
+    .local pmc    matches
+    .local pmc    star
+    
+    csv_filename = &#39;data/test-catalog.csv&#39;
+    matches = search_catalog(csv_filename, &#39;ProperName&#39;, &#39;Sol&#39;)
+    is(matches, 1, &#39;There should be one star named &#34;Sol&#34;&#39;)
+    star = matches[0]
+    $S0 = star[&#39;ProperName&#39;]
+    is($S0, &#39;Sol&#39;, &#39;That star should be Sol&#39;)
+
+    matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;G2V&#39;)
+    is(matches, 2, &#39;There are two G2V stars in the test catalog&#39;)
+
+    matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;K3V&#39;)
+    is(matches, 1, &#39;There should be one K3V star in the test catalog&#39;)
+
+    matches = search_catalog(csv_filename, &#39;Spectrum&#39;, &#39;G2V&#39;, &#39;ColorIndex&#39;, &#39;0.566&#39;)
+    is(matches, 1, &#39;There should be one G2V star with Spectrum G2V and ColorIndex 0.566&#39;)
+.end
+</code></pre><p>I am deliberately keeping the tests simple right now. The goal is to make sure
+the basic functionality works rather than to guarantee behavior for every little
+detail. Tests can be added for those details as they become important.</p>
+<p>The actual <code>search_catalog</code> sub borrows quite a bit from <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>.</p>
+<pre tabindex="0"><code># example-0c-01/lib/stellar.pir
+
+.loadlib &#39;io_ops&#39;
+
+# ...
+.sub search_catalog
+    .param string filename
+    .param pmc    conditions :slurpy
+    .local pmc    chomp
+    .local pmc    matches
+    .local pmc    catalog
+    .local string current_line
+    .local pmc    current_star
+    .local pmc    is_match
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+    chomp = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+
+    matches = new &#39;ResizablePMCArray&#39;
+
+    catalog = open filename, &#39;r&#39;
+    current_line = readline catalog # Ignore header line
+
+  READ_LINE:
+    unless catalog goto RETURN_MATCHES
+    current_line = readline catalog
+    current_line = chomp(current_line)
+    current_star = extract_from_csv_line(current_line)
+    is_match = check_star(current_star, conditions :flat)
+    if is_match goto REMEMBER_MATCH
+    goto READ_LINE
+
+  REMEMBER_MATCH:
+    push matches, current_star
+    goto READ_LINE
+
+  RETURN_MATCHES:
+    close catalog
+    .return(matches)
+.end
+</code></pre><p><code>search_catalog</code> will handle the task of reading the file and looking for
+stars that match the search conditions it has been given. After it defines
+a star from the current line, it asks <code>check_star</code> to compare that star
+to the set of conditions it has been given. It remembers the stars that
+match, and returns them once it has reached the end of the file. It is not
+the fastest approach, but it works.</p>
+<p>It works well enough that I am ready to add real data and some way for people
+to use it!</p>
+<h3 id="searching-from-the-command-line">Searching From The Command Line</h3>
+<p>Now that we know <code>stellar</code> can read a CSV and return results, it&rsquo;s time to work
+on that empty <code>main</code> that has been sitting in <code>stellar.pir</code>. Oh yeah - we will
+want to make <code>hygxyz.csv</code> available now. I will be pushing my copy into the
+<code>data</code> folder, next to <code>test-catalog.csv</code>. You can place your copy wherever you
+like, but make sure that you set the path appropriately in <code>main</code>.</p>
+<pre tabindex="0"><code># example-0c-02/lib/stellar.pir
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .param pmc    conditions
+    .local string csv_file
+    .local pmc    matches
+    .local pmc    matches_iter
+    .local pmc    star
+    .local string summary
+    .local int    match_count
+
+    $S0 = shift conditions # ignore my own filename
+    csv_file = &#39;data/hygxyz.csv&#39;
+    matches = search_catalog(csv_file, conditions :flat)
+    matches_iter = iter matches
+
+  NEXT_MATCH:
+    star = shift matches_iter
+    summary = summarize_star(star)
+    say summary
+    if matches_iter goto NEXT_MATCH
+
+    match_count = matches
+    print match_count
+    say &#34; matches.&#34;
+.end
+</code></pre><p>Here is the result of all that work we have done setting up the project and
+support code. The main subroutine in <code>stellar</code> is downright civilized
+compared to what we had for <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">step 07</a>. All we do is search based on the
+command line parameters and display each of the matches.</p>
+<pre tabindex="0"><code>$ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
+&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
+&lt;Name: HD 7186, Spectrum: G2V, Distance: 112.359550561798&gt;
+&lt;Name: HD 140235, Spectrum: G2V, Distance: 60.1684717208183&gt;
+&lt;Name: HD 169019, Spectrum: G2V, Distance: 108.108108108108&gt;
+4 matches.
+</code></pre><p>Hey, this thing is almost useful!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p><code>stellar</code> has reached a major milestone. When I started fiddling with the <a href="http://astronexus.com/node/34">HYG
+Database</a>, I wanted to write a command-line Parrot tool that could look up
+stars based on specific fields. This step gives us that ability. I admit that
+a lot more could be done. For example, it only does exact matches. You can
+easily find a star that is <code>108.108108108108</code> light years away, but not
+stars that are roughly <code>108</code> light years away. And forget about finding
+stars within 20 light years.</p>
+<p>I am going to take a little break from the <code>stellar</code> project, though.
+<a href="http://rakudo.org">Rakudo Star</a> is almost out, and I want to play with that.</p>
+<p>You can add to <code>stellar</code> yourself. Make it faster. Make it
+object-oriented. Make it a library. Rewrite it in LOLCODE. Have fun. Just
+remember to give <a href="http://astronexus.com/node/10">David Nash</a> credit for creating the HYG Database.
+We have been having all of this fun because he took the time to put that
+catalog together.</p>
+<p>Enjoy yourself!</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Parrot Babysteps 0a - The Stellar Project</title>
+  <link>https://randomgeekery.org/post/2010/06/parrot-babysteps-0a-the-stellar-project/</link>
+  <pubDate>Wed, 02 Jun 2010 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2010/06/parrot-babysteps-0a-the-stellar-project/</guid>
+  <description>We just learned how to create and test simple Parrot projects. The next step is to reexamine the star catalog handler we’ve been writing, and turn it into a testable project. There will be some changes in how this code gets its work done, but don’t expect any new features.
+I know - you really want to start adding features and working on cool new stuff. So do I. My workspace is scattered with half-completed steps that talked about adding new things and using new Parrot features.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>parrot</category>  <category>learn</category>  <category>space</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p>We just learned how to create and test <a href="/post/2010/04/parrot-babysteps-09-simple-projects">simple Parrot projects</a>. The next step
+is to reexamine the star catalog handler we&rsquo;ve <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines">been writing</a>, and turn it
+into a testable project. There will be some changes in how this code gets its
+work done, but don&rsquo;t expect any new features.</p>
+<p>I know - you <em>really</em> want to start adding features and working on cool new
+stuff. So do I. My workspace is scattered with half-completed steps that talked
+about adding new things and using new <a href="/card/parrot/">Parrot</a> features. They kept breaking,
+though. They kept breaking because I wasn&rsquo;t building from a stable, testable
+foundation. Today we&rsquo;re going to get that step our of the way.</p>
+<h2 id="set-up-the-project">Set up the project</h2>
+<p>Let&rsquo;s apply what we learned last time putting together <a href="/post/2010/04/parrot-babysteps-09-simple-projects">larger projects</a>, and
+set up a project named <code>stellar</code>.</p>
+<pre tabindex="0"><code>$ mkdir stellar
+$ mkdir stellar/t
+$ mkdir stellar/lib
+</code></pre><p>The <code>setup.pir</code> file is copied directly from the previous project. I&rsquo;m not ready
+for anything more elaborate.</p>
+<pre tabindex="0"><code># example-0a-01/setup.pir
+.sub &#39;main&#39; :main
+    .param pmc args
+    $S0 = shift args # Ignore my own filename
+    load_bytecode &#39;distutils.pbc&#39;
+
+    # Find out what command the user has issued
+    .local string directive
+    directive = shift args
+
+    # Used by the test mode
+    .local string prove_exec
+    prove_exec = get_parrot()
+
+    setup(directive, &#39;prove_exec&#39; =&gt; prove_exec)
+.end
+</code></pre><p>The behavior will be defined in <code>lib/stellar.pir</code>, which is initially
+empty. We will steadily build up all of our functionality in the Stellar library
+and eventually add a very simple file to act as the face of Stellar for
+Parrot. Right now, we just have an empty <code>lib/stellar.pir</code>.</p>
+<h2 id="reimplementing-features">Reimplementing Features</h2>
+<p>The basic skeleton is in place. Now we can start adding the features we had
+written before.</p>
+<h3 id="extracting-details">Extracting Details</h3>
+<p>It&rsquo;s important to keep test files organized. One helpful approach is to think of
+each test as a story. This story describes a single specific thing we want the
+Stellar library to accomplish. All of the stories together provide a description
+of everything that users should be able to get from the library.</p>
+<p>I like to start with the smallest useful test story I can. For this code, I
+think that would be extracting the details about a single entry in the HYG
+catalog. The whole catalog isn&rsquo;t even needed. We could get away with using the
+header line and the line containing a star&rsquo;s details.</p>
+<p>Names for test files usually follow a common pattern. They start with a number
+and summarize what feature is being tested. What purpose does the number serve?
+Well, they are probably executed in the order that Parrot finds them, so that
+numbering provides a clue for test order. There are no promises about the order,
+though. The system looks at each story individually, and you should too. I like
+to think of the numbering as simply presenting the order that I came up with the
+stories. It provides a simple history of sorts. First I came up with that test,
+and I wrote this test after I was comfortable with the first.</p>
+<p>In that spirit, I will name the first test story <code>01-extract-details.t</code>.</p>
+<pre tabindex="0"><code># example-0a-01/t/01-extract-details.t
+.include &#39;lib/stellar.pir&#39;
+
+.sub &#39;main&#39; :main
+    .include &#39;test_more.pir&#39;
+    .local string header_string
+    .local string sol_string
+    .local string delimiter
+    .local pmc    header_fields
+    .local pmc    star_fields
+    .local pmc    star
+
+    header_string = &#34;StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ&#34;
+    sol_string = &#34;0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0&#34;
+    delimiter = &#34;,&#34;
+
+    header_fields = split delimiter, header_string
+    star_fields = split delimiter, sol_string
+    star = extract_star_details(header_fields, star_fields)
+
+    plan(1)
+
+    $S0 = star[&#39;Proper Name&#39;]
+    is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
+.end
+</code></pre><p>Yes, I know that there is a typo in this test code. The key <code>Proper Name</code> should be
+<code>ProperName</code>. We&rsquo;ll come back to that.</p>
+<p>What happens if this test is run while <code>stellar.pir</code> is still empty? It fails,
+of course. It might be useful to look at <em>how</em> it fails.</p>
+<pre tabindex="0"><code>stellar $ parrot setup.pir test
+t/01-extract-details.t .. Dubious, test returned 1
+Failed 1/1 subtests
+
+Test Summary Report
+-------------------
+t/01-extract-details.t (Tests: 0 Failed: 0)
+XXX
+Files=1, Tests=0,  0.014 wallclock secs
+Result: FAIL
+test fails
+current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)
+</code></pre><p><code>setup</code> told us something we already know: <code>extract_star_details</code> hasn&rsquo;t been
+written yet. This is different from a regular test failure, because Parrot
+couldn&rsquo;t even get to the tests. I&rsquo;m showing this so that you recognize what&rsquo;s
+going on when you see errors like this in your own library.</p>
+<p>Adding <code>extract_star_details</code> is easy enough. Just copy the code from the
+earlier step.</p>
+<pre tabindex="0"><code># stellar/lib/stellar.pir
+
+.sub extract_star_details
+    .param pmc    headers
+    .param pmc    values
+
+    .local pmc    star
+    .local int    header_count
+    .local string current_header
+    .local string current_value
+    .local int    current_index
+
+    current_index = 0
+    header_count = headers
+    star = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_STAR_FIELD:
+    if current_index &gt;= header_count goto RETURN_STAR
+    current_header = headers[current_index]
+    current_value = values[current_index]
+    star[current_header] = current_value
+    current_index += 1
+    goto ASSIGN_NEXT_STAR_FIELD
+
+  RETURN_STAR:
+    .return(star)
+.end
+</code></pre><p>Let&rsquo;s run the test again.</p>
+<pre tabindex="0"><code>$ parrot setup.pir test
+t/01-extract-details.t .. Failed 1/1 subtests
+
+Test Summary Report
+-------------------
+t/01-extract-details.t (Tests: 1 Failed: 1)
+  Failed test:  1
+Files=1, Tests=1,  0.020 wallclock secs
+Result: FAIL
+test fails
+current instr.: &#39;setup&#39; pc 883 (runtime/parrot/library/distutils.pir:376)
+called from Sub &#39;main&#39; pc 29 (setup.pir:17)
+</code></pre><p>There&rsquo;s only one assertion, so we already know which one failed. This output is a
+little vague for larger test stories, though. Let&rsquo;s run the test file directly.</p>
+<pre tabindex="0"><code>#!text
+$ parrot t/01-extract-details.t
+1..1
+not ok 1 - ProperName should be Sol
+# Have:
+# Want: Sol
+</code></pre><p>Okay, <em>now</em> we can fix the typo.</p>
+<pre tabindex="0"><code>#!parrot
+# t/01-extract-details.t
+.sub &#39;main&#39; :main
+    ...
+    $S0 = star[&#39;ProperName&#39;]
+    is($S0, &#39;Sol&#39;, &#39;ProperName should be Sol&#39;)
+.end
+</code></pre><p>The test should pass now that the correction has been made.</p>
+<pre tabindex="0"><code>#!text
+$ parrot setup.pir test
+t/01-extract-details.t .. ok
+All tests successful.
+Files=1, Tests=1,  0.014 wallclock secs
+Result: PASS
+</code></pre><p>Don&rsquo;t worry. I won&rsquo;t submit you to this for every test run. It&rsquo;s just important
+to know what failure looks like before we can reach success.</p>
+<p>What have we accomplished so far? We now have a story in which the user, armed
+with a header line and a line describing a star, gets an object that she can
+examine and manipulate for her own purposes. If we wanted to be thorough, we
+could test every field. I&rsquo;m not going to do that, though. One thing you want to
+avoid when making test stories is predicting the future. It&rsquo;s easy to get
+distracted by testing every possible aspect of a single chunk of code when you
+could be working on the next story.</p>
+<p>These stories aren&rsquo;t static. We will come back and add more when some
+detail doesn&rsquo;t work out the way we expect it to.</p>
+<p>Our first story is pretty much out of the way. Let&rsquo;s move on to the next one.</p>
+<h3 id="stringifying-stars">Stringifying Stars</h3>
+<p>Next up is the string representation of a star. In the original application, we
+had the <code>say_star_details</code> sub, which printed the star information as soon as it
+had been prepared. <code>Stellar</code> is more of a library, though. This means that we
+can&rsquo;t be completely sure what folks will want to do with the star summary once
+they have it. They might want to print it, but they might also want to feed it
+to an unmanned orbiter for some reason.</p>
+<p>Because we can&rsquo;t predict with certainty what someone will do with the string
+summary of a star, this test story will focus on asking for that string.</p>
+<pre tabindex="0"><code># t/02-summarize-star.t
+.sub &#39;main&#39; :main
+    .include &#39;test_more.pir&#39;
+    .local string header_string
+    .local string sol_string
+    .local string delimiter
+    .local pmc    header_fields
+    .local pmc    star_fields
+    .local pmc    star
+    .local string summary
+
+    header_string = &#34;StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ&#34;
+    sol_string = &#34;0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0&#34;
+    delimiter = &#34;,&#34;
+
+    plan(1)
+
+    header_fields = split delimiter, header_string
+    star_fields = split delimiter, sol_string
+    star = extract_star_details(header_fields, star_fields)
+
+    summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
+.end
+</code></pre><p>It&rsquo;s not hard to create the code which will make this story true, but it does
+involve a little more work than the simple copy and paste for
+<code>extract_star_details</code>.</p>
+<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+
+# ...
+
+.sub summarize_star
+    .param pmc star
+
+    .local string star_name
+    .local string star_spectrum
+    .local string star_distance
+    .local string summary
+
+    star_name = star[&#39;ProperName&#39;]
+    star_spectrum = star[&#39;Spectrum&#39;]
+    star_distance = star[&#39;Distance&#39;]
+
+    if star_name goto PREPARE_SUMMARY
+
+  TRY_GLIESE:
+    .local string gliese_number
+    gliese_number = star[&#39;Gliese&#39;]
+    unless gliese_number goto TRY_BAYER_FLAMSTEED
+    star_name = &#39;Gliese &#39; . gliese_number
+    goto PREPARE_SUMMARY
+
+  TRY_BAYER_FLAMSTEED:
+    .local string bayer_flamsteed
+    bayer_flamsteed = star[&#39;BayerFlamsteed&#39;]
+    unless bayer_flamsteed goto TRY_HR
+    star_name = &#34;BF &#34; . bayer_flamsteed
+    goto PREPARE_SUMMARY
+
+  TRY_HR:
+    .local string hr_id
+    hr_id = star[&#39;HR&#39;]
+    unless hr_id goto TRY_HD
+    star_name = &#34;HR &#34; . hr_id
+    goto PREPARE_SUMMARY
+
+  TRY_HD:
+    .local string hd_id
+    hd_id = star[&#39;HD&#39;]
+    unless hd_id goto USE_STAR_ID
+    star_name = &#34;HD &#34; . hd_id
+    goto PREPARE_SUMMARY
+
+  TRY_HIP:
+    .local string hip_id
+    hip_id = star[&#39;HIP&#39;]
+    unless hip_id goto USE_STAR_ID
+    star_name = &#34;HIP &#34; . hip_id
+    goto PREPARE_SUMMARY
+
+  USE_STAR_ID:
+    .local string star_id
+    star_id = star[&#39;StarID&#39;]
+    star_name = &#34;HYG &#34; . star_id
+    goto PREPARE_SUMMARY
+
+  PREPARE_SUMMARY:
+    summary = &#34;&lt;Name: &#34;
+    summary .= star_name
+    summary .= &#34;, Spectrum: &#34;
+    summary .= star_spectrum
+    summary .= &#34;, Distance: &#34;
+    summary .= star_distance
+    summary .= &#34;&gt;&#34;
+
+    .return(summary)
+.end
+</code></pre><p>Yes, this is mostly a copy and paste of <code>say_star_details</code>. The new details
+change the focus from displaying the details to returning them as a simple
+string.</p>
+<p>What&rsquo;s most important is that this test passes when handed Sol. How about some
+of those stars that don&rsquo;t have proper names?</p>
+<pre tabindex="0"><code># example-0a-04/t/02-summarize-star.t
+.include &#39;lib/stellar.pir&#39;
+
+.sub &#39;main&#39; :main
+    .include &#39;test_more.pir&#39;
+    .local string header_string
+    .local string star_string
+    .local string delimiter
+    .local pmc    header_fields
+    .local pmc    star_fields
+    .local pmc    star
+    .local string summary
+
+    header_string = &#34;StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ&#34;
+    delimiter = &#34;,&#34;
+
+    plan(3)
+
+    header_fields = split delimiter, header_string
+
+    summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
+    star_string = &#34;0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0&#34;
+    star_fields = split delimiter, star_string
+    star = extract_star_details(header_fields, star_fields)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
+
+    summary = &#34;&lt;Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427&gt;&#34;
+    star_string = &#34;117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05&#34;
+    star_fields = split delimiter, star_string
+    star = extract_star_details(header_fields, star_fields)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;HD identifier can be used if ProperName is unavailable&#34;)
+
+    summary = &#34;&lt;Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713&gt;&#34;
+    star_string = &#34;117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05&#34;
+    star_fields = split delimiter, star_string
+    star = extract_star_details(header_fields, star_fields)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
+.end
+</code></pre><p>It does indeed work.</p>
+<pre tabindex="0"><code>$ parrot setup.pir test
+t/01-extract-details.t .. ok
+t/02-summarize-star.t ... ok
+All tests successful.
+Files=2, Tests=4,  0.030 wallclock secs
+Result: PASS
+</code></pre><p>I am concerned about the heft of this test code. The concern is that I
+had to split the CSV text, extract star details, and summarize the star
+manually for each star string. Each of those times is an opportunity for me to
+make a mistake. I <em>think</em> I would like to have a subroutine which would take the
+header fields and a CSV line of star data, and return the extracted details.
+Let&rsquo;s make a new test story for that.</p>
+<pre tabindex="0"><code># example-0a-04/t/03-extract-from-csv.t
+.sub &#39;main&#39; :main
+    .include &#39;test_more.pir&#39;
+    .local string header_string
+    .local string star_string
+    .local string delimiter
+    .local pmc    header_fields
+    .local pmc    star_fields
+    .local pmc    star
+    .local string summary
+
+    header_string = &#34;StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ&#34;
+    delimiter = &#34;,&#34;
+
+    plan(3)
+
+    header_fields = split delimiter, header_string
+
+    summary = &#34;&lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;&#34;
+    star_string = &#34;0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0&#34;
+    star = extract_from_csv_line(star_string, header_fields, delimiter)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;Sol&#39;s summary should include basic details&#34;)
+
+    summary = &#34;&lt;Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427&gt;&#34;
+    star_string = &#34;117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05&#34;
+    star = extract_from_csv_line(star_string, header_fields, delimiter)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;HD identifier can be used if ProperName is unavailable&#34;)
+
+    summary = &#34;&lt;Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713&gt;&#34;
+    star_string = &#34;117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05&#34;
+    star = extract_from_csv_line(star_string, header_fields, delimiter)
+    $S0 = summarize_star(star)
+    is($S0, summary, &#34;HYG identifier can be used if ProperName is unavailable&#34;)
+.end
+</code></pre><p>The code to make this work is simple enough.</p>
+<pre tabindex="0"><code># example-0a-04/lib/stellar.pir
+
+# ...
+
+.sub extract_from_csv_line
+    .param string star_string
+    .param pmc    header_fields
+    .param string delimiter
+    .local pmc    star_fields
+    .local pmc    star
+
+    star_fields = split delimiter, star_string
+    star = extract_star_details(header_fields, star_fields)
+
+    .return(star)
+.end
+</code></pre><p>I do not know if I have saved much work, but it is easier for me to read the
+test story. That is important to me, because debugging and improving the code is
+easier if I can easily understand what is happening.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It is time to take a break. The script we wrote a while back is evolving into a
+tested library that can be used by others. Now that we have our foundation, we
+can start building up. Our next step will involve adding some simple search
+behavior to the library, and that is a significant improvement. For the moment,
+take a little time to relax.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Parrot Babysteps 06 - Files and Hashes</title>
+  <link>https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/</link>
+  <pubDate>Fri, 02 Oct 2009 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/</guid>
+  <description>This one’s a bit more bloggy than the earlier steps, but that’s just the mood I was in when writing it. You can ignore the commentary and focus on the code if that’s your preference.
+Introduction We have inched our way forward in our understanding of Parrot and PIR. I think that it’s time to take a big step, though. We’re going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>parrot</category>  <category>learn</category>  <category>space</category>  <category>coolnamehere</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2009/10/../../../attachments/img/2009/cover-2009-10-02.jpg" alt="attachments/img/2009/cover-2009-10-02.jpg"/></p>
+<p>This one&rsquo;s a bit more bloggy than the earlier steps, but that&rsquo;s just the mood I was in when writing it. You can ignore the commentary and focus on the code if that&rsquo;s your preference.</p>
+<h2 id="introduction">Introduction</h2>
+<p>We have inched our way forward in our understanding of <a href="/card/parrot/">Parrot</a> and PIR. I think that it&rsquo;s time to take a big step, though. We&rsquo;re going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done. But I&rsquo;m hungry for something meatier. I want to work with a lot of data and get curious trivia from that data. Hashes are good, too. Let&rsquo;s look at Parrot hashes at some point today as well.</p>
+<h2 id="first-get-the-data">First, Get the Data</h2>
+<p>It took me some time to decide exactly what sort of data I wanted to look at. I was thinking of <a href="http://www.ars.usda.gov/Services/docs.htm?docid=8964">nutritional data</a>, but I&rsquo;m not ready  for all of the cross-referencing I&rsquo;d have to do in order to produce information that would be meaningful to me.</p>
+<p>Then it hit me. I love astronomy. Wait a moment. That&rsquo;s not completely true. I like astronomy. It teaches us a lot about our place in the universe, and exactly how freaking small we really are. What I love is random trivia about space: the name of the closest star to our solar system, how many of our neighboring stars are sort of like ours, stuff like that. I want to write a program that will help me get those juicy tidbits.</p>
+<p>The next challenge was finding a data source that would be useful for me. There are plenty of <a href="http://en.wikipedia.org/wiki/List_of_Star_catalogues">star catalogs</a> available. The problem is that I like astronomy - I don&rsquo;t love it. Much of modern astronomy is incomprehensible to me unless it has a pretty picture of a penny next to a football field illustrating interplanetary distances or some other thing I can pretend to understand. Oh, and remember that I barely know Parrot. I need something simple and easy to parse, but big enough to have interesting data.</p>
+<p>After nearly 15 minutes of dedicated research - once you subtract the hours spent admiring the <a href="http://apod.nasa.gov/apod/archivepix.html">Astronomy Picture of the Day archives</a> - I came across David Nash&rsquo;s <a href="http://astronexus.com">Astronomy Nexus</a>. This is a great resource for amateur astronomers, space trivia buffs, and people who enjoy geeky pictures like the view of Earth from <a href="http://astronexus.com/node/157">Gliese 581</a>. It also has a nice, easily parsed file listing almost 120,000 stars. At roughly 20 Megabytes uncompressed, that&rsquo;s big enough to be interesting.</p>
+<p>Enough jabbering. Let&rsquo;s start downloading. The latest version of the catalog is available from the <a href="http://www.astronexus.com/node/34">HYG Database</a> page. I grabbed <a href="http://astronexus.com/files/downloads/hygxyz.csv.gz">version 2.0</a>, which is currently the most recent.</p>
+<p>The file is compressed in <code>gz</code> format. Uncompressing it on Linux or OS X is easy:</p>
+<pre tabindex="0"><code>$ gunzip hygxyz.csv.gz
+</code></pre><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
+<p>Put the resulting <a href="/card/csv/">CSV</a> (Comma-Separated Values) file in your project directory after uncompressing. Now  we have a file full of comma-separated values which look something like this:</p>
+<pre tabindex="0"><code>StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
+Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
+0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
+1,1,224700,,,,,6.079e-05,01.08901332,282.485875706215,-5.20,-1.88,,9.10,1\
+.84501631012894,F5,0.482,282.43485,0.00449,5.36884,4.9e-08,-7.12e-06,-2.5\
+74e-06
+</code></pre><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
+<p>Let&rsquo;s start small, by counting the number of stars listed in the HYG database.</p>
+<h2 id="counting-stars">Counting Stars</h2>
+<p>To count stars, we can read each line of the file and count the number of lines read. Remember not to count the header line!</p>
+<pre tabindex="0"><code># example-06-01
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .local string filename
+    .local pmc    data_file
+    .local int    star_count
+    .local string current_line
+
+    filename = &#39;hygxyz.csv&#39;
+    star_count = 0
+    data_file = open filename, &#39;r&#39;
+
+    # Avoid counting the header line as a star
+    current_line = readline data_file
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+
+.end
+</code></pre><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
+<pre tabindex="0"><code>data_file = open filename, &#39;r&#39;
+</code></pre><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
+<p>What will we use to read a line from the file? How about the <code>readline</code>?</p>
+<pre tabindex="0"><code>current_line = readline data_file
+</code></pre><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
+<pre tabindex="0"><code>unless data_file goto SHOW_STAR_COUNT
+</code></pre><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
+<pre tabindex="0"><code>close data_file
+</code></pre><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
+<p>I&rsquo;ll probably continue closing finished files even after somebody tells me otherwise, truthfully.  I am one of those people who likes explicit code and ties his shoelaces with a tidy little double-knot. I can&rsquo;t help it - it&rsquo;s in my nature.</p>
+<p>That&rsquo;s all the important information about reading files. Oh sure, there are details we&rsquo;ll need to look at eventually, such as what happens when the file doesn&rsquo;t exist or you don&rsquo;t have permission. But for reading a file that we know exists and that we can read, <code>open</code>, <code>readline</code>, and <code>close</code> are the main bits.</p>
+<p>How many stars are in HYG?</p>
+<pre tabindex="0"><code>$ example-06-01.pir
+There are 119618 stars in the HYG catalog.
+</code></pre><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
+<h3 id="intermission-file-mode-indicators">Intermission: File Mode Indicators</h3>
+<p>Now is as good a time as any to summarize the indicator codes that <code>open</code> accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>write</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>append</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>pipe</td>
+</tr>
+</tbody>
+</table>
+<p>Indicators can be combined. For example, <code>rw</code> indicates that you plan to read and write to a file. In fact, <code>a</code> should not be used alone - specify that you will be write-appending to the file with <code>wa</code>.</p>
+<p>Order doesn&rsquo;t matter, either. <code>rw</code> and <code>wr</code> are both valid ways to say you plan to read and write a file.</p>
+<p>We will just be reading files today, but you might as well remember it now. It will come up eventually.</p>
+<h2 id="counting-names">Counting Names</h2>
+<p>All right. I&rsquo;m manually counting commas in HYG. It looks like &ldquo;ProperName&rdquo; is the seventh field. It also looks like there are quite a few stars in the catalog that have no proper name. How many?</p>
+<pre tabindex="0"><code># example-06-02
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    star_data
+    .local string star_name
+    .local int    star_count
+    .local int    named_count
+    .local int    unnamed_count
+
+    filename = &#39;hygxyz.csv&#39;
+    star_count = 0
+    named_count = 0
+    unnamed_count = 0
+    data_file = open filename, &#39;r&#39;
+
+    # Avoid counting the header line as a star
+    current_line = readline data_file
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    star_data = split &#39;,&#39;, current_line
+    star_name = star_data[6]
+    if star_name goto COUNT_NAMED_STAR
+    unnamed_count += 1
+    goto NEXT_STAR
+
+  COUNT_NAMED_STAR:
+    named_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+    print named_count
+    say &#39; of them have proper names.&#39;
+    print unnamed_count
+    say &#39; of them do not have proper names.&#39;
+
+.end
+</code></pre><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
+<pre tabindex="0"><code>star_data = split &#39;,&#39;, current_line
+</code></pre><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
+<pre tabindex="0"><code>star_name = star_data[6]
+</code></pre><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
+<pre tabindex="0"><code>$ parrot example-06-02.pir
+There are 119618 stars in the HYG catalog.
+87 of them have proper names.
+119531 of them do not have proper names.
+</code></pre><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
+<pre tabindex="0"><code># example-06-03
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .const string DELIMITER  = &#39;,&#39;
+    .const string NAME_FIELD = &#39;ProperName&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local string current_field
+    .local int    name_index
+    .local pmc    star_data
+    .local string star_name
+    .local int    star_count
+    .local int    named_count
+    .local int    unnamed_count
+
+    filename      = &#39;hygxyz.csv&#39;
+    name_index    = 0
+    star_count    = 0
+    named_count   = 0
+    unnamed_count = 0
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+  FIND_NAME_INDEX:
+    if name_index &gt;= field_count goto NAME_INDEX_ERROR
+    current_field = field_names[name_index]
+    if current_field == NAME_FIELD goto NEXT_STAR
+    name_index += 1
+    goto FIND_NAME_INDEX
+
+  NAME_INDEX_ERROR:
+    say &#39;Went through available fields without finding name index!&#39;
+    goto END
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    star_data = split DELIMITER, current_line
+    star_name = star_data[name_index]
+    if star_name goto COUNT_NAMED_STAR
+    unnamed_count += 1
+    goto NEXT_STAR
+
+  COUNT_NAMED_STAR:
+    named_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+    print named_count
+    say &#39; of them have proper names.&#39;
+    print unnamed_count
+    say &#39; of them do not have proper names.&#39;
+    goto END
+
+  END:
+.end
+</code></pre><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
+<pre tabindex="0"><code>.const string DELIMITER  = &#39;,&#39;
+.const string NAME_FIELD = &#39;ProperName&#39;
+</code></pre><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
+<ol>
+<li>I know the purpose of the value. The semantics of it appeals to me: &ldquo;split with    DELIMITER, which is <code>','</code>&rdquo; rather than &ldquo;split with <code>','</code> which is the delimiter&rdquo;.</li>
+<li>I only have to change one spot. If someday David Nash wants to switch to tab    delimited files, I will not have to find and replace <code>','</code> throughout my code.</li>
+</ol>
+<p>As far as <code>NAME_FIELD</code>, that&rsquo;s just because I prefer referring to things by name. It doesn&rsquo;t really serve any other purpose. Choose your own style, but make sure others can read it.</p>
+<p>The next task is to find which field holds the star name. We&rsquo;ll split the header line and step through each field until we either find the field we&rsquo;re looking for or hit the end.</p>
+<pre tabindex="0"><code>  current_line  = readline data_file
+  field_names   = split DELIMITER, current_line
+  field_count   = field_names
+
+FIND_NAME_INDEX:
+  if name_index &gt;= field_count goto NAME_INDEX_ERROR
+  current_field = field_names[name_index]
+  if current_field == NAME_FIELD goto NEXT_STAR
+  name_index += 1
+  goto FIND_NAME_INDEX
+
+NAME_INDEX_ERROR:
+  say &#39;Went through available fields without finding name index!&#39;
+  goto END
+</code></pre><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
+<p>Now that Parrot knows which field holds the names, we can use it in our name counting.</p>
+<pre tabindex="0"><code>star_name = star_data[name_index]
+</code></pre><p>Let&rsquo;s run the new code.</p>
+<pre tabindex="0"><code>$ parrot example-06-03.pir
+There are 119618 stars in the HYG catalog.
+87 of them have proper names.
+119531 of them do not have proper names.
+</code></pre><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
+<h2 id="understanding-the-data-by-looking-at-sol">Understanding the Data by Looking at Sol</h2>
+<p>I want to get a lot more information from this data, but in order to do that I&rsquo;ll need a nice way to understand the information about each star in the set. We&rsquo;re going to go about that by focusing on Sol, our own sun.</p>
+<pre tabindex="0"><code># example-06-04
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .const string DELIMITER  = &#39;,&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+
+  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+
+  END:
+
+.end
+</code></pre><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
+<p>In order to display the field names and values together, we step through the header and star data arrays at the same time.</p>
+<pre tabindex="0"><code>  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+</code></pre><p>What does the HYG data for Sol look like?</p>
+<pre tabindex="0"><code>$ parrot example-06-04.pir
+StarID: 0
+HIP:
+HD:
+HR:
+Gliese:
+BayerFlamsteed:
+ProperName: Sol
+RA: 0
+Dec: 0
+Distance: 0.000004848
+PMRA: 0
+PMDec: 0
+RV: 0
+Mag: -26.73
+AbsMag: 4.85
+Spectrum: G2V
+ColorIndex: 0.656
+X: 0
+Y: 0
+Z: 0
+VX: 0
+VY: 0
+VZ
+: 0
+
+$
+</code></pre><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
+<pre tabindex="0"><code>VZ
+: 0
+
+$
+</code></pre><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
+<p>Perl has the builtin <a href="http://perldoc.perl.org/functions/chomp.html"><code>chomp</code></a> function which is perfect for exactly this situation. Parrot doesn&rsquo;t have <code>chomp</code> as a builtin, but it is available via the standard <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/String/Utils.pir">String/Utils</a> library. There&rsquo;s no need to download anything extra, because &ldquo;String/Utils&rdquo; ships with Parrot.</p>
+<pre tabindex="0"><code># example-06-05
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+    .local pmc    chomp
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+
+  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+
+  END:
+
+.end
+</code></pre><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
+<pre tabindex="0"><code>load_bytecode &#39;String/Utils.pbc&#39;
+</code></pre><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
+<p>The actual <code>chomp</code> functionality is still just beyond our reach, though. We need to make room for it in our own program by reserving a PMC.</p>
+<pre tabindex="0"><code>.local pmc    chomp
+</code></pre><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
+<pre tabindex="0"><code>chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+</code></pre><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
+<p>Now that we&rsquo;ve got that loading business out of the way, we can actually use <code>chomp</code>.  <code>chomp</code> is a subroutine, and not an opcode. You&rsquo;ll need to use parentheses when you use it.</p>
+<pre tabindex="0"><code>current_line  = chomp(current_line)
+</code></pre><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
+<p>Remember to use it again when reading the data line for Sol.</p>
+<pre tabindex="0"><code>current_line  = chomp(current_line)
+</code></pre><p>How does the data look now?</p>
+<pre tabindex="0"><code>$ parrot example-06-05.pir
+StarID: 0
+HIP:
+HD:
+HR:
+Gliese:
+BayerFlamsteed:
+ProperName: Sol
+RA: 0
+Dec: 0
+Distance: 0.000004848
+PMRA: 0
+PMDec: 0
+RV: 0
+Mag: -26.73
+AbsMag: 4.85
+Spectrum: G2V
+ColorIndex: 0.656
+X: 0
+Y: 0
+Z: 0
+VX: 0
+VY: 0
+VZ: 0
+</code></pre><p>That&rsquo;s better.</p>
+<p>Now it would be nice to ask for specific data for our star in a meaningful way. For example, I want to just see the name and spectrum information. We could dig through the fields the way we have been, but I think it would be better if we could just ask for them by name.</p>
+<p>One way to do that is with a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/hash.pmc.html">Hash</a>. This is a collection structure similar to an array. The difference is that you get data from the hash using string keys instead of looking things up by index. Python programmers know it as a &ldquo;dictionary&rdquo;.</p>
+<pre tabindex="0"><code># example-06-06
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local pmc    chomp
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+    .local pmc    star
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+    star = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    star[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_FIELD
+
+  DISPLAY_STAR_DETAILS:
+    $S0 = star[&#39;ProperName&#39;]
+    $S1 = star[&#39;Spectrum&#39;]
+    $S2 = star[&#39;Distance&#39;]
+    print &#34;&lt;Name: &#34;
+    print $S0
+    print &#34;, Spectrum: &#34;
+    print $S1
+    print &#34;, Distance: &#34;
+    print $S2
+    say &#34;&gt;&#34;
+
+  END:
+
+.end
+</code></pre><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
+<pre tabindex="0"><code>.local pmc star
+# ...
+star = new &#39;Hash&#39;
+</code></pre><p>Instead of reading and printing the fields, we assign them to the hash.</p>
+<pre tabindex="0"><code>ASSIGN_NEXT_FIELD:
+  if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
+  current_field_name = field_names[current_field_index]
+  current_field_value = star_data[current_field_index]
+  star[current_field_name] = current_field_value
+  current_field_index += 1
+  goto ASSIGN_NEXT_FIELD
+</code></pre><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
+<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  $S0 = star[&#39;ProperName&#39;]
+  $S1 = star[&#39;Spectrum&#39;]
+  $S2 = star[&#39;Distance&#39;]
+  print &#34;&lt;Name: &#34;
+  print $S0
+  print &#34;, Spectrum: &#34;
+  print $S1
+  print &#34;, Distance: &#34;
+  print $S2
+  say &#34;&gt;&#34;
+</code></pre><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
+<p>What does our output look like now?</p>
+<pre tabindex="0"><code> $ parrot example-06-06.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
+</code></pre><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
+<h2 id="stars-like-ours">Stars Like Ours</h2>
+<p>Now that we have a Hash to describe characteristics of our own Sun, we can build Hashes for other stars and look for the ones that are similar to ours. We&rsquo;ll use the spectrum as our guideline, and look for an exact match rather than just a vague similarity. We&rsquo;re also going to filter out the ones that don&rsquo;t have a name, because we know that many of the stars in this set don&rsquo;t have proper names.</p>
+<pre tabindex="0"><code># example-06-07.pir
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local pmc    chomp
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+    .local pmc    star
+    .local string star_name
+    .local string star_spectrum
+    .local string star_distance
+    .local pmc    sol
+    .local string sol_spectrum
+    .local int    matching_count
+    .local int    unnamed_match_count
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    current_field_index = 0
+    sol = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_SOL_FIELD:
+    if current_field_index &gt;= field_count goto FIND_MATCHING_STARS
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    sol[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_SOL_FIELD
+
+  FIND_MATCHING_STARS:
+    sol_spectrum = sol[&#39;Spectrum&#39;]
+    matching_count = 0
+    unnamed_match_count = 0
+    # We want to show Sol&#39;s details as well as other matches.
+    star = sol
+    goto DISPLAY_STAR_DETAILS
+
+  LOAD_NEXT_STAR:
+    unless data_file goto END
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    current_field_index = 0
+    star = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_STAR_FIELD:
+    if current_field_index &gt;= field_count goto EXAMINE_STAR
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    star[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_STAR_FIELD
+
+  EXAMINE_STAR:
+    star_spectrum = star[&#39;Spectrum&#39;]
+    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+    goto LOAD_NEXT_STAR
+
+  REMEMBER_MATCH:
+    matching_count += 1
+    star_name = star[&#39;ProperName&#39;]
+    if star_name goto DISPLAY_STAR_DETAILS
+    unnamed_match_count += 1
+    goto LOAD_NEXT_STAR
+
+  DISPLAY_STAR_DETAILS:
+    star_name = star[&#39;ProperName&#39;]
+    star_spectrum = star[&#39;Spectrum&#39;]
+    star_distance = star[&#39;Distance&#39;]
+    print &#34;&lt;Name: &#34;
+    print star_name
+    print &#34;, Spectrum: &#34;
+    print star_spectrum
+    print &#34;, Distance: &#34;
+    print star_distance
+    say &#34;&gt;&#34;
+    goto LOAD_NEXT_STAR
+
+  END:
+    close data_file
+    print matching_count
+    print &#34; stars exactly matched Sol&#39;s spectrum &#34;
+    say sol_spectrum
+    print unnamed_match_count
+    say &#39; have no proper name&#39;
+
+.end
+</code></pre><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
+<pre tabindex="0"><code>  EXAMINE_STAR:
+    star_spectrum = star[&#39;Spectrum&#39;]
+    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+    goto LOAD_NEXT_STAR
+</code></pre><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
+<pre tabindex="0"><code>  REMEMBER_MATCH:
+    matching_count += 1
+    star_name = star[&#39;ProperName&#39;]
+    if star_name goto DISPLAY_STAR_DETAILS
+    unnamed_match_count += 1
+    goto LOAD_NEXT_STAR
+</code></pre><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
+<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  star_name = star[&#39;ProperName&#39;]
+  star_spectrum = star[&#39;Spectrum&#39;]
+  star_distance = star[&#39;Distance&#39;]
+  print &#34;&lt;Name: &#34;
+  print star_name
+  print &#34;, Spectrum: &#34;
+  print star_spectrum
+  print &#34;, Distance: &#34;
+  print star_distance
+  say &#34;&gt;&#34;
+  goto LOAD_NEXT_STAR
+</code></pre><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
+<pre tabindex="0"><code> $ parrot example-06-07.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
+ &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
+ 568 stars exactly matched Sol&#39;s spectrum G2V
+ 567 have no proper name
+</code></pre><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Wow. There has been a lot of new stuff today. Not only did we learn how to read files and use Hashes, we also saw how to load bytecode libraries. We counted, searched through, and displayed data from a 20 Megabyte text file with nearly 120,000 entries. We also learned that <a href="http://en.wikipedia.org/wiki/Alpha_Centauri">Rigel Kentaurus A</a> is the only named neighbor in the database that is the same spectral type as our Sun.</p>
+<p>I think we&rsquo;re reaching the limits of what I want to do with <code>goto</code> as my primary  tool for guiding program flow. PIR Code is getting harder to write and edit. The next step really should be creating subroutines to abstract some of the more complicated or tedious processes.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

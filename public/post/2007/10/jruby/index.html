@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2007/10/jruby/">
+<meta property="og:title" content="JRuby">
+<meta name="twitter:title" content="JRuby">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="There is more than one way to experiment with card/Ruby. JRuby is a mature version of Ruby written for the Java Virtual Machine. This gives you a great deal of platform independence, since JRuby will comfortably run anywhere that card/Java runs. It also provides you with access to Java’s huge standard library. I thought I would take a little time to examine the JRuby implementation, which is nearing a 1.0 release.">
+    <meta property="og:description" content="There is more than one way to experiment with card/Ruby. JRuby is a mature version of Ruby written for the Java Virtual Machine. This gives you a great deal of platform independence, since JRuby will comfortably run anywhere that card/Java runs. It also provides you with access to Java’s huge standard library. I thought I would take a little time to examine the JRuby implementation, which is nearing a 1.0 release.">
+  
+
+
+
+<title itemprop="name">JRuby - Random Geekery</title>
+<meta property="og:title" content=JRuby&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=JRuby&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=JRuby&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=JRuby&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2007/10/jruby/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2007/10/jruby/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2007/10/jruby/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2007/10/jruby/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2007/10/jruby/" />
+
+
+<meta property="og:updated_time" content=29010-29-12T100:00:07-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2011/07/rake/">Rake</a></li>
+        
+          <li><a href="/post/2010/10/ruby-and-the-hyg-star-catalog/">Ruby and the HYG Star Catalog</a></li>
+        
+          <li><a href="/post/2004/10/drawing-celtic-knotwork/">Drawing Celtic Knotwork</a></li>
+        
+          <li><a href="/post/2004/09/look-at-the-latest-fark-headlines/">Look at the Latest Fark Headlines</a></li>
+        
+          <li><a href="/post/2004/09/the-mires/">The MIRES</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2007/10/jruby/">JRuby</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2007/10/jruby/">JRuby</a>
+    </h1>
+    
+        <time datetime="2007-10-29T00:00:00-0700" class="post-date">
+            October 29, 2007
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-ruby">
+            <a href="https://randomgeekery.org/tags/ruby">ruby</a>
+        </li>
+        
+        <li class="tag-java">
+            <a href="https://randomgeekery.org/tags/java">java</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>There is more than one way to experiment with <a href="/card/ruby/">card/Ruby</a>. <a href="http://jruby.org/">JRuby</a> is a mature version of Ruby written for the Java Virtual Machine. This gives you a great deal of platform independence, since JRuby will comfortably run anywhere that <a href="/card/java/">card/Java</a> runs. It also provides you with access to Java’s <em>huge</em> <a href="http://www.java.com/en/download/index.jsp">standard library</a>. I thought I would take a little time to examine the JRuby implementation, which is nearing a 1.0 release.</p>
+<p>We need Java before we can do anything with JRuby, though. I already have 1.6.0 installed on my machine. If you don’t have Java, now is the time to <a href="http://www.java.com/en/download/index.jsp">get it</a>.</p>
+<p>With Java safely installed on our machine, it is time to download and install JRuby. The <a href="http://jruby.org/download">download</a> is a simple archive file — most Windows users will want to go for the zipped version, since that is best understood by their system. I grabbed the tarred and gzipped archive of the binaries for myself. An automatic installer would be nice, but it isn’t the sort of thing that’s going to stop me.</p>
+<p>The archive contains a <code>bin</code> folder containing several interesting files. The ones which interest me most are <code>jruby</code>, <code>jirb</code>, and <code>gem</code>. Supporting <a href="http://rubygems.org">Ruby Gems</a> means that we can install from the standard Ruby repositories. I need to put this folder at a sensible location on my system, and then put that location on my path.</p>
+<pre tabindex="0"><code>$ sudo mv jruby-1.2.0RC1/ /opt/jruby
+$ export PATH=/opt/jruby/bin:$PATH
+$ which jirb
+/opt/jruby/bin/jirb
+</code></pre><p>I got that right, so I can safely add the <code>export PATH</code> line to my <code>$HOME/.bash_profile</code> when I feel like it.</p>
+<p>There’s probably a quick way to do it in Windows as well, but here’s what I know how to do.</p>
+<ol>
+<li>Open the Control Panel</li>
+<li>Select &ldquo;System&rdquo;</li>
+<li>Select &ldquo;Advanced system settings&rdquo;</li>
+<li>Select &ldquo;Environment Variables&rdquo; button.</li>
+<li>Select &ldquo;Path&rdquo; from System Variables if you have admin privileges,
+otherwise from User variables.</li>
+<li>Click &ldquo;Edit&rdquo;.</li>
+<li>At the beginning of the &ldquo;Variable value&rdquo; field, put the location of
+your <code>jruby\bin</code> folder: <code>C:\jruby\bin;C:\Ruby\bin;%PATH%</code></li>
+<li>Click &ldquo;Ok&rdquo; until all those lovely dialog boxes go away.</li>
+</ol>
+<p>Now you should be able to access the JRuby commands from any console. The Windows command prompt is accessible via the Start Menu, under Accessories.</p>
+<p>I want to make sure the Java interface works, so I’ll fire up the <code>jirb</code> shell —</p>
+<pre tabindex="0"><code>$ jirb
+</code></pre><p>— and test with a quick Swing &ldquo;Hello World&rdquo; dialog borrowing from the
+<a href="http://www.roesler-ac.de/wolfram/hello.htm#Java-Swing">Hello World Repository</a>.</p>
+<pre tabindex="0"><code>irb(main):001:0&gt; include_class(&#39;javax.swing.JOptionPane&#39;)
+=&gt; [&#34;javax.swing.JOptionPane&#34;]
+irb(main):002:0&gt; JOptionPane.showMessageDialog(nil, &#34;Hello World!&#34;)
+=&gt; nil
+</code></pre><p><img src="/post/2007/10/../../../attachments/img/2007/jruby-hello.png" alt="attachments/img/2007/jruby-hello.png"/>
+JRuby &ldquo;Hello World&rdquo;</p>
+<p>That popped up a simple &ldquo;Ok&rdquo; style dialog box with the message &ldquo;Hello World!&rdquo;.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2007/10/my-garter-stitch-hat/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>My Garter Stitch Hat
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2007/11/xcb-xlib-unlock-issues-java-on-fedora/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>xcb_xlib_unlock issues - Java on Fedora
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

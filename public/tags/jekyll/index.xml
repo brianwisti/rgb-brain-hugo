@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>jekyllonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/jekyll/</link>
+    <description>
+      Recent contentinjekyll on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Mon, 14 Sep 2015 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/jekyll/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Added Suggested Posts</title>
+  <link>https://randomgeekery.org/post/2015/09/added-suggested-posts/</link>
+  <pubDate>Mon, 14 Sep 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/09/added-suggested-posts/</guid>
+  <description>&lt;p&gt;I started writing about &lt;a href=&#34;http://www.pnwphp.com/&#34;&gt;PNWPHP&lt;/a&gt; but got distracted and added “Suggested Reading” to my posts instead.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>jekyll</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>I started writing about PNWPHP but got distracted and added "Suggested Reading" to my posts instead.
+</h2><p>I started writing about <a href="http://www.pnwphp.com/">PNWPHP</a> but got distracted and added &ldquo;Suggested Reading&rdquo; to my posts instead.</p>
+<p>This weekend I attended PNWPHP. It was great. Instead of writing about that, I started looking up how to manage Related Posts in <a href="/card/jekyll/">Jekyll</a>. There are built-in options to do that, but they never satisfied me. I found <a href="http://zhangwenli.com/">Wenli Zhang</a>&rsquo;s post &ldquo;<a href="http://zhangwenli.com/blog/2014/07/15/jekyll-related-posts-without-plugin/">Jekyll Related Posts without Plugin</a>&rdquo; and understood a little better.</p>
+<p>Okay, no. Not really. But that post led me to <a href="https://github.com/LawrenceWoodman/related_posts-jekyll_plugin">related_posts-jekyll-plugin</a> and this <a href="https://github.com/jumanji27/related_posts-jekyll_plugin">fork by jumanji27</a> which is friendlier for current Jekyll releases.</p>
+<p>Since it&rsquo;s a little more fiddly than a regular plugin, I hand-copied the code into a file <code>_plugins/related-posts.rb</code> and added a nice little &ldquo;Suggested Posts&rdquo; footer to the post template.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="x">&lt;article itemscope itemtype=&#34;http://schema.org/BlogPosting&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">  ...
+</span></span></span><span class="line"><span class="cl"><span class="x">  &lt;footer&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">    &lt;h3&gt;Suggested Posts&lt;/h3&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">    &lt;p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="err">{</span><span class="x">% for post in site.related_posts limit:5 %}
+</span></span></span><span class="line"><span class="cl"><span class="x">      &lt;a href=&#34;</span><span class="cp">{{</span> <span class="nv">post.url</span> <span class="cp">}}</span><span class="x">&#34; class=&#34;post-link&#34;&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;</span><span class="err">{</span><span class="x">% unless forloop.last %}, </span><span class="err">{</span><span class="x">% endunless %}
+</span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="err">{</span><span class="x">% endfor %}
+</span></span></span><span class="line"><span class="cl"><span class="x">    &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">  &lt;/footer&gt;
+</span></span></span><span class="line"><span class="cl"><span class="x">&lt;/article&gt;
+</span></span></span></code></pre></div><p>I limited it to five related posts. Some posts will have a hundred related posts due to the way I imported content from my other sites.</p>
+<p>Incidentally, I think this plugin does a better job picking related posts than Jekyll&rsquo;s built-in approach, though I have no idea why. Jekyll usually ended up with nothing related, and just defaulted back to the most recent posts. This works better for me.</p>
+<p>For the moment I prefer a comma-delimited dump of posts. Later I may play with some list styling. However, I did have the problem of post titles being broken up by line breaks. A little <code>white-space: nowrap</code> in the right spot fixes that.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">post-link</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Now the text of each post link stays together.</p>
+<p>Just wanted to share all this. Have fun!</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: reStructuredText in Jekyll</title>
+  <link>https://randomgeekery.org/post/2015/09/restructuredtext-in-jekyll/</link>
+  <pubDate>Tue, 08 Sep 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/09/restructuredtext-in-jekyll/</guid>
+  <description>&lt;p&gt;I can write &lt;a href=&#34;https://randomgeekery.org/card/jekyll/&#34;&gt;Jekyll&lt;/a&gt; posts with &lt;a href=&#34;https://randomgeekery.org/card/restructuredtext/&#34;&gt;reStructuredText&lt;/a&gt; now.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>jekyll</category>  <category>rst</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>I can write Jekyll posts with reStructuredText now.</h2><p>I can write <a href="/card/jekyll/">Jekyll</a> posts with <a href="/card/restructuredtext/">reStructuredText</a> now.</p>
+<p>I spent the last few days fiddling with <a href="/card/pelican/">Pelican</a> and <a href="/card/nikola/">Nikola</a> to see how much work it would take to convert my site. So far? Lots of work. I  customized the build for this silly site quite a bit.</p>
+<p>Meanwhile I decided that I <em>must</em> have reStructuredText] available for my posts. I grabbed the <a href="https://github.com/xdissent/jekyll-rst">jekyll-rst</a> Jekyll plugin and followed its directions.</p>
+<pre tabindex="0"><code>$ mkvirtualenv jekyll-rst
+$ pip install docutils pygments
+$ gem install RbST
+$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst
+</code></pre><p>Let me just build real quick to make sure this works at all.</p>
+<p>Well, no.</p>
+<pre tabindex="0"><code>$ bundle exec jekyll build -D
+# ...
+TypeError: Unicode-objects must be encoded before hashing
+Exiting due to error.  Use &#34;--traceback&#34; to diagnose.
+Please report errors to &lt;docutils-users@lists.sf.net&gt;.
+Include &#34;--traceback&#34; output, Docutils version (0.12 [release]),
+Python version (3.4.3), your OS type &amp; version, and the
+command line used.
+</code></pre><p>Oh I know that smell. You get that with code that isn&rsquo;t completely ready for Python 3. Here&rsquo;s the smallest change to make that error go away.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># _plugins/jekyll-rst/directives.py line 54-55</span>
+</span></span><span class="line"><span class="cl"><span class="n">content_text</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cache_file_name</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lexer_name</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">content_text</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+</span></span></code></pre></div><p><em>Now</em> it builds.</p>
+<p>Then I ripped out all the special options because that was easier than adjusting my stylesheets to take them into account.</p>
+<p>So. It works. Yay! I can write Jekyll posts with reStructuredText!</p>
+<p>That should keep me a little happier while I continue porting the site to another generator.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Draft Mode in Jekyll Templates</title>
+  <link>https://randomgeekery.org/post/2015/07/draft-mode-in-jekyll-templates/</link>
+  <pubDate>Mon, 20 Jul 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/07/draft-mode-in-jekyll-templates/</guid>
+  <description>[!NOTE] tldr Use site.show_drafts in templates if the local and live versions of your Jekyll site need to be different.
+Yesterday I published a post about Jekyll collections. Today I checked Google Analytics to see if anybody looked at my site. 99 visits! Hey, nice. But I also noticed several “localhost” entries: those times I was double-checking my page locally with jekyll serve -Dw counted as visits, because the browser saw the analytics code and dutifully notified Google’s servers.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>jekyll</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Use site.show_drafts in your template to keep site development from cluttering analytics
+</h2><blockquote>
+<p>[!NOTE] <a href="/card/tldr/">tldr</a>
+Use <code>site.show_drafts</code> in templates if the local and live versions of your <a href="/card/jekyll/">Jekyll</a> site need to be different.</p>
+</blockquote>
+<p>Yesterday I published a post about <a href="/post/2015/07/making-a-jekyll-collection/">Jekyll collections</a>.  Today I checked <a href="http://www.google.com/analytics/">Google Analytics</a> to see if anybody looked at my site. 99 visits! Hey, nice. But I also noticed several &ldquo;localhost&rdquo; entries: those times I was double-checking my page locally with <code>jekyll serve -Dw</code> counted as visits, because the browser saw the analytics code and dutifully notified Google&rsquo;s servers. So - less than 99 visits to my site. Oh well.</p>
+<p>At some point I may disconnect Analytics altogether and go back to analyzing server logs directly. That certainly solves the localhost entries. Today I only want to adjust Jekyll&rsquo;s build process so that it skips analytics code when building drafts.</p>
+<p>Turns out that the <a href="http://jekyllrb.com/docs/configuration/">configuration documentation</a> lists <code>show_drafts: null</code> down there in the default configuration. I only needed an <code>unless</code> block in my template.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-handlebars" data-lang="handlebars"><span class="line"><span class="cl"><span class="err">{</span><span class="x">% unless site.show_drafts %}
+</span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="err">{</span><span class="x">% include analytics.html %}
+</span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="err">{</span><span class="x">% endunless %}
+</span></span></span></code></pre></div><p>I added a similar block for comments, since <a href="https://disqus.com/">Disqus</a> handles those -  another external service I don&rsquo;t need in draft mode.</p>
+<p>You may need something more elaborate than this for your needs, such as  ad code for a live site and a placeholder image when building drafts. No matter what the details, <code>site.show_drafts</code> provides the key that you need.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Making a Jekyll Collection</title>
+  <link>https://randomgeekery.org/post/2015/07/making-a-jekyll-collection/</link>
+  <pubDate>Sun, 19 Jul 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/07/making-a-jekyll-collection/</guid>
+  <description>Jekyll currently generates the HTML for my site. I am curious about the experimental collections feature, and whether it could be useful for me.
+This post should not be too difficult to read along with — and I will happily fix any problems you notice — but I do assume you know the basics of creating a blog with Jekyll. The code and templates were initially build on Jekyll 3.0.0.beta8.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>jekyll</category>  <category>site</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>In which I try out Jekyll's experimental Collections</h2><p><a href="/card/jekyll/">Jekyll</a> currently generates the HTML for my site. I am curious about the experimental <a href="http://jekyllrb.com/docs/collections/">collections</a> feature, and whether it could be useful for me.</p>
+<p>This post should not be too difficult to read along with — and I will happily fix any problems you notice — but I do assume you know the basics of creating a blog with Jekyll. The code and templates were initially build on Jekyll 3.0.0.beta8.</p>
+<h2 id="what-why">What? Why?</h2>
+<p>So what the heck is a collection? From the Jekyll collections documentation:</p>
+<blockquote>
+<p>Not everything is a post or a page. Maybe you want to document the  various methods in your open source project, members of a team, or talks at a conference. Collections allow you to define a new type of document that behave like Pages or Posts do normally, but also have their own unique properties and namespace.</p>
+</blockquote>
+<p>Collections could be useful when you have things you want to show on your site without necessarily being tied to the blog-centric structure of Posts or the simple content dump of a Page.</p>
+<p>Who would that help, besides the slightly technical examples from the description?</p>
+<ul>
+<li>A writer could organize their stories into collections</li>
+<li>An artist could present their works as one or more collections</li>
+<li>A knitter could put their yarn projects in a collection.</li>
+<li>Anyone who takes pictures could use collections as photo galleries.</li>
+<li>Recipes, maybe?</li>
+<li>Music playlists!</li>
+<li>All the books I own, and the few I have actually read!</li>
+</ul>
+<p>A blog post probably works for most of these use cases. Maybe fiddle a bit with categories and put a tag here and there, and your content is out there for anyone. Good enough.</p>
+<p>&ldquo;Good enough&rdquo; isn’t good enough for every case, though. Occasionally you want to tune some of your content in a special way. You may find this is easier with collections than with blog posts.</p>
+<p>There are also dedicated sites for all of these ideas, and those are good enough too. Some excel at the services they provide. They have concerns too. Now the visibility of your creations is tied to the fortunes and policies of whoever provides that service. Keeping that in a collection on your own site gives you a backup if the service goes away, at least.</p>
+<p>I could use collections for my knitting and crochet projects. I have a couple of <em>Knitting</em> blog posts here. My <a href="http://www.ravelry.com/people/brianwisti">account</a> on <a href="https://www.ravelry.com">Ravelry</a> highlights a handful of other WIPs and FOs: <em>Works In Progress</em> and <em>Finished Objects</em>.</p>
+<p>The blog posts work fine as blog posts, but I still want a separate way to organize those projects. The stuff on Ravelry can only be seen if you have an account with the service. That’s fine, but I have spent 2015 consolidating material I’ve created elsewhere onto my site. Ravelry is a reasonable next target for me.</p>
+<h2 id="fine-how">Fine. How?</h2>
+<p>First I need to add a <code>collections</code> entry to my <code>_config.yml</code>
+<a href="http://jekyllrb.com/docs/configuration/">configuration</a> file. This entry contains a list of all collections in the site, and metadata for each collection. I want these collections displayed on the site, so I must set the <code>output</code> metadata for the collection to <code>true</code>. I also want give consistent URLs for my project pages. This has been an issue for me bouncing between Jekyll 2.5.3 and 3.0.0 beta. Setting <code>permalink</code> takes care of that issue.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">collections</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">crafts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l">/crafts/:path/</span><span class="w">
+</span></span></span></code></pre></div><p>Next I create the folder to hold this collection. By default its name must match the collection name with an underscore prefix.</p>
+<pre tabindex="0"><code>$ mkdir _crafts
+</code></pre><h3 id="one-thing">One Thing</h3>
+<p>Time to put something in the collection. I can use my recent <a href="/post/2015/04/quick-garter-stitch-scarf/">garter stitch scarf post</a> as a starting point, filling in the details of a new collection item from that post.</p>
+<p><strong><code>crafts/garter-scarf-wrapped.md</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">name: Quick Garter Stitch Scarf
+</span></span><span class="line"><span class="cl">layout: craft
+</span></span><span class="line"><span class="cl">image: /img/2015/garter-scarf-wrapped.jpg
+</span></span><span class="line"><span class="cl">finished: 2015-04-04
+</span></span><span class="line"><span class="cl">posts:
+</span></span><span class="line"><span class="cl">  <span class="k">-</span> title: A Quick Garter Stitch Scarf
+</span></span><span class="line"><span class="cl">    url: /marginalia/2015/04/04_quick-garter-scarf.html
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">I made this scarf as a quick break from all the socks I made or tried to make
+</span></span><span class="line"><span class="cl">over the last few years. The scarf pleased its new owner immensely, and she
+</span></span><span class="line"><span class="cl">wears it whenever the weather permits.
+</span></span></code></pre></div><p>I can add more detail later, but this gives me a good start.</p>
+<p>How about a layout template for the project? This is the best I could come up with using my current knowledge of <a href="https://github.com/Shopify/liquid">Liquid templates</a>.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">---
+layout: default
+---
+&lt;article class=&#34;post&#34;&gt;
+  &lt;header class=&#34;post-header&#34;&gt;
+    &lt;h1 class=&#34;post-title&#34;&gt;{{ page.name }}&lt;/h1&gt;
+    &lt;span class=&#34;post-meta&#34;&gt;
+      Finished {{ page.finished | date: site.date_format }}
+    &lt;/span&gt;
+  &lt;/header&gt;
+  &lt;div class=&#34;post-content&#34;&gt;
+    &lt;figure&gt;
+      {% img {{ page.image }} class=&#34;pure-img&#34; alt=&#34;{{ page.name }}&#34; %}
+      &lt;figcaption&gt;{{ page.name }}&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    {{ content }}
+    {% if page.posts %}
+    &lt;h2&gt;Posts About This Project&lt;/h2&gt;
+    &lt;ul&gt;
+      {% for link in page.posts %}
+        &lt;li&gt;&lt;a href=&#34;{{ link.url }}&#34;&gt;{{ link.title }}&lt;/a&gt;&lt;/li&gt;
+      {% endfor %}
+    &lt;/ul&gt;
+    {% endif %}
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre><p>As far as Jekyll is concerned, the collection item is just another page. Use <code>page</code> to get at front matter for this item.</p>
+<p>Oh and while I was putting this page together I learned about the <a href="https://github.com/octopress/image-tag">Octopress Image Tag</a> plugin. I expect to be using that a lot more in the future!</p>
+<p><img src="/post/2015/07/attachments/img/2015/crafts-project.png" alt="Voila!"/></p>
+<p>Now I have a page for this project, but how will visitors know it’s there? How about I start with some sort of summary on the site’s index page?</p>
+<h3 id="just-the-new-things">Just The New Things</h3>
+<p>Here is a simple approach. Just make a list of the items in the collection.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">&lt;div class=&#34;home&#34;&gt;
+  &lt;h2&gt;My Crafts Projects&lt;/h2&gt;
+  &lt;ul&gt;
+    {% for project in site.crafts %}
+      &lt;li&gt;&lt;a href=&#34;{{ project.url }}&#34;&gt;{{ project.name }}&lt;/a&gt;&lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+  &lt;ul class=&#34;post-list&#34;&gt;
+    {% for post in site.posts %}
+</code></pre><p><img src="/post/2015/07/attachments/img/2015/crafts-summary-01.png" alt="A short and sweet summary"/></p>
+<p>Sure, that works for the moment. Let’s get some more projects in that collection. I can add the projects from my Ravelry account for now.</p>
+<p><img src="/post/2015/07/attachments/img/2015/crafts-summary-02.png" alt="Listing every project"/></p>
+<p>Ok, new problem.</p>
+<p>I see aesthetic issues here, but that’s not the problem. My site index limits itself to only showing this year’s blog posts. This collection summary shows every craft project I ever documented.</p>
+<p>The project list should only show projects I have finished so far in the year.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">{% assign this_year = &#39;now&#39; | date: &#34;%Y&#34; %}
+&lt;h2&gt;{{ this_year }} Crafts Projects&lt;/h2&gt;
+&lt;ul&gt;
+  {% assign projects = site.crafts | sort: &#39;finished&#39; | reverse %}
+  {% for project in projects %}
+    {% assign finished_in = project.finished | date: &#34;%Y&#34; %}
+    {% if finished_in == this_year %}
+      &lt;li&gt;&lt;a href=&#34;{{ project.url }}&#34;&gt;{{ project.name }}&lt;/a&gt;&lt;/li&gt;
+    {% endif %}
+  {% endfor %}
+&lt;/ul&gt;
+</code></pre><p>Jekyll sorts collections by filename. Since time finished matters to me now, I create a copy of the crafts collection sorted from most recently finished to oldest. Now I can step through that copy, only summarizing projects completed this year. Liquid may have an easier way, but I haven’t learned it yet.</p>
+<p><img src="/post/2015/07/attachments/img/2015/crafts-summary-03.png" alt="Just the newest projects please"/></p>
+<h3 id="all-the-things">All The Things</h3>
+<p>Wait. How will a visitor find those old projects? Time to make an archive page. I can follow the idea of the post archive for now, listing every project ever. <code>crafts/index.html</code> will hold that archive.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">---
+title: My Crafts Projects
+layout: page
+permalink: /crafts/
+---
+
+&lt;p&gt;Not every project I have ever done, but every project I have ever documented.&lt;/p&gt;
+
+{% assign projects = site.crafts | sort: &#39;finished&#39; | reverse %}
+{% for project in projects %}
+  {% assign year_finished = project.finished | date: &#34;%Y&#34; %}
+  {% if year_finished != year %}
+    {% unless forloop.first %}
+      &lt;/ul&gt;
+    {% endunless %}
+    &lt;h2&gt;{{ year_finished }}&lt;/h2&gt;
+    &lt;ul&gt;
+    {% assign year = year_finished %}
+  {% endif %}
+  &lt;li&gt;&lt;a href=&#34;{{ project.url }}&#34;&gt;{{ project.name }}&lt;/a&gt;&lt;/li&gt;
+  {% if forloop.last %}
+    &lt;/ul&gt;
+  {% endif %}
+{% endfor %}
+</code></pre><p>Then add a link to my index page and craft project template.</p>
+<pre tabindex="0"><code>&lt;p&gt;See the &lt;a href=&#34;https://randomgeekery.org/crafts/&#34;&gt;Crafts&lt;/a&gt; page to see all projects.
+</code></pre><p><img src="/post/2015/07/attachments/img/2015/crafts-index.png" alt="Short and sweet version of the crafts index"/></p>
+<p>Well it is painfully obvious that I need to dig through my photos and fill in gaps for those missing years.</p>
+<p>The “Jekyll collections” part of this blog post is done. I talked about building a collection, creating detail pages — though not every collection needs those — along with a summary for the site index and a page listing every item in the collection. We are done here.</p>
+<h3 id="but-">But —</h3>
+<p>I know. I mentioned an aesthetic issue earlier. You want to <em>see</em> the knitting projects in those summaries. I will gloss over the details. They deserve a blog post of their own.</p>
+<ul>
+<li>Make thumbnails for each of my craft pictures.</li>
+<li>Add a <code>thumbnail</code> item with a thumbnail path to the Front Matter for
+each project.</li>
+<li>Include a thumbnail pic in the project summary.</li>
+<li>Fiddle a bunch with CSS for the summary and craft index views.</li>
+</ul>
+<p>Generating a thumbnail and associating it with the project sounds like the sort of thing that should be automated, but none of the Jekyll plugins I found were quite right for the task. I may end up making my own plugin at some point, assuming I stick with a single blog generator long enough to learn how to make plugins.</p>
+<p>Anyways, I add a <code>thumbnail</code> front matter entry for each collection item.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">thumbnail</span><span class="p">:</span><span class="w"> </span><span class="l">/img/2015/garter-scarf-wrapped-thumbnail.jpg</span><span class="w">
+</span></span></span></code></pre></div><p>Adding thumbnails and captions makes the item summary a little more complex, so I create <code>_includes/craft-summary-item.html</code> to hold that summary.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">&lt;figure class=&#34;crafts-item-thumbnail&#34;&gt;
+  &lt;a href=&#34;{{ project.url }}&#34;&gt;
+    &lt;img src=&#34;{{ project.thumbnail }}&#34;
+      height=&#34;128&#34; width=&#34;128&#34;
+      alt=&#34;{{ project.name }}&#34;&gt;
+  &lt;/a&gt;
+  &lt;figcaption&gt;&lt;a href=&#34;{{ project.url }}&#34;&gt;{{ project.name }}&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre><p>I update <code>index.html</code> to reference the new include file.</p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">{% assign this_year = &#39;now&#39; | date: &#34;%Y&#34; %}
+&lt;h2&gt;{{ this_year }} Crafts Projects&lt;/h2&gt;
+&lt;ul class=&#34;crafts-collection&#34;&gt;
+  {% assign projects = site.crafts | sort: &#39;finished&#39; | reverse %}
+  {% for project in projects %}
+    {% assign finished_in = project.finished | date: &#34;%Y&#34; %}
+    {% if finished_in == this_year %}
+      &lt;li&gt;{% include craft-summary-item.html %}&lt;/li&gt;
+    {% endif %}
+  {% endfor %}
+&lt;/ul&gt;
+</code></pre><p>And then the same to the Crafts index.</p>
+<p><strong><code>crafts/index.html</code></strong></p>
+<pre tabindex="0"><code class="language-liquid" data-lang="liquid">{% assign projects = site.crafts | sort: &#39;finished&#39; | reverse %}
+{% for project in projects %}
+  {% assign year_finished = project.finished | date: &#34;%Y&#34; %}
+  {% if year_finished != year %}
+    {% unless forloop.first %}
+      &lt;/ul&gt;
+    {% endunless %}
+    &lt;h2&gt;{{ year_finished }}&lt;/h2&gt;
+    &lt;ul class=&#34;crafts-collection&#34;&gt;
+    {% assign year = year_finished %}
+  {% endif %}
+  &lt;li&gt;{% include craft-summary-item.html %}&lt;/li&gt;
+  {% if forloop.last %}
+    &lt;/ul&gt;
+  {% endif %}
+{% endfor %}
+</code></pre><p>Add just enough styling to make it work on my machine - then a little more styling to make it work on my phone.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">figure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">text-align</span><span class="o">:</span> <span class="ni">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">1</span><span class="kt">em</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border</span><span class="o">:</span> <span class="ni">thin</span> <span class="ni">solid</span> <span class="nv">$grey-color-dark</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">text-align</span><span class="o">:</span> <span class="ni">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.crafts-collection</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">list-style</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit-flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">figure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">160</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="mi">160</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img src="/post/2015/07/attachments/img/2015/crafts-summary-04.png" alt="Final version of the crafts summary"/></p>
+<p>I’m fairly sure something is horribly wrong with my CSS, but if I clean this bit up I’ll just have to clean everything. This works for now.</p>
+<h3 id="next">Next?</h3>
+<p>Judging by my new yarncraft collection? More knitting and crochet. I need to fill that space! Also, I will gradually hunt down other projects I completed and add them to the collection. Probably some more layout and automation work.</p>
+<p>Mostly I want to find out what other Jekyll bloggers use collections for, or want to use collections for. I’d love to hear what you’ve got going on. Feel free to comment, email, tweet, or whatever!</p>
+<h2 id="other-resources">Other Resources</h2>
+<ul>
+<li><a href="http://ben.balter.com/2015/02/20/jekyll-collections/">Explain Like I’m Five: Jekyll Collections</a> by Ben Balter</li>
+<li><a href="http://www.sitepoint.com/getting-started-jekyll-collections/">Getting Started with Jekyll Collections</a> by Taylor Jones</li>
+</ul>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Using Octopress 3</title>
+  <link>https://randomgeekery.org/post/2015/07/using-octopress-3/</link>
+  <pubDate>Sun, 12 Jul 2015 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2015/07/using-octopress-3/</guid>
+  <description>&lt;p&gt;&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt; is “an obsessively designed toolkit for writing and deploying &lt;em&gt;Jekyll&lt;/em&gt; blogs.” A &lt;a href=&#34;http://octopress.org/2015/01/15/octopress-3.0-is-coming/&#34;&gt;blog post&lt;/a&gt; earlier this year by author Brandon Mathis described frustrations with Octopress 2, along with plans for &lt;a href=&#34;https://github.com/octopress/octopress&#34;&gt;Octopress 3&lt;/a&gt;. I didn’t use Octopress before, so I can’t tell you anything about how much better or worse the newest Octopress is. This release feels like a straightforward and useful extension to Jekyll. Apparently the older releases did not.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>jekyll</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Experiments with the Octopress Jekyll extension bundle</h2><p><a href="http://octopress.org/">Octopress</a> is &ldquo;an obsessively designed toolkit for writing and deploying <em>Jekyll</em> blogs.&rdquo; A <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">blog post</a> earlier this year by author Brandon Mathis described frustrations with Octopress 2, along with plans for <a href="https://github.com/octopress/octopress">Octopress 3</a>. I didn&rsquo;t use Octopress before, so I can&rsquo;t tell you anything about how much better or worse the newest Octopress is. This release feels like a straightforward and useful extension to Jekyll. Apparently the older releases did not.</p>
+<p>Instructions for installing and using Octopress 3 are on <a href="https://github.com/octopress/octopress">Github</a>. Here is what I did to  incorporate and use the new Octopress on my site.</p>
+<p>I need to install Octopress 3 first, obviously.</p>
+<pre tabindex="0"><code>$ gem install octopress
+</code></pre><p>Octopress provides a handful of commands for creating and managing content in a Jekyll site. I head into my site folder and start things off with <code>octopress init</code>.</p>
+<pre tabindex="0"><code>$ cd randomgeekery.org
+$ octopress init
+Added Octopress scaffold:
+ + _templates/
+ +   draft
+ +   page
+ +   post
+</code></pre><p><code>init</code> creates the templates that will be used by other Octopress commands.</p>
+<p>I&rsquo;ll start with the draft for this post.</p>
+<pre tabindex="0"><code>$ octopress new draft &#34;Using Octopress 3&#34;
+New draft: _drafts/using-octopress-3.markdown
+</code></pre><p>I add my content, drink some coffee, and fix the most grievous errors in my draft. Time to publish the draft. Octopress commands can complete partial filenames. Let&rsquo;s see if that works.</p>
+<pre tabindex="0"><code>$ octopress publish octopress
+Published: _drafts/using-octopress-3.markdown → _posts/2015-07-12-using-octopress-3.markdown
+</code></pre><p>Sure does. That is convenient.</p>
+<p>Wait. I organize <code>_posts</code> by category folders. I&rsquo;ll back out of the last publish and try again with a location specified.</p>
+<pre tabindex="0"><code>$ octopress unpublish octopress
+Unpublished: _posts/2015-07-12-using-octopress-3.markdown → _drafts/using-octopress-3.markdown
+$ octopress publish octopress --dir tools
+Published: _drafts/using-octopress-3.markdown → _posts/tools/2015-07-12-using-octopress-3.markdown
+</code></pre><p>I already have my own deployment script, so for now I will not worry about the Octopress <code>deploy</code> command. I&rsquo;ll just publish it.</p>
+<p>Oh before I do that, I just want to mention that Octopress 3 does a
+great job streamlining management of individual posts. I like it.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: Blog Writing in Org Mode</title>
+  <link>https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/</link>
+  <pubDate>Tue, 21 Oct 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/</guid>
+  <description>Introduction Much of what I’ve read aboutOrg has focused on its utility as a task management tool. That’s great. I wouldn’t mind spending some time on that aspect. Mostly I’ve been focused on its usefulness for note-taking and writing.
+Org mode includes features which make it attractive for blogging and journaling. It has a relatively simple set of markup rules for common constructs such as paragraphs, lists, source code, and tables.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>emacs</category>  <category>orgmode</category>  <category>jekyll</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>An experiment with using Org mode to write Jekyll blog posts.</h2><h2 id="introduction">Introduction</h2>
+<p>Much of what I’ve read about<a href="/card/org/">Org</a> has focused on its utility as a task management tool. That’s great. I wouldn’t mind spending some time on that aspect. Mostly I’ve been focused on its usefulness for note-taking and writing.</p>
+<p>Org mode includes features which make it attractive for blogging and journaling. It has a relatively simple set of markup rules for common constructs such as paragraphs, <a href="http://orgmode.org/manual/Plain-lists.html">lists</a>, <a href="http://orgmode.org/manual/Working-With-Source-Code.html">source code</a>, and <a href="http://orgmode.org/manual/Tables.html">tables</a>. The mode itself provides an editing interface which simplifies creating and managing those constructs. Most importantly for the blogger, org files can be exported to a range of formats including Markdown and HTML.</p>
+<p>Why not use that functionality for my own site? Random Geekery is built with <a href="/card/jekyll/">Jekyll</a>, and there are already <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">instructions</a> available for using the two together. I can use those as a starting point.</p>
+<h2 id="organize-directories">Organize Directories</h2>
+<p>When I’m using Org mode to write the blog pages, Jekyll becomes an implementation detail specific to publishing the blog. One folder contains all of the Jekyll project files, and an <code>org</code> folder mirrors the content-specific structure of the <code>jekyll</code> tree.</p>
+<pre tabindex="0"><code>+jekyll
++- css
++- _data
++- _drafts
++- img
++- _includes
++- _layouts
++- pages
++- _plugins
++- _posts
++- _sass
++- _scripts
++- _site
++org
+    +- _drafts
+    +- _posts
+    +- pages
+</code></pre><p>I use <code>_drafts</code> because I don’t always know when I will be publishing a post, and <code>pages</code> because I have legacy content that will get rewritten in Org format as it gets updated.</p>
+<h2 id="front-matter">Front Matter</h2>
+<p>The <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> used by Jekyll and other engines to determine content metadata requires some special handling to get exported correctly by Org mode. The most straightforward thing is to use the suggestion from the instructions mentioned earlier. Put your front matter in a HTML block right at the top of the file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+BEGIN_HTML</span>
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: Blog Writing in Org Mode
+</span></span><span class="line"><span class="cl">layout: post
+</span></span><span class="line"><span class="cl">category: Emacs
+</span></span><span class="line"><span class="cl">tags: org jekyll
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl"><span class="c">#+END_HTML</span>
+</span></span></code></pre></div><p>Okay, it’s not HTML. But Org mode doesn’t really care. It will get passed through untouched when you export.</p>
+<h2 id="configure-html-export">Configure HTML Export</h2>
+<p>HTML and other output needs to be placed correctly within the Jekyll layout conventions. A proper <code>org-publish-project-alist</code> will take care of this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-publish-project-alist</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Location of org files</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-extension</span> <span class="s">&#34;org&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Location of Jekyll files</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/jekyll/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:recursive</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-org-to-html</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:headline-levels</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:html-extension</span> <span class="s">&#34;html&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="c1">;; Only export section between &lt;body&gt;&lt;/body&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:body-only</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;org-static-randomgeekery&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:base-extension</span> <span class="s">&#34;css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-directory</span> <span class="s">&#34;~/Projects/randomgeekery.org/&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:recursive</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">         <span class="nb">:publishing-function</span> <span class="nv">org-publish-attachment</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;rg&#34;</span> <span class="nb">:components</span> <span class="p">(</span><span class="s">&#34;org-randomgeekery&#34;</span> <span class="s">&#34;org-static-randomgeekery&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">))</span>
+</span></span></code></pre></div><p>Now when I export the project with <code>org-mode-export (C-c C-e X) rg</code>, all of my org content for the project gets put in the correct spot. I even get a table of contents, which is not such a bad thing.</p>
+<h2 id="publishing-a-post">Publishing A Post</h2>
+<p>So when you’ve been editing a draft long enough and you’re ready to make it a real live post, you need to move the file from <code>_drafts</code> to <code>_posts</code>, with the publish date prefixing the filename.</p>
+<p>I could do that manually, but it’s tedious to do that for every blog post.</p>
+<p>I experiment with my rudimentary Emacs Lisp skills to create a new filename that looks about right.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">post-it</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Write current draft file as a Jekyll post file&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">if</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;_drafts&#34;</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">draft-copy</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="nv">post-copy</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; _drafts/&lt;stub&gt;.org</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; becomes</span>
+</span></span><span class="line"><span class="cl">             <span class="c1">;; _posts/yyyy-mm-dd-&lt;stub&gt;.org</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="nf">concat</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">&#34;_drafts&#34;</span> <span class="s">&#34;_posts&#34;</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">(</span><span class="nf">file-name-directory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nf">format-time-string</span> <span class="s">&#34;%Y-%m-%d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;-&#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">write-file</span> <span class="nv">post-copy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;%s is not in _drafts!&#34;</span> <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="nf">buffer-file-name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span></code></pre></div><p>Awkward, but it works. It worked at least once, anyways. Should manually remove the original <code>_draft</code> file until I know what I’m doing a little more.</p>
+<blockquote>
+<p>[!WARNING]
+See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.</p>
+</blockquote>
+<h2 id="followup">Followup</h2>
+<p>I wonder if maybe this isn’t the best approach, since it seems to confuse the heck out of Org mode. My lone org file just would not republish until I found <a href="http://lists.gnu.org/archive/html/emacs-orgmode/2009-05/msg00285.html">this post</a> for a similar situation. If it’s just not rebuilding, force it with a numeric argument: <kbd>C-u 0 C-c e</kbd>.</p>
+<p>This works well enough to get one post published, anyways. I’m sure to revisit this topic as I continue to learn more about Org mode and Emacs.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Welcome to Jekyll!</title>
+  <link>https://randomgeekery.org/post/2014/07/welcome-to-jekyll/</link>
+  <pubDate>Sat, 26 Jul 2014 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2014/07/welcome-to-jekyll/</guid>
+  <description>&lt;p&gt;Just don’t even ask. I am in a highly fickle phase with the Web site.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>jekyll</category>  <category>ruby</category>  <category>programming</category> 
+  <content:encoded><![CDATA[<p>Just don&rsquo;t even ask. I am in a highly fickle phase with the Web site.</p>
+<p>Despite an excellent suggestion from <a href="http://blog.miguelgrinberg.com/">Miguel Grinberg</a> to try <a href="http://pythonhosted.org/Frozen-Flask/">Frozen Flask</a>, I am too far along in this week of <a href="/card/jekyll/">Jekyll</a> to change  my mind now.</p>
+<p>Maybe next week.</p>
+<p>It is tempting to write a lengthy blog post describing everything I did to  integrate the old <a href="/card/coolnamehere/">coolnamehere</a> pages, get a breadcrumb trail on every page, set up tags, and the rest. I am not in the mood. There are other things I want to write about. Heck, I may have this site published via  yet another tool next week. I will just list the resources that made it  easier to assemble the site in its current form with Jekyll.</p>
+<ul>
+<li>This <a href="https://truongtx.me/2012/12/27/jekyll-create-a-list-of-lastest-posts">Trường TX blog post</a> helped me list the latest posts on every page</li>
+<li>I put the <a href="http://jekyllrb.com/docs/variables/">Jekyll variables</a> documentation to extensive use.</li>
+<li>Over on the <a href="http://biosphere.cc/software-engineering/jekyll-breadcrumbs-navigation-plugin/">Biosphere blog</a> was a post for building a basic breadcrumb trail.</li>
+<li><a href="http://charliepark.org/tags-in-jekyll/">Charlie Park</a> wrote about making tag indexes in Jekyll. That was handy.</li>
+<li>a <a href="https://gist.github.com/nimbupani/1421828">gist by nimbupani</a> showed how to put the latest post contents on the blog index.</li>
+</ul>]]></content:encoded>
+</item>
+</channel>
+</rss>

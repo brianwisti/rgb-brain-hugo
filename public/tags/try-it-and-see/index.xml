@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>try-it-and-seeonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/try-it-and-see/</link>
+    <description>
+      Recent contentintry-it-and-see on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Thu, 04 Aug 2022 10:04:34 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/try-it-and-see/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: [2022-08-04 Thu 10:04]</title>
+  <link>https://randomgeekery.org/post/2022/08/2022-08-04-thu-1004/</link>
+  <pubDate>Thu, 04 Aug 2022 10:04:34 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/2022-08-04-thu-1004/</guid>
+  <description>&lt;p&gt;I tried visually replacing a few &lt;a href=&#34;https://randomgeekery.org/card/logseq/&#34;&gt;card/Logseq&lt;/a&gt; tags with icons in CSS. It worked!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/08/../../../attachments/img/2022-08-04-logseq-icons.png&#34; alt=&#34;attachments/img/2022-08-04-logseq-icons.png&#34;/&gt;
+Three down, a few thousand to go&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>logseq</category>  <category>workflow</category>  <category>try-it-and-see</category> 
+  <content:encoded><![CDATA[<p>I tried visually replacing a few <a href="/card/logseq/">card/Logseq</a> tags with icons in CSS. It worked!</p>
+<p><img src="/post/2022/08/../../../attachments/img/2022-08-04-logseq-icons.png" alt="attachments/img/2022-08-04-logseq-icons.png"/>
+Three down, a few thousand to go</p>
+<p>How&rsquo;d I do it? Here I&rsquo;ll just paste from my journal note figuring out the first one. I&rsquo;m sure I&rsquo;ll revisit this tonight after taking care of the day&rsquo;s business.</p>
+<ul>
+<li>#idea Thinking about custom tag icons for logseq
+<ul>
+<li>#warning under construction #warning</li>
+<li>Inspired by Obsidian <a href="https://publish.obsidian.md/hub/02&#43;-&#43;Community&#43;Expansions/02.05&#43;All&#43;Community&#43;Expansions/CSS&#43;Snippets/Alternate&#43;Checkboxes&#43;%28SlRvb%29">Alternate Checkboxes</a> CSS snippet</li>
+<li>Here&rsquo;s what <code>#idea</code> looks like in the dev console:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span>
+</span></span><span class="line"><span class="cl">   <span class="na">class</span><span class="o">=</span><span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">style</span><span class="o">=</span><span class="s">&#34;display: inline;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">data-tooltipped</span><span class="o">=</span><span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">aria-describedby</span><span class="o">=</span><span class="s">&#34;tippy-tooltip-119&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">data-original-title</span><span class="o">=</span><span class="s">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">&gt;&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl">	   <span class="na">data-ref</span><span class="o">=</span><span class="s">&#34;idea&#34;</span>
+</span></span><span class="line"><span class="cl">	   <span class="na">class</span><span class="o">=</span><span class="s">&#34;tag&#34;</span><span class="p">&gt;</span>#idea<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><ul>
+<li>#question how do my installed plugins change the structure?
+<ul>
+<li>I don&rsquo;t think I currently have any plugins that alter element attributes</li>
+</ul>
+</li>
+<li>Set up <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS Selector</a> #bookmark to match
+<ul>
+<li><code>a.tag[data-ref=&quot;idea&quot;]</code></li>
+</ul>
+</li>
+<li>Hide the displayed tag by making it tiny</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">tag</span><span class="o">[</span><span class="nt">data-ref</span><span class="o">=</span><span class="s2">&#34;idea&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">border</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">font-size</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>Append an icon with the font size we started at</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">tag</span><span class="o">[</span><span class="nt">data-ref</span><span class="o">=</span><span class="s2">&#34;idea&#34;</span><span class="o">]</span><span class="p">:</span><span class="nd">after</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">content</span><span class="p">:</span> <span class="s2">&#34;💡&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">font-size</span><span class="p">:</span> <span class="kc">initial</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>as-is, this has accessibility issues and <code>font-size: initial</code> won&rsquo;t work with headings. Also, to do it right I should be encoding the icon</li>
+</ul>]]></content:encoded>
+</item>
+</channel>
+</rss>

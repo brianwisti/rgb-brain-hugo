@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/">
+<meta property="og:title" content="Processing Sass in Eleventy">
+<meta name="twitter:title" content="Processing Sass in Eleventy">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Specifically, building `main.scss` when `_base.scss` changes">
+    <meta property="og:description" content="Specifically, building `main.scss` when `_base.scss` changes">
+  
+
+
+
+<title itemprop="name">Processing Sass in Eleventy - Random Geekery</title>
+<meta property="og:title" content=Processing&#32;Sass&#32;in&#32;Eleventy&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Processing&#32;Sass&#32;in&#32;Eleventy&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Processing&#32;Sass&#32;in&#32;Eleventy&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Processing&#32;Sass&#32;in&#32;Eleventy&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="Specifically, building `main.scss` when `_base.scss` changes" />
+<meta itemprop="description" content="Specifically, building `main.scss` when `_base.scss` changes" />
+<meta property="og:description" content="Specifically, building `main.scss` when `_base.scss` changes" />
+<meta name="twitter:description" content="Specifically, building `main.scss` when `_base.scss` changes" />
+
+
+<base href="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/" />
+
+
+<meta property="og:updated_time" content=10001-10-01T10:00:22-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2022/01/eleventy-beta-handles-custom-templates/">Eleventy 1.0 beta handles custom templates</a></li>
+        
+          <li><a href="/post/2022/01/building-my-eleventy-site/">Building my Eleventy site</a></li>
+        
+          <li><a href="/post/2022/01/starting-2022-with-eleventy/">Starting 2022 With Eleventy</a></li>
+        
+          <li><a href="/post/2020/12/new-theme-for-2021/">New theme for 2021</a></li>
+        
+          <li><a href="/post/2020/09/work-break-with-eleventy/">Work Break with Eleventy</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/">Processing Sass in Eleventy</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/">Processing Sass in Eleventy</a>
+    </h1>
+    
+        <time datetime="2022-01-10T01:00:00-0800" class="post-date">
+            January 10, 2022
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-eleventy">
+            <a href="https://randomgeekery.org/tags/eleventy">eleventy</a>
+        </li>
+        
+        <li class="tag-scss">
+            <a href="https://randomgeekery.org/tags/scss">scss</a>
+        </li>
+        
+        <li class="tag-css">
+            <a href="https://randomgeekery.org/tags/css">css</a>
+        </li>
+        
+        <li class="tag-site">
+            <a href="https://randomgeekery.org/tags/site">site</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2022/01/../../../attachments/img/2022/cover-2022-01-10.jpg" alt="attachments/img/2022/cover-2022-01-10.jpg"/>
+relevant pictures are overrated; this dog and cat are cute together</p>
+<p><a href="/card/eleventy/">card/Eleventy</a>’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.</p>
+<p>Lots of big ideas, but let’s start small with the officially documented process for processing Sass.</p>
+<p>First things first, let&rsquo;s update <code>devDependencies</code> in my <code>package.json</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;devDependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;@11ty/eleventy&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.0.0&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>I keep my Sass files under <code>src/assets/style</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/assets/style/
+</span></span><span class="line"><span class="cl"><span class="go">src/assets/style/
+</span></span></span><span class="line"><span class="cl"><span class="go">├── _base.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">├── _layout.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">├── main.scss
+</span></span></span><span class="line"><span class="cl"><span class="go">└── modules
+</span></span></span><span class="line"><span class="cl"><span class="go">    └── _shiki.scss
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">1 directory, 4 files
+</span></span></span></code></pre></div><blockquote>
+<p>[!NOTE]
+Generally, I have been following the site organization guidelines described in <a href="https://www.webstoemp.com/blog/eleventy-projects-structure/">Structuring Eleventy Projects</a>. If I have some non-content file I need transformed — Sass, images, whatever — I put it under <code>src/assets</code>.</p>
+</blockquote>
+<p>Eleventy provides instructions on how to set up <a href="https://www.11ty.dev/docs/languages/custom/">custom templates</a> for dealing with Sass, and even <a href="https://www.11ty.dev/docs/languages/custom/#skipping-a-template-from-inside-of-the-compile-function">skipping a template</a> so it doesn&rsquo;t build <code>_base.scss</code> and so on.</p>
+<p>And that&rsquo;s great. It works. <code>src/assets/style/main.scss</code> becomes <code>dist/assets/style/main.css</code>. Course, it&rsquo;s not quite perfect. I still need <code>main.css</code> rebuild if I write to <code>_base.scss</code>.</p>
+<p>But I also don&rsquo;t want it randomly rebuilding the stylesheet 20 times because it found 20 support files.</p>
+<p>I need to think my way through this one.</p>
+<h2 id="add-a-sasshandler">Add a SassHandler</h2>
+<p>Keeping with Jérôme Coupé&rsquo;s structural suggestions, I keep my more complex JavaScript logic under <code>src/_11ty/</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/_11ty/
+</span></span><span class="line"><span class="cl"><span class="go">src/_11ty/
+</span></span></span><span class="line"><span class="cl"><span class="go">├── collections
+</span></span></span><span class="line"><span class="cl"><span class="go">├── filters
+</span></span></span><span class="line"><span class="cl"><span class="go">├── handlers
+</span></span></span><span class="line"><span class="cl"><span class="go">│   ├── MarkdownHandler.js
+</span></span></span><span class="line"><span class="cl"><span class="go">│   └── SassHandler.js
+</span></span></span><span class="line"><span class="cl"><span class="go">└── shortcodes
+</span></span></span></code></pre></div><p><code>handlers</code> is my own variation — that&rsquo;s where I put code for particular file and content types.</p>
+<p>So what needs to go into <code>SassHandler.js</code>? Let&rsquo;s see.</p>
+<ul>
+<li>ensure only <code>main.scss</code> gets handed off to Sass</li>
+<li>ensure the main stylesheet is rebuilt when any of the imports change</li>
+<li>avoid unnecessary recompilation — without getting too clever</li>
+</ul>
+<p>Time to open up the old text editor.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- file:src/_11ty/handlers/SassHandler.js
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Handler for my Sass stylesheets
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Import libraries.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Define input and output paths for sass.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Set build time guard variables.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">outputFileExtension</span><span class="o">:</span> <span class="s2">&#34;css&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">compileOptions</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">permalink</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">compile</span><span class="o">:</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputContent</span><span class="p">,</span> <span class="nx">inputPath</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ==&gt; Ensure we need to build the CSS.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ==&gt; Remember and log this build.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// ==&gt; Compile the Sass and write the CSS.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>With what I&rsquo;ve figured out so far, even though Eleventy can watch and act on the files for me, keeping the paths under tight control will be my job. A
+change in <code>_base.scss</code> means a change in <code>main.scss</code> which means a write to <code>main.css</code>. I have not yet learned how to do that in any Eleventy-specific way. So I&rsquo;ll disable the <code>permalink</code> compile option and handle it myself with the appropriate libraries.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Import libraries
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs-plus&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;sass&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><ul>
+<li><a href="http://atom.github.io/fs-plus/"><code>fs-plus</code></a> is a little easier to work with than Node&rsquo;s standard <code>fs</code>   library for file handling</li>
+<li><a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html"><code>path</code></a> is no <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> — heck it&rsquo;s barely even <a href="https://docs.python.org/3/library/os.path.html"><code>os.path</code></a> — but it&rsquo;s better than trusting my own string-splitting and reassembly</li>
+<li><a href="https://sass-lang.com"><code>sass</code></a> of course; these <em>are</em> Sass files</li>
+</ul>
+<p>I know exactly which files I want to read and write. Let&rsquo;s define those as constant.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Define input and output paths for sass
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">curDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sassInputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">cirDir</span><span class="p">,</span> <span class="s2">&#34;src/assets/style/main.scss&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssOutputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">curDir</span><span class="p">,</span> <span class="s2">&#34;dist/assets/style/main.css&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><p>Yes this does look a lot like what Eleventy would do on its own. Since I turned off permalinks for <code>scss</code> files, I need to be careful. I start this with being extremely specific and figuring out what I can relax later — assuming I decide that relaxing is what I want to do.</p>
+<blockquote>
+<p>[!NOTE]
+Common sense sugests these should be defined in a config file somewhere. I&rsquo;m still getting the hang of Eleventy, though. Common sense won&rsquo;t be an option for some time.</p>
+</blockquote>
+<p>I figure the easiest way to avoid extra recompilation is by watching the clock. If it hasn&rsquo;t been long enough since the last build, skip it. Five seconds is a completely arbitrary value for &ldquo;long enough&rdquo; but it seems to be working.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Set build time guard variables
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// valueOf last sass build
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">minimumWait</span> <span class="o">=</span> <span class="mi">5_000</span><span class="p">;</span> <span class="c1">// wait this many milliseconds before rebuilding
+</span></span></span></code></pre></div><p>And what does a build time check look like? We use <a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/date/valueof"><code>Date.valueOf</code></a> to get the number of milliseconds since 1970-01-01, which is a handy numeric value for simple comparison. If the difference between that and <code>lastSassBuild</code> is less than <code>minimumWait</code> milliseconds, we don&rsquo;t need to build.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Ensure we need to build the CSS
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">valueOf</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">lastSassBuild</span> <span class="o">&lt;=</span> <span class="nx">minimumWait</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>What if we <em>do</em> need to build? Update <code>lastSassBuild</code> and log what&rsquo;s going on, since I enjoy a little feedback.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Remember and log this build
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">inputPath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">now</span><span class="si">}</span><span class="sb">] SassHandler: </span><span class="si">${</span><span class="nx">inputPath</span><span class="si">}</span><span class="sb"> changed`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Building </span><span class="si">${</span><span class="nx">sassFilePath</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span></code></pre></div><p>I still haven&rsquo;t learned enough JavaScript to know why, but when I use <code>sass.compile</code> instead of the supposedly deprecated <code>renderSync</code> I get an exception. Eventually I&rsquo;ll be forced to revisit that, but today is not that day.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Compile the Sass and write the CSS
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">sass</span><span class="p">.</span><span class="nx">renderSync</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">file</span><span class="o">:</span> <span class="nx">sassFilePath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssText</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s2">&#34;utf8&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">makeTreeSync</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">,</span> <span class="nx">cssText</span><span class="p">);</span>
+</span></span></code></pre></div><p>Again, I&rsquo;ve disabled <code>permalink</code> so it&rsquo;s on me to ensure the output directory exists and to write the generated CSS.</p>
+<p>So there it is! Probably not optimal but hey we&rsquo;re all learning something every day.</p>
+<h2 id="load-that-sasshandler">Load that SassHandler</h2>
+<p>Then the relevant bits of my <code>.eleventy.js</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">SassHandler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./src/_11ty/handlers/SassHandler.js&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">eleventyConfig</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addTemplateFormats</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addExtension</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">,</span> <span class="nx">SassHandler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>This site still builds and the styles update as expected, so: yay!</p>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>I dunno. Knowing me? Probably <a href="https://asciidoctor.org">Asciidoctor</a>.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/107595588438140013"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2022/01/eleventy-beta-handles-custom-templates/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Eleventy 1.0 beta handles custom templates
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2022/01/slowly-pulling-in-tools-for-site-flow/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Slowly pulling in tools for site flow
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#add-a-sasshandler">Add a SassHandler</a></li>
+    <li><a href="#load-that-sasshandler">Load that SassHandler</a></li>
+    <li><a href="#whats-next">What&rsquo;s next?</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/">
+<meta property="og:title" content="Parrot Babysteps 06 - Files and Hashes">
+<meta name="twitter:title" content="Parrot Babysteps 06 - Files and Hashes">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="This one&rsquo;s a bit more bloggy than the earlier steps, but that&rsquo;s just the mood I was in when writing it. You can ignore the commentary and focus on the code if that&rsquo;s your preference.
+Introduction We have inched our way forward in our understanding of Parrot and PIR. I think that it&rsquo;s time to take a big step, though. We&rsquo;re going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done.">
+    <meta property="og:description" content="This one&rsquo;s a bit more bloggy than the earlier steps, but that&rsquo;s just the mood I was in when writing it. You can ignore the commentary and focus on the code if that&rsquo;s your preference.
+Introduction We have inched our way forward in our understanding of Parrot and PIR. I think that it&rsquo;s time to take a big step, though. We&rsquo;re going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done.">
+  
+
+
+
+<title itemprop="name">Parrot Babysteps 06 - Files and Hashes - Random Geekery</title>
+<meta property="og:title" content=Parrot&#32;Babysteps&#32;06&#32;-&#32;Files&#32;and&#32;Hashes&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Parrot&#32;Babysteps&#32;06&#32;-&#32;Files&#32;and&#32;Hashes&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Parrot&#32;Babysteps&#32;06&#32;-&#32;Files&#32;and&#32;Hashes&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Parrot&#32;Babysteps&#32;06&#32;-&#32;Files&#32;and&#32;Hashes&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/" />
+
+
+<meta property="og:updated_time" content=2010-02-12T100:00:09-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2010/07/parrot-babysteps-0x-the-stellar-app/">Parrot Babysteps 0c - The Stellar App</a></li>
+        
+          <li><a href="/post/2010/06/parrot-babysteps-0a-the-stellar-project/">Parrot Babysteps 0a - The Stellar Project</a></li>
+        
+          <li><a href="/post/2009/12/parrot-babysteps-08-testing-with-testmore/">Parrot Babysteps 08 - Testing With Test::More</a></li>
+        
+          <li><a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">Parrot Babysteps 07 - Writing Subroutines</a></li>
+        
+          <li><a href="/post/2009/09/parrot-babysteps-05-more-about-arrays/">Parrot Babysteps 05 - More About Arrays</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/">Parrot Babysteps 06 - Files and Hashes</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2009/10/parrot-babysteps-06-files-and-hashes/">Parrot Babysteps 06 - Files and Hashes</a>
+    </h1>
+    
+        <time datetime="2009-10-02T00:00:00-0700" class="post-date">
+            October 2, 2009
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-parrot">
+            <a href="https://randomgeekery.org/tags/parrot">parrot</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-space">
+            <a href="https://randomgeekery.org/tags/space">space</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Parrot Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p><img src="/post/2009/10/../../../attachments/img/2009/cover-2009-10-02.jpg" alt="attachments/img/2009/cover-2009-10-02.jpg"/></p>
+<p>This one&rsquo;s a bit more bloggy than the earlier steps, but that&rsquo;s just the mood I was in when writing it. You can ignore the commentary and focus on the code if that&rsquo;s your preference.</p>
+<h2 id="introduction">Introduction</h2>
+<p>We have inched our way forward in our understanding of <a href="/card/parrot/">Parrot</a> and PIR. I think that it&rsquo;s time to take a big step, though. We&rsquo;re going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done. But I&rsquo;m hungry for something meatier. I want to work with a lot of data and get curious trivia from that data. Hashes are good, too. Let&rsquo;s look at Parrot hashes at some point today as well.</p>
+<h2 id="first-get-the-data">First, Get the Data</h2>
+<p>It took me some time to decide exactly what sort of data I wanted to look at. I was thinking of <a href="http://www.ars.usda.gov/Services/docs.htm?docid=8964">nutritional data</a>, but I&rsquo;m not ready  for all of the cross-referencing I&rsquo;d have to do in order to produce information that would be meaningful to me.</p>
+<p>Then it hit me. I love astronomy. Wait a moment. That&rsquo;s not completely true. I like astronomy. It teaches us a lot about our place in the universe, and exactly how freaking small we really are. What I love is random trivia about space: the name of the closest star to our solar system, how many of our neighboring stars are sort of like ours, stuff like that. I want to write a program that will help me get those juicy tidbits.</p>
+<p>The next challenge was finding a data source that would be useful for me. There are plenty of <a href="http://en.wikipedia.org/wiki/List_of_Star_catalogues">star catalogs</a> available. The problem is that I like astronomy - I don&rsquo;t love it. Much of modern astronomy is incomprehensible to me unless it has a pretty picture of a penny next to a football field illustrating interplanetary distances or some other thing I can pretend to understand. Oh, and remember that I barely know Parrot. I need something simple and easy to parse, but big enough to have interesting data.</p>
+<p>After nearly 15 minutes of dedicated research - once you subtract the hours spent admiring the <a href="http://apod.nasa.gov/apod/archivepix.html">Astronomy Picture of the Day archives</a> - I came across David Nash&rsquo;s <a href="http://astronexus.com">Astronomy Nexus</a>. This is a great resource for amateur astronomers, space trivia buffs, and people who enjoy geeky pictures like the view of Earth from <a href="http://astronexus.com/node/157">Gliese 581</a>. It also has a nice, easily parsed file listing almost 120,000 stars. At roughly 20 Megabytes uncompressed, that&rsquo;s big enough to be interesting.</p>
+<p>Enough jabbering. Let&rsquo;s start downloading. The latest version of the catalog is available from the <a href="http://www.astronexus.com/node/34">HYG Database</a> page. I grabbed <a href="http://astronexus.com/files/downloads/hygxyz.csv.gz">version 2.0</a>, which is currently the most recent.</p>
+<p>The file is compressed in <code>gz</code> format. Uncompressing it on Linux or OS X is easy:</p>
+<pre tabindex="0"><code>$ gunzip hygxyz.csv.gz
+</code></pre><p>You&rsquo;re going to have to install an archive utility on Windows, though. I suggest  <a href="http://www.7-zip.org/">7-Zip</a>.</p>
+<p>Put the resulting <a href="/card/csv/">CSV</a> (Comma-Separated Values) file in your project directory after uncompressing. Now  we have a file full of comma-separated values which look something like this:</p>
+<pre tabindex="0"><code>StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PM\
+Dec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ
+0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0
+1,1,224700,,,,,6.079e-05,01.08901332,282.485875706215,-5.20,-1.88,,9.10,1\
+.84501631012894,F5,0.482,282.43485,0.00449,5.36884,4.9e-08,-7.12e-06,-2.5\
+74e-06
+</code></pre><p>My goodness, there are a lot of commas and numbers in there. The structure is sensible, though. We have a header line that tells us what each field represents, followed by <em>many</em> lines of data.</p>
+<p>Let&rsquo;s start small, by counting the number of stars listed in the HYG database.</p>
+<h2 id="counting-stars">Counting Stars</h2>
+<p>To count stars, we can read each line of the file and count the number of lines read. Remember not to count the header line!</p>
+<pre tabindex="0"><code># example-06-01
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .local string filename
+    .local pmc    data_file
+    .local int    star_count
+    .local string current_line
+
+    filename = &#39;hygxyz.csv&#39;
+    star_count = 0
+    data_file = open filename, &#39;r&#39;
+
+    # Avoid counting the header line as a star
+    current_line = readline data_file
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+
+.end
+</code></pre><p>We use Parrot&rsquo;s <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O library</a> to handle opening and reading files. <code>open</code> will actually open the file for us.</p>
+<pre tabindex="0"><code>data_file = open filename, &#39;r&#39;
+</code></pre><p>The <code>open</code> opcode accepts two arguments: the name of the file and a mode indicator. We are reading the file, so we specify mode <code>r</code>.</p>
+<p>What will we use to read a line from the file? How about the <code>readline</code>?</p>
+<pre tabindex="0"><code>current_line = readline data_file
+</code></pre><p>A file that reached EOF (End Of File) and has nothing left to read looks false to Parrot. That means we can use the filehandle to test if we should keep reading.</p>
+<pre tabindex="0"><code>unless data_file goto SHOW_STAR_COUNT
+</code></pre><p>Finally, it is polite to close a file when we&rsquo;re done using it.</p>
+<pre tabindex="0"><code>close data_file
+</code></pre><p>Is it <em>necessary</em> to close the file, though? That&rsquo;s a reasonable question. Many modern languages close files automatically when their handle goes out of scope — for example, when the program ends. The Parrot Book <a href="http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch08_io.pod.html">I/O chapter</a> does not make it clear what Parrot&rsquo;s approach is, though. I&rsquo;m going to keep closing those finished files until somebody tells me otherwise.</p>
+<p>I&rsquo;ll probably continue closing finished files even after somebody tells me otherwise, truthfully.  I am one of those people who likes explicit code and ties his shoelaces with a tidy little double-knot. I can&rsquo;t help it - it&rsquo;s in my nature.</p>
+<p>That&rsquo;s all the important information about reading files. Oh sure, there are details we&rsquo;ll need to look at eventually, such as what happens when the file doesn&rsquo;t exist or you don&rsquo;t have permission. But for reading a file that we know exists and that we can read, <code>open</code>, <code>readline</code>, and <code>close</code> are the main bits.</p>
+<p>How many stars are in HYG?</p>
+<pre tabindex="0"><code>$ example-06-01.pir
+There are 119618 stars in the HYG catalog.
+</code></pre><p>That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.</p>
+<h3 id="intermission-file-mode-indicators">Intermission: File Mode Indicators</h3>
+<p>Now is as good a time as any to summarize the indicator codes that <code>open</code> accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>read</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>write</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>append</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>pipe</td>
+</tr>
+</tbody>
+</table>
+<p>Indicators can be combined. For example, <code>rw</code> indicates that you plan to read and write to a file. In fact, <code>a</code> should not be used alone - specify that you will be write-appending to the file with <code>wa</code>.</p>
+<p>Order doesn&rsquo;t matter, either. <code>rw</code> and <code>wr</code> are both valid ways to say you plan to read and write a file.</p>
+<p>We will just be reading files today, but you might as well remember it now. It will come up eventually.</p>
+<h2 id="counting-names">Counting Names</h2>
+<p>All right. I&rsquo;m manually counting commas in HYG. It looks like &ldquo;ProperName&rdquo; is the seventh field. It also looks like there are quite a few stars in the catalog that have no proper name. How many?</p>
+<pre tabindex="0"><code># example-06-02
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    star_data
+    .local string star_name
+    .local int    star_count
+    .local int    named_count
+    .local int    unnamed_count
+
+    filename = &#39;hygxyz.csv&#39;
+    star_count = 0
+    named_count = 0
+    unnamed_count = 0
+    data_file = open filename, &#39;r&#39;
+
+    # Avoid counting the header line as a star
+    current_line = readline data_file
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    star_data = split &#39;,&#39;, current_line
+    star_name = star_data[6]
+    if star_name goto COUNT_NAMED_STAR
+    unnamed_count += 1
+    goto NEXT_STAR
+
+  COUNT_NAMED_STAR:
+    named_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+    print named_count
+    say &#39; of them have proper names.&#39;
+    print unnamed_count
+    say &#39; of them do not have proper names.&#39;
+
+.end
+</code></pre><p>There is one new opcode in this code: the <code>split</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html">String opcode</a>. It accepts a string delimiter and a target string, and returns the list of strings that result from splitting the target string with the delimiter.</p>
+<pre tabindex="0"><code>star_data = split &#39;,&#39;, current_line
+</code></pre><p><code>star_data</code> is a normal array, so we can access the ProperName field by the index we came to in hand-counting the fields.</p>
+<pre tabindex="0"><code>star_name = star_data[6]
+</code></pre><p>It is very clumsy to rely on hand-counting fields, so we will come back to that in a moment. First, let&rsquo;s look at what this application tells us.</p>
+<pre tabindex="0"><code>$ parrot example-06-02.pir
+There are 119618 stars in the HYG catalog.
+87 of them have proper names.
+119531 of them do not have proper names.
+</code></pre><p>Only 87 of them have names? Huh. I thought there would be more than that. It&rsquo;s possible that the number is wrong because I was relying on hand-counting the fields. Let&rsquo;s tell Parrot to figure out the fields for us.</p>
+<pre tabindex="0"><code># example-06-03
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .const string DELIMITER  = &#39;,&#39;
+    .const string NAME_FIELD = &#39;ProperName&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local string current_field
+    .local int    name_index
+    .local pmc    star_data
+    .local string star_name
+    .local int    star_count
+    .local int    named_count
+    .local int    unnamed_count
+
+    filename      = &#39;hygxyz.csv&#39;
+    name_index    = 0
+    star_count    = 0
+    named_count   = 0
+    unnamed_count = 0
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+  FIND_NAME_INDEX:
+    if name_index &gt;= field_count goto NAME_INDEX_ERROR
+    current_field = field_names[name_index]
+    if current_field == NAME_FIELD goto NEXT_STAR
+    name_index += 1
+    goto FIND_NAME_INDEX
+
+  NAME_INDEX_ERROR:
+    say &#39;Went through available fields without finding name index!&#39;
+    goto END
+
+  NEXT_STAR:
+    unless data_file goto SHOW_STAR_COUNT
+    current_line = readline data_file
+    star_count += 1
+    star_data = split DELIMITER, current_line
+    star_name = star_data[name_index]
+    if star_name goto COUNT_NAMED_STAR
+    unnamed_count += 1
+    goto NEXT_STAR
+
+  COUNT_NAMED_STAR:
+    named_count += 1
+    goto NEXT_STAR
+
+  SHOW_STAR_COUNT:
+    close data_file
+    print &#39;There are &#39;
+    print star_count
+    say &#39; stars in the HYG catalog.&#39;
+    print named_count
+    say &#39; of them have proper names.&#39;
+    print unnamed_count
+    say &#39; of them do not have proper names.&#39;
+    goto END
+
+  END:
+.end
+</code></pre><p>Quite a few changes have been made. One of the first was to define constants for some important values which I know will never change.</p>
+<pre tabindex="0"><code>.const string DELIMITER  = &#39;,&#39;
+.const string NAME_FIELD = &#39;ProperName&#39;
+</code></pre><p>Yes, <code>DELIMITER</code> uses more characters than <code>','</code>. I prefer referring to things by name when practical. This gives two benefits in my mind.</p>
+<ol>
+<li>I know the purpose of the value. The semantics of it appeals to me: &ldquo;split with    DELIMITER, which is <code>','</code>&rdquo; rather than &ldquo;split with <code>','</code> which is the delimiter&rdquo;.</li>
+<li>I only have to change one spot. If someday David Nash wants to switch to tab    delimited files, I will not have to find and replace <code>','</code> throughout my code.</li>
+</ol>
+<p>As far as <code>NAME_FIELD</code>, that&rsquo;s just because I prefer referring to things by name. It doesn&rsquo;t really serve any other purpose. Choose your own style, but make sure others can read it.</p>
+<p>The next task is to find which field holds the star name. We&rsquo;ll split the header line and step through each field until we either find the field we&rsquo;re looking for or hit the end.</p>
+<pre tabindex="0"><code>  current_line  = readline data_file
+  field_names   = split DELIMITER, current_line
+  field_count   = field_names
+
+FIND_NAME_INDEX:
+  if name_index &gt;= field_count goto NAME_INDEX_ERROR
+  current_field = field_names[name_index]
+  if current_field == NAME_FIELD goto NEXT_STAR
+  name_index += 1
+  goto FIND_NAME_INDEX
+
+NAME_INDEX_ERROR:
+  say &#39;Went through available fields without finding name index!&#39;
+  goto END
+</code></pre><p>Why did I finally throw some error-checking into this? I won&rsquo;t say, but believe me when I tell you to always look for typos in your code. And if your loop doesn&rsquo;t check if it&rsquo;s time to quit, that loop might never quit.</p>
+<p>Now that Parrot knows which field holds the names, we can use it in our name counting.</p>
+<pre tabindex="0"><code>star_name = star_data[name_index]
+</code></pre><p>Let&rsquo;s run the new code.</p>
+<pre tabindex="0"><code>$ parrot example-06-03.pir
+There are 119618 stars in the HYG catalog.
+87 of them have proper names.
+119531 of them do not have proper names.
+</code></pre><p>I get the same result. The hand-counting of fields I did earlier worked. That&rsquo;s a relief, but I&rsquo;m much happier now that Parrot is counting for me.</p>
+<h2 id="understanding-the-data-by-looking-at-sol">Understanding the Data by Looking at Sol</h2>
+<p>I want to get a lot more information from this data, but in order to do that I&rsquo;ll need a nice way to understand the information about each star in the set. We&rsquo;re going to go about that by focusing on Sol, our own sun.</p>
+<pre tabindex="0"><code># example-06-04
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+    .const string DELIMITER  = &#39;,&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+
+  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+
+  END:
+
+.end
+</code></pre><p>Sol is the first star listed after the header line, so we don&rsquo;t have to do anything clever to find it.</p>
+<p>In order to display the field names and values together, we step through the header and star data arrays at the same time.</p>
+<pre tabindex="0"><code>  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+</code></pre><p>What does the HYG data for Sol look like?</p>
+<pre tabindex="0"><code>$ parrot example-06-04.pir
+StarID: 0
+HIP:
+HD:
+HR:
+Gliese:
+BayerFlamsteed:
+ProperName: Sol
+RA: 0
+Dec: 0
+Distance: 0.000004848
+PMRA: 0
+PMDec: 0
+RV: 0
+Mag: -26.73
+AbsMag: 4.85
+Spectrum: G2V
+ColorIndex: 0.656
+X: 0
+Y: 0
+Z: 0
+VX: 0
+VY: 0
+VZ
+: 0
+
+$
+</code></pre><p>That&rsquo;s a fair amount of trivia, which makes me happy. Granted, I only understand what five of those fields actually mean - although I can guess at a few more. The data isn&rsquo;t what&rsquo;s jumping out at me, though. This is:</p>
+<pre tabindex="0"><code>VZ
+: 0
+
+$
+</code></pre><p><code>readline</code> reads the <em>full</em> line from the file, including the special newline characters that mark the end of the line. That newline becomes part of the string, which means it also gets printed out when we display the header and final field for our data. I knew I&rsquo;d have to deal with this eventually.</p>
+<p>Perl has the builtin <a href="http://perldoc.perl.org/functions/chomp.html"><code>chomp</code></a> function which is perfect for exactly this situation. Parrot doesn&rsquo;t have <code>chomp</code> as a builtin, but it is available via the standard <a href="https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/String/Utils.pir">String/Utils</a> library. There&rsquo;s no need to download anything extra, because &ldquo;String/Utils&rdquo; ships with Parrot.</p>
+<pre tabindex="0"><code># example-06-05
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+    .local pmc    chomp
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+
+  DISPLAY_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto END
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    print current_field_name
+    print &#39;: &#39;
+    say current_field_value
+    current_field_index += 1
+    goto DISPLAY_NEXT_FIELD
+
+  END:
+
+.end
+</code></pre><p>Since &ldquo;String/Utils&rdquo; is a library, we need to load it.</p>
+<pre tabindex="0"><code>load_bytecode &#39;String/Utils.pbc&#39;
+</code></pre><p>Parrot compiles its library PIR files into Parrot Compiled Byte Code. PBC has been processed enough that the Parrot interpreter can load and execute its code a little faster. The <code>load_bytecode</code> <a href="http://docs.parrot.org/parrot/latest/html/src/ops/core.ops.html">core opcode</a> tells Parrot that we are going to load a bytecode file and we need its capabilities to be added to the system.</p>
+<p>The actual <code>chomp</code> functionality is still just beyond our reach, though. We need to make room for it in our own program by reserving a PMC.</p>
+<pre tabindex="0"><code>.local pmc    chomp
+</code></pre><p>Now we can reach over into the &ldquo;String/Utils&rdquo; namespace and grab <code>chomp</code> for our own use.</p>
+<pre tabindex="0"><code>chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+</code></pre><p><code>get_global</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/ops/var.ops.html">variable opcode</a> that allows us to get a PMC from the global namespace. Used like this, it allows us to grab a PMC from a specific available namespace. What makes namespaces great is the fact that they can have any number of variable names without cluttering the globally available list of names. On the other hand, you need to take an extra step to make that name available for your own use. That is fairly consistent with other languages that I&rsquo;ve used, although maybe a little lower level than I care for. Oh well. This is a low-level language, after all.</p>
+<p>Now that we&rsquo;ve got that loading business out of the way, we can actually use <code>chomp</code>.  <code>chomp</code> is a subroutine, and not an opcode. You&rsquo;ll need to use parentheses when you use it.</p>
+<pre tabindex="0"><code>current_line  = chomp(current_line)
+</code></pre><p><code>chomp</code> returns a copy of <code>current_line</code> with that annoying newline removed. We want to reuse that copy immediately, so we just assign the result right back  to <code>current_line</code>.</p>
+<p>Remember to use it again when reading the data line for Sol.</p>
+<pre tabindex="0"><code>current_line  = chomp(current_line)
+</code></pre><p>How does the data look now?</p>
+<pre tabindex="0"><code>$ parrot example-06-05.pir
+StarID: 0
+HIP:
+HD:
+HR:
+Gliese:
+BayerFlamsteed:
+ProperName: Sol
+RA: 0
+Dec: 0
+Distance: 0.000004848
+PMRA: 0
+PMDec: 0
+RV: 0
+Mag: -26.73
+AbsMag: 4.85
+Spectrum: G2V
+ColorIndex: 0.656
+X: 0
+Y: 0
+Z: 0
+VX: 0
+VY: 0
+VZ: 0
+</code></pre><p>That&rsquo;s better.</p>
+<p>Now it would be nice to ask for specific data for our star in a meaningful way. For example, I want to just see the name and spectrum information. We could dig through the fields the way we have been, but I think it would be better if we could just ask for them by name.</p>
+<p>One way to do that is with a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/hash.pmc.html">Hash</a>. This is a collection structure similar to an array. The difference is that you get data from the hash using string keys instead of looking things up by index. Python programmers know it as a &ldquo;dictionary&rdquo;.</p>
+<pre tabindex="0"><code># example-06-06
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local pmc    chomp
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+    .local pmc    star
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    close data_file
+    current_field_index = 0
+    star = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_FIELD:
+    if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    star[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_FIELD
+
+  DISPLAY_STAR_DETAILS:
+    $S0 = star[&#39;ProperName&#39;]
+    $S1 = star[&#39;Spectrum&#39;]
+    $S2 = star[&#39;Distance&#39;]
+    print &#34;&lt;Name: &#34;
+    print $S0
+    print &#34;, Spectrum: &#34;
+    print $S1
+    print &#34;, Distance: &#34;
+    print $S2
+    say &#34;&gt;&#34;
+
+  END:
+
+.end
+</code></pre><p>We didn&rsquo;t have to go through so many contortions to add a hash, thank goodness. Hashes are built-in, so we just have to allocate a PMC and call <code>new</code>.</p>
+<pre tabindex="0"><code>.local pmc star
+# ...
+star = new &#39;Hash&#39;
+</code></pre><p>Instead of reading and printing the fields, we assign them to the hash.</p>
+<pre tabindex="0"><code>ASSIGN_NEXT_FIELD:
+  if current_field_index &gt;= field_count goto DISPLAY_STAR_DETAILS
+  current_field_name = field_names[current_field_index]
+  current_field_value = star_data[current_field_index]
+  star[current_field_name] = current_field_value
+  current_field_index += 1
+  goto ASSIGN_NEXT_FIELD
+</code></pre><p>On the display side of things, I did get a little lazy and use register variables. There&rsquo;s nothing wrong with that, but it&rsquo;s not consistent with my normal style. We can fix that in the next round.</p>
+<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  $S0 = star[&#39;ProperName&#39;]
+  $S1 = star[&#39;Spectrum&#39;]
+  $S2 = star[&#39;Distance&#39;]
+  print &#34;&lt;Name: &#34;
+  print $S0
+  print &#34;, Spectrum: &#34;
+  print $S1
+  print &#34;, Distance: &#34;
+  print $S2
+  say &#34;&gt;&#34;
+</code></pre><p>Hash indexes look a lot like array indexes. The keys can get complicated, but let&rsquo;s stick with simple strings.</p>
+<p>What does our output look like now?</p>
+<pre tabindex="0"><code> $ parrot example-06-06.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
+</code></pre><p>I&rsquo;m tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?</p>
+<h2 id="stars-like-ours">Stars Like Ours</h2>
+<p>Now that we have a Hash to describe characteristics of our own Sun, we can build Hashes for other stars and look for the ones that are similar to ours. We&rsquo;ll use the spectrum as our guideline, and look for an exact match rather than just a vague similarity. We&rsquo;re also going to filter out the ones that don&rsquo;t have a name, because we know that many of the stars in this set don&rsquo;t have proper names.</p>
+<pre tabindex="0"><code># example-06-07.pir
+
+.loadlib &#39;io_ops&#39;
+
+.sub &#39;main&#39; :main
+
+    load_bytecode &#39;String/Utils.pbc&#39;
+
+    .const string DELIMITER  = &#39;,&#39;
+    .local pmc    chomp
+    .local string filename
+    .local pmc    data_file
+    .local string current_line
+    .local pmc    field_names
+    .local int    field_count
+    .local int    current_field_index
+    .local string current_field_name
+    .local string current_field_value
+    .local pmc    star_data
+    .local pmc    star
+    .local string star_name
+    .local string star_spectrum
+    .local string star_distance
+    .local pmc    sol
+    .local string sol_spectrum
+    .local int    matching_count
+    .local int    unnamed_match_count
+
+    chomp         = get_global [&#39;String&#39;;&#39;Utils&#39;], &#39;chomp&#39;
+    filename      = &#39;hygxyz.csv&#39;
+    data_file     = open filename, &#39;r&#39;
+    current_line  = readline data_file
+    current_line  = chomp(current_line)
+    field_names   = split DELIMITER, current_line
+    field_count   = field_names
+
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    current_field_index = 0
+    sol = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_SOL_FIELD:
+    if current_field_index &gt;= field_count goto FIND_MATCHING_STARS
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    sol[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_SOL_FIELD
+
+  FIND_MATCHING_STARS:
+    sol_spectrum = sol[&#39;Spectrum&#39;]
+    matching_count = 0
+    unnamed_match_count = 0
+    # We want to show Sol&#39;s details as well as other matches.
+    star = sol
+    goto DISPLAY_STAR_DETAILS
+
+  LOAD_NEXT_STAR:
+    unless data_file goto END
+    current_line = readline data_file
+    current_line = chomp(current_line)
+    star_data = split DELIMITER, current_line
+    current_field_index = 0
+    star = new &#39;Hash&#39;
+
+  ASSIGN_NEXT_STAR_FIELD:
+    if current_field_index &gt;= field_count goto EXAMINE_STAR
+    current_field_name = field_names[current_field_index]
+    current_field_value = star_data[current_field_index]
+    star[current_field_name] = current_field_value
+    current_field_index += 1
+    goto ASSIGN_NEXT_STAR_FIELD
+
+  EXAMINE_STAR:
+    star_spectrum = star[&#39;Spectrum&#39;]
+    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+    goto LOAD_NEXT_STAR
+
+  REMEMBER_MATCH:
+    matching_count += 1
+    star_name = star[&#39;ProperName&#39;]
+    if star_name goto DISPLAY_STAR_DETAILS
+    unnamed_match_count += 1
+    goto LOAD_NEXT_STAR
+
+  DISPLAY_STAR_DETAILS:
+    star_name = star[&#39;ProperName&#39;]
+    star_spectrum = star[&#39;Spectrum&#39;]
+    star_distance = star[&#39;Distance&#39;]
+    print &#34;&lt;Name: &#34;
+    print star_name
+    print &#34;, Spectrum: &#34;
+    print star_spectrum
+    print &#34;, Distance: &#34;
+    print star_distance
+    say &#34;&gt;&#34;
+    goto LOAD_NEXT_STAR
+
+  END:
+    close data_file
+    print matching_count
+    print &#34; stars exactly matched Sol&#39;s spectrum &#34;
+    say sol_spectrum
+    print unnamed_match_count
+    say &#39; have no proper name&#39;
+
+.end
+</code></pre><p>We look at each star as we go, checking to see if it exactly matches Sol&rsquo;s. I know that we&rsquo;re missing a couple of entries designated as &ldquo;G1/G2V&rdquo;, but I am not going to worry about it today.</p>
+<pre tabindex="0"><code>  EXAMINE_STAR:
+    star_spectrum = star[&#39;Spectrum&#39;]
+    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+    goto LOAD_NEXT_STAR
+</code></pre><p>We&rsquo;re remembering stars with the same spectrum, but will only be displaying those with proper names. We&rsquo;ll just count the others.</p>
+<pre tabindex="0"><code>  REMEMBER_MATCH:
+    matching_count += 1
+    star_name = star[&#39;ProperName&#39;]
+    if star_name goto DISPLAY_STAR_DETAILS
+    unnamed_match_count += 1
+    goto LOAD_NEXT_STAR
+</code></pre><p>You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it&rsquo;s for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It&rsquo;s a lie, but a useful one.</p>
+<pre tabindex="0"><code>DISPLAY_STAR_DETAILS:
+  star_name = star[&#39;ProperName&#39;]
+  star_spectrum = star[&#39;Spectrum&#39;]
+  star_distance = star[&#39;Distance&#39;]
+  print &#34;&lt;Name: &#34;
+  print star_name
+  print &#34;, Spectrum: &#34;
+  print star_spectrum
+  print &#34;, Distance: &#34;
+  print star_distance
+  say &#34;&gt;&#34;
+  goto LOAD_NEXT_STAR
+</code></pre><p>On the other hand, this program does take a couple of seconds to run on my machine now.</p>
+<pre tabindex="0"><code> $ parrot example-06-07.pir
+ &lt;Name: Sol, Spectrum: G2V, Distance: 0.000004848&gt;
+ &lt;Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049&gt;
+ 568 stars exactly matched Sol&#39;s spectrum G2V
+ 567 have no proper name
+</code></pre><p>Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the <a href="http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm">Gliese</a> or <a href="http://www.skyviewcafe.com/bayer_flamsteed.html">Bayer-Flamsteed</a> designations. I don&rsquo;t think that&rsquo;s practical with how we&rsquo;re writing our Parrot application today.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Wow. There has been a lot of new stuff today. Not only did we learn how to read files and use Hashes, we also saw how to load bytecode libraries. We counted, searched through, and displayed data from a 20 Megabyte text file with nearly 120,000 entries. We also learned that <a href="http://en.wikipedia.org/wiki/Alpha_Centauri">Rigel Kentaurus A</a> is the only named neighbor in the database that is the same spectral type as our Sun.</p>
+<p>I think we&rsquo;re reaching the limits of what I want to do with <code>goto</code> as my primary  tool for guiding program flow. PIR Code is getting harder to write and edit. The next step really should be creating subroutines to abstract some of the more complicated or tedious processes.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">parrot-babysteps-07-writing-subroutines</a>
+      </li>
+      
+      <li>
+        <a href="/post/2010/10/ruby-and-the-hyg-star-catalog/">ruby-and-the-hyg-star-catalog</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/parrot-babysteps">Parrot Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-05-more-about-arrays/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Parrot Babysteps 05 - More About Arrays
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2009/10/parrot-babysteps-07-writing-subroutines/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Parrot Babysteps 07 - Writing Subroutines
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#first-get-the-data">First, Get the Data</a></li>
+    <li><a href="#counting-stars">Counting Stars</a>
+      <ul>
+        <li><a href="#intermission-file-mode-indicators">Intermission: File Mode Indicators</a></li>
+      </ul>
+    </li>
+    <li><a href="#counting-names">Counting Names</a></li>
+    <li><a href="#understanding-the-data-by-looking-at-sol">Understanding the Data by Looking at Sol</a></li>
+    <li><a href="#stars-like-ours">Stars Like Ours</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

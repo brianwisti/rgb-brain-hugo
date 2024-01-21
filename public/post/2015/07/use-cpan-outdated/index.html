@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/use-cpan-outdated/">
+<meta property="og:title" content="Use cpan-outdated">
+<meta name="twitter:title" content="Use cpan-outdated">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Thought I&rsquo;d share TOKUHIROM&rsquo;s cpan-outdated tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to card/Perl modules you have installed. That functionality is available in the CPAN shell with the r command, but it is hard to beat the convenience of the cpan-outdated command line tool.">
+    <meta property="og:description" content="Thought I&rsquo;d share TOKUHIROM&rsquo;s cpan-outdated tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to card/Perl modules you have installed. That functionality is available in the CPAN shell with the r command, but it is hard to beat the convenience of the cpan-outdated command line tool.">
+  
+
+
+
+<title itemprop="name">Use cpan-outdated - Random Geekery</title>
+<meta property="og:title" content=Use&#32;cpan-outdated&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Use&#32;cpan-outdated&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Use&#32;cpan-outdated&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Use&#32;cpan-outdated&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2015/07/use-cpan-outdated/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2015/07/use-cpan-outdated/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2015/07/use-cpan-outdated/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2015/07/use-cpan-outdated/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/use-cpan-outdated/" />
+
+
+<meta property="og:updated_time" content=9007-09-12T70:00:15-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2016/04/yearly-post-archives-in-hugo/">Yearly Post Archives In Hugo</a></li>
+        
+          <li><a href="/post/2014/08/replyrc-and-mojo/">replyrc And Mojo</a></li>
+        
+          <li><a href="/post/2014/08/repl-in-perl-with-reply/">REPL In Perl With Reply</a></li>
+        
+          <li><a href="/post/2014/08/trusty-mongo-mojo-box/">Trusty Mongo Mojo Box</a></li>
+        
+          <li><a href="/post/2015/11/using-bob-ross-css/">Bob Ross CSS</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2015/07/use-cpan-outdated/">Use cpan-outdated</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2015/07/use-cpan-outdated/">Use cpan-outdated</a>
+    </h1>
+    
+        <time datetime="2015-07-09T00:00:00-0700" class="post-date">
+            July 9, 2015
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-perl">
+            <a href="https://randomgeekery.org/tags/perl">perl</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>Thought I&rsquo;d share <a href="https://metacpan.org/author/TOKUHIROM">TOKUHIROM</a>&rsquo;s <a href="https://metacpan.org/pod/distribution/cpan-outdated/script/cpan-outdated">cpan-outdated</a> tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to <a href="/card/perl/">card/Perl</a> modules you have installed. That functionality is available in the CPAN shell with the <code>r</code> command, but it is hard to beat the convenience of the <code>cpan-outdated</code> command line tool.</p>
+<h2 id="installing-cpan-outdated">Installing cpan-outdated</h2>
+<p>cpan-outdated is available on CPAN as &ldquo;App::cpanoutdated&rdquo;. Install it with your preferred tool - in my case, [cpanminus][].</p>
+<pre tabindex="0"><code>$ cpanm App::cpanoutdated
+</code></pre><p>Installation will put  <code>cpan-outdated</code> on your path.</p>
+<h2 id="using-cpan-outdated">Using cpan-outdated</h2>
+<p>Like any good executable, <code>cpan-outdated</code> has a <code>--help</code> option.</p>
+<pre tabindex="0"><code>$ cpan-outdated --help
+Usage:
+        # print the list of distribution that contains outdated modules
+        % cpan-outdated
+
+        # print the list of outdated modules in packages
+        % cpan-outdated -p
+
+        # verbose
+        % cpan-outdated --verbose
+
+        # alternate mirrors
+        % cpan-outdated --mirror file:///home/user/minicpan/
+
+        # additional module path(same as cpanminus)
+        % cpan-outdated -l extlib/
+        % cpan-outdated -L extlib/
+
+        # install with cpan
+        % cpan-outdated | xargs cpan -i
+
+        # install with cpanm
+        % cpan-outdated    | cpanm
+        % cpan-outdated -p | cpanm
+</code></pre><p>Let&rsquo;s see what that looks like on my machine.</p>
+<pre tabindex="0"><code>$ cpan-outdated
+B/BI/BINGOS/Archive-Extract-0.76.tar.gz
+P/PJ/PJF/autodie-2.29.tar.gz
+X/XS/XSAWYERX/Dancer2-0.161000.tar.gz
+B/BO/BOOK/DateTime-Format-Mail-0.402.tar.gz
+E/ET/ETHER/HTTP-Message-6.07.tar.gz
+N/NE/NEILB/Lingua-EN-FindNumber-1.31.tar.gz
+S/SR/SRI/Mojolicious-6.13.tar.gz
+B/BD/BDFOY/Test-File-1.44.tar.gz
+E/ET/ETHER/Test-Pod-1.51.tar.gz
+</code></pre><p>Use <code>-p</code> to just list packages without path information.</p>
+<pre tabindex="0"><code>$ cpan-outdated -p
+Archive::Extract
+autodie
+Dancer2
+DateTime::Format::Mail
+HTTP::Headers
+Lingua::EN::FindNumber
+Mojolicious
+Test::File
+Test::Pod
+</code></pre><p>I find the <code>-p</code> output easier to read at a glance.</p>
+<p>Pipe the output of <code>cpan-outdated</code> to <code>cpanminus</code> to immediately update the outdated modules.</p>
+<pre tabindex="0"><code>$ cpan-outdated -p | cpanm
+--&gt; Working on Archive::Extract
+Fetching http://www.cpan.org/authors/id/B/BI/BINGOS/Archive-Extract-0.76.tar.gz ... OK
+Configuring Archive-Extract-0.76 ... OK
+Building and testing Archive-Extract-0.76 ... OK
+Successfully installed Archive-Extract-0.76 (upgraded from 0.74)
+--&gt; Working on autodie
+Fetching http://www.cpan.org/authors/id/P/PJ/PJF/autodie-2.29.tar.gz ... OK
+Configuring autodie-2.29 ... OK
+Building and testing autodie-2.29 ... OK
+Successfully installed autodie-2.29 (upgraded from 2.28)
+--&gt; Working on Dancer2
+Fetching http://www.cpan.org/authors/id/X/XS/XSAWYERX/Dancer2-0.161000.tar.gz ... OK
+Configuring Dancer2-0.161000 ... OK
+Building and testing Dancer2-0.161000 ... OK
+Successfully installed Dancer2-0.161000 (upgraded from 0.160003)
+--&gt; Working on DateTime::Format::Mail
+Fetching http://www.cpan.org/authors/id/B/BO/BOOK/DateTime-Format-Mail-0.402.tar.gz ... OK
+Configuring DateTime-Format-Mail-0.402 ... OK
+Building and testing DateTime-Format-Mail-0.402 ... OK
+Successfully installed DateTime-Format-Mail-0.402 (upgraded from 0.401)
+--&gt; Working on HTTP::Headers
+Fetching http://www.cpan.org/authors/id/E/ET/ETHER/HTTP-Message-6.07.tar.gz ... OK
+Configuring HTTP-Message-6.07 ... OK
+Building and testing HTTP-Message-6.07 ... OK
+Successfully installed HTTP-Message-6.07 (upgraded from 6.05)
+--&gt; Working on Lingua::EN::FindNumber
+Fetching http://www.cpan.org/authors/id/N/NE/NEILB/Lingua-EN-FindNumber-1.31.tar.gz ... OK
+Configuring Lingua-EN-FindNumber-1.31 ... OK
+Building and testing Lingua-EN-FindNumber-1.31 ... OK
+Successfully installed Lingua-EN-FindNumber-1.31 (upgraded from 1.30)
+--&gt; Working on Mojolicious
+Fetching http://www.cpan.org/authors/id/S/SR/SRI/Mojolicious-6.13.tar.gz ... OK
+Configuring Mojolicious-6.13 ... OK
+Building and testing Mojolicious-6.13 ... OK
+Successfully installed Mojolicious-6.13 (upgraded from 6.12)
+--&gt; Working on Test::File
+Fetching http://www.cpan.org/authors/id/B/BD/BDFOY/Test-File-1.44.tar.gz ... OK
+Configuring Test-File-1.44 ... OK
+Building and testing Test-File-1.44 ... OK
+Successfully installed Test-File-1.44 (upgraded from 1.43)
+--&gt; Working on Test::Pod
+Fetching http://www.cpan.org/authors/id/E/ET/ETHER/Test-Pod-1.51.tar.gz ... OK
+Configuring Test-Pod-1.51 ... OK
+Building and testing Test-Pod-1.51 ... OK
+Successfully installed Test-Pod-1.51 (upgraded from 1.50)
+9 distributions installed
+</code></pre><p>That&rsquo;s pretty much all there is to it! <code>cpan-outdated</code> is a simple tool, but it fills its role perfectly.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2015/05/amicable-socks/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Amicable Socks
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2015/07/using-octopress-3/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Using Octopress 3
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#installing-cpan-outdated">Installing cpan-outdated</a></li>
+    <li><a href="#using-cpan-outdated">Using cpan-outdated</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

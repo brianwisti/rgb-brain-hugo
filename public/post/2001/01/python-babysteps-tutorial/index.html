@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/">
+<meta property="og:title" content="Python Babysteps Tutorial">
+<meta name="twitter:title" content="Python Babysteps Tutorial">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Before the basics">
+    <meta property="og:description" content="Before the basics">
+  
+
+
+
+<title itemprop="name">Python Babysteps Tutorial - Random Geekery</title>
+<meta property="og:title" content=Python&#32;Babysteps&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Python&#32;Babysteps&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Python&#32;Babysteps&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Python&#32;Babysteps&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="Before the basics" />
+<meta itemprop="description" content="Before the basics" />
+<meta property="og:description" content="Before the basics" />
+<meta name="twitter:description" content="Before the basics" />
+
+
+<base href="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/" />
+
+
+<meta property="og:updated_time" content=17001-17-12T10:00:01-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+          <li><a href="/post/2004/07/control-structures/">Control Structures</a></li>
+        
+          <li><a href="/post/2002/06/simple-types-in-python/">Simple Types in Python</a></li>
+        
+          <li><a href="/post/2011/06/python-2x-babysteps/">Python 2.x Babysteps</a></li>
+        
+          <li><a href="/post/2010/10/parrot-babysteps-0e-parrot-namespaces/">Parrot Babysteps 0e - Parrot Namespaces</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/">Python Babysteps Tutorial</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2001/01/python-babysteps-tutorial/">Python Babysteps Tutorial</a>
+    </h1>
+    
+        <time datetime="2001-01-17T00:00:00-0800" class="post-date">
+            January 17, 2001
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>This is my original Python Babysteps tutorial, which has existed in more or less the same form since 2001.</p>
+<p>I got a good start on <a href="/post/2011/06/python-2x-babysteps/">post/2011/06/python-2x-babysteps</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>If you have never programmed before in your life, then do I have the
+perfect programming language for you. It’s called Python, and it is easy
+to learn, flexible, and loaded with capabilities that you never thought
+would be so easy to use. Imagine your thrill when you write a complete
+program in just a few lines!</p>
+<p>If you have spent years programming Perl, and are just about sick of all of the weird little context dependencies — &ldquo;My function does this when you hand it a single object, and that when you hand it a list, unless you are assigning the result to a list, in which case it does this other thing&rdquo; — then do I have the perfect language for you. It’s called Python, it has clear, unambigous syntax, and it is simple to create your own modules and objects. Imagine your thrill when you write a  complete program in just a few lines, and somebody else can read it!</p>
+<p>This is a tutorial to help the non-programmer learn the basics of using Python. When you are done with it, you will be ready to learn this new language, and have no problems figuring out where to find the information you need to go farther.</p>
+<p>Experienced programmers may get some small value out of this, too, but you will get bored quickly. I am aiming for simplicity, rather than
+rigid accuracy. There is always the <a href="https://docs.python.org/tutorial">official Python tutorial</a> to provide an introduction for veterans.</p>
+<p>If anybody has any suggestions or comments about this tutorial, please <a href="mailto:brianwisti@pobox.com">send me some mail</a> and let me know!</p>
+<p>I hope you enjoy this!</p>
+<h2 id="installing-python">Installing Python</h2>
+<p>Before you can <em>use</em> Python, you need to <em>get</em> Python.</p>
+<h3 id="which-version-of-python">Which Version of Python?</h3>
+<blockquote>
+<p>[!NOTE]
+You can also try Python 3, but this tutorial is just going to discuss 2.6. Why is that? I prefer people use the latest version of Python. People who are using this tutorial in the context of a classroom probably aren’t going to have 3.0 as their default yet. There are enough differences between 2.6 and 3.0 that I’ll probably need a distinct Python 3 section on coolnamehere.</p>
+</blockquote>
+<p>There are a few versions of Python available for download:</p>
+<ol>
+<li>ActiveState’s <a href="https://www.activestate.com/Products/ActivePython">ActivePython</a></li>
+<li>The official release of <a href="https://www.python.org/download/releases/2.6.1">Python 2.6.1</a></li>
+</ol>
+<p>Okay, there is also <a href="http://jython.org">Jython</a> and <a href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython">IronPython</a>, but both of these are for special platforms - <a href="http://java.sun.com">Java</a> and <a href="http://www.microsoft.com/net/">.NET</a>, respectively. As such, they have more specific requirements than I am interested in covering here. Don’t let that stop <em>you</em> from feeling bold, though!</p>
+<p>Which one you install is mostly a personal choice. The language itself is the same as long as you’re looking at the same version number, regardless of where you download it from. The main differences are the type of support you can get, and the tools that they come packaged with.</p>
+<p>The ActiveState version has the benefit of being from a real, live company. You can purchase support and take advantage of the fact that it comes from a single source. It — the Windows version, anyways — comes with the excellent PythonWin program for developing your Python programs in a Windows environment. Because of the support and the Windows-friendly tools, ActivePython may be the best choice for business users. It’s the version that I’m using for testing the tutorial in Linux, so maybe that has some bearing on your decision.</p>
+<blockquote>
+<p>[!NOTE]
+PythonWin is still available to you as part of the <a href="http://starship.python.net/crew/mhammond/win32/">win32all</a> package, but you need to download and install it separately from your Python distribution. ActiveState Python for Linux includes IDLE, so I will be getting my Python from them for this article.</p>
+</blockquote>
+<p>Python 2.6, on the other hand, is the &ldquo;official&rdquo; version. It comes with a standard set of tools which are available on every platform that Python can support. Instead of PythonWin, Python 2.6 comes with IDLE: a cross-platform graphical environment for developing your Python programs. IDLE works pretty much the same for you whether you are sitting in front of Windows, Linux, or OS X.</p>
+<h2 id="installing-python-26">Installing Python 2.6</h2>
+<p>Now that you have decided which version of Python you are going to use, you need to get it and put it on your machine.</p>
+<h3 id="linux">Linux</h3>
+<p>Your distribution probably has some version of Python available, but I prefer to get mine from <a href="https://activestate.com">ActiveState</a>. It’s easy enough to install, and is usually more up-to-date than what ships with most Linux distributions. There are also fewer concerns about figuring out whether you installed the <code>idle</code> or <code>pydoc</code> packages. You just install ActivePython and get to work.</p>
+<p>The latest ActivePython downloads are available from</p>
+<blockquote>
+<p><a href="http://downloads.activestate.com/ActivePython/releases/">http://downloads.activestate.com/ActivePython/releases/</a></p>
+</blockquote>
+<p>Open up a terminal after your download finishes and move to the directory that is holding the archive. Use <code>sudo</code> to run the <code>install.sh</code> script with administrative privileges.</p>
+<pre tabindex="0"><code>$ tar xfz ActivePython-2.6.0.0-linux-x86.tar.gz
+$ cd ActivePython-2.6.0
+$ sudo ./install.sh
+press &#39;Enter&#39; to use the default [/opt/ActivePython-2.6].
+Install directory:
+()
+Installing ActivePython to &#39;/opt/ActivePython-2.6&#39;...
+Relocating dir-dependent files...
+Pre-compiling .py files in the standard library...
+
+ActivePython has been successfully installed to:
+
+    /opt/ActivePython-2.6
+
+You can add the following to your .bashrc (or equivalent)
+to put python on your PATH:
+
+    export PATH=/opt/ActivePython-2.6/bin:$PATH
+
+The documentation is available here:
+
+    /opt/ActivePython-2.6/doc/python2.6/index.html
+    web: http://aspn.activestate.com/ASPN/docs/ActivePython
+
+Please send us any feedback you might have or log bugs here:
+
+    activepython-feedback@ActiveState.com
+    http://bugs.activestate.com/ActivePython/
+
+Thank you for using ActivePython.
+</code></pre><p>Now we get the required settings into the bashrc file, reload the shell configuration, and make sure python is where we expect it to be.</p>
+<pre tabindex="0"><code>$ echo &#39;export PATH=/opt/ActivePython-2.6/bin:$PATH&#39; &gt;&gt; ~/.bashrc
+$ . ~/.bashrc
+$ which python
+/opt/ActivePython-2.6/bin/python
+$ which idle
+/opt/ActivePython-2.6/bin/idle
+</code></pre><p>There you go. ActivePython 2.6 has been installed on our Linux machine.</p>
+<h3 id="windows">Windows</h3>
+<p>Now I am going to describe installation in the Windows environment. It’s even easier to install Python for Windows (short version: download and run the installer, click &ldquo;Next&rdquo; until done).</p>
+<p>You can always find links to download the latest version of Python at the Python site itself:</p>
+<blockquote>
+<p><a href="http://www.python.org/download">http://www.python.org/download</a></p>
+</blockquote>
+<p>Somewhere around the top of the page is a link to the latest version. Look for the first version that doesn’t have &ldquo;alpha&rdquo;, &ldquo;beta&rdquo;, or &ldquo;release candidate&rdquo; in its name. Follow that link, which is currently:</p>
+<blockquote>
+<p><a href="http://python.org/ftp/python/2.6.1/python-2.6.1.msi">http://python.org/ftp/python/2.6.1/python-2.6.1.msi</a></p>
+</blockquote>
+<p>Recently, the kind folks who run the <a href="https://python.org">python.org</a> site have started making links to the latest Windows Python download from their front page. So, even though the stuff I said before is still true, now you can just look at the menu on the left side of the python.org front page for &ldquo;Quick Links &gt;&gt; Windows Installer&rdquo;.</p>
+<p>Windows will ask you if you want to save the file or run it directly from the site. That’s up to you. If you have the disk space, and know how to find and run a file on your hard drive, I recommend you save the installer program to disk. That way you can redo an installation you messed up. On the other hand, if you don’t have much space on the computer — or you aren’t sure how to find a file once you’ve save it, you are probably better off opening the file straight from the site. I have screwed up so many installations that I pretty much automatically select &ldquo;Save&rdquo; when downloading an installer.</p>
+<p>Once you have downloaded the installer, you need to run it. If you told Windows that you wanted to open it from the current location, you can skip this step. Otherwise, you will need to find your file. Open Windows Explorer (&lsquo;Start Menu | Programs | Accessories | Windows Explorer&rsquo;), and dig through your hard drive until you find the installer executable, named <code>Python-2.6.1.msi</code>. Double-click the icon to run the program,  and you’re on your way to installing Python!</p>
+<p>I’m going to skim through the next bit here. Most of the installation is simply &ldquo;Do you want me to install Python in folder X?&rdquo; and &ldquo;Do you want me to call it Python?&rdquo; Most of the options you can safely run through by clicking &ldquo;Next&rdquo;, but stay alert for anything that you might want different from the defaults.</p>
+<p>Eventually, you are presented with a little progress bar while the installer puts all of the Python files where they belong. This is the stage where you sip some coffee (or tea, or soda) and dream about all the great things you will be able to do as a programmer.</p>
+<p>Guess what? You are now a proud owner of Python 2.6! All that’s left is learning how to program.</p>
+<h2 id="using-python">Using Python</h2>
+<p>There are already a lot of online tutorials for learning Python. Maybe that’s because Python is as fun to teach as it is to learn. Anyways, I am not going to try and tell you that <em>my</em> rough little article is the best introduction you’ll ever find.</p>
+<p>You can pick and choose from links at the <a href="https://wiki.python.org/moin/BeginnersGuide">Python BeginnersGuide</a>.</p>
+<p>That page has links to articles which discuss Python, tutorials, and comparisons to other languages. Python was largely written for educational environments: learning how to do things &ldquo;the Python way&rdquo; makes it easier to write clean, readable programs for any language. Plus, its flexibility makes it useful way past the classroom — unlike the stuff like Applesoft BASIC that <em>I</em> learned in class. There is nothing like spending years trying to forget the stuff that BASIC taught me about programming.</p>
+<p>Even though those links will teach you about how to program in Python, I ask you to stick with me a little bit longer. I still have to tell you how to get started with the tools that you just installed.</p>
+<p>I will be focussing on IDLE — and the simple stuff, at that — but you can just as easily use PythonWin or the Python shell (which you get into from the console by typing <code>python</code>).</p>
+<p>IDLE is Python’s Integrated DeveLopment Environment. It’s just a coincidence that the acronym <em>happens</em> to spell out the last name of one of the members of a British comedy troupe — whose name just <em>happens</em> to contain the word &ldquo;Python&rdquo;. That’s right, just a coincidence. <em>Wink wink, nudge nudge</em></p>
+<p>IDLE gives you access to everything you need to write Python code in a graphical pointy-clicky environment like Windows. There’s a version of the Python shell, as well as features allowing you to write, save, and run your own Python programs with ease.</p>
+<p>You can find documentation for IDLE at:</p>
+<blockquote>
+<p><a href="https://docs.python.org/2/library/idle.html">https://docs.python.org/2/library/idle.html</a></p>
+</blockquote>
+<p>It’s a pretty standard and dry user manual, but should hold answers to any questions you might come up with for the details of using IDLE.</p>
+<p>In the next couple of sections, I’ll help you with the basics of using IDLE. We’ll use the shell for some simple code, and make &amp; run our own little Python script. That’s right, you’ll be creating your own  programs within the next few minutes!</p>
+<h2 id="how-to-use-idle">How to use IDLE</h2>
+<p>Starting IDLE under Windows is a matter of finding it in your Start menu.</p>
+<ol>
+<li>Find the Python folder in your Start menu.</li>
+<li>Find the menu item for IDLE within the Python folder.</li>
+<li>Select it.</li>
+</ol>
+<p>Given the wide, wild range of desktop environments available for Linux, there is no way I could simply tell you which menu option runs IDLE. Instead, you get these instructions:</p>
+<ol>
+<li>Open a terminal (XTerm, Konsole, Gnome Terminal …​ whatever)</li>
+<li>In the terminal, type <code>idle</code> and hit ENTER</li>
+</ol>
+<p>If you happen to have IDLE in your environment’s equivalent of a Start menu, then you can just use that.</p>
+<p>IDLE will start with something that looks like some sort of command line interface — kind of like a colorful DOS box or XTerm. That is the shell, and it allows you to perform the next step:</p>
+<h3 id="using-the-idle-shell-writing-code">Using the IDLE Shell (<em>Writing Code!</em>)</h3>
+<p>Let’s see, how do we run Python code in the IDLE shell?</p>
+<ol>
+<li>Type it in and watch it go!</li>
+</ol>
+<p>Hmm… maybe a <em>little</em> more detail would be helpful here.</p>
+<p>The IDLE shell allows you to enter code — from simple statements to function and class definitions — and execute it immediately. Since you have the shell open already, type in this example:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello, world!&#34;
+</code></pre><p><img src="/post/2001/01/attachments/img/2001/idle.png" alt="IDLE screenshot"/></p>
+<p>The <code>&gt;&gt;&gt;</code> is the shell prompt, showing that you can type something here. You may notice that the characters you type show up in different colors as you enter them into the shell. This is called &ldquo;syntax highlighting&rdquo;. It is basically just the environment helping you see more or less how the code will be broken down by Python — important <em>keywords</em> are one color, <em>strings</em> of text are another, and so on.</p>
+<p>Press the ENTER key, and the shell will perform that command right away:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello, world!&#34;
+Hello, world!
+&gt;&gt;&gt;
+</code></pre><p>The shell allows you to define more complex things, too. Say you want to get the user’s name, and print a customized &ldquo;Hello you!&rdquo; for the user.</p>
+<p>First, you have to get their name:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; name = raw_input(&#34;Please enter your name: &#34;)
+</code></pre><p><a href="https://docs.python.org/2/library/functions.html#raw_input">raw_input</a>is a function that displays a prompt to the user, gets some keyboard input from them, and sends what they typed back to you. I want to use that typed-in name in a moment, so I save the result in the variable <code>name</code>. A <em>variable</em> is basically just something you want the computer to remember so that you can use it later. What’s a <em>function</em>? Don’t worry about that today. Basically, it’s something you feed data into, and get data out of — kind of a mini-program in your program. That’s all we need to know for right now.</p>
+<p>When you press ENTER this time, you will be shown a prompt. In IDLE, this prompt shows up simply as some text printed out in the shell. In PythonWin it opens a little window showing the message you handed to <code>raw_input()</code> and a space for giving your answer.</p>
+<p>Here’s what I see in IDLE:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; name = raw_input(&#34;Enter your name: &#34;)
+Enter your name:
+</code></pre><p>I provide my name (&ldquo;Brian&rdquo;), and Python quietly saves that answer in the variable <code>name</code>, then waits for me to do something new. One of the things that confused me when I first tried <code>raw_input()</code> in the Python shell was: how do I know that Python actually grabbed the name I gave? Well, it turns out that it’s easy enough to ask:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print name
+Brian
+</code></pre><p>When you want to get at a value that Python has stored for you, all you have to do is call it by name. In this case, I just wanted to print out the value of <code>name</code> — which was filled in when I typed my name at the prompt — and that’s exactly what I told Python to do. Pretty simple, yes?</p>
+<p>Okay, so it has my name. What was I trying to do again? Oh yeah, the custom &ldquo;Hello&rdquo; thing. Let’s make it print &ldquo;Hello, Brian&rdquo; — or &ldquo;Craig&rdquo;, or &ldquo;Susan&rdquo;, or whatever name you gave to <code>raw_input()</code> — ummm — I lost myself again. Let me get back on track here.</p>
+<p>Wait. How are we supposed to do this? You know, take a value, and write it along with some other text?</p>
+<p>Here’s the easiest way:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello&#34;, name
+Hello Brian
+</code></pre><p>Every time you normally tell Python to print something, it will print that something out, and then start a new line. If you paste a comma onto the end of the thing you want to print, it’s just like a comma in conversation. It means that you’re pausing for air, and the sentence isn’t done yet. Instead of starting a new line, Python just inserts a space. The next thing that gets printed will show up on the same line.</p>
+<p>In this case, Python prints the phrase &ldquo;Hello&rdquo;, followed by a space, and ending with the name that was given to it by <code>raw_input</code>.</p>
+<p>You can print several things at once, too. Just put a comma in between each item to be printed.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print &#34;Hello&#34;, name, &#34;- good to see you!&#34;
+Hello Brian - good to see you!
+</code></pre><p>Wow. That made me feel pretty good. It’s amazing how just a few nice words can lift your mood — even if you have to write them yourself!</p>
+<p>What if we wanted to be able to get that warm fuzzy feeling any time? It’s only two lines of code. We could probably enter that in the shell when we wanted some warm words. But there’s a school of  programming that tells us Laziness is a virtue. Why write the same two lines again and again, when we could write them once, call it a program, and run that program anytime we felt blue?</p>
+<p>Let’s find out how to do just that.</p>
+<h2 id="how-to-make-your-own-python-program">How to Make Your Own Python Program</h2>
+<p>Even though the IDLE shell is pretty neat, and <em>very</em> useful for figuring out whether a code idea will work, it’s not any good for actual programs.</p>
+<p>Don’t get all huffy. I said the IDLE <em>shell</em> wasn’t good for programs, not that <em>IDLE</em> is no good for programs.</p>
+<p>To edit a Python script in IDLE, simply go to the &ldquo;File&rdquo; menu and select &ldquo;New Window&rdquo;. This will open a new window for editing Python stuff.  This is not a shell, but a <a href="https://en.wikipedia.org/wiki/Microsoft_Notepad">Notepad</a>-like text <a href="/post/2001/07/editors/">editor</a>.</p>
+<p>In your new window, enter this code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># hello.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Get the user&#39;s name and print a friendly hello</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Please enter your name: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;- good to see you!&#34;</span>
+</span></span></code></pre></div><p>Most of it is the same as what we entered in the shell, but what’s with those first couple of lines?</p>
+<p>Well, they’re Python comments. Comments start from the character <code>#</code>, and extend to the end of the line that you wrote them on. Python  ignores comments, which means that you can use them to explain what is going on in your code. Comments are good. When you come back to look at a complex script after several months, you might forget what some block of code does. Having the comments there to remind you will make it that much easier to sort everything out.</p>
+<p>I like to start every one of my scripts off with a quick header to describe the purpose of the program. Here is the rough template:</p>
+<p><a href="https://www.python.org/dev/peps/pep-0257/">Docstrings</a> would actually be better for script headers, but:</p>
+<ol>
+<li>I haven’t described those yet</li>
+<li>I needed an excuse to show you what comments look like.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># filename</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  A quick description of what this program does</span>
+</span></span></code></pre></div><p>Of course, your header can be as complicated as you like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># hello.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Get the user&#39;s name and print a friendly hello</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AUTHOR</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Brian Wisti (brianwisti@pobox.com)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DATE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  26 December 2008</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PURPOSE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  Demonstration script for my python tutorial at</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  http://www.coolnamehere.com/geekery/python/pythontut.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># USAGE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  python hello.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LICENSE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  You may copy and redistribute this program as you see fit, with no</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  restrictions.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WARRANTY</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  This program comes with NO warranty, real or implied.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># HISTORY</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.0 19 January 2001</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Initial release for Python Babysteps Tutorial</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  1.1 26 December 2008</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Updated for Python version 2.6</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># # # # # # # #</span>
+</span></span></code></pre></div><p>Just try to match the header complexity to the program. Using this header for a program that consists of two lines of code might be a <em>little</em> bit of overkill. I usually start with something like the two-line header and expand it as I see fit.</p>
+<p>After you enter your script, you need to save it. That’s easy. Just go to the &ldquo;File&rdquo; menu and select &ldquo;Save As…​&rdquo;. You will be shown a dialog that should look pretty familiar if you’ve ever worked with an editing program. Choose a directory to place your program, enter a name ending with <code>.py</code> — to let your computer know that this is a Python file — and click &ldquo;Save&rdquo;. You have now saved your file.</p>
+<p>I bet you’re just itching to run that program! Since you’ve already got <code>hello.py</code> open, all you have to do is go to the &ldquo;Run&rdquo; menu, and select &ldquo;Run module&rdquo;. Python puts you in the IDLE shell, where you see  something like this:</p>
+<pre tabindex="0"><code>Python 2.6 (r26:66714, Nov 11 2008, 12:18:59)
+[GCC 3.3.1 (SuSE Linux)] on linux2
+Type &#34;copyright&#34;, &#34;credits&#34; or &#34;license()&#34; for more information.
+
+    ****************************************************************
+    Personal firewall software may warn about the connection IDLE
+    makes to its subprocess using this computer&#39;s internal loopback
+    interface.  This connection is not visible on any external
+    interface and no data is sent to or received from the Internet.
+    ****************************************************************
+
+IDLE 2.6
+&gt;&gt;&gt; ================================ RESTART ================================
+&gt;&gt;&gt;
+Please enter your name:
+</code></pre><p>Enter your name, press ENTER, and there’s your warm fuzzy greeting!</p>
+<p>You may be happy with <code>hello.py</code> right now, but you will probably want to change it later: make it print out a different greeting, for example. To do that, you need to know how to open a Python file for editing.</p>
+<p>Actually, it’s pretty easy. Go to the &ldquo;File&rdquo; menu, select &ldquo;Open…&rdquo; and select your file. IDLE automatically opens your file in an editing window, where you can edit, save, and run your program to your heart’s content.</p>
+<p>There are two more ways to run a Python program in Windows.</p>
+<p>The Python installation automatically associates the <code>py</code> extension with Python program, which tells Windows that anything ending with <code>.py</code> should be handed over to Python. That means you can just double-click on <code>hello.py</code>, and Python will automatically run it. Unfortunately, that’s not very helpful for most of the stuff we’ll be writing. Try it yourself. You get a DOS box prompting you for your name, but the box disappears almost as soon as you press ENTER! That is kind of annoying.</p>
+<p>But there’s another trick which we can use until we’re writing more complex applications which can keep themselves open or don’t need a DOS box. Simply open your own DOS box (&lsquo;Start Menu | Programs | Accessories | Command Prompt&rsquo;), move to the directory that contains your script, and call Python yourself:</p>
+<pre tabindex="0"><code>C:&gt;cd scripts
+C:\scripts&gt;python hello.py
+Please enter your name: Brian
+Hello Brian - good to see you!
+C:\scripts&gt;
+</code></pre><p>In order for this to work, you’ll have to have your Python installation directory specified as part of your environment variable <code>PATH</code>. How you do that depends on what version of Windows (or which command line shell for Linux) you are running. Once again, I’m lazy, so I’m leaving it alone.</p>
+<p>To be honest, I recommend you stick with IDLE interface for now. There is less to remember.</p>
+<p>Finally, you might want to know how to <em>leave</em> IDLE. The menu command &lsquo;File|Exit&rsquo; is all you need to remember. If you haven’t saved all of the files you have been editing, IDLE will check if you want to save them before you quit. Answer as you see fit, save any files you want, and you’re out of IDLE in the real world.</p>
+<p>And you know what? You know how to use the IDLE shell, as well as how to edit, save, and run your very own Python scripts. You’re a programmer now! Okay, there’s still plenty more to learn, but you are ready to start exploring.</p>
+<h3 id="what-next">What Next?</h3>
+<p>This was just the quickest introduction to Python. Hopefully you are warmed up and ready for more. Now you should start one of the recommended tutorials at the <a href="https://wiki.python.org/moin/BeginnersGuide">Python BeginnersGuide</a>.</p>
+<p>I have a few favorites of my own.</p>
+<ul>
+<li>The Official Python Tutorial
+<ul>
+<li><a href="http://docs.python.org/tutorial/">http://docs.python.org/tutorial/</a></li>
+<li><a href="http://docs.python.org/py3k/tutorial/index.html">http://docs.python.org/py3k/tutorial/index.html</a></li>
+</ul>
+</li>
+<li>Dive Into Python
+<a href="http://www.diveintopython.net/">http://www.diveintopython.net/</a></li>
+<li>How To Think Like a Computer Scientist In Python
+<a href="http://openbookproject.net/thinkcs/python/english2e/">http://openbookproject.net/thinkcs/python/english2e/</a></li>
+</ul>
+<h3 id="quick-reference-using-idle">Quick Reference: Using IDLE</h3>
+<table>
+<thead>
+<tr>
+<th>To Do This</th>
+<th>Use This Menu Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start IDLE</td>
+<td>Start &gt; Programs &gt; Python 2.6 &gt; IDLE (Python GUI)</td>
+</tr>
+<tr>
+<td>Edit a New Python File</td>
+<td>File &gt; New Window</td>
+</tr>
+<tr>
+<td>Save a New Python File</td>
+<td>File &gt; Save As…</td>
+</tr>
+<tr>
+<td>Open a Python File</td>
+<td>File &gt; Open</td>
+</tr>
+<tr>
+<td>Save a Python File</td>
+<td>File &gt; Save</td>
+</tr>
+<tr>
+<td>Run your script in IDLE</td>
+<td>Run &gt; Run Module</td>
+</tr>
+<tr>
+<td>Quit IDLE</td>
+<td>File &gt; Exit</td>
+</tr>
+</tbody>
+</table>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2002/06/simple-types-in-python/">simple-types-in-python</a>
+      </li>
+      
+      <li>
+        <a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">python-interactive-fiction-01-handling-a-single-round</a>
+      </li>
+      
+      <li>
+        <a href="/post/2007/05/coolnamehere-is-open-to-the-commons/">coolnamehere-is-open-to-the-commons</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2001/07/geekery/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Geekery
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#installing-python">Installing Python</a>
+      <ul>
+        <li><a href="#which-version-of-python">Which Version of Python?</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-python-26">Installing Python 2.6</a>
+      <ul>
+        <li><a href="#linux">Linux</a></li>
+        <li><a href="#windows">Windows</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-python">Using Python</a></li>
+    <li><a href="#how-to-use-idle">How to use IDLE</a>
+      <ul>
+        <li><a href="#using-the-idle-shell-writing-code">Using the IDLE Shell (<em>Writing Code!</em>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-make-your-own-python-program">How to Make Your Own Python Program</a>
+      <ul>
+        <li><a href="#what-next">What Next?</a></li>
+        <li><a href="#quick-reference-using-idle">Quick Reference: Using IDLE</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

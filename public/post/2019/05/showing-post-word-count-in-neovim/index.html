@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/">
+<meta property="og:title" content="Showing Post Word Count in (neo)vim">
+<meta name="twitter:title" content="Showing Post Word Count in (neo)vim">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="A couple shell pipes. A little Vimscript. Now card/Neovim tells me (roughly) how many words my post has!">
+    <meta property="og:description" content="A couple shell pipes. A little Vimscript. Now card/Neovim tells me (roughly) how many words my post has!">
+  
+
+
+
+<title itemprop="name">Showing Post Word Count in (neo)vim - Random Geekery</title>
+<meta property="og:title" content=Showing&#32;Post&#32;Word&#32;Count&#32;in&#32;(neo)vim&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Showing&#32;Post&#32;Word&#32;Count&#32;in&#32;(neo)vim&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Showing&#32;Post&#32;Word&#32;Count&#32;in&#32;(neo)vim&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Showing&#32;Post&#32;Word&#32;Count&#32;in&#32;(neo)vim&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/" />
+
+
+<meta property="og:updated_time" content=5005-05-12T50:00:19-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2019/12/dwim-is-consistent/">DWIM is consistent</a></li>
+        
+          <li><a href="/post/2019/11/directory-listings-with-crystal/">Directory Listings With Crystal</a></li>
+        
+          <li><a href="/post/2019/11/summarizing-a-file-with-crystal/">Summarizing A File With Crystal</a></li>
+        
+          <li><a href="/post/2019/08/trying-the-crystal-language/">Trying the Crystal Language</a></li>
+        
+          <li><a href="/post/2019/06/weighing-files-with-python/">Weighing Files With Python</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/">Showing Post Word Count in (neo)vim</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2019/05/showing-post-word-count-in-neovim/">Showing Post Word Count in (neo)vim</a>
+    </h1>
+    
+        <time datetime="2019-05-05T00:00:00-0700" class="post-date">
+            May 5, 2019
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-vim">
+            <a href="https://randomgeekery.org/tags/vim">vim</a>
+        </li>
+        
+        <li class="tag-pandoc">
+            <a href="https://randomgeekery.org/tags/pandoc">pandoc</a>
+        </li>
+        
+        <li class="tag-programming">
+            <a href="https://randomgeekery.org/tags/programming">programming</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>A couple shell pipes. A little Vimscript. Now <a href="/card/neovim/">card/Neovim</a> tells me (roughly) how many words my post has!</p>
+<p><img src="/post/2019/05/../../../attachments/img/2019/cover-2019-05-05.png" alt="attachments/img/2019/cover-2019-05-05.png"/></p>
+<h2 id="my-problem">My problem</h2>
+<p><a href="/post/2014/10/counting-words-in-blog-posts/">once again</a> I&rsquo;m trying to get myself to write more regularly. I post so much everywhere else. Surely I can spare a few hundred words a week on my blog, right?</p>
+<p>Since I implied a number in that question, I have a metric I can use. Word count! Just write until I have 250 words, then post it. Or five hundred. Or a thousand. Whatever. I don&rsquo;t even need a concrete goal.  Seeing the number encourages me to type a little bit more.</p>
+<p>But how to get the word count of a post? The approach I used a few years ago required enough extra thought that I eventually forgot all about it until editing this post!</p>
+<p><a href="/card/hugo/">card/Hugo</a> includes word count and reading time in <a href="https://gohugo.io/variables/page/">page variables</a>, so I could put the variable in the post template, then keep the server running and browser open while I type. In fact, that&rsquo;s exactly what I&rsquo;ve been doing!</p>
+<pre tabindex="0"><code>&lt;p&gt;About {{ .Page.ReadingTime }} minutes to read ({{ .Page.WordCount }} words)&lt;/p&gt;
+</code></pre><p>Honestly, this is cumbersome. I prefer something that doesn&rsquo;t require I have Hugo running. Sure, I enjoy previewing the site with live reload, but when I&rsquo;m writing my flow is interrupted by half my screen refreshing every few seconds.</p>
+<p>Yes, I tend to save my work that often. You lose enough editing sessions and it
+becomes a reflex.</p>
+<p>Something <em>in</em> my editor would be better.</p>
+<h2 id="a-solution">A solution</h2>
+<p><a href="https://en.wikipedia.org/wiki/Wc_%28Unix%29"><code>wc</code></a> can count words, but hand it the file and it counts <em>everything</em>. I care about the prose and code examples. I don&rsquo;t want front matter, link URLs, or formatting artifacts included in the count.</p>
+<p>What if I stripped the Markdown components out, leaving plain text? That&rsquo;s exactly what I want to count! Okay, so how do I go about that? I already know that I&rsquo;ll mess something up if I write my own solution. Maybe one of the tools I already use?</p>
+<p>Let&rsquo;s see. My posts are formatted with <a href="https://mmark.nl/">mmark</a>, a Markdown parser with its own <a href="https://mmark.nl/">extensions</a> to the <a href="/card/markdown/">card/Markdown</a> foundation. Near as I can tell, mmark does not support generating plain text from its input.  But <a href="https://pandoc.org/">Pandoc</a> can. Pandoc can do anything. Except parse mmark.</p>
+<p>Well maybe it could if I wrestled with the extensions a little. But I don&rsquo;t want to do that today. mmark can turn Markdown into HTML. Pandoc can turn HTML into plain text!</p>
+<p>So. Have mmark turn the file into HTML, then have pandoc turn the HTML into text, and count the words of text produced.</p>
+<p>We use pipes. Pipes everywhere.</p>
+<pre tabindex="0"><code>$ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d &#39; &#39;
+403
+</code></pre><blockquote>
+<p>[!NOTE]
+Found out that Hugo shortcodes look a lot like mmark includes, and that choked my pipes up a bit. Added an initial pass through Perl to remove anything that might be a shortcode. Confuses counting in a couple of my posts <em>about</em> Hugo, but I will survive.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">perl -pe <span class="s1">&#39;BEGIN{ undef $/ } s/\{\{&lt;.+?&gt;}}//gsm&#39;</span> <span class="s2">&#34; index.md \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  | mmark -html -fragment index.md \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  | pandoc -f html -t plain \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  | wc -w | tr -d &#39; &#39;
+</span></span></span></code></pre></div></blockquote>
+<p>I told mmark to generate a fragment of HTML rather than a complete HTML document, to reduce noise from things like a <code>&lt;title&gt;</code> tag.</p>
+<p>Plus a little massaging by <code>tr</code> since <code>wc -w</code> had leading spaces in its output.</p>
+<p>Naturally, Hugo reports a different number at this point: 397. You know what, though? I&rsquo;m not going to fuss about a small difference. If I was getting paid per word (or at all) for these posts, I might care more. Eventually I may dig into code and find out <em>why</em> they report different numbers. As it is, I am happy with the answers that pandoc + wc give me.</p>
+<h3 id="how-to-get-vim-to-report-it">How to get Vim to report it</h3>
+<p>So I know how to get the numbers I want. Now I must learn enough <a href="http://learnvimscriptthehardway.stevelosh.com/">Vimscript</a> to move that information from the shell to the status line.</p>
+<blockquote>
+<p>[!WARNING]
+I&rsquo;ve been using Neovim as my main terminal <code>$EDITOR</code>. Although it maintains compatibility with Vim, some of the functions here may require a newer release of Vim than you have on your machine.</p>
+<p>The goal was to figure this out on my own machine, so unfortunately the only advice I can offer if your Vim complains is: upgrade Vim or switch to Neovim.</p>
+</blockquote>
+<p>Later I may expand this into a library function that understands about different content types. Right now it returns a formatted word count if the filetype of the current buffer is Markdown, and an empty string otherwise. That way there&rsquo;s <em>something</em> to put in the status line.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">MarkdownWordCount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">my_filetype</span> <span class="p">=</span> &amp;<span class="k">filetype</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">my_filetype</span> <span class="p">!=</span> <span class="s1">&#39;markdown&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">return</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">wordcount</span> <span class="p">=</span> <span class="nx">system</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        \ <span class="s2">&#34;perl -pe &#39;BEGIN{ undef $/ } s/\\{\\{&lt;.+?&gt;}}//gsm&#39; &#34;</span> . <span class="nx">bufname</span><span class="p">(</span><span class="s2">&#34;%&#34;</span><span class="p">)</span> .
+</span></span><span class="line"><span class="cl">        \ <span class="s2">&#34; \| mmark -html -fragment&#34;</span> .
+</span></span><span class="line"><span class="cl">        \ <span class="s2">&#34; \| pandoc -f html -t plain&#34;</span> .
+</span></span><span class="line"><span class="cl">        \ <span class="s2">&#34; \| wc -w \| tr -d &#39; &#39;&#34;</span>
+</span></span><span class="line"><span class="cl">        \ <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">return</span> <span class="s2">&#34;[wc:&#34;</span> . <span class="nx">trim</span><span class="p">(</span><span class="nx">wordcount</span><span class="p">)</span> . <span class="s2">&#34;]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">endfunction</span>
+</span></span></code></pre></div><p>Look! Functions! For the full list of neovim&rsquo;s built-in functions, see <a href="https://neovim.io/doc/user/eval.html"><code>:help eval</code></a>. Let&rsquo;s just look at the ones I used.</p>
+<ul>
+<li><code>system</code> gets me the output of a shell command (with a little backslash escaping so my pipes work).</li>
+<li><code>bufname</code> returns the filename for the requested buffer (<code>%</code> is Vim shorthand for &ldquo;the current buffer&rdquo;)</li>
+<li><code>trim</code> gets rid of that pesky newline. Oh hey I bet it gets rid of the leading spaces, too. Might not need to <code>tr</code> the word count.</li>
+</ul>
+<p>Also, I want to keep it from counting words all the time. The piped commands are fast enough on my computer, but it just feels like wasted effort. Keep the word count and time of last check in buffer variables. Update the word count only if the file&rsquo;s been touched since the last check.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Word Count for Markdown posts</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">MarkdownWordCount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">my_filetype</span> <span class="p">=</span> &amp;<span class="k">filetype</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">my_filetype</span> <span class="p">!=</span> <span class="s1">&#39;markdown&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">return</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">!</span><span class="nx">exists</span><span class="p">(</span><span class="s2">&#34;b:wc_last_checked_at&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">b</span>:<span class="nx">wc_last_checked_at</span> <span class="p">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">filename</span> <span class="p">=</span> <span class="nx">bufname</span><span class="p">(</span><span class="s2">&#34;%&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="nx">filetime</span> <span class="p">=</span> <span class="nx">getftime</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">!</span><span class="nx">exists</span><span class="p">(</span><span class="s2">&#34;b:wc_last_count&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">b</span>:<span class="nx">wc_last_count</span> <span class="p">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  <span class="k">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">filetime</span> <span class="p">&gt;</span> <span class="nx">b</span>:<span class="nx">wc_last_checked_at</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">wordcount</span> <span class="p">=</span> <span class="nx">system</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          \ <span class="s2">&#34;perl -pe &#39;BEGIN{ undef $/ } s/\\{\\{&lt;.+?&gt;}}//gsm&#39; &#34;</span> . <span class="nx">filename</span> .
+</span></span><span class="line"><span class="cl">          \ <span class="s2">&#34; \| mmark -html -fragment&#34;</span> .
+</span></span><span class="line"><span class="cl">          \ <span class="s2">&#34; \| pandoc -f html -t plain&#34;</span> .
+</span></span><span class="line"><span class="cl">          \ <span class="s2">&#34; \| wc -w&#34;</span>
+</span></span><span class="line"><span class="cl">          \ <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">b</span>:<span class="nx">wc_last_count</span> <span class="p">=</span> <span class="nx">trim</span><span class="p">(</span><span class="nx">wordcount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">let</span> <span class="nx">b</span>:<span class="nx">wc_last_checked_at</span> <span class="p">=</span> <span class="nx">localtime</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">return</span> <span class="s2">&#34;[wc:&#34;</span> . <span class="nx">b</span>:<span class="nx">wc_last_count</span> . <span class="s2">&#34;]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">endfunction</span>
+</span></span></code></pre></div><p>Hey, a couple new functions!</p>
+<ul>
+<li><code>getftime</code> tells me when the file was last modified</li>
+<li><code>localtime</code> tells me what time it is now.</li>
+</ul>
+<p>Both of these time functions work in &ldquo;seconds since 1970-01-01.&rdquo; That&rsquo;s not unusual, but it does mean you&rsquo;d need to feed the values to <code>strftime</code> if you wanted human-readable times.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; Later, in my status line:</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nx">statusline</span><span class="p">=</span>%<span class="nx">m</span>%<span class="nx">h</span>%<span class="nx">w</span><span class="p">&lt;</span>%<span class="nx">f</span><span class="p">&gt;</span>\ %<span class="p">=</span>%<span class="p">(</span>%{<span class="nx">fugitive</span>#<span class="nx">statusline</span><span class="p">()</span>}\ [%<span class="nx">Y</span>]%{<span class="nx">MarkdownWordCount</span><span class="p">()</span>}[%<span class="nx">l</span><span class="p">,</span>%<span class="nx">v</span>][%<span class="nx">p</span>%%]%<span class="p">)</span>
+</span></span></code></pre></div><p>Yeah, my status line is a little busy.</p>
+<p>Anyways. It works! Is it perfect? Of course not. But it gives me the information I want, and that pleases me. On to the next task!</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/102046653899640488"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2019/04/psychedelic-playing-card/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Psychedelic Playing Card
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2019/05/teabagging-a-monsto/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Teabagging a Monsto
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#my-problem">My problem</a></li>
+    <li><a href="#a-solution">A solution</a>
+      <ul>
+        <li><a href="#how-to-get-vim-to-report-it">How to get Vim to report it</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

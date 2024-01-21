@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/">
+<meta property="og:title" content="Circular Grids With Python and Pillow">
+<meta name="twitter:title" content="Circular Grids With Python and Pillow">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I want a circular grid for drawing. Let&#39;s make one with Python!">
+    <meta property="og:description" content="I want a circular grid for drawing. Let&#39;s make one with Python!">
+  
+
+
+
+<title itemprop="name">Circular Grids With Python and Pillow - Random Geekery</title>
+<meta property="og:title" content=Circular&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Circular&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Circular&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Circular&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I want a circular grid for drawing. Let&#39;s make one with Python!" />
+<meta itemprop="description" content="I want a circular grid for drawing. Let&#39;s make one with Python!" />
+<meta property="og:description" content="I want a circular grid for drawing. Let&#39;s make one with Python!" />
+<meta name="twitter:description" content="I want a circular grid for drawing. Let&#39;s make one with Python!" />
+
+
+<base href="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/" />
+
+
+<meta property="og:updated_time" content=23001-23-12T10:00:19-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2019/12/dwim-is-consistent/">DWIM is consistent</a></li>
+        
+          <li><a href="/post/2019/06/weighing-files-with-python/">Weighing Files With Python</a></li>
+        
+          <li><a href="/post/2021/09/creating-a-restructuredtext-kbd-role/">Creating a reStructuredText kbd Role</a></li>
+        
+          <li><a href="/post/2021/08/tooting-with-python/">Tooting with Python</a></li>
+        
+          <li><a href="/post/2020/01/a-quick-notes-script-for-taskwarrior/">A Quick Notes Script for Taskwarrior</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/">Circular Grids With Python and Pillow</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2019/01/circular-grids-with-python-and-pillow/">Circular Grids With Python and Pillow</a>
+    </h1>
+    
+        <time datetime="2019-01-23T00:00:00-0800" class="post-date">
+            January 23, 2019
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-programming">
+            <a href="https://randomgeekery.org/tags/programming">programming</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2019/01/../../../attachments/img/2019/cover-2019-01-23.png" alt="attachments/img/2019/cover-2019-01-23.png"/></p>
+<p>A while back, I wrote about <a href="/post/2017/11/drawing-grids-with-python-and-pillow/">drawing grids</a>  with <a href="/card/python/">card/Python</a> and <a href="https://python-pillow.org/">Pillow</a>. I no longer use that code so much, since Procreate now includes square grids in its drawing aid tools.</p>
+<p>One idea sitting in my <a href="/card/taskwarrior/">Taskwarrior</a> queue for a full year now would still be useful, though. A circle template could help me break out of the square grid with my Celtic and Tangle drawings.</p>
+<p>I already create circular drawings using symmetry tools in my drawing apps. Those are doodles, though: unplanned and improvised. I sketch and see what the automated symmetry produces from my linework. Circle templates simplify <em>planning</em> a complex image which I then produce, probably without using symmetry tools.</p>
+<p>So, let’s write a little code!</p>
+<p>I’ll keep using Python, since that worked for me last time. Lately I have been using the <a href="https://www.anaconda.com/download/">Anaconda Distribution</a> for my Python programming needs. It includes a number of <a href="https://docs.anaconda.com/anaconda/packages/py3.7_linux-64/">Python packages</a>, including Pillow!</p>
+<p>My template includes three characteristics:</p>
+<ul>
+<li>an origin in the center of my square image</li>
+<li>some concentric circles increasing in radius by a fixed amount</li>
+<li>some line segments slicing the image from the origin point to the outermost circle</li>
+</ul>
+<h2 id="write-some-code">Write some code</h2>
+<p>I will save myself effort by grabbing some of the work used for drawing grids and putting into a new class.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Utility script to draw concentric circle templates for drawing
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_SIZE</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_CIRCLES</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEFAULT_SLICES</span> <span class="o">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Draws a circle template
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">circle_count</span><span class="p">,</span> <span class="n">slice_count</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span> <span class="o">=</span> <span class="n">circle_count</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span> <span class="o">=</span> <span class="n">slice_count</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Write my circle template image to file&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;circle-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">.png&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Saving </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Display my circle template image on screen&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Create a circle template from command line options&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Get details from command line or use defaults</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--size&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;length of image side in pixels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_SIZE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--circles&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;number of circles&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_CIRCLES</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--slices&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;number of slices&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_SLICES</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">    <span class="n">circle_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">circles</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slice_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">slices</span>
+</span></span><span class="line"><span class="cl">    <span class="n">circle_template</span> <span class="o">=</span> <span class="n">CircleTemplate</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">circle_count</span><span class="p">,</span> <span class="n">slice_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">circle_template</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><p>My <code>CircleTemplate</code> class knows how to construct, save, and show a blank image. <a href="https://docs.python.org/3/library/argparse.html">argparse</a> processes the command line arguments for image size, number of circles, and number of slices. I added defaults so I don’t have to type in a value every time I tested the script for this post.</p>
+<p>I can build on this framework. Time to fill in the blanks.</p>
+<h2 id="draw-some-circles">Draw some circles</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Draws a circle template
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">circle_count</span><span class="p">,</span> <span class="n">slice_count</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_draw</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Create circles and slices in-memory&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">largest_circle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_draw_circles</span><span class="p">(</span><span class="n">draw</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_slices</span><span class="p">(</span><span class="n">draw</span><span class="p">,</span> <span class="n">largest_circle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">draw</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">radius_step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">radius_step</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bounding_box</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">bounding_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+</span></span></code></pre></div><p>I need to figure out my origin, the center for my circles and slices. Since the image is a square, it will be the same along both the X and Y axes. This means I only need to calculate a single midpoint.</p>
+<p>Each time we move on to a new radius, <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.arc">ImageDraw.arc</a> creates a circle by drawing a 360 degree arc within <code>bounding_box</code>, a square that extends <code>radius</code> pixels from a midpoint along the <code>x</code> and <code>y</code> axes.</p>
+<p><img src="/post/2019/01/attachments/img/2019/circle-600-10-0.png" alt="Concentric circles"/></p>
+<h2 id="add-some-pie-slices">Add some pie slices</h2>
+<p>Right. I could do some moderately clever math to calculate angles and draw lines from the midpoint, <em>or</em> I could use the existing <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.pieslice">ImageDraw.pieslice</a> method to accomplish pretty much the same thing. If you read the section title, you can probably guess what I chose.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CircleTemplate</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Create circles and slices in-memory&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">largest_circle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_draw_circles</span><span class="p">(</span><span class="n">draw</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_slices</span><span class="p">(</span><span class="n">draw</span><span class="p">,</span> <span class="n">largest_circle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw_circles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">draw</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">radius_step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">circle_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># To remember the largest circle we drew.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">last_radius</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span> <span class="n">radius_step</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bounding_box</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">bounding_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">last_radius</span> <span class="o">=</span> <span class="n">radius</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">last_radius</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_draw_slices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">pie_box</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">-</span> <span class="n">radius</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">+</span> <span class="n">radius</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">angle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start_angle</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">pieslice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_count</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">end_angle</span> <span class="o">=</span> <span class="n">angle</span> <span class="o">*</span> <span class="n">pieslice</span>
+</span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">pieslice</span><span class="p">(</span><span class="n">pie_box</span><span class="p">,</span> <span class="n">start_angle</span><span class="p">,</span> <span class="n">end_angle</span><span class="p">)</span>
+</span></span></code></pre></div><p>I’m dividing the 360 degrees of a circle into <code>slice_count</code> pieces. <code>ImageDraw.pieslice</code> draws a tidy wedge at the angles we give it fitting the bounding box defined by my largest circle.</p>
+<p>How does that look?</p>
+<p><img src="/post/2019/01/attachments/img/2019/circle-600-10-12.png" alt="Concentric circles divided by pie slices"/></p>
+<p>It looks pretty cool.</p>
+<p>I need more circles and slices for the drawings I’m thinking of, though. Many more.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> python3 circle_template.py --circles<span class="o">=</span><span class="m">30</span> --slices<span class="o">=</span><span class="m">36</span>
+</span></span><span class="line"><span class="cl"><span class="go">Saving circle-600-30-36.png
+</span></span></span></code></pre></div><p>Yes, that’s more like it.</p>
+<p><img src="/post/2019/01/attachments/img/2019/circle-600-30-36.png" alt="Generated circle template"/></p>
+<p>This is all I need for a drawing template. Using transformation tools and the right blending modes, I can maneuver and manipulate my grid however I need for a drawing template!</p>
+<p><img src="/post/2019/01/attachments/img/2019/three-circle-template.png" alt="template prepared for drawing"/></p>
+<p>I’ll stop here so I can get to my drawing.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2019/02/three-circles/">three-circles</a>
+      </li>
+      
+      <li>
+        <a href="/post/2019/03/garden-mandala/">garden-mandala</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2018/12/hopepunk-for-2019/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Hopepunk for 2019
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2019/02/three-circles/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Three Circles
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#write-some-code">Write some code</a></li>
+    <li><a href="#draw-some-circles">Draw some circles</a></li>
+    <li><a href="#add-some-pie-slices">Add some pie slices</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

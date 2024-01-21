@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/">
+<meta property="og:title" content="Got a Working glitch-soc Rails Dev Environment">
+<meta name="twitter:title" content="Got a Working glitch-soc Rails Dev Environment">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I remain ambivalent about Rails development">
+    <meta property="og:description" content="I remain ambivalent about Rails development">
+  
+
+
+
+<title itemprop="name">Got a Working glitch-soc Rails Dev Environment - Random Geekery</title>
+<meta property="og:title" content=Got&#32;a&#32;Working&#32;glitch-soc&#32;Rails&#32;Dev&#32;Environment&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Got&#32;a&#32;Working&#32;glitch-soc&#32;Rails&#32;Dev&#32;Environment&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Got&#32;a&#32;Working&#32;glitch-soc&#32;Rails&#32;Dev&#32;Environment&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Got&#32;a&#32;Working&#32;glitch-soc&#32;Rails&#32;Dev&#32;Environment&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I remain ambivalent about Rails development" />
+<meta itemprop="description" content="I remain ambivalent about Rails development" />
+<meta property="og:description" content="I remain ambivalent about Rails development" />
+<meta name="twitter:description" content="I remain ambivalent about Rails development" />
+
+
+<base href="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/" />
+
+
+<meta property="og:updated_time" content=4005-04-11T526:21:20-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2015/07/itunes-to-rhythmbox/">iTunes to Rhythmbox</a></li>
+        
+          <li><a href="/post/2020/11/naming-things-in-tmux/">Naming things in tmux</a></li>
+        
+          <li><a href="/post/2020/11/using-the-webmentionio-api/">Using the Webmention.io API</a></li>
+        
+          <li><a href="/post/2020/06/ox-hugo-for-the-orgconfig/">Ox Hugo for the Orgconfig</a></li>
+        
+          <li><a href="/post/2020/06/my-git-cli-windows-setup/">My Git CLI Windows setup</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/">Got a Working glitch-soc Rails Dev Environment</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/">Got a Working glitch-soc Rails Dev Environment</a>
+    </h1>
+    
+        <time datetime="2020-05-04T23:26:21-0700" class="post-date">
+            May 4, 2020
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-rails">
+            <a href="https://randomgeekery.org/tags/rails">rails</a>
+        </li>
+        
+        <li class="tag-mastodon">
+            <a href="https://randomgeekery.org/tags/mastodon">mastodon</a>
+        </li>
+        
+        <li class="tag-ruby">
+            <a href="https://randomgeekery.org/tags/ruby">ruby</a>
+        </li>
+        
+        <li class="tag-sort-of">
+            <a href="https://randomgeekery.org/tags/sort-of">sort-of</a>
+        </li>
+        
+        <li class="tag-mostly-rails">
+            <a href="https://randomgeekery.org/tags/mostly-rails">mostly-rails</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-04.png" alt="attachments/img/2020/cover-2020-05-04.png"/></p>
+<p>I wanted to build and test a development instance of <a href="https://glitch-soc.github.io/docs/"><code>glitch-soc</code></a>, a friendly fork of <a href="https://joinmastodon.org/">Mastodon</a>.  I succeeded.  But I am very tired now.  Here are my notes, along with some after-the-fact editorializing.</p>
+<p>It’s less tutorial and more confessional.  I haven’t used Rails much since 4.0 was shiny.  So there’s likely some common practice workflow that I don’t know yet.  But I got it to work.</p>
+<h2 id="install-glitch-soc-locally">Install glitch-soc locally</h2>
+<p><code>glitch-soc</code> documentation refers you to <a href="https://docs.joinmastodon.org">Mastodon docs</a>, Mastodon’s <a href="https://docs.joinmastodon.org/admin/install/">installation instructions</a> seem focused on production installations.  I bounce back and forth between Mastodon’s <a href="https://github.com/tootsuite/mastodon">README</a> and its <a href="https://docs.joinmastodon.org/dev/setup/">developer documentation</a>.</p>
+<p>The README says I need:</p>
+<ul>
+<li><a href="https://www.postgresql.org/">PostgreSQL</a> 9.5+</li>
+<li><a href="https://redis.io/">Redis</a> 4+</li>
+<li><a href="/card/ruby/">card/Ruby</a> 2.5+</li>
+<li><a href="/card/node.js/">card/Node.js</a> 10.13+</li>
+</ul>
+<p><a href="https://github.com/rbenv/rbenv">rbenv</a> and <a href="https://github.com/nvm-sh/nvm">nvm</a> help with the language requirements, but this fresh <a href="https://manjaro.org/">Manjaro</a> partition lacks the other requirements.</p>
+<h3 id="install-redis">Install Redis</h3>
+<p>Used the <a href="https://wiki.archlinux.org/index.php/Redis">Arch wiki</a> as a guide.  Didn’t need to edit config, though.  Instance installed via <a href="https://wiki.manjaro.org/index.php?title=Pamac">Pamac</a> is already configured to only listen to <code>127.0.0.1</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install redis
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl start redis
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> redis
+</span></span></code></pre></div><dl>
+<dt>Version installed</dt>
+<dd>6.0</dd>
+</dl>
+<h3 id="install-postgresql">Install Postgresql</h3>
+<p>Once again, going off the <a href="https://wiki.archlinux.org/index.php/PostgreSQL">Arch wiki entry</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> pamac install postgresql
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo -iu postgres
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> initdb -D /var/lib/postgres/data
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl start postgresql.service
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo systemctl <span class="nb">enable</span> postgresql.service
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> sudo -iu postgres
+</span></span><span class="line"><span class="cl"><span class="gp">&gt;</span> createuser --interactive
+</span></span><span class="line"><span class="cl"><span class="go">Enter name of role to add: random
+</span></span></span><span class="line"><span class="cl"><span class="go">Shall the new role be a superuser? (y/n) y
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">&gt;</span> <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> createdb random
+</span></span></code></pre></div><p>That reminds me.  I want to finish reading <a href="https://theartofpostgresql.com/">The Art of PostgreSQL</a>.</p>
+<dl>
+<dt>Version installed</dt>
+<dd>12.2</dd>
+</dl>
+<h3 id="clone-project-and-install-dev-dependencies">Clone project and install dev dependencies</h3>
+<p>Not the required services.  I just installed those.  Languages and libraries.</p>
+<h4 id="fork--clone-repo">fork &amp; clone repo</h4>
+<p>Since I hope to contribute bug fixes someday, I’ll fork the <a href="https://github.com/glitch-soc/mastodon">repo</a> rather than just clone it.  I clone my fork instead.</p>
+<p>Dev language is weird.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git clone git@github.com:brianwisti/mastodon.git
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> <span class="nb">cd</span> mastodon
+</span></span></code></pre></div><p>The project’s <code>.ruby-version</code> file specifies Ruby 2.6.6.  Rbenv immediately
+warns me that I lack the correct installed version.  It also doesn’t recognize
+the version when I try installing it, so I must refresh <a href="https://github.com/rbenv/ruby-build">ruby-build</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git -c ~/.rbenv/plugins/ruby-build pull
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> rbenv install
+</span></span></code></pre></div><p>2.6.6 is a bit more specific than &ldquo;2.5+&rdquo; but no big deal. Got the right Ruby
+version. Time to install the gems.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> bundle install
+</span></span></code></pre></div><p>Oh hey what’s this? It seems relevant to my <a href="/card/indieweb/">interests</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">Post-install message from microformats:
+</span></span><span class="line"><span class="cl">Prior to version 4.0.0, the microformats gem was named &#34;microformats2.&#34;
+</span></span></code></pre></div><p>Adding a task to look more closely at <a href="https://github.com/microformats/microformats-ruby">microformats-ruby</a>.  It’s more active than <a href="https://github.com/microformats/mf2py">mf2py</a>.</p>
+<p><a href="v">Yarn</a> manages the node-specific project dependencies.  Better install that.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> npm install -g yarn
+</span></span></code></pre></div><p>Okay now I can install the Node stuff.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> yarn install
+</span></span><span class="line"><span class="cl"><span class="go">yarn install v1.22.4
+</span></span></span><span class="line"><span class="cl"><span class="go">[1/6] Validating package.json...
+</span></span></span><span class="line"><span class="cl"><span class="go">error @tootsuite/mastodon@: The engine &#34;node&#34; is incompatible with this module. Expected version &#34;&gt;=10.13 &lt;13&#34;. Got &#34;13.11.0&#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">error Found incompatible module.
+</span></span></span><span class="line"><span class="cl"><span class="go">info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+</span></span></span></code></pre></div><p>At some point I should <a href="https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file">enable</a> automatic <code>nvm use</code>.  Meanwhile I’ll just install.</p>
+<blockquote>
+<p>[!NOTE]
+Or maybe I could play with <a href="/card/volta/">card/Volta</a>.  Not today. Maybe later.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> nvm install
+</span></span><span class="line"><span class="cl"><span class="go">Found &#39;/home/random/Projects/mastodon/.nvmrc&#39; with version &lt;12&gt;
+</span></span></span><span class="line"><span class="cl"><span class="go">Downloading and installing node v12.16.3...
+</span></span></span><span class="line"><span class="cl"><span class="go">⋮
+</span></span></span><span class="line"><span class="cl"><span class="go">Now using node v12.16.3 (npm v6.14.4)
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> npm install -g yarn
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> yarn install
+</span></span></code></pre></div><p>No complaints about Node.js versions now.  Good.  Time to actually set up the application?</p>
+<p>Dev docs say <code>rails db:setup</code>, so that’s what I type.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rails db:setup
+</span></span><span class="line"><span class="cl"><span class="go">zsh: command not found: rails
+</span></span></span></code></pre></div><p>Oh right.  Because I’m not using a fresh Rails app, but an existing project.  I could use <code>bundle exec</code> but for some reason I feel stubborn.  I must make at least one step of my installation process match the documentation.</p>
+<p>I use <a href="https://direnv.net">direnv</a>, so I can add the path locally.</p>
+<div class="highlight" title=".envrc"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">PATH_add <span class="s2">&#34;bin&#34;</span>
+</span></span></code></pre></div><p>Then I need to let direnv know this change is acceptable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> direnv allow
+</span></span></code></pre></div><p>There’s probably a better Rails-specific or Zsh-specific approach, but I’m in a hurry.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> rails db:setup
+</span></span></code></pre></div><p>Loads of text follows. That’s good, right?</p>
+<p>Instructions go straight to running the application, but that’s not my style.</p>
+<h2 id="getting-tests-to-pass">Getting tests to pass</h2>
+<p>I want to run tests first. Blame <a href="/card/perl/">card/Perl</a>. I have certain expectations after years of watching <code>cpan</code> run tests before declaring something installed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ rspec
+</span></span><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">332) Auth::ChallengesController POST #create with incorrect password renders challenge
+</span></span><span class="line"><span class="cl">       Failure/Error: = javascript_pack_tag &#34;locales&#34;, integrity: true, crossorigin: &#39;anonymous&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       ActionView::Template::Error:
+</span></span><span class="line"><span class="cl">         Webpacker can&#39;t find locales in /home/random/Projects/mastodon/public/packs-test/manifest.json. Possible causes:
+</span></span><span class="line"><span class="cl">         1. You want to set webpacker.yml value of compile to true for your environment
+</span></span><span class="line"><span class="cl">            unless you are using the `webpack -w` or the webpack-dev-server.
+</span></span><span class="line"><span class="cl">         2. webpack has not yet re-run to reflect updates.
+</span></span><span class="line"><span class="cl">         3. You have misconfigured Webpacker&#39;s config/webpacker.yml file.
+</span></span><span class="line"><span class="cl">         4. Your webpack configuration is not creating a manifest.
+</span></span><span class="line"><span class="cl">         Your manifest contains:
+</span></span><span class="line"><span class="cl">         {
+</span></span><span class="line"><span class="cl">         }
+</span></span><span class="line"><span class="cl">       # ./app/views/layouts/application.html.haml:23:in `_app_views_layouts_application_html_haml___4376952060303332774_47460103924140&#39;
+</span></span><span class="line"><span class="cl">       # ./app/views/layouts/auth.html.haml:13:in `_app_views_layouts_auth_html_haml___1721087443773625754_47460102744080&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/challengable_concern.rb:47:in `render_challenge&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/auth/challenges_controller.rb:20:in `create&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/localized.rb:18:in `block in set_locale&#39;
+</span></span><span class="line"><span class="cl">       # ./app/controllers/concerns/localized.rb:17:in `set_locale&#39;
+</span></span><span class="line"><span class="cl">       # ./spec/controllers/auth/challenges_controller_spec.rb:31:in `block (4 levels) in &lt;top (required)&gt;&#39;
+</span></span><span class="line"><span class="cl">       # ------------------
+</span></span><span class="line"><span class="cl">       # --- Caused by: ---
+</span></span><span class="line"><span class="cl">       # Webpacker::Manifest::MissingEntryError:
+</span></span><span class="line"><span class="cl">       #   Webpacker can&#39;t find locales in /home/random/Projects/mastodon/public/packs-test/manifest.json. Possible causes:
+</span></span><span class="line"><span class="cl">       #   1. You want to set webpacker.yml value of compile to true for your environment
+</span></span><span class="line"><span class="cl">       #      unless you are using the `webpack -w` or the webpack-dev-server.
+</span></span><span class="line"><span class="cl">       #   2. webpack has not yet re-run to reflect updates.
+</span></span><span class="line"><span class="cl">       #   3. You have misconfigured Webpacker&#39;s config/webpacker.yml file.
+</span></span><span class="line"><span class="cl">       #   4. Your webpack configuration is not creating a manifest.
+</span></span><span class="line"><span class="cl">       #   Your manifest contains:
+</span></span><span class="line"><span class="cl">       #   {
+</span></span><span class="line"><span class="cl">       #   }
+</span></span><span class="line"><span class="cl">       #   ./app/views/layouts/application.html.haml:23:in `_app_views_layouts_application_html_haml___4376952060303332774_47460103924140&#39;
+</span></span><span class="line"><span class="cl">⋮
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Finished in 4 minutes 4.3 seconds (files took 6.07 seconds to load)
+</span></span><span class="line"><span class="cl">2680 examples, 332 failures, 23 pending
+</span></span></code></pre></div><p>Mhm.  That’s what I thought.  I’m going to need to write a post about getting this to work, aren’t I?</p>
+<p>Let’s skip the hour or two of flailing and digging into past <code>glitch-soc</code> and Mastodon tickets.</p>
+<p>The problem?  <a href="https://github.com/rails/webpacker">Webpacker</a> doesn’t compile assets for the test environment, because <a href="https://circleci.com/">CircleCI</a> already does that.</p>
+<div class="highlight" title=".config/webpacker.yml"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">test</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="cp">*default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># CircleCI precompiles packs prior to running the tests.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Also avoids race conditions in parallel_tests.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">compile</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Compile test packs to a separate directory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">public_output_path</span><span class="p">:</span><span class="w"> </span><span class="l">packs-test</span><span class="w">
+</span></span></span></code></pre></div><p>Set <code>compile</code> to <code>true</code> and everything passes.  Except they need that as <code>false</code> for CircleCI.  That — does this mean they never run any tests locally in development?  That tests only run after a commit is pushed?</p>
+<p>Inconceivable.  The very thought is like fingernails on a chalkboard.  Surely I missed something in the documentation.</p>
+<p>Well I’m going to run tests locally one way or another.</p>
+<p>Gimme a second.</p>
+<p>Okay how about this?</p>
+<p>First, clean up the compiled assets from my config experiment.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test</span> rake assets:clobber
+</span></span></code></pre></div><p>Next, precompile the assets and run tests again.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test</span> rake assets:precompile
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> rspec
+</span></span><span class="line"><span class="cl"><span class="go">⋮
+</span></span></span><span class="line"><span class="cl"><span class="go">Finished in 4 minutes 10.6 seconds (files took 6.04 seconds to load)
+</span></span></span><span class="line"><span class="cl"><span class="go">2680 examples, 0 failures, 23 pending
+</span></span></span></code></pre></div><p>Huzzah! Aside from that ghastly test time.  I’ve seen worse.  I’ve <em>written</em> worse.</p>
+<p>Clearly I need to automate this.  Maybe something to do with Foreman.  Maybe just a shell script that clobbers, precompiles, and runs tests.</p>
+<p>A real fix — if one is needed, and I didn’t just miss a vital paragraph of documentation — would be to give CircleCI its own environment distinct from the default test environment.</p>
+<h2 id="good-enough">Good enough</h2>
+<p>Will I actually do anything with my <code>glitch-soc</code> fork?  No idea.  But I want to share this for other dusty Ruby folks whose Rails applications predate <a href="https://webpack.js.org/">Webpack</a>.</p>
+<p>I should at least fiddle with instance settings enough to get a cute screenshot.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/104114425728242985"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2020/05/pondering-my-indieweb-guinea-pig/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Pondering My Indieweb Guinea Pig
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2020/05/datasette-sure-is-nifty/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Datasette Sure Is Nifty
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-glitch-soc-locally">Install glitch-soc locally</a>
+      <ul>
+        <li><a href="#install-redis">Install Redis</a></li>
+        <li><a href="#install-postgresql">Install Postgresql</a></li>
+        <li><a href="#clone-project-and-install-dev-dependencies">Clone project and install dev dependencies</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-tests-to-pass">Getting tests to pass</a></li>
+    <li><a href="#good-enough">Good enough</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

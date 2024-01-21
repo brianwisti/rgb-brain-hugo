@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/">
+<meta property="og:title" content="PHP Buzz Stream Reader">
+<meta name="twitter:title" content="PHP Buzz Stream Reader">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="[!NOTE] 2020-03-13 Of course, Google long ago turned Buzz into Plus, then abandoned that. Keeping the content here in case some fragment of the PHP can be useful to others.
+Why and What? Recently I updated the site so that it would summarize the latest posts from my blog. The motive is simple: my site does not get updated often, so data should be piped in from elsewhere to reassure people that I have not died in the middle of writing Parrot Babystep 09.">
+    <meta property="og:description" content="[!NOTE] 2020-03-13 Of course, Google long ago turned Buzz into Plus, then abandoned that. Keeping the content here in case some fragment of the PHP can be useful to others.
+Why and What? Recently I updated the site so that it would summarize the latest posts from my blog. The motive is simple: my site does not get updated often, so data should be piped in from elsewhere to reassure people that I have not died in the middle of writing Parrot Babystep 09.">
+  
+
+
+
+<title itemprop="name">PHP Buzz Stream Reader - Random Geekery</title>
+<meta property="og:title" content=PHP&#32;Buzz&#32;Stream&#32;Reader&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=PHP&#32;Buzz&#32;Stream&#32;Reader&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=PHP&#32;Buzz&#32;Stream&#32;Reader&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=PHP&#32;Buzz&#32;Stream&#32;Reader&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/" />
+
+
+<meta property="og:updated_time" content=12003-12-12T30:00:10-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2010/10/parrot-babysteps-0e-parrot-namespaces/">Parrot Babysteps 0e - Parrot Namespaces</a></li>
+        
+          <li><a href="/post/2010/10/ruby-and-the-hyg-star-catalog/">Ruby and the HYG Star Catalog</a></li>
+        
+          <li><a href="/post/2010/09/thoughts-on-the-word-bra/">Thoughts on the word &#34;Bra&#34;</a></li>
+        
+          <li><a href="/post/2010/09/rakudo/">Rakudo</a></li>
+        
+          <li><a href="/post/2010/08/parrot-babysteps-0d-the-space-trade-project/">Parrot Babysteps 0d - The SpaceTrade Project</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/">PHP Buzz Stream Reader</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2010/03/php-buzz-stream-reader/">PHP Buzz Stream Reader</a>
+    </h1>
+    
+        <time datetime="2010-03-12T00:00:00-0800" class="post-date">
+            March 12, 2010
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-php">
+            <a href="https://randomgeekery.org/tags/php">php</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <blockquote>
+<p>[!NOTE] 2020-03-13
+Of course, Google long ago turned Buzz into <a href="https://plus.google.com/">Plus</a>, then abandoned <em>that</em>. Keeping the content here in case some fragment of the <a href="/card/php/">PHP</a> can be useful to others.</p>
+</blockquote>
+<h2 id="why-and-what">Why and What?</h2>
+<p>Recently I updated the site so that it would summarize the latest posts
+from my blog. The motive is simple: my site does not get updated often,
+so data should be piped in from elsewhere to reassure people that I have
+not died in the middle of writing Parrot Babystep 09.</p>
+<p>The blog summary works. It’s nice. It’s pretty. Well, it’s pretty enough
+for me. The problem is that I am not the world’s most prolific blogger.
+I can write a lot, and I can write a little. The in-between world of
+blogs is uncomfortable territory for me. As a result, that nifty little
+summary only makes me look a little bit less dead than the old static
+update system I used.</p>
+<p>What about a <a href="http://twitter.com">Twitter</a> feed? That is easy enough,
+but the problem with Twitter feeds is that you get no context. I might
+be teasing a fellow Tweeter with <a href="http://foursquare.com">foursquare</a>
+jokes, but if you don’t know him and his seething hatred of all things
+foursquare then my commentary will seem nonsensical at best.</p>
+<p>Besides, I haven’t been using Twitter quite as much recently. I’m on to
+the next shiny thing: <a href="https://en.wikipedia.org/wiki/Google_Buzz">Google
+Buzz</a>. It provides the
+instant gratification of Twitter, along with a system for commenting,
+liking, geolocation, sharing links, and more. It’s sort of like
+<a href="http://facebook.com">Facebook</a>, except that it’s embedded into GMail
+and there’s no Mafia Wars yet.</p>
+<p>I’ve been <a href="http://www.google.com/profiles/brian.wisti#buzz">buzzing rather
+frequently</a>. I even
+have my blog and <a href="http://www.flickr.com/photos/brianwisti/">Flickr</a>
+activity fed into Buzz, so my Buzz stream includes anything from either
+of those.</p>
+<h2 id="how">How?</h2>
+<p>Let me throw an immediate disclaimer by saying that 80% of what I want
+is already implemented in the <a href="http://www.moretechtips.net/2010/02/google-buzz-widget-jquery-plugin.html">Google Buzz
+Widget</a>,
+a jQuery plugin which displays the contents of your Buzz stream. I tried
+it out, and it worked like a charm.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://google-buzz-widget.googlecode.com/files/jquery.google-buzz-1.0.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.my-buzz&#39;</span><span class="p">).</span><span class="nx">googleBuzz</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">username</span><span class="o">:</span><span class="s1">&#39;brian.wisti&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">n</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">show_n</span><span class="o">:</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;my-buzz&#34;</span><span class="p">&gt;</span>loading..<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>A little CSS fiddling, and voila!</p>
+<p><img src="/post/2010/03/attachments/img/2010/buzz-widget.png" title="Google Buzz Widget Image" alt="Google Buzz Widget Image"/></p>
+<p>The only thing is that some stuff I really want sits in the other 20%:</p>
+<ul>
+<li>the (admittedly lightweight) formatting from the original Buzz</li>
+<li>the links I share</li>
+<li>the images I post to Flickr.</li>
+</ul>
+<p>I don’t blame the Google Buzz Widget for not having that information. It
+uses a Google service which does not yet provide those details. To get
+at that information <em>today</em> I’ll need to directly access the original
+feed, not the feed as translated by a service. Since I’m the sort of guy
+that enjoys reinventing wheels, I’ll put something together myself.</p>
+<p>My site runs on a shared host, and the freshest language available to me
+on that host is <a href="http://php.net">PHP</a>. I’m not a huge fan of the
+language, but I am pragmatic. If the most convenient tool available is
+PHP, then that’s what I’ll use.</p>
+<p>If they had <a href="http://modperlite.org">mod_perlite</a>, it would be a
+significantly different story. Oh well. Let’s begin.</p>
+<h2 id="start">Start!</h2>
+<p>The initial local development will be on the home Mac, running OS X 10.5
+and PHP 5.2.11. My Web host supports newer versions of PHP - all the way
+up to 6 -but I’m not going to worry about it today.</p>
+<h3 id="grab-my-own-copy-of-the-feed">Grab my own copy of the feed</h3>
+<p>All right. I know for a fact that I’m going to be loading and
+manipulating this data a <em>lot</em> during the initial stage of development.
+I might as well grab a copy of the Buzz XML feed and work with it
+locally. That will save a bit of time and network load. Hey, every
+second counts.</p>
+<p>Buzz feed URLs follow a simple pattern, with your username inserted at
+the approproate place.</p>
+<blockquote>
+<p><code>http://buzz.googleapis.com/feeds/username/public/posted</code></p>
+</blockquote>
+<pre tabindex="0"><code>$ wget http://buzz.googleapis.com/feeds/brian.wisti/public/posted -O buzz.xml
+...
+2010-03-11 18:48:44 (754 KB/s) - `buzz.xml` saved [92972]
+</code></pre><h3 id="parse-and-print">Parse and Print</h3>
+<p>The first task is to parse the XML and display the results. I enjoy
+<a href="http://php.net/manual/en/book.simplexml.php">SimpleXML</a> when handling
+XML in PHP-land, since it hands back a reasonable data structure without
+any fuss from me.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">dump</span><span class="p">(</span><span class="nv">$variable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nx">print_r</span><span class="p">(</span><span class="nv">$variable</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;&lt;pre&gt;</span><span class="si">$output</span><span class="s2">&lt;/pre&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;buzz.xml&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Printing this, because PHP chokes on the &#39;&lt;?xml&#39; Processing Instruction
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">print</span> <span class="s1">&#39;&lt;?xml version=&#34;1.0&#34;?&gt;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;!DOCTYPE html
+</span></span></span><span class="line"><span class="cl"><span class="err">    PUBLIC &#34;-//W3C//DTD XHTML 1.0 Strict//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34; xml:lang=&#34;en&#34; lang=&#34;en&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;title&gt;Buzz Stream Test&lt;/title&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;h1&gt;Buzz Stream Test&lt;/h1&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo dump($buzz) ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;/html&gt;
+</span></span></span></code></pre></div><p>The result is not exciting, but it does show that the XML is being
+parsed. I have created a simple <code>dump</code> function which will come in handy
+as I examine the information being displayed.</p>
+<p><img src="/post/2010/03/attachments/img/2010/buzz-dump.png" title="Google Buzz dumped image" alt="Google Buzz dumped image"/></p>
+<h3 id="show-entries">Show Entries</h3>
+<p>Now I want to display the entries. How about I start by dumping them?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">dump</span><span class="p">(</span><span class="nv">$variable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nx">print_r</span><span class="p">(</span><span class="nv">$variable</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;&lt;pre&gt;</span><span class="si">$output</span><span class="s2">&lt;/pre&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;buzz.xml&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Printing this, because PHP chokes on the &#39;&lt;?xml&#39; Processing Instruction
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">print</span> <span class="s1">&#39;&lt;?xml version=&#34;1.0&#34;?&gt;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;!DOCTYPE html
+</span></span></span><span class="line"><span class="cl"><span class="err">    PUBLIC &#34;-//W3C//DTD XHTML 1.0 Strict//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34; xml:lang=&#34;en&#34; lang=&#34;en&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;title&gt;Buzz Stream Test&lt;/title&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;h1&gt;Buzz Stream Test&lt;/h1&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php foreach($buzz-&gt;entry as $entry): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo dump($entry) ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;hr /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endforeach ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;/html&gt;
+</span></span></span></code></pre></div><p>This lets me focus on the structure of an entry, at least as far as
+SimpleXML perceives it.</p>
+<pre tabindex="0"><code>SimpleXMLElement Object
+(
+    [title] =&gt; Buzz by Brian Wisti from Buzz
+    [summary] =&gt; Right. I set up a basic Buzz feed on my site using the jQuery Google Buzz Widget. It&#39;ll do while I&#39;m hacking together one of my own for a new PHP project page on coolnamehere. That section&#39;s been a bit neglected.
+    [published] =&gt; 2010-03-11T08:04:37.000Z
+    [updated] =&gt; 2010-03-11T08:04:37.626Z
+    [id] =&gt; tag:google.com,2009:buzz/z135dd3bwnadctqp404cd1tqkrqpyjgrmtg0k
+    [link] =&gt; Array
+        (
+            [0] =&gt; SimpleXMLElement Object
+                (
+                    [@attributes] =&gt; Array
+                        (
+                            [rel] =&gt; alternate
+                            [type] =&gt; text/html
+                            [href] =&gt; http://www.google.com/buzz/108694322269563399860/UYqMxptshCD/Right-I-set-up-a-basic-Buzz-feed-on-my-site-using
+                        )
+
+                )
+
+            [1] =&gt; SimpleXMLElement Object
+                (
+                    [@attributes] =&gt; Array
+                        (
+                            [rel] =&gt; replies
+                            [type] =&gt; application/atom+xml
+                            [href] =&gt; http://buzz.googleapis.com/feeds/108694322269563399860/comments/z135dd3bwnadctqp404cd1tqkrqpyjgrmtg0k
+                        )
+
+                )
+
+        )
+
+    [author] =&gt; SimpleXMLElement Object
+        (
+            [name] =&gt; Brian Wisti
+            [uri] =&gt; http://www.google.com/profiles/brian.wisti
+        )
+
+    [content] =&gt; &lt;div&gt;Right. I set up a basic Buzz feed on my site using the jQuery Google Buzz Widget. It&amp;#39;ll do while I&amp;#39;m hacking together one of my own for a new PHP project page on coolnamehere. That section&amp;#39;s been a bit neglected.&lt;/div&gt;
+)
+</code></pre><p>Quite a few details are being missed because SimpleXML has its own
+special tricks for handling namespaces, but a lot can be done before
+that is a concern. Let’s look at the information that <em>is</em> readily
+accessible and figure out what I can do with it.</p>
+<dl>
+<dt>title</dt>
+<dd>The posting source is shown here (Buzz, Flickr, Mobile, etc.)</dd>
+<dt>published</dt>
+<dd>When the Buzz was posted</dd>
+<dt>link</dt>
+<dd>A collection of links associated with the buzz (the buzz itself,
+posted links, images, replies, etc.)</dd>
+<dt>content</dt>
+<dd>The Buzz, formatted as an HTML fragment</dd>
+</dl>
+<p>Let’s do some simple formatting. I’m not sure what to do with the links
+yet, so I’ll just <code>dump</code> them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Buzz</span> <span class="nx">Stream</span> <span class="nx">Test</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$buzz</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="k">as</span> <span class="nv">$entry</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;p&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;p&gt;&lt;?php echo $entry-&gt;title ?&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php foreach ($entry-&gt;link as $link): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;?php echo dump($link) ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endforeach ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;?php endforeach ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;/body&gt;
+</span></span></span></code></pre></div><p>So what does that get us?</p>
+<aside class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Oh that’s right. At one point this was a sort of cool direct embedding
+of my Buzz debug run into the page. Wonder if I could find a capture at
+<a href="https://archive.org">https://archive.org</a></p>
+</aside>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;example&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>The sock begins<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>2010-03-10T07:22:09.000Z<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Buzz by Brian Wisti from Flickr<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>SimpleXMLElement Object
+</span></span><span class="line"><span class="cl">(
+</span></span><span class="line"><span class="cl">    [@attributes] =&gt; Array
+</span></span><span class="line"><span class="cl">        (
+</span></span><span class="line"><span class="cl">            [rel]  =&gt; alternate
+</span></span><span class="line"><span class="cl">            [type] =&gt; text/html
+</span></span><span class="line"><span class="cl">            [href] =&gt; http://www.google.com/buzz/108694322269563399860/PaTypwpxCkH/The-sock-begins
+</span></span><span class="line"><span class="cl">        )
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>SimpleXMLElement Object
+</span></span><span class="line"><span class="cl">(
+</span></span><span class="line"><span class="cl">    [@attributes] =&gt; Array
+</span></span><span class="line"><span class="cl">        (
+</span></span><span class="line"><span class="cl">            [rel]   =&gt; enclosure
+</span></span><span class="line"><span class="cl">            [href]  =&gt; http://www.flickr.com/photos/20592809@N00/4422058708
+</span></span><span class="line"><span class="cl">            [type]  =&gt; image/jpeg
+</span></span><span class="line"><span class="cl">            [title] =&gt; The sock begins
+</span></span><span class="line"><span class="cl">        )
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span>SimpleXMLElement Object
+</span></span><span class="line"><span class="cl">(
+</span></span><span class="line"><span class="cl">    [@attributes] =&gt; Array
+</span></span><span class="line"><span class="cl">        (
+</span></span><span class="line"><span class="cl">            [rel]  =&gt; replies
+</span></span><span class="line"><span class="cl">            [type] =&gt; application/atom+xml
+</span></span><span class="line"><span class="cl">            [href] =&gt; http://buzz.googleapis.com/feeds/108694322269563399860/comments/z13lhl3xavv4ujzga04cd1tqkrqpyjgrmtg0k
+</span></span><span class="line"><span class="cl">        )
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>This particular example has three links.</p>
+<ul>
+<li>An HTML &ldquo;alternate&rdquo; link that goes to the original Buzz post.</li>
+<li>An image &ldquo;enclosure&rdquo; link that leads to the <a href="http://www.flickr.com/photos/20592809@N00/4422058708">Flickr
+photo</a>.</li>
+<li>An Atom &ldquo;replies&rdquo; link that leads to a feed of replies for the
+original post.</li>
+</ul>
+<p>I care about the alternate and enclosure links, but not about the
+replies. Now, every entry has an alternate link, but not all of them
+have enclosure links. I will need to do a little processing to display
+those links properly, but I don’t want that processing to occur down
+there in the display section. I like to keep my displays as simple as
+possible. I’m going to create a Buzz_Entry class to handle the hard
+work.</p>
+<p>The first stab at this class is going to be simple, just adding clearly
+defined links for the Buzz and any enclosure.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz/Entry.class.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Buzz_Entry</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$xml_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">published</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">published</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">link</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">enclosure</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span><span class="p">(</span><span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">link</span> <span class="k">as</span> <span class="nv">$link</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">switch</span><span class="p">(</span><span class="nv">$link</span><span class="p">[</span><span class="s1">&#39;rel&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="s1">&#39;alternate&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">link</span> <span class="o">=</span> <span class="nv">$link</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="s1">&#39;enclosure&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">enclosure</span> <span class="o">=</span> <span class="nv">$link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>The newest iteration of the main file builds a collection of Buzz_Entry
+objects and takes advantage of the new attributes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz/Entry.class.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">dump</span><span class="p">(</span><span class="nv">$variable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nx">print_r</span><span class="p">(</span><span class="nv">$variable</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;&lt;pre&gt;</span><span class="si">$output</span><span class="s2">&lt;/pre&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;buzz.xml&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$entries</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span><span class="p">(</span><span class="nv">$buzz</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="k">as</span> <span class="nv">$entry_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buzz_Entry</span><span class="p">(</span><span class="nv">$entry_node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">array_push</span><span class="p">(</span><span class="nv">$entries</span><span class="p">,</span> <span class="nv">$entry</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Printing this, because PHP chokes on the &#39;&lt;?xml&#39; Processing Instruction
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">print</span> <span class="s1">&#39;&lt;?xml version=&#34;1.0&#34;?&gt;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;!DOCTYPE html
+</span></span></span><span class="line"><span class="cl"><span class="err">    PUBLIC &#34;-//W3C//DTD XHTML 1.0 Strict//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;html xmlns=&#34;http://www.w3.org/1999/xhtml&#34; xml:lang=&#34;en&#34; lang=&#34;en&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;title&gt;Buzz Stream Test&lt;/title&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/head&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;h1&gt;Buzz Stream Test&lt;/h1&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php foreach ($entries as $entry): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;p&gt;&lt;a href=&#34;&lt;?php echo $entry-&gt;link ?&gt;&#34;&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/a&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;p&gt;&lt;?php echo $entry-&gt;title ?&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;?php if ($entry-&gt;enclosure): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">                &lt;p&gt;&lt;a href=&#34;&lt;?php echo $entry-&gt;enclosure[&#39;href&#39;]?&gt;&#34;&gt;&lt;?php echo $entry-&gt;enclosure[&#39;title&#39;] ?&gt;&lt;/a&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;?php endif ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endforeach ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;/html&gt;
+</span></span></span></code></pre></div><p>Hey look! Now there’s stuff you can click!</p>
+<p>I want to refactor a little bit now, and put that initial logic into a
+separate file. It’s nice to keep your workplace tidy.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz.inc.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz/Entry.class.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * Prints the guts of a variable as preformatted text.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">dump</span><span class="p">(</span><span class="nv">$variable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">htmlentities</span><span class="p">(</span><span class="nx">print_r</span><span class="p">(</span><span class="nv">$variable</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;&lt;pre&gt;</span><span class="si">$output</span><span class="s2">&lt;/pre&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * Creates a collection of Buzz_Entry objects by
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * parsing the Buzz feed found in $source.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entries</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span><span class="nv">$buzz</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="k">as</span> <span class="nv">$entry_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$entry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buzz_Entry</span><span class="p">(</span><span class="nv">$entry_node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">array_push</span><span class="p">(</span><span class="nv">$entries</span><span class="p">,</span> <span class="nv">$entry</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$entries</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>This makes the initial PHP block of the main file simple.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz.inc.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;buzz.xml&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$entries</span> <span class="o">=</span> <span class="nx">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Printing this, because PHP chokes on the &#39;&lt;?xml&#39; Processing Instruction
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">print</span> <span class="s1">&#39;&lt;?xml version=&#34;1.0&#34;?&gt;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">⋮
+</span></span></span></code></pre></div><p>Now that I’ve satisfied my general sense of tidiness for the moment, I
+want to make the &ldquo;published&rdquo; timestamp into something normal people can
+read.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Buzz_Entry</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$xml_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// For your own formatting options, see:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//   http://www.php.net/manual/en/function.date.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">published</span> <span class="o">=</span> <span class="nx">date</span><span class="p">(</span><span class="s1">&#39;g:i a, F jS&#39;</span><span class="p">,</span> <span class="nx">strtotime</span><span class="p">(</span><span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">published</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>It’s a good idea to set the time zone, especially if your &ldquo;published&rdquo;
+format includes the time. I set mine in Buzz.inc.php.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz.inc.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">date_default_timezone_set</span><span class="p">(</span><span class="s1">&#39;America/Los_Angeles&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz/Entry.class.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span></code></pre></div><p>Now I don’t have to work so hard to figure out when a particular Buzz
+was posted.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;example&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>The sock begins<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.google.com/buzz/108694322269563399860/PaTypwpxCkH/The-sock-begins&#34;</span><span class="p">&gt;</span>11:22 pm, March 9th<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Buzz by Brian Wisti from Flickr<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.flickr.com/photos/20592809@N00/4422058708&#34;</span><span class="p">&gt;</span>The sock begins<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>I want to make one more adjustment to the output. The phrase &ldquo;Buzz by
+Brian Wisti from X&rdquo; in every title is redundant. &ldquo;X&rdquo; is the important
+part. Let’s get rid of the title, and replace it with a source.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz/Entry.class.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Buzz_Entry</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$xml_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">source</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s1">&#39;Buzz by Brian Wisti from &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span> <span class="o">=</span> <span class="nv">$xml_node</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ...
+</span></span></span></code></pre></div><p>I can’t forget to change the reference in the main PHP file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$entries</span> <span class="k">as</span> <span class="nv">$entry</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;p&gt;&lt;a href=&#34;&lt;?php echo $entry-&gt;link ?&gt;&#34;&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/a&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;p&gt;&lt;?php echo $entry-&gt;source ?&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">// ...
+</span></span></span></code></pre></div><p>Better?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;example&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>The sock begins<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.google.com/buzz/108694322269563399860/PaTypwpxCkH/The-sock-begins&#34;</span><span class="p">&gt;</span>11:22 pm, March 9th<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Flickr<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.flickr.com/photos/20592809@N00/4422058708&#34;</span><span class="p">&gt;</span>The sock begins<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Yes. Each entry now has what I consider a comfortable amount of
+information. Sure, I would love to embed the image into the entry, but
+that can wait. At least the link to the image is being displayed.</p>
+<p>Besides, if I wait too long the Buzz API will cover all of this. I want
+something up <em>today</em>.</p>
+<p>Now that I have the information I want, it’s time to make the entries
+pretty with a little shuffling and some CSS.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$entries</span> <span class="k">as</span> <span class="nv">$entry</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;div class=&#34;entry&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php if ($entry-&gt;enclosure): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;p class=&#34;enclosure&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">                &lt;a href=&#34;&lt;?php echo $entry-&gt;enclosure[&#39;href&#39;]?&gt;&#34;&gt;&lt;?php echo $entry-&gt;enclosure[&#39;title&#39;] ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endif ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;p class=&#34;published&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;a href=&#34;&lt;?php echo $entry-&gt;link ?&gt;&#34;&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            (via &lt;?php echo $entry-&gt;source ?&gt;)
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;?php endforeach ?&gt;
+</span></span></span></code></pre></div><p>Here are the style rules that I used.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">entry</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="kc">thin</span> <span class="kc">solid</span> <span class="kc">black</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="mf">0.5</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">entry</span> <span class="nt">a</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">entry</span> <span class="nt">p</span><span class="p">.</span><span class="nc">published</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-align</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">entry</span> <span class="nt">p</span><span class="p">.</span><span class="nc">enclosure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">margin-left</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>And the result may not be pretty, but it’s definitely better looking
+than it was before.</p>
+<h3 id="live-data">Live Data</h3>
+<p>Most of my fiddling is done. It is time to use live data. On the home
+machine, I only need to change the value of $source, because I have
+<a href="http://us2.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">allow_url_fopen</a>
+enabled.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz.inc.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Remember to replace &#39;brian.wisti&#39; with your username
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;http://buzz.googleapis.com/feeds/brian.wisti/public/posted&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$entries</span> <span class="o">=</span> <span class="nx">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...
+</span></span></span></code></pre></div><p>However, more is needed for this to work on the shared host.
+allow_url_fopen is not available, but the <a href="http://us2.php.net/manual/en/ref.curl.php">PHP cURL
+functions</a> are. Well, we work
+with what we have.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz.inc.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">ini_get</span><span class="p">(</span><span class="s1">&#39;allow_url_fopen&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;waffles&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nx">function_exists</span><span class="p">(</span><span class="s1">&#39;curl_init&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$curl</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HEADER</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$raw_xml</span> <span class="o">=</span> <span class="nx">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$buzz</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleXMLElement</span><span class="p">(</span><span class="nv">$raw_xml</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&#34;No reasonable fetching function available&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$entries</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span><span class="nv">$buzz</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="k">as</span> <span class="nv">$entry_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$entry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buzz_Entry</span><span class="p">(</span><span class="nv">$entry_node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">array_push</span><span class="p">(</span><span class="nv">$entries</span><span class="p">,</span> <span class="nv">$entry</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$entries</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Most of you can stop right here, but I need to do one more step. This
+site is actually a bunch of static HTML content, with no server side
+interaction. Well, almost static. I give myself permission to include
+content feeds from supplemental files and sites via JavaScript.</p>
+<p>It’s my site, and I go by my own strange rules. At least I try to be
+consistent.</p>
+<p>I’m going to do some quick and dirty
+<a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29">AJAX</a>. Very quick,
+and very dirty. Let’s change the main buzz.php file so that it generates
+an HTML fragment rather than a whole valid page.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz.inc.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;http://buzz.googleapis.com/feeds/brian.wisti/public/posted&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$entries</span> <span class="o">=</span> <span class="nx">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;?php foreach ($entries as $entry): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;div class=&#34;entry&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php if ($entry-&gt;enclosure): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;p class=&#34;enclosure&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">                &lt;a href=&#34;&lt;?php echo $entry-&gt;enclosure[&#39;href&#39;]?&gt;&#34;&gt;&lt;?php echo $entry-&gt;enclosure[&#39;title&#39;] ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endif ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;p class=&#34;published&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;a href=&#34;&lt;?php echo $entry-&gt;link ?&gt;&#34;&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            (via &lt;?php echo $entry-&gt;source ?&gt;)
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;?php endforeach ?&gt;
+</span></span></span></code></pre></div><p>I will continue using <a href="http://jquery.com">jQuery</a> as the framework for
+JavaScript interaction at this site, because it’s familiar to me.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;inc/js/jquery-1.4.2.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;inc/js/cnh.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Off in my site JavaScript file cnh.js, I set up the buzz-loading
+function. All it does is grab the output from buzz.php and insert it
+into the document.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">get_buzz</span><span class="p">(</span><span class="nx">div</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;/buzz/buzz.php&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">cache</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">summary</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">div</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">summary</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Finally, I add the function call to my site index:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;buzz&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">get_buzz</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#my-buzz&#39;</span><span class="p">));</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>See my latest updates on <span class="p">&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl"><span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.google.com/profiles/brian.wisti#buzz&#34;</span><span class="p">&gt;</span>Google Buzz<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Hopefully you can now go to the <a href="/">home page</a> and see a Buzz feed!</p>
+<blockquote>
+<p>[!NOTE]
+Well, you could have if it was 2010 and Google Buzz was still a thing. Oh well.</p>
+</blockquote>
+<p>Okay, one issue. It’s showing the <em>whole</em> feed. Let’s throw in a limit
+to the number of entries returned. I don’t feel like messing with the
+calling code right now, so let’s have a reasonable default.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Buzz.inc.php
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">ini_get</span><span class="p">(</span><span class="s1">&#39;allow_url_fopen&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;waffles&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$buzz</span> <span class="o">=</span> <span class="nx">simplexml_load_file</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nx">function_exists</span><span class="p">(</span><span class="s1">&#39;curl_init&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$curl</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HEADER</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$raw_xml</span> <span class="o">=</span> <span class="nx">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">curl_close</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$buzz</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleXMLElement</span><span class="p">(</span><span class="nv">$raw_xml</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&#34;No reasonable fetching function available&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$entries</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span><span class="nv">$buzz</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="k">as</span> <span class="nv">$entry_node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$limit</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$entry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buzz_Entry</span><span class="p">(</span><span class="nv">$entry_node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">array_push</span><span class="p">(</span><span class="nv">$entries</span><span class="p">,</span> <span class="nv">$entry</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$limit</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$entries</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Okay. That’s a good enough hack for a low-traffic site like mine.</p>
+<h3 id="cache-the-output">Cache the Output</h3>
+<p>What would happen if I got twelve million hits per minute because the
+world had suddenly become obsessed over whether I would ever finish
+knitting those socks?</p>
+<p>Well, my educated guess is that coolnamehere.com would be hosed. I have
+a good host for the price, but I think that is more traffic than your
+average shared host would be prepared for.</p>
+<p>I can take precautions to reduce the load, though. One that comes to
+mind is caching the HTML output to a file, and only checking for updates
+every 30 minutes or so. That will involve using PHP’s <a href="http://www.php.net/manual/en/ref.outcontrol.php">output control
+functions</a> to store the
+output which would normally be printed.</p>
+<p>I’m putting the display block into a template file, to make the
+application flow a little easier to understand. The display block does
+get an additional item to tell me <em>when</em> the cache was last built.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> <span class="cm">/* Buzz/Template.inc.php */</span> <span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;p class=&#34;generated&#34;&gt;Generated at &lt;?php echo $build_time ?&gt;&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;?php foreach ($entries as $entry): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;div class=&#34;entry&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php echo $entry-&gt;content ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php if ($entry-&gt;enclosure): ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;p class=&#34;enclosure&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">                &lt;a href=&#34;&lt;?php echo $entry-&gt;enclosure[&#39;href&#39;]?&gt;&#34;&gt;&lt;?php echo $entry-&gt;enclosure[&#39;title&#39;] ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;?php endif ?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;p class=&#34;published&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            &lt;a href=&#34;&lt;?php echo $entry-&gt;link ?&gt;&#34;&gt;&lt;?php echo $entry-&gt;published ?&gt;&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">            (via &lt;?php echo $entry-&gt;source ?&gt;)
+</span></span></span><span class="line"><span class="cl"><span class="err">        &lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;?php endforeach ?&gt;
+</span></span></span></code></pre></div><p>The main <code>buzz.php</code> looks a bit different now. Instead of jumping
+straight to the display, it looks for a cache file. If the cache file is
+new enough -defined here as less than 30 minutes old - then the script
+goes the easy way out and loads the cache. Otherwise, it buffers the
+output into a string, which is then saved to the cache file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz.inc.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;http://buzz.googleapis.com/feeds/brian.wisti/public/posted&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$html_cache</span> <span class="o">=</span> <span class="s2">&#34;/tmp/buzz.html&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$cache_limit</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span><span class="p">;</span> <span class="c1">// Maximum allowed age for cache, in seconds
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Load the cache if it exists and is new enough.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$cache_age</span> <span class="o">=</span> <span class="nx">time</span><span class="p">()</span> <span class="o">-</span> <span class="nx">filemtime</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_age</span> <span class="o">&lt;</span> <span class="nv">$cache_limit</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$output</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Build the cache if it is not loaded.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$output</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entries</span> <span class="o">=</span> <span class="nx">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$build_time</span> <span class="o">=</span> <span class="nx">date</span><span class="p">(</span><span class="s1">&#39;g:i a, F jS&#39;</span><span class="p">,</span> <span class="nx">time</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ob_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">require</span><span class="p">(</span><span class="s1">&#39;Buzz/Template.inc.php&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">ob_get_contents</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">file_put_contents</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">,</span> <span class="nv">$output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$output</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>Oh right. Whatever the output was gets sent to the browser. Don’t want
+to forget about that.</p>
+<p>Sweet. It worked. I make a couple minor adjustments relevant to my
+shared host settings, upload what I have, and hope for the best.</p>
+<h3 id="a-quick-bug-fix">A Quick Bug Fix</h3>
+<p>One issue is that the output gets displayed twice when the cache is
+first built.</p>
+<p>The problem is that I’m building <code>$output</code> by capturing standard output,
+and then printing out <code>$output</code>. What I didn’t stop to think about is
+the fact that standard output still gets displayed when the script is
+done running.</p>
+<p>Okay, so a quick fix is to only display output when it’s loaded from the
+cache file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;Buzz.inc.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$source</span> <span class="o">=</span> <span class="s1">&#39;http://buzz.googleapis.com/feeds/brian.wisti/public/posted&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$production_temp</span> <span class="o">=</span> <span class="s1">&#39;/home/bwisti/tmp&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$production_temp</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$html_cache</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">$production_temp</span><span class="s2">/buzz.html&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$html_cache</span> <span class="o">=</span> <span class="s2">&#34;/tmp/buzz.html&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$cache_limit</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span><span class="p">;</span> <span class="c1">// Maximum allowed age for cache, in seconds
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Load the cache if it exists and is new enough.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$cache_age</span> <span class="o">=</span> <span class="nx">time</span><span class="p">()</span> <span class="o">-</span> <span class="nx">filemtime</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_age</span> <span class="o">&lt;</span> <span class="nv">$cache_limit</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$output</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nv">$output</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Build the cache if it is not loaded.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$output</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entries</span> <span class="o">=</span> <span class="nx">load_buzz</span><span class="p">(</span><span class="nv">$source</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$build_time</span> <span class="o">=</span> <span class="nx">date</span><span class="p">(</span><span class="s1">&#39;g:i a, F jS&#39;</span><span class="p">,</span> <span class="nx">time</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ob_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">require</span><span class="p">(</span><span class="s1">&#39;Buzz/Template.inc.php&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$output</span> <span class="o">=</span> <span class="nx">ob_get_contents</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">file_put_contents</span><span class="p">(</span><span class="nv">$html_cache</span><span class="p">,</span> <span class="nv">$output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></div><h2 id="next-steps">Next Steps</h2>
+<p>There is a lot more information in the XML that I haven’t used with my
+naive application of SimpleXML. Once my eyes have uncrossed from this
+quick burst of activity, I’ll want to figure out how to get at those
+details and incorporate them into the feed.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2010/03/tying-bits-together/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Tying Bits Together
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2010/04/reading-the-modern-perl-book/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Reading the Modern Perl Book
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-and-what">Why and What?</a></li>
+    <li><a href="#how">How?</a></li>
+    <li><a href="#start">Start!</a>
+      <ul>
+        <li><a href="#grab-my-own-copy-of-the-feed">Grab my own copy of the feed</a></li>
+        <li><a href="#parse-and-print">Parse and Print</a></li>
+        <li><a href="#show-entries">Show Entries</a></li>
+        <li><a href="#live-data">Live Data</a></li>
+        <li><a href="#cache-the-output">Cache the Output</a></li>
+        <li><a href="#a-quick-bug-fix">A Quick Bug Fix</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

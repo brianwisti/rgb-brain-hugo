@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">
+<meta property="og:title" content="Python Interactive Fiction - 03 Handling Multiple Turns">
+<meta name="twitter:title" content="Python Interactive Fiction - 03 Handling Multiple Turns">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="This is Part 3 of an ongoing series ongoing series about writing interactive fiction games in Python. By the end of python-interactive-fiction-02-tying-the-scenes-together we had created a text-based user interface and explored one way of storing multiple scenes. This part will finally bring the needed glue for the player to move between all of the scenes in the story. In other words, we&rsquo;ll have a game!">
+    <meta property="og:description" content="This is Part 3 of an ongoing series ongoing series about writing interactive fiction games in Python. By the end of python-interactive-fiction-02-tying-the-scenes-together we had created a text-based user interface and explored one way of storing multiple scenes. This part will finally bring the needed glue for the player to move between all of the scenes in the story. In other words, we&rsquo;ll have a game!">
+  
+
+
+
+<title itemprop="name">Python Interactive Fiction - 03 Handling Multiple Turns - Random Geekery</title>
+<meta property="og:title" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;03&#32;Handling&#32;Multiple&#32;Turns&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;03&#32;Handling&#32;Multiple&#32;Turns&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;03&#32;Handling&#32;Multiple&#32;Turns&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;03&#32;Handling&#32;Multiple&#32;Turns&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/" />
+
+
+<meta property="og:updated_time" content=14006-14-12T60:00:07-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/">Python Interactive Fiction - 02 Tying the Scenes Together</a></li>
+        
+          <li><a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">Python Interactive Fiction - 01 Handling a Single Round</a></li>
+        
+          <li><a href="/post/2007/04/interactive-fiction-with-python/">Interactive Fiction with Python</a></li>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+          <li><a href="/post/2011/06/python-2x-babysteps/">Python 2.x Babysteps</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">Python Interactive Fiction - 03 Handling Multiple Turns</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">Python Interactive Fiction - 03 Handling Multiple Turns</a>
+    </h1>
+    
+        <time datetime="2007-06-14T00:00:00-0700" class="post-date">
+            June 14, 2007
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-interactive-fiction">
+            <a href="https://randomgeekery.org/tags/interactive-fiction">interactive-fiction</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Python Interactive Fiction]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p>This is Part 3 of an <a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">ongoing series</a> <a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">ongoing series</a> about writing interactive fiction games in <a href="/card/python/">Python</a>. By the end of <a href="/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/">python-interactive-fiction-02-tying-the-scenes-together</a> we had created a text-based user interface and explored one way of storing multiple scenes. This part will finally bring the needed glue for the player to move between all of the scenes in the story. In other words, we&rsquo;ll have a game!</p>
+<p>You&rsquo;re going to be amazed at how simple this is to do. We&rsquo;ll start with a simple, clumsy approach.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span> <span class="c1"># For nice formatting of the description</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>      <span class="c1"># For exiting the game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scenes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;field&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;the south of you is a valley.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;mountains&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the mountains&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;forest&#34;</span><span class="p">,</span>    <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the forest&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;cave&#34;</span><span class="p">,</span>      <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go into the cave&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;valley&#34;</span><span class="p">,</span>    <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the valley&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;mountains&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing at the foot of a mountain range. Huge impassable peaks &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;loom over you. There is a cave to the east, and a field south of you &#34;</span>    \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;leading into a valley.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;cave&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go into the cave&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;field&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go south into the field&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;forest&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;A giant confused bear mistakes your for one of her cubs and takes you &#34;</span>   \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;away with her. Although you eventually learn to love your new bear &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;family, your adventuring days are over.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;cave&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are in a long dark cave. You see points of daylight at either end of &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;the cave, one to the northeast and one to the southwest.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;mountains&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go northwest&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;field&#34;</span><span class="p">,</span>     <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go southwest&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;valley&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing in the middle of a huge, beautiful valley. Standing right &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;before you is ... whatever it was you were looking for. Success!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Watch out, could be an infinite loop!</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Show the menu for this scene.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;go_to&#34;</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>The changes really are simple. I decided to put the whole process of describing the scene and getting user input into a <code>while</code> loop. The loop is basically going to go forever, as our loop test shows. One always equals one according to my admittedly limited math skills, so this test is always going to return <code>true</code>. That means we have an infinite loop. Infinite loops aren&rsquo;t really a good idea, but they are often the easiest way to describe what you want the computer to do. However, we do need <em>some</em> way to quit the loop and the game. That is where the <code>exit</code> function from the <a href="https://docs.python.org/2/library/sys.html"><code>sys</code></a> module comes in handy. <code>sys</code> contains many variables and functions that allow your program to interact directly with Python itself and your computer environment. <code>sys.exit</code> serves the rather obvious purpose of exiting the Python system. That&rsquo;s all we need to break out of our loop.</p>
+<p>Let&rsquo;s take a look at running the game.</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go to the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection (0 - 4): 1
+You decided to: Go to the mountains
+You are standing at the foot of a mountain range. Huge impassable
+peaks loom over you. There is a cave to the east, and a field south of
+you leading into a valley.
+        1 Go into the cave
+        2 Go south into the field
+        (0 Quit)
+Make a selection (0 - 2): 2
+You decided to: Go south into the field
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go to the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection (0 - 4): 4
+You decided to: Go to the valley
+You are standing in the middle of a huge, beautiful valley. Standing
+right before you is ... whatever it was you were looking for. Success!
+        (0 Quit)
+Make a selection (0 - 0): 0
+Good bye!
+</code></pre><p>Congratulations, it&rsquo;s a game!</p>
+<p>You can stop at this point. The game is complete, and there is nothing more that <em>needs</em> to be done. There are some more things I would like to do with the game before I move on. I invite you to follow me in the process of making our code more pleasant to read. I will spend time wandering from thought to thought. You will probably learn less about programming, but quite a bit about how I look at programs.</p>
+<h2 id="cleaning-up">Cleaning up</h2>
+<p>The game works, but it could stand to be cleaned up. <em>Refactoring</em> is the practice of examining your application code and deciding what changes would make the code easier to read, faster, or just plain better in some way, but <em>without changing what the program does</em>. That&rsquo;s the hard part. It is so tempting to add new features as soon as you think of them. That leads to a pile of unreadable code, sooner or later. That pile usually shows up sooner if you don&rsquo;t refactor often enough. Trust me. I am speaking from years of experience creating huge piles of unreadable code.</p>
+<p>Some developers may argue that this program is too small for refactoring to be much use. After all, my copy is only 87 lines including <code>scenes</code>. They can argue all they want, but this is my code, and I think that some functions would push the more elaborate code into a corner so that the code which runs the game is easier to read.</p>
+<p>It isn&rsquo;t difficult, either. We can start by searching for clumsy-looking blocks of code which make it harder to figure out what&rsquo;s going on.</p>
+<p>This looks like a good candidate right here.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl"><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>What do we want? We want the user to tell us what she wants to do next. The user picks a number which could lead to another scene or quitting. Let us define it in a function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Scene definitions</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Function definitions</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Show the menu for this scene.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_step</span>
+</span></span></code></pre></div><p>We just moved the code into a function <code>def</code> block which we called <code>select_path</code>.
+<code>select_path</code> needs to know all about the paths for the scene in order to build the prompt, so we indicate that in the function definition. <code>next_step</code> is set to <code>None</code> inside the function, since Python doesn&rsquo;t know about it yet.</p>
+<p>The rest of the function block looks like the original chunk of code, until it reaches the end. Instead of doing something with the selected <code>next_step</code>, <code>select_path</code> returns it to whoever called it. You want to limit what your function does to one important thing, and you want to name your function for the one thing it does. This is one more little thing that makes code easier to handle when you come back to it later.</p>
+<p>As I was saying - if <code>select_path</code> holds the code for getting user input and sends the results to the caller, what does our main game code look like now?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Game starts here.</span>
+</span></span><span class="line"><span class="cl"><span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Watch out, could be an infinite loop!</span>
+</span></span><span class="line"><span class="cl">    <span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="n">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;go_to&#34;</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>The original chunk has been replaced by a single line of code. This has made things a little more readable, but I still see a lot of changes we could make. Yes, I really do program like this. It is a faster process than you think, especially if you&rsquo;re not narrating as you write code.</p>
+<p>What would I like to do next? Well, I don&rsquo;t like the way <code>select_path</code> uses a loop to get the path selection. There&rsquo;s nothing wrong with that approach, but I don&rsquo;t think it reads clearly:</p>
+<blockquote>
+<p>While there is not a valid <code>next_step</code>, try to get the user selection and use it to pick <code>next_step</code></p>
+</blockquote>
+<p>That is more or less how this reads to me in English. The second part is okay, but the first part is nonsensical. Let&rsquo;s roll up our sleeves and make some sense out of this.</p>
+<p>First off: we know we are going to be working with the user input portion of this function, and maybe in a big way. Let&rsquo;s protect <code>select_path</code> by refactoring user input into its own function. What to name it? Well, we are showing a prompt and getting user input, so the behavior is similar to <code>raw_input</code>.  This input is relevant to the menu we just displayed, so let&rsquo;s call our new function <code>menu_input</code>. We still need that <code>paths</code> data, so it&rsquo;ll be an argument for our new function as well.</p>
+<p>Here is a first version of <code>menu_input</code>, followed by the modified version of <code>select_path</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Function definitions</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Show the menu for this scene.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="n">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_step</span>
+</span></span></code></pre></div><p>The current phrasing of <code>menu_input</code> bothers me, but what would be an improvement? Python doesn&rsquo;t have a convenient way of saying &ldquo;do this until I have a useful value&rdquo;, but there is another way to phrase the task:</p>
+<blockquote>
+<p>Try to get the user selection and use it to pick <code>next_step</code>. If something goes wrong, warn the user and try again. If nothing goes wrong, return <code>next_step</code>.</p>
+</blockquote>
+<p>How do you say that in Python? You say it with <em>recursion</em>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Try again!</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_step</span> <span class="o">=</span> <span class="n">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_step</span>
+</span></span></code></pre></div><p>I have managed to clean up the code merely by changing the way I phrased the task. What does <code>menu_input</code> do? It tries to get a value for <code>next_step</code> from user input. What happens if the user input is bad? <em>It tries again!</em> Brilliant in its simplicity! You will find that recursion - the act of calling the current function again — can be an easier way to describe your solution to a problem than using a loop. You can even change the arguments each time you recurse. Actually, that is encouraged. It just wasn&rsquo;t needed for <code>menu_input</code>.</p>
+<p>There is one more change I would like to make to <code>menu_input</code>. The variable name <code>next_step</code> made sense when it was being defined in the context of a whole game, but now it is being defined in a much narrower context. The variable should have a new name which reflects that we are getting and returning the path that was selected by the user. <code>selected_path</code> ought to do it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selected_path</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selected_path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Try again!</span>
+</span></span><span class="line"><span class="cl">        <span class="n">selected_path</span> <span class="o">=</span> <span class="n">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">selected_path</span>
+</span></span></code></pre></div><p>Choosing a variable name can be a tricky business. It doesn&rsquo;t have much effect on how the program runs, but it can have a huge impact on how easy it is for you to read the code. I discuss code reading a lot, and there is a good reason for that. You will ultimately be spending more time reading code than writing it. Even if you only work on your own projects, you will have to review the code multiple times. And program code is not written for the computer. It&rsquo;s written for the programmer. All the computer needs are the specific machine instructions to perform a task. The reason we don&rsquo;t write much in machine language these days is simple: we don&rsquo;t have to. Computers are powerful enough to provide layers between us and the machine language. So, if you are writing code, write for people. You can think of it as a story if you want to. Try to make it like a story by Ernest Hemingway, a man who was famous for writing simply and clearly.</p>
+<blockquote>
+<p>My aim is to put down on paper what I see and what I feel in the best and simplest way. &ndash; <em>Ernest Hemingway</em></p>
+</blockquote>
+<p>My writing is a long way from his, but I keep this goal in my head while I write code.</p>
+<p>I am nearly done with refactoring this code. The <code>while 1 == 1</code> block still bothers me, though. There has to be a more graceful way to describe the game loop. Let&rsquo;s look at what we have right now.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Watch out, could be an infinite loop!</span>
+</span></span><span class="line"><span class="cl">    <span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="n">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;go_to&#34;</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>It is tempting to rewrite this as a recursive function, since it worked so well for menu input.
+Unfortunately, that may not work for a game loop. Python has built-in recursion limits, which you can find from the library function <code>sys.getrecursionlimit</code>. This function returns <code>1000</code> on my machine, and it probably will on yours too. This means that you can recursively call a function no more than one thousand times. That sounds like a lot, but you will hit that ceiling a lot sooner than you think if you rely heavily on recursion.</p>
+<p>Oh well, I guess I could put this block into its own function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">play_game</span><span class="p">(</span><span class="n">start_scene</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scene</span> <span class="o">=</span> <span class="n">start_scene</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Watch out, could be an infinite loop!</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_step</span> <span class="o">=</span> <span class="n">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;go_to&#34;</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Game starts here.</span>
+</span></span><span class="line"><span class="cl"><span class="n">play_game</span><span class="p">(</span><span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">])</span>
+</span></span></code></pre></div><p>This does make the application code simple. It&rsquo;s just a function call to play the game, starting with the &ldquo;field&rdquo; scene. And really, this is as far as I feel like refactoring the game code. Here is the final form of our simple interactive fiction game.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span> <span class="c1"># For nice formatting of the description</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>      <span class="c1"># For exiting the game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scenes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;field&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;the south of you is a valley.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;mountains&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the mountains&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;forest&#34;</span><span class="p">,</span>    <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the forest&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;cave&#34;</span><span class="p">,</span>      <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go into the cave&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;valley&#34;</span><span class="p">,</span>    <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go to the valley&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;mountains&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing at the foot of a mountain range. Huge impassable peaks &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;loom over you. There is a cave to the east, and a field south of you &#34;</span>    \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;leading into a valley.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;cave&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go into the cave&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;field&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go south into the field&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;forest&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;A giant confused bear mistakes your for one of her cubs and takes you &#34;</span>   \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;away with her. Although you eventually learn to love your new bear &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;family, your adventuring days are over.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;cave&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are in a long dark cave. You see points of daylight at either end of &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;the cave, one to the northeast and one to the southwest.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;mountains&#34;</span><span class="p">,</span> <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go northwest&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;go_to&#34;</span><span class="p">:</span> <span class="s2">&#34;field&#34;</span><span class="p">,</span>     <span class="s2">&#34;phrase&#34;</span><span class="p">:</span> <span class="s2">&#34;Go southwest&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;valley&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;You are standing in the middle of a huge, beautiful valley. Standing right &#34;</span> \
+</span></span><span class="line"><span class="cl">                       <span class="s2">&#34;before you is ... whatever it was you were looking for. Success!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;paths&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Function definitions</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Make a selection (0 - </span><span class="si">%i</span><span class="s2">): &#34;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selected_path</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selected_path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Try again!</span>
+</span></span><span class="line"><span class="cl">        <span class="n">selected_path</span> <span class="o">=</span> <span class="n">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">selected_path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Show the menu for this scene.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_step</span> <span class="o">=</span> <span class="n">menu_input</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">play_game</span><span class="p">(</span><span class="n">start_scene</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scene</span> <span class="o">=</span> <span class="n">start_scene</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Watch out, could be an infinite loop!</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;description&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paths</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&#34;paths&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_step</span> <span class="o">=</span> <span class="n">select_path</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">next_step</span> <span class="o">==</span> <span class="s2">&#34;quit&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">scene</span> <span class="o">=</span> <span class="n">scenes</span><span class="p">[</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;go_to&#34;</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span><span class="p">[</span><span class="s2">&#34;phrase&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Game starts here.</span>
+</span></span><span class="line"><span class="cl"><span class="n">play_game</span><span class="p">(</span><span class="n">scenes</span><span class="p">[</span><span class="s2">&#34;field&#34;</span><span class="p">])</span>
+</span></span></code></pre></div><p>We are more or less done with this train of thought. I have introduced you to many topics, but I have taken my own strange path through them. Your next step should be to reexamine the <a href="https://docs.python.org/2/tutorial/index.html">official Python tutorial</a>
+and see if it makes any more sense than the first time you read it.</p>
+<h2 id="more-ideas">More ideas</h2>
+<p>Now that you have a complete game, what else can you do? There are many ideas. I may even tackle a few of them in future installments. You don&rsquo;t have to wait for me, though.</p>
+<h3 id="different-story-maps">Different story maps</h3>
+<p>What happens when you want a different story? Right now, you have to rewrite the <code>scenes</code> dictionary within the program. Wouldn&rsquo;t it be better if you could load a story from another file? It&rsquo;s Python code, so you could try experimenting with <code>import</code>.</p>
+<h3 id="saving-a-game">Saving a game</h3>
+<p>What do you do if you have a very large story map and the player can&rsquo;t handle the whole thing in one session? Right now, nothing. The user has to restart the game every time. It would be very generous if you came up with some way to save the key of the current scene to a configuration file, and resume from that scene when the game restarted. You would have to add a command for saving and quitting instead of simply quitting.</p>
+<h3 id="inventory">Inventory</h3>
+<p>Would the story go differently if the user had a flashlight in the cave? Adding inventory and letting it affect the available paths in your story is one way to make your game richer, at the cost of making the code much more complicated. Still, go ahead and give it a shot if you are interested!</p>
+<h2 id="a-bonus-diversion-scope">A Bonus Diversion: Scope</h2>
+<blockquote>
+<p>[!NOTE]
+This was originally part of the main text, but it didn&rsquo;t really belong anywhere once I had finished writing. I decided to leave it in as one more bout of insane rambling instead of deleting it and probably forever forgetting it. At least this way I have something to start from when I <em>do</em> feel like talking about scope.</p>
+</blockquote>
+<p>Hey, you may be wondering how I could get away with using the variable <code>next_step</code> in so many places. First, let me make a confession. Reusing the same name like that over and over again is poor form. I should be changing the name to reflect how it is being used in its code block, instead of just cutting and pasting from one block to another. I was in a hurry, though, and being in a hurry can lead to laziness. In my defense, <code>next_step</code> is being properly defined with the same line each step of the way: <code>next_step = paths[ index ]</code>.
+It doesn&rsquo;t feel like I&rsquo;m doing any harm, since I <em>am</em> effectively referring to the same thing. Still, I am making excuses for my laziness.</p>
+<p>Another thing I would like to point out is that they are each completely different variables from Python&rsquo;s perspective. We use the term <em>scope</em> to describe where a particular variable can be seen. First, if a variable is first defined inside of a function, it is only visible within that function. As soon as the function returns, its &ldquo;local&rdquo; variables usually cease to exist. <em>(There are special situations where this is not true, but I am not going to look at them yet. Look up &ldquo;closure&rdquo; on the Internet for more information)</em>. Variables that are defined outside of a function are visible from the point where they are defined until the end of the file. If you define a value for a local variable with the same name as a global variable, though, the local variable &ldquo;masks&rdquo; the global variable until the end of the function.</p>
+<p>It&rsquo;s all fairly confusing, and easiest to demonstrate with another trip to the Python console.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; x = &#34;waffle&#34;
+&gt;&gt;&gt; def foo():
+...     print x
+...
+&gt;&gt;&gt; foo()
+waffle
+&gt;&gt;&gt; def bar():
+...     x = &#34;angry bears!&#34;
+...     print x
+...
+&gt;&gt;&gt; bar()
+angry bears!
+&gt;&gt;&gt; print x
+waffle
+&gt;&gt;&gt;  
+</code></pre><p>Are you feeling a little lost? It&rsquo;s okay, variable scope confuses many developers. The scope rule to remember is that a local definition trumps a global definition. The style rule to remember? Don&rsquo;t use global variables and you only need to remember about local variables and variables handed to a function as part of its arguments.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/python-interactive-fiction">Python Interactive Fiction</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2007/05/coolnamehere-is-open-to-the-commons/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Coolnamehere is open to the Commons
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2007/06/perldoc/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Perldoc
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cleaning-up">Cleaning up</a></li>
+    <li><a href="#more-ideas">More ideas</a>
+      <ul>
+        <li><a href="#different-story-maps">Different story maps</a></li>
+        <li><a href="#saving-a-game">Saving a game</a></li>
+        <li><a href="#inventory">Inventory</a></li>
+      </ul>
+    </li>
+    <li><a href="#a-bonus-diversion-scope">A Bonus Diversion: Scope</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2014/10/windows-chocolatey/">
+<meta property="og:title" content="chocolatey">
+<meta name="twitter:title" content="chocolatey">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="A package manager for Windows">
+    <meta property="og:description" content="A package manager for Windows">
+  
+
+
+
+<title itemprop="name">chocolatey - Random Geekery</title>
+<meta property="og:title" content=chocolatey&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=chocolatey&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=chocolatey&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=chocolatey&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="A package manager for Windows" />
+<meta itemprop="description" content="A package manager for Windows" />
+<meta property="og:description" content="A package manager for Windows" />
+<meta name="twitter:description" content="A package manager for Windows" />
+
+
+<base href="https://randomgeekery.org/post/2014/10/windows-chocolatey/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2014/10/windows-chocolatey/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2014/10/windows-chocolatey/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2014/10/windows-chocolatey/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2014/10/windows-chocolatey/" />
+
+
+<meta property="og:updated_time" content=4010-04-12T100:00:14-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2020/06/winget/">winget</a></li>
+        
+          <li><a href="/post/2022/05/2022-05-25-wed-0954/">[2022-05-25 Wed 09:54]</a></li>
+        
+          <li><a href="/post/2021/10/winget-is-pretty-slick-now/">winget is pretty slick now</a></li>
+        
+          <li><a href="/post/2021/02/just-noticed-okular-pdf-is-on-windows/">Just noticed Okular PDF is on Windows</a></li>
+        
+          <li><a href="/post/2020/06/my-git-cli-windows-setup/">My Git CLI Windows setup</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2014/10/windows-chocolatey/">chocolatey</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2014/10/windows-chocolatey/">chocolatey</a>
+    </h1>
+    
+        <time datetime="2014-10-04T00:00:00-0700" class="post-date">
+            October 4, 2014
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-windows">
+            <a href="https://randomgeekery.org/tags/windows">windows</a>
+        </li>
+        
+        <li class="tag-package-manager">
+            <a href="https://randomgeekery.org/tags/package-manager">package-manager</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>I don&rsquo;t know about you, but I had a pleasant Saturday. It started with an hour or so of the Coursera <a href="https://www.coursera.org/course/proglang/">Programming Languages</a> videos. I learned a little bit about <a href="http://www.smlnj.org/">SML</a>, and have been trying to remember the instructor&rsquo;s caution about comparing what&rsquo;s learned in class to other languages. It&rsquo;s supposed to be a fresh perspective on programming.</p>
+<p>Some time in the evening was spent playing Torchlight 2 and fiddling with things on the Windows partition of my machine.</p>
+<p>Recently I have been spending more time in <em>inbox/Windows</em>. I don&rsquo;t really know why. Could just be a seasonal thing. Every few months I get bored of the tools and languages I&rsquo;m using, and start looking for new combinations. Most of the Free and Open Source Software that I enjoy is available on any operating system I feel like using, so it isn&rsquo;t <em>that</em> big of a deal.</p>
+<p>Sometimes I discover something completely new to me when I do these switches. One of my discoveries this time around on Windows is <a href="https://chocolatey.org/">chocolatey</a>. chocolatey is a package manager for Windows. It allows you to install a surprising range of software utilities from an administrative command line - <code>cmd.exe</code> or PowerShell will work.</p>
+<p>According to their front page, there are currently 2,257 unique packages available in the chocolatey system. There are plenty of expected FOSS tools such as editors and programming languages. There are also many utilities that I always end up installing on Windows, like <a href="https://chocolatey.org/packages/paint.net/">Paint.NET</a> and <a href="https://chocolatey.org/packages/putty/">PuTTY</a>.</p>
+<p>I didn&rsquo;t find chocolatey until after installing my core Python and Perl toolset, but both are available. <a href="https://chocolatey.org/packages/python/">Here&rsquo;s Python</a> and <a href="https://chocolatey.org/packages/StrawberryPerl/">Here&rsquo;s Perl</a>. It looks like the version of Strawberry Perl in chocolately is a little behind, so it probably helps to pay attention to available versions.</p>
+<p><a href="https://chocolatey.org/packages/ruby/">Ruby</a> and <a href="https://chocolatey.org/packages/Emacs/">Emacs</a> are installed via chocolatey, though. I definitely want to spend some more time with chocolatey. It seems quite nice at first glance.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2014/10/starting-the-coursera-programming-languages-course/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Starting The Coursera Programming Languages Course
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2014/10/blog-writing-in-org-mode/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Blog Writing in Org Mode
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

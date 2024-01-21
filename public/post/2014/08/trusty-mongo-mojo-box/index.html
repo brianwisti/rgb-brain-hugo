@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/">
+<meta property="og:title" content="Trusty Mongo Mojo Box">
+<meta name="twitter:title" content="Trusty Mongo Mojo Box">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="[!NOTE] tldr Install Vagrant &amp; VirtualBox.
+mkdir my-box cd my-box vagrant init brianwisti/trusty-mongo-mojo Be aware that this is my first packaged Vagrant box, and it is probably not great.
+Motivation I want to explore Mojolicious framework for Perl along with MongoDB. Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of virtualization tools that have become popular.">
+    <meta property="og:description" content="[!NOTE] tldr Install Vagrant &amp; VirtualBox.
+mkdir my-box cd my-box vagrant init brianwisti/trusty-mongo-mojo Be aware that this is my first packaged Vagrant box, and it is probably not great.
+Motivation I want to explore Mojolicious framework for Perl along with MongoDB. Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of virtualization tools that have become popular.">
+  
+
+
+
+<title itemprop="name">Trusty Mongo Mojo Box - Random Geekery</title>
+<meta property="og:title" content=Trusty&#32;Mongo&#32;Mojo&#32;Box&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Trusty&#32;Mongo&#32;Mojo&#32;Box&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Trusty&#32;Mongo&#32;Mojo&#32;Box&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Trusty&#32;Mongo&#32;Mojo&#32;Box&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/" />
+
+
+<meta property="og:updated_time" content=5008-05-12T80:00:14-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2014/08/replyrc-and-mojo/">replyrc And Mojo</a></li>
+        
+          <li><a href="/post/2014/08/repl-in-perl-with-reply/">REPL In Perl With Reply</a></li>
+        
+          <li><a href="/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/">Connect To MongoDB on a Vagrant box from the host</a></li>
+        
+          <li><a href="/post/2017/04/making-a-mojo-link-checker/">Making A Mojo Link Checker</a></li>
+        
+          <li><a href="/post/2016/04/yearly-post-archives-in-hugo/">Yearly Post Archives In Hugo</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/">Trusty Mongo Mojo Box</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2014/08/trusty-mongo-mojo-box/">Trusty Mongo Mojo Box</a>
+    </h1>
+    
+        <time datetime="2014-08-05T00:00:00-0700" class="post-date">
+            August 5, 2014
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-virtualization">
+            <a href="https://randomgeekery.org/tags/virtualization">virtualization</a>
+        </li>
+        
+        <li class="tag-vagrant">
+            <a href="https://randomgeekery.org/tags/vagrant">vagrant</a>
+        </li>
+        
+        <li class="tag-perl">
+            <a href="https://randomgeekery.org/tags/perl">perl</a>
+        </li>
+        
+        <li class="tag-mongodb">
+            <a href="https://randomgeekery.org/tags/mongodb">mongodb</a>
+        </li>
+        
+        <li class="tag-mojolicious">
+            <a href="https://randomgeekery.org/tags/mojolicious">mojolicious</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <blockquote>
+<p>[!NOTE] <a href="/card/tldr/">tldr</a>
+Install Vagrant &amp; VirtualBox.</p>
+<pre tabindex="0"><code>mkdir my-box
+cd my-box
+vagrant init brianwisti/trusty-mongo-mojo
+</code></pre><p>Be aware that this is my first packaged Vagrant box, and it is probably not great.</p>
+</blockquote>
+<h2 id="motivation">Motivation</h2>
+<p>I want to explore <a href="http://mojolicio.us/">Mojolicious</a> framework for <a href="/card/perl/">Perl</a> along with <a href="https://www.mongodb.org/">MongoDB</a>. Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of <a href="http://en.wikipedia.org/wiki/Virtualization">virtualization</a> tools that have become popular. This is an opportunity to learn how to set up a <a href="http://vagrantup.com">Vagrant</a> box for my Mojolicious / MongoDB explorations.</p>
+<h2 id="creating-the-box">Creating The Box</h2>
+<p>A <a href="http://en.wikipedia.org/wiki/Virtual_machine">virtual machine</a> is basically a simulated operating system running on whatever your host machine is: Windows, Linux, OS X - whatever. That virtual machine lives its life as if it has its own environment. It is useful for application development, testing, application hosting, and security research. You can have a library of guest virtual machines, each dedicated to a particular task.</p>
+<p>I have now exhausted my knowledge of virtualization, so let us move on.</p>
+<p>Vagrant provides a single configuration and command set for managing
+aspects of multiple virtual machine managers. You can use Vagrant to
+create identical virtual machine &ldquo;boxes&rdquo; on host operating systems.
+These definitions — and the boxes themselves — can be shared with
+others.</p>
+<p>Although multiple virtual machine managers are supported by Vagrant, <a href="https://www.virtualbox.org/">VirtualBox</a> is widely used and has the best support.</p>
+<p>My Vagrant box needs an operating system. This is my first time through, so I will keep it simple: <a href="http://ubuntu.com">Ubuntu</a> 14.04. I figure that I can find plenty of resources online if I get stuck.</p>
+<p>Go to <a href="https://vagrantcloud.com/">Vagrant Cloud</a> for packaged Vagrant boxes with your favorite distribution and virtual machine provider. Vagrant Cloud provides a social network approach to shared boxes, allowing you to find and favorite useful options or even sharing your own. There is an Ubuntu account on Vagrant Cloud with a <a href="https://vagrantcloud.com/ubuntu/trusty64">trusty64</a> box, presenting a 14.04 64 bit release that can be used in VirtualBox.</p>
+<p>The <code>vagrant init</code> command initializes a new Vagrant box. I will
+reference trusty64 to give this box a starting point.</p>
+<pre tabindex="0"><code>$ mkdir mongo-mojo
+$ cd mongo-mojo
+$ vagrant init ubuntu/trusty64
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+</code></pre><p>I could start the box up now and have a more or less blank starting point. Instead I will provision it so that it has the packages and tools needed for me to start development quickly. My goal is to get the latest releases of MongoDB, Perl 5, Mojolicious, and <a href="https://metacpan.org/pod/Mango">Mango</a> — a pure Perl MongoDB driver written by the same developer who created Mojolicious.</p>
+<p>Vagrant <a href="http://docs.vagrantup.com/v2/provisioning/index.html">provisioning</a> can be done via several approaches, but I go for the short and sweet method of writing a <a href="http://docs.vagrantup.com/v2/provisioning/shell.html">shell script</a>.</p>
+<p>I am going to install MongoDB via the <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/">provided Ubuntu packages</a>, so that I do not have to worry about startup scripts and all that. I will also install <code>build-essential</code> so that I can build <a href="http://perlbrew.pl/">Perlbrew</a>.</p>
+<p><strong><code>bootstrap/system.sh</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Install MongoDB</span>
+</span></span><span class="line"><span class="cl">apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> tee /etc/apt/sources.list.d/mongodb.list
+</span></span><span class="line"><span class="cl">apt-get -q update
+</span></span><span class="line"><span class="cl">apt-get -q -y install mongodb-org
+</span></span><span class="line"><span class="cl">service mongod start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install development dependencies</span>
+</span></span><span class="line"><span class="cl">apt-get -q -y install build-essential
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Set up vagrant user environment</span>
+</span></span><span class="line"><span class="cl">su -c <span class="s2">&#34;source /vagrant/bootstrap/user.sh&#34;</span> vagrant
+</span></span></code></pre></div><p><code>system.sh</code> invokes <code>user.sh</code> as the default vagrant user. <code>user.sh</code> contains the instructions to install Perlbrew and the latest <a href="http://perl.org">Perl</a>. Once that is out of the way, <a href="https://metacpan.org/pod/cpanm">cpanm</a> will install Mojolicious and Mango.</p>
+<p><strong><code>bootstrap/user.sh</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Install perlbrew</span>
+</span></span><span class="line"><span class="cl">curl -L http://install.perlbrew.pl <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;source ~/perl5/perlbrew/etc/bashrc&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.profile
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/perl5/perlbrew/etc/bashrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install local Perl and app libs</span>
+</span></span><span class="line"><span class="cl">perlbrew install perl-5.20.0
+</span></span><span class="line"><span class="cl">perlbrew switch perl-5.20.0
+</span></span><span class="line"><span class="cl">perlbrew install-cpanm
+</span></span><span class="line"><span class="cl">cpanm Mojolicious
+</span></span><span class="line"><span class="cl">cpanm Mango
+</span></span></code></pre></div><p>My Vagrantfile varies only a little from the default. One thing to notice is that I have set up port forwarding so I can view running Mojolicious applications from a browser in the host system.</p>
+<p><strong><code>Vagrantfile</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">VAGRANTFILE_API_VERSION</span> <span class="o">=</span> <span class="s2">&#34;2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="no">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Use Ubuntu 14.04 64 bit</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&#34;ubuntu/trusty64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Install system requirements</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&#34;shell&#34;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&#34;bootstrap/system.sh&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Configure guest services to be accessible on host</span>
+</span></span><span class="line"><span class="cl">  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&#34;forwarded_port&#34;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">3000</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Now just run <code>vagrant up</code> and wait.</p>
+<pre tabindex="0"><code>$ vagrant up
+</code></pre><p>I end up waiting quite a while.</p>
+<p>Okay, okay. I admit that it took me a couple of tries to get those shell scripts working right. After each correction, <code>vagrant provision</code> reran the provisioning stage of <code>vagrant up</code>.</p>
+<p>Eventually it finishes.</p>
+<h2 id="testing-the-box">Testing the Box</h2>
+<p>I will not even pretend I know what I am doing here. The whole point of this exercise is to learn Mojolicious, MongoDB, and Mango. Oh yeah, and Vagrant. I just copy the sample application from the <a href="https://github.com/kraih/mango">Mango Github README</a>.</p>
+<p><strong><code>app.pl</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mojolicious::Lite</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mango</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Mango::BSON</span> <span class="s">&#39;:bson&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$uri</span> <span class="o">=</span> <span class="s">&#39;mongodb://localhost:27017/test&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">helper</span> <span class="n">mango</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span> <span class="n">state</span> <span class="nv">$mango</span> <span class="o">=</span> <span class="nn">Mango</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$uri</span><span class="p">)</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Store and retrieve information non-blocking</span>
+</span></span><span class="line"><span class="cl"><span class="n">get</span> <span class="s">&#39;/&#39;</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$c</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$collection</span> <span class="o">=</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="nn">mango</span><span class="o">-&gt;</span><span class="nn">db</span><span class="o">-&gt;</span><span class="n">collection</span><span class="p">(</span><span class="s">&#39;visitors&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">my</span> <span class="nv">$ip</span>         <span class="o">=</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="nn">tx</span><span class="o">-&gt;</span><span class="n">remote_address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Store information about current visitor</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$collection</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">({</span><span class="n">when</span> <span class="o">=&gt;</span> <span class="n">bson_time</span><span class="p">,</span> <span class="n">from</span> <span class="o">=&gt;</span> <span class="nv">$ip</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">my</span> <span class="p">(</span><span class="nv">$collection</span><span class="p">,</span> <span class="nv">$err</span><span class="p">,</span> <span class="nv">$oid</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render_exception</span><span class="p">(</span><span class="nv">$err</span><span class="p">)</span> <span class="k">if</span> <span class="nv">$err</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Retrieve information about previous visitors</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$collection</span><span class="o">-&gt;</span><span class="nn">find</span><span class="o">-&gt;</span><span class="nb">sort</span><span class="p">({</span><span class="n">when</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">({</span><span class="n">_id</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">})</span><span class="o">-&gt;</span><span class="n">all</span><span class="p">(</span><span class="k">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">my</span> <span class="p">(</span><span class="nv">$collection</span><span class="p">,</span> <span class="nv">$err</span><span class="p">,</span> <span class="nv">$docs</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render_exception</span><span class="p">(</span><span class="nv">$err</span><span class="p">)</span> <span class="k">if</span> <span class="nv">$err</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># And show it to current visitor</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">$c</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">(</span><span class="n">json</span> <span class="o">=&gt;</span> <span class="nv">$docs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nn">app</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">;</span>
+</span></span></code></pre></div><p>I would like to configure my editor to invoke needed commands through Vagrant. Perhaps later. For now, SSH will do.</p>
+<pre tabindex="0"><code>$ vagrant ssh
+$ cd /vagrant
+$ morbo app.pl
+</code></pre><p>Back in my browser, I hit <code>http://localhost:3000</code> a couple times and get:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;10.0.2.2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;when&#34;</span><span class="p">:</span> <span class="mi">1407276553541</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;10.0.2.2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;when&#34;</span><span class="p">:</span> <span class="mi">1407276551337</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>Well how about that? Everything works!</p>
+<h2 id="packaging">Packaging</h2>
+<p>Installing everything took a <em>long</em> time. I do not want to wait for the full provisioning process every time I create a new box. Can I take a snapshot of this box and use it for other projects?</p>
+<p>Of course I can. The Vagrant docs provide some <a href="http://docs.vagrantup.com/v2/boxes/base.html">guidelines</a> for creating a new box for packaging.</p>
+<blockquote>
+<p>[!WARNING]
+There is a warning in the packaging documentation that looks serious.</p>
+<blockquote>
+<p><strong>Advanced topic!</strong> Creating a base box can be a time consuming and tedious process, and is not recommended for new Vagrant users. If you’re just getting started with Vagrant, we recommend trying to find existing base boxes to use first.</p>
+</blockquote>
+<p>Blah, blah, blah. If I listened to every warning, I wouldn’t know what my hair smells like when it’s on fire. <em>You</em> may want to be more careful,  though.</p>
+</blockquote>
+<p>The Vagrant <a href="http://docs.vagrantup.com/v2/cli/package.html">package command</a> takes your virtual machine and wraps it up into a single box file that you can reuse or share with others. Maybe I can just package my trusty64-derived box.</p>
+<pre tabindex="0"><code>$ vagrant package
+</code></pre><p>Apparently yes. The resulting box is about 750MB, which seems large.</p>
+<p><a href="http://williamwalker.me/">William Walker</a> wrote a post about <a href="http://williamwalker.me/blog/creating-a-custom-vagrant-box.html">Creating a Custom Vagrant Box</a>, with many useful instructions. I am ignoring most of those useful instructions right now, though I will come back to them later. What caught my eye was his suggestion for reducing the size of the box. You can use <code>dd</code> to clear out some space from inside the box.</p>
+<pre tabindex="0"><code>$ vagrant ssh
+$ sudo dd if=/dev/zero of=/EMPTY bs=1M
+$ sudo rm -f /EMPTY
+$ sudo shutdown -h now
+</code></pre><p>I rebuild my package. That brings it down to 649MB - still large, but better than 750. I will come back later when I have the time and see if I can cut it down a little more.</p>
+<pre tabindex="0"><code>$ vagrant add test-trusty-mongo-mojo package.box
+$ cd ..
+$ mkdir test-tmm
+$ cd test-tmm
+$ vagrant init test-trust-mongo-mojo
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+</code></pre><p>I test it with the same Mojolicious application I used above and — hot dog — it works.</p>
+<h2 id="sharing">Sharing</h2>
+<p>Now is the part where I jump straight off the cliff of rational thinking and share every horrible mistake I made with you and anyone else who wants it.</p>
+<p>Should you use MongoDB in production? I have no idea, but I bet that it’s a really bad idea to use my <a href="https://vagrantcloud.com/brianwisti/trusty-mongo-mojo">trusty-mongo-mojo box</a> in production. Still — could be interesting to play with.</p>
+<pre tabindex="0"><code>$ vagrant init brianwisti/trusty-mongo-mojo
+</code></pre><p>Have fun.</p>
+<h2 id="was-it-worth-it">Was It Worth It?</h2>
+<p>That’s a good question. It was great as a learning experience. I enjoyed learning more about <a href="http://vagrantup.com">Vagrant</a>. I don’t know yet whether it was worth my time to create this bundle. Mojolicious and MongoDB are already fairly easy to install on whatever platform. We’ll see. I do know that I’d like to revisit this package, clean it up, and maybe follow up with a similar package for <a href="http://perldancer.org/">Dancer</a>. It’s just plain <em>fun</em> to make these packages.</p>
+<h2 id="what-now">What Now?</h2>
+<p>All that’s left now is to learn all the things. The online <a href="http://perldoc.perl.org/">Perl documentation</a> is current with Perl 5.20. <a href="http://mojolicio.us/perldoc/Mojolicious/Lite">Mojolicious::Lite</a> is as good a place as any to start with learning Mojolicious. There’s a <a href="http://docs.mongodb.org/manual/">MongoDB manual</a> to peruse. Mango does not yet have the polished guides that Mojolicious does, but browsing the <a href="https://metacpan.org/release/Mango">Mango MetaCPAN page</a> will get me a ways.</p>
+<p>Oh yeah. When I’m done for the day, I’ll exit my vagrant session and suspend the virtual machine.</p>
+<pre tabindex="0"><code>$ vagrant exit
+$ vagrant suspend
+</code></pre>
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/">connect-to-mongodb-on-a-vagrant-box-from-the-host</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2014/07/welcome-to-jekyll/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Welcome to Jekyll!
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2014/08/connect-to-mongodb-on-a-vagrant-box-from-the-host/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Connect To MongoDB on a Vagrant box from the host
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#creating-the-box">Creating The Box</a></li>
+    <li><a href="#testing-the-box">Testing the Box</a></li>
+    <li><a href="#packaging">Packaging</a></li>
+    <li><a href="#sharing">Sharing</a></li>
+    <li><a href="#was-it-worth-it">Was It Worth It?</a></li>
+    <li><a href="#what-now">What Now?</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

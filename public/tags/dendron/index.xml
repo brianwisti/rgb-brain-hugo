@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>dendrononRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/dendron/</link>
+    <description>
+      Recent contentindendron on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Wed, 08 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/dendron/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Dendron is officially in maintenance mode</title>
+  <link>https://randomgeekery.org/post/2023/02/dendron-is-officially-in-maintenance-mode/</link>
+  <pubDate>Wed, 08 Feb 2023 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2023/02/dendron-is-officially-in-maintenance-mode/</guid>
+  <description>My Dendron notes from Graceful.Dev Reproducible Development with Containers
+{% quote( from=“Kevin Lin” cite=&#34;https://discord.com/channels/717965437182410783/737323300967022732/1072563304289030164&#34; title=&#34;#announcements on Dendron Discord&#34; ) %} …the tldr: we spent the past two years building a better way for humans to manage knowledge. While we made great strides there, as a business, we were ultimately not able to find product market fit for a venture backed business. After much soul searching, we’ve made the decision to do a pivot and pursue other business problems.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>second-brain</category>  <category>dendron</category> 
+  <content:encoded><![CDATA[<h2>I'm gonna keep using it</h2><p><img src="/post/2023/02/../../../attachments/img/2023/cover-2023-02-08.png" alt="attachments/img/2023/cover-2023-02-08.png"/>
+My Dendron notes from Graceful.Dev <a href="https://graceful.dev/courses/devcontainers/">Reproducible Development with Containers</a></p>
+<p>{% quote(
+from=&ldquo;Kevin Lin&rdquo;
+cite=&quot;<a href="https://discord.com/channels/717965437182410783/737323300967022732/1072563304289030164">https://discord.com/channels/717965437182410783/737323300967022732/1072563304289030164</a>&quot;
+title=&quot;#announcements on Dendron Discord&quot;
+) %}
+…the tldr: we spent the past two years building a better way for humans to manage knowledge. While we made great strides there, as a business, we were ultimately not able to find product market fit for a venture backed business. After much soul searching, we&rsquo;ve made the decision to do a pivot and pursue other business problems.
+{% end %}</p>
+<p>Aw, that&rsquo;s disappointing. <a href="https://www.dendron.so">Dendron</a> features prominently in my meta-note system. Dendron is the most nearly &ldquo;just Markdown&rdquo; of the &ldquo;just Markdown&rdquo; knowledge management systems out there. That makes it a safe spot to store and refactor the notes I gather with other tools. Excellent editor integration, too. Dendron kinda feels like core functionality to VS Code for me.</p>
+<p>But in this time of tech layoffs and reprioritization, I guess it&rsquo;s harder to sell core functionality than shiny shiny features.</p>
+<p>It&rsquo;s not the worst way to retire a project. They plan to keep the <a href="https://github.com/dendronhq/dendron">code</a> alive, fixing bugs and reviewing pull requests. The license also switched from GPLv3 to the more permissive Apache 2.0. Fewer headaches about what kind of bigger projects you can incorporate your Dendron fork into.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-07-18 Mon 17:04]</title>
+  <link>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</link>
+  <pubDate>Mon, 18 Jul 2022 17:04:38 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</guid>
+  <description>&lt;p&gt;Figured out how to do &lt;a href=&#34;https://code.visualstudio.com/docs/editor/userdefinedsnippets&#34;&gt;text snippets&lt;/a&gt; in Visual Studio Code for &lt;a href=&#34;https://www.dendron.so&#34;&gt;Dendron&lt;/a&gt; notes. My wish for this world is less JSON.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>dendron</category>  <category>vs-code</category> 
+  <content:encoded><![CDATA[<p>Figured out how to do <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">text snippets</a> in Visual Studio Code for <a href="https://www.dendron.so">Dendron</a> notes. My wish for this world is less JSON.</p>
+<p>Would YAML be better? Maybe, but no. I&rsquo;m thinking something more like Emacs <a href="https://github.com/joaotavora/yasnippet">yasnippet</a> files. Sure a file for every snippet may sound like overkill. It&rsquo;s a heck of a lot easier to figure out what a single template looks without filtering from JSON list and then translating from JSON string to template string.</p>
+<p>Anyways, snippets for timestamped list items in Dendron.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;itime&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;itime&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;timestamp for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;inow&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;inow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;datetime for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Handy for <a href="https://betterhumans.pub/replace-your-to-do-list-with-interstitial-journaling-to-increase-productivity-4e43109d15ef">interstitial journaling</a>. Take the claims about interstitial journaling with as much salt as you need. I use timestamped notes to remember when I did, said, or thought a thing.</p>
+<p>For some of us &ldquo;time tracking&rdquo; is just a tool to — um — track time.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

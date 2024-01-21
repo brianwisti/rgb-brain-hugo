@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>trilium-notesonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/trilium-notes/</link>
+    <description>
+      Recent contentintrilium-notes on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Tue, 09 Aug 2022 11:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/trilium-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Customizing a Trilium Report</title>
+  <link>https://randomgeekery.org/post/2022/08/customizing-a-trilium-report/</link>
+  <pubDate>Tue, 09 Aug 2022 11:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/customizing-a-trilium-report/</guid>
+  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/08/../../../attachments/img/2022/cover-2022-08-09.png&#34; alt=&#34;attachments/img/2022/cover-2022-08-09.png&#34;/&gt;
+Trilium also embeds its scripting as notes, which takes some getting used to.&lt;/p&gt;
+&lt;p&gt;Been exploring &lt;a href=&#34;https://github.com/zadam/trilium&#34;&gt;Trilium&lt;/a&gt; for notes. One thing I’ll say is the nerdy features are directly accessible to my existing skills.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>second-brain</category>  <category>trilium-notes</category>  <category>sqlite</category> 
+  <content:encoded><![CDATA[<h2>In which I frolic with a note system that lets me use SQL</h2><p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-09.png" alt="attachments/img/2022/cover-2022-08-09.png"/>
+Trilium also embeds its scripting as notes, which takes some getting used to.</p>
+<p>Been exploring <a href="https://github.com/zadam/trilium">Trilium</a> for notes. One thing I&rsquo;ll say is the nerdy features are directly accessible to my existing skills.</p>
+<p>See, each note system has some way — or a plugin providing some way — to query information about your collected notes. Logseq <a href="https://docs.logseq.com/#/page/advanced%20queries">uses</a> Datascript, which is uh Lisp-ish? Obsidian — if you add the <a href="https://blacksmithgu.github.io/obsidian-dataview/">Dataview</a> plugin — has DQL, which is SQL-ish.</p>
+<p>Trilium keeps everything in a <a href="https://sqlite.org">SQLite</a> database that you can query directly.</p>
+<p><img src="/post/2022/08/attachments/img/2022/trilium-sql-console.png" alt="Trilium in-app SQL console"/></p>
+<p>My immediate reaction on realizing what I was seeing? Look I don&rsquo;t usually communicate on this site via memes and image captions, but:</p>
+<p><img src="/post/2022/08/attachments/img/2022/its-a-unix-system-I-know-this.jpg" alt="Jurassic Park: &ldquo;It&rsquo;s a UNIX system. I know this.&rdquo;"/></p>
+<p>I know the gist of SQL. Let&rsquo;s play with this.</p>
+<p>Made a custom <a href="https://github.com/zadam/trilium/wiki/Template">template</a> for notes about people. Assigned that template to the appropriate notes. Got curious about how my template-using notes were spread out.</p>
+<p>Copied the query from <em>Trilium Demo / Statistics / Note type count</em> and tweaked it a little for my needs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">templateNote</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">note</span><span class="p">.</span><span class="n">isDeleted</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">note</span><span class="p">.</span><span class="n">isDeleted</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">countDeleted</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">attr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="n">note</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">note</span><span class="p">.</span><span class="n">noteId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">noteId</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="n">templateNote</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">templateNote</span><span class="p">.</span><span class="n">noteId</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">attr</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;template&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">value</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">countNotDeleted</span><span class="w"> </span><span class="k">desc</span><span class="w">
+</span></span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>title</th>
+<th>countNotDeleted</th>
+<th>countDeleted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day template</td>
+<td>182</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Person Template</td>
+<td>120</td>
+<td>0</td>
+</tr>
+<tr>
+<td>task template</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Biography template</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Book template</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]
+I renamed the Trilium demo&rsquo;s included <em>People template</em> to <em>Biography template</em>
+for clarity here.</p>
+</blockquote>
+<p>I duplicated <em>Note type count</em>, pasted my new query, then adjusted the layout JS to reflect the tweaked query.</p>
+<p>The result:</p>
+<p><img src="/post/2022/08/attachments/img/2022/trilium-template-usage-report.png" alt="Trilium Notes showing pie chart of template usage"/></p>
+<p>The demo graph uses <a href="https://www.chartjs.org">Chart.js</a>, which is fine. I&rsquo;m already thinking about using <a href="https://vega.github.io">Vega</a> instead.</p>
+<p>One thing at a time.</p>
+<p>Trilium. It&rsquo;s got SQL. I like that.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

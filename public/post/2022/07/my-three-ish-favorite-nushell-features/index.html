@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/">
+<meta property="og:title" content="My Three(ish) Favorite Nushell Features">
+<meta name="twitter:title" content="My Three(ish) Favorite Nushell Features">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="In which I once again spend all day decomposing one-liners, this time for Nushell">
+    <meta property="og:description" content="In which I once again spend all day decomposing one-liners, this time for Nushell">
+  
+
+
+
+<title itemprop="name">My Three(ish) Favorite Nushell Features - Random Geekery</title>
+<meta property="og:title" content=My&#32;Three(ish)&#32;Favorite&#32;Nushell&#32;Features&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=My&#32;Three(ish)&#32;Favorite&#32;Nushell&#32;Features&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=My&#32;Three(ish)&#32;Favorite&#32;Nushell&#32;Features&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=My&#32;Three(ish)&#32;Favorite&#32;Nushell&#32;Features&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="In which I once again spend all day decomposing one-liners, this time for Nushell" />
+<meta itemprop="description" content="In which I once again spend all day decomposing one-liners, this time for Nushell" />
+<meta property="og:description" content="In which I once again spend all day decomposing one-liners, this time for Nushell" />
+<meta name="twitter:description" content="In which I once again spend all day decomposing one-liners, this time for Nushell" />
+
+
+<base href="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/" />
+
+
+<meta property="og:updated_time" content=4007-04-06T70:00:22-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2022/07/2022-07-18-mon-0916/">[2022-07-18 Mon 09:16]</a></li>
+        
+          <li><a href="/post/2022/06/2022-06-21-tue-1503/">[2022-06-21 Tue 15:03]</a></li>
+        
+          <li><a href="/post/2022/04/trying-nushell-on-windows/">Trying Nushell on Windows</a></li>
+        
+          <li><a href="/post/2022/04/didnt-i-do-this-last-year-too/">Didn&#39;t I do this last year too?</a></li>
+        
+          <li><a href="/post/2022/01/thinking-about-hugo-again/">Thinking about Hugo again but maybe with Site.js</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/">My Three(ish) Favorite Nushell Features</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/">My Three(ish) Favorite Nushell Features</a>
+    </h1>
+    
+        <time datetime="2022-07-04T18:00:00-0700" class="post-date">
+            July 4, 2022
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-nushell">
+            <a href="https://randomgeekery.org/tags/nushell">nushell</a>
+        </li>
+        
+        <li class="tag-hugo">
+            <a href="https://randomgeekery.org/tags/hugo">hugo</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2022/07/../../../attachments/img/2022/cover-2022-07-04.png" alt="attachments/img/2022/cover-2022-07-04.png"/>
+histogram for post frequency by year using Nushell built-ins</p>
+<p>Been using the <a href="https://www.nushell.sh">Nushell</a> cross-platform user shell more and more over the last couple years. Might as well start learning it.</p>
+<p>Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when setting up <a href="/post/2022/04/trying-nushell-on-windows/">Nushell on Windows</a>. I want to try again, and think through the process a little more this time.</p>
+<p>This post, and any that may follow on the topic, won&rsquo;t be any kind of deep dive or contrast with other shells. Oh sure. I&rsquo;ll point out things that surprise me. But I use maybe 20% of a shell&rsquo;s features for 80% of my needs, and a Web search for the rest. Check the Nushell book&rsquo;s <a href="https://www.nushell.sh/book/coming_from_bash.html">Coming from Bash</a> page if you want a more explicit comparison.</p>
+<p>Let&rsquo;s get started.</p>
+<h2 id="nushell-feature-zero-showing-program-output">Nushell feature zero: showing program output</h2>
+<p>If you can&rsquo;t easily run a program and see its output, you are in a REPL, not a shell. I have not come across a command shell that fails that test yet, but I use it as an immediate reassurance that I haven&rsquo;t confused myself by launching <code>ipython</code> again.</p>
+<p>I&rsquo;m on <a href="https://gohugo.io">Hugo</a> again, which means I have the Hugo CLI. <code>hugo list all</code> prints out a <a href="/card/csv/">CSV</a> summary of your site, ready for processing by some other program.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all
+</code></pre><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+<h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
+<p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv
+</code></pre><p>Of course, the result of that pipe is something a little different from other shells.</p>
+<h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
+<p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
+<p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
+<p>But Nushell tables aren&rsquo;t just pretty printing. They are core to working with the shell. The table you see is a visual representation of a table in memory, which can be further processed however you need.</p>
+<p>Also? Nushell doesn&rsquo;t need me to install an extra CSV processing tool. It can turn that output into something useful without any extra help thanks to an abundance of built-in commands.</p>
+<h2 id="nushell-feature-two-the-built-in-commands-and-interactive-help">Nushell feature two: the built-in commands and interactive help</h2>
+<p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
+<p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
+<p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | length
+</code></pre><pre tabindex="0"><code>421
+</code></pre><p>That&rsquo;s a little overwhelming. Let&rsquo;s see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.</p>
+<h3 id="listing-command-categories-by-grouping">Listing command categories by grouping</h3>
+<p>All these commands are organized into categories. To see what categories, we can <code>group</code> the help table.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | group-by category
+</code></pre><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+<h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
+<p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats
+</code></pre><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+<blockquote>
+<p>[!NOTE]
+I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
+</blockquote>
+<h3 id="viewing-only-select-columns-with-select">Viewing only select columns with <code>select</code></h3>
+<p>That&rsquo;s still a little busy. How about we <code>select</code> the name and usage? And heck — tables make for great screenshots, but let&rsquo;s try see what <code>to md</code> gives us.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help commands | where category =~ formats | select name usage | to md
+</code></pre><table>
+<thead>
+<tr>
+<th>name</th>
+<th>usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>Parse a string or binary data into structured data</td>
+</tr>
+<tr>
+<td>from csv</td>
+<td>Parse text as .csv and create table.</td>
+</tr>
+<tr>
+<td>from eml</td>
+<td>Parse text as .eml and create table.</td>
+</tr>
+<tr>
+<td>from ics</td>
+<td>Parse text as .ics and create table.</td>
+</tr>
+<tr>
+<td>from ini</td>
+<td>Parse text as .ini and create table</td>
+</tr>
+<tr>
+<td>from json</td>
+<td>Convert from json to structured data</td>
+</tr>
+<tr>
+<td>from ods</td>
+<td>Parse OpenDocument Spreadsheet(.ods) data and create table.</td>
+</tr>
+<tr>
+<td>from ssv</td>
+<td>Parse text as space-separated values and create a table. The default minimum number of spaces counted as a separator is 2.</td>
+</tr>
+<tr>
+<td>from toml</td>
+<td>Parse text as .toml and create table.</td>
+</tr>
+<tr>
+<td>from tsv</td>
+<td>Parse text as .tsv and create table.</td>
+</tr>
+<tr>
+<td>from url</td>
+<td>Parse url-encoded string as a table.</td>
+</tr>
+<tr>
+<td>from vcf</td>
+<td>Parse text as .vcf and create table.</td>
+</tr>
+<tr>
+<td>from xlsx</td>
+<td>Parse binary Excel(.xlsx) data and create table.</td>
+</tr>
+<tr>
+<td>from xml</td>
+<td>Parse text as .xml and create table.</td>
+</tr>
+<tr>
+<td>from yaml</td>
+<td>Parse text as .yaml/.yml and create table.</td>
+</tr>
+<tr>
+<td>from yml</td>
+<td>Parse text as .yaml/.yml and create table.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>Translate structured data to a format</td>
+</tr>
+<tr>
+<td>to csv</td>
+<td>Convert table into .csv text</td>
+</tr>
+<tr>
+<td>to html</td>
+<td>Convert table into simple HTML</td>
+</tr>
+<tr>
+<td>to json</td>
+<td>Converts table data into JSON text.</td>
+</tr>
+<tr>
+<td>to md</td>
+<td>Convert table into simple Markdown</td>
+</tr>
+<tr>
+<td>to text</td>
+<td>Converts data into simple text.</td>
+</tr>
+<tr>
+<td>to toml</td>
+<td>Convert table into .toml text</td>
+</tr>
+<tr>
+<td>to tsv</td>
+<td>Convert table into .tsv text</td>
+</tr>
+<tr>
+<td>to url</td>
+<td>Convert table into url-encoded text</td>
+</tr>
+<tr>
+<td>to xml</td>
+<td>Convert table into .xml text</td>
+</tr>
+<tr>
+<td>to yaml</td>
+<td>Convert table into .yaml/.yml text</td>
+</tr>
+</tbody>
+</table>
+<p>Awesome. All that and we&rsquo;re still in the realm of Nushell built-in commands.</p>
+<p>Note the pattern of commands and subcommands. The &ldquo;formats&rdquo; category includes two primary commands, <code>from</code> and <code>to</code>. Then many subcommands for converting <em>from</em> assorted formats to a table, and their counterparts for converting from a table <em>to</em> assorted formats.</p>
+<h3 id="getting-help-for-a-specific-command">Getting help for a specific command</h3>
+<p>We can ask for help with a specific command. Most shells offer this in one form or another, though they don&rsquo;t generally provide the command discovery path we just walked down.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">help to md
+</code></pre><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
+<p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
+<h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
+<p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
+<p>Remember Hugo? This was supposed to be a post about Hugo.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | last 5 | select title publishDate | to md
+</code></pre><table>
+<thead>
+<tr>
+<th>title</th>
+<th>publishDate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Editors</td>
+<td>2001-07-11T00:00:00-07:00</td>
+</tr>
+<tr>
+<td>Geekery</td>
+<td>2001-07-11T00:00:00-07:00</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>2001-01-17T00:00:00-08:00</td>
+</tr>
+<tr>
+<td>Python Babysteps Tutorial</td>
+<td>2001-01-17T00:00:00-08:00</td>
+</tr>
+<tr>
+<td>coolnamehere</td>
+<td>2000-12-06T00:00:00-08:00</td>
+</tr>
+</tbody>
+</table>
+<p>That&rsquo;s better. Sort of. I expected the last few posts to be a bit more recent. I need to do some intentional filtering and sorting. In order to do that, I need a real date instead of Hugo&rsquo;s timestamp string. You can use a block for that.</p>
+<h2 id="nushell-feature-two-blocks">Nushell feature two: blocks</h2>
+<p>The really basic idea is that <a href="https://www.nushell.sh/book/types_of_data.html#blocks">blocks</a> run arbitrary commands on a parameter, and let us do what we like with the result.</p>
+<p>I&rsquo;m going to do sort of a <a href="https://databricks.com/glossary/what-are-dataframes">dataframe</a> type of action here. That&rsquo;s not a normal state for my brain so I need to step through this slowly.</p>
+<p><code>hugo list all</code> gave me some CSV text.</p>
+<pre tabindex="0"><code>hugo list all
+</code></pre><p><code>from csv</code> turned that text into a table.</p>
+<pre tabindex="0"><code>hugo list all | from csv
+</code></pre><p>The <code>publishDate</code> column describes a date and time, but it contains text strings — not dates. To simplify filtering posts by date range, I want to add a column for the published date described by <code>publishDate</code>.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at ...
+</code></pre><p>That <code>published-at</code> column contains the result of running a block of commands. I hand my current table to the block as a parameter.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">hugo list all | from csv | insert published-at { |it| ... }
+</code></pre><p>Nushell blocks look and work a bit like <a href="/card/ruby/">Ruby</a> blocks. That means they also work similar to lambdas in <a href="/card/python/">card/Python</a> and anonymous functions in other languages — cosmetic and shell-specific details aside.</p>
+<p>The block returns a column with dates for every value in my table&rsquo;s <code>publishDate</code> column.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+  hugo list all |
+  from csv |
+  insert published-at { |it| $it.publishDate | into datetime }
+)
+</code></pre><p>Nushell uses the shell-like pattern of prefixing variable names with <code>$</code> when we reference them.</p>
+<blockquote>
+<p>[!NOTE] Where did the parentheses come from?
+That&rsquo;s how Nushell does multi-line one-liners.</p>
+<p>See, my one-liner&rsquo;s getting a little long. Over in other shells, I&rsquo;d be pulling out a backslash &lsquo;\&rsquo; to indicate line continuation. But Nushell is expression-oriented. Ending a line with a backslash is just an error. So we turn the whole thing into a subexpression by wrapping it in parentheses. Nushell treats the evaluated result as a single expression, however many lines it takes to get there.</p>
+<p>Yes, fine. I <em>should</em> be thinking about scripts at this point. I may get to those eventually. Until then I use parentheses to create a multiline subexpression.</p>
+</blockquote>
+<p>Where were we? Oh right. I have a table with more columns than I care about.</p>
+<p>I only want the post titles and the dates they were published.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+  hugo list all |
+  from csv |
+  insert published-at { |it| $it.publishDate | into datetime } |
+  select title published-at
+)
+</code></pre><p>And I&rsquo;m writing a blog post, so let&rsquo;s keep a readable number of rows in markdown format.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+  hugo list all |
+  from csv |
+  insert published-at { |it| $it.publishDate | into datetime } |
+  select title published-at |
+  last 5 |
+  to md
+)
+</code></pre><p>Okay I think that covers it.</p>
+<table>
+<thead>
+<tr>
+<th>title</th>
+<th>published-at</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Editors</td>
+<td>Wed, 11 Jul 2001 00:00:00 -0700 (20 years ago)</td>
+</tr>
+<tr>
+<td>Geekery</td>
+<td>Wed, 11 Jul 2001 00:00:00 -0700 (20 years ago)</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Wed, 17 Jan 2001 00:00:00 -0800 (21 years ago)</td>
+</tr>
+<tr>
+<td>Python Babysteps Tutorial</td>
+<td>Wed, 17 Jan 2001 00:00:00 -0800 (21 years ago)</td>
+</tr>
+<tr>
+<td>coolnamehere</td>
+<td>Wed, 06 Dec 2000 00:00:00 -0800 (21 years ago)</td>
+</tr>
+</tbody>
+</table>
+<p>Yeesh I have been writing this stuff down for a long time.</p>
+<h2 id="nushell-feature-three-data-types">Nushell feature three: data types</h2>
+<p>My experience with data types in shells is limited and mostly unpleasant: values are strings that can be interchangeably treated as strings or numbers. Sometimes you can treat them like lists. Oops you broke something.</p>
+<p>Nushell <a href="https://www.nushell.sh/book/types_of_data.html">data type</a> support goes past that. For starters, values declared in the shell itself have the appropriate type.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">1.2 | describe
+</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">float
+</code></pre><pre tabindex="0"><code class="language-nushell" data-lang="nushell">&#34;1.2&#34; | describe
+</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">string
+</code></pre><p>It also supports more complex structured types like records and of course tables. Nushell may not define as many types as <a href="https://github.com/red/docs/blob/master/en/datatypes.adoc">Red</a> — yet? — but it has far more than I&rsquo;m accustomed to seeing from a shell.</p>
+<p>What about conversions? In my fiddling so far, Nushell treats output from external programs like a string until you tell it otherwise, like a moment ago piping Hugo&rsquo;s output <code>from csv</code> and then the <code>publishDate</code> column <code>into datetime</code>.</p>
+<h3 id="date-math">Date math</h3>
+<p>All right. Let&rsquo;s figure this out. What datetime is it right now?</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">date now
+</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Mon, 04 Jul 2022 18:08:26 -0700 (now)
+</code></pre><p>Happy Fourth of July to those who celebrate by the way. Unless you celebrate by letting off fireworks in your or especially my neighborhood after midnight.</p>
+<p>I arbitrarily picked three months as my threshold. Nushell provides numerous shorthands for durations, but so far nothing at an appropriate scale for ancient blogs. I haven&rsquo;t found a lazy way to say &ldquo;three months ago,&rdquo; but I can say &ldquo;90 days ago.&rdquo; Close enough for today.</p>
+<p>Need to make a subexpression out of <code>date now</code> so Nushell has a date it can use for the math.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(date now) - 90day
+</code></pre><pre tabindex="0"><code class="language-result" data-lang="result">Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)
+</code></pre><p>Since <code>((date now) - 90day)</code> is a date and <code>published-at</code> is a date, I can do a direct comparison.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+  hugo list all |
+  from csv |
+  insert published-at { |it| $it.publishDate | into datetime } |
+  where published-at &gt; ((date now) - 90day) |
+  select title published-at |
+  to md
+)
+</code></pre><table>
+<thead>
+<tr>
+<th>title</th>
+<th>published-at</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>My Three(ish) Favorite Nushell Features</td>
+<td>Mon, 04 Jul 2022 18:00:00 -0700 (10 minutes ago)</td>
+</tr>
+<tr>
+<td>I Talked About My Site on Test &amp; Code in Python</td>
+<td>Fri, 01 Jul 2022 15:04:02 -0700 (3 days ago)</td>
+</tr>
+<tr>
+<td>Now</td>
+<td>Wed, 11 May 2022 08:33:00 -0700 (2 months ago)</td>
+</tr>
+<tr>
+<td>How About a Tumblelog</td>
+<td>Tue, 03 May 2022 19:58:29 -0700 (2 months ago)</td>
+</tr>
+<tr>
+<td>Added a Neighborhood Blogroll Thing</td>
+<td>Wed, 27 Apr 2022 19:47:55 -0700 (2 months ago)</td>
+</tr>
+<tr>
+<td>Config Tweaks for Nushell</td>
+<td>Sun, 24 Apr 2022 15:00:33 -0700 (2 months ago)</td>
+</tr>
+<tr>
+<td>Trying Nushell on Windows</td>
+<td>Fri, 22 Apr 2022 21:15:00 -0700 (2 months ago)</td>
+</tr>
+<tr>
+<td>Didn&rsquo;t I do this last year too?</td>
+<td>Sun, 17 Apr 2022 22:15:00 -0700 (2 months ago)</td>
+</tr>
+</tbody>
+</table>
+<p>Yeah I fibbed on the publish date for the post I&rsquo;m writing. Figured it would be quicker than adding and explaining another filter for draft posts.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>True confession time: my three or so favorite features in Nushell are also the only features I&rsquo;ve played with, and much of that was today.
+Just realized it&rsquo;s been about a year since I started poking at Nushell as more than &ldquo;that thing with cool <code>ls</code> output.&rdquo;</p>
+<p>It&rsquo;s not my login <code>$SHELL</code> or anything yet — still need to figure out things like <code>pyenv</code> and <code>nvm</code> — but yeah I like using Nushell.
+Especially under Windows, where I know little enough about PowerShell that I can set up Nushell on Windows Terminal and pretend it&rsquo;s a login shell.</p>
+<p>Now I just need something that would make a cool cover image screenshot.</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell">(
+    hugo list all |
+    from csv |
+    insert year { |it| $it.publishDate | into datetime | date to-record | get year } |
+    where year &gt; 1 |
+    histogram year --percentage-type relative |
+    sort-by year
+)
+</code></pre>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/108592201010750028"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2022/07/i-talked-about-my-site-on-test-code-in-python/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>I Talked About My Site on Test &amp; Code in Python
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2022/07/2022-07-15-fri-1515/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>[2022-07-15 Fri 15:15]
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nushell-feature-zero-showing-program-output">Nushell feature zero: showing program output</a></li>
+    <li><a href="#nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</a></li>
+    <li><a href="#nushell-feature-one-tables">Nushell feature one: tables</a></li>
+    <li><a href="#nushell-feature-two-the-built-in-commands-and-interactive-help">Nushell feature two: the built-in commands and interactive help</a>
+      <ul>
+        <li><a href="#listing-command-categories-by-grouping">Listing command categories by grouping</a></li>
+        <li><a href="#listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></a></li>
+        <li><a href="#viewing-only-select-columns-with-select">Viewing only select columns with <code>select</code></a></li>
+        <li><a href="#getting-help-for-a-specific-command">Getting help for a specific command</a></li>
+        <li><a href="#applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</a></li>
+      </ul>
+    </li>
+    <li><a href="#nushell-feature-two-blocks">Nushell feature two: blocks</a></li>
+    <li><a href="#nushell-feature-three-data-types">Nushell feature three: data types</a>
+      <ul>
+        <li><a href="#date-math">Date math</a></li>
+      </ul>
+    </li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

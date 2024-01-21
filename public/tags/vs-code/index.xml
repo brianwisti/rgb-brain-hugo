@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vs-codeonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/vs-code/</link>
+    <description>
+      Recent contentinvs-code on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/vs-code/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Stupid VS Code Vim Tricks</title>
+  <link>https://randomgeekery.org/post/2023/03/stupid-vs-code-vim-tricks/</link>
+  <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2023/03/stupid-vs-code-vim-tricks/</guid>
+  <description>Still trying my experiment with using Dendron in Visual Studio Code as part of some sort of public second brain. Honestly I don’t know how long that’ll last, so I figure better share the fun stuff I learn here too.
+Anyways this afternoon I installed the Vim extension and learned just enough about custom key bindings to add a few.
+{ &#34;vim.leader&#34;: &#34;&lt;space&gt;&#34;, &#34;vim.normalModeKeyBindings&#34;: [ { &#34;before&#34;: [&#34;&lt;leader&gt;&#34;, &#34;t&#34;, &#34;l&#34;], &#34;commands&#34;: [&#34;workbench.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>vs-code</category>  <category>config</category> 
+  <content:encoded><![CDATA[<p>Still trying my experiment with using <a href="https://dendron.so">Dendron</a> in <a href="https://code.visualstudio.com">Visual Studio Code</a> as part of some sort of public second brain. Honestly I don&rsquo;t know how long that&rsquo;ll last, so I figure better share the fun stuff I learn here too.</p>
+<p>Anyways this afternoon I installed the <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim">Vim</a> extension and learned just enough about custom key bindings to add a few.</p>
+<div class="highlight" title="settings.json"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vim.leader&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;space&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vim.normalModeKeyBindings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;l&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleSidebarVisibility&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleAuxiliaryBar&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleLightDarkThemes&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li><code>vim.leader</code> is handy as a prefix for extended custom bindings in Vim; I prefer the spacebar as my leader</li>
+<li><code>&lt;leader&gt; t l</code> toggles my left sidebar</li>
+<li><code>&lt;leader&gt; t r</code> toggles my right sidebar</li>
+<li><code>&lt;leader&gt; t t</code> toggles between light and dark theme</li>
+</ul>
+<p>These bindings look and work very similar to some of <a href="/card/logseq/">Logseq</a>&rsquo;s default bindings. That&rsquo;s no accident. I like those bindings.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-07-18 Mon 17:04]</title>
+  <link>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</link>
+  <pubDate>Mon, 18 Jul 2022 17:04:38 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</guid>
+  <description>&lt;p&gt;Figured out how to do &lt;a href=&#34;https://code.visualstudio.com/docs/editor/userdefinedsnippets&#34;&gt;text snippets&lt;/a&gt; in Visual Studio Code for &lt;a href=&#34;https://www.dendron.so&#34;&gt;Dendron&lt;/a&gt; notes. My wish for this world is less JSON.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>dendron</category>  <category>vs-code</category> 
+  <content:encoded><![CDATA[<p>Figured out how to do <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">text snippets</a> in Visual Studio Code for <a href="https://www.dendron.so">Dendron</a> notes. My wish for this world is less JSON.</p>
+<p>Would YAML be better? Maybe, but no. I&rsquo;m thinking something more like Emacs <a href="https://github.com/joaotavora/yasnippet">yasnippet</a> files. Sure a file for every snippet may sound like overkill. It&rsquo;s a heck of a lot easier to figure out what a single template looks without filtering from JSON list and then translating from JSON string to template string.</p>
+<p>Anyways, snippets for timestamped list items in Dendron.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;itime&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;itime&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;timestamp for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;inow&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;inow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;datetime for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Handy for <a href="https://betterhumans.pub/replace-your-to-do-list-with-interstitial-journaling-to-increase-productivity-4e43109d15ef">interstitial journaling</a>. Take the claims about interstitial journaling with as much salt as you need. I use timestamped notes to remember when I did, said, or thought a thing.</p>
+<p>For some of us &ldquo;time tracking&rdquo; is just a tool to — um — track time.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

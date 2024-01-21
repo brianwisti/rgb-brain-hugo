@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/">
+<meta property="og:title" content="Drawing Grids With Python and Pillow">
+<meta name="twitter:title" content="Drawing Grids With Python and Pillow">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Hey I used card/Python and Pillow to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.
+I enjoy inbox/Drawing. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids.">
+    <meta property="og:description" content="Hey I used card/Python and Pillow to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.
+I enjoy inbox/Drawing. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids.">
+  
+
+
+
+<title itemprop="name">Drawing Grids With Python and Pillow - Random Geekery</title>
+<meta property="og:title" content=Drawing&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Drawing&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Drawing&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Drawing&#32;Grids&#32;With&#32;Python&#32;and&#32;Pillow&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/" />
+
+
+<meta property="og:updated_time" content=24011-24-12T110:00:17-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2021/09/creating-a-restructuredtext-kbd-role/">Creating a reStructuredText kbd Role</a></li>
+        
+          <li><a href="/post/2021/08/tooting-with-python/">Tooting with Python</a></li>
+        
+          <li><a href="/post/2020/01/a-quick-notes-script-for-taskwarrior/">A Quick Notes Script for Taskwarrior</a></li>
+        
+          <li><a href="/post/2019/12/dwim-is-consistent/">DWIM is consistent</a></li>
+        
+          <li><a href="/post/2019/06/weighing-files-with-python/">Weighing Files With Python</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/">Drawing Grids With Python and Pillow</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2017/11/drawing-grids-with-python-and-pillow/">Drawing Grids With Python and Pillow</a>
+    </h1>
+    
+        <time datetime="2017-11-24T00:00:00-0800" class="post-date">
+            November 24, 2017
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-programming">
+            <a href="https://randomgeekery.org/tags/programming">programming</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2017/11/../../../attachments/img/2017/cover-2017-11-24.png" alt="attachments/img/2017/cover-2017-11-24.png"/></p>
+<p>Hey I used <a href="/card/python/">card/Python</a> and <a href="https://python-pillow.org/">Pillow</a> to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.</p>
+<p>I enjoy <em>inbox/Drawing</em>. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids. Not much in the way of simple grid-based repetition though.</p>
+<p>Templates exist, but I want custom templates to fit the size of my workspace. I started exploring the Pillow library recently, so let’s use that to make custom grids for my drawings.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p>I use a modest 600 by 600 pixel grayscale image while working out the details. No point saving anything until I know what’s going on, so just <code>show()</code> the image.</p>
+<p><img src="/post/2017/11/attachments/img/2017/grid-blank.png" alt="A blank image"/></p>
+<p>Most of what I want is in the <a href="http://pillow.readthedocs.io/en/4.3.x/reference/ImageDraw.html">ImageDraw</a> module.</p>
+<h2 id="simple-grid">Simple Grid</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw a line</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-single-line.png" alt="Drawing one line"/></p>
+<p>Nice. Okay, how about repeating some lines across?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-columns.png" alt="Drawing some columns"/>
+Lovely. How about an actual grid?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-simple-grid.png" alt="Drawing a simple grid"/></p>
+<p>Okay cool but I often need a specific number of squares in my grid.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><img src="/post/2017/11/attachments/img/2017/grid-step-count.png" alt="Specifying a step count"/></p>
+<p>Right but I don’t want to edit the code every time.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p>Run it.</p>
+<pre tabindex="0"><code>$ python grid.py 12
+</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-specify-step-count.png" alt="Grabbing a step count from the command line"/></p>
+<p>I can specify step count from the command line. Cool. Uh hey about height and width?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p>Oh come on. Stop it with <code>sys.argv</code>. Get some real command line handling in there.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;width&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;width of image in pixels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;height&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;height of image in pixels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;step_count&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;how many steps across the grid&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">step_count</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw some lines</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p>Much better. Run it.</p>
+<pre tabindex="0"><code>$ python grid.py
+usage: grid.py [-h] width height step_count
+
+positional arguments:
+  width       width of image in pixels
+  height      height of image in pixels
+  step_count  how many steps across the grid
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+$ python grid.py 500 500 20
+</code></pre><p>I like <a href="https://docs.python.org/3/library/argparse.html[Argparse]">Argparse</a>.</p>
+<p><img src="/post/2017/11/attachments/img/2017/grid-specify-size-steps.png" alt="Constructing grid from Argparse arguments"/></p>
+<p>Anyways - what if I ask for a rectangle instead of a square?</p>
+<pre tabindex="0"><code>$ python grid.py 400 600 24 \{\{&lt; /console &gt;}}
+</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-rectangular.png" title="Rectangular grid" alt="Rectangular grid"/></p>
+<p>Hold on. I was handing <code>height</code> and <code>width</code> to <a href="http://pillow.readthedocs.io/en/4.3.x/reference/Image.html#the-image-class">Image</a> in the wrong order this whole time.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span></code></pre></div><p>Run it.</p>
+<pre tabindex="0"><code>$ python grid.py 400 600 24
+</code></pre><p><img src="/post/2017/11/attachments/img/2017/grid-correct-image-init.png" alt="Correct Image initialization"/></p>
+<p>This works. I have half a dozen ideas left, but I want to use it for a sketch <em>now</em>.</p>
+<p><strong><code>grid.py</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;width&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;width of image in pixels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;height&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;height of image in pixels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;step_count&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;how many steps across the grid&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">step_count</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">step_count</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Draw a grid</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y_start</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x_start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_end</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">line</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_start</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">filename</span> <span class="o">=</span> <span class="s2">&#34;grid-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">.png&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">step_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Saving </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span></code></pre></div><pre tabindex="0"><code>$ python grid.py 1800 2400 50
+Saving grid-1800-2400-50.png
+$ ls
+grid-1800-2400-50.png   grid.py*
+</code></pre><p>Let’s skim over the part where I get the grid onto the iPad and import it as a new layer in my current sketch. That part includes no code — for now.</p>
+<p>Anyways, back to the sketch.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2019/01/circular-grids-with-python-and-pillow/">circular-grids-with-python-and-pillow</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2017/11/my-ski-beanie/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>My Ski Beanie
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2017/12/knotwork-practice/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Knotwork Practice
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#simple-grid">Simple Grid</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

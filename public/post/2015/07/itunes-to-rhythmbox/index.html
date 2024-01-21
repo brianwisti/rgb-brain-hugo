@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/">
+<meta property="og:title" content="iTunes to Rhythmbox">
+<meta name="twitter:title" content="iTunes to Rhythmbox">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+">
+    <meta property="og:description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+">
+  
+
+
+
+<title itemprop="name">iTunes to Rhythmbox - Random Geekery</title>
+<meta property="og:title" content=iTunes&#32;to&#32;Rhythmbox&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=iTunes&#32;to&#32;Rhythmbox&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=iTunes&#32;to&#32;Rhythmbox&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=iTunes&#32;to&#32;Rhythmbox&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+" />
+<meta itemprop="description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+" />
+<meta property="og:description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+" />
+<meta name="twitter:description" content="I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado&#39;s version of iTunesToRhythm.
+" />
+
+
+<base href="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/" />
+
+
+<meta property="og:updated_time" content=27007-27-12T70:00:15-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2015/03/ruby-itunes-ratings-fun/">Ruby iTunes Ratings Fun</a></li>
+        
+          <li><a href="/post/2020/05/got-a-working-glitch-soc-rails-dev-environment/">Got a Working glitch-soc Rails Dev Environment</a></li>
+        
+          <li><a href="/post/2017/10/beets-and-itunes/">Beets and iTunes</a></li>
+        
+          <li><a href="/post/2015/11/using-bob-ross-css/">Bob Ross CSS</a></li>
+        
+          <li><a href="/post/2015/09/next-hugo/">Next? Hugo</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/">iTunes to Rhythmbox</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2015/07/itunes-to-rhythmbox/">iTunes to Rhythmbox</a>
+    </h1>
+    
+        <time datetime="2015-07-27T00:00:00-0700" class="post-date">
+            July 27, 2015
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-itunes">
+            <a href="https://randomgeekery.org/tags/itunes">itunes</a>
+        </li>
+        
+        <li class="tag-ruby">
+            <a href="https://randomgeekery.org/tags/ruby">ruby</a>
+        </li>
+        
+        <li class="tag-music">
+            <a href="https://randomgeekery.org/tags/music">music</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>I nearly wrote a script that transfers my <a href="/post/2015/03/ruby-itunes-ratings-fun/">2015-03-16-ruby-itunes-ratings-fun|iTunes ratings</a> to <a href="https://wiki.gnome.org/Apps/Rhythmbox">Rhythmbox</a>. Instead I used Edgar Salgado’s version of <a href="https://github.com/esalgado/iTunesToRhythm">iTunesToRhythm</a>.</p>
+<p>See, I have been spending most of my time lately in <a href="https://www.gnome.org/gnome-3/">GNOME 3</a> on <a href="https://www.opensuse.org">openSUSE</a> Linux. All of my music is copied over and loaded into <a href="https://wiki.gnome.org/Apps/Rhythmbox">Rhythmbox</a>, but I wanted to continue my quest to rate all of my music. I spent roughly an hour starting my own solution before realizing that this was probably a solved problem.</p>
+<p>Salgado’s code is a fork of <a href="https://github.com/esanbock/ITunesToRhythm">another project</a>, but he won my heart because he wrote how to use his version.</p>
+<pre tabindex="0"><code>$ git clone git@github.com:esalgado/iTunesToRhythm.git
+$ cd iTunesToRhythm
+$ python iTunesToRhythm.py -w ~/Sync/iTunes\ Music\ Library.xml \
+  ~/.local/share/rhythmbox/rhythmdb.xml
+</code></pre><p>Some things about the process annoyed me. For some strange reason, not every iTunes entry included a file location. I manually fixed those. More annoying: the iTunes XML showed roughly 7,000 tracks as rated even though the iTunes application showed over 10,000 as rated. I chose to live with that. It’s only 3,000 tracks that I need to rate again.</p>
+<p><em>sigh</em></p>
+<p>Hey, let’s make a pretty picture.</p>
+<p><strong><code>graph-ratings.rb</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;nokogiri&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;gruff&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="no">SOURCE</span> <span class="o">=</span> <span class="s2">&#34;/home/brian/.local/share/rhythmbox/rhythmdb.xml&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rhythmdb</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span> <span class="no">SOURCE</span>
+</span></span><span class="line"><span class="cl"><span class="n">songs</span> <span class="o">=</span> <span class="n">rhythmdb</span><span class="o">.</span><span class="n">xpath</span> <span class="s2">&#34;/rhythmdb/entry[@type=&#39;song&#39;]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ratings</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Group the songs by rating.</span>
+</span></span><span class="line"><span class="cl"><span class="n">songs</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">song</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">rating</span> <span class="o">=</span> <span class="n">song</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;rating&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">to_i</span> <span class="o">||</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="n">total_time</span> <span class="o">=</span> <span class="n">song</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&#34;duration&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">to_i</span> <span class="o">||</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{</span> <span class="ss">songs</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="ss">time</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:songs</span><span class="o">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:time</span><span class="o">]</span> <span class="o">+=</span> <span class="n">total_time</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Print it.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">puts</span> <span class="s1">&#39;Rating Songs Percent Duration&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ratings</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">rating</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">song_count</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:songs</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">total_seconds</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:time</span><span class="o">]</span> <span class="c1">#Rhythmbox uses seconds</span>
+</span></span><span class="line"><span class="cl">  <span class="n">seconds</span> <span class="o">=</span> <span class="n">total_seconds</span> <span class="o">%</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">  <span class="n">minutes</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_seconds</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">  <span class="n">hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_seconds</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span> <span class="o">%</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">  <span class="n">days</span> <span class="o">=</span> <span class="n">total_seconds</span> <span class="o">/</span> <span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">percentage</span> <span class="o">=</span> <span class="n">song_count</span><span class="o">.</span><span class="n">to_f</span><span class="p">()</span> <span class="o">/</span> <span class="n">songs</span><span class="o">.</span><span class="n">count</span><span class="o">.</span><span class="n">to_f</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="n">duration</span> <span class="o">=</span> <span class="nb">format</span> <span class="s1">&#39;%02d:%02d:%02d:%02d&#39;</span><span class="p">,</span> <span class="n">days</span><span class="p">,</span> <span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span>
+</span></span><span class="line"><span class="cl">  <span class="n">description</span> <span class="o">=</span> <span class="nb">format</span> <span class="s1">&#39;%6d %5d %6.1f%% %s&#39;</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">song_count</span><span class="p">,</span> <span class="n">percentage</span><span class="p">,</span> <span class="n">duration</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">puts</span> <span class="n">description</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Graph it.</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">rating</span><span class="p">,</span> <span class="n">info</span><span class="o">|</span> <span class="o">[</span> <span class="n">rating</span><span class="p">,</span> <span class="o">[</span> <span class="n">info</span><span class="o">[</span><span class="ss">:songs</span><span class="o">]]]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="no">Gruff</span><span class="o">::</span><span class="no">Pie</span><span class="o">.</span><span class="n">new</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Songs Grouped By Rating&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ratings</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">rating</span><span class="o">|</span> <span class="n">graph</span><span class="o">.</span><span class="n">data</span> <span class="n">rating</span><span class="p">,</span> <span class="n">ratings</span><span class="o">[</span><span class="n">rating</span><span class="o">][</span><span class="ss">:songs</span><span class="o">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">graph</span><span class="o">.</span><span class="n">write</span> <span class="s2">&#34;song-pie.png&#34;</span>
+</span></span></code></pre></div><p>This calls for Nokogiri instead of <a href="https://github.com/bleything/plist">plist</a>, which gives me the opportunity to flex my amazing <a href="http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html">XPath</a> skills. Nothing too complex. Thank goodness.</p>
+<pre tabindex="0"><code>$ ruby graph-ratings.rb
+Rating Songs Percent Duration
+     0  8926   55.2% 24:13:00:24
+     1   254    1.6% 00:19:49:30
+     2   984    6.1% 02:21:42:54
+     3  3932   24.3% 10:08:49:09
+     4  1716   10.6% 04:10:50:01
+     5   370    2.3% 00:23:16:01
+</code></pre><p>How about that pretty picture?</p>
+<p><img src="/post/2015/07/attachments/img/2015/july-rhythmbox-song-pie.png" alt="The song pie for July"/></p>
+<p>I’ve made progress since March. It looks less like Pac Man now.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2015/07/pandoc/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Pandoc
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2015/08/zentangle-doodle/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Zentangle Doodle
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

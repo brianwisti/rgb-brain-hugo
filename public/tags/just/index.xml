@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>justonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/just/</link>
+    <description>
+      Recent contentinjust on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Mon, 05 Dec 2022 20:00:00 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/just/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Testing Justfile Recipe Arguments</title>
+  <link>https://randomgeekery.org/post/2022/12/testing-justfile-recipe-arguments/</link>
+  <pubDate>Mon, 05 Dec 2022 20:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/12/testing-justfile-recipe-arguments/</guid>
+  <description>card/tldr:
+add TITLE: bundle exec ruby _scripts/add-post --title &#39;{{ TITLE }}&#39; Time to fiddle with my site setup some more.
+My site posts are organized by file slug: simplified file paths based on a title. Hugo itself directly supports creating new content by path.
+hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt It takes thinking to map from a title to a slug. Sometimes I’m not in the mood for that kind of thinking. And I’m not always great about consistency in my slug choices.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>just</category> 
+  <content:encoded><![CDATA[<h2>In which I make my justfile just a little fancier</h2><p><a href="/card/tldr/">card/tldr</a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
+</span></span></code></pre></div><p>Time to fiddle with my site setup some more.</p>
+<p>My site posts are organized by file slug: simplified file paths based on a title. <a href="https://gohugo.io">Hugo</a> itself directly supports creating new content by path.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt
+</span></span></code></pre></div><p>It takes thinking to map from a title to a slug. Sometimes I&rsquo;m not in the mood for that kind of thinking. And I&rsquo;m not always great about consistency in my slug choices.</p>
+<p>So I use a <a href="https://ruby-lang.org">Ruby</a> script to streamline adding new posts. I won&rsquo;t talk about that today. Maybe another day. All it does is use <a href="https://ttytoolkit.org">TTY::Toolkit</a> to save me a couple seconds of thought compared to <code>hugo new</code>, then fires up <code>$EDITOR</code> for me so I don&rsquo;t have to think about that either. Sometimes two seconds is the difference between writing an impulse post and writing a tweet.</p>
+<p>Right now the script needs a <code>--title</code> string it can use for frontmatter and file slug.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span>
+</span></span></code></pre></div><p>I don&rsquo;t have to figure out the slug, but it&rsquo;s still rather tedious. I use <a href="https://just.systems">just</a> to simplify those tedious site tasks. Putting the repeated bits of this invocation in a recipe — that&rsquo;s what <code>just</code> calls tasks — would cut down on the tedium. What about the title? Started thinking about TTY::Toolkit interactive prompts. Maybe some other time, because <code>just</code> lets you specify arguments for a recipe.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  bundle <span class="nb">exec</span> ruby _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
+</span></span></code></pre></div><p>Now I can <code>just add</code> a post.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">just add <span class="s1">&#39;Testing Justfile Recipe Arguments&#39;</span>
+</span></span></code></pre></div><p>And here we are!</p>
+<p>I use a couple other Ruby scripts. Might as well refactor that <code>bundle exec ruby</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nv">ruby</span> <span class="o">:=</span> <span class="s1">&#39;bundle exec ruby&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">{{</span> ruby <span class="o">}}</span> _scripts/add-post --title <span class="s1">&#39;{{ TITLE }}&#39;</span>
+</span></span></code></pre></div><p>All right. This is better than what I had before. Sure I&rsquo;ve got multiple helpful layers to track now. That&rsquo;ll bite me if I get carried away. On the other hand, I actually wrote something for the site today.</p>
+<p>Sometimes two seconds makes the difference.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

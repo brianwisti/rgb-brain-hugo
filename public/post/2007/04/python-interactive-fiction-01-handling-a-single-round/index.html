@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">
+<meta property="og:title" content="Python Interactive Fiction - 01 Handling a Single Round">
+<meta name="twitter:title" content="Python Interactive Fiction - 01 Handling a Single Round">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I think the next step is to write the code for a single round of the game. We&rsquo;ll limit ourselves to Scene 1 to stay focused.">
+    <meta property="og:description" content="I think the next step is to write the code for a single round of the game. We&rsquo;ll limit ourselves to Scene 1 to stay focused.">
+  
+
+
+
+<title itemprop="name">Python Interactive Fiction - 01 Handling a Single Round - Random Geekery</title>
+<meta property="og:title" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;01&#32;Handling&#32;a&#32;Single&#32;Round&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;01&#32;Handling&#32;a&#32;Single&#32;Round&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;01&#32;Handling&#32;a&#32;Single&#32;Round&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Python&#32;Interactive&#32;Fiction&#32;-&#32;01&#32;Handling&#32;a&#32;Single&#32;Round&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/" />
+
+
+<meta property="og:updated_time" content=19004-19-12T40:00:07-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">Python Interactive Fiction - 03 Handling Multiple Turns</a></li>
+        
+          <li><a href="/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/">Python Interactive Fiction - 02 Tying the Scenes Together</a></li>
+        
+          <li><a href="/post/2007/04/interactive-fiction-with-python/">Interactive Fiction with Python</a></li>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+          <li><a href="/post/2011/06/python-2x-babysteps/">Python 2.x Babysteps</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">Python Interactive Fiction - 01 Handling a Single Round</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">Python Interactive Fiction - 01 Handling a Single Round</a>
+    </h1>
+    
+        <time datetime="2007-04-19T00:00:00-0700" class="post-date">
+            April 19, 2007
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-interactive-fiction">
+            <a href="https://randomgeekery.org/tags/interactive-fiction">interactive-fiction</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Python Interactive Fiction]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p>I think the next step is to write the code for a single round of the game. We&rsquo;ll limit ourselves to Scene 1 to stay focused.</p>
+<h3 id="presenting-a-scene-to-the-user">Presenting a Scene to the user</h3>
+<p>First you want to show the description. Start a new <a href="/card/python/">Python</a> file in your favorite editor, or in IDLE with the menu command &ldquo;File&rdquo; -&gt; &ldquo;New&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">description</span>
+</span></span></code></pre></div><p>The <code>\</code> character at the end of lines 6 and 7 tells Python the string is continuing to the next line. Python would complain at us if we left that out. Let&rsquo;s run the script and see what we get.</p>
+<p>Save your new file as <code>ifiction.py</code> and run it. Press the <code>F5</code> key to run the script if you are using IDLE.</p>
+<pre tabindex="0"><code>$ python ifiction.py
+
+You are standing in a field. To the north of you are some mountains, to the ea
+st of you is a forest, to the west of you is a cave, and to the south of you i
+s a valley.
+</code></pre><p>This may not be happening for you, but when I run the script the description text gets cut off at inconvenient points. What happens next is a little more advanced than I was planning to show you, but that is just going to bug me too much if I don&rsquo;t fix it now.</p>
+<h4 id="wrapping-text-with-the-textwrap-module">Wrapping text with the <code>textwrap</code> module</h4>
+<p>One of Python&rsquo;s charms is the fact that it has a <a href="http://docs.python.org/lib/" title="Python Standard Library Reference">huge standard library</a>. This means that a lot of things you would like to do have already been written and included for free. That&rsquo;s why some folks say that Python comes with &ldquo;batteries included.&rdquo; The standard library is a collection of modules with useful features and functions. I am just concerned with the <code>fill</code> function from the <a href="https://docs.python.org/2/library/textwrap.html">textwrap</a> module right now, because I want the text of the description wrapped so that no words get cut off.</p>
+<p>You aren&rsquo;t automatically carrying all of those libraries around in your script, though. You need to use the <code>import</code> command to make the functions in a library available to your program.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span></code></pre></div><p>Notice that I had to use the module name as part of my call to <code>fill</code>. That is because Python needs to know where it can find the <code>fill</code> function, and for library functions it uses <em>modulename</em> followed by a dot (.) and then the function. You will be seeing a lot more of the dot operator as your Python knowledge expands.</p>
+<p>There are ways to import the function in a way which removes that requirement, but for now I will stick with the more explicit version because it is easier for <em>us</em> to know where we found the function.</p>
+<p>See what it looks like now?</p>
+<pre tabindex="0"><code>$ python ifiction.py
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+</code></pre><p>Of course, if the wrapping text isn&rsquo;t an issue for you, feel free to leave out the <code>textwrap</code> related code completely.</p>
+<h3 id="back-to-the-game-paths">Back to the game: paths</h3>
+<p>Now for the paths. We could just print the paths and make the user type in the full path to go anywhere, but that would be unkind. What we want is an easy way to show the list of paths and say &ldquo;You picked path #1: Go to the mountains&rdquo;.</p>
+<p>Python&rsquo;s <a href="https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange">list</a> type is the perfect way to do this. A Python list is a collection of values - they could be literals or other variables - that holds each value in order. This lets you ask for the third item in a list, or ask for each value in order. Let&rsquo;s start by creating and displaying the paths.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">path</span>
+</span></span></code></pre></div><p>What does it look like now?</p>
+<pre tabindex="0"><code>$ python ifiction.py
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+Go to the mountains
+Go into the forest
+Go into the cave
+Go to the valley
+</code></pre><p>I want to do a bit of formatting to break things up, but you get the idea of what is going on. We have created a variable called <code>paths</code> to hold our list of paths. What can I say? I like my variable names to be obvious. You can recognize a list by the square brackets <code>[]</code>. Items in the list are separated by commas. I like to put each list item on a line by itself, using indentation to show that we are looking inside the list. Little things like this make your code easier to read, which gets very important as your program grows.</p>
+<h4 id="the-for-loop">The <code>for</code> loop</h4>
+<p>Okay, I need to take the next few ideas slowly, because I have put a lot of important new concepts in two lines of code.</p>
+<p><code>for</code> is one of Python&rsquo;s looping <a href="/post/2004/07/control-structures/">control structures</a>. <code>for path in paths:</code> is going step to through each item in the list <code>paths</code>. That part is straightforward.  Another nice thing about Python code is that you can usually tell what&rsquo;s going on just by looking at it.</p>
+<p>It also creates a variable called <code>path</code> which will hold the value of the current item in the list. The first time through the list, <code>path</code> is set to <em>&ldquo;Go to the mountains&rdquo;</em>, the second time  through <code>path</code> is set to <em>&ldquo;Go into the forest&rdquo;</em>, and so on.</p>
+<p>What is Python going to do with <code>path</code>? That is decided in the indented line after the colon <code>:</code> character.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">path</span>
+</span></span></code></pre></div><p>I kept it simple for now. All we do is print this path to the screen and move on. Do you see the extra indentation, though? Python uses indentation to know what code is supposed to be executed within the loop. If I try to describe it, I&rsquo;m just going to make things more confusing than they really are. Just remember this:</p>
+<ul>
+<li>One or more lines at the same indent level are often called a &ldquo;block&rdquo;</li>
+<li>Everything right under the <code>for</code> statement which is indented belongs to the <code>for</code>
+loop.</li>
+<li>If you indent another level, it better be because you&rsquo;re starting a new block
+<em>inside</em> the <code>for</code> loop.</li>
+<li>If you unindent, it better be because you are done with the loop block.</li>
+</ul>
+<p>An indent without a control statement is an error in Python, except for special cases like the way I defined <code>description</code> and <code>paths</code>. It doesn&rsquo;t <em>really</em> matter how much you indent for a block, but it must be consistent throughout your program. The common standard suggested by Python creator Guido van Rossum is four spaces per block, with no tab characters used.</p>
+<p><code>for &lt;item&gt; in &lt;list&gt;</code> is useful, and it will probably be the most common tool in your kit for examining every item in a list. It doesn&rsquo;t quite work for our exact needs today, though. We want to build a menu with an easy value for the user to enter. This will use the <code>range()</code> function combined with the <code>[]</code> operator for accessing list members.</p>
+<p><code>range</code> is a simple function which returns a list of whole numbers in a certain range. It normally takes a single argument: the upper edge of the range. All the numbers in the list will be <em>less than</em> the upper edge. Here is a simple example:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; range(3)
+[0, 1, 2]
+</code></pre><p><code>range</code> can take additional arguments to set the starting number and the step size, but this is all we want for now. Oh, notice that the numbering starts at zero. This is going to be very useful, for reasons which will become clear in a few moments.</p>
+<p>I have shown you how to look at a complete list, as well as how to look at each item in a list one at a time. How do you look at a single item in the list? You use <code>[]</code>. What do they call that, anyways? I can&rsquo;t really tell from the Python docs. Let&rsquo;s call it the <em>indexing operation</em>. Why &ldquo;operation?&rdquo; Because we&rsquo;re doing something, but not with a function. Why &ldquo;indexing?&rdquo; Because we will be using a specific value to get at the item, sort of like using the index or table of contents in a book.</p>
+<p>So let&rsquo;s try it out. It is easy to use the indexing operation. Add the left bracket, the index number of the item you want, and then the right bracket. Go back to the Python shell and try it out for yourself, getting the value at index 1 of a list:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; items = [ &#39;apples&#39;, &#39;chocolate bugs&#39;, &#39;bananas&#39;]
+&gt;&gt;&gt; items[1]
+&#39;chocolate bugs&#39;
+</code></pre><p>That was a little confusing, wasn&rsquo;t it? We were expecting apples but got chocolate bugs instead You would <em>think</em> that the index would be easy: the first item would be at index 1, the second at index 2, and so on. Unfortunately, that&rsquo;s not the wayindexes work in Python. Numbering starts with the first item being zero.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; items[0]
+&#39;apples&#39;
+</code></pre><p>Zero-based indexing is one of those language features that&rsquo;s there for historical reasons. It made perfect sense a long time ago in another language, but now it just serves to confuse newcomers and create a lot of &ldquo;off-by-one&rdquo; errors. You may want to use a mental trick for reducing confusion: think of the index as the distance from the first item. The first item <em>is</em> the first item, so the distance is zero: <code>items[0]</code>. The next item is one away from the first item, so the distance is one: <code>items[1]</code>. And so on.</p>
+<p>Or you could just subtract one from the number you&rsquo;re thinking of and get on with it. Things that are shortcuts for me could just be useless clutter for you. I&rsquo;m happy as long as you remember that list index numbers start at zero.</p>
+<p>So where do the index numbers stop? You could count the items in the list code by hand and work with that number, but that is far too much work. Use Python&rsquo;s built-in <code>len</code> function. <code>len</code> is blissfully simple. You hand it a list, and it tells you how many items are in the list. Try it yourself if you still have that shell open:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; len(items)
+3
+</code></pre><p>There are three items in the list, so the index starts at zero and ends at two. <code>len</code> works perfectly with <code>range</code>, which hands you a list of numbers starting at zero and ending at one less than the upper edge. Back to the shell, where we&rsquo;ll step through our list using &rsquo;len&rsquo;, &lsquo;range&rsquo;, and list indexing.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; for index in range(len(items)):
+...     print index, items[index]
+...
+0 apples
+1 chocolate bugs
+2 bananas
+</code></pre><p>Oh, I didn&rsquo;t mention blocks in the shell, did I? When Python thinks you are in a block, it prints <code>...</code> instead of <code>&gt;&gt;&gt;</code>. Indent by hitting spaces (or I just use the tab key when I&rsquo;m in the shell). Hitting Enter on a line with no code tells the Python shell that you are done with the block and it&rsquo;s time to execute.</p>
+<p>Just so you know - <em>indexing operation</em> is just something I came up with after looking around on the Web a little bit. That is not the official name for <code>[]</code>, and I&rsquo;ll be updating this section as soon as I find out what that name is.</p>
+<p>This has been a quick crash course through list handling in Python. Let&rsquo;s apply what we&rsquo;ve learned about lists to our interactive story.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span>
+</span></span></code></pre></div><p>I used <code>i + 1</code> instead of <code>i</code> because &hellip; well, Python may count from zero but most people count from one. We&rsquo;re writing this for people, not for Python.</p>
+<p>We didn&rsquo;t <em>really</em> need to set up each <code>path</code> and <code>menu_item</code> as a variable, but I thought it would make things easier to read than <code>print &quot;\t&quot;, i+1, paths[i]</code>. You want to aim for readabality when you are starting out or you will quickly become lost. Actually, it&rsquo;s a good idea to aim for readability all the way through your programming life. It will make your code easier to maintain. Besides, putting these values in a variable leaves room for us to change our mind about <code>path</code> and <code>menu_item</code> are constructed in the future.</p>
+<p>Run the script and see what you get.</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+  1 Go to the mountains
+  2 Go into the forest
+  3 Go into the cave
+  4 Go to the valley
+</code></pre><p>It&rsquo;s starting to look like something! Now go take a break for a minute. I threw a lot of information at you all at once, and you may still need to process it. You at least need to look at something besides a computer monitor for a few seconds and shake your fingers loose. It&rsquo;s good for you.</p>
+<h3 id="getting-the-users-selection">Getting the user&rsquo;s selection</h3>
+<p>I am pleased that we have the scene description code working, but user input is still missing. All we need is <code>raw_input</code>, which we encountered in the initial <a href="/post/2001/01/python-babysteps-tutorial/">Python Babysteps</a>. Add a line to get user input and another line to show the result.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></div><p>Running this code is very exciting indeed:</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+  1 Go to the mountains
+  2 Go into the forest
+  3 Go into the cave
+  4 Go to the valley
+Make a selection: 3
+Choice 3 - Go into the cave
+</code></pre><h4 id="quitting-the-game">Quitting the game</h4>
+<p>Our specification mentioned that users may quit the game at any point, so we should add the code to make that possible.  Normal choices are numbers and they start at one, so let&rsquo;s take the easy way out and say that zero quits the game. The <code>if</code> selection control structures can be used to recognize the quit command.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></div><p>A little note about being careful. I spent five minutes debugging the above code. I kept getting <code>Choice 3 Go into the cave</code>, for every non-zero choice I entered. Turns out that I had cut and pasted some debugging code from earlier which was using the <code>i</code> variable. <code>i</code> was last set to <code>3</code>, so that&rsquo;s what Python kept printing for me. It can be very easy to get distracted while writing code, and although Python can catch a lot of errors, you must keep an eye out for little mistakes like that. Once I replace <code>i</code> with <code>choice</code> in the last line, everything was happy.</p>
+<p>Now, why did I use the <code>int</code> function on the user input? Keyboard input comes to you in the form of a String, which is a different <a href="/post/2002/06/simple-types-in-python/">type</a> than numbers. If we want to be able to use the input as an index for the <code>paths</code> list, we need a way to turn that String into an integer, or whole number. This is exactly what <code>int</code> does. What happens when the user entry can&rsquo;t be turned into a number? That&rsquo;s part of the next topic.</p>
+<h3 id="ensuring-valid-choices">Ensuring valid choices</h3>
+<p>User input needs to be in the form of a number. Not only that, but that number needs to be a valid index for <code>paths</code>. If either of these turns out to be false, Python panics. Let&rsquo;s explore this in the shell. As a special treat, I&rsquo;ll show you a glimpse at making functions in Python.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; def get_index():
+...     list = [ 10, 20, 30 ]
+...     prompt = &#34;Pick a number (0 - 2): &#34;
+...     index = int( raw_input(prompt) )
+...     print list[index]
+...
+&gt;&gt;&gt;
+</code></pre><p>If you make a mistake, hit Enter twice to end the function definition and start over. Don&rsquo;t forget your indentation! Incidentally, I chose to put the prompt in its own variable because all of those parentheses on the same line were making me a little dizzy.</p>
+<p>Test <code>get_index</code> with a valid number first.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; get_index()
+Pick a number (0 - 2): 0
+10
+</code></pre><p>What happens when you enter a number that&rsquo;s too big? Try it and see.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; get_index()
+Pick a number (0 - 2): 20
+Traceback (most recent call last):
+  File &#34;&lt;stdin&gt;&#34;, line 1, in ?
+  File &#34;&lt;stdin&gt;&#34;, line 5, in get_index
+IndexError: list index out of range
+</code></pre><p>How about when you enter something that&rsquo;s not a number again? Once again, TIAS <em>(Try It And See)</em>.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; get_index()
+Pick a number (0 - 2): banana
+Traceback (most recent call last):
+  File &#34;&lt;stdin&gt;&#34;, line 1, in ?
+  File &#34;&lt;stdin&gt;&#34;, line 4, in get_index
+ValueError: invalid literal for int(): banana
+</code></pre><p>Python raises an <em>exception</em> at you whenever it encounters a situation it can&rsquo;t handle on its own. An exception is a special type of object that is specially used for errors, accidents, or plain old weird events in your program. You can plan for them, though, and try to handle them when they happen. That is going to require a new kind of block: The <code>try</code> block. This sort of block is easier to understand in the context of a full program, so let&rsquo;s go back to <code>ifiction.py</code>. We&rsquo;ll start with catching every kind of exception in one go:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>A <code>try</code> block usually has at least 2 parts:</p>
+<ul>
+<li><code>try</code>: The code we think might cause an exception to be raise</li>
+<li>One or more <code>except</code> blocks: tells Python what to do when an exception is encountered</li>
+</ul>
+<p>We can specify what exceptions we would expect to see, but that is more than I want to look at right now. We&rsquo;ll just put up a single <code>except</code> block that will catch every exception raised within the <code>try</code> block.  We can test the code by entering a number that is too large.</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: 20
+Choice 20 - 20 is not a valid selection!
+</code></pre><p>This is odd-looking. Our error message prints at exactly the spot where the exceptional situation was encountered: trying to access <code>paths[19]</code>.  Well, at least I&rsquo;ve illustrated exactly how dynamic Python is. It doesn&rsquo;t look ahead to see if something bad is going to happen, so it has to trust us to know when to look for an error. I think it would be a little cleaner to put the choice description in its own variable before printing it.  That way we get an exception before we try to give normal feedback to the user.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>Our code is starting to get a little long to show the whole thing for every little change, so I have decided to focus on the chunk of code that is being modified. Anyways, you can see that I have made a new <code>next_step</code> variable. Python will raise the exception about bad indexing here, instead of in the middle of printing out feedback. We have also made the code more readable in the process, which is a nice thing.</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: 20
+20 is not a valid selection!
+</code></pre><p>Our input code handles bad indexes. Test the code again by entering a non-number for <code>choice</code>.</p>
+<pre tabindex="0"><code>You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: steak and eggs
+Traceback (most recent call last):
+  File &#34;ifiction.py&#34;, line 35, in ?
+    print choice, &#34;is not a valid selection!&#34;
+NameError: name &#39;choice&#39; is not defined
+</code></pre><p>Oops. I raised a whole new exception because <code>choice</code> isn&rsquo;t defined until <em>after</em> it&rsquo;s converted to a number, but I referred to it in the <code>except</code> block. Another intermediate variable will save us from that error.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">menu_selection</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>There are several very small changes here. <code>choice</code> now refers only to the raw user input, and we have created a new variable <code>menu_selection</code> to hold the choice converted to an integer. This means we had to adjust the variable names where we were really talking about the number the user provided and not the keystrokes. You might have noticed that I created an <code>index</code> variable in the <code>else</code> block. This is a personal taste thing. I often start out using a raw expression and later replace it with a variable when I think it would make my meaning clearer.  The &ldquo;start sloppy and refine as you go&rdquo; approach happens to work for me, but use whatever tactic you are most comfortable with.</p>
+<pre tabindex="0"><code>Make a selection: an iced coffee would good right now
+an iced coffee would good right now is not a valid selection!
+</code></pre><p>Right. We can recognize bad input from the user. What do we want to do about it? The best approach may be to continue asking the user for input until we get something acceptable for the next step that she wants to take. We can use a simple <code>while</code> loop to handle this.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Keep asking for input until we have a valid choice for the next step</span>
+</span></span><span class="line"><span class="cl"><span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span></code></pre></div><p>Now we&rsquo;ve given our user endless opportunities to enter a valid choice.</p>
+<pre tabindex="0"><code>Make a selection: Rad
+Rad is not a valid selection!
+Make a selection: 42
+42 is not a valid selection!
+Make a selection: 0
+You decided to: quit
+</code></pre><p>What is going on here? We have created a variable <code>next_step</code> and assigned it the value of &hellip;. <code>None</code>? We are going to be using <code>next_step</code> in the test condition of our loop, and Python will complain to us if the variable isn&rsquo;t defined before we start testing its value.  Using the <code>None</code> value is more convenient than arbitrarily declaring a particular value to be invalid and using that. <code>None</code> is a special value meaning &ldquo;nothing at all&rdquo; - not even the numeric value of zero. Think of the statement <code>next_step = None</code> as our way to tell Python &ldquo;I plan on using a variable called <code>next_step</code> but I don&rsquo;t have a value for it yet. Just remember that I told you I wanted the variable.&rdquo;</p>
+<p>Now for the <code>while</code> loop. We specify a condition here, similar to the way we did with <code>if</code> earlier. The condition is that <code>next_step</code> must not be <code>None</code>. It is an easy enough requirement. The test will fail if we successfully assign a <code>next_step</code> in the loop.</p>
+<h4 id="catching-specific-exceptions">Catching specific exceptions</h4>
+<p>There is one more minor issue to take care of before we wrap up this stage of writing the game. It is good that we are handling exceptions raised from user input, but we are catching <em>every</em> exception that is raised. This doesn&rsquo;t sound like a bad thing until you remember that our error message is really written for a specific kind of error: the user entered something that can&rsquo;t be used by our menu handler. There are <a href="https://docs.python.org/2/library/exceptions.html" title="Python built-in exceptions summary">many things</a>) that can go wrong in a Python code.  We don&rsquo;t want to be handling exceptions that we aren&rsquo;t ready for. Why not? The error messages won&rsquo;t make sense, for starters. Say you decided to hit <code>Control-C</code> in the program to force quit. Here&rsquo;s what we end up seeing:</p>
+<pre tabindex="0"><code>Make a selection: ^CTraceback (most recent call last):
+  File &#34;ifiction.py&#34;, line 40, in ?
+    print choice, &#34;is not a valid selection!&#34;
+NameError: name &#39;choice&#39; is not defined
+</code></pre><blockquote>
+<p>[!WARNING]
+Please don&rsquo;t explore this with other types of bad input. You could end up with a Python process that won&rsquo;t quit unless you force it to quit from your task / process manager.</p>
+</blockquote>
+<p>The problem is that the original exception was a <code>KeyboardInterrupt</code>. We don&rsquo;t see that here, because we referred to <code>choice</code> which isn&rsquo;t defined until the user provides some input. This causes a <code>NameError</code> to be raised, which hides the original exception. Python usually tells you only about the most recent exception that happened. If something truly unexpected happens here, we will never know about it. Python normally tells you about the most recent exception only.</p>
+<p>We caused a <code>KeyboardInterrupt</code> by hitting <code>Control-C</code>. Python sees our catch-all <code>except</code> block and hands the <code>KeyboardInterrupt</code> exception to that block. Inside the block, we try to include the menu choice in our error message. Unfortunately, <code>choice</code> hasn&rsquo;t been defined yet. We never entered a choice! This is a whole new exception, and we don&rsquo;t have any code to handle it. Python&rsquo;s rule is to always stop and inform you of the first unhandled exception it encounters. and because of the way we defined and wrote our <code>except</code> block, every exception is treated like bad input - from <code>Control-C</code> to a missing hard drive. As far as Python is concerned, we&rsquo;ve handled the <code>KeyboardInterrupt</code>. The <code>NameError</code> caused by <code>choice</code> <em>in</em> the exception handler is the surprise that makes Python panic.</p>
+<p>That is enough of a lecture. I am sure you understand by now that we want to be specific about what exceptions we are ready for. It is time to make it happen. The two exceptions that we care about are:</p>
+<dl>
+<dt>IndexError</dt>
+<dd>we tried to use a bad number as a list index</dd>
+<dt>ValueError</dt>
+<dd>the user input couldn&rsquo;t be converted to a number</dd>
+</dl>
+<p>Let&rsquo;s add a handler for IndexError.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>This change now handles <code>IndexError</code> just fine. Look at what happens when we hit <code>Control-C</code>.</p>
+<pre tabindex="0"><code>Make a selection: ^CTraceback (most recent call last):
+  File &#34;ifiction.py&#34;, line 30, in ?
+    choice = raw_input(&#34;Make a selection: &#34;)
+KeyboardInterrupt
+</code></pre><p>Of course, we&rsquo;re only looking for <code>IndexError</code>, so look what happens right now if we enter something that isn&rsquo;t a number.</p>
+<pre tabindex="0"><code>Make a selection: mmm coffee
+Traceback (most recent call last):
+  File &#34;ifiction.py&#34;, line 31, in ?
+    menu_selection = int(choice)
+ValueError: invalid literal for int(): mmm coffee
+</code></pre><p>Now we add the code to handle <code>ValueError</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>Yes, Python can handle multiple <code>except</code> blocks just fine. This can be very handy. A calculator program would want to handle &ldquo;no input&rdquo; differently from &ldquo;user tried to divide by zero.&rdquo; What does the program look like with these changes?</p>
+<pre tabindex="0"><code>Make a selection: 12
+12 is not a valid selection!
+Make a selection: Can I have a banana?
+Can I have a banana? is not a valid selection!
+Make a selection: ^CTraceback (most recent call last):
+  File &#34;ifiction.py&#34;, line 30, in ?
+    choice = raw_input(&#34;Make a selection: &#34;)
+KeyboardInterrupt
+</code></pre><p>Wonderful! Our exception handling code is now behaving politely instead of trying to grab every exception that occurs. Now for the style issue. Both of our <code>except</code> blocks do exactly the same thing. I suppose we could have a slightly different error message for each kind of exception, and you are free to do exactly that. It&rsquo;s not something I&rsquo;m concerned about, though. I am comfortable with using the same error message. I <em>would</em> prefer to cut down on the repetition.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span></code></pre></div><p>I would like to look again at this code in the future, but for now it is good enough.</p>
+<p>We can handle multiple exceptions in the same <code>except</code> block by placing the exception types in a special list called a <em>tuple</em>.  I am not going to spend any time on tuples, because I worry that it would only confuse things. All you need to remember right now is that a tuple looks like an ordinary list using <code>()</code> instead of <code>[]</code> to wrap it, and that you should use normal lists unless I tell you otherwise.</p>
+<p>It looks like we have all the code we need for handling a single round in our game. I had to cover more new concepts than I thought, because things can become complicated when we start doing things with user input. We dabbled into importing modules thanks to the way things were printing out in my shell. We looked at the common control structures for selection and repetition, and we examined <code>try</code> for trying out code that we know can misbehave. Here&rsquo;s the full source of what we&rsquo;ve done so far, along with a couple of additional comments intended to clarify what the program is doing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># ifiction.py</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  - An interactive fiction game</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">textwrap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;You are standing in a field. To the north of you are some mountains, &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;to the east of you is a forest, to the west of you is a cave, and to &#34;</span> \
+</span></span><span class="line"><span class="cl">              <span class="s2">&#34;the south of you is a valley.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The list of choices available to the user.</span>
+</span></span><span class="line"><span class="cl"><span class="n">paths</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the mountains&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the forest&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go into the cave&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Go to the valley&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Show the menu for this scene.</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu_item</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">menu_item</span><span class="p">,</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">(0 Quit)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">next_step</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get the user selection from the menu.</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">next_step</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">choice</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Make a selection: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_selection</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">menu_selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="s2">&#34;quit&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">menu_selection</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next_step</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span> <span class="n">index</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Choice&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">choice</span><span class="p">,</span> <span class="s2">&#34;is not a valid selection!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;You decided to:&#34;</span><span class="p">,</span> <span class="n">next_step</span>
+</span></span></code></pre></div><p>Now go take a break. I really mean it this time. We have covered a lot, and you need time to process. Listen to some music, have a sandwich, and come back when you&rsquo;re ready.</p>
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/">python-interactive-fiction-02-tying-the-scenes-together</a>
+      </li>
+      
+      <li>
+        <a href="/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">python-interactive-fiction-03-handling-multiple-turns</a>
+      </li>
+      
+      <li>
+        <a href="/post/2007/06/python-interactive-fiction-03-handling-multiple-turns/">python-interactive-fiction-03-handling-multiple-turns</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/python-interactive-fiction">Python Interactive Fiction</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2007/04/interactive-fiction-with-python/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Interactive Fiction with Python
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2007/04/python-interactive-fiction-02-tying-the-scenes-together/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Python Interactive Fiction - 02 Tying the Scenes...
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#presenting-a-scene-to-the-user">Presenting a Scene to the user</a></li>
+        <li><a href="#back-to-the-game-paths">Back to the game: paths</a></li>
+        <li><a href="#getting-the-users-selection">Getting the user&rsquo;s selection</a></li>
+        <li><a href="#ensuring-valid-choices">Ensuring valid choices</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

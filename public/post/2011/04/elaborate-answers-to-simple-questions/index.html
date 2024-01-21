@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/">
+<meta property="og:title" content="Elaborate Answers To Simple Questions">
+<meta name="twitter:title" content="Elaborate Answers To Simple Questions">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Use string methods instead of importing string. Build email messages with the standard email library.
+I saw an email last night from somebody with a simple Python question.
+Hi,
+… I have some issues in my python program. I have installed python27 in C:Python27. I started learning python with small programs. I’m saving all python programs in C:ROUGH When I am executing these scripts through command prompt facing some problem with &ldquo;import&rdquo;.">
+    <meta property="og:description" content="Use string methods instead of importing string. Build email messages with the standard email library.
+I saw an email last night from somebody with a simple Python question.
+Hi,
+… I have some issues in my python program. I have installed python27 in C:Python27. I started learning python with small programs. I’m saving all python programs in C:ROUGH When I am executing these scripts through command prompt facing some problem with &ldquo;import&rdquo;.">
+  
+
+
+
+<title itemprop="name">Elaborate Answers To Simple Questions - Random Geekery</title>
+<meta property="og:title" content=Elaborate&#32;Answers&#32;To&#32;Simple&#32;Questions&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Elaborate&#32;Answers&#32;To&#32;Simple&#32;Questions&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Elaborate&#32;Answers&#32;To&#32;Simple&#32;Questions&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Elaborate&#32;Answers&#32;To&#32;Simple&#32;Questions&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/" />
+
+
+<meta property="og:updated_time" content=14004-14-12T40:00:11-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2009/06/python-blogger-refresh-part-2-settings/">Python Blogger Refresh Part 2 - Settings</a></li>
+        
+          <li><a href="/post/2009/06/python-blogger-refresh-part-1/">Python Blogger Refresh, Part 1</a></li>
+        
+          <li><a href="/post/2008/01/adding-categories-to-the-python-blogger-client/">Adding Categories to the Python Blogger Client</a></li>
+        
+          <li><a href="/post/2007/12/python-loves-blogger-part-1/">Python Loves Blogger (Part 1)</a></li>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/">Elaborate Answers To Simple Questions</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2011/04/elaborate-answers-to-simple-questions/">Elaborate Answers To Simple Questions</a>
+    </h1>
+    
+        <time datetime="2011-04-14T00:00:00-0700" class="post-date">
+            April 14, 2011
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-blogspot">
+            <a href="https://randomgeekery.org/tags/blogspot">blogspot</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>Use <code>string</code> methods instead of importing <code>string</code>. Build email messages
+with the standard <a href="http://docs.python.org.library.email.html">email</a>
+library.</p>
+<p>I saw an email last night from somebody with a simple
+<a href="/card/python/">Python</a> question.</p>
+<blockquote>
+<p>Hi,</p>
+<p>… I have some issues in my python program. I have installed python27
+in C:Python27. I started learning python with small programs. I’m
+saving all python programs in C:ROUGH When I am executing these
+scripts through command prompt facing some problem with &ldquo;import&rdquo;.
+Please help me out</p>
+<p>My program:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#import C:\Python27\Lib\string</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">Subject</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">),</span><span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>ERROR IS:</p>
+<pre tabindex="0"><code>C:\Python27&gt;python.exe c:\ROUGH\addingsubtofrm.py
+Traceback (most recent call last):
+  File &#34;c:\ROUGH\addingsubtofrm.py&#34;, line 12, in &lt;module&gt;
+    body = string.join((&#34;From: %s&#34; % From,
+AttributeError: &#39;module&#39; object has no attribute &#39;join&#39;
+</code></pre><p>…​</p>
+</blockquote>
+<p>For some reason, I do not get any error when I try to run her code with
+Python 2.7.1 on Windows XP. That’s okay, though. I can still help a
+little bit on the style.</p>
+<p>Although <code>join</code> is part of the
+<a href="http://docs.python.org/library/string.html">string</a> module, it is also
+directly attached to strings. So instead of using <code>string.join(items, separator)</code>, you could use <code>separator.join(items)</code>. That’s considered
+the standard way to join a list of items into a single string these
+days.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">Subject</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>This probably answers her question, but I am apparently in the mood to
+spend a lot of time writing about Python basics. Sounds like blog gold
+to me.</p>
+<p>There’s a problem with <code>body</code> if you want to use it for an actual email
+message. There needs to be a blank line between the headers and the
+body. One way to do that is to use <code>join</code> twice: once to build the
+header block and again to create a properly laid-out email message.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Subject</span> <span class="o">=</span> <span class="s2">&#34;Testmail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span> <span class="o">=</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">From</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">To</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">Subject</span>
+</span></span><span class="line"><span class="cl">    <span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>The header block still looks a little clumsy. I am sure there is a
+prettier way to generate it. When I look at how the header block is
+printed, I realize that it looks a lot like a Python dictionary. Does
+the code look any clearer if I use a dictionary?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="s2">&#34;From: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;From&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                            <span class="s2">&#34;To: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                            <span class="s2">&#34;Subject: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Subject&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>Well, no. Not really. I think I’m actually typing <em>more</em> than I was
+before, and it’s not really any easier to read. It’s all that <code>&quot;From: %s&quot; % headers['From']&quot;</code> nonsense.</p>
+<p><code>join</code> takes a sequence. I do not have to hand it a literal like we have
+been doing so far. Let’s build a list of header lines, and <em>then</em> join
+them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_lines</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">header_line</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">header_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header_line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_lines</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>It is easier to read, even if it is a little longer. We are building a
+list of header lines by stepping through each of the key/value pairs
+that make up the <code>headers</code> dictionary. Oh, and don’t worry about what
+order the items are printed in. That order doesn’t matter in email
+messages.</p>
+<p>One thing — and this is a little thing — is that it takes us four lines
+of code to build the list. Like I said, it’s a little thing. But
+building lists like this is so common that Python provides powerful
+tools called <a href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">list
+comprehensions</a>,
+which can reduce those four lines into one.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Each line of a header block contains a single email header,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># which looks like &#34;Header-Field: Header-Value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="n">header_block</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_lines</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A full email has a blank line between the header block and the message body</span>
+</span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\r\n\r\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">header_block</span><span class="p">,</span> <span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">body</span>
+</span></span></code></pre></div><p>All right. Now if this were an <em>actual</em> email, there are some missing
+headers. There are probably also some details missing that are related
+to email handling. Rather than try to figure out what’s missing, I’m
+going to suggest that you use the
+<a href="http://docs.python.org.library.email.html">email</a> library that comes
+standard with Python.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Subject&#34;</span><span class="p">:</span> <span class="s2">&#34;Testmail&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;To&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;From&#34;</span><span class="p">:</span> <span class="s2">&#34;yeahright@nonotreallyawebsiteihope.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;Test&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">msg</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">And</span> <span class="n">what</span> <span class="n">does</span> <span class="n">the</span> <span class="n">end</span> <span class="n">result</span> <span class="n">look</span> <span class="n">like</span><span class="err">?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">```</span> <span class="n">http</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="s2">&#34;us-ascii&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">MIME</span><span class="o">-</span><span class="n">Version</span><span class="p">:</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="mi">7</span><span class="n">bit</span>
+</span></span><span class="line"><span class="cl"><span class="n">To</span><span class="p">:</span> <span class="n">yeahright</span><span class="nd">@nonotreallyawebsiteihope.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">From</span><span class="p">:</span> <span class="n">yeahright</span><span class="nd">@nonotreallyawebsiteihope.com</span>
+</span></span><span class="line"><span class="cl"><span class="n">Subject</span><span class="p">:</span> <span class="n">Testmail</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Test</span>
+</span></span></code></pre></div><p>There you go. If your end goal is generating emails, use the Python
+email library.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2011/03/a-glance-at-client-side-frameworks/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>A Glance at Client-Side Frameworks
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2011/04/the-spreadsheet-story-1/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>The Spreadsheet Story 1
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

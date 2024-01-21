@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/">
+<meta property="og:title" content="Elisp Functions Described in the Emacs Tutorial">
+<meta name="twitter:title" content="Elisp Functions Described in the Emacs Tutorial">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="The other day I talked some sort of nonsense about organizing my notes into some sort of coherent blog post. Heck with that. Life is too short. Instead I will just dump them here and hope somebody finds them useful. Maybe later I can do something with it. For now it&rsquo;s just supplemental material for the official Emacs tutorial.">
+    <meta property="og:description" content="The other day I talked some sort of nonsense about organizing my notes into some sort of coherent blog post. Heck with that. Life is too short. Instead I will just dump them here and hope somebody finds them useful. Maybe later I can do something with it. For now it&rsquo;s just supplemental material for the official Emacs tutorial.">
+  
+
+
+
+<title itemprop="name">Elisp Functions Described in the Emacs Tutorial - Random Geekery</title>
+<meta property="og:title" content=Elisp&#32;Functions&#32;Described&#32;in&#32;the&#32;Emacs&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Elisp&#32;Functions&#32;Described&#32;in&#32;the&#32;Emacs&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Elisp&#32;Functions&#32;Described&#32;in&#32;the&#32;Emacs&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Elisp&#32;Functions&#32;Described&#32;in&#32;the&#32;Emacs&#32;Tutorial&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/" />
+
+
+<meta property="og:updated_time" content=27005-27-12T50:00:14-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2014/05/the-emacs-tutorial-as-elisp-tour/">The Emacs Tutorial as ELisp Tour</a></li>
+        
+          <li><a href="/post/2014/10/blog-writing-in-org-mode/">Blog Writing in Org Mode</a></li>
+        
+          <li><a href="/post/2014/06/start-using-emacsclient/">Start Using Emacsclient</a></li>
+        
+          <li><a href="/post/2014/05/exporting-from-org-to-markdown/">Exporting From Org to Markdown</a></li>
+        
+          <li><a href="/post/2020/12/learning-a-little-elisp/">Learning a little elisp</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/">Elisp Functions Described in the Emacs Tutorial</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2014/05/elisp-functions-described-in-the-emacs-tutorial/">Elisp Functions Described in the Emacs Tutorial</a>
+    </h1>
+    
+        <time datetime="2014-05-27T00:00:00-0700" class="post-date">
+            May 27, 2014
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-emacs">
+            <a href="https://randomgeekery.org/tags/emacs">emacs</a>
+        </li>
+        
+        <li class="tag-elisp">
+            <a href="https://randomgeekery.org/tags/elisp">elisp</a>
+        </li>
+        
+        <li class="tag-tutorial">
+            <a href="https://randomgeekery.org/tags/tutorial">tutorial</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>The <a href="/post/2014/05/the-emacs-tutorial-as-elisp-tour/">other day</a> I talked some sort of nonsense about organizing my notes into some sort of coherent blog post. Heck with that. Life is too short. Instead I will just dump them here and hope somebody finds them useful. Maybe later I can do something with it. For now it&rsquo;s just supplemental material for the official <a href="/card/emacs/">Emacs</a> tutorial.</p>
+<h2 id="functions-in-the-emacs-tutorial">Functions in the Emacs Tutorial</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Keybinding</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>save-buffers-kill-terminal</code></td>
+<td><code>C-x C-c</code></td>
+<td>Save and quit Emacs</td>
+</tr>
+<tr>
+<td><code>keyboard-quit</code></td>
+<td><code>C-g</code></td>
+<td>Cancels entry of a command</td>
+</tr>
+<tr>
+<td><code>scroll-up-command</code></td>
+<td><code>C-v</code></td>
+<td>Scroll content up</td>
+</tr>
+<tr>
+<td><code>scroll-down-command</code></td>
+<td><code>M-v</code></td>
+<td>Scroll cowntent down</td>
+</tr>
+<tr>
+<td><code>recenter-top-bottom</code></td>
+<td><code>C-l</code></td>
+<td>Redraw window cycling point through center/top/bottom of window</td>
+</tr>
+<tr>
+<td><code>previous-line</code></td>
+<td><code>C-p</code></td>
+<td>Put point on previous line</td>
+</tr>
+<tr>
+<td><code>next-line</code></td>
+<td><code>C-n</code></td>
+<td>Put point on next line</td>
+</tr>
+<tr>
+<td><code>backward-char</code></td>
+<td><code>C-b</code></td>
+<td>Put point on previous character</td>
+</tr>
+<tr>
+<td><code>forward-char</code></td>
+<td><code>C-f</code></td>
+<td>Put point on next character</td>
+</tr>
+<tr>
+<td><code>forward-word</code></td>
+<td><code>M-f</code></td>
+<td>Put point on next word</td>
+</tr>
+<tr>
+<td><code>backward-word</code></td>
+<td><code>M-b</code></td>
+<td>Put point on previous word</td>
+</tr>
+<tr>
+<td><code>move-beginning-of-line</code></td>
+<td><code>C-a</code></td>
+<td>Put point on line start</td>
+</tr>
+<tr>
+<td><code>move-end-of-line</code></td>
+<td><code>C-e</code></td>
+<td>Put point on line end</td>
+</tr>
+<tr>
+<td><code>backward-sentence</code></td>
+<td><code>M-a</code></td>
+<td>Put point on previous sentence start</td>
+</tr>
+<tr>
+<td><code>forward-sentence</code></td>
+<td><code>M-e</code></td>
+<td>Put point on next sentence start</td>
+</tr>
+<tr>
+<td><code>beginning-of-buffer</code></td>
+<td><code>M-&lt;</code></td>
+<td>Put point on buffer start</td>
+</tr>
+<tr>
+<td><code>end-of-buffer</code></td>
+<td><code>M-&gt;</code></td>
+<td>Put point on buffer end</td>
+</tr>
+<tr>
+<td><code>universal-argument</code></td>
+<td><code>C-u</code></td>
+<td>Begin a numeric argument for the following command</td>
+</tr>
+<tr>
+<td><code>delete-other-windows</code></td>
+<td><code>C-x 1</code></td>
+<td>Make window fill its frame</td>
+</tr>
+<tr>
+<td><code>self-insert-command</code></td>
+<td><code>&lt;character&gt;</code></td>
+<td>Inserts the character you type</td>
+</tr>
+<tr>
+<td><code>newline</code></td>
+<td><code>RETURN</code></td>
+<td>Insert a newline &amp; move point to next line</td>
+</tr>
+<tr>
+<td><code>delete-backward-char</code></td>
+<td><code>DEL</code></td>
+<td>Delete characters before point</td>
+</tr>
+<tr>
+<td><code>delete-char</code></td>
+<td><code>C-d</code></td>
+<td>Delete characters after point</td>
+</tr>
+<tr>
+<td><code>backward-kill-word</code></td>
+<td><code>M-DEL</code></td>
+<td>Delete word before point</td>
+</tr>
+<tr>
+<td><code>kill-word</code></td>
+<td><code>M-d</code></td>
+<td>Delete word after point</td>
+</tr>
+<tr>
+<td><code>kill-line</code></td>
+<td><code>C-k</code></td>
+<td>Kill from point to end of line</td>
+</tr>
+<tr>
+<td><code>kill-sentence</code></td>
+<td><code>M-k</code></td>
+<td>Kill from point to end of sentence</td>
+</tr>
+<tr>
+<td><code>set-mark-command</code></td>
+<td><code>C-SPACE</code></td>
+<td>Start marking a region for later action</td>
+</tr>
+<tr>
+<td><code>kill-region</code></td>
+<td><code>C-w</code></td>
+<td>Cut text in marked region</td>
+</tr>
+<tr>
+<td><code>yank</code></td>
+<td><code>C-y</code></td>
+<td>Yank (paste) text at point</td>
+</tr>
+<tr>
+<td><code>yank-pop</code></td>
+<td><code>M-y</code></td>
+<td>cycle through kill ring w/last yank</td>
+</tr>
+<tr>
+<td><code>undo</code></td>
+<td><code>C-/</code></td>
+<td>Undo last command</td>
+</tr>
+<tr>
+<td><code>find-file</code></td>
+<td><code>C-x C-f</code></td>
+<td>Prompt in minibuffer to open a file in buffer</td>
+</tr>
+<tr>
+<td><code>save-buffer</code></td>
+<td><code>C-x C-s</code></td>
+<td>Save buffer contents to file</td>
+</tr>
+<tr>
+<td><code>list-buffers</code></td>
+<td><code>C-x C-b</code></td>
+<td>Display a list of existing buffers</td>
+</tr>
+<tr>
+<td><code>switch-to-buffer</code></td>
+<td><code>C-x b</code></td>
+<td>Minibuffer prompt switch window view to different buffer</td>
+</tr>
+<tr>
+<td><code>save-some-buffers</code></td>
+<td><code>C-x s</code></td>
+<td>Prompt to save each changed buffer</td>
+</tr>
+<tr>
+<td><code>suspend-frame</code></td>
+<td><code>C-z</code> or <code>C-x C-z</code></td>
+<td>exit Emacs temporarily</td>
+</tr>
+<tr>
+<td><code>replace-string</code></td>
+<td><code>M-x replace-string</code></td>
+<td>minibuffer - replace instances of a string in buffer after point</td>
+</tr>
+<tr>
+<td><code>recover-file</code></td>
+<td><code>M-x recover-file</code></td>
+<td>Revisit buffer using last auto-saved contents</td>
+</tr>
+<tr>
+<td><code>text-mode</code></td>
+<td><code>M-x text-mode</code></td>
+<td>Major mode for editing text for humans to read</td>
+</tr>
+<tr>
+<td><code>describe-mode</code></td>
+<td><code>C-h m</code></td>
+<td>Show documentation for current major and minor modes</td>
+</tr>
+<tr>
+<td><code>auto-fill-mode</code></td>
+<td><code>M-x auto-fill-mode</code></td>
+<td>Toggle automatic line breaking</td>
+</tr>
+<tr>
+<td><code>fill-paragraph</code></td>
+<td><code>M-q</code></td>
+<td>Fill paragraph at / after point.</td>
+</tr>
+<tr>
+<td><code>isearch-forward</code></td>
+<td><code>C-s</code></td>
+<td>minibuffer - Do incremental search forward</td>
+</tr>
+<tr>
+<td><code>isearch-backward</code></td>
+<td><code>C-r</code></td>
+<td>minibuffer - Do incremental search backward</td>
+</tr>
+<tr>
+<td><code>split-window-below</code></td>
+<td><code>C-x 2</code></td>
+<td>Split selected window horizontally. Selected window becomes top</td>
+</tr>
+<tr>
+<td><code>scroll-other-window</code></td>
+<td><code>C-M-v</code></td>
+<td>Scroll next window</td>
+</tr>
+<tr>
+<td><code>other-window</code></td>
+<td><code>C-x o</code></td>
+<td>Select next window in cyclic window order</td>
+</tr>
+<tr>
+<td><code>delete-other-windows</code></td>
+<td><code>C-x 1</code></td>
+<td>Make selected window fill its frame</td>
+</tr>
+<tr>
+<td><code>find-file-other-window</code></td>
+<td><code>C-x 4 C-f</code></td>
+<td>Edit file in other window</td>
+</tr>
+<tr>
+<td><code>make-frame</code></td>
+<td><code>C-x 5 2</code></td>
+<td>Return newly created frame displaying current buffer</td>
+</tr>
+<tr>
+<td><code>delete-frame</code></td>
+<td><code>C-x 5 0</code></td>
+<td>Delete selected frame</td>
+</tr>
+<tr>
+<td><code>help-for-help</code></td>
+<td><code>C-h ?</code></td>
+<td>Launches interactive help mode</td>
+</tr>
+<tr>
+<td><code>describe-key-briefly</code></td>
+<td><code>C-h c &lt;key&gt;</code></td>
+<td>Prints name of function invoked by <code>&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td><code>describe-key</code></td>
+<td><code>C-h k &lt;key&gt;</code></td>
+<td>Display documentation of function invoked by <code>&lt;key&gt;</code></td>
+</tr>
+<tr>
+<td><code>describe-function</code></td>
+<td><code>C-h f &lt;function&gt;</code></td>
+<td>Display documentation of <code>&lt;function&gt;</code></td>
+</tr>
+<tr>
+<td><code>describe-variable</code></td>
+<td><code>C-h v &lt;variable&gt;</code></td>
+<td>Display documentation of <code>&lt;variable&gt;</code></td>
+</tr>
+<tr>
+<td><code>apropos-command</code></td>
+<td><code>C-h a &lt;pattern&gt;</code></td>
+<td>Show all commands with names containing <code>&lt;pattern&gt;</code></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>C-h i</code></td>
+<td>Enter the Info documentation browser</td>
+</tr>
+<tr>
+<td><code>info-emacs-manual</code></td>
+<td><code>C-h r</code></td>
+<td>Display the Emacs manual in Info mode</td>
+</tr>
+</tbody>
+</table>
+<h2 id="notes">Notes</h2>
+<p>I found some things noteworthy while building this list.</p>
+<h3 id="numeric-arguments">Numeric Arguments</h3>
+<ul>
+<li>Digits or minus sign after <code>C-u</code> form the numeric argument.</li>
+<li>Default is <code>4</code></li>
+<li>Usually treated as numeric argument</li>
+<li>Sometimes it&rsquo;s just a flag. The following command changes behavior based on the presence of <code>universal-argument</code> rather than the details of its value</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C-u 8 C-f</code></td>
+<td>Move forward 8 characters</td>
+</tr>
+<tr>
+<td><code>C-u C-f</code></td>
+<td>Move forward 4 characters</td>
+</tr>
+<tr>
+<td><code>C-u 2 C-v</code></td>
+<td>Scroll screen 2 lines</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disabled-commands">Disabled Commands</h3>
+<p>Some commands such as <code>downcase-region</code> <code>C-x C-l</code> are disabled by default in Emacs. They confuse beginners. You get an interactive prompt to try it, enable it, and whatever.</p>
+<p>There&rsquo;s no big list of disabled commands. Instead each command has a hook telling whether it&rsquo;s disabled or not. The EmacsWiki <a href="http://www.emacswiki.org/emacs/DisabledCommands">DisabledCommands</a> page presents functions to list and enable disabled functions.</p>
+<h3 id="inserting-and-deleting">Inserting and Deleting</h3>
+<p><em>Everything</em> you type invokes a function. Most of the alphanumeric keys simply insert the character and move point. Some, like <code>newline</code> and <code>delete-backward-character</code>, trigger functions that relate to behavior users expect when entering those keys.</p>
+<p>They take numeric arguments too. <code>C-u 4 *</code> will insert <code>****</code> into the buffer.</p>
+<h3 id="undo">Undo</h3>
+<p>Undo ignores movement commands, and <code>self-insert-command</code> are lumped into groups of up to 20.</p>
+<h3 id="extending-the-command-set">Extending the Command Set</h3>
+<p>There are only so many keys on the average keyboard. Less common commands get invoked either through an extended keybinding like <code>C-x &lt;character&gt;</code> or direct invocation via <code>M-x &lt;name&gt;</code>.</p>
+<ul>
+<li><code>C-x &lt;character&gt;</code> Character eXtend</li>
+<li><code>M-x &lt;name&gt;</code> Named command eXtend
+<ul>
+<li>Offers tab completion</li>
+</ul>
+</li>
+</ul>
+<h3 id="searching">Searching</h3>
+<p>Incremental search is like a minibuffer mode. There are special bindings for the keys and everything.</p>
+<h3 id="multiple-frames">Multiple Frames</h3>
+<p><em>Frames</em> are what what most windowing systems refer to as <em>windows</em>, but Emacs was already using that term.</p>
+<p>Frames only work in GUI, because the terminal can only display a single frame at a time. See <a href="/post/2017/01/elscreen/">elscreen</a> for an alternative that works in both terminal and GUI.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2014/05/the-emacs-tutorial-as-elisp-tour/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>The Emacs Tutorial as ELisp Tour
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2014/05/i-learned-github-has-interesting-links/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>I Learned GitHub Has Interesting Links
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#functions-in-the-emacs-tutorial">Functions in the Emacs Tutorial</a></li>
+    <li><a href="#notes">Notes</a>
+      <ul>
+        <li><a href="#numeric-arguments">Numeric Arguments</a></li>
+        <li><a href="#disabled-commands">Disabled Commands</a></li>
+        <li><a href="#inserting-and-deleting">Inserting and Deleting</a></li>
+        <li><a href="#undo">Undo</a></li>
+        <li><a href="#extending-the-command-set">Extending the Command Set</a></li>
+        <li><a href="#searching">Searching</a></li>
+        <li><a href="#multiple-frames">Multiple Frames</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

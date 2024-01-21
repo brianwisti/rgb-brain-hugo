@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>packagesonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/packages/</link>
+    <description>
+      Recent contentinpackages on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Fri, 28 Feb 2020 07:23:53 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/packages/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Emacs refresh-package-contents</title>
+  <link>https://randomgeekery.org/post/2020/02/emacs-refresh-package-contents/</link>
+  <pubDate>Fri, 28 Feb 2020 07:23:53 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2020/02/emacs-refresh-package-contents/</guid>
+  <description>Tried adding Evil to Emacs with use-package. Didn’t work.
+Didn’t write the error message down, of course. Something about MELPA looking for a package version from two months ago and deciding the package was “Not Found”.
+Eventually figured out I need to run package-refresh-contents, which grabs the latest package listings. Might be overkill to run that automatically in every Emacs session, so I won’t add it to my .emacs.
+I will add a comment though.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>emacs</category>  <category>packages</category> 
+  <content:encoded><![CDATA[<p>Tried adding <a href="https://www.emacswiki.org/emacs/Evil">Evil</a>  to <a href="/card/emacs/">Emacs</a> with <a href="/post/2019/11/emacs-use-package/">use-package</a>. Didn’t work.</p>
+<p>Didn’t write the error message down, of course. Something about MELPA looking for a package version from two months ago and deciding the package was &ldquo;Not Found&rdquo;.</p>
+<p>Eventually figured out I need to run <code>package-refresh-contents</code>, which grabs the latest package listings. Might be overkill to run that automatically in every Emacs session, so I won’t add it to my <code>.emacs</code>.</p>
+<p>I will add a comment though.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; Package not installing?</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;  Try &#39;M-x package-refresh-contents&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;package</span><span class="p">)</span>
+</span></span></code></pre></div><p>Hopefully I remember to read my own comments.</p>
+<p>Or the <a href="https://evil.readthedocs.io/en/latest/overview.html#installation-via-package-el">documentation</a>.</p>
+<blockquote>
+<p>[!NOTE] 2020-04-29
+<a href="https://genehack.org">john sj anderson</a> wrote a post   <a href="https://genehack.blog/2020/04/a-bit-of-emacs-advice/">expanding</a> on a <a href="https://mastodon.social/@genehack/103737652356761968">suggestion</a> to use <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html">advising functions</a>.</p>
+</blockquote>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Emacs use-package</title>
+  <link>https://randomgeekery.org/post/2019/11/emacs-use-package/</link>
+  <pubDate>Sat, 09 Nov 2019 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2019/11/emacs-use-package/</guid>
+  <description>I admit it. My Emacs usage is intermittent at best. But I do use Emacs sometimes. Still haven’t found anything to match card/Org for taking notes or writing posts.
+So until I find something better than Org mode — which may take a while — I need Emacs. That means I need to get better at using it. That starts with configuration that isn’t a tribute to the Flying Spaghetti Monster.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>emacs</category>  <category>packages</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Just declared `.emacs` bankruptcy. Starting over with `use-package`.</h2><p>I admit it. My <a href="/card/emacs/">Emacs</a> usage is intermittent at best. But I do use Emacs <em>sometimes</em>. Still haven’t found anything to match <a href="/card/org/">card/Org</a> for taking notes or writing posts.</p>
+<p>So until I find something better than Org mode — which may take a while — I need Emacs. That means I need to get better at using it. <em>That</em> starts with configuration that isn’t a tribute to the <a href="http://spaghettimonster.com">Flying Spaghetti Monster</a>.</p>
+<p><a href="https://github.com/jwiegly/use-package">use-package</a> helps organize loading and configuring Emacs packages. I need it.</p>
+<h2 id="my-new-emacs">My new <code>~/.emacs</code></h2>
+<p>I start with a prelude, telling Emacs about package manager details: mainly where to find packages and to install <code>use-package</code> if it isn’t already available.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; package manager setup</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;package</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;org&#34;</span> <span class="o">.</span> <span class="s">&#34;https://orgmode.org/elpa/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;melpa&#34;</span> <span class="o">.</span> <span class="s">&#34;http://melpa.org/packages/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="ss">&#39;use-package</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">package-install</span> <span class="ss">&#39;use-package</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">eval-when-compile</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;use-package</span><span class="p">))</span>
+</span></span></code></pre></div><blockquote>
+<p>[!WARNING]
+Trailing slashes are important! <code>melpa.org/packages/</code> gets a list. <code>melpa.org/packages</code> does not.</p>
+</blockquote>
+<p>Next I tell use-package that I want org.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Load and configure packages</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; org of course</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-agenda-files</span><span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="s">&#34;~/Dropbox/org/agendas/tasks.org&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-cl&#34;</span> <span class="ss">&#39;org-store-link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-cc&#34;</span> <span class="ss">&#39;org-capture</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-ca&#34;</span> <span class="ss">&#39;org-agenda</span><span class="p">))</span>
+</span></span></code></pre></div><p>The additional options are where the <code>use-package</code> approach gets interesting to me. I can insist the package be installed with <code>:ensure t</code> — or as in this case, ensure that another package be installed to meet my requirements.</p>
+<p><code>:config</code> provides code that gets executed after <code>org</code> is loaded. Pretty minimal so far, but the thing is — well, there’s a couple things:</p>
+<ul>
+<li><code>:config</code> code won’t execute if the package doesn’t load; that keeps the  Emacs session tidy.</li>
+<li>All the configuration relevant to <code>org</code> is right there in one place.</li>
+</ul>
+<p>So later tonight when I add <a href="/post/2017/01/elscreen/">elscreen</a> and <a href="/post/2017/08/emacs-writegood-mode/">writegood-mode</a>, I can keep all their configuration details together with minimal effort. It’s the default pattern with <code>use-package</code>. That’s promising.</p>
+<p>That’s the package management out of the way. The rest is a couple settings I already know I want, to satisfy muscle memory and streamline prose editing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Preferences not covered already by packages or custom</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; Invoke M-x without Alt</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;\C-x\C-m&#34;</span> <span class="ss">&#39;execute-extended-command</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; Wrap long lines when editing text</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;text-mode-hook</span> <span class="ss">&#39;turn-on-auto-fill</span><span class="p">)</span>
+</span></span></code></pre></div><p>Finally is <code>custom-set-variables</code>, already filling up with automated customizations. My bad habits include hand-editing these values, so I put in a reminder to stop doing that.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Custom settings. Try to leave them alone.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; custom-set-variables was added by Custom.</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; Your init file should contain only one such instance.</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&#39;</span><span class="p">(</span><span class="nv">package-selected-packages</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">(</span><span class="nb">use-package</span><span class="p">))))</span>
+</span></span></code></pre></div><p>Done! Now let’s see how tidy I can keep my <code>.emacs</code> file.</p>
+<h2 id="what-next">What next</h2>
+<p>Not sure, really. Install <code>elscreen</code> and <code>writegood-mode</code>.  Maybe revisit
+Rainer König’s <a href="https://www.youtube.com/playlist?list=PLVtKhBrRV%5FZkPnBtt%5FTD1Cs9PJlU0IIdE">OrgMode Tutorial</a> videos.  <a href="https://ox-hugo.scripter.co/">ox-hugo</a> also looks pretty interesting!</p>
+<p>Okay that last is a little disengenous. <code>ox-hugo</code> looked interesting enough that I used it to write this post. I might talk about that more once I have a better idea what I’m doing.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

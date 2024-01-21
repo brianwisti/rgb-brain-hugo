@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/">
+<meta property="og:title" content="FXRuby MPlayer Idea">
+<meta name="twitter:title" content="FXRuby MPlayer Idea">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="A few weeks back I wrote up a GUI front-end for mplayer. It works nice enough, but it suffers from a few aesthetic issues.
+It&rsquo;s written in Perl, with POE and Perl/Tk. I managed to write the code in such a way that it&rsquo;s readable, but &hellip; well, Perl/Tk looks like ass. It&rsquo;s okay for smaller projects, but it becomes more and more obvious as your project grows that it&rsquo;s just not pretty enough.">
+    <meta property="og:description" content="A few weeks back I wrote up a GUI front-end for mplayer. It works nice enough, but it suffers from a few aesthetic issues.
+It&rsquo;s written in Perl, with POE and Perl/Tk. I managed to write the code in such a way that it&rsquo;s readable, but &hellip; well, Perl/Tk looks like ass. It&rsquo;s okay for smaller projects, but it becomes more and more obvious as your project grows that it&rsquo;s just not pretty enough.">
+  
+
+
+
+<title itemprop="name">FXRuby MPlayer Idea - Random Geekery</title>
+<meta property="og:title" content=FXRuby&#32;MPlayer&#32;Idea&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=FXRuby&#32;MPlayer&#32;Idea&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=FXRuby&#32;MPlayer&#32;Idea&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=FXRuby&#32;MPlayer&#32;Idea&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/" />
+
+
+<meta property="og:updated_time" content=30001-30-12T10:00:07-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2007/12/dv9310-bios-issues/">dv9310 bios issues</a></li>
+        
+          <li><a href="/post/2007/12/python-loves-blogger-part-1/">Python Loves Blogger (Part 1)</a></li>
+        
+          <li><a href="/post/2007/12/os-x-updates/">OS X Updates</a></li>
+        
+          <li><a href="/post/2007/12/perl-510-beta-everywhere/">Perl 5.10 beta Everywhere</a></li>
+        
+          <li><a href="/post/2007/11/vmware-installed/">VMWare installed</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/">FXRuby MPlayer Idea</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2007/01/fxruby-mplayer-idea/">FXRuby MPlayer Idea</a>
+    </h1>
+    
+        <time datetime="2007-01-30T00:00:00-0800" class="post-date">
+            January 30, 2007
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-blogspot">
+            <a href="https://randomgeekery.org/tags/blogspot">blogspot</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2007/01/../../../attachments/img/2007/cover-2007-01-30.png" alt="attachments/img/2007/cover-2007-01-30.png"/></p>
+<p>A few weeks back I wrote up a GUI front-end for <a href="https://www.mplayerhq.hu">mplayer</a>. It works nice enough, but it suffers from a few aesthetic issues.</p>
+<p>It&rsquo;s written in <a href="/card/perl/">Perl</a>, with <a href="https://metacpan.org/pod/POE">POE</a> and <a href="https://metacpan.org/pod/distribution/Tk/Tk.pod">Perl/Tk</a>. I managed to write the code in such a way that it&rsquo;s readable, but &hellip; well, Perl/Tk looks like ass. It&rsquo;s okay for smaller projects, but it becomes more and more obvious as your project grows that it&rsquo;s just not pretty enough. Tcl/Tk has <a href="https://tktable.sourceforge.net/tile">Tile</a>, which would make things all pretty, but I&rsquo;m not comfortable writing apps with Tcl. POE is also okay, but I have no POE-fu to speak of. So the application code is also starting to look like ass.</p>
+<p>MPlayer slave mode is not working completely as advertised, or it&rsquo;s not interacting well with my POE-ass code. Whatever. Pause does not actually pause. It just hiccups for a second and goes back to playing. I will work around that, but I&rsquo;ll also be keeping my eyes open for something else.</p>
+<p>I have chosen to rewrite the front end with <a href="/card/ruby/">Ruby</a> - specifically <a href="https://github.com/larskanis/fxruby">FXRuby</a>. I might have used <a href="https://ruby-gnome.github.io">Ruby/Gtk2</a>, but for some reason I can&rsquo;t convince this stupid computer that I have the Gtk2 development libs. Score one more point of hate for Redhat-based distros.</p>
+<p>Yes, the basic interface is familiar. No, it&rsquo;s not a clone. All this baby is planned to do is import, organize, and play your music files. Even then, you are probably better off with the original if it&rsquo;s available for your platform.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2007/01/gnu-screen/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>GNU screen
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2007/02/late-night-thoughts-about-fm/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Late Night Thoughts About FM
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

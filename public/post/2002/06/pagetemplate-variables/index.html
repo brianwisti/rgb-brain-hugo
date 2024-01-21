@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2002/06/pagetemplate-variables/">
+<meta property="og:title" content="PageTemplate - Variables">
+<meta name="twitter:title" content="PageTemplate - Variables">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="The major directives require variables, which are just names for the value your want inserted, checked, or otherwise accessed. It’s a good idea to use variable names that make sense(name for a person’s name, title for the title of the page, etc.).
+Value Substitution Substitution is the easiest concept to master. When PageTemplate comes across a value directive, it replaces that directive with some text.
+Syntax Example &lt;h1&gt;Hello, [%var name%]&lt;/h1&gt; Every time that PageTemplate sees [%var name%] in your template, it will replace that directive with the text associated with name.">
+    <meta property="og:description" content="The major directives require variables, which are just names for the value your want inserted, checked, or otherwise accessed. It’s a good idea to use variable names that make sense(name for a person’s name, title for the title of the page, etc.).
+Value Substitution Substitution is the easiest concept to master. When PageTemplate comes across a value directive, it replaces that directive with some text.
+Syntax Example &lt;h1&gt;Hello, [%var name%]&lt;/h1&gt; Every time that PageTemplate sees [%var name%] in your template, it will replace that directive with the text associated with name.">
+  
+
+
+
+<title itemprop="name">PageTemplate - Variables - Random Geekery</title>
+<meta property="og:title" content=PageTemplate&#32;-&#32;Variables&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=PageTemplate&#32;-&#32;Variables&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=PageTemplate&#32;-&#32;Variables&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=PageTemplate&#32;-&#32;Variables&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2002/06/pagetemplate-variables/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2002/06/pagetemplate-variables/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2002/06/pagetemplate-variables/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2002/06/pagetemplate-variables/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2002/06/pagetemplate-variables/" />
+
+
+<meta property="og:updated_time" content=2006-02-12T60:00:02-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2002/07/pagetemplate-getting-it/">PageTemplate - Getting It</a></li>
+        
+          <li><a href="/post/2002/06/pagetemplate/">PageTemplate</a></li>
+        
+          <li><a href="/post/2002/06/pagetempalte-if-else-and-elsif/">PageTemplate - If, Else, and Elsif</a></li>
+        
+          <li><a href="/post/2002/06/pagetemplate-loop/">PageTemplate - Loop</a></li>
+        
+          <li><a href="/post/2002/06/pagetemplate-other-features/">PageTemplate - Other Features</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2002/06/pagetemplate-variables/">PageTemplate - Variables</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2002/06/pagetemplate-variables/">PageTemplate - Variables</a>
+    </h1>
+    
+        <time datetime="2002-06-02T00:00:00-0700" class="post-date">
+            June 2, 2002
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-pagetemplate">
+            <a href="https://randomgeekery.org/tags/pagetemplate">pagetemplate</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>The major directives require <em>variables</em>, which are just names for the
+value your want inserted, checked, or otherwise accessed. It’s a good
+idea to use variable names that make sense(<code>name</code> for a person’s name,
+<code>title</code> for the title of the page, etc.).</p>
+<h2 id="value-substitution">Value Substitution</h2>
+<p>Substitution is the easiest concept to master. When PageTemplate comes
+across a value directive, it replaces that directive with some text.</p>
+<h3 id="syntax">Syntax</h3>
+<h3 id="example">Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, [%var name%]<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Every time that PageTemplate sees <code>[%var name%]</code> in your template, it
+will replace that directive with the text associated with <code>name</code>.</p>
+<p>The programmer works his magic, and the visitor “Frank” sees this
+greeting:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, Frank<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>If <code>name</code> is not set, nothing is inserted. The greeting header would end
+up looking like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello,<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="filters">Filters</h2>
+<p>Text on the Web is a funny thing. Your page can be unreadable if you
+forget to escape a few <code>&lt;</code> characters. You could rely on your
+programmers to take care of the necessary escapes, but there is always
+the chance that they may forget it. Sometimes it is just easier to take
+care of these things yourself, and that’s where <em>preprocessors</em> come in.
+They take the contents of a variable and reformat it according to
+specific rules.</p>
+<h3 id="syntax-1">Syntax</h3>
+<h3 id="example-1">Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You have received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">[%var message.contents :escapeHTML %]
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You can also view this comment <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;[%var message.url :escapeURL %]&#34;</span><span class="p">&gt;</span>here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Thank You,<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>That might end up looking like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You received a message on the Wensleydale Advocacy Forum.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ni">&amp;lt;</span>span style=&#39;font-size: 250%&#39;<span class="ni">&amp;gt;&amp;lt;</span>blink<span class="ni">&amp;gt;</span>Wenzleedale suks! Cheddr 4evar!!1!<span class="ni">&amp;lt;</span>/blink<span class="ni">&amp;gt;&amp;lt;</span>/span<span class="ni">&amp;gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You can also view this comment <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://wensleydaleforum.net/messages/view/Wenzlee+Sucks%21&#34;</span><span class="p">&gt;</span>here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Thank You,<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WAF Management<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="dots-objects-and-traits">Dots, Objects, and Traits</h2>
+<p>What? Oh, some of you might have noticed that little dot in the variable
+names for the last example. This is a little bit of geek code getting
+into the template. Lots of information in a Ruby program is divided into
+<em>objects</em>, each of which has special traits unique to that object. In
+this example, you have a message with both a URL and some contents.
+Rather than make you try to remember some contorted syntax in order to
+get the information you need, we just borrow the Ruby syntax. Confer
+with your developers for more details as they are needed, and make sure
+they give you objects with traits that make sense in a template. It also
+helps if they let you know what traits you need to use for the
+information you want.</p>
+<p>Well, we call traits “fields”, “methods”, or maybe “messages” in our
+code. PageTemplate is a little more flexible in how it gets an object’s
+details, so a more general name seemed appropriate. You can call them
+“Waffle Monkeys of the Yukon” if you like.</p>
+<h3 id="syntax-2">Syntax</h3>
+<pre tabindex="0"><code>variable.trait
+</code></pre>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2002/06/tools/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Tools
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2002/06/pagetemplate-the-programmers-perspective/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>PageTemplate - The Programmer&#39;s Perspective
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#value-substitution">Value Substitution</a>
+      <ul>
+        <li><a href="#syntax">Syntax</a></li>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#filters">Filters</a>
+      <ul>
+        <li><a href="#syntax-1">Syntax</a></li>
+        <li><a href="#example-1">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#dots-objects-and-traits">Dots, Objects, and Traits</a>
+      <ul>
+        <li><a href="#syntax-2">Syntax</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

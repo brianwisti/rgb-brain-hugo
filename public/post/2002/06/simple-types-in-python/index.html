@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2002/06/simple-types-in-python/">
+<meta property="og:title" content="Simple Types in Python">
+<meta name="twitter:title" content="Simple Types in Python">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="In which I attempt to explain value types">
+    <meta property="og:description" content="In which I attempt to explain value types">
+  
+
+
+
+<title itemprop="name">Simple Types in Python - Random Geekery</title>
+<meta property="og:title" content=Simple&#32;Types&#32;in&#32;Python&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Simple&#32;Types&#32;in&#32;Python&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Simple&#32;Types&#32;in&#32;Python&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Simple&#32;Types&#32;in&#32;Python&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="In which I attempt to explain value types" />
+<meta itemprop="description" content="In which I attempt to explain value types" />
+<meta property="og:description" content="In which I attempt to explain value types" />
+<meta name="twitter:description" content="In which I attempt to explain value types" />
+
+
+<base href="https://randomgeekery.org/post/2002/06/simple-types-in-python/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2002/06/simple-types-in-python/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2002/06/simple-types-in-python/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2002/06/simple-types-in-python/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2002/06/simple-types-in-python/" />
+
+
+<meta property="og:updated_time" content=12006-12-12T60:00:02-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+          <li><a href="/post/2004/07/control-structures/">Control Structures</a></li>
+        
+          <li><a href="/post/2001/01/python-babysteps-tutorial/">Python Babysteps Tutorial</a></li>
+        
+          <li><a href="/post/2011/06/python-2x-babysteps/">Python 2.x Babysteps</a></li>
+        
+          <li><a href="/post/2010/10/parrot-babysteps-0e-parrot-namespaces/">Parrot Babysteps 0e - Parrot Namespaces</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2002/06/simple-types-in-python/">Simple Types in Python</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2002/06/simple-types-in-python/">Simple Types in Python</a>
+    </h1>
+    
+        <time datetime="2002-06-12T00:00:00-0700" class="post-date">
+            June 12, 2002
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>Ok, it’s been over a year since the first step of my <a href="/post/2001/01/python-babysteps-tutorial/">post/2001/01/python-babysteps-tutorial</a>. It’s about time to dig a little deeper.</p>
+<p>In this step, we will take our first look at variables and types in the <a href="/card/python/">Python</a> language. We will use variables for storing and retrieving information. We will also tiptoe into the wild and woolly world of types, which computer languages rely on for tasks such as telling the difference between numbers and words.</p>
+<p>You’re not expected to be some kind of expert to work through this tutorial. I only expect you to know how to use your development environment (such as IDLE) to work within the Python shell and create your own Python scripts. If this sounds unfamiliar to you, you’re in luck — I happen to cover exactly that in the Babysteps tutorial.</p>
+<blockquote>
+<p>[!NOTE]
+I am aiming for simplicity over rigid accuracy with this tutorial, but it sure would be appreciated if you happen to notice any unforgivable Python or general computer science errors within these pages. Being self-taught results in some really odd holes in my programming knowledge. So please, send me a quick note to sweetly and patiently point out any errors you find. Thanks!</p>
+</blockquote>
+<p>For the rest of us non-experts, let’s take the first steps into real, live programming!</p>
+<h2 id="variables">Variables</h2>
+<p>Your program needs something to work with. You need names and addresses for your mailing list program, you need debits and credits for your accounting program, and you need weapons and critters for your fast-paced arcade game.</p>
+<p>How are we supposed to do that? Well, that’s where <em>variables</em> come in. What’s a variable? In my attempts to uncover the secrets of computer science, I found something describing them as:</p>
+<blockquote>
+<p>named locations in memory used to store a value.</p>
+</blockquote>
+<p>Ummm … that’s all fine and good, but if you’ve got a small brain like me, you’ll spend too much time trying to remember what those words <strong>mean</strong> to actually use them in a program. We need a simpler definition that we can rattle off in casual conversation. How about this?</p>
+<blockquote>
+<p>A <em>variable</em> is something you want your program to remember.</p>
+</blockquote>
+<p>It’s to the point and uses words in a way I can understand. I like that. It also kinda describes the situation in Python, where nearly anything can be used as a variable. Numbers, text, code, files, objects, other programs… the list is longer than we care to imagine this early in our studies.</p>
+<p>To create a variable, make a name and assign a value to it using the
+equals <code>=</code> character. To get the value, use the variable name in a
+statement.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; number = 5
+&gt;&gt;&gt; print number
+5
+</code></pre><p>You can change the value of a variable any time by using <code>=</code>.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print number
+5
+&gt;&gt;&gt; number = 7
+&gt;&gt;&gt; print number
+7
+</code></pre><h3 id="identifiers-aka-variable-names">Identifiers aka Variable Names</h3>
+<p>Python gives us a lot of freedom in creating variable names, also known as <em>identifiers</em>. As long as they start with a letter or underscore (<code>_</code>), and are followed by letters, numbers, or underscores, you’re generally good to go. Case is important, so <code>number</code>, <code>NUMBER</code>, and <code>Number</code> are three different names. The biggest restriction is that you can’t use an identifier that is already used by Python. This means no variables named <code>print</code>, for example.</p>
+<p>Here is the complete list of identifiers that Python has reserved for its own purposes:</p>
+<pre tabindex="0"><code>and       del       for       is        raise
+assert    elif      from      lambda    return
+break     else      global    not       try
+class     except    if        or        while
+continue  exec      import    pass      yield
+def       finally   in        print
+</code></pre><p>Here are a few guidelines to follow when deciding on a variable name:</p>
+<ul>
+<li>Identifiers starting with <code>_</code> are treated differently by Python, so avoid them until you know what they’re for.</li>
+<li>Use descriptive names rather than abbreviations or inside jokes. When you are naming a variable that holds the radius of a circle, it is usually better to use <code>radius</code> than <code>r</code> or <code>halfway_there</code>  — Use a name that indicates what the variable will be used for. <code>radius</code> is much better than <code>fnord</code> for describing the radius of a circle. Plus, &ldquo;fnord&rdquo; breaks the &ldquo;no inside jokes&rdquo; guideline.</li>
+<li>Find a balance between names that are too long or too short.
+<ul>
+<li><em>Too short</em> would be <code>n</code></li>
+<li><em>Too long</em> might be      <code>name_of_my_favorite_customer_in_walla_walla_washington</code></li>
+<li><em>Just right</em> might be <code>name</code> or <code>customer_name</code></li>
+</ul>
+</li>
+<li>It is common practice to use all upper case letters for identifiers that describe constants — variables which will not be changing their values. Since pi will always have the value 3.1415926 — or so — you would use an identifier of <code>PI</code> for this variable.</li>
+<li>It’s okay to bend the guidelines in favor of common terms. If you are writing code to figure out the distance between two points, then <code>x1</code>, <code>y1</code>, <code>x2</code>, and <code>y2</code> are perfectly sensible identifiers.</li>
+</ul>
+<p>There are two popular approaches to devising longer names (the ones that consist of two or more words pasted together). In the first, the two words are separated by underscores where the spaces would be. In this tradition, &ldquo;customer name&rdquo; would be written as <code>customer_name</code>. The other school uses capitalization to show separation, and would write the same &ldquo;customer name&rdquo; as <code>CustomerName</code>, or maybe <code>customerName</code>.</p>
+<p>I use underscores in my own code. I don’t really care which one you use, but stay consistent. Try not to follow <code>customer_name</code> with <code>CustomerAddress</code>. And whatever you do, <em>please</em> don’t mix the two in the same variable. Identifiers like <code>Customer_Name</code> will only serve to aggravate me and hasten the approach of carpal tunnel syndrome for you. I am so emphatic about this silly little issue because I am saying this as somebody who has to read code written by other people.</p>
+<p>The sad truth is that you are going to encounter plenty of otherwise great code that is downright mean about variable names. It’s just something we have to live with.</p>
+<h3 id="literals-aka-plain-old-values">Literals aka Plain Old Values</h3>
+<p>Let’s throw in another fancy technical term, since it’ll help us understand types in the next section. <em>Literal</em> is a fancy name for a plain old value. In the statement <code>number = 5</code>, <code>5</code> is the literal. Most often, you’ll see literals being used in assigning a value to your variables. There are different ways to write literals, depending on what type of variable you are assigning to.</p>
+<h2 id="types">Types</h2>
+<p>I’ve used the word &ldquo;type&rdquo; a few times already, but haven’t explained what a type is. That’s because I’ve been stalling. It’s a broad concept and the best definition I could think of is circular:</p>
+<blockquote>
+<p><em>Type</em> describes the type of variable you are using.</p>
+</blockquote>
+<p>See what I mean? Let’s try a different approach.</p>
+<p>You and I know that there’s a difference between numbers and words. Imagine the following exchange between you and a random stranger who we’ll call &ldquo;Bob&rdquo;:</p>
+<dl>
+<dt>Bob</dt>
+<dd>Hi there! What’s your name?</dd>
+<dt>You</dt>
+<dd>Uhh … Brian</dd>
+<dt>Bob</dt>
+<dd>What’s your name plus 5?</dd>
+<dt>You</dt>
+<dd>Oh look, there’s my bus!</dd>
+</dl>
+<p>Right away, you realized that Bob is a raving lunatic — or maybe a Zen master — because <code>&quot;Brian&quot; + 5</code> just doesn’t work. You’re not supposed to combine words and numbers like that. It isn’t polite.</p>
+<p><em>Types</em> are used by programming languages to recognize when programmers are starting to sound like a raving lunatic. Every type has rules for what you can do with them. You can do numbery things to numbers (add, subtract, find the square root of, etcetera). You can do stringy things to strings of text (search, capitalize, concatenate, and so on). Capitalizing numbers is a no-no, as is finding the square root of your name. When you learn how to create your own types later on, you will also be writing the rules for how your new types can be used.</p>
+<p>An <em>exception</em> is a special type in Python that we’ll be seeing a lot of as we learn. Think back to that conversation with Bob. As soon as he asked you to add <code>5</code> to your name, a little red flag went up in your brain. This red flag told you that something was very wrong with dear old Bob. <em>Exceptions</em> are the little red flags that Python uses to tell you that something is very wrong. There are a lot of ways that things can go wrong, so there are a lot of different types of exception that we will see. Let’s see what Python does when we play the role of Bob.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; name = &#34;Brian&#34;
+&gt;&gt;&gt; print name + 5
+Traceback (most recent call last):
+  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
+TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects
+</code></pre><p>All of the &ldquo;File&rdquo; gibberish is called a <em>traceback</em>, showing where things went wrong. Yours will probably look a little different, but the idea is the same.</p>
+<p>The last line is the exception itself. It tells us what kind of problem was found — <code>exceptions.TypeError</code> — and describes the specific issue — <code>cannot concatenate 'str' and 'int' objects</code>.</p>
+<p>We won’t really understand what to do with an exception for a while, but the basic idea is clear. Python uses exceptions to warn us that we are heading towards the path of madness.</p>
+<h3 id="numbers">Numbers</h3>
+<p>Nothing illustrates the idea of types as clearly as the number. Most of us know what a number is, and can understand the sorts of things we do with numbers: add them, subtract them, ignore them when they’re written on a bill, and so on. We know how to compare numbers to determine which is greater. Things get a little murky when we start talking about the String type or the HttpServer type, but we know what numbers are. Lucky for us, so does Python.</p>
+<p>To make things easier &ldquo;under the hood&rdquo;, Python has four different categories of numbers:</p>
+<dl>
+<dt>integers</dt>
+<dd>Whole numbers, like <code>1</code>, <code>2</code>, and <code>186212</code>.</dd>
+<dt>long integers</dt>
+<dd><em>Really big</em> integers, like <code>6209389143</code></dd>
+<dt>floating point numbers</dt>
+<dd>Decimal numbers, like <code>1.0</code>, <code>2.2</code>, or <code>3.1415926</code></dd>
+<dt>imaginary numbers</dt>
+<dd>I can’t imagine what these would be. A little more seriously, these are the complex numbers that higher-math types play with all the time. Something to do with the square root of <code>-1</code>, I think.</dd>
+</dl>
+<p>Amazingly enough, Python takes care of telling one from the other, and we don’t need to worry about it most of the time. Just feed it a literal, and it’ll try to do the right thing. Each of these types do have their own rules, though, and these rules will bite us if we try to treat Python numbers exactly the same as the numbers in our checkbook.</p>
+<h3 id="numeric-literals-how-to-describe-numbers">Numeric Literals: How To Describe Numbers</h3>
+<pre tabindex="0"><code>&gt;&gt;&gt; 1
+1
+&gt;&gt;&gt; 35
+35
+&gt;&gt;&gt; 34456432
+34456432
+&gt;&gt;&gt; 355556499871154247854
+355556499871154247854L
+</code></pre><p>What? Where did that <code>L</code> come from? It turns out that computers are faster at dealing with integers if they can fit them into a small chunk of memory. That &ldquo;small chunk&rdquo; is still more than enough room for most of the numbers that you’ll deal with in your day-to-day programming. Until you start converting parsecs to inches, <code>2,147,483,647</code> should be more than enough room.</p>
+<p>When you hand it a really large literal like <code>355556499871154247854</code>, Python notices right away that it won’t fit as a regular integer, and automatically makes it a long integer. There are times when you know in advance that your number will end up being very large. Specifying long integer type is very very easy. Just paste the letter <code>L</code> to the end of your literal.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; 6209389143L
+6209389143L
+</code></pre><p>While it is technically okay to use a lowercase <code>l</code>, it is <em>much</em> harder to read when scanning program code. <code>6209389143l</code> looks too much like <code>62093891431</code>. It’s a good idea to always use the upper case <code>L</code> for specifying long integers.</p>
+<p>The next type of number is floating point. You can either write floating point literals in the familiar decimal notation, or you can use something more like scientific notation.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; 1.0
+1.0
+&gt;&gt;&gt; 1.234e+02
+123.40000000000001
+&gt;&gt;&gt; 1.1
+1.1000000000000001
+</code></pre><p>This is where things start to bite us if we’re not paying attention. <code>1.0</code> made sense, but what in the world went wrong with our other two numbers?</p>
+<p>It’s like this, see. Computers are basically made up of switches. On and off. <code>1</code> and <code>0</code>. That’s all a computer knows. It takes many layers of programming to translate your value into something that a computer can understand, and then more layers to turn it back into something you can understand. With integers, it’s relatively easy. It’s a simple matter for the computer to handle whole numbers. Floating point, however, is much more fluid. It takes a lot of work for the computer to translate a floating point value into a series of <code>1</code> and <code>0</code> switches. To save time and memory, it fudges the number a little bit. For most programs, it’s not a problem. It certainly hasn’t been an issue for me in <em>any</em> program I’ve written. There are also some excellent programming libraries out there when you do hit that particular wall. Everyday python does an excellent job of protecting us from all the chaos when printing a variable:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; value = 1.1
+&gt;&gt;&gt; print value
+1.1
+</code></pre><p>Internally, it’s still <code>1.1000000000000001</code> or so, but Python realizes that human readers are not going to be interested in the extra 14 zeroes.</p>
+<p>Now, before you go storming off to Perl or C, you should learn the dark secret: this is not limited to Python. It’s something to do with computers in general, so this will come up no matter what language you use. The classier ones like Python just hide it from you when they can.</p>
+<p>Our last kind of number is the imaginary number. My own math skills haven’t progressed far enough to present anything truly useful, but I know how to write an imaginary literal.</p>
+<p>I think I just melted my brain by putting those two words together.</p>
+<p>An imaginary — uh — literal — thing — consists of a floating point number (the <em>real</em> part), a <code>+</code> character, and another floating point number followed by a <code>J</code> (the <em>imaginary</em> part). Here, just look at my example, and you math people can figure it out yourself.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; number = 1.1 + 9.87J
+&gt;&gt;&gt; print number
+(1.1+9.87j)
+</code></pre><p>I guess imaginary numbers don’t make it into everyday math that much, but they do show up in my checkbook a lot. Wrong kind of &ldquo;imaginary&rdquo;, I guess.</p>
+<p>Now that I’ve made a complete fool of myself, let’s move along quickly to look at some things we can do to numbers.</p>
+<h3 id="numeric-operations-some-things-you-can-do-with-numbers">Numeric Operations: Some Things You Can Do With Numbers</h3>
+<p>The Python shell does make a handy calculator. You can do all of the handy four-function operations, plus we get a nifty <em>exponent</em> operator and <em>modulus</em> operator at no extra charge.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; print 2 + 2
+4
+&gt;&gt;&gt; print 10 - 2
+8
+&gt;&gt;&gt; print 11 * 3
+33
+&gt;&gt;&gt; print 27 / 3
+9
+&gt;&gt;&gt; print 2 ** 3
+8
+&gt;&gt;&gt; print 20 / 3
+6
+&gt;&gt;&gt; print 20 % 3
+2
+</code></pre><blockquote>
+<p>[!NOTE]
+Right about here I got distracted by a bright shiny object. Sorry about that!</p>
+</blockquote>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">python-interactive-fiction-01-handling-a-single-round</a>
+      </li>
+      
+      <li>
+        <a href="/post/2009/07/parrot-babysteps-02-variables-and-types/">parrot-babysteps-02-variables-and-types</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2002/06/pagetemplate/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>PageTemplate
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2002/07/pagetemplate-getting-it/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>PageTemplate - Getting It
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#variables">Variables</a>
+      <ul>
+        <li><a href="#identifiers-aka-variable-names">Identifiers aka Variable Names</a></li>
+        <li><a href="#literals-aka-plain-old-values">Literals aka Plain Old Values</a></li>
+      </ul>
+    </li>
+    <li><a href="#types">Types</a>
+      <ul>
+        <li><a href="#numbers">Numbers</a></li>
+        <li><a href="#numeric-literals-how-to-describe-numbers">Numeric Literals: How To Describe Numbers</a></li>
+        <li><a href="#numeric-operations-some-things-you-can-do-with-numbers">Numeric Operations: Some Things You Can Do With Numbers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

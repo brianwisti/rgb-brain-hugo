@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>richonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/rich/</link>
+    <description>
+      Recent contentinrich on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Tue, 24 Aug 2021 15:08:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/rich/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Extracting Rich Output for fun and profit</title>
+  <link>https://randomgeekery.org/post/2021/08/extracting-rich-output/</link>
+  <pubDate>Tue, 24 Aug 2021 15:08:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2021/08/extracting-rich-output/</guid>
+  <description>a screenshot of the HTML that I created to show I don’t need screenshots
+Somewhere in the middle of post/2021/08/tooting-with-python, I mentioned I how I get Rich output into a post. That approach was a little clumsy though. I want to run my code and paste its output into whatever draft I’m editing.
+So I’ll figure that one out now.
+[!NOTE] 2021-08-25 Update I initially posted a version of this post using BeautifulSoup for HTML extraction.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>python</category>  <category>rich</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Okay maybe not so much on the profit but definitely fun!</h2><p><img src="/post/2021/08/../../../attachments/img/2021/cover-2021-08-24.png" alt="attachments/img/2021/cover-2021-08-24.png"/>
+a screenshot of the HTML that I created to show I don&rsquo;t need screenshots</p>
+<p>Somewhere in the middle of <a href="/post/2021/08/tooting-with-python/">post/2021/08/tooting-with-python</a>, I mentioned I how I get <a href="https://rich.readthedocs.io">Rich</a> output into a post.  That approach was a little clumsy though. I want to run my code and paste its output into whatever draft I&rsquo;m editing.</p>
+<p>So I&rsquo;ll figure that one out now.</p>
+<blockquote>
+<p>[!NOTE] 2021-08-25 Update
+I initially posted a version of this post using <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> for HTML extraction. Then Rich creator <a href="https://www.willmcgugan.com/">Will McGugan</a> pointed out that I could get what I need from Rich itself!</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Great write up!<br><br>You may be able to skip the Beautiful Soup step with the following:<br><br>console.export_html(code_format=&quot;&lt;pre style=&quot;font-family:Menlo,&#39;DejaVu Sans Mono&#39;,consolas,&#39;Courier New&#39;,monospace&quot;&gt;{code}&lt;/pre&gt;&quot;)</p>&mdash; Will McGugan (@willmcgugan) <a href="https://twitter.com/willmcgugan/status/1430452309536956421?ref_src=twsrc%5Etfw">August 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</blockquote>
+<p>Yeah let&rsquo;s do that instead. Much less to remember.</p>
+<h2 id="what-are-we-printing">What are we printing?</h2>
+<p>How about a <a href="https://rich.readthedocs.io/en/stable/tables.html">Table</a> of the most popular pages on my site? I use <a href="https://plausible.io">Plausible</a> for stats, and I&rsquo;ve been meaning to play with their <a href="https://plausible.io/docs/stats-api">API</a>. But I&rsquo;m here to talk about Rich, not Plausible. Let&rsquo;s use a static copy of API results so everyone&rsquo;s using the same data.</p>
+<div class="highlight" title="showstats.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">rich</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">STATS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;results&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2017/11/drawing-grids-with-python-and-pillow/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">1114</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2017/01/cinnamon-screenshot-shortcuts/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">580</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">458</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2014/06/what-is-build-essentials-for-opensuse/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">340</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/config/emacs/doom/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">303</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2020/06/csv-and-data-tables-in-hugo/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">293</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2019/05/kitty-terminal/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">265</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2018/02/setting-task-dependencies-in-taskwarrior/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">263</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2019/02/taskwarrior-projects/&#34;</span><span class="p">,</span> <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">260</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;page&#34;</span><span class="p">:</span> <span class="s2">&#34;/post/2019/01/circular-grids-with-python-and-pillow/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;visitors&#34;</span><span class="p">:</span> <span class="mi">242</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">build_stats_table</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Construct a Rich Table from site traffic breakdown.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;Plausible.io Traffic Breakdown&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s2">&#34;Page&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s2">&#34;Visitors&#34;</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&#34;right&#34;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&#34;green&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">[</span><span class="s2">&#34;results&#34;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s2">&#34;page&#34;</span><span class="p">],</span> <span class="s2">&#34;</span><span class="si">{:,}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s2">&#34;visitors&#34;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">table</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">build_stats_table</span><span class="p">(</span><span class="n">STATS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rich</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">show_stats</span><span class="p">()</span>
+</span></span></code></pre></div><p>Here&rsquo;s a screenshot, so you know what this produces in my own terminal.</p>
+<p><img src="/post/2021/08/attachments/img/2021/showstats-table.png" title="table output" alt="table output"/></p>
+<p>Okay. Now let&rsquo;s start talking about exporting output.</p>
+<h2 id="xclip-is-usually-good-enough"><code>xclip</code> is usually good enough</h2>
+<p>This post focuses on the &ldquo;blog writing and pretty reports&rdquo; situations. For everyday sharing, all I need is a legibly formatted data dump. <a href="https://github.com/astrand/xclip"><code>xclip</code></a> works for those situations.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python showstats.py <span class="p">|</span> xclip
+</span></span></code></pre></div><p>I don&rsquo;t see anything on my screen, of course, because I piped everything to <code>xclip</code>. But when I paste from the clipboard:</p>
+<div class="highlight" title="output" verbatim="false"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">                    Plausible.io Traffic Breakdown
+</span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+</span></span><span class="line"><span class="cl">┃ Page                                                    ┃ Visitors ┃
+</span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+</span></span><span class="line"><span class="cl">│ /post/2017/11/drawing-grids-with-python-and-pillow/     │    1,114 │
+</span></span><span class="line"><span class="cl">│ /post/2017/01/cinnamon-screenshot-shortcuts/            │      580 │
+</span></span><span class="line"><span class="cl">│ /                                                       │      458 │
+</span></span><span class="line"><span class="cl">│ /post/2014/06/what-is-build-essentials-for-opensuse/    │      340 │
+</span></span><span class="line"><span class="cl">│ /config/emacs/doom/                                     │      303 │
+</span></span><span class="line"><span class="cl">│ /post/2020/06/csv-and-data-tables-in-hugo/              │      293 │
+</span></span><span class="line"><span class="cl">│ /post/2019/05/kitty-terminal/                           │      265 │
+</span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │      263 │
+</span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │      260 │
+</span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │      242 │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
+</span></span></code></pre></div><p><code>xclip</code> preserves the basic shape of my output. I see a table. The <em>Visitors</em> column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.</p>
+<blockquote>
+<p>[!NOTE]
+Also? This renders great on Chrome-based browsers and weird on Firefox.  There
+are definite limitations to just copying and pasting from the terminal.</p>
+</blockquote>
+<p>Let&rsquo;s pull that clipboard management into the script with Al Sweigart&rsquo;s <a href="https://pypi.org/project/pyperclip/">Pyperclip</a> library.</p>
+<h2 id="let-rich-and-pyperclip-handle-the-clipboard">Let Rich and Pyperclip handle the clipboard</h2>
+<p>Pyperclip gives our code access to the system clipboard, letting us copy and paste from Python.  The Rich <a href="https://rich.readthedocs.io/en/stable/reference/console.html">Console</a> can <a href="https://rich.readthedocs.io/en/stable/console.html#capturing-output"><code>capture</code></a> the characters it would have printed, and hand them to us when needed. Sounds like a great team.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyperclip</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
+</span></span></code></pre></div><p>I set up Pyperclip and create a local Console to handle capturing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">(</span><span class="n">stats</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">build_stats_table</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">set_clipboard</span><span class="p">(</span><span class="s2">&#34;xclip&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">console</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span> <span class="k">as</span> <span class="n">capture</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">text_output</span> <span class="o">=</span> <span class="n">capture</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">text_output</span><span class="p">)</span>
+</span></span></code></pre></div><p>I need to tell Pyperclip about <code>xclip</code> or it gets a bit confused on WSL. Also, since I captured the output, I need to print it myself. Why <code>print</code> instead of <code>rich.print</code> or <code>console.print</code>?</p>
+<p>Let me answer that question by pasting the contents of my clipboard:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[3m                    Plausible.io Traffic Breakdown                    [0m
+</span></span><span class="line"><span class="cl">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+</span></span><span class="line"><span class="cl">┃[1m [0m[1mPage                                                   [0m[1m [0m┃[1m [0m[1mVisitors[0m[1m [0m┃
+</span></span><span class="line"><span class="cl">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+</span></span><span class="line"><span class="cl">│ /post/2017/11/drawing-grids-with-python-and-pillow/     │[32m [0m[32m    1114[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2017/01/cinnamon-screenshot-shortcuts/            │[32m [0m[32m     580[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /                                                       │[32m [0m[32m     458[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2014/06/what-is-build-essentials-for-opensuse/    │[32m [0m[32m     340[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /config/emacs/doom/                                     │[32m [0m[32m     303[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2020/06/csv-and-data-tables-in-hugo/              │[32m [0m[32m     293[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2019/05/kitty-terminal/                           │[32m [0m[32m     265[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │[32m [0m[32m     263[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2019/02/taskwarrior-projects/                     │[32m [0m[32m     260[0m[32m [0m│
+</span></span><span class="line"><span class="cl">│ /post/2019/01/circular-grids-with-python-and-pillow/    │[32m [0m[32m     242[0m[32m [0m│
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┴──────────┘
+</span></span></code></pre></div><p>Uh. Oops? <code>console</code> captured <em>exactly</em> what it would have printed, including terminal <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">escape codes</a>.</p>
+<p>Rich supports <a href="https://rich.readthedocs.io/en/stable/console.html#exporting">exporting</a> output beyond a raw dump, though.</p>
+<h2 id="let-rich-get-you-some-html">Let Rich get you some HTML</h2>
+<blockquote>
+<p>[!NOTE]
+For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.</p>
+</blockquote>
+<p>A Console created with the <code>record</code> option enabled remembers everything it prints. You can get export your copy at any point. The <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_text"><code>export_text</code></a> method provides a copy with minimal formatting, while <a href="https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_html"><code>export_html</code></a> produces HTML pages. That&rsquo;s for sure something I can paste into my post source. Nice!</p>
+<p>One <em>slight</em> wrinkle. Unless you tell it otherwise, <code>export_html</code> produces a complete HTML file — with <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, and even a <code>&lt;style&gt;</code> section. All I want is the <code>&lt;pre&gt;...&lt;/pre&gt;</code> describing my output.</p>
+<p>Fortunately, <code>export_html</code> also lets us tell it exactly what we want:</p>
+<ul>
+<li><code>code_format</code> lets me specify the HTML fragment to generate</li>
+<li>turn on <code>inline_styles</code> to directly embed style rules; handy if I don&rsquo;t have my own CSS definitions for Rich-specific classes</li>
+</ul>
+<p>Let&rsquo;s make some HTML for Pyperclip to copy.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_stats</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display Plausible&#39;s breakdown of site traffic.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># print the stats</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">build_stats_table</span><span class="p">(</span><span class="n">STATS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># copy the stats</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">set_clipboard</span><span class="p">(</span><span class="s2">&#34;xclip&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exported_html</span> <span class="o">=</span> <span class="n">console</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inline_styles</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">code_format</span><span class="o">=</span><span class="s2">&#34;&lt;pre&gt;</span><span class="si">{code}</span><span class="s2">&lt;/pre&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">exported_html</span><span class="p">)</span>
+</span></span></code></pre></div><p>What do the contents of my clipboard look like now?</p>
+<pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+│ /post/2017/11/drawing-grids-with-python-and-pillow/     │<span style="color: #008000; text-decoration-color: #008000">    1,114 </span>│
+│ /post/2017/01/cinnamon-screenshot-shortcuts/            │<span style="color: #008000; text-decoration-color: #008000">      580 </span>│
+│ /                                                       │<span style="color: #008000; text-decoration-color: #008000">      458 </span>│
+│ /post/2014/06/what-is-build-essentials-for-opensuse/    │<span style="color: #008000; text-decoration-color: #008000">      340 </span>│
+│ /config/emacs/doom/                                     │<span style="color: #008000; text-decoration-color: #008000">      303 </span>│
+│ /post/2020/06/csv-and-data-tables-in-hugo/              │<span style="color: #008000; text-decoration-color: #008000">      293 </span>│
+│ /post/2019/05/kitty-terminal/                           │<span style="color: #008000; text-decoration-color: #008000">      265 </span>│
+│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │<span style="color: #008000; text-decoration-color: #008000">      263 </span>│
+│ /post/2019/02/taskwarrior-projects/                     │<span style="color: #008000; text-decoration-color: #008000">      260 </span>│
+│ /post/2019/01/circular-grids-with-python-and-pillow/    │<span style="color: #008000; text-decoration-color: #008000">      242 </span>│
+└─────────────────────────────────────────────────────────┴──────────┘</pre>
+<p>That works well enough for a blog post!</p>
+<p>If you&rsquo;re curious about the exported HTML, here&rsquo;s a chunk of it:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-style: italic&#34;</span><span class="p">&gt;</span>                    Plausible.io Traffic Breakdown                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+</span></span><span class="line"><span class="cl">    ┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Page                                                    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;font-weight: bold&#34;</span><span class="p">&gt;</span> Visitors <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>┃
+</span></span><span class="line"><span class="cl">    ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+</span></span><span class="line"><span class="cl">    │ /post/2017/11/drawing-grids-with-python-and-pillow/     │<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color: #008000; text-decoration-color: #008000&#34;</span><span class="p">&gt;</span>    1,114 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>│
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    │ /post/2019/01/circular-grids-with-python-and-pillow/    │<span class="p">&lt;</span><span class="nt">span</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;color: #008000; text-decoration-color: #008000&#34;</span><span class="p">&gt;</span>      242 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>│
+</span></span><span class="line"><span class="cl">    └─────────────────────────────────────────────────────────┴──────────┘
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Anyways, this was just another thing I wanted to get down before I forgot again.</p>
+<h2 id="what-else">What else?</h2>
+<p>There are a few more pieces that tie it into my particular workflow, but this covers what you&rsquo;d need to export output from your own Rich programs for easy blogging or information sharing.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: Pretty File Summaries with Rich and ExifTool</title>
+  <link>https://randomgeekery.org/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/</link>
+  <pubDate>Sat, 06 Feb 2021 00:00:00 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2021/02/pretty-file-summaries-with-rich-and-exiftool/</guid>
+  <description>Hoku hopes for scraps
+A while back I shared how I use ExifTool to get extensive metadata for any file. I want to make that info dump pretty with card/Rich, a text formatting library for card/Python.
+“But Brian,”&#34; I hear you cry. “ExifTool is card/Perl. Why would I want to use both Perl and Python?”
+Because it’s fun, obviously.
+You want a “real” reason? Okay fine. I haven’t found anything that can get the depth of file information I get from ExifTool.</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>files</category>  <category>python</category>  <category>perlish</category>  <category>rich</category>  <category>exiftool</category>  <category>tools</category> 
+  <content:encoded><![CDATA[<h2>Want to see something cool?</h2><p><img src="/post/2021/02/../../../attachments/img/2021/cover-2021-02-06.jpg" alt="attachments/img/2021/cover-2021-02-06.jpg"/>
+Hoku hopes for scraps</p>
+<p>A while back I <a href="/post/2020/04/getting-file-info-from-the-shell/">shared</a> how I use <a href="https://exiftool.org">ExifTool</a> to get extensive metadata for any file.  I want to make that info dump pretty with <a href="/card/rich/">card/Rich</a>, a text formatting library for <a href="/card/python/">card/Python</a>.</p>
+<p>&ldquo;But Brian,&rdquo;&quot; I hear you cry.  &ldquo;ExifTool is <a href="/card/perl/">card/Perl</a>. Why would I want to use both Perl and Python?&rdquo;</p>
+<p>Because it’s fun, obviously.</p>
+<p>You want a &ldquo;real&rdquo; reason?  Okay fine.  I haven’t found anything that can get the depth of file information I get from ExifTool.  I haven’t found a formatting library that’s as pleasant to use as Rich — maybe <a href="https://ttytoolkit.org">TTY Toolkit</a>?</p>
+<p>Besides — ExifTool is a standalone command line tool.  We don’t need to write any Perl to <em>use</em> it.  Heck, we don’t even need to figure out the system calls. <a href="https://github.com/smarnach">Sven Marnach</a> is way ahead of us with the extremely helpful <a href="https://smarnach.github.io/pyexiftool/">pyexiftool</a>.</p>
+<p>Rich and pyexiftool make Python an easy choice for this task.</p>
+<h2 id="setting-up">Setting up</h2>
+<p>If you want to play along at home, make sure you have the dependencies.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> brew install exiftool
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> pip install pyexiftool rich typer
+</span></span></code></pre></div><p><a href="https://typer.tiangolo.com">Typer</a> simplifies turning this random idea into a useful command line tool.</p>
+<blockquote>
+<p>[!NOTE]
+If you’re already a fan of Perl, consider <a href="https://metacpan.org/pod/App::cpanminus"><code>cpanm</code></a> instead of <a href="https://brew.sh">Homebrew</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> cpanm Image::ExifTool
+</span></span></code></pre></div><p>Now you can use <a href="https://metacpan.org/pod/distribution/Image-ExifTool/lib/Image/ExifTool.pod">Image::ExifTool</a> in your own Perl projects.</p>
+</blockquote>
+<h2 id="some-scaffolding">Some scaffolding</h2>
+<p>Even though I’m the only user, I still need to figure out how I plan to use it. At minimum?  I hand my script a filename.  It hands me metadata.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">richexif FILENAME [OPTIONS]
+</span></span></code></pre></div><p>I can hook some <a href="https://typer.tiangolo.com/tutorial/first-steps/#add-a-cli-argument">minimal</a> Typer argument handling around that flow.</p>
+<div class="highlight" title="richexif.py"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.logging</span> <span class="kn">import</span> <span class="n">RichHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">typer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">format</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">%(message)s</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&#34;[</span><span class="si">%X</span><span class="s2">]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">RichHandler</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&#34;filename: </span><span class="si">%s</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span></code></pre></div><p>Can I run it?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">chmod 755 richexif.py
+</span></span><span class="line"><span class="cl">./richexif.py hoku-hopes-for-snacksjpg.jpg
+</span></span></code></pre></div><p>I can!  What happens if I use it wrong?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ ./richexif.py
+</span></span><span class="line"><span class="cl">Usage: richexif.py [OPTIONS] FILENAME
+</span></span><span class="line"><span class="cl">Try &#39;richexif.py --help&#39; for help.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Error: Missing argument &#39;FILENAME&#39;.
+</span></span></code></pre></div><p>I get an error message telling me what <code>richexif.py</code> needs to do its thing. Nice.</p>
+<p>I confirmed that Typer handles the CLI bits, and Rich handles the formatting. Now for pyexiftool.</p>
+<p>Oh and I’ll skip logging output from here on.  Rich’s <a href="https://rich.readthedocs.io/en/latest/logging.html">logging handler</a> output is a joy to look at, but really that stuff is for me.  For you it’ll just add noise.</p>
+<h2 id="some-metadata">Some metadata</h2>
+<p>I need exiftool, of course.  Plus a Rich <a href="https://rich.readthedocs.io/en/latest/console.html">Console</a> object, masterminding the display details for my terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">exiftool</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.console</span> <span class="kn">import</span> <span class="n">Console</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
+</span></span></code></pre></div><p>exiftool’s <a href="https://smarnach.github.io/pyexiftool/#exiftool.ExifTool.get_metadata"><code>get_metadata</code></a> grabs everything ExifTool sees about a file.  It also provides methods for ExifTool <a href="https://exiftool.org/TagNames/index.html">tags</a>, but I won’t mess with them today. Tags — the official name for our metadata keys — are most useful when you already know what you’re looking for.  We’re just checking stuff out.</p>
+<p>For now, a little abstraction layer over pyexiftool’s <code>ExifTool</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a dictionary of file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">exiftool</span><span class="o">.</span><span class="n">ExifTool</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">et</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>main</code> gets the metadata and asks <code>console</code> to print it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></div><p>And here’s what that looks like.</p>
+<pre class="rich"><span style="font-weight: bold">{</span>
+    <span style="color: #008000">'SourceFile'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
+    <span style="color: #008000">'ExifTool:ExifToolVersion'</span>: <span style="color: #000080; font-weight: bold">12.15</span>,
+    <span style="color: #008000">'File:FileName'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
+    <span style="color: #008000">'File:Directory'</span>: <span style="color: #008000">'.'</span>,
+    <span style="color: #008000">'File:FileSize'</span>: <span style="color: #000080; font-weight: bold">918330</span>,
+    <span style="color: #008000">'File:FileModifyDate'</span>: <span style="color: #008000">'2021:02:06 00:54:29-08:00'</span>,
+    <span style="color: #008000">'File:FileAccessDate'</span>: <span style="color: #008000">'2021:02:06 11:30:33-08:00'</span>,
+    <span style="color: #008000">'File:FileInodeChangeDate'</span>: <span style="color: #008000">'2021:02:06 11:30:33-08:00'</span>,
+    <span style="color: #008000">'File:FilePermissions'</span>: <span style="color: #000080; font-weight: bold">775</span>,
+    <span style="color: #008000">'File:FileType'</span>: <span style="color: #008000">'JPEG'</span>,
+    <em>…skipping 62 lines…</em>
+    <span style="color: #008000">'Composite:ScaleFactor35efl'</span>: <span style="color: #000080; font-weight: bold">6.04651162790698</span>,
+    <span style="color: #008000">'Composite:ShutterSpeed'</span>: <span style="color: #000080; font-weight: bold">0.05</span>,
+    <span style="color: #008000">'Composite:GPSLatitude'</span>: <span style="color: #000080; font-weight: bold">47.5750857997222</span>,
+    <span style="color: #008000">'Composite:GPSLongitude'</span>: <span style="color: #000080; font-weight: bold">-122.386441</span>,
+    <span style="color: #008000">'Composite:CircleOfConfusion'</span>: <span style="color: #008000">'0.00496918925785101'</span>,
+    <span style="color: #008000">'Composite:FOV'</span>: <span style="color: #000080; font-weight: bold">69.3903656740024</span>,
+    <span style="color: #008000">'Composite:FocalLength35efl'</span>: <span style="color: #000080; font-weight: bold">26</span>,
+    <span style="color: #008000">'Composite:GPSPosition'</span>: <span style="color: #008000">'47.5750857997222 -122.386441'</span>,
+    <span style="color: #008000">'Composite:HyperfocalDistance'</span>: <span style="color: #000080; font-weight: bold">2.48061927751922</span>,
+    <span style="color: #008000">'Composite:LightValue'</span>: <span style="color: #000080; font-weight: bold">3.81378119121704</span>
+<span style="font-weight: bold">}</span>
+</pre>
+<p>Holy crap that’s a lot.  Some of it could be considered sensitive information — unless you read my <a href="/now/">now</a> page.  But it’s all there!  Even in the snipped version you can learn a lot.  Hello from my Windows partition in West Seattle during February of 2021!</p>
+<blockquote>
+<p>[!TIP]
+Uncomfortable sharing that much with every photo you upload?  You can scrub
+those tags right out.  <a href="https://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Remove-EXIF-Metadata-from-Photos-with-exiftool">With ExifTool</a>, of course.</p>
+</blockquote>
+<p>But back to the other gripe about all this metadata.  It’s way too much for me to take in all at once.  I need some kind of filter!</p>
+<h3 id="filtering-the-firehose">Filtering the firehose</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a copy of the metadata where fields contain the substring `filter`.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">filter</span> <span class="ow">in</span> <span class="n">k</span><span class="p">}</span>
+</span></span></code></pre></div><p>There’s no kind of transformation here.  If a field constrains the exact substring described in <code>filter</code>, use it.</p>
+<p>Adding a Typer <a href="https://typer.tiangolo.com/tutorial/options/">Option</a> lets us ask for a filter from the command line.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Substring to restrict displayed fields&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">metadata</span> <span class="o">=</span> <span class="n">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></div><p>If use <code>--filter</code>, we should only get matching tags.  Leaving out the filter gets us everything.</p>
+<p>Try it out!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacks.jpg --filter<span class="o">=</span>Image
+</span></span></code></pre></div><p>Now that I’m not overwhelmed by the quantity of output, I’m a little underwhelmed by the quality.</p>
+<pre class="rich"><span style="font-weight: bold">{</span>
+    <span style="color: #008000">'File:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">3672</span>,
+    <span style="color: #008000">'File:ImageHeight'</span>: <span style="color: #000080; font-weight: bold">2066</span>,
+    <span style="color: #008000">'EXIF:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">4032</span>,
+    <span style="color: #008000">'EXIF:ImageHeight'</span>: <span style="color: #000080; font-weight: bold">2268</span>,
+    <span style="color: #008000">'EXIF:ExifImageWidth'</span>: <span style="color: #000080; font-weight: bold">4032</span>,
+    <span style="color: #008000">'EXIF:ExifImageHeight'</span>: <span style="color: #000080; font-weight: bold">2268</span>,
+    <span style="color: #008000">'EXIF:ImageUniqueID'</span>: <span style="color: #008000">'J12LLKL00SM'</span>,
+    <span style="color: #008000">'EXIF:ThumbnailImage'</span>: <span style="color: #008000">'(Binary data 6788 bytes, use -b option to extract)'</span>,
+    <span style="color: #008000">'Composite:ImageSize'</span>: <span style="color: #008000">'3672 2066'</span>
+<span style="font-weight: bold">}</span></pre>
+<p>It’s nice.  Don’t get me wrong.  But all we’ve added to default <code>exiftool</code> behavior is some color.</p>
+<p>I’ve played with Rich a bit.  I know we can do better.</p>
+<h2 id="a-metadata-table">A metadata table!</h2>
+<p>Rich lets us create and display <a href="https://rich.readthedocs.io/en/stable/tables.html">tables</a> in the terminal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
+</span></span></code></pre></div><p>We need to <em>build</em> the table, defining columns and adding values row by row.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_table</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return a Rich Table showing the metadata for a file.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s2">&#34;Field&#34;</span><span class="p">,</span> <span class="s2">&#34;Value&#34;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">table</span>
+</span></span></code></pre></div><blockquote>
+<p>[!WARNING]
+Hey, don’t miss that <code>str(value)</code>!  Rich tables need strings, and take nothing for granted with the values you give it.  Numeric values won’t necessarily convert straight to strings without a little help.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">metadata</span> <span class="o">=</span> <span class="n">filter_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="nb">filter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">table</span> <span class="o">=</span> <span class="n">file_table</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</span></span></code></pre></div><p>What does our filtered view look like as a table?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacksjpg.jpg --filter<span class="o">=</span>Image
+</span></span></code></pre></div><pre class="rich"><span style="font-style: italic">                        hoku-hopes-for-snacksjpg.jpg                         </span>
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Field                </span>┃<span style="font-weight: bold"> Value                                              </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ File:ImageWidth      │ 3672                                               │
+│ File:ImageHeight     │ 2066                                               │
+│ EXIF:ImageWidth      │ 4032                                               │
+│ EXIF:ImageHeight     │ 2268                                               │
+│ EXIF:ExifImageWidth  │ 4032                                               │
+│ EXIF:ExifImageHeight │ 2268                                               │
+│ EXIF:ImageUniqueID   │ J12LLKL00SM                                        │
+│ EXIF:ThumbnailImage  │ (Binary data 6788 bytes, use -b option to extract) │
+│ Composite:ImageSize  │ 3672 2066                                          │
+└──────────────────────┴────────────────────────────────────────────────────┘
+</pre>
+<p>Pretty nifty.</p>
+<h2 id="a-metadata-tree">A metadata tree!</h2>
+<p>We can do more than tables though.  with that <code>type:tag</code> split, there&rsquo;s kind of a heirarchy.  We <em>could</em> add a column for the tag type, but why not use a <a href="https://rich.readthedocs.io/en/stable/tree.html">Tree</a>?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+</span></span></code></pre></div><p>Hang on a second while we build our little tree with its branches.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">file_tree</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[bold]</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">branches</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tagged_values</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">tags</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tagged_values</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root_tag</span> <span class="o">=</span> <span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">root_tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">root_tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[bold]</span><span class="si">{</span><span class="n">root_tag</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">root_tag</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[italic]</span><span class="si">{</span><span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">:[/italic] </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">branches</span><span class="p">[</span><span class="n">tags</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tree</span>
+</span></span></code></pre></div><p>Except now we have two ways to display metadata.  Three, if you count the dictionary we started with.  How are we going to show this tree without discarding our table code?</p>
+<p>For now, a callback table that says what to call for each of the options.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rich.tree</span> <span class="kn">import</span> <span class="n">Tree</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DISPLAYS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;table&#34;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">file_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;tree&#34;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">file_tree</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>We don’t <em>need</em> to use lambdas here.  Functions can be passed around same as any other value.  But if I wrap them in a lambda I can build my constant table before Python knows the functions exist.</p>
+<p>Typer uses <a href="https://typer.tiangolo.com/tutorial/options/callback-and-context/">callback</a> functions to validate options.  They do any processing or checks they need to, then return the supplied value if everything goes well.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">validate_display</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return value if valid, or panic if it isn&#39;t.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DISPLAYS</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Format must be one of: </span><span class="si">{</span><span class="n">DISPLAYS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">value</span>
+</span></span></code></pre></div><p>Add the <code>--display</code> Option, making sure to point Typer at the callback. <code>main</code> itself knows the value is safe, or the script never would have reached it.  So I can grab the displayer and call it without fear of consequence.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">display</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;table&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">help</span><span class="o">=</span><span class="s2">&#34;How to display the metadata&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">callback</span><span class="o">=</span><span class="n">validate_display</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Display nicely-formatted file metadata.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">displayer</span> <span class="o">=</span> <span class="n">FORMATS</span><span class="p">[</span><span class="n">display</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="n">displayer</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></span></code></pre></div><p>Okay!  What do we have now?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> ./richexif.py hoku-hopes-for-snacks.jpg --filter<span class="o">=</span>Image --display<span class="o">=</span>tree
+</span></span></code></pre></div><pre class="rich"><span style="font-weight: bold">hoku-hopes-for-snacks.jpg</span>
+├── <span style="font-weight: bold">File</span>
+│   ├── <span style="font-style: italic">ImageWidth:</span> 3672
+│   └── <span style="font-style: italic">ImageHeight:</span> 2066
+├── <span style="font-weight: bold">EXIF</span>
+│   ├── <span style="font-style: italic">ImageWidth:</span> 4032
+│   ├── <span style="font-style: italic">ImageHeight:</span> 2268
+│   ├── <span style="font-style: italic">ExifImageWidth:</span> 4032
+│   ├── <span style="font-style: italic">ExifImageHeight:</span> 2268
+│   ├── <span style="font-style: italic">ImageUniqueID:</span> J12LLKL00SM
+│   └── <span style="font-style: italic">ThumbnailImage:</span> (Binary data 6788 bytes, use -b option to extract)
+└── <span style="font-weight: bold">Composite</span>
+    └── <span style="font-style: italic">ImageSize:</span> 3672 2066
+</pre>
+<p>Oooooh.</p>
+<p>Anyways, that’s what I wanted to show you.  Got plenty more ideas for mashing ExifTool and Rich together, as I’m sure you can imagine.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

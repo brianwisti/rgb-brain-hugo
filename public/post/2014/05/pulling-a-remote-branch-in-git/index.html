@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/">
+<meta property="og:title" content="Pulling a Remote Branch In Git">
+<meta name="twitter:title" content="Pulling a Remote Branch In Git">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="
+[!NOTE] tldr
+git branch -r to list remote branches. git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt; to check your branch out.
+">
+    <meta property="og:description" content="
+[!NOTE] tldr
+git branch -r to list remote branches. git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt; to check your branch out.
+">
+  
+
+
+
+<title itemprop="name">Pulling a Remote Branch In Git - Random Geekery</title>
+<meta property="og:title" content=Pulling&#32;a&#32;Remote&#32;Branch&#32;In&#32;Git&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Pulling&#32;a&#32;Remote&#32;Branch&#32;In&#32;Git&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Pulling&#32;a&#32;Remote&#32;Branch&#32;In&#32;Git&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Pulling&#32;a&#32;Remote&#32;Branch&#32;In&#32;Git&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/" />
+
+
+<meta property="og:updated_time" content=31005-31-12T50:00:14-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2014/06/pretty-recursive-grep/">Pretty Recursive Grep</a></li>
+        
+          <li><a href="/post/2021/05/gitea-because-shiny/">I installed Gitea because it is shiny not because it is needed</a></li>
+        
+          <li><a href="/post/2021/05/joplin-cli-batch-processing-with-raku/">Joplin CLI Batch Processing With Raku</a></li>
+        
+          <li><a href="/post/2021/05/cli-journaling-in-joplin-with-raku/">CLI Journaling in Joplin with Raku</a></li>
+        
+          <li><a href="/post/2021/04/joplin-terminal-basics/">Joplin Terminal Basics</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/">Pulling a Remote Branch In Git</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2014/05/pulling-a-remote-branch-in-git/">Pulling a Remote Branch In Git</a>
+    </h1>
+    
+        <time datetime="2014-05-31T00:00:00-0700" class="post-date">
+            May 31, 2014
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-git">
+            <a href="https://randomgeekery.org/tags/git">git</a>
+        </li>
+        
+        <li class="tag-shell">
+            <a href="https://randomgeekery.org/tags/shell">shell</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <blockquote>
+<p>[!NOTE] <a href="/card/tldr/">tldr</a>
+<code>git branch -r</code> to list remote branches. <code>git checkout --track -b &lt;local-branch&gt; &lt;remote&gt;/&lt;branch&gt;</code> to check your branch out.</p>
+</blockquote>
+<p>Because I know I&rsquo;ll forget it if I don&rsquo;t write it down now.</p>
+<p>I&rsquo;ve been doing a thing in a branch on one machine, but now I want to do that thing on another machine. I&rsquo;ve already pushed that branch to origin, so I don&rsquo;t need to - hold on. I better put that down as well.</p>
+<h2 id="on-one-machine">On One Machine</h2>
+<p>The main concern here is to ensure that my work isn&rsquo;t stuck on the one machine. The <code>-u</code> flag (or <code>--set-upstream</code> for the verbose) creates a tracking reference upstream, so that the remote repository remembers the branch.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
+</span></span><span class="line"><span class="cl"><span class="go">master
+</span></span></span><span class="line"><span class="cl"><span class="go">* oh-hai
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git push -u origin oh-hai
+</span></span></code></pre></div><h2 id="on-another-machine">On Another Machine</h2>
+<p>Now that I&rsquo;ve created the tracking reference upstream, I can pull it down from the other machine.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> git branch
+</span></span><span class="line"><span class="cl"><span class="go">* master
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git branch -r
+</span></span><span class="line"><span class="cl"><span class="go">origin/master
+</span></span></span><span class="line"><span class="cl"><span class="go">origin/oh-hai
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> git checkout --track -b oh-hai origin/oh-hai
+</span></span></code></pre></div><p>Hope I didn&rsquo;t forget anything. I&rsquo;ll find out soon enough.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2014/05/i-learned-github-has-interesting-links/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>I Learned GitHub Has Interesting Links
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2014/06/start-using-emacsclient/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Start Using Emacsclient
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#on-one-machine">On One Machine</a></li>
+    <li><a href="#on-another-machine">On Another Machine</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

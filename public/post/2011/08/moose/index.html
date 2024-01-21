@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2011/08/moose/">
+<meta property="og:title" content="Moose">
+<meta name="twitter:title" content="Moose">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I have been dabbling a lot with Moose, a solid framework
+for object oriented programming in Perl. It is remarkably powerful
+and has transformed the way I look at Perl OO. It is also different
+enough from object oriented programming in other languages that I needed
+to create a section for it on card/coolnamehere.">
+    <meta property="og:description" content="I have been dabbling a lot with Moose, a solid framework
+for object oriented programming in Perl. It is remarkably powerful
+and has transformed the way I look at Perl OO. It is also different
+enough from object oriented programming in other languages that I needed
+to create a section for it on card/coolnamehere.">
+  
+
+
+
+<title itemprop="name">Moose - Random Geekery</title>
+<meta property="og:title" content=Moose&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Moose&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Moose&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Moose&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2011/08/moose/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2011/08/moose/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2011/08/moose/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2011/08/moose/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2011/08/moose/" />
+
+
+<meta property="og:updated_time" content=23008-23-12T80:00:11-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2011/09/perlbrew/">perlbrew</a></li>
+        
+          <li><a href="/post/2009/12/nqp-not-quite-perl/">NQP - Not Quite Perl</a></li>
+        
+          <li><a href="/post/2009/09/perl-hacks-in-my-workspace/">Perl Hacks In My Workspace</a></li>
+        
+          <li><a href="/post/2009/07/in-which-brian-whinges-about-the-perl-5-release-schedule/">In Which Brian Whinges About The Perl 5 Release Schedule</a></li>
+        
+          <li><a href="/post/2009/05/perl-5-babysteps-02-user-input/">Perl 5 Babysteps 02 - User Input</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2011/08/moose/">Moose</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2011/08/moose/">Moose</a>
+    </h1>
+    
+        <time datetime="2011-08-23T00:00:00-0700" class="post-date">
+            August 23, 2011
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-perl">
+            <a href="https://randomgeekery.org/tags/perl">perl</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>I have been dabbling a lot with <a href="https://metacpan.org/module/Moose">Moose</a>, a solid framework
+for object oriented programming in <a href="/card/perl/">Perl</a>. It is remarkably powerful
+and has transformed the way I look at Perl OO. It is also different
+enough from object oriented programming in other languages that I needed
+to create a section for it on <a href="/card/coolnamehere/">card/coolnamehere</a>.</p>
+<h2 id="boilerplate">Boilerplate</h2>
+<p>Perl OO has a reputation for boilerplate: large chunks of code that
+have little relation to the task at hand, but are necessary for the
+application to work at all. Fortunately, <a href="https://metacpan.org/module/Moose">Moose</a> cuts down
+significantly on the boilerplate. You can cut it down even more by taking
+advantage of the features available in recent versions of Perl, and
+that is exactly what I do in my code templates.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># MyClass.pm</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Attributes and methods go here.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="cm">=head1 NAME
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">MyClass
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">=cut</span>
+</span></span></code></pre></div><p>Since I am not being paid by the word, I ignored most of the Perldoc
+boilerplate that I use.</p>
+<p>That&rsquo;s it, really. You can move on if you&rsquo;re not interested in my rambling
+explanations.</p>
+<h2 id="the-rambling-explanation">The Rambling Explanation</h2>
+<p>Let&rsquo;s examine the boilerplate code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="mf">5.14.0</span><span class="p">;</span>
+</span></span></code></pre></div><p>This tells <code>perl</code> that the program requires features that only become
+available in <a href="http://perldoc.perl.org/perl5140delta.html">Perl 5.14</a>. If I tried to load this library in an
+application using a different version of Perl, it simply would not work:</p>
+<pre tabindex="0"><code>Perl v5.14.0 required--this is only v5.12.3, stopped at MyClass.pm line 1.
+BEGIN failed--compilation aborted at MyClass.pm line 1.
+</code></pre><p>I also get <a href="http://perldoc.perl.org/perl5120delta.html">Perl 5.12</a> and <a href="http://perldoc.perl.org/perl5100delta.html">Perl 5.10</a> features, as long as they
+haven&rsquo;t been made redundant by a change in the newest Perl.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">package</span> <span class="nn">MyClass</span> <span class="mf">1.0</span> <span class="p">{</span>
+</span></span></code></pre></div><p>This is one of those <a href="http://perldoc.perl.org/perl5140delta.html#Syntactical-Enhancements">syntactical enhancements</a> that I like in Perl 5.14.
+Here&rsquo;s my package. It&rsquo;s called &ldquo;MyClass&rdquo;. It has a <code>$VERSION</code> of <code>1.0</code>.
+I suppose I could use <a href="https://metacpan.org/module/MooseX::Declare">MooseX::Declare</a>, but I&rsquo;m still getting the
+hang of core <a href="https://metacpan.org/module/Moose">Moose</a> functionality.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span></code></pre></div><p>Now I&rsquo;ve told Perl that the <code>MyClass</code> package is actually a <a href="https://metacpan.org/module/Moose">Moose</a> class.
+A <em>lot</em> of stuff is going on the background now, as all the Moose support
+structure is loaded and set up.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="c1"># Attributes and methods go here.</span>
+</span></span></code></pre></div><p>Okay, yeah. That part&rsquo;s kind of obvious, isn&rsquo;t it?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">no</span> <span class="nn">Moose</span><span class="p">;</span>
+</span></span></code></pre></div><p>Now that I&rsquo;m done with <code>MyClass</code>, I want to get all the special Moose names
+out of the way.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="nn">__PACKAGE__</span><span class="o">-&gt;</span><span class="nn">meta</span><span class="o">-&gt;</span><span class="n">make_immutable</span><span class="p">;</span>
+</span></span></code></pre></div><p>A fully fleshed Moose object maintains a lot of flexibility. Unless I explicitly
+<em>need</em> that flexibility, I should make the class a little lighter.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>That&rsquo;s it. The package is done. It&rsquo;s worth noticing what&rsquo;s missing: the classic <code>1;</code>
+that has ended Perl modules for years. As far as I can tell, the new <code>package</code> syntax
+makes it unnecessary. Perl 5.14 doesn&rsquo;t complain about it missing.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2011/07/rake/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Rake
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2011/09/perlbrew/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>perlbrew
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#boilerplate">Boilerplate</a></li>
+    <li><a href="#the-rambling-explanation">The Rambling Explanation</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

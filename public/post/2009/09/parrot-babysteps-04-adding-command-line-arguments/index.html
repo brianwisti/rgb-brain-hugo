@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">
+<meta property="og:title" content="Parrot Babysteps 04 - Adding Command Line Arguments">
+<meta name="twitter:title" content="Parrot Babysteps 04 - Adding Command Line Arguments">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="Introduction We have learned a reasonable amount so far. We know how to write fairly trivial applications using Parrot Intermediate Representation. We could probably write a simple formula calculator that gets input from the user, ensures that the content is valid, and presents the results of applying user input to the formula.
+It would be nice to write more ambitious programs, though. It would be painful - maybe even impossible - to create a modern program using only the tools and opcodes we have learned so far.">
+    <meta property="og:description" content="Introduction We have learned a reasonable amount so far. We know how to write fairly trivial applications using Parrot Intermediate Representation. We could probably write a simple formula calculator that gets input from the user, ensures that the content is valid, and presents the results of applying user input to the formula.
+It would be nice to write more ambitious programs, though. It would be painful - maybe even impossible - to create a modern program using only the tools and opcodes we have learned so far.">
+  
+
+
+
+<title itemprop="name">Parrot Babysteps 04 - Adding Command Line Arguments - Random Geekery</title>
+<meta property="og:title" content=Parrot&#32;Babysteps&#32;04&#32;-&#32;Adding&#32;Command&#32;Line&#32;Arguments&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Parrot&#32;Babysteps&#32;04&#32;-&#32;Adding&#32;Command&#32;Line&#32;Arguments&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Parrot&#32;Babysteps&#32;04&#32;-&#32;Adding&#32;Command&#32;Line&#32;Arguments&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Parrot&#32;Babysteps&#32;04&#32;-&#32;Adding&#32;Command&#32;Line&#32;Arguments&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/" />
+
+
+<meta property="og:updated_time" content=17009-17-12T90:00:09-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2009/12/parrot-babysteps-08-testing-with-testmore/">Parrot Babysteps 08 - Testing With Test::More</a></li>
+        
+          <li><a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">Parrot Babysteps 07 - Writing Subroutines</a></li>
+        
+          <li><a href="/post/2009/10/parrot-babysteps-06-files-and-hashes/">Parrot Babysteps 06 - Files and Hashes</a></li>
+        
+          <li><a href="/post/2009/09/parrot-babysteps-05-more-about-arrays/">Parrot Babysteps 05 - More About Arrays</a></li>
+        
+          <li><a href="/post/2009/09/parrot-babysteps-03-simple-control-structures/">Parrot Babysteps 03 - Simple Control Structures</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">Parrot Babysteps 04 - Adding Command Line Arguments</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2009/09/parrot-babysteps-04-adding-command-line-arguments/">Parrot Babysteps 04 - Adding Command Line Arguments</a>
+    </h1>
+    
+        <time datetime="2009-09-17T00:00:00-0700" class="post-date">
+            September 17, 2009
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-parrot">
+            <a href="https://randomgeekery.org/tags/parrot">parrot</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Parrot Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <h2 id="introduction">Introduction</h2>
+<p>We have learned a reasonable amount so far. We know how to write fairly trivial applications using <a href="/card/parrot/">Parrot</a> Intermediate Representation. We could probably write a simple formula calculator that gets input from the user, ensures that the content is valid, and presents the results of applying user input to the formula.</p>
+<p>It would be nice to write more ambitious programs, though. It would be painful - maybe even impossible - to create a modern program using only the tools and opcodes we have learned so far.</p>
+<p>We can start examining PMCs by writing a version of our hypotenuse calculator from <a href="/post/2009/07/parrot-babysteps-02-variables-and-types/">a few steps ago</a> that has command line arguments.</p>
+<h2 id="command-line-arguments">Command Line Arguments</h2>
+<p>How do we tell Parrot that our program accepts command line arguments, though? We need some way to show that our <code>:main</code> sub is ready to take parameters. Turns out that&rsquo;s actually pretty easy.</p>
+<h3 id="param-directive"><code>.param</code> directive</h3>
+<p>The <code>.param</code> directive is used at the start of a subroutine to indicate that the subroutine will accept a parameter and place it in the named variable.</p>
+<pre tabindex="0"><code># example-04-01.pir
+
+.sub &#39;main&#39; :main
+    .param pmc argv
+.end
+</code></pre><p><code>argv</code> is a <a href="http://docs.parrot.org/parrot/latest/html/src/pmc/resizablestringarray.pmc.html">ResizableStringArray</a>: an ordered collection of strings.</p>
+<p>We can use the <code>elements</code> opcode to find out how many arguments were passed to the file.</p>
+<pre tabindex="0"><code># example-04-02.pir
+
+.sub &#39;main&#39; :main
+    .param pmc argv
+    .local int argument_count
+    .local string description
+
+    argument_count = elements argv
+    description = &#34;I was called with &#34;
+    $S0 = argument_count
+    description .= $S0
+    description .= &#34; arguments&#34;
+
+    say description
+.end
+</code></pre><p>Try it out.</p>
+<pre tabindex="0"><code>$ parrot example-04-02.pir hey there
+I was called with 3 arguments
+</code></pre><p>Three? Let&rsquo;s look at the arguments individually and see if we can figure this out.</p>
+<h3 id="shift"><code>shift</code></h3>
+<p>The <code>shift</code> opcode lets us pull the first item from an array. This shrinks the <code>argv</code> array by one as it shifts the rest of its contents over to fill the empty space, but it&rsquo;s not a concern for us right now.</p>
+<pre tabindex="0"><code># example-04-03.pir
+
+.sub &#39;main&#39; :main
+    .param pmc argv
+    .local int argument_count
+    .local string this_argument
+    .local string description
+
+  GET_ARG:
+    argument_count = argv
+    if argument_count &lt;= 0 goto END
+    this_argument = shift argv
+    description = &#34;This argument: &#34; . this_argument
+    say description
+    goto GET_ARG
+
+  END:
+
+.end
+</code></pre><p>We can use this code to look at our program arguments one at a time.</p>
+<pre tabindex="0"><code>bash-3.2$ parrot example-04-03.pir hey there
+This argument: example-04-03.pir
+This argument: hey
+This argument: there
+</code></pre><p>Oh, right. The program name is the first argument. That is not unusual, especially in some lower level languages. I should have remembered.</p>
+<h3 id="calculating-a-hypotenuse">Calculating a Hypotenuse</h3>
+<p>Let&rsquo;s take what we&rsquo;ve learned about handling the command line and apply it to our hypotenuse calculator.</p>
+<pre tabindex="0"><code># example-04-04.pir
+
+.sub &#39;main&#39; :main
+    .param pmc argv
+    .local int argument_count
+    .local string program_name
+    .local num a
+    .local num b
+    .local num c
+    .local num a_squared
+    .local num b_squared
+    .local num c_squared
+    .local string error_message
+
+    program_name = shift argv
+    argument_count = elements argv
+    if argument_count != 2 goto BAD_ARG_COUNT
+    a = shift argv
+    b = shift argv
+    a_squared = a * a
+    b_squared = b * b
+    say a_squared
+    say b_squared
+    c_squared = a_squared + b_squared
+    c = sqrt c_squared
+    say c
+    goto END
+
+  BAD_ARG_COUNT:
+    error_message = &#34;Exactly two arguments required&#34;
+    say error_message
+    goto END
+
+  END:
+.end
+</code></pre><p>First we shift the first item off of <code>argv</code> because we know for sure that it&rsquo;s going to be the program name. Then we check to make sure that the user has provided us with two arguments that we can use for <code>a</code> and <code>b</code>. Not having two arguments is an error, so the program branches to displaying an error and quitting. When the argument count is right, the program shifts the arguments into <code>a</code> and <code>b</code> then uses them to calculate and display the hypotenuse.</p>
+<p>Oh yeah - sooner or later you&rsquo;re going to see this error message from Parrot:</p>
+<pre tabindex="0"><code>error:imcc:syntax error, unexpected &#39;=&#39;, expecting &#39;(&#39; (&#39;=&#39;)
+        in file &#39;example-04-04.pir&#39; line 24
+</code></pre><p>What did line 24 look like?</p>
+<pre tabindex="0"><code>c_squared = a_squared + b_squared
+</code></pre><p>It took me a while to realize that I had never declared <code>.local num c_squared</code>. Unfortunately, Parrot&rsquo;s error messages aren&rsquo;t quite as descriptive as Perl&rsquo;s. Perl has had a lot more time to figure out how to gently explain a user&rsquo;s error to him, though.</p>
+<pre tabindex="0"><code>bash-3.2$ parrot example-04-04.pir 12 23
+144
+529
+25.9422435421457
+bash-3.2$
+</code></pre><p>That worked.</p>
+<p>Parrot has many special opcodes <a href="http://docs.parrot.org/parrot/latest/html/src/ops/pmc.ops.html">for dealing with PMCs</a> and soon we&rsquo;ll be looking at more of them. I am especially interested in the opcodes that allow us to use arrays and other collection types.</p>
+<h2 id="summary">Summary</h2>
+<p>Yes, this has been a <em>very</em> quick step. Maybe we didn&rsquo;t learn a whole lot,  but there&rsquo;s a little bit of new stuff in there. We did learn how to add command line handling by using <code>.param</code> to tell Parrot that our <code>:main</code> method accepts parameters. We learned that for <code>:main</code>, the parameter is a particular PMC - something called a ResizableStringArray. The <code>shift</code> opcode removes the first item in a ResizableStringArray and lets us use it in a variable. We also saw that we can use the <code>members</code> opcode to get the number of members in an array.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2009/09/parrot-babysteps-05-more-about-arrays/">parrot-babysteps-05-more-about-arrays</a>
+      </li>
+      
+      <li>
+        <a href="/post/2009/10/parrot-babysteps-07-writing-subroutines/">parrot-babysteps-07-writing-subroutines</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/parrot-babysteps">Parrot Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2009/09/parrot-babysteps-03-simple-control-structures/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Parrot Babysteps 03 - Simple Control Structures
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2009/09/perl-hacks-in-my-workspace/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Perl Hacks In My Workspace
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#command-line-arguments">Command Line Arguments</a>
+      <ul>
+        <li><a href="#param-directive"><code>.param</code> directive</a></li>
+        <li><a href="#shift"><code>shift</code></a></li>
+        <li><a href="#calculating-a-hypotenuse">Calculating a Hypotenuse</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

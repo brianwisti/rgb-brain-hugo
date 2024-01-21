@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/">
+<meta property="og:title" content="From Dotfiles to Org File">
+<meta name="twitter:title" content="From Dotfiles to Org File">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="at 1:30am they&#39;re all good ideas">
+    <meta property="og:description" content="at 1:30am they&#39;re all good ideas">
+  
+
+
+
+<title itemprop="name">From Dotfiles to Org File - Random Geekery</title>
+<meta property="og:title" content=From&#32;Dotfiles&#32;to&#32;Org&#32;File&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=From&#32;Dotfiles&#32;to&#32;Org&#32;File&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=From&#32;Dotfiles&#32;to&#32;Org&#32;File&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=From&#32;Dotfiles&#32;to&#32;Org&#32;File&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="at 1:30am they&#39;re all good ideas" />
+<meta itemprop="description" content="at 1:30am they&#39;re all good ideas" />
+<meta property="og:description" content="at 1:30am they&#39;re all good ideas" />
+<meta name="twitter:description" content="at 1:30am they&#39;re all good ideas" />
+
+
+<base href="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/" />
+
+
+<meta property="og:updated_time" content=28004-28-01T436:54:20-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2020/06/ox-hugo-for-the-orgconfig/">Ox Hugo for the Orgconfig</a></li>
+        
+          <li><a href="/post/2017/07/logging-money-in-org-mode/">Logging Money In Org Mode</a></li>
+        
+          <li><a href="/post/2014/10/blog-writing-in-org-mode/">Blog Writing in Org Mode</a></li>
+        
+          <li><a href="/post/2014/05/exporting-from-org-to-markdown/">Exporting From Org to Markdown</a></li>
+        
+          <li><a href="/post/2020/11/naming-things-in-tmux/">Naming things in tmux</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/">From Dotfiles to Org File</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2020/04/from-dotfiles-to-org-file/">From Dotfiles to Org File</a>
+    </h1>
+    
+        <time datetime="2020-04-28T01:36:54-0700" class="post-date">
+            April 28, 2020
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-emacs">
+            <a href="https://randomgeekery.org/tags/emacs">emacs</a>
+        </li>
+        
+        <li class="tag-shell">
+            <a href="https://randomgeekery.org/tags/shell">shell</a>
+        </li>
+        
+        <li class="tag-orgmode">
+            <a href="https://randomgeekery.org/tags/orgmode">orgmode</a>
+        </li>
+        
+        <li class="tag-orgconfig">
+            <a href="https://randomgeekery.org/tags/orgconfig">orgconfig</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-28.png" alt="attachments/img/2020/cover-2020-04-28.png"/></p>
+<p>I read <a href="https://leanpub.com/lit-config/">Literate Configuration</a> by <a href="https://zzamboni.org/">Diego Zamboni</a>. Now I want to replace my <a href="https://github.com/anishathalye/dotbot">Dotbot</a>-managed dotfiles with an <a href="/card/org/">card/Org</a> file.</p>
+<h2 id="literate-configuration">Literate Configuration?</h2>
+<p>Literate configuration comes out of <a href="http://literateprogramming.com/index.html">literate programming</a>, which mixes code and text about the code in a single document. Okay yes. Like code comments. Where literate programming gets more interesting than comments is how it &ldquo;tangles&rdquo; snippets together, creating files out of these code snippets you’ve described. It’ll be a little easier to understand when you try it. But you can describe the reasoning behind your code or look at your code as high level components.</p>
+<p>Folks still argue whether literate programming is a useful approach to software development. But it could be a good way to handle config files. Personal configuration tends to collect disparate elements with little organization. Weaving them together in a single document could help create a coherent story of how you use your systems.</p>
+<p>Diego Zamboni’s booklet includes 17 pages of instruction and 80 pages of sample config for Emacs, the <a href="https://www.hammerspoon.org/">Hammerspoon</a> macOS automation tool, and the <a href="https://elv.sh/">Elvish</a> shell, all of which you can also find <a href="https://zzamboni.org/post/2017-12-17-my-emacs-configuration-with-commentary/">on his blog</a>. I have no regrets about spending $5 on <em>Literate Configuration</em>. The
+formatting is better, for one thing.</p>
+<h2 id="dotfiles">Dotfiles?</h2>
+<p>An informal reference to one person’s collection of configurations and settings. They’re named for the common Unix convention of using a leading dot in config filenames: <code>.zshrc</code>, for example. Many folks, including me, like to keep those dotfiles in version control. Makes it easier to track changes or roll back when something doesn’t work like you thought it would. Also simplifies setting up new machines.</p>
+<p>You can find a nice introductory site for the version-controlled dotfiles approach on <a href="https://dotfiles.github.io/">Github</a>.</p>
+<h2 id="in-an-org-file">In an Org file?</h2>
+<p>Well of course. What did you think I was going to use — <a href="https://github.com/jostylr/literate-programming">Markdown</a>? <a href="https://slott56.github.io/PyLit-3/_build/html/index.html">reStructuredText</a>? <a href="https://aimlesslygoingforward.com/blog/2019/10/02/roguelike-tutorial-up-to-date-and-literate/">Asciidoctor</a>?</p>
+<p>Actually those are pretty cool. I could maybe work up an extension for more pleasing notation, and — no! I already started this with Org mode. I can finish this with Org mode.</p>
+<p>Maybe later, Asciidoctor.</p>
+<p>Yeah, Org. <a href="https://orgmode.org/worg/org-contrib/babel/">Babel</a> lets Org execute and/or <a href="https://orgmode.org/manual/Extracting-Source-Code.html#Extracting-Source-Code">extract</a> source code. It supports a long list of <a href="https://orgmode.org/worg/org-contrib/babel/languages.html">languages</a>. I don’t need to find or write extensions for basic functionality.</p>
+<h2 id="prepare-org-mode">Prepare Org mode</h2>
+<p>Babel used to be an extension to Org, but it’s been a core part of the framework for a bit now. Thing is, Babel is powerful and a little dangerous. You need to give it permission.</p>
+<p><strong><code>~/.emacs</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-confirm-babel-evaluate</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">; ...</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">&#39;org-babel-load-languages</span>
+</span></span><span class="line"><span class="cl">   <span class="o">&#39;</span><span class="p">((</span><span class="nv">shell</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span> 
+</span></span></code></pre></div><ul>
+<li><code>shell</code> is a general-purpose mode that covers <code>sh</code>, <code>bash</code>, <code>zsh</code>, and so on.</li>
+</ul>
+<p>Babel wants to know what languages it can load. I’m only tangling shell files, so that’s all I put in <code>org-babel-load-languages</code>.</p>
+<p>By default, Babel requests confirmation from you for every code block it handles. That’s smart, but also annoying. Disabling <code>org-confirm-babel-evaluate</code> means I’m okay with Babel executing or extracting any code it finds. It also means I need to ensure that my code blocks don’t request any dangerous actions. Leave this setting enabled if smart matters more to you than annoying.</p>
+<blockquote>
+<p>[!NOTE] Correction
+The Babel settings I added are for code <em>extraction</em>, not code evaluation. Babel extracts anything you want. <a href="https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks">Code evaluation</a> is a different feature, and not needed for this post. Skip my <code>:custom</code> and <code>:config</code> items if you’re just tangling.</p>
+</blockquote>
+<p>Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.</p>
+<h2 id="my-literate-config">My literate config</h2>
+<p>Let’s keep my starting point really really simple. Just a little bit out of my <a href="https://www.zsh.org/">Zsh</a> config.</p>
+<p><strong><code>config.org</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+title</span><span class="c">: My config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> Notes</span>
+</span></span><span class="line"><span class="cl"><span class="nb">{{{kbd(C-c C-v t)}}}</span> to tangle until I&#39;m ready to add hooks
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh">*</span><span class="gs"> zsh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">**</span> zshenv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Loaded for all sessions.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshenv
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">**</span> zshrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Loaded for interactive sessions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.config/broot/launcher/bash/br
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
+</span></span></code></pre></div><p>Then I hit <code>C-c C-v t</code> to run <code>org-babel-tangle</code>, which tells me:</p>
+<pre tabindex="0"><code>Tangled 2 code blocks from config.org
+</code></pre><p>So I look in my files.</p>
+<p><strong><code>~/.zshenv</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&#34;vim&#34;</span>
+</span></span></code></pre></div><p><strong><code>~/.zshrc</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.config/broot/launcher/bash/br
+</span></span></code></pre></div><p>Yay it worked!</p>
+<p>There’s not much being &ldquo;tangled&rdquo; though, is there?</p>
+<p>I’ve been playing with <a href="https://antigen.sharats.me/">Antigen</a>, but I may go back to <a href="https://ohmyz.sh/">Oh My Zsh</a>. Let’s put the Antigen stuff in its own block.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="cs">#+name</span><span class="c">: antigen</span>
+</span></span><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen use oh-my-zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen bundle git
+</span></span><span class="line"><span class="cl">antigen bundle nvm
+</span></span><span class="line"><span class="cl">antigen bundle pyenv
+</span></span><span class="line"><span class="cl">antigen bundle rbenv
+</span></span><span class="line"><span class="cl">antigen bundle taskwarrior
+</span></span><span class="line"><span class="cl">antigen bundle tmux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen bundle zsh-users/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">antigen theme gozilla
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen apply
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
+</span></span></code></pre></div><p>Now we update the <code>~/.zshrc</code> block to tangle with <code>:noweb yes</code> and include that new block.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-org" data-lang="org"><span class="line"><span class="cl"><span class="c">#+begin_src </span><span class="cs">shell</span><span class="c"> :tangle ~/.zshrc :noweb yes
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="s">&lt;&lt;antigen&gt;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">source /home/ran</span>dom/.config/broot/launcher/bash/br
+</span></span><span class="line"><span class="cl"><span class="c">#+end_src</span>
+</span></span></code></pre></div><p>C-c C-v t again, and there it is!</p>
+<p><strong><code>~/.zshrc</code></strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-zsh" data-lang="zsh"><span class="line"><span class="cl"><span class="nb">source</span> ~/.dotfiles/zsh/antigen.zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen use oh-my-zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen bundle brew
+</span></span><span class="line"><span class="cl">antigen bundle git
+</span></span><span class="line"><span class="cl">antigen bundle nvm
+</span></span><span class="line"><span class="cl">antigen bundle pyenv
+</span></span><span class="line"><span class="cl">antigen bundle rbenv
+</span></span><span class="line"><span class="cl">antigen bundle taskwarrior
+</span></span><span class="line"><span class="cl">antigen bundle tmux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen bundle zsh-users/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">antigen theme gozilla
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">antigen apply
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /home/random/.config/broot/launcher/bash/br
+</span></span></code></pre></div><p>Okay now to finish getting the rest of my zsh config. Oh, and put <code>config.org</code> in version control.</p>
+<p><strong>Emacs code extraction key bindings</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Function</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C-c C-v t</code></td>
+<td><code>org-babel-tangle</code></td>
+<td>Extract and write code blocks in the current Org file</td>
+</tr>
+</tbody>
+</table>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2020/05/querying-hugo-content-with-python/">querying-hugo-content-with-python</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/104075340897518607"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2020/04/i-helped-genehack/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>I Helped genehack!
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2020/04/how-many-recent-authors-on-cpan/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>How many recent authors on CPAN?
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#literate-configuration">Literate Configuration?</a></li>
+    <li><a href="#dotfiles">Dotfiles?</a></li>
+    <li><a href="#in-an-org-file">In an Org file?</a></li>
+    <li><a href="#prepare-org-mode">Prepare Org mode</a></li>
+    <li><a href="#my-literate-config">My literate config</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

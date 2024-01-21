@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/">
+<meta property="og:title" content="Remote Editing In Atom">
+<meta name="twitter:title" content="Remote Editing In Atom">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I am slowly learning more about how to use Atom for real work.">
+    <meta property="og:description" content="I am slowly learning more about how to use Atom for real work.">
+  
+
+
+
+<title itemprop="name">Remote Editing In Atom - Random Geekery</title>
+<meta property="og:title" content=Remote&#32;Editing&#32;In&#32;Atom&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Remote&#32;Editing&#32;In&#32;Atom&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Remote&#32;Editing&#32;In&#32;Atom&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Remote&#32;Editing&#32;In&#32;Atom&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I am slowly learning more about how to use Atom for real work." />
+<meta itemprop="description" content="I am slowly learning more about how to use Atom for real work." />
+<meta property="og:description" content="I am slowly learning more about how to use Atom for real work." />
+<meta name="twitter:description" content="I am slowly learning more about how to use Atom for real work." />
+
+
+<base href="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/" />
+
+
+<meta property="og:updated_time" content=16007-16-12T70:00:15-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2015/07/atom-works-on-opensuse/">Atom Works on openSUSE</a></li>
+        
+          <li><a href="/post/2021/01/looks-like-sublime-text-is-shifting-to-a-subscription-plan/">Looks like Sublime Text is shifting to a subscription plan</a></li>
+        
+          <li><a href="/post/2015/11/using-bob-ross-css/">Bob Ross CSS</a></li>
+        
+          <li><a href="/post/2015/09/next-hugo/">Next? Hugo</a></li>
+        
+          <li><a href="/post/2015/09/added-suggested-posts/">Added Suggested Posts</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/">Remote Editing In Atom</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2015/07/remote-editing-in-atom/">Remote Editing In Atom</a>
+    </h1>
+    
+        <time datetime="2015-07-16T00:00:00-0700" class="post-date">
+            July 16, 2015
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-atom-editor">
+            <a href="https://randomgeekery.org/tags/atom-editor">atom-editor</a>
+        </li>
+        
+        <li class="tag-editors">
+            <a href="https://randomgeekery.org/tags/editors">editors</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>I am slowly learning more about how to use <a href="https://atom.io">Atom</a> for real work. First requirement: my &ldquo;real work&rdquo; almost exclusively takes place on a virtual machine. Atom alone cannot handle editing those files. <a href="https://atom.io/packages/remote-atom">remote-atom</a> to the rescue!</p>
+<p>Well, sort of. It’s not as reflexive as bouncing around in a <a href="/card/vim/">Vim</a> session, but some of that must be due to lack of familiarity.</p>
+<p>It works, though.</p>
+<p>You can install the remote-atom package from Atom’s <a href="https://atom.io/packages/settings-view">Settings View</a>. Follow the directions on the <a href="https://atom.io/packages/remote-atom">remote-atom</a> package page! You’ll end up with an <code>rmate</code> executable on your virtual machine, corresponding to a <a href="https://raw.githubusercontent.com/aurora/rmate/master/rmate">master copy</a> in the remote-atom git repo.</p>
+<p><code>rmate</code> communicates with the Remote Atom service, which you need to manage yourself. You can do this from the <em>Packages</em> menu, but I want to get comfortable with the <a href="https://atom.io/packages/command-palette">Command Palette</a>.</p>
+<p><img src="/post/2015/07/attachments/img/2015/remote-atom-start-server.png" alt="Start Remote Atom Server from Command Palette"/></p>
+<p>Once the server is available, you can <code>rmate</code> files to your heart’s content.</p>
+<pre tabindex="0"><code>$ rmate lib/secret-work-stuff
+$ rmate test/secret-work-tests
+</code></pre><p>No point showing a screenshot of <code>lib/secret-work-stuff</code>. It’s just another tab as far as the Atom user interface is concerned. Saving correctly updated the file on my virtual machine. Simple and straightforward.</p>
+<p>Eventually you may want to stop the server. Again, from the Command Palette.</p>
+<p><img src="/post/2015/07/attachments/img/2015/remote-atom-stop-server.png" alt="Stop Server from the Command Palette"/></p>
+<p>I’m still not ready to use Atom as my primary or even secondary editor. However, it’s starting to feel useful — thanks to packages like remote-atom.</p>
+
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2015/07/atom-works-on-opensuse/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Atom Works on openSUSE
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2015/07/making-a-jekyll-collection/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Making a Jekyll Collection
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

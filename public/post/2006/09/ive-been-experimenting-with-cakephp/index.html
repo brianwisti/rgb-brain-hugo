@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/">
+<meta property="og:title" content="I&#39;ve Been Experimenting With CakePHP">
+<meta name="twitter:title" content="I&#39;ve Been Experimenting With CakePHP">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I&rsquo;ve been experimenting with CakePHP over the last couple of weeks for a project. It&rsquo;s definitely not Ruby on Rails, but it has a lot of charm. This library provides a MVC system for PHP applications, but the really interesting thing is that you can just drop it onto your Web server space with no fuss or bother. You don&rsquo;t even have to worry about clever mod_rewrite rules if you don&rsquo;t want to.">
+    <meta property="og:description" content="I&rsquo;ve been experimenting with CakePHP over the last couple of weeks for a project. It&rsquo;s definitely not Ruby on Rails, but it has a lot of charm. This library provides a MVC system for PHP applications, but the really interesting thing is that you can just drop it onto your Web server space with no fuss or bother. You don&rsquo;t even have to worry about clever mod_rewrite rules if you don&rsquo;t want to.">
+  
+
+
+
+<title itemprop="name">I&#39;ve Been Experimenting With CakePHP - Random Geekery</title>
+<meta property="og:title" content=I&#39;ve&#32;Been&#32;Experimenting&#32;With&#32;CakePHP&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=I&#39;ve&#32;Been&#32;Experimenting&#32;With&#32;CakePHP&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=I&#39;ve&#32;Been&#32;Experimenting&#32;With&#32;CakePHP&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=I&#39;ve&#32;Been&#32;Experimenting&#32;With&#32;CakePHP&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/" />
+
+
+<meta property="og:updated_time" content=22009-22-12T90:00:06-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2008/01/phps-extract-and-compact-functions/">PHPs extract and compact functions</a></li>
+        
+          <li><a href="/post/2006/03/i-still-like-unix-better/">I still like UNIX better</a></li>
+        
+          <li><a href="/post/2006/03/there-must-be-something-wrong-with-me/">There Must Be Something Wrong With Me</a></li>
+        
+          <li><a href="/post/2006/03/aliases/">Aliases</a></li>
+        
+          <li><a href="/post/2006/02/sticking-with-vim/">Sticking with Vim</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/">I&#39;ve Been Experimenting With CakePHP</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2006/09/ive-been-experimenting-with-cakephp/">I&#39;ve Been Experimenting With CakePHP</a>
+    </h1>
+    
+        <time datetime="2006-09-22T00:00:00-0700" class="post-date">
+            September 22, 2006
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-php">
+            <a href="https://randomgeekery.org/tags/php">php</a>
+        </li>
+        
+        <li class="tag-blogspot">
+            <a href="https://randomgeekery.org/tags/blogspot">blogspot</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>I&rsquo;ve been experimenting with <a href="http://cakephp.org/">CakePHP</a> over the last couple of weeks for a project. It&rsquo;s definitely not <a href="http://rubyonrails.com/">Ruby on Rails</a>, but it has a lot of charm. This library provides a MVC system for <a href="/card/php/">PHP</a> applications, but the really interesting thing is that you can just drop it onto your Web server space with no fuss or bother. You don&rsquo;t even have to worry about clever mod_rewrite rules if you don&rsquo;t want to.</p>
+<p>Since CakePHP is so accessible, I thought it would be fun to explore the framework a little bit more, and document what&rsquo;s going on here. Now, I&rsquo;m not the greatest at remembering to update this blog, but I&rsquo;ll do my best.</p>
+<p>My goal is straightforward: create a forum application, similar in purpose to <a href="http://www.phpbb.com/">phpBB</a>. I&rsquo;m sure it has already been done, but I&rsquo;m in this strictly for the educational exercise.</p>
+<p>The first task - assuming you already have Web space with support for PHP and MySQL - is to get CakePHP. That&rsquo;s easy enough. Just grab the latest archive from the download section of the CakePHP site, and unpack it to your server space. I&rsquo;m fond of using my personal machine as a development site, so I won&rsquo;t be worrying about issues like uploading or editing remote files.</p>
+<pre tabindex="0"><code>$ cd /var/www
+$ sudo tar xfvz ~/cake_1.1.7.3363.tar.gz
+...
+$ mv cake_1.1.7.3363.tar.gz cakebb
+$ sudo chown --recursive brianwisti cakebb
+</code></pre><p>Okay, there are much safer approaches to setting things up, but I am only doing quick and dirty development on my home machine.</p>
+<p>Next I need to manage the database connections. CakePHP uses PHP code for configuration, following along with the Rails idea of &ldquo;convention over configuration.&rdquo; The theory is that a handful of PHP files are easier to sort through than a handful of XML configuration files.</p>
+<p>Configuration files are kept in <tt>cakebb/app/config</tt>. The first one I&rsquo;ll be looking at is database.php, except that there is no <tt>database.php</tt> when Cake is first extracted. We have a file <tt>database.php.default</tt> instead. I&rsquo;ll move it over to <tt>database.php</tt> so that Cake has something to look at on startup.</p>
+<pre tabindex="0"><code>$ mv database.php.default database.php
+</code></pre><p>Of course now I need to edit the file to establish the database connection details. I&rsquo;ll also need to set up the appropriate databases on my local MySQL server.</p>
+<p>So here&rsquo;s the important part of <tt>database.php</tt>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DATABASE_CONFIG</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$default</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;connect&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql_connect&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;login&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my secret password&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$test</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;connect&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql_connect&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;login&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my secret password&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cakebb_test&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Then I go into the MySQL shell to create the databases and accounts needed by CakeBB.</p>
+<pre tabindex="0"><code>$ mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6 to server version: 5.0.22-Debian_0ubuntu6.06.2-log
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the buffer.
+
+mysql&gt; create database cakebb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; create database cakebb_test;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; grant all on cakebb.* to &#39;cakebb_user&#39;@&#39;%&#39; identified by &#39;my secret password&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; grant all on cakebb_test.* to &#39;cakebb_user&#39;@&#39;%&#39; identified by &#39;my secret password&#39;;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre><p>I feel like skipping mod_rewrite for now, so I&rsquo;ll uncomment the following line (around line 40 of <tt>app/config/core.php</tt>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">//  define (&#39;BASE_URL&#39;, env(&#39;SCRIPT_NAME&#39;));
+</span></span></span></code></pre></div><p>All I&rsquo;ve got at this point is the basic setup, but I should test it just to make sure everything is connecting. I send my browser to <code>http://localhost/cakebb/</code> and get a lovely status page telling me that CakePHP is installed and able to connect to the database.</p>
+<p>Great. I&rsquo;m set up and functional. The next step will be to build the application models. But that will have to wait until tomorrow, because I need to get to work now.</p>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2006/04/reduce-reuse-recycle-in-rebol/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Reduce, Reuse, Recycle in REBOL
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2007/01/gnu-screen/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>GNU screen
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

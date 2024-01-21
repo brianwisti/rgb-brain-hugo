@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>workflowonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/workflow/</link>
+    <description>
+      Recent contentinworkflow on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Thu, 04 Aug 2022 10:04:34 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/workflow/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: [2022-08-04 Thu 10:04]</title>
+  <link>https://randomgeekery.org/post/2022/08/2022-08-04-thu-1004/</link>
+  <pubDate>Thu, 04 Aug 2022 10:04:34 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/2022-08-04-thu-1004/</guid>
+  <description>&lt;p&gt;I tried visually replacing a few &lt;a href=&#34;https://randomgeekery.org/card/logseq/&#34;&gt;card/Logseq&lt;/a&gt; tags with icons in CSS. It worked!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/08/../../../attachments/img/2022-08-04-logseq-icons.png&#34; alt=&#34;attachments/img/2022-08-04-logseq-icons.png&#34;/&gt;
+Three down, a few thousand to go&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>logseq</category>  <category>workflow</category>  <category>try-it-and-see</category> 
+  <content:encoded><![CDATA[<p>I tried visually replacing a few <a href="/card/logseq/">card/Logseq</a> tags with icons in CSS. It worked!</p>
+<p><img src="/post/2022/08/../../../attachments/img/2022-08-04-logseq-icons.png" alt="attachments/img/2022-08-04-logseq-icons.png"/>
+Three down, a few thousand to go</p>
+<p>How&rsquo;d I do it? Here I&rsquo;ll just paste from my journal note figuring out the first one. I&rsquo;m sure I&rsquo;ll revisit this tonight after taking care of the day&rsquo;s business.</p>
+<ul>
+<li>#idea Thinking about custom tag icons for logseq
+<ul>
+<li>#warning under construction #warning</li>
+<li>Inspired by Obsidian <a href="https://publish.obsidian.md/hub/02&#43;-&#43;Community&#43;Expansions/02.05&#43;All&#43;Community&#43;Expansions/CSS&#43;Snippets/Alternate&#43;Checkboxes&#43;%28SlRvb%29">Alternate Checkboxes</a> CSS snippet</li>
+<li>Here&rsquo;s what <code>#idea</code> looks like in the dev console:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span>
+</span></span><span class="line"><span class="cl">   <span class="na">class</span><span class="o">=</span><span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">style</span><span class="o">=</span><span class="s">&#34;display: inline;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">data-tooltipped</span><span class="o">=</span><span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">aria-describedby</span><span class="o">=</span><span class="s">&#34;tippy-tooltip-119&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="na">data-original-title</span><span class="o">=</span><span class="s">&#34;null&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">&gt;&lt;</span><span class="nt">a</span>
+</span></span><span class="line"><span class="cl">	   <span class="na">data-ref</span><span class="o">=</span><span class="s">&#34;idea&#34;</span>
+</span></span><span class="line"><span class="cl">	   <span class="na">class</span><span class="o">=</span><span class="s">&#34;tag&#34;</span><span class="p">&gt;</span>#idea<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><ul>
+<li>#question how do my installed plugins change the structure?
+<ul>
+<li>I don&rsquo;t think I currently have any plugins that alter element attributes</li>
+</ul>
+</li>
+<li>Set up <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS Selector</a> #bookmark to match
+<ul>
+<li><code>a.tag[data-ref=&quot;idea&quot;]</code></li>
+</ul>
+</li>
+<li>Hide the displayed tag by making it tiny</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">tag</span><span class="o">[</span><span class="nt">data-ref</span><span class="o">=</span><span class="s2">&#34;idea&#34;</span><span class="o">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">border</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">font-size</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>Append an icon with the font size we started at</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">a</span><span class="p">.</span><span class="nc">tag</span><span class="o">[</span><span class="nt">data-ref</span><span class="o">=</span><span class="s2">&#34;idea&#34;</span><span class="o">]</span><span class="p">:</span><span class="nd">after</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">content</span><span class="p">:</span> <span class="s2">&#34;💡&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">font-size</span><span class="p">:</span> <span class="kc">initial</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>as-is, this has accessibility issues and <code>font-size: initial</code> won&rsquo;t work with headings. Also, to do it right I should be encoding the icon</li>
+</ul>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-08-03 Wed 19:12]</title>
+  <link>https://randomgeekery.org/post/2022/08/2022-08-03-wed-1912/</link>
+  <pubDate>Wed, 03 Aug 2022 19:12:57 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/2022-08-03-wed-1912/</guid>
+  <description>Side note — hah! no? ok sorry — the Vivaldi browser sidebar makes a great spot for Amplenote jots.
+a bit fiddly for big edits though</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>amplenote</category>  <category>workflow</category> 
+  <content:encoded><![CDATA[<p>Side note — <em>hah!</em> no? ok sorry — the <a href="https://vivaldi.com">Vivaldi</a> browser sidebar makes a great spot for <a href="https://www.amplenote.com">Amplenote</a> jots.</p>
+<p><img src="/post/2022/08/../../../attachments/img/vivaldi-amplenote-sidebar.png" alt="attachments/img/vivaldi-amplenote-sidebar.png"/>
+a bit fiddly for big edits though</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-08-01 Mon 22:45]</title>
+  <link>https://randomgeekery.org/post/2022/08/2022-08-01-mon-2245/</link>
+  <pubDate>Mon, 01 Aug 2022 22:45:16 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/2022-08-01-mon-2245/</guid>
+  <description>Continuing to get annoyed at Datalog for queries in Logseq, when I remembered org-roam uses a SQLite database. Plus there’s org-roam-ui, which — sheesh. It’s impressive.
+I have way too much sitting in my Logseq graph to just bounce, but it’s good to remember I have options.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>org-roam</category> 
+  <content:encoded><![CDATA[<p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-01.png" alt="attachments/img/2022/cover-2022-08-01.png"/></p>
+<p>Continuing to get annoyed at Datalog for <a href="https://docs.logseq.com/#/page/advanced%20queries">queries</a> in Logseq, when I remembered <a href="https://www.orgroam.com">org-roam</a> uses a SQLite database. Plus there&rsquo;s <a href="https://github.com/org-roam/org-roam-ui">org-roam-ui</a>, which — sheesh. It&rsquo;s impressive.</p>
+<p>I have way too much sitting in my Logseq graph to just bounce, but it&rsquo;s good to
+remember I have options.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-08-01 Mon 09:56]</title>
+  <link>https://randomgeekery.org/post/2022/08/2022-08-01-mon-0956/</link>
+  <pubDate>Mon, 01 Aug 2022 09:56:29 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/08/2022-08-01-mon-0956/</guid>
+  <description>I already knew card/Logseq does rich paste with C-v. Today I learned plain-text paste is C-V. That’s Control &#43; Shift &#43; v.
+Makes it a lot easier to paste bookmark titles.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>til</category>  <category>workflow</category>  <category>logseq</category> 
+  <content:encoded><![CDATA[<p>I already knew <a href="/card/logseq/">card/Logseq</a> does rich paste with <code>C-v</code>. Today I learned plain-text paste is <code>C-V</code>. That&rsquo;s <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>v</kbd>.</p>
+<p>Makes it a lot easier to paste bookmark titles.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-07-20 Wed 22:14]</title>
+  <link>https://randomgeekery.org/post/2022/07/2022-07-20-wed-2214/</link>
+  <pubDate>Wed, 20 Jul 2022 22:14:36 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/07/2022-07-20-wed-2214/</guid>
+  <description>&lt;p&gt;Did the useful &lt;a href=&#34;https://randomgeekery.org/card/logseq/&#34;&gt;card/Logseq&lt;/a&gt; puttering. Now some decorative fun with the &lt;a href=&#34;https://github.com/yoyurec/logseq-banners-plugin&#34;&gt;Logseq Banners&lt;/a&gt; plugin.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>logseq</category>  <category>workflow</category> 
+  <content:encoded><![CDATA[<p>Did the useful <a href="/card/logseq/">card/Logseq</a> puttering. Now some decorative fun with the <a href="https://github.com/yoyurec/logseq-banners-plugin">Logseq Banners</a> plugin.</p>
+<p><img src="/post/2022/07/../../../attachments/img/2022-07-20-logseq-banners.png" alt="attachments/img/2022-07-20-logseq-banners.png"/>
+It&rsquo;s all pretty!</p>
+<p>Banner image by <a href="https://unsplash.com/@eilisgarvey?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Eilis Garvey</a> on <a href="https://unsplash.com/s/photos/root?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-07-18 Mon 17:04]</title>
+  <link>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</link>
+  <pubDate>Mon, 18 Jul 2022 17:04:38 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/07/2022-07-18-mon-1704/</guid>
+  <description>&lt;p&gt;Figured out how to do &lt;a href=&#34;https://code.visualstudio.com/docs/editor/userdefinedsnippets&#34;&gt;text snippets&lt;/a&gt; in Visual Studio Code for &lt;a href=&#34;https://www.dendron.so&#34;&gt;Dendron&lt;/a&gt; notes. My wish for this world is less JSON.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>dendron</category>  <category>vs-code</category> 
+  <content:encoded><![CDATA[<p>Figured out how to do <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">text snippets</a> in Visual Studio Code for <a href="https://www.dendron.so">Dendron</a> notes. My wish for this world is less JSON.</p>
+<p>Would YAML be better? Maybe, but no. I&rsquo;m thinking something more like Emacs <a href="https://github.com/joaotavora/yasnippet">yasnippet</a> files. Sure a file for every snippet may sound like overkill. It&rsquo;s a heck of a lot easier to figure out what a single template looks without filtering from JSON list and then translating from JSON string to template string.</p>
+<p>Anyways, snippets for timestamped list items in Dendron.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;itime&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;itime&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;timestamp for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;inow&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;prefix&#34;</span><span class="p">:</span> <span class="s2">&#34;inow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;- **$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:** &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;datetime for interstitial notes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Handy for <a href="https://betterhumans.pub/replace-your-to-do-list-with-interstitial-journaling-to-increase-productivity-4e43109d15ef">interstitial journaling</a>. Take the claims about interstitial journaling with as much salt as you need. I use timestamped notes to remember when I did, said, or thought a thing.</p>
+<p>For some of us &ldquo;time tracking&rdquo; is just a tool to — um — track time.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-06-12 Sun 19:05]</title>
+  <link>https://randomgeekery.org/post/2022/06/2022-06-12-sun-1905/</link>
+  <pubDate>Sun, 12 Jun 2022 19:05:19 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/06/2022-06-12-sun-1905/</guid>
+  <description>&lt;p&gt;I’m gonna fill this space with the contents of a tweet thread describing my adventures importing &lt;a href=&#34;https://randomgeekery.org/card/taskwarrior/&#34;&gt;card/Taskwarrior&lt;/a&gt; tasks into &lt;a href=&#34;https://randomgeekery.org/card/logseq/&#34;&gt;card/Logseq&lt;/a&gt;.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>logseq</category>  <category>taskwarrior</category> 
+  <content:encoded><![CDATA[<p>I&rsquo;m gonna fill this space with the contents of a tweet thread describing my adventures importing <a href="/card/taskwarrior/">card/Taskwarrior</a> tasks into <a href="/card/logseq/">card/Logseq</a>.</p>
+<p>Course, it started as a toot thread. But I don&rsquo;t have a shortcode handy for embedding those. You get a link:</p>
+<p><a href="https://hackers.town/@randomgeek/108466853429885208">For Tooters</a></p>
+<p>But I <em>do</em> have a Twitter shortcode handy, so I&rsquo;ll embed the interesting tweets.</p>
+<p>{{&lt; twitter user=&ldquo;brianwisti&rdquo; id=&ldquo;1536113701132066820&rdquo; &gt;}}</p>
+<p>Right, I started with Obsidian. Then I thought about how Logseq has task management features built-in. Decided to shift focus there.</p>
+<p>Took me a bit to figure out how I wanted to link everything up. Ended up with a more cohesive graph &mdash; to my eyes, at least.</p>
+<p>{{&lt; twitter user=&ldquo;brianwisti&rdquo; id=&ldquo;1536166882352455681&rdquo; &gt;}}</p>
+<p>The secondary purpose was to get more comfortable using <a href="/card/typescript/">card/TypeScript</a> and <a href="/card/node.js/">card/Node.js</a>. I didn&rsquo;t revert to Python, Perl, or Ruby for <em>any</em> of this. Mission accomplished!</p>
+<p>You want to <em>see</em> the code? Ah. Well. Maybe later. This was flailing and puttering code, not showing off code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">task add project:Site +blog <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  write better on taskwarrior logseq import
+</span></span></code></pre></div><p>There. Now it can haunt me for the next couple years.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-06-11 Sat 10:05]</title>
+  <link>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</link>
+  <pubDate>Sat, 11 Jun 2022 10:05:12 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</guid>
+  <description>&lt;p&gt;Got Org Babel playing nice with TypeScript thanks to &lt;a href=&#34;https://github.com/lurdan/ob-typescript&#34;&gt;ob-typescript&lt;/a&gt;. It’s a wild Saturday morning here.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png&#34; alt=&#34;attachments/img/2022-06-11-emacs-typescript.png&#34;/&gt;
+Takes a bit to get there on WSL but the code &lt;em&gt;does&lt;/em&gt; run&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<p>Got Org Babel playing nice with TypeScript thanks to <a href="https://github.com/lurdan/ob-typescript">ob-typescript</a>. It&rsquo;s a wild Saturday morning here.</p>
+<p><img src="/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png" alt="attachments/img/2022-06-11-emacs-typescript.png"/>
+Takes a bit to get there on WSL but the code <em>does</em> run</p>
+<p>That required a few more lines in my config, but not <em>too</em> many.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ob-typescript</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="cl">  <span class="ss">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-babel-do-load-languages</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">&#39;org-babel-load-languages</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&#39;</span><span class="p">((</span><span class="nv">typescript</span> <span class="o">.</span> <span class="no">t</span><span class="p">))))</span>
+</span></span></code></pre></div><p>I also followed my own  <a href="/post/2022/05/2022-05-12-thu-2302/">advice</a> and added <a href="https://github.com/ananthakumaran/tide">Tide</a> for TypeScript support in Emacs. Just copied and pasted from all the links, so config&rsquo;s a bit of a mess.</p>
+<p>Oh hey that&rsquo;s right I still need to take my ADHD meds. I&rsquo;ll go do that now.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-06-09 Thu 23:20]</title>
+  <link>https://randomgeekery.org/post/2022/06/2022-06-09-thu-2320/</link>
+  <pubDate>Thu, 09 Jun 2022 23:20:50 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/06/2022-06-09-thu-2320/</guid>
+  <description>&lt;p&gt;Meanwhile, in &lt;a href=&#34;https://randomgeekery.org/card/obsidian/&#34;&gt;card/Obsidian&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/06/../../../attachments/img/2022-06-09-obsidian-types.png&#34; alt=&#34;attachments/img/2022-06-09-obsidian-types.png&#34;/&gt;
+Using an Obsidian plugin to organize the mess I made in Obsidian.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category>  <category>obsidian</category> 
+  <content:encoded><![CDATA[<p>Meanwhile, in <a href="/card/obsidian/">card/Obsidian</a>:</p>
+<p><img src="/post/2022/06/../../../attachments/img/2022-06-09-obsidian-types.png" alt="attachments/img/2022-06-09-obsidian-types.png"/>
+Using an Obsidian plugin to organize the mess I made in Obsidian.</p>
+<p><a href="/card/logseq/">card/Logseq</a> is great. Native outlining, org-like tasks, the power of <a href="http://www.learndatalogtoday.org">Datalog</a>. But Obsidian has the <a href="https://blacksmithgu.github.io/obsidian-dataview/">Dataview</a> plugin. What you feed it looks a lot like SQL.</p>
+<pre tabindex="0"><code class="language-dataview" data-lang="dataview">TABLE
+  length(rows) as &#34;Notes&#34;
+from &#34;&#34;
+where isa != null
+GROUP BY isa
+SORT isa ASC
+</code></pre><p>I kinda know SQL already. Enough to know what to look up to make a table of note types.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Book</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Game</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Meeting</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Movie</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Person</td>
+<td>41</td>
+</tr>
+<tr>
+<td>Pet</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Project</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Source Note</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<p>Nope. Haven&rsquo;t settled on One True Note System and I likely never will. But at least I&rsquo;m enjoying myself.</p>]]></content:encoded>
+</item>
+<item>
+  <title>Post: [2022-06-07 Tue 09:10]</title>
+  <link>https://randomgeekery.org/post/2022/06/2022-06-07-tue-0910/</link>
+  <pubDate>Tue, 07 Jun 2022 09:10:34 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2022/06/2022-06-07-tue-0910/</guid>
+  <description>&lt;p&gt;Oh hey the new issue of the &lt;a href=&#34;https://www.amplenote.com/blog/ample_sampler_issue_2&#34;&gt;Amplenote Sampler&lt;/a&gt; newsletter includes some suggestions for handling projects in my big giant mess of notes — sorry, I meant “finely-tuned knowledge management workflow.”&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Today’s issue is packed full of Amplenote Tips on creating and keeping track of Projects and exploiting Daily Jots to their full potential.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>workflow</category> 
+  <content:encoded><![CDATA[<p>Oh hey the new issue of the <a href="https://www.amplenote.com/blog/ample_sampler_issue_2">Amplenote Sampler</a> newsletter includes some suggestions for handling projects in my big giant mess of notes — sorry, I meant &ldquo;finely-tuned knowledge management workflow.&rdquo;</p>
+<blockquote>
+<p>Today&rsquo;s issue is packed full of Amplenote Tips on creating and keeping track of Projects and exploiting Daily Jots to their full potential.</p>
+</blockquote>
+<p>Why am I getting this newsletter? <a href="https://amplenote.com">Amplenote</a> is a good note / task system. Free tier is useful. First paid tier is inexpensive. I like the mobile app. Works great for quickly capturing thoughts, which I pull into my primary as needed. Turns out the newsletter is also good, both for Amplenote tips and general ideas.</p>
+<p>Right! The newsletter! I feel like summarizing, so I&rsquo;m gonna summarize.</p>
+<h3 id="project-note-organization">Project Note Organization</h3>
+<p>Each project gets its own note. Link back to that in supplemental notes rather than cluttering up your tags with <code>#my-project</code>. Big projects could have a main note that holds the task list and links out to supplemental notes, <a href="https://medium.com/@nickmilo22/in-what-ways-can-we-form-useful-relationships-between-notes-9b9ec46973c6">MOC</a>-style.</p>
+<p>Use tags for broader classifications. Maybe that main project note gets tagged <code>#project</code>. When it&rsquo;s done, it gets an <code>#archived</code> tag.</p>
+<h3 id="logging-project-activity">Logging Project Activity</h3>
+<p>There&rsquo;s a few options.</p>
+<ul>
+<li>log project activity in the project, linking back to your daily jot / journal for that day</li>
+<li>log activity in the daily jots, linking to the project page</li>
+<li>log a day&rsquo;s activity for a project in its own note, generated for the day on-request and specially tagged: <code>#project/field-trial</code> or <code>#project/dev</code></li>
+</ul>
+<h2 id="what-about-me">What about me</h2>
+<p>I already give each project its own note, but I tend to give them overly specific tags. Something I&rsquo;m already thinking about, and that newsletter made me think more. Will probably refactor my tags.</p>
+<p>Logging? Right now I log my project activity in the daily journal. But for big projects that makes my project note&rsquo;s backlinks a bit of a mess. To cut down on the amount of clicking and scanning, I pull tidbits that seem interesting back into the project note. Sort of like a topic note, improving and refining as I get more information.</p>
+<p>Something I&rsquo;m starting to realize: a project note is not a topic note. Once I finish a project, it&rsquo;s part of the historical record rather than a still-evolving resource.</p>
+<p>On first read, logging activity to the project sounds better. I can see all the activity for a project by scrolling. It would get cluttered, but I lean hard on collapsible outline views — <a href="/card/logseq/">card/Logseq</a> is my primary note system today.</p>
+<p>But for note systems that don&rsquo;t offer infinitely nested lists maybe not? Even for the ones that do, it could clarify backlinks. My dev projects could have <code>#project/planning</code> and <code>#project/dev</code> notes to show the nature of the day&rsquo;s work. Those notes could also act as clarifying intermediate links between the project I worked on and the day I did the work.</p>
+<p>Something to think about anyways.</p>
+<p>Um. I just meant to share the link. Anyways back to work.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/">
+<meta property="og:title" content="REBOL Babysteps - 03 Making Decisions">
+<meta name="twitter:title" content="REBOL Babysteps - 03 Making Decisions">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="In rebol-babysteps-01-getting-started I gave you a first cautious glance at the REBOL programming language. In rebol-babysteps-02-getting-started-with-view I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test.">
+    <meta property="og:description" content="In rebol-babysteps-01-getting-started I gave you a first cautious glance at the REBOL programming language. In rebol-babysteps-02-getting-started-with-view I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test.">
+  
+
+
+
+<title itemprop="name">REBOL Babysteps - 03 Making Decisions - Random Geekery</title>
+<meta property="og:title" content=REBOL&#32;Babysteps&#32;-&#32;03&#32;Making&#32;Decisions&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=REBOL&#32;Babysteps&#32;-&#32;03&#32;Making&#32;Decisions&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=REBOL&#32;Babysteps&#32;-&#32;03&#32;Making&#32;Decisions&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=REBOL&#32;Babysteps&#32;-&#32;03&#32;Making&#32;Decisions&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/" />
+
+
+<meta property="og:updated_time" content=27002-27-12T20:00:05-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2005/03/rebol-babysteps-04-repeating-yourself/">REBOL Babysteps - 04 Repeating Yourself</a></li>
+        
+          <li><a href="/post/2005/02/monitor-your-battery-life-with-rebol/">Monitor Your Battery Life With REBOL</a></li>
+        
+          <li><a href="/post/2004/12/rebol-babysteps-01-getting-started/">REBOL Babysteps - 01 Getting Started</a></li>
+        
+          <li><a href="/post/2004/12/rebol-babysteps-02-getting-started-with-view/">REBOL Babysteps - 02 Getting Started With View</a></li>
+        
+          <li><a href="/post/2004/12/rebol-babysteps/">REBOL Babysteps</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/">REBOL Babysteps - 03 Making Decisions</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2005/02/rebol-babysteps-03-making-decisions/">REBOL Babysteps - 03 Making Decisions</a>
+    </h1>
+    
+        <time datetime="2005-02-27T00:00:00-0800" class="post-date">
+            February 27, 2005
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-rebol">
+            <a href="https://randomgeekery.org/tags/rebol">rebol</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[REBOL Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p>In <a href="/post/2004/12/rebol-babysteps-01-getting-started/">rebol-babysteps-01-getting-started</a> I gave you a first cautious glance at the <a href="/card/rebol/">REBOL</a> programming language. In <a href="/post/2004/12/rebol-babysteps-02-getting-started-with-view/">rebol-babysteps-02-getting-started-with-view</a> I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test. Here are a few uses for a simple selection structure.</p>
+<ul>
+<li>Tell me if a file exists.</li>
+<li>Stop me from continuing the program if I give the wrong password.</li>
+<li>Tell me if a new item on <a href="http://www.rebol.com/cgi-bin/blog.r">Carl&rsquo;s blog</a> has been posted.</li>
+</ul>
+<h2 id="simple-tests">Simple Tests</h2>
+<h3 id="if"><code>if</code></h3>
+<p>The simplest selection structure is <code>if</code>. You give it a <em>test expression</em> and a <em>block</em>. If the test expression turns out to be true, then REBOL runs the block. Otherwise, it ignores the block and moves on to the next statement.</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
+</code></pre><table>
+<thead>
+<tr>
+<th>if</th>
+<th>Test Expression</th>
+<th>Block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if</code></td>
+<td><code>equal? name &quot;Zim&quot;</code></td>
+<td><code>[ print &quot;Reporting for duty sir!&quot; ]</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can choose between using the <code>equal?</code> function or the <em>equality</em> operator.</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+if name == &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
+</code></pre><p>Those two equal signs in there combine to make a special <em>operator</em> that REBOL uses to test for strict equality &ndash; making sure that the thing on the left has exactly the same value as the thing on the right. There are a number of comparison functions and operators in REBOL. It&rsquo;s up to you whether you prefer to use the function approach or the operator approach. My own preference varies according to my mood and the things being compared. Numbers and strings often get the operator treatment, while I lean towards using the functions for more complex things. I&rsquo;ll stick to using the functions today, because that&rsquo;s the sort of mood I&rsquo;m in.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Operator</th>
+<th>Checks For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>equal?</code></td>
+<td><code>=</code></td>
+<td>Equality</td>
+</tr>
+<tr>
+<td><code>strict-equal?</code></td>
+<td><code>==</code></td>
+<td>Strict Equality</td>
+</tr>
+<tr>
+<td><code>not-equal?</code></td>
+<td><code>&lt;&gt;</code></td>
+<td>Inequality</td>
+</tr>
+<tr>
+<td><code>strict-not-equal?</code></td>
+<td><em>none</em></td>
+<td>Strict Inequality</td>
+</tr>
+<tr>
+<td><code>greater?</code></td>
+<td><code>&gt;</code></td>
+<td>Greater Than</td>
+</tr>
+<tr>
+<td><code>lesser?</code></td>
+<td><code>&lt;</code></td>
+<td>Less Than</td>
+</tr>
+<tr>
+<td><code>greater-or-equal?</code></td>
+<td><code>&gt;=</code></td>
+<td>Equality or Greater Than</td>
+</tr>
+<tr>
+<td><code>lesser-or-equal?</code></td>
+<td><code>&lt;=</code></td>
+<td>Equality or Lesser Than</td>
+</tr>
+</tbody>
+</table>
+<p><code>equal?</code> doesn&rsquo;t care about case. &ldquo;abc&rdquo; and &ldquo;ABC&rdquo; are the same, according to these tests. So are <code>1</code> and <code>1.0</code>. This is the way most of us think about comparisons, but programs sometimes need more careful comparisons in situations where case matters. One example that immediately comes to mind is login and password entry. You need to use <code>strict-equal?</code> or <code>strict-not-equal?</code> if you need an exact test.</p>
+<h3 id="either"><code>either</code></h3>
+<p>What happens if you want to do one thing if a test is true, but a <em>different</em> thing if the test is false? Let&rsquo;s say, for example, we want to print out one message if we recognize the user as a master, and print out another message if the user is not a master. Well, I suppose you could have two <code>if</code> statements, like this:</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+if equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ]
+if not-equal? name &#34;Zim&#34; [ print &#34;Meow!&#34; ]
+</code></pre><p>This can obviously get ugly very quickly. REBOL gives us the <code>either</code> statement to simplify situations like this.</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+either equal? name &#34;Zim&#34; [ print &#34;Reporting for duty sir!&#34; ] [ print &#34;Meow!&#34; ]
+</code></pre><p>The <code>either</code> command requires a test expressions and two blocks. Either the test is true and the first block is executed, or the test is false and the second block is executed. That makes sense, doesn&rsquo;t it? Here&rsquo;s how that example breaks down.</p>
+<table>
+<thead>
+<tr>
+<th><code>either</code></th>
+<th>Test</th>
+<th>Do this if True</th>
+<th>Or do this if False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>either</code></td>
+<td><code>equal? name &quot;Zim&quot;</code></td>
+<td><code>[ print &quot;Reporting for duty sir!&quot; ]</code></td>
+<td><code>[ print &quot;Meow!&quot; ]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now is a good time to point out how flexible REBOL can be. Let&rsquo;s reexamine our code and see what we are trying to do. We are printing a message, right? The only thing that is different is <em>which</em> message we are printing. We could hand the entire <code>if</code> statement directly to the print command like this:</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+print either equal? name &#34;Zim&#34; [ &#34;Reporting for duty sir!&#34; ] [ &#34;Meow!&#34; ]
+</code></pre><p>It accomplishes the exact same thing as we did with the original <code>either</code> statement, but removes a little bit of repetition. Some folks think that steps like this do a lot to make program code more readable. Another approach might be to assign the result of the <code>either</code> statement to a variable and then print the variable. I like this approach, because my program might grow later on. I might decide that I want the program to <em>speak</em> the response rather than print it out to the screen.</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+response: either equal? name &#34;Zim&#34; [ &#34;Yes master I obey!&#34; ] [ &#34;Meow!&#34; ]
+print response
+</code></pre><p>I don&rsquo;t want to overwhelm anybody right now, and you can ignore options like these until you are much more comfortable with REBOL. I just wanted you to see how REBOL will let you describe your program in the style that you like best.</p>
+<p>Yes, <code>either</code> is a variation of the <code>if/else</code> construct that you find in many other languages.</p>
+<h2 id="having-multiple-tests">Having Multiple Tests</h2>
+<h3 id="any"><code>any</code></h3>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+response: ask &#34;What&#39;s your favorite snack? &#34;
+if any [
+	equal? response &#34;tacos&#34;
+	equal? response &#34;waffles&#34;
+] [
+	print &#34;Me too!&#34;
+]
+</code></pre><p>There will be times that you want to check several things, and execute if any of them are true. Fortunately REBOL is there to help us with the <code>any</code> function. <code>any</code> takes a block of tests and returns true if any of those tests are true. This is another one of those definitions that just repeats the obvious, isn&rsquo;t it? Well, a lot of predefined words in REBOL work like that.</p>
+<p>Yes, this does sound like the <code>or</code> logical operator from other languages. Also known as <code>||</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>any</code> better than <code>||</code>.</p>
+<h3 id="all"><code>all</code></h3>
+<p>What if you only want to execute the block if <em>all</em> tests are true? It shouldn&rsquo;t surprise you by this point to find out that REBOL is right there waiting for us with the <code>all</code> statement.</p>
+<pre tabindex="0"><code class="language-rebol" data-lang="rebol">REBOL []
+name: ask &#34;Name: &#34;
+password: ask &#34;Password: &#34;
+if all [
+	strict-equal? name &#34;Brian&#34;
+	strict-equal? password &#34;Pretty Please?&#34;
+] [
+	print &#34;Login accepted!&#34;
+]
+</code></pre><p>Yes, this does sound like the <code>and</code> logical operator from other languages. Also known as <code>&amp;&amp;</code> in C-derived languages. I don&rsquo;t know about you, but I like <code>all</code> better than <code>&amp;&amp;</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now that you have worked with selection structures, you have a major building block for writing useful programs. Next time around we will take a look at a few of REBOL&rsquo;s many repetition and iteration structures. Then maybe we can sit down and write a <em>real</em> program!</p>
+<h2 id="changes">Changes</h2>
+<h3 id="24-feb-2009">24 Feb 2009</h3>
+<ul>
+<li>General cleanup</li>
+</ul>
+<h3 id="27-feb-2005">27 Feb 2005</h3>
+<ul>
+<li>Initial release into the wild.</li>
+<li>Corrected some inaccuracies about <code>equal?</code> and <code>=</code> and <code>==</code>, pointed out by <a href="http://www.compkarori.com/vanilla">Graham Chiu</a></li>
+</ul>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2005/03/rebol-babysteps-04-repeating-yourself/">rebol-babysteps-04-repeating-yourself</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/rebol-babysteps">REBOL Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2005/01/perl-5-babysteps-01-getting-started/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Perl 5 Babysteps 01 - Getting Started
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2005/02/rebol-grab-bag/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>REBOL Grab Bag
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#simple-tests">Simple Tests</a>
+      <ul>
+        <li><a href="#if"><code>if</code></a></li>
+        <li><a href="#either"><code>either</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#having-multiple-tests">Having Multiple Tests</a>
+      <ul>
+        <li><a href="#any"><code>any</code></a></li>
+        <li><a href="#all"><code>all</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#changes">Changes</a>
+      <ul>
+        <li><a href="#24-feb-2009">24 Feb 2009</a></li>
+        <li><a href="#27-feb-2005">27 Feb 2005</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

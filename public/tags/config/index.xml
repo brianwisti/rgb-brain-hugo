@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>configonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/config/</link>
+    <description>
+      Recent contentinconfig on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/config/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Stupid VS Code Vim Tricks</title>
+  <link>https://randomgeekery.org/post/2023/03/stupid-vs-code-vim-tricks/</link>
+  <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2023/03/stupid-vs-code-vim-tricks/</guid>
+  <description>Still trying my experiment with using Dendron in Visual Studio Code as part of some sort of public second brain. Honestly I don’t know how long that’ll last, so I figure better share the fun stuff I learn here too.
+Anyways this afternoon I installed the Vim extension and learned just enough about custom key bindings to add a few.
+{ &#34;vim.leader&#34;: &#34;&lt;space&gt;&#34;, &#34;vim.normalModeKeyBindings&#34;: [ { &#34;before&#34;: [&#34;&lt;leader&gt;&#34;, &#34;t&#34;, &#34;l&#34;], &#34;commands&#34;: [&#34;workbench.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>vs-code</category>  <category>config</category> 
+  <content:encoded><![CDATA[<p>Still trying my experiment with using <a href="https://dendron.so">Dendron</a> in <a href="https://code.visualstudio.com">Visual Studio Code</a> as part of some sort of public second brain. Honestly I don&rsquo;t know how long that&rsquo;ll last, so I figure better share the fun stuff I learn here too.</p>
+<p>Anyways this afternoon I installed the <a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim">Vim</a> extension and learned just enough about custom key bindings to add a few.</p>
+<div class="highlight" title="settings.json"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vim.leader&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;space&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;vim.normalModeKeyBindings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;l&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleSidebarVisibility&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleAuxiliaryBar&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;before&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;leader&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;workbench.action.toggleLightDarkThemes&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li><code>vim.leader</code> is handy as a prefix for extended custom bindings in Vim; I prefer the spacebar as my leader</li>
+<li><code>&lt;leader&gt; t l</code> toggles my left sidebar</li>
+<li><code>&lt;leader&gt; t r</code> toggles my right sidebar</li>
+<li><code>&lt;leader&gt; t t</code> toggles between light and dark theme</li>
+</ul>
+<p>These bindings look and work very similar to some of <a href="/card/logseq/">Logseq</a>&rsquo;s default bindings. That&rsquo;s no accident. I like those bindings.</p>
+]]></content:encoded>
+</item>
+<item>
+  <title>Post: New config tangling workflow</title>
+  <link>https://randomgeekery.org/post/2023/02/new-config-tangling-workflow/</link>
+  <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2023/02/new-config-tangling-workflow/</guid>
+  <description>I had to refresh my config pages. I had to refresh how my config is generated. Why not do both at the same time?
+So now I’ve got Yarner tangling Markdown sources for the whole thing. Even the dotbot config.
+Sometimes I go too far. Doesn’t mean I’ll stop.</description>
+   <category>post</category> 
+   <category>note</category> 
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>I had to refresh my <a href="/config/">config</a> pages. I had to refresh how my config is generated. Why not do both at the same time?</p>
+<p>So now I&rsquo;ve got <em>Yarner</em> tangling Markdown sources for the whole thing. Even the dotbot config.</p>
+<p>Sometimes I go too far. Doesn&rsquo;t mean I&rsquo;ll stop.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

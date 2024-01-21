@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2004/07/control-structures/">
+<meta property="og:title" content="Control Structures">
+<meta name="twitter:title" content="Control Structures">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="There are several different approaches to programming, but the one that is easiest for me to grasp is imperative programming. The imperative approach allows you to tell the computer exactly what you want it to do and how you want it done. The best analogy I can think of is a cooking recipe. You have a list of ingredients and a specific set of instructions to follow. Veer from the recipe and you may not be happy with the results.">
+    <meta property="og:description" content="There are several different approaches to programming, but the one that is easiest for me to grasp is imperative programming. The imperative approach allows you to tell the computer exactly what you want it to do and how you want it done. The best analogy I can think of is a cooking recipe. You have a list of ingredients and a specific set of instructions to follow. Veer from the recipe and you may not be happy with the results.">
+  
+
+
+
+<title itemprop="name">Control Structures - Random Geekery</title>
+<meta property="og:title" content=Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Control&#32;Structures&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/post/2004/07/control-structures/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2004/07/control-structures/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2004/07/control-structures/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2004/07/control-structures/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2004/07/control-structures/" />
+
+
+<meta property="og:updated_time" content=11007-11-12T70:00:04-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2011/06/python-2-babysteps-01-installing-python-2/">Python 2 Babysteps 01 Installing Python 2</a></li>
+        
+          <li><a href="/post/2002/06/simple-types-in-python/">Simple Types in Python</a></li>
+        
+          <li><a href="/post/2001/01/python-babysteps-tutorial/">Python Babysteps Tutorial</a></li>
+        
+          <li><a href="/post/2004/12/rebol-babysteps-01-getting-started/">REBOL Babysteps - 01 Getting Started</a></li>
+        
+          <li><a href="/post/2004/12/rebol-babysteps-02-getting-started-with-view/">REBOL Babysteps - 02 Getting Started With View</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2004/07/control-structures/">Control Structures</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2004/07/control-structures/">Control Structures</a>
+    </h1>
+    
+        <time datetime="2004-07-11T00:00:00-0700" class="post-date">
+            July 11, 2004
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-python">
+            <a href="https://randomgeekery.org/tags/python">python</a>
+        </li>
+        
+        <li class="tag-learn">
+            <a href="https://randomgeekery.org/tags/learn">learn</a>
+        </li>
+        
+        <li class="tag-coolnamehere">
+            <a href="https://randomgeekery.org/tags/coolnamehere">coolnamehere</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>There are several different approaches to programming, but the one that is easiest for me to grasp is <em>imperative programming</em>. The imperative approach allows you to tell the computer exactly what you want it to do and how you want it done. The best analogy I can think of is a cooking recipe. You have a list of ingredients and a specific set of instructions to follow. Veer from the recipe and you may not be happy with the results. Veer too far from the recipe and your house could burn down.</p>
+<p>Control structures are the basic building blocks of imperative programming. They describe what kind of instructions the programming language understands. I will explore control structures, using examples from both the cooking world - hey, this is a good analogy and I want to keep using it - and <a href="/card/python/">Python</a>, since Python’s syntax is clean enough that you can see the control structures easily.</p>
+<p>I kind of played with the existing names for these structures to give them what I think is a more poetic quality.</p>
+<h2 id="sequence">Sequence</h2>
+<p>The fundamental control structure doesn’t seem like a control structure at all. <em>Sequence</em> refers to the fact that one thing usually happens after another.</p>
+<ul>
+<li>Beat the eggs and the oil together in a large bowl</li>
+<li>Mix the sugar and vanilla extract into the bowl.</li>
+</ul>
+<p>Here’s a simple sequence example.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Brian&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span>
+</span></span></code></pre></div><p>You don’t try to beat the eggs in the bowl after you’ve put the sugar in. I suppose you could, but you are just making your life more difficult. Similarly, you don’t try to print the name before you’ve defined it. Bad things will happen if you even try.</p>
+<h2 id="selection">Selection</h2>
+<p>Selection structures allow you to mark some code as optional.</p>
+<ul>
+<li><em>(optional)</em> Mix in walnuts</li>
+</ul>
+<p>I like walnuts, but not in cookies. I’m not going to mix them into the dough. Maybe I’ll just eat them here.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey!&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;is here!&#34;</span>
+</span></span></code></pre></div><p>There are a few refinements to the Selection structure. The main refinement is the if/else structure. This allows you to perform one block of code if the test is true, and another block if the test fails.</p>
+<p>Instead of:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span>
+</span></span></code></pre></div><p>We can say:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&#34;Who are you? &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on Brian&#39;s computer?&#34;</span>
+</span></span></code></pre></div><p>The other main refinement is the if/else-if/else structure, which lets you chain tests together. Instead of:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brooke&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;This computer is really yours, isn&#39;t it?&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span>
+</span></span></code></pre></div><p>… we can say:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brian&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hey! Brian is here!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;Brooke&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;This computer is really yours, isn&#39;t it?&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;What are you doing on this computer?&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p>[!WARNING]
+Pay attention to how the else-if refinement is spelled in your favorite programming language! It’s <code>elif</code> in Python, and in other languages could be <code>elsif</code>, <code>elseif</code>, <code>else if</code>, or something else I haven’t come across yet.</p>
+</blockquote>
+<h2 id="repetition">Repetition</h2>
+<p>The next control structure is <em>repetition</em>, which will execute a block of code repeatedly until some condition is true.</p>
+<ul>
+<li>Cook in a 350 degree preheated oven for 10 minutes</li>
+</ul>
+<p>Don’t you hate it when they tell you what temperature the oven is supposed to be at the last minute? I suppose that’s why we’re suppose to read the recipe before we start cooking. Anyways, the repetition here is that you keep on baking until those cookies are done!</p>
+<p>Repetition in programming has a very wide range of refinements. I’ll just look at the major ones.</p>
+<p>The first one is the while-loop.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;We have been baking for&#34;</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="s2">&#34;minutes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">number</span> <span class="o">+=</span> <span class="mi">1</span>        <span class="c1"># The same as saying -&gt; number = number + 1</span>
+</span></span></code></pre></div><p>The basic idea of a while-loop is this:</p>
+<ol>
+<li>We set up a test. We had to create a variable in this case, to make sure the test has some meaning the first time through.</li>
+<li>We apply the test. Is <code>number</code> less than <code>10</code>?</li>
+<li>If the test passes, we execute the block.</li>
+<li><em>Hopefully</em> that block contains some code which affects the test. We added one to <code>number</code> in our block.</li>
+<li>We go back to <em>2</em>, run this again. In fact, we keep going back to <em>2</em> until <code>number</code> is equal to or greater than <code>10</code>.</li>
+</ol>
+<p>Generally, any test that your programming language can understand in a sense of true or false can be used. This applies to <em>Selection</em> structures too, but I forgot to mention it then.</p>
+<p>Another kind of repetition structure is the list-loop <em>(better name? Somebody? Please?)</em>. The list-loop steps through each of the values in a list and executes its block with the current item in the loop.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;I like&#34;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;in my breakfast.&#34;</span>
+</span></span></code></pre></div><p>Some languages won’t let you change the original value of <code>item</code> in a normal list-loop. For example, in Python I can uppercase <code>item</code> in my loop, but the original will still be lowercase. Try it yourself:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>  <span class="c1"># This is a *method* available to String *objects*</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;I like&#34;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;in my breakfast.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span>
+</span></span></code></pre></div><p>Replacing the original value of <code>item</code> is more of a challenge, and often not worth the effort involved. You could step through the list using indexes, and change things that way:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">breakfast</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">breakfast</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">breakfast</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Item:&#34;</span><span class="p">,</span> <span class="n">item</span>
+</span></span></code></pre></div><p>I think that approach is unattractive, though. I’ll do it if I have to, but I will use a prettier and easier tactic if it’s available. A better way is to build a new list based on a modified version of the old list. Python makes this easy with a language feature called <em>list comprehensions</em>, which are funny-looking but very easy once you get the hang of them.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">breakfast</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;steak&#34;</span><span class="p">,</span> <span class="s2">&#34;eggs&#34;</span><span class="p">,</span> <span class="s2">&#34;potatoes&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">capitalized</span> <span class="o">=</span> <span class="p">[</span><span class="n">food</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">food</span> <span class="ow">in</span> <span class="n">breakfast</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">capitalized</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&#34;is a great part of breakfast&#34;</span>
+</span></span></code></pre></div><p>Many other languages have similar approaches, such as Perl’s <code>map</code> function.</p>
+<h2 id="remote">Remote</h2>
+<p>The last major control structure I am going to look at is <em>remote code</em>. This isn’t technically code on another machine, but I suppose it could be. Remote code was written outside of the main sequence of the application, but you can use it (repeatedly) from within the main sequence. I guess the easiest cooking equivalent would be to hire a person who makes the cookies for you.</p>
+<p>Remote code usually takes the form of functions, classes (the source of the <code>capitalize</code> method used in <em>Repetition</em>), and modules (which are usually collections of classes or functions in a separate file).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_name</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">raw_prompt</span><span class="p">(</span><span class="s2">&#34;What is your name?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;Hello&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&#34;it&#39;s good to see you!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">greet</span><span class="p">(</span> <span class="n">get_name</span><span class="p">()</span> <span class="p">)</span>
+</span></span></code></pre></div><p>That’s it for now.</p>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2007/04/python-interactive-fiction-01-handling-a-single-round/">python-interactive-fiction-01-handling-a-single-round</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2004/07/cygwin/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Cygwin
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2004/09/unix/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>UNIX
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sequence">Sequence</a></li>
+    <li><a href="#selection">Selection</a></li>
+    <li><a href="#repetition">Repetition</a></li>
+    <li><a href="#remote">Remote</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

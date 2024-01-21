@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/">
+<meta property="og:title" content="CLI Journaling in Joplin with Raku">
+<meta name="twitter:title" content="CLI Journaling in Joplin with Raku">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I sure do use a lot of words to justify my one-liners">
+    <meta property="og:description" content="I sure do use a lot of words to justify my one-liners">
+  
+
+
+
+<title itemprop="name">CLI Journaling in Joplin with Raku - Random Geekery</title>
+<meta property="og:title" content=CLI&#32;Journaling&#32;in&#32;Joplin&#32;with&#32;Raku&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=CLI&#32;Journaling&#32;in&#32;Joplin&#32;with&#32;Raku&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=CLI&#32;Journaling&#32;in&#32;Joplin&#32;with&#32;Raku&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=CLI&#32;Journaling&#32;in&#32;Joplin&#32;with&#32;Raku&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I sure do use a lot of words to justify my one-liners" />
+<meta itemprop="description" content="I sure do use a lot of words to justify my one-liners" />
+<meta property="og:description" content="I sure do use a lot of words to justify my one-liners" />
+<meta name="twitter:description" content="I sure do use a lot of words to justify my one-liners" />
+
+
+<base href="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/" />
+
+
+<meta property="og:updated_time" content=21005-21-12T50:00:21-0700 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2021/05/joplin-cli-batch-processing-with-raku/">Joplin CLI Batch Processing With Raku</a></li>
+        
+          <li><a href="/post/2021/04/joplin-terminal-basics/">Joplin Terminal Basics</a></li>
+        
+          <li><a href="/post/2021/05/my-raku-script-for-journaling-in-joplin/">My Raku script for Journaling in Joplin</a></li>
+        
+          <li><a href="/post/2020/11/naming-things-in-tmux/">Naming things in tmux</a></li>
+        
+          <li><a href="/post/2020/05/setting-up-raku-with-rakubrew/">Setting up Raku with Rakubrew</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/">CLI Journaling in Joplin with Raku</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2021/05/cli-journaling-in-joplin-with-raku/">CLI Journaling in Joplin with Raku</a>
+    </h1>
+    
+        <time datetime="2021-05-21T00:00:00-0700" class="post-date">
+            May 21, 2021
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-shell">
+            <a href="https://randomgeekery.org/tags/shell">shell</a>
+        </li>
+        
+        <li class="tag-joplin">
+            <a href="https://randomgeekery.org/tags/joplin">joplin</a>
+        </li>
+        
+        <li class="tag-raku-lang">
+            <a href="https://randomgeekery.org/tags/raku-lang">raku-lang</a>
+        </li>
+        
+        <li class="tag-second-brain">
+            <a href="https://randomgeekery.org/tags/second-brain">second-brain</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Journaling in Joplin With Raku]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p><img src="/post/2021/05/../../../attachments/img/2021/cover-2021-05-21.png" alt="attachments/img/2021/cover-2021-05-21.png"/>
+the formatted output of my journal-reading one-liner</p>
+<p>Let&rsquo;s write a couple one-liners so I can journal in <a href="/card/joplin/">card/Joplin</a> from the command line!</p>
+<h2 id="but-why">But why?</h2>
+<p>Journaling is great.  Now I&rsquo;m not talking about big name <a href="https://bulletjournal.com/">Bujo</a> bullet journaling process.  I mean getting a thought down quick before I lose it. Even better if I can get that thought down in a place where I can find it later.</p>
+<p>I know there are loads of great journaling applications.  And lots of great applications that support journaling generally.  But I love my command line. Too many distractions in those apps.</p>
+<p>Command line options exist.  I could use one of the bazillion command line journaling tools.  Okay.  Maybe not a bazillion.  A couple dozen, at least.</p>
+<p>Those apps and tools are yet another interface, another set of rules.  I already have Joplin handy.  Besides desktop, mobile, and terminal applications, Joplin has a CLI.  And an API, but I suspect I&rsquo;ll get to that later.</p>
+<p>With uncharacteristic restraint, today I choose to get better at the tools I have rather than installing a new one.</p>
+<h2 id="adding-a-journal-entry">Adding a journal entry</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
+</span></span></code></pre></div><p><a href="https://www.gnu.org/software/coreutils/manual/html_node/date-invocation.html#date-invocation">GNU Date</a> — from GNU Coreutils — gets us consistent timestamps, which simplify searching and filtering.  <code>--iso</code> produces an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp.  Very handy.  By default it prints the <code>YYYY-MM-DD</code> version of today&rsquo;s date, but you can opt for more granularity.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> date --iso<span class="o">=</span>minute
+</span></span><span class="line"><span class="cl"><span class="go">2021-05-20T08:26-07:00
+</span></span></span></code></pre></div><p>I plan to make frequent small notes, so <code>minute</code> feels like a good choice.</p>
+<blockquote>
+<p>[!NOTE] <code>use Journal</code>?
+Yes, this came up.  Had the Joplin terminal app open in one terminal while I added a journal entry in another terminal.  Terminal app did some sort of state maintenance thing.  Next thing I know I&rsquo;m adding journal entries to &ldquo;Nerd Notes.&rdquo;</p>
+</blockquote>
+<p>Since it doesn&rsquo;t exist, <code>joplin</code> will ask for confirmation before creating it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> joplin use Journal <span class="o">&amp;&amp;</span> joplin edit <span class="k">$(</span>date --iso<span class="o">=</span>minute<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="go">Note does not exist: &#34;2021-05-20T08:26-07:00&#34;. Create it? (Y/n)
+</span></span></span></code></pre></div><p>I&rsquo;m okay with the confirmation request for now. That way I have fewer moments of accidentally creating entries.</p>
+<p><img src="/post/2021/05/attachments/img/2021/editing-note.png" alt="Editing a journal entry"/></p>
+<h3 id="what-about-more-of-a-diary">What about more of a diary?</h3>
+<p>Leave <code>minute</code> off the <code>--iso</code> argument if you prefer a tidy collection of daily pages to my big stack of notes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin edit <span class="k">$(</span>date --iso<span class="k">)</span>
+</span></span></code></pre></div><p>Now you&rsquo;ll be editing the single entry for today&rsquo;s date.</p>
+<h2 id="reading-journal-entries">Reading journal entries</h2>
+<p>The best review path will be via the Joplin app itself.  That way you can tag and edit.</p>
+<p><em>But</em> – if you just want a quick view of recent thoughts?  That is something we can do from the command line.</p>
+<p>This next bit gets a little fancy.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin use Journal <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">&amp;&amp;</span> raku -e <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    for qx{ joplin ls }.lines.sort {
+</span></span></span><span class="line"><span class="cl"><span class="s1">      qqx{ joplin cat $_ }.subst(
+</span></span></span><span class="line"><span class="cl"><span class="s1">        /^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }
+</span></span></span><span class="line"><span class="cl"><span class="s1">      ).say
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="p">|</span> python -m rich.markdown -
+</span></span></code></pre></div><p>Let me stall for a second.</p>
+<h3 id="pretty-print-with-rich">Pretty print with Rich</h3>
+<p>We already talked about <code>joplin use Journal</code>. <a href="https://rich.readthedocs.io/en/stable/markdown.html">Rich Markdown</a> formats Markdown — Joplin&rsquo;s default format — for rich display in a terminal.  It can even run as a standalone application.  I take advantage of that here to get a pretty view of my Joplin entries:</p>
+<pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
+║                            <span style="font-weight: bold">2021-05-20T08:26-07:00</span>                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Getting an idea for a CLI journaling tool using Joplin as the backend
+
+The logic would look something like this:
+
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">┌──────────────────────────────────────────────────────────────────────────────┐</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span> <span style="color: #f8f8f2; text-decoration-color: #f8f8f2; background-color: #272822">joplin use Journal</span><span style="background-color: #272822">                                                          </span> <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span> <span style="color: #f8f8f2; text-decoration-color: #f8f8f2; background-color: #272822">joplin edit </span><span style="color: #66d9ef; text-decoration-color: #66d9ef; background-color: #272822">$(</span><span style="color: #f8f8f2; text-decoration-color: #f8f8f2; background-color: #272822">date --iso</span><span style="color: #66d9ef; text-decoration-color: #66d9ef; background-color: #272822">)</span><span style="background-color: #272822">                                                   </span> <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span> <span style="color: #75715e; text-decoration-color: #75715e; background-color: #272822"># append "## $(date --iso=minute)"</span><span style="background-color: #272822">                                          </span> <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">└──────────────────────────────────────────────────────────────────────────────┘</span>
+
+That's it, basically. There could be more functionality, such as reviewing the
+log.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                            <span style="font-weight: bold">2021-05-21T09:00-07:00</span>                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Alarm 07:00, stayed in bed as long as I could. Thanks to the dogs, that was 15
+minutes. Oh well.
+
+Got the Raspberry Pi 4 set up with Raspbian, and the 500GB external drive
+attached. Thinking about package managers. I know <span style="color: #0000ff; text-decoration-color: #0000ff"><a href="https://brew.sh">Homebrew</a></span> but I could maybe try
+<span style="color: #0000ff; text-decoration-color: #0000ff"><a href="https://nixos.org/">Nix</a></span>. There's a post about <span style="color: #0000ff; text-decoration-color: #0000ff"><a href="https://ariya.io/2020/05/nix-package-manager-on-ubuntu-or-debian">using Nix on Debian</a></span>.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          <span style="font-weight: bold">2021-05-21T14:01:00-07:00</span>                           ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Resuming productivity, or something like it.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          <span style="font-weight: bold">2021-05-21T20:20:00-07:00</span>                           ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+I keep forgetting <span style="color: #ffffff; text-decoration-color: #ffffff; background-color: #000000">-sel clip</span> when using xclip. Without that it doesn't go into
+the easy copy buffer.
+
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">┌──────────────────────────────────────────────────────────────────────────────┐</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span> <span style="color: #f92672; text-decoration-color: #f92672; background-color: #272822; font-weight: bold">$ </span><span style="color: #f8f8f2; text-decoration-color: #f8f8f2; background-color: #272822">my-command | xclip -sel clip</span><span style="background-color: #272822">                                              </span> <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f">└──────────────────────────────────────────────────────────────────────────────┘</span>
+</pre>
+<p>You can also use <a href="https://github.com/charmbracelet/glow">Glow</a> if you want a standalone Markdown pretty printer. It works.  Rich is already part of my toolkit, so I&rsquo;ll keep using it.</p>
+<h3 id="am-i-ready-to-explain-myself">Am I ready to explain myself?</h3>
+<p>Okay, I think I&rsquo;ve stalled enough.  That middle bit.  That&rsquo;s <a href="/card/raku/">card/Raku</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span><span class="o">.</span><span class="nb">say</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>I don&rsquo;t often do one-liners. We&rsquo;ll have to break it down into tiny pieces.</p>
+<p>First, we need a sorted list of journal entries.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span>  <span class="c1"># ask `joplin` to print note titles, saving the output</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">lines</span>         <span class="c1"># Split that output into lines, one per note</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="nb">sort</span>          <span class="c1"># Sort those lines by note title</span>
+</span></span></code></pre></div><p>Things get unpredictable if I don&rsquo;t sort notes myself.  Joplin tends to sort notes by last activity.  Thank goodness for ISO 8601, which is easily sorted:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">2021-05-20T08:26-07:00
+</span></span><span class="line"><span class="cl">2021-05-21T09:00-07:00
+</span></span><span class="line"><span class="cl">2021-05-21T14:01-07:00
+</span></span><span class="line"><span class="cl">2021-05-21T20:20-07:00
+</span></span></code></pre></div><p>Next, we need to do something with each of those note titles.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">q</span><span class="sa">x</span><span class="p">{</span><span class="s"> joplin ls </span><span class="p">}</span><span class="o">.</span><span class="nb">lines</span><span class="o">.</span><span class="nb">sort</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</span></span></code></pre></div><p>Well? The content of each note is important.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span>
+</span></span></code></pre></div><p><code>qqx</code> interpolates variables before asking the system to run your command. The variable being interpolated is our old friend <code>$_</code>, this time around standing in for whichever of those sorted lines we reached.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">2021-05-20T08:26-07:00
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Getting an idea for a CLI journaling tool using Joplin as the backend
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The logic would look something like this:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s">```bash
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>joplin use Journal
+</span></span><span class="line"><span class="cl">joplin edit <span class="k">$(</span>date --iso<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># append &#34;## $(date --iso=minute)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">That&#39;s it, basically. There could be more functionality, such as reviewing
+</span></span><span class="line"><span class="cl">the log.
+</span></span></code></pre></div><p>I want to print this out in the terminal.  I need to massage it a little first. Even though the file is Markdown, the first line is the note&rsquo;s unformatted title.  It makes quick one-line notes easier.</p>
+<p>But it also means if <em>I</em> want that first line to look significant, I need to do something with this:</p>
+<pre tabindex="0"><code class="language-language" data-lang="language">2021-05-20T08:26-07:00
+</code></pre><p>The most obvious fix to me? Turn it into a level one Markdown header.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 2021-05-20T08:26-07:00
+</span></span></span></code></pre></div><p>That&rsquo;s a single <a href="https://docs.raku.org/routine/subst"><code>.subst</code></a> transformation.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span>  <span class="c1"># in printed note</span>
+</span></span><span class="line"><span class="cl">  <span class="p">/</span><span class="ni">^</span><span class="p">(&lt;[</span><span class="se">\d</span><span class="sr">T:</span><span class="se">\</span><span class="sr">-</span><span class="p">]&gt;</span><span class="o">+</span><span class="p">)/</span><span class="o">,</span>          <span class="c1"># find the first line that looks like a timestamp</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="p">&#34;</span><span class="s2"># </span><span class="nv">$0</span><span class="p">&#34;</span> <span class="p">}</span>                 <span class="c1"># and turn it into a Markdown header</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Okay, I got a little lazy with the regular expression.  But my brain was in one-liner mode.  For a full script I&rsquo;d probably spell it out more clearly.</p>
+<p>The last step is to display the transformed note contents.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="k">qq</span><span class="sa">x</span><span class="p">{</span><span class="s2"> joplin cat </span><span class="nv">$_</span><span class="s2"> </span><span class="p">}</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="nb">say</span>
+</span></span></code></pre></div><p>Or ask them to display themselves.  However you want to think of it.</p>
+<p>This whole thing would be rather clunky as a shell alias.  I could add it as a function to my <code>.bashrc</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jread<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  joplin use Journal <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="o">&amp;&amp;</span> raku -e <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">      qqx{joplin cat $_}.subst(/^(&lt;[\dT:\-]&gt;+)/, { &#34;# $0&#34; }).say for qx{ joplin ls }.lines.sort
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="p">|</span> python -m rich.markdown -
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Then again, maybe not.  This should probably be a script.  Check back in a few days.</p>
+<blockquote>
+<p>[!NOTE] Oooh a cliffhanger!
+I have a working script already.  What I don&rsquo;t have much of is unallocated
+time.  But hopefully yes!  Soon.  I did some cool stuff with <code>multi MAIN</code>
+in Raku that I&rsquo;m desperate to show off.</p>
+</blockquote>
+
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2021/05/my-raku-script-for-journaling-in-joplin/">my-raku-script-for-journaling-in-joplin</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+    <section>
+      <p>
+        Got a comment? A question? More of a comment than a question?
+      </p>
+      <p>
+        Talk to me about this page on:
+        
+          
+            <a
+              href="https://hackers.town/@randomgeek/106277084642441342"
+              class="u-syndication label centered fa fa-mastodon"
+              title="Mastodon"
+              rel="syndication"
+              aria-label="Mastodon"
+            >
+              <span class="sr-only">mastodon</span>
+            </a>
+          
+        
+          
+        
+      </p>
+    </section>
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/journaling-in-joplin-with-raku">Journaling in Joplin With Raku</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2021/05/not-sure-why-i-keep-fussing-with-ssgs/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>Not sure why I keep fussing with every single SSG....
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2021/05/my-raku-script-for-journaling-in-joplin/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>My Raku script for Journaling in Joplin
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#but-why">But why?</a></li>
+    <li><a href="#adding-a-journal-entry">Adding a journal entry</a>
+      <ul>
+        <li><a href="#what-about-more-of-a-diary">What about more of a diary?</a></li>
+      </ul>
+    </li>
+    <li><a href="#reading-journal-entries">Reading journal entries</a>
+      <ul>
+        <li><a href="#pretty-print-with-rich">Pretty print with Rich</a></li>
+        <li><a href="#am-i-ready-to-explain-myself">Am I ready to explain myself?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

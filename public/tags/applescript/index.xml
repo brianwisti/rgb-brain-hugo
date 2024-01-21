@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>applescriptonRandom Geekery</title>
+    <link>https://randomgeekery.org/tags/applescript/</link>
+    <description>
+      Recent contentinapplescript on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Fri, 29 Jun 2007 00:00:00 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/applescript/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: I&#39;m too cheap to buy a radio alarm</title>
+  <link>https://randomgeekery.org/post/2007/06/im-too-cheap-to-buy-a-radio-alarm/</link>
+  <pubDate>Fri, 29 Jun 2007 00:00:00 -0700</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2007/06/im-too-cheap-to-buy-a-radio-alarm/</guid>
+  <description>&lt;p&gt;I have trouble waking up on time. That’s probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it’s 1:40 in the morning right now and I’m writing a little blog post instead of going to bed.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>applescript</category>  <category>os-x</category>  <category>unix</category>  <category>blogspot</category> 
+  <content:encoded><![CDATA[<p>I have trouble waking up on time. That&rsquo;s probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it&rsquo;s 1:40 in the morning right now and I&rsquo;m writing a little blog post instead of going to bed.</p>
+<p>I&rsquo;m working on getting to sleep earlier. Hey, I might even be to bed by 2, instead of 3 or 3:30. Waking up takes a few tricks. Say, for example: an alarm clock that&rsquo;s too big for me to pick it up and stuff under my pillow like a gift for the tooth fairy. A loud annoying beeping gift. How about getting a bigger alarm and putting across the room? Well you would expect that to work, but apparently I can get up, walk over to the alarm, hit the snooze, pick up the alarm, bring it back to bed, and stuff the alarm under the bed for the tooth fairy again, all without actually waking up.</p>
+<p>Yes, one issue is that the alarm clocks are battery powered. We live in a small, old apartment, and there just aren&rsquo;t enough outlets to go around. I had to unplug the lamp so that I could plug the computer in and type this.</p>
+<p>But I have found a solution, or at least something which is not so easily circumvented. I&rsquo;ve turned our beautiful iMac G4 into a glorified radio alarm. Turns out that it was actually quite simple. First I needed an application that plays music. Right, that would be iTunes. Next, I need a radio station that both of us like. Why not just use a playlist? I don&rsquo;t know, I guess I actually wanted this to be a <span style="font-style: italic;">radio</span> alarm. I&rsquo;m odd. I do crazy things. I stash timepieces under my pillow, and blog in the middle of the night. Really, a radio station feed is not the strangest idea I&rsquo;ve had.</p>
+<p>Should I use our local <a href="http://npr.org/">NPR</a>affiliate? No, I don&rsquo;t think so. Light jazz mixed with news and traffic reports are <em>not</em> going to make us jump out of bed all energized. I decided to use my favorite college station, <a href="/card/kexp/">card/KEXP</a>. The morning DJ is good, and
+the morning selection is fantastic unless it&rsquo;s Winter and his <a href="http://www.sada.org.uk/">SAD</a>has kicked in.</p>
+<p>I&rsquo;ve got my app, I&rsquo;ve got my radio station feed. Now a little AppleScript to automate the process of firing up and playing the station. I haven&rsquo;t experimented much with AppleScript, but there&rsquo;s no time like the present for putting a simple script together:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-applescript" data-lang="applescript"><span class="line"><span class="cl"><span class="c">-- PlayKEXP.applescript</span>
+</span></span><span class="line"><span class="cl"><span class="c">--  Play the KEXP live stream</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&#34;iTunes&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">set</span> <span class="na">sound</span> <span class="na">volume</span> <span class="k">to</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">play</span> <span class="nv">user</span> <span class="nv">playlist</span> <span class="s2">&#34;KEXP Live&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span> <span class="k">tell</span>
+</span></span></code></pre></div><p>I test it with <code>osascript PlayKEXP.applescript</code>. It works like a charm.</p>
+<p>Now to set this alarm so it goes off at a set time every day. This is the part where I really love the UNIXy goodness of OS X. I can just use crontab. So here&rsquo;s my new crontab file:</p>
+<pre tabindex="0"><code># minute/hour/mday/month/wday/command
+30  6   *   *   *   osascript /Users/brian/iTunesScripts/PlayKEXP.applescript
+</code></pre><p>Then I make sure that crontab knows about the task:</p>
+<pre tabindex="0"><code>$ crontab mycrontab
+</code></pre><p>This was my first time using crontab for a personal task as well. It&rsquo;s awesome. Every morning at 6:30 iTunes will set the volume and start playing the KEXP broadcast.</p>
+<p>So there you have it. It&rsquo;s simple and it works. I&rsquo;m going to bed now.</p>]]></content:encoded>
+</item>
+</channel>
+</rss>

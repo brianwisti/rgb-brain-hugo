@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/">
+<meta property="og:title" content="Setting Task Dependencies in Taskwarrior">
+<meta name="twitter:title" content="Setting Task Dependencies in Taskwarrior">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+">
+    <meta property="og:description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+">
+  
+
+
+
+<title itemprop="name">Setting Task Dependencies in Taskwarrior - Random Geekery</title>
+<meta property="og:title" content=Setting&#32;Task&#32;Dependencies&#32;in&#32;Taskwarrior&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=Setting&#32;Task&#32;Dependencies&#32;in&#32;Taskwarrior&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=Setting&#32;Task&#32;Dependencies&#32;in&#32;Taskwarrior&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=Setting&#32;Task&#32;Dependencies&#32;in&#32;Taskwarrior&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+" />
+<meta itemprop="description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+" />
+<meta property="og:description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+" />
+<meta name="twitter:description" content="I&#39;m not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+" />
+
+
+<base href="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/" />
+<link rel="canonical" href="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/" />
+<meta name="twitter:url" content="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/" />
+<meta property="og:url" content="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/" />
+
+
+<meta property="og:updated_time" content=19002-19-12T20:00:18-0800 />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.15361b4c24f30033251cd8947e34c41e754c9461dc117cab390ac04e365faec3.css"
+    integrity="sha256-FTYbTCTzADMlHNiUfjTEHnVMlGHcEXyrOQrATjZfrsM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/post/2018/12/active-tasks-in-taskwarrior/">Active Tasks in Taskwarrior</a></li>
+        
+          <li><a href="/post/2018/02/taskwarrior-contexts/">Taskwarrior Contexts</a></li>
+        
+          <li><a href="/post/2018/01/taskwarrior-due-dates/">Taskwarrior Due Dates</a></li>
+        
+          <li><a href="/post/2020/04/taskwarrior-custom-reports/">Taskwarrior Custom Reports</a></li>
+        
+          <li><a href="/post/2020/01/taskwarrior-sync/">Taskwarrior Sync</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/post/">Posts</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/">Setting Task Dependencies in Taskwarrior</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/post/2018/02/setting-task-dependencies-in-taskwarrior/">Setting Task Dependencies in Taskwarrior</a>
+    </h1>
+    
+        <time datetime="2018-02-19T00:00:00-0800" class="post-date">
+            February 19, 2018
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-taskwarrior">
+            <a href="https://randomgeekery.org/tags/taskwarrior">taskwarrior</a>
+        </li>
+        
+        <li class="tag-tools">
+            <a href="https://randomgeekery.org/tags/tools">tools</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+        <p class="seriesname">
+            Series: <a href="https://randomgeekery.orgseries/">[Taskwarrior Babysteps]</a>
+        </p>
+    
+    
+    
+</div>
+
+  <p><img src="/post/2018/02/../../../attachments/img/2018/cover-2018-02-19.png" alt="attachments/img/2018/cover-2018-02-19.png"/></p>
+<p>I recently realized I could track my reading in <a href="/card/taskwarrior/">Taskwarrior</a>, since I use it to track so many other things.</p>
+<pre tabindex="0"><code>$ task +readlist
+
+ID Age   P Tag                    Description                        Urg
+67 22h   H community readlist     Forge Your Future with Open Source  6.9
+70 29min M fiction readlist       Binti                               4.8
+71 21min M health readlist        Emmerich Keto Guide                 4.8
+74 16min   health readlist reread The Healthy Programmer                1
+63 6d      dev readlist           Practical Data Science with R      0.93
+72 19min   dev readlist           Think Stats                         0.9
+73 17min   dev readlist           Understanding Computation           0.9
+75 16min   home readlist          Sink Reflections                    0.9
+</code></pre><p>I use <a href="/post/2017/12/taskwarrior-priorities/">Priority</a> to show what I’m reading right now. The highest priority goes to the book which I intend to finish next.</p>
+<p><a href="https://pragprog.com/book/vbopens/forge-your-future-with-open-source">Forge Your Future with OpenSource</a> is my current main read. The book guides you through making your first open source community contributions. It includes exercises to help you make your best contribution.</p>
+<p>I want to complete these exercises, but I know I won’t unless I create some kind of reminder.</p>
+<p>I’ll add tasks for the exercises described so far.</p>
+<pre tabindex="0"><code>$ task add +community Set FOSS contribution goals
+$ task add +community Set FOSS project requirements
+$ task add +community Collect FOSS candidate projects
+$ task add +community Select FOSS project
+</code></pre><p>There will certainly be more exercises. I will create tasks for them as they come up.</p>
+<p>Assigning a shared project makes their connection clearer.</p>
+<pre tabindex="0"><code>$ task 67,76-79 modify project:fosscontrib
+  - Project will be set to &#39;fosscontrib&#39;.
+Modify task 67 &#39;Forge Your Future with Open Source&#39;? (yes/no/all/quit) all
+Modifying task 67 &#39;Forge Your Future with Open Source&#39;.
+Modifying task 76 &#39;Set FOSS contribution goals&#39;.
+Modifying task 77 &#39;Set FOSS project requirements&#39;.
+Modifying task 78 &#39;Collect FOSS candidate projects&#39;.
+Modifying task 79 &#39;Select FOSS project&#39;.
+Modified 5 tasks.
+The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).
+</code></pre><p>All right but how do I show the dependencies? Let’s describe them first.</p>
+<ul>
+<li>I must collect candidate projects before I can select a FOSS project.</li>
+<li>I must set my FOSS project requirements before I can collect candidate projects.</li>
+<li>I must define my personal FOSS contribution goals before I can set my project requirements.</li>
+<li>I must complete all the tasks before I can mark the book as complete</li>
+</ul>
+<p>Each item depends on another being completed before I can work on it. It is <em>blocked</em>, and the task it depends on is <em>blocking</em> it.</p>
+<p>Use the <code>depends</code> attribute to show when one task blockeds another.</p>
+<pre tabindex="0"><code>$ task 79 modify depends:78
+Modifying task 79 &#39;Select FOSS project&#39;.
+Modified 1 task.
+Project &#39;fosscontrib&#39; is 0% complete (5 of 5 tasks remaining).
+</code></pre><p>What does that look like now?</p>
+<pre tabindex="0"><code>$ task project:fosscontrib
+
+ID Age   Deps P Project     Tag                Description                        Urg
+78 25min        fosscontrib community          Collect FOSS candidate projects     9.8
+67 23h        H fosscontrib community readlist Forge Your Future with Open Source  7.9
+76 25min        fosscontrib community          Set FOSS contribution goals         1.8
+77 25min        fosscontrib community          Set FOSS project requirements       1.8
+79 22min 78     fosscontrib community          Select FOSS project                -3.2
+
+5 tasks
+</code></pre><p>The report shows a new <code>Deps</code> column, indicating dependencies. The <code>Urg</code> column shows that &ldquo;Select FOSS project&rdquo; gets a lower priority — it’s blocked by &ldquo;Collect FOSS candidate projects&rdquo;, which now has a higher priority because it blocks a task.</p>
+<p>The report visually highlights the blocking task while downplaying the blocked task. This is easier to show with a screenshot.</p>
+<p><img src="/post/2018/02/attachments/img/2018/single-dependency.png" alt="fosscontrib project with one dependency set"/></p>
+<p>Let’s assign the rest of the dependencies.</p>
+<pre tabindex="0"><code>$ task 78 modify depends:77
+$ task 77 modify depends:76
+</code></pre><p>Wait a minute.</p>
+<p>How do I describe the book’s dependencies? I want to say it depends on all of these tasks, but that’s not possible in Taskwarrior — unless there’s an <a href="https://taskwarrior.org/tools/">extension</a>, but I’m not ready for those yet.</p>
+<p>There’s a missing task, isn’t there? Completing all the exercises in the book is its own task. <em>That</em> is what finishing the book depends on.</p>
+<pre tabindex="0"><code>$ task add Complete all tasks in book priority:H project:fosscontrib depends:79
+Created task 80.
+The project &#39;fosscontrib&#39; has changed.  Project &#39;fosscontrib&#39; is 0% complete (6 of 6 tasks remaining).
+</code></pre><p>Today it depends on selecting a FOSS project. That will change as the book presents new exercises. This is a small inconvenience that makes the tasks&rsquo; overall relationships clearer to <em>me</em>. I am the important audience for my personal task list.</p>
+<p>Now I can correctly describe what I must do to complete the book.</p>
+<pre tabindex="0"><code>$ task 67 modify depends:80
+Modifying task 67 &#39;Forge Your Future with Open Source&#39;.
+Modified 1 task.
+</code></pre><p>What does this project look like now?</p>
+<pre tabindex="0"><code>$ task project:fosscontrib
+
+ID Age Deps P Project     Tag                Description                        Urg
+80 53s 79   H fosscontrib                    Complete all tasks in book           10
+76 1h         fosscontrib community          Set FOSS contribution goals         9.8
+77 1h  76     fosscontrib community          Set FOSS project requirements       4.8
+78 1h  77     fosscontrib community          Collect FOSS candidate projects     4.8
+79 1h  78     fosscontrib community          Select FOSS project                 4.8
+67 23h 80   H fosscontrib community readlist Forge Your Future with Open Source  2.9
+
+6 tasks
+</code></pre><p>Right but what does it <em>look</em> like?</p>
+<p><img src="/post/2018/02/attachments/img/2018/cover-2018-02-19.png" title="I have my work cut out for me" alt="taskwarrior report"/></p>
+<p>The report deemphasizes everything but the task that blocks everything else. You can see some urgency math going on in that last column where tasks are both blocking and blocked.</p>
+<h2 id="new-virtual-tags">New virtual tags!</h2>
+<p>Dependencies give us new virtual tags to filter reports based on task dependencies.</p>
+<h3 id="blocked"><code>+BLOCKED</code></h3>
+<p>The <code>+BLOCKED</code> virtual tag filter includes only those tasks which depend on another task.</p>
+<pre tabindex="0"><code>$ task +BLOCKED
+
+ID Age  Deps P Project     Tag                Description                        Urg
+80 3min 79   H fosscontrib                    Complete all tasks in book           10
+77 1h   76     fosscontrib community          Set FOSS project requirements       4.8
+78 1h   77     fosscontrib community          Collect FOSS candidate projects     4.8
+79 1h   78     fosscontrib community          Select FOSS project                 4.8
+67 23h  80   H fosscontrib community readlist Forge Your Future with Open Source  2.9
+
+5 tasks
+</code></pre><h3 id="blocking"><code>+BLOCKING</code></h3>
+<p>The <code>+BLOCKING</code> virtual tag filter includes only those tasks which I assigned as dependencies for another task.</p>
+<pre tabindex="0"><code>$ task +BLOCKING
+
+ID Age  Deps P Project     Tag       Description                     Urg
+80 4min 79   H fosscontrib           Complete all tasks in book        10
+76 1h          fosscontrib community Set FOSS contribution goals      9.8
+77 1h   76     fosscontrib community Set FOSS project requirements    4.8
+78 1h   77     fosscontrib community Collect FOSS candidate projects  4.8
+79 1h   78     fosscontrib community Select FOSS project              4.8
+
+5 tasks
+</code></pre><h2 id="what-now">What now?</h2>
+<p>By looking at what <em>is</em> blocking and is <em>not</em> blocked, you can focus on the tasks that block everything else.</p>
+<pre tabindex="0"><code>$ task +BLOCKING -BLOCKED
+
+ID Age Project     Tag       Description                 Urg
+76 4h  fosscontrib community Set FOSS contribution goals  9.8
+
+1 task
+</code></pre><p>I should start working on those goals so I can finish that book.</p>
+  
+
+
+
+
+  <section class="backlinks">
+    <h2>Backlinks</h2>
+    <nav>
+      <ul>
+      
+      <li>
+        <a href="/post/2019/02/taskwarrior-projects/">taskwarrior-projects</a>
+      </li>
+      
+      <li>
+        <a href="/post/2020/04/taskwarrior-custom-reports/">taskwarrior-custom-reports</a>
+      </li>
+      
+      </ul>
+    </nav>
+  </section>
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+      <p>Series: <a href="/series/taskwarrior-babysteps">Taskwarrior Babysteps</a></p>
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/post/2018/02/my-sloppy-floppy-fingerless-mitten/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>My Sloppy Floppy Fingerless Mitten
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/post/2018/02/crochet-ball-faces/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>Crochet Ball Faces
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#new-virtual-tags">New virtual tags!</a>
+      <ul>
+        <li><a href="#blocked"><code>+BLOCKED</code></a></li>
+        <li><a href="#blocking"><code>+BLOCKING</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#what-now">What now?</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>
