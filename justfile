@@ -4,7 +4,7 @@ pytest := 'pytest'
 default:
   @just --list
 
-pull:
+export:
   obsidian-export /mnt/c/Users/brian/vaults/v2024/ content
 
 backlinks:
@@ -13,7 +13,7 @@ backlinks:
 process:
   python scripts/process_notes.py
 
-refresh: pull backlinks process
+pull: export backlinks process
 
 serve:
   hugo serve -D
@@ -26,6 +26,12 @@ test: build
 
 setup:
   {{ python }} -m pip install --upgrade -r requirements.txt
+
+push:
+  rsync --recursive --archive --update --verbose public/ a2:public_html
+
+syndicate:
+  {{ python }} scripts/syndicate.py
 
 update:
   pip-compile --resolver=backtracking requirements.in > requirements.txt

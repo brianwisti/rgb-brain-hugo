@@ -11,7 +11,60 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 01 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/second-brain/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Mon, 22 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/second-brain/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Rebuilding My Public Brain</title>
+  <link>https://randomgeekery.org/post/2024/01/rebuilding-my-second-brain/</link>
+  <pubDate>Mon, 22 Jan 2024 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2024/01/rebuilding-my-second-brain/</guid>
+  <description>&lt;p&gt;I changed my blogging workflow — again.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>second-brain</category> 
+  <content:encoded><![CDATA[<p>I changed my blogging workflow — again.</p>
+<h2 id="what">What?</h2>
+<p>I took all my blog posts since 2000 — since before the site was a blog — put them in <a href="/card/obsidian/">Obsidian</a>, extracted note cards for recurring content, and smashed the whole thing into a new iteration of <a href="/card/random-geekery/">Random Geekery</a>.</p>
+<h2 id="why">Why?</h2>
+<p>I tried sharing <a href="/card/my-public-brain/">My Public Brain</a> a couple times. It didn&rsquo;t work out. Maintaining an extra site added personal friction, and I ended up ignoring all of it. I wanted to keep trying, though. My first site <a href="/card/coolnamehere/">coolnamehere</a> was an organized collection of notes on topics as I learned them. I&rsquo;ve mostly been blogging the last decade, but missed the ability to link back to topic notes from my posts.</p>
+<p>At the very least, having dedicated topic cards means fewer places to update external links. That can save a few minutes of effort over a couple decades, for sure.</p>
+<p>Storing the whole thing in a <a href="/card/pkm/">PKM</a> makes it easier to find mentions and follow cross-references, eventually ensuring some kind of consistency in site structure.</p>
+<h2 id="okay-how">Okay, How?</h2>
+<h3 id="building-the-vault">Building the vault</h3>
+<p>Most of the details and reasoning are over where I describe <a href="/card/how-these-notes-are-organized/">How These Notes are Organized</a>. Basically I have a private folder for new notes, a private folder for journaling, and a private folder for vault templates. Everything else is public.</p>
+<p>The process itself was manual:</p>
+<ul>
+<li>drop all the Markdown from my Hugo site into <a href="/post/">Post</a></li>
+<li>arrange posts by year and month so they match permalink expectations, cleaning up and extracting (laughably minimal) new notes for recurring topics as I go; sometimes a post no longer has even personal historical relevance, so I remove it</li>
+<li>periodically review those new notes, maybe flesh them out a little bit, and move them to public <a href="/card/">Card</a></li>
+<li>Drop in my <a href="/config/">Config</a> files, clean them up a tiny bit, and pinky-promise I&rsquo;ll do more with them later</li>
+</ul>
+<p>This process of evaluation and refactoring was fundamentally manual, so I limited the plugins to what I needed to mark progress and visually distinguish links.</p>
+<ul>
+<li><a href="https://github.com/joethei/obsidian-link-favicon">Link Favicons</a> visually identifies external links</li>
+<li><a href="https://github.com/swar8080/obsidian-plugin-update-tracker">Plugin Update Tracker</a> so I can keep up with current plugins without extra mental effort</li>
+<li><a href="https://github.com/mdelobelle/obsidian_supercharged_links">Supercharged Links</a> so I can declare link types for each of my major note sections</li>
+<li><a href="https://github.com/mgmeyers/obsidian-style-settings">Style Settings</a> to define visual design elements for the link types I defined in Supercharged Links</li>
+<li><a href="https://github.com/zolrath/obsidian-auto-link-title">Auto Link Title</a> because sometimes link titles are hard; just use the existing site title and edit if confused</li>
+<li><a href="https://github.com/liamcain/obsidian-calendar-plugin">Calendar</a> because it&rsquo;s still a PKM and that means daily journal notes; this plugin makes it easier to get at past journals.</li>
+<li><a href="https://github.com/pjeby/tag-wrangler">Tag Wrangler</a> because I&rsquo;m going to need help cleaning up all those blog post tags</li>
+<li><a href="https://github.com/bkyle/obsidian-vault-statistics-plugin">Vault Statistics</a> to see <del>my score</del> how many pages I have in this vault</li>
+</ul>
+<p>I&rsquo;ll probably add plugins later, but the extra functionality of Templater or Dataview would have distracted me from the core task. It happened with previous note consolidation efforts.</p>
+<h3 id="building-the-site">Building the site</h3>
+<p>Initially I pulled the vault into an <a href="/card/astro/">Astro</a> site with  <a href="https://typestrong.org/ts-node/">ts-node</a>. It sort of worked. Came into some issues with <code>ts-node</code> on very fresh <a href="/card/node.js/">Node.js</a> though, and decided to see if someone had already figured out Obsidian export.</p>
+<p>Turns out, yes. <a href="/card/obsidian-export/">obsidian-export</a> handles internal links and provides some starter template logic for working with <a href="/card/hugo/">Hugo</a>. I&rsquo;m setting Astro aside for the moment. Sticking with Hugo made cleanup easier, since I no longer had to care about shortcodes.</p>
+<p>Got a Perl script for backlinks and a Python script for processing Obsidian Markdown rules that <code>obsidian-export</code> didn&rsquo;t cover. Not happy with either of those scripts yet, so I won&rsquo;t go into detail about them here. The Perl script finds backlinks and puts them in a data file for quicker backlink handling at site build time, and the Python script currently does some regular expression handling to identify special markup and transform it.</p>
+<p>I pulled in my automated tests from the current site iteration. I really should talk more about those tests at some point. They mostly check for structural issues with <code>markdownlint</code> and broken internal links.</p>
+<h2 id="what-next">What next</h2>
+<p>Budget is constrained, so before the annual hosting bill comes due I&rsquo;ll shift from a paid host to Netlify. My planned usage tier should be free there. I expect to bounce back out again after resolving the current <a href="/card/job-search/">Job Search</a> to my satisfaction, but maybe not. We&rsquo;ll see.</p>
+<p>Before I have the Python script handle all the processing, I&rsquo;ll revisit the Astro iteration. <a href="https://www.npmjs.com/package/remark-obsidian">remark-obsidian</a> and <a href="https://www.npmjs.com/package/remark-definition-list">remark-deflist</a> handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like <a href="/now/">now</a> and <a href="/follow/">follow</a> get treated within Astro&rsquo;s dynamic collection approach.</p>
+<h2 id="what-now">What now</h2>
+<p>Hugo works. My current host works. My notes need work, but hey don&rsquo;t we all. I&rsquo;m not going to jiggle anything just yet.</p>
+<p>I think it&rsquo;s time for <code>just pull backlinks process build test push</code>.</p>
+<p>Hm.</p>
+<p>Maybe tighten that invocation up just a little bit.</p>]]></content:encoded>
+</item>
+<item>
   <title>Post: Save those links</title>
   <link>https://randomgeekery.org/post/2023/07/save-those-links/</link>
   <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>

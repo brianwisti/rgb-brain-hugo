@@ -11,7 +11,60 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Wed, 25 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/site/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Mon, 22 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://randomgeekery.org/tags/site/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Post: Rebuilding My Public Brain</title>
+  <link>https://randomgeekery.org/post/2024/01/rebuilding-my-second-brain/</link>
+  <pubDate>Mon, 22 Jan 2024 00:00:00 +0000</pubDate>
+  
+  <guid>https://randomgeekery.org/post/2024/01/rebuilding-my-second-brain/</guid>
+  <description>&lt;p&gt;I changed my blogging workflow — again.&lt;/p&gt;</description>
+   <category>post</category> 
+   <category>post</category> 
+   <category>site</category>  <category>second-brain</category> 
+  <content:encoded><![CDATA[<p>I changed my blogging workflow — again.</p>
+<h2 id="what">What?</h2>
+<p>I took all my blog posts since 2000 — since before the site was a blog — put them in <a href="/card/obsidian/">Obsidian</a>, extracted note cards for recurring content, and smashed the whole thing into a new iteration of <a href="/card/random-geekery/">Random Geekery</a>.</p>
+<h2 id="why">Why?</h2>
+<p>I tried sharing <a href="/card/my-public-brain/">My Public Brain</a> a couple times. It didn&rsquo;t work out. Maintaining an extra site added personal friction, and I ended up ignoring all of it. I wanted to keep trying, though. My first site <a href="/card/coolnamehere/">coolnamehere</a> was an organized collection of notes on topics as I learned them. I&rsquo;ve mostly been blogging the last decade, but missed the ability to link back to topic notes from my posts.</p>
+<p>At the very least, having dedicated topic cards means fewer places to update external links. That can save a few minutes of effort over a couple decades, for sure.</p>
+<p>Storing the whole thing in a <a href="/card/pkm/">PKM</a> makes it easier to find mentions and follow cross-references, eventually ensuring some kind of consistency in site structure.</p>
+<h2 id="okay-how">Okay, How?</h2>
+<h3 id="building-the-vault">Building the vault</h3>
+<p>Most of the details and reasoning are over where I describe <a href="/card/how-these-notes-are-organized/">How These Notes are Organized</a>. Basically I have a private folder for new notes, a private folder for journaling, and a private folder for vault templates. Everything else is public.</p>
+<p>The process itself was manual:</p>
+<ul>
+<li>drop all the Markdown from my Hugo site into <a href="/post/">Post</a></li>
+<li>arrange posts by year and month so they match permalink expectations, cleaning up and extracting (laughably minimal) new notes for recurring topics as I go; sometimes a post no longer has even personal historical relevance, so I remove it</li>
+<li>periodically review those new notes, maybe flesh them out a little bit, and move them to public <a href="/card/">Card</a></li>
+<li>Drop in my <a href="/config/">Config</a> files, clean them up a tiny bit, and pinky-promise I&rsquo;ll do more with them later</li>
+</ul>
+<p>This process of evaluation and refactoring was fundamentally manual, so I limited the plugins to what I needed to mark progress and visually distinguish links.</p>
+<ul>
+<li><a href="https://github.com/joethei/obsidian-link-favicon">Link Favicons</a> visually identifies external links</li>
+<li><a href="https://github.com/swar8080/obsidian-plugin-update-tracker">Plugin Update Tracker</a> so I can keep up with current plugins without extra mental effort</li>
+<li><a href="https://github.com/mdelobelle/obsidian_supercharged_links">Supercharged Links</a> so I can declare link types for each of my major note sections</li>
+<li><a href="https://github.com/mgmeyers/obsidian-style-settings">Style Settings</a> to define visual design elements for the link types I defined in Supercharged Links</li>
+<li><a href="https://github.com/zolrath/obsidian-auto-link-title">Auto Link Title</a> because sometimes link titles are hard; just use the existing site title and edit if confused</li>
+<li><a href="https://github.com/liamcain/obsidian-calendar-plugin">Calendar</a> because it&rsquo;s still a PKM and that means daily journal notes; this plugin makes it easier to get at past journals.</li>
+<li><a href="https://github.com/pjeby/tag-wrangler">Tag Wrangler</a> because I&rsquo;m going to need help cleaning up all those blog post tags</li>
+<li><a href="https://github.com/bkyle/obsidian-vault-statistics-plugin">Vault Statistics</a> to see <del>my score</del> how many pages I have in this vault</li>
+</ul>
+<p>I&rsquo;ll probably add plugins later, but the extra functionality of Templater or Dataview would have distracted me from the core task. It happened with previous note consolidation efforts.</p>
+<h3 id="building-the-site">Building the site</h3>
+<p>Initially I pulled the vault into an <a href="/card/astro/">Astro</a> site with  <a href="https://typestrong.org/ts-node/">ts-node</a>. It sort of worked. Came into some issues with <code>ts-node</code> on very fresh <a href="/card/node.js/">Node.js</a> though, and decided to see if someone had already figured out Obsidian export.</p>
+<p>Turns out, yes. <a href="/card/obsidian-export/">obsidian-export</a> handles internal links and provides some starter template logic for working with <a href="/card/hugo/">Hugo</a>. I&rsquo;m setting Astro aside for the moment. Sticking with Hugo made cleanup easier, since I no longer had to care about shortcodes.</p>
+<p>Got a Perl script for backlinks and a Python script for processing Obsidian Markdown rules that <code>obsidian-export</code> didn&rsquo;t cover. Not happy with either of those scripts yet, so I won&rsquo;t go into detail about them here. The Perl script finds backlinks and puts them in a data file for quicker backlink handling at site build time, and the Python script currently does some regular expression handling to identify special markup and transform it.</p>
+<p>I pulled in my automated tests from the current site iteration. I really should talk more about those tests at some point. They mostly check for structural issues with <code>markdownlint</code> and broken internal links.</p>
+<h2 id="what-next">What next</h2>
+<p>Budget is constrained, so before the annual hosting bill comes due I&rsquo;ll shift from a paid host to Netlify. My planned usage tier should be free there. I expect to bounce back out again after resolving the current <a href="/card/job-search/">Job Search</a> to my satisfaction, but maybe not. We&rsquo;ll see.</p>
+<p>Before I have the Python script handle all the processing, I&rsquo;ll revisit the Astro iteration. <a href="https://www.npmjs.com/package/remark-obsidian">remark-obsidian</a> and <a href="https://www.npmjs.com/package/remark-definition-list">remark-deflist</a> handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like <a href="/now/">now</a> and <a href="/follow/">follow</a> get treated within Astro&rsquo;s dynamic collection approach.</p>
+<h2 id="what-now">What now</h2>
+<p>Hugo works. My current host works. My notes need work, but hey don&rsquo;t we all. I&rsquo;m not going to jiggle anything just yet.</p>
+<p>I think it&rsquo;s time for <code>just pull backlinks process build test push</code>.</p>
+<p>Hm.</p>
+<p>Maybe tighten that invocation up just a little bit.</p>]]></content:encoded>
+</item>
+<item>
   <title>Post: Revisiting an old layout</title>
   <link>https://randomgeekery.org/post/2023/10/revisiting-an-old-layout/</link>
   <pubDate>Wed, 25 Oct 2023 00:00:00 +0000</pubDate>
@@ -215,176 +268,6 @@ Those are the pieces I need to get POSSE syndication working in this card/Eleven
 <p>The <a href="https://crossposter.masto.donte.com.br/">Mastodon Twitter Crossposter</a> works great, but waiting for the announcement toot to show up as a tweet was a tedious manual step that I hope to discard. So I figured out how to make a tweet with <a href="https://www.npmjs.com/package/twitter-api-v2">twitter-api-v2</a>.</p>
 <p>Those are the pieces I need to get <a href="https://indieweb.org/POSSE">POSSE</a> syndication working in this <a href="/card/eleventy/">card/Eleventy</a> iteration of the site.</p>
 <p>Now I just need to staple those pieces together, grab a sharpie, and label it &ldquo;workflow.&rdquo;</p>
-]]></content:encoded>
-</item>
-<item>
-  <title>Post: Processing Sass in Eleventy</title>
-  <link>https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/</link>
-  <pubDate>Mon, 10 Jan 2022 01:00:00 -0800</pubDate>
-  
-  <guid>https://randomgeekery.org/post/2022/01/processing-sass-in-eleventy/</guid>
-  <description>relevant pictures are overrated; this dog and cat are cute together
-card/Eleventy’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.
-Lots of big ideas, but let’s start small with the officially documented process for processing Sass.
-First things first, let’s update devDependencies in my package.json:
-{ &#34;devDependencies&#34;: { &#34;@11ty/eleventy&#34;: &#34;^1.0.0&#34; } } I keep my Sass files under src/assets/style:</description>
-   <category>post</category> 
-   <category>post</category> 
-   <category>eleventy</category>  <category>scss</category>  <category>css</category>  <category>site</category> 
-  <content:encoded><![CDATA[<h2>Specifically, building `main.scss` when `_base.scss` changes</h2><p><figure>
-    <img src="/../../../attachments/img/2022/cover-2022-01-10.jpg" alt="attachments/img/2022/cover-2022-01-10.jpg"/></figure>
-relevant pictures are overrated; this dog and cat are cute together</p>
-<p><a href="/card/eleventy/">card/Eleventy</a>’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.</p>
-<p>Lots of big ideas, but let’s start small with the officially documented process for processing Sass.</p>
-<p>First things first, let&rsquo;s update <code>devDependencies</code> in my <code>package.json</code>:</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;devDependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;@11ty/eleventy&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.0.0&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p>I keep my Sass files under <code>src/assets/style</code>:</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/assets/style/
-</span></span><span class="line"><span class="cl"><span class="go">src/assets/style/
-</span></span></span><span class="line"><span class="cl"><span class="go">├── _base.scss
-</span></span></span><span class="line"><span class="cl"><span class="go">├── _layout.scss
-</span></span></span><span class="line"><span class="cl"><span class="go">├── main.scss
-</span></span></span><span class="line"><span class="cl"><span class="go">└── modules
-</span></span></span><span class="line"><span class="cl"><span class="go">    └── _shiki.scss
-</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">1 directory, 4 files
-</span></span></span></code></pre>
-</figure><blockquote>
-<p><strong>NOTE</strong></p>
-<p>Generally, I have been following the site organization guidelines described in <a href="https://www.webstoemp.com/blog/eleventy-projects-structure/">Structuring Eleventy Projects</a>. If I have some non-content file I need transformed — Sass, images, whatever — I put it under <code>src/assets</code>.</p>
-</blockquote>
-<p>Eleventy provides instructions on how to set up <a href="https://www.11ty.dev/docs/languages/custom/">custom templates</a> for dealing with Sass, and even <a href="https://www.11ty.dev/docs/languages/custom/#skipping-a-template-from-inside-of-the-compile-function">skipping a template</a> so it doesn&rsquo;t build <code>_base.scss</code> and so on.</p>
-<p>And that&rsquo;s great. It works. <code>src/assets/style/main.scss</code> becomes <code>dist/assets/style/main.css</code>. Course, it&rsquo;s not quite perfect. I still need <code>main.css</code> rebuild if I write to <code>_base.scss</code>.</p>
-<p>But I also don&rsquo;t want it randomly rebuilding the stylesheet 20 times because it found 20 support files.</p>
-<p>I need to think my way through this one.</p>
-<h2 id="add-a-sasshandler">Add a SassHandler</h2>
-<p>Keeping with Jérôme Coupé&rsquo;s structural suggestions, I keep my more complex JavaScript logic under <code>src/_11ty/</code>.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> tree src/_11ty/
-</span></span><span class="line"><span class="cl"><span class="go">src/_11ty/
-</span></span></span><span class="line"><span class="cl"><span class="go">├── collections
-</span></span></span><span class="line"><span class="cl"><span class="go">├── filters
-</span></span></span><span class="line"><span class="cl"><span class="go">├── handlers
-</span></span></span><span class="line"><span class="cl"><span class="go">│   ├── MarkdownHandler.js
-</span></span></span><span class="line"><span class="cl"><span class="go">│   └── SassHandler.js
-</span></span></span><span class="line"><span class="cl"><span class="go">└── shortcodes
-</span></span></span></code></pre>
-</figure><p><code>handlers</code> is my own variation — that&rsquo;s where I put code for particular file and content types.</p>
-<p>So what needs to go into <code>SassHandler.js</code>? Let&rsquo;s see.</p>
-<ul>
-<li>ensure only <code>main.scss</code> gets handed off to Sass</li>
-<li>ensure the main stylesheet is rebuilt when any of the imports change</li>
-<li>avoid unnecessary recompilation — without getting too clever</li>
-</ul>
-<p>Time to open up the old text editor.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- file:src/_11ty/handlers/SassHandler.js
-</span></span></span><span class="line"><span class="cl"><span class="c1">// Handler for my Sass stylesheets
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Import libraries.
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Define input and output paths for sass.
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ==&gt; Set build time guard variables.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">outputFileExtension</span><span class="o">:</span> <span class="s2">&#34;css&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">compileOptions</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">permalink</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">compile</span><span class="o">:</span> <span class="kr">async</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputContent</span><span class="p">,</span> <span class="nx">inputPath</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// ==&gt; Ensure we need to build the CSS.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ==&gt; Remember and log this build.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// ==&gt; Compile the Sass and write the CSS.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">};</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre>
-</figure><p>With what I&rsquo;ve figured out so far, even though Eleventy can watch and act on the files for me, keeping the paths under tight control will be my job. A
-change in <code>_base.scss</code> means a change in <code>main.scss</code> which means a write to <code>main.css</code>. I have not yet learned how to do that in any Eleventy-specific way. So I&rsquo;ll disable the <code>permalink</code> compile option and handle it myself with the appropriate libraries.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Import libraries
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs-plus&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;sass&#34;</span><span class="p">);</span></span></span></code></pre>
-</figure><ul>
-<li><a href="http://atom.github.io/fs-plus/"><code>fs-plus</code></a> is a little easier to work with than Node&rsquo;s standard <code>fs</code>   library for file handling</li>
-<li><a href="https://nodejs.org/dist/latest-v16.x/docs/api/path.html"><code>path</code></a> is no <a href="https://docs.python.org/3/library/pathlib.html"><code>pathlib</code></a> — heck it&rsquo;s barely even <a href="https://docs.python.org/3/library/os.path.html"><code>os.path</code></a> — but it&rsquo;s better than trusting my own string-splitting and reassembly</li>
-<li><a href="https://sass-lang.com"><code>sass</code></a> of course; these <em>are</em> Sass files</li>
-</ul>
-<p>I know exactly which files I want to read and write. Let&rsquo;s define those as constant.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Define input and output paths for sass
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">curDir</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sassInputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">cirDir</span><span class="p">,</span> <span class="s2">&#34;src/assets/style/main.scss&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssOutputPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">curDir</span><span class="p">,</span> <span class="s2">&#34;dist/assets/style/main.css&#34;</span><span class="p">);</span></span></span></code></pre>
-</figure><p>Yes this does look a lot like what Eleventy would do on its own. Since I turned off permalinks for <code>scss</code> files, I need to be careful. I start this with being extremely specific and figuring out what I can relax later — assuming I decide that relaxing is what I want to do.</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>Common sense sugests these should be defined in a config file somewhere. I&rsquo;m still getting the hang of Eleventy, though. Common sense won&rsquo;t be an option for some time.</p>
-</blockquote>
-<p>I figure the easiest way to avoid extra recompilation is by watching the clock. If it hasn&rsquo;t been long enough since the last build, skip it. Five seconds is a completely arbitrary value for &ldquo;long enough&rdquo; but it seems to be working.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Set build time guard variables
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// valueOf last sass build
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">minimumWait</span> <span class="o">=</span> <span class="mi">5_000</span><span class="p">;</span> <span class="c1">// wait this many milliseconds before rebuilding
-</span></span></span></code></pre>
-</figure><p>And what does a build time check look like? We use <a href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/date/valueof"><code>Date.valueOf</code></a> to get the number of milliseconds since 1970-01-01, which is a handy numeric value for simple comparison. If the difference between that and <code>lastSassBuild</code> is less than <code>minimumWait</code> milliseconds, we don&rsquo;t need to build.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Ensure we need to build the CSS
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">valueOf</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">lastSassBuild</span> <span class="o">&lt;=</span> <span class="nx">minimumWait</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p>What if we <em>do</em> need to build? Update <code>lastSassBuild</code> and log what&rsquo;s going on, since I enjoy a little feedback.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Remember and log this build
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">lastSassBuild</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">inputPath</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="nx">now</span><span class="si">}</span><span class="sb">] SassHandler: </span><span class="si">${</span><span class="nx">inputPath</span><span class="si">}</span><span class="sb"> changed`</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Building </span><span class="si">${</span><span class="nx">sassFilePath</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span></span></span></code></pre>
-</figure><p>I still haven&rsquo;t learned enough JavaScript to know why, but when I use <code>sass.compile</code> instead of the supposedly deprecated <code>renderSync</code> I get an exception. Eventually I&rsquo;ll be forced to revisit that, but today is not that day.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//- Compile the Sass and write the CSS
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">sass</span><span class="p">.</span><span class="nx">renderSync</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">file</span><span class="o">:</span> <span class="nx">sassFilePath</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cssText</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s2">&#34;utf8&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">makeTreeSync</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="nx">cssOutputPath</span><span class="p">,</span> <span class="nx">cssText</span><span class="p">);</span></span></span></code></pre>
-</figure><p>Again, I&rsquo;ve disabled <code>permalink</code> so it&rsquo;s on me to ensure the output directory exists and to write the generated CSS.</p>
-<p>So there it is! Probably not optimal but hey we&rsquo;re all learning something every day.</p>
-<h2 id="load-that-sasshandler">Load that SassHandler</h2>
-<p>Then the relevant bits of my <code>.eleventy.js</code>:</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">SassHandler</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./src/_11ty/handlers/SassHandler.js&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">eleventyConfig</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addTemplateFormats</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">eleventyConfig</span><span class="p">.</span><span class="nx">addExtension</span><span class="p">(</span><span class="s2">&#34;scss&#34;</span><span class="p">,</span> <span class="nx">SassHandler</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre>
-</figure><p>This site still builds and the styles update as expected, so: yay!</p>
-<h2 id="whats-next">What&rsquo;s next?</h2>
-<p>I dunno. Knowing me? Probably <a href="https://asciidoctor.org">Asciidoctor</a>.</p>
 ]]></content:encoded>
 </item>
 </channel>
