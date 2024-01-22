@@ -1,0 +1,18 @@
+{{- range $section, $info := $.Site.Data.neighborhood -}}
+  <section>
+    <header>
+      <h2>{{ $section }}</h2>
+    </header>
+    {{- range $info -}}
+      <section>
+        <header>
+          {{ .frequency }}
+        </header>
+        <ul>
+        {{- range .neighbors -}}
+          <li><a href="{{ .url }}">{{ .title }}</a></li>
+        {{- end -}}
+        </ul>
+    {{- end -}}
+  </section>
+{{- end -}}

@@ -1,0 +1,8 @@
+{{- $.Scratch.Set "title" "Warning" -}}
+{{- with .Get "title" -}}
+  {{- $.Scratch.Set "title" . -}}
+{{- end -}}
+{{- $.Scratch.Set "body" .Inner -}}
+{{- $.Scratch.Set "class" "info" -}}
+
+{{ partial "admonition.html" . }}
