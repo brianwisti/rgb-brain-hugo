@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -291,7 +307,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2019/01/../../../attachments/img/2019/cover-2019-01-23.png" alt="attachments/img/2019/cover-2019-01-23.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-01-23.png" alt="attachments/img/2019/cover-2019-01-23.png"/></figure></p>
 <p>A while back, I wrote about <a href="/post/2017/11/drawing-grids-with-python-and-pillow/">drawing grids</a>  with <a href="/card/python/">card/Python</a> and <a href="https://python-pillow.org/">Pillow</a>. I no longer use that code so much, since Procreate now includes square grids in its drawing aid tools.</p>
 <p>One idea sitting in my <a href="/card/taskwarrior/">Taskwarrior</a> queue for a full year now would still be useful, though. A circle template could help me break out of the square grid with my Celtic and Tangle drawings.</p>
 <p>I already create circular drawings using symmetry tools in my drawing apps. Those are doodles, though: unplanned and improvised. I sketch and see what the automated symmetry produces from my linework. Circle templates simplify <em>planning</em> a complex image which I then produce, probably without using symmetry tools.</p>
@@ -396,7 +413,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="n">bounding_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span></span></span></code></pre>
 </figure><p>I need to figure out my origin, the center for my circles and slices. Since the image is a square, it will be the same along both the X and Y axes. This means I only need to calculate a single midpoint.</p>
 <p>Each time we move on to a new radius, <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.arc">ImageDraw.arc</a> creates a circle by drawing a 360 degree arc within <code>bounding_box</code>, a square that extends <code>radius</code> pixels from a midpoint along the <code>x</code> and <code>y</code> axes.</p>
-<p><img src="/post/2019/01/attachments/img/2019/circle-600-10-0.png" alt="Concentric circles"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/circle-600-10-0.png" alt="Concentric circles"/></figure></p>
 <h2 id="add-some-pie-slices">Add some pie slices</h2>
 <p>Right. I could do some moderately clever math to calculate angles and draw lines from the midpoint, <em>or</em> I could use the existing <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.pieslice">ImageDraw.pieslice</a> method to accomplish pretty much the same thing. If you read the section title, you can probably guess what I chose.</p>
 <figure class="highlight">
@@ -442,7 +460,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">            <span class="n">draw</span><span class="o">.</span><span class="n">pieslice</span><span class="p">(</span><span class="n">pie_box</span><span class="p">,</span> <span class="n">start_angle</span><span class="p">,</span> <span class="n">end_angle</span><span class="p">)</span></span></span></code></pre>
 </figure><p>I’m dividing the 360 degrees of a circle into <code>slice_count</code> pieces. <code>ImageDraw.pieslice</code> draws a tidy wedge at the angles we give it fitting the bounding box defined by my largest circle.</p>
 <p>How does that look?</p>
-<p><img src="/post/2019/01/attachments/img/2019/circle-600-10-12.png" alt="Concentric circles divided by pie slices"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/circle-600-10-12.png" alt="Concentric circles divided by pie slices"/></figure></p>
 <p>It looks pretty cool.</p>
 <p>I need more circles and slices for the drawings I’m thinking of, though. Many more.</p>
 <figure class="highlight">
@@ -451,9 +470,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl"><span class="go">Saving circle-600-30-36.png
 </span></span></span></code></pre>
 </figure><p>Yes, that’s more like it.</p>
-<p><img src="/post/2019/01/attachments/img/2019/circle-600-30-36.png" alt="Generated circle template"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/circle-600-30-36.png" alt="Generated circle template"/></figure></p>
 <p>This is all I need for a drawing template. Using transformation tools and the right blending modes, I can maneuver and manipulate my grid however I need for a drawing template!</p>
-<p><img src="/post/2019/01/attachments/img/2019/three-circle-template.png" alt="template prepared for drawing"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/three-circle-template.png" alt="template prepared for drawing"/></figure></p>
 <p>I’ll stop here so I can get to my drawing.</p>
 
   

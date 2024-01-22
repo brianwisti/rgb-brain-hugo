@@ -24,7 +24,8 @@ Nikola’s got the convenience thing down. Someone can sit and start a fresh blo
    <category>post</category> 
    <category>note</category> 
    <category>static-site-generators</category>  <category>nikola</category>  <category>nanoc</category>  <category>spinning-wheels</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2021/05/../../../attachments/img/2021/cover-2021-05-16.png" alt="attachments/img/2021/cover-2021-05-16.png"/></p>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2021/cover-2021-05-16.png" alt="attachments/img/2021/cover-2021-05-16.png"/></figure></p>
 <p>So after bouncing back to <a href="/card/hugo/">card/Hugo</a> from a brief <a href="/card/statamic/">card/Statamic</a> experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?</p>
 <p>No of course not.</p>
 <p>I spent the weekend messing with <a href="https://nanoc.app">Nanoc</a> and <a href="https://getnikola.com">Nikola</a>. Still chasing the high of the perfect site generator? Maybe.</p>
@@ -47,7 +48,8 @@ nikola check -l looks for broken internal links on your build output. It found a
    <category>post</category> 
    <category>post</category> 
    <category>nikola</category>  <category>site</category>  <category>hugo</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>I needed a YouTube shortcode for Nikola, so I adapted Hugo's.</h2><p><img src="/post/2020/02/../../../attachments/img/2020/cover-2020-02-12.png" alt="attachments/img/2020/cover-2020-02-12.png"/></p>
+  <content:encoded><![CDATA[<h2>I needed a YouTube shortcode for Nikola, so I adapted Hugo's.</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-02-12.png" alt="attachments/img/2020/cover-2020-02-12.png"/></figure></p>
 <p>I keep waffling on whether to switch from [Hugo][hugo] to [Nikola][nikola] or some other <a href="/card/static-site-generator/">card/Static Site Generator</a>. Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.</p>
 <blockquote>
 <p><strong>NOTE</strong></p>
@@ -98,7 +100,8 @@ nikola check -l looks for broken internal links on your build output. It found a
 </span></span></span><span class="line"><span class="cl"><span class="x">        allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x">&lt;/div&gt;</span></span></span></code></pre>
 </figure><p>Not much needed here. It takes the YouTube ID as an argument, picks a host based on <code>youtube_privacy_enhanced</code>, and adds some HTML.</p>
-<p><img src="/post/2020/02/attachments/img/2020/miyazaki.png" alt="Note to self: clicking play in a screenshot does nothing"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/miyazaki.png" alt="Note to self: clicking play in a screenshot does nothing"/></figure></p>
 <p>It works!</p>
 <h2 id="what-now">What Now?</h2>
 <p>I’m not sure. The Nikola experiment is fun, but I have ideas for the Hugo flow too.</p>
@@ -118,7 +121,8 @@ In the live site, cover images are prominently displayed at the top of their pag
    <category>post</category> 
    <category>nikola</category>  <category>site</category>  <category>tools</category> 
   <content:encoded><![CDATA[<p>I adjusted the default <a href="https://getnikola.com">Nikola</a> theme to show cover images!</p>
-<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-25.png" alt="attachments/img/2020/cover-2020-01-25.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-01-25.png" alt="attachments/img/2020/cover-2020-01-25.png"/></figure>
 The <a href="/now/">now</a> page, in Nikola</p>
 <h2 id="motivation">Motivation</h2>
 <p>I am a visual person. You might not know that from all the typing and my enthusiasm for command line tools. But many of my posts and pages have cover images. Sometimes the cover images are even relevant to the post.</p>
@@ -268,11 +272,14 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
 </figure><p>Keep in mind what I noticed <a href="/post/2020/01/restructuredtext-basics-for-blogging/">the other day</a>about these not being real figures in reStructuredText. For now I match RST output, as if I’d used a <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure directive</a>. That way I don’t have to find the CSS for this theme.</p>
-<p><img src="/post/2020/01/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/><figcaption>Cover image in post</figcaption></figure></p>
 <p>It has a cover image, placed right by the title. It doesn’t <em>quite</em> match today’s view of <a href="/post/2019/12/again-with-the-manual-symmetry/">that post</a>, but this has the basic idea. And I only had to edit a single template file!</p>
-<p><img src="/post/2020/01/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/><figcaption>The same page on the current site</figcaption></figure></p>
 <p>Looks good for posts that have a cover image. How about pages?</p>
-<p><img src="/post/2020/01/attachments/img/2020/cover-in-page.png" title="Cover image in a non-post page" alt="screenshot of /now page with nikola style"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/cover-in-page.png" title="Cover image in a non-post page" alt="screenshot of /now page with nikola style"/><figcaption>Cover image in a non-post page</figcaption></figure></p>
 <p>Excellent. I thought that would take much more work.</p>
 <h2 id="remember-bootstrap">Remember Bootstrap?</h2>
 <p>bootblog4 <em>is</em> based off of Bootstrap. I feel compelled to make the cover image a <a href="https://getbootstrap.com/docs/4.4/components/jumbotron/">Jumbotron</a>.</p>
@@ -286,7 +293,8 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/><figcaption>Cover image in Bootstrap Jumbotron</figcaption></figure></p>
 <p>Hm. Maybe, maybe not. I’m tempted to tweak it some more, but my task list is long and my time is short.</p>
 <h2 id="did-i-miss-anything">Did I miss anything?</h2>
 <p>Sort of. On the live site, I let Hugo resize cover images to fit in my design and avoid large downloads. Nikola has thumbnails, but that’s not quite the same thing. I’d have to do it myself, maybe with a <a href="https://getnikola.com/handbook.html#custom-plugins">plugin</a>.</p>
@@ -304,7 +312,8 @@ No, I haven’t replaced Hugo yet. Just exploring.</description>
    <category>note</category> 
    <category>nikola</category>  <category>site</category>  <category>having-fun</category>  <category>killing-time-while-scripts-run</category> 
   <content:encoded><![CDATA[<p>Told you I was checking out <a href="/card/nikola/">card/Nikola</a>. Importing the live site has been fun. I may have outgrown the default theme though, nice though it is.</p>
-<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-20.png" alt="attachments/img/2020/cover-2020-01-20.png"/></p>
+<p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-01-20.png" alt="attachments/img/2020/cover-2020-01-20.png"/></figure></p>
 <p>No, I haven’t replaced Hugo yet. Just exploring.</p>
 ]]></content:encoded>
 </item>
@@ -320,7 +329,8 @@ That focused flexibility intrigues me. Cleaning my site after Hugo deprecated th
    <category>post</category> 
    <category>post</category> 
    <category>python</category>  <category>site</category>  <category>nikola</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>In which I play with another site builder</h2><p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-05.png" alt="attachments/img/2020/cover-2020-01-05.png"/></p>
+  <content:encoded><![CDATA[<h2>In which I play with another site builder</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-01-05.png" alt="attachments/img/2020/cover-2020-01-05.png"/></figure></p>
 <p>I messed with <a href="/card/nikola/">card/Nikola</a> a while back, but ended up going with <a href="/card/hugo/">card/Hugo</a>. Nikola has evolved in the last couple years, though. Let’s check it out!</p>
 <p>Nikola is a static site generator written in <a href="/card/python/">card/Python</a>. Its <a href="https://getnikola.com/features">features</a> support a flexible workflow while still providing a solid blogging experience &ldquo;out of the box.&rdquo; You can extend that flexibility further via plugins.</p>
 <p>That focused flexibility intrigues me. <a href="/post/2019/12/removing-mmark-has-me-grumbly/">Cleaning</a> my site after Hugo <a href="https://gohugo.io/news/0.60.0-relnotes/">deprecated</a> the <a href="https://mmark.miek.nl/">mmark</a> format was a chore. My site has too many moving parts for me to casually port it, but I can still play a little.</p>
@@ -402,7 +412,8 @@ I see nothing for themes, but that’s okay. Nikola starts us off with the <a hr
 <p>Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run <code>nikola auto --browser</code> from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.</p>
 </blockquote>
 <p><code>http://127.0.0.1:8000</code> shows a basically empty front page. Nikola filled in the templates for the default theme with values from <code>conf.py</code>.</p>
-<p><img src="/post/2020/01/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/><figcaption>The empty site</figcaption></figure></p>
 <p>Each of the &ldquo;Archive,&rdquo; &ldquo;Tags,&rdquo; and &ldquo;RSS Feed&rdquo; links lead to summary pages with nothing listed. Since I have no content for Nikola to summarize yet, that makes sense.</p>
 <p>Following the &ldquo;Random Geekery&rdquo; link at the top takes me to the live site. I consider this incorrect behavior. We want to see how the development site works, not the live site.</p>
 <p>We can probably fix that in theme templates or with an option, but for the moment let’s just update <code>config.py</code>.</p>
@@ -450,7 +461,8 @@ Scanning posts........done!
 RestructuredText, or ReST, is a formatting language similar in spirit to <a href="/card/markdown/">card/Markdown</a>. The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.</p>
 <p>Nikola reads our post’s metadata from ReST comments at the front of the file. I know I will miss something important if I tried summarizing it. Let’s just link to Nikola’s own <a href="https://getnikola.com/handbook.html#metadata-fields">metadata documentation</a>.</p>
 <p>What does the site look like now that it has a post?</p>
-<p><img src="/post/2020/01/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/><figcaption>Index page with one post</figcaption></figure></p>
 <p>This theme shows post content. I prefer showing a quick summary of posts on the front page.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -463,10 +475,12 @@ RestructuredText, or ReST, is a formatting language similar in spirit to <a href
 </span></span></span><span class="line"><span class="cl"><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>Delectus ut aut ea et dolore autem. Sint nihil sapiente voluptate id aut quo impedit. Aut<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>numquam delectus pariatur non accusantium. Aperiam aspernatur nemo sequi in est. Expedita</span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/><figcaption>Index page with teaser</figcaption></figure></p>
 <p>Now the index has a summary and the main content is on the post page.
 The tag rests at the bottom, and a source link sits with the headline.</p>
-<p><img src="/post/2020/01/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/><figcaption>The post itself</figcaption></figure></p>
 <p>What about that &ldquo;Source&rdquo; link? Nikola lets you download the ReST source of a post. Neat, but not a feature I care about.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -500,7 +514,8 @@ Scanning posts........done!
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/rss.xml&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS feed&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="p">),</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/><figcaption>The Now page</figcaption></figure></p>
 <h2 id="whats-left">What’s left?</h2>
 <p>If this was a really real site, we would build and deploy.</p>
 <figure class="highlight">

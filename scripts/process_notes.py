@@ -37,7 +37,7 @@ def callout_title(match):
     else:
         title = callout_type
 
-    logging.info("Found %s, using %s", groups, title)
+    logging.debug("Found %s, using %s", groups, title)
     return f"> **{title}**\n>\n"
 
 @dataclass
@@ -58,7 +58,7 @@ class VaultNote:
 
         if updated_content != post.content:
             post.content = updated_content
-            logging.info("updated content")
+            logging.debug("updated content")
             self.is_dirty = True
 
         self.post = post

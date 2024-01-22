@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -299,7 +315,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2019/06/../../../attachments/img/2019/cover-2019-06-01.png" alt="attachments/img/2019/cover-2019-06-01.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-06-01.png" alt="attachments/img/2019/cover-2019-06-01.png"/></figure></p>
 <h2 id="the-idea">The idea</h2>
 <p>I got an idea in my head a while ago to reduce image sizes for the site. Some of my drawings and photos are a little big. On a slower connection, a visitor could spend a while waiting. And if their bandwidth is metered? Oh I’d hate to think one of my sketches was what put their account over the cap, or got their account throttled to Edge speeds for the rest of the month.</p>
 <p>I know I can make it better.</p>
@@ -317,7 +334,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>This <a href="https://twitter.com/tacertain/status/1132391299733000193">Twitter thread</a> by Andrew Certain provides an interesting look at how a large organization like Amazon takes latency seriously. It’s far deeper than I plan to measure, but it might help build more context.</p>
 <p>Unfortunately latency can be hard to predict for one person with a blog. I do not yet know what tools work best for evaluating the effect of latency on site performance.</p>
 <p>There are some easily found tools. <a href="https://developers.google.com/web/tools/chrome-devtools/network/#throttle">Chrome</a> and <a href="https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor/Throttling">Firefox</a> both include tools to &ldquo;throttle&rdquo; – simulating different network conditions.</p>
-<p><img src="/post/2019/06/attachments/img/2019/firefox-throttled-3g-kitty.png" alt="Firefox Developer Tools network tab with throttling at 3G"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/firefox-throttled-3g-kitty.png" alt="Firefox Developer Tools network tab with throttling at 3G"/></figure></p>
 <p>This is helpful on a page-by-page basis, and probably <em>very</em> helpful for evaluating a single page application. It doesn’t translate easily to checking an entire site. I suppose I could use <a href="https://github.com/tylertreat/Comcast">Comcast</a>, a command line tool for &ldquo;simulating shitty network conditions&rdquo; and maybe <a href="https://httpie.org/">HTTPie</a> to crawl the site under those conditions.</p>
 <blockquote>
 <p><strong>NOTE</strong></p>

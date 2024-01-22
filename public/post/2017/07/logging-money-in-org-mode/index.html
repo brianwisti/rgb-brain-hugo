@@ -177,11 +177,27 @@ I only want to see how I use my money.">
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -305,7 +321,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2017/07/../../../attachments/img/2017/cover-2017-07-31.png" alt="attachments/img/2017/cover-2017-07-31.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2017/cover-2017-07-31.png" alt="attachments/img/2017/cover-2017-07-31.png"/></figure></p>
 <p>I am setting up Emacs <a href="/card/org/">card/Org</a> to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.</p>
 <blockquote>
 <p><strong>2020-03-01</strong></p>
@@ -367,22 +384,28 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p>This template does not validate input. I don’t know how to do that yet. I must remember to use money values for &ldquo;Amount&rdquo; and to tag every transaction as <code>:income</code> or <code>:expense:</code>. Later I can learn how to enforce these rules with code.</p>
 <h2 id="triggering-a-capture">Triggering a Capture</h2>
 <p><code>C-c c</code> is a global binding which starts <code>org-capture</code> from whatever I’m doing.</p>
-<p><img src="/post/2017/07/attachments/img/2017/org-capture-menu-1.png" title="`C-c c` to enter org capture menu" alt="menu 1 for money capture"/></p>
-<p><img src="/post/2017/07/attachments/img/2017/org-capture-menu-2.png" title="`p` then `m` for a Personal Money entry" alt="menu 2 for money capture"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/org-capture-menu-1.png" title="`C-c c` to enter org capture menu" alt="menu 1 for money capture"/><figcaption>`C-c c` to enter org capture menu</figcaption></figure></p>
+<p><figure>
+    <img src="/attachments/img/2017/org-capture-menu-2.png" title="`p` then `m` for a Personal Money entry" alt="menu 2 for money capture"/><figcaption>`p` then `m` for a Personal Money entry</figcaption></figure></p>
 <p>I get prompted for Amount, Summary, and tags. Once I answer those prompts, I am shown the Capture buffer. I don’t need to change anything, so I finalize the entry with <code>C-c C-c</code>.</p>
-<p><img src="/post/2017/07/attachments/img/2017/org-money-capture-buffer.png" title="`C-c C-c` to finalize" alt="Finalize capture buffer"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/org-money-capture-buffer.png" title="`C-c C-c` to finalize" alt="Finalize capture buffer"/><figcaption>`C-c C-c` to finalize</figcaption></figure></p>
 <p>After I finalize the entry, Emacs closes the Capture buffer and returns me to whatever I was doing before. I can complete the whole process in about five seconds, which makes it even more convenient for me than the old paper notebook.</p>
 <h2 id="filtering-my-agenda">Filtering my agenda</h2>
 <p>Even though Org knows <code>journal.org</code> is an agenda file, inactive timestamps aren’t shown in the default agenda view. I’m okay with this for now. Things can get a little cluttered if I start showing every logged item.</p>
 <h3 id="show-me-all-the-money-entries">Show me all the <code>:money:</code> entries</h3>
 <p><code>C-c a</code> opens the menu of Agenda commands. m lets me search for tag matches. Let’s start with all <code>:money:</code> entries.</p>
-<p><img src="/post/2017/07/attachments/img/2017/agenda-filter-money.png" title="`C-c a m money` to filter on the `:money` tag" alt="Filtered on money"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/agenda-filter-money.png" title="`C-c a m money` to filter on the `:money` tag" alt="Filtered on money"/><figcaption>`C-c a m money` to filter on the `:money` tag</figcaption></figure></p>
 <h3 id="show-me-income">Show me income</h3>
 <p>I already have the agenda match view open, so I use <code>C-u r</code> to refresh with a new search string, &ldquo;income&rdquo;.</p>
-<p><img src="/post/2017/07/attachments/img/2017/agenda-filter-income.png" title="`C-u r income` to filter on the `:income:` tag" alt="Filtered on income"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/agenda-filter-income.png" title="`C-u r income` to filter on the `:income:` tag" alt="Filtered on income"/><figcaption>`C-u r income` to filter on the `:income:` tag</figcaption></figure></p>
 <h3 id="show-me-expenses">Show me expenses</h3>
 <p>Again, I use <code>C-u r</code> to refresh, this time looking for entries that match &ldquo;expense&rdquo;.</p>
-<p><img src="/post/2017/07/attachments/img/2017/agenda-filter-expense.png" title="`C-u r expense` to filter on the `:expense:` tag" alt="Filtered on expense"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/agenda-filter-expense.png" title="`C-u r expense` to filter on the `:expense:` tag" alt="Filtered on expense"/><figcaption>`C-u r expense` to filter on the `:expense:` tag</figcaption></figure></p>
 <h2 id="stop-here">STOP HERE</h2>
 <p>Oh I want to get fancy so bad. Honestly though, I need to set the basic habit of logging all the little things I do with my money. Besides, this gives me something to learn and write future blog posts about!</p>
 

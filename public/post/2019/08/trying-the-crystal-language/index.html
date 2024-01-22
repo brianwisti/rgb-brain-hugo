@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -295,7 +311,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2019/08/../../../attachments/img/2019/cover-2019-08-25.png" alt="attachments/img/2019/cover-2019-08-25.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-08-25.png" alt="attachments/img/2019/cover-2019-08-25.png"/></figure></p>
 <p><a href="/card/crystal/">card/Crystal</a> is a statically typed, compiled programming language that looks a <em>lot</em> like <a href="/card/ruby/">card/Ruby</a>. Let’s try it out! Maybe even work on a <a href="/card/taskwarrior/">Taskwarrior</a> thing I’ve been wanting to do.</p>
 <h2 id="motivation">Motivation</h2>
 <p>I want to play with a compiled language, but I’m not in the mood for Go or Rust.</p>
@@ -377,7 +394,8 @@ Hi!</code></pre>
     ><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="gp">$</span> crystal <span class="nb">eval</span> <span class="s1">&#39;require &#34;json&#34;; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json&#39;</span> <span class="p">|</span> jq --sort-keys <span class="s1">&#39;.&#39;</span>
 </span></span></code></pre>
 </figure><p>There, now it’s all pretty-printed.</p>
-<p><img src="/post/2019/08/attachments/img/2019/crystal-env-jq.png" alt="Colorized JSON via jq"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/crystal-env-jq.png" alt="Colorized JSON via jq"/></figure></p>
 <p>One-liners are fun.</p>
 <p>What was I doing next? Oh right. Crystal source files.</p>
 <h2 id="shell-scripts-with-run">Shell scripts with <code>run</code></h2>
@@ -498,7 +516,8 @@ total 2.0M
 </span></span><span class="line"><span class="cl"><span class="nv">IN</span><span class="o">=</span><span class="s2">&#34;\[\033[0;0m\]&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$NM</span><span class="s2">[ </span><span class="nv">$HI</span><span class="s2">\u </span><span class="nv">$SI</span><span class="s2">\w</span><span class="nv">$NM</span><span class="s2"> ] \$(__git_ps1) </span><span class="nv">$IN</span><span class="s2">\n\$(task-indicator) &#34;</span></span></span></code></pre>
-</figure><p><img src="/post/2019/08/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2019/run-task-indicator.png" alt="Output of task-indicator.cr showing something due today"/></figure></p>
 <p>Nice.</p>
 <p>At first I put the output of <code>task-indicator</code> in a variable, and put the variable in <code>$PS1</code>. Except that variable was only evaluated on shell start. Instead put the invocation directly in <code>$PS1</code> with a leading backslash. Now the indicator is live, as I expected it to be.</p>
 <h2 id="done">Done!</h2>

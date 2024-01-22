@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -299,7 +315,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-11.png" alt="attachments/img/2020/cover-2020-04-11.png"/>
+  <p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-04-11.png" alt="attachments/img/2020/cover-2020-04-11.png"/></figure>
 My h-card as of a few minutes ago</p>
 <h2 id="you-did-what-now">You did what now?</h2>
 <p>I updated my home page h-card for the <a href="/card/indieweb/">card/IndieWeb</a>.</p>
@@ -412,7 +429,8 @@ My h-card as of a few minutes ago</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><p>microformats clarify intent — once you know them. I might have a dozen photos in an h-card. Assigning <code>u-photo</code> lets me say &ldquo;This one matters when talking about me.&rdquo; Regardless of how many paragraphs of text I put in my card, we know that the <code>p-note</code> text is describing me.</p>
 <p>Okay, that’s actually worth looking at. There’s some CSS styling, but I won’t get into that. Just spend a few days on <a href="https://css-tricks.com/">CSS-Tricks</a> and have fun.</p>
-<p><img src="/post/2020/04/attachments/img/2020/hcard-photo.png" title="h-card with bio and photo" alt="simple h-card screenshot"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/hcard-photo.png" title="h-card with bio and photo" alt="simple h-card screenshot"/><figcaption>h-card with bio and photo</figcaption></figure></p>
 <h3 id="linking-your-card-to-other-services">Linking your card to other services</h3>
 <p><a href="https://randomgeekery.org">https://randomgeekery.org</a> may be my home page, but it’s not the only place folks find me. I routinely post on Mastodon and Twitter. I sometimes peek my head in to see what’s new on Github and LinkedIn. h-card can help integrate with those as well.</p>
 <p>Add them as <a href="https://indieweb.org/rel-me">rel-me</a> links!</p>
@@ -434,11 +452,13 @@ My h-card as of a few minutes ago</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><p>My <a href="https://hackers.town/@randomgeek">hackers.town</a> Mastodon profile has a link to this site. The site includes a rel-me link to my hackers.town profile. Mastodon users looking at my profile see a verified connection between each.</p>
-<p><img src="/post/2020/04/../../../attachments/img/2020/hackers-town-profile.png" alt="attachments/img/2020/hackers-town-profile.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/hackers-town-profile.png" alt="attachments/img/2020/hackers-town-profile.png"/></figure>
 That&rsquo;s how you get a verified check on Mastodon sites</p>
 <h3 id="relmeauth">RelMeAuth</h3>
 <p><a href="https://indieweb.org/RelMeAuth">RelMeAuth</a> takes advantage of the relation between your site and <a href="https://oauth.net/">OAuth</a> providers. If IndieWeb authenticators like <a href="https://indielogin.com/">IndieLogin</a> and <a href="https://indieauth.net/">IndieAuth</a> see rel-me links to known providers, they let you verify your site and yourself through those providers.</p>
-<p><img src="/post/2020/04/../../../attachments/img/2020/indielogin-auth.png" alt="attachments/img/2020/indielogin-auth.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/indielogin-auth.png" alt="attachments/img/2020/indielogin-auth.png"/></figure>
 I can use my Twitter or Github accounts to authenticate</p>
 <h4 id="specifying-my-main-page">Specifying my main page</h4>
 <p>New problem. My h-card now includes several <code>u-url</code> links that are all me. Which one is the real me? I make that link the <code>u-uid</code>.</p>
@@ -447,7 +467,8 @@ I can use my Twitter or Github accounts to authenticate</p>
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;u-url u-uid&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://randomgeekery.org&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-name&#34;</span><span class="p">&gt;</span>Brian Wisti<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>:</span></span></code></pre>
-</figure><p><img src="/post/2020/04/attachments/img/2020/hcard-relme.png" title="Now my name links to my `u-uid`" alt="screenshot of updated h-card"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/hcard-relme.png" title="Now my name links to my `u-uid`" alt="screenshot of updated h-card"/><figcaption>Now my name links to my `u-uid`</figcaption></figure></p>
 <h3 id="add-some-details">Add some details</h3>
 <p>This is a reasonable stopping point for a profile h-card. It names, shows, and describes me, including links to find me on assorted social networks. But I’d like to add some more information. Using microformats, of course.</p>
 <h4 id="where-do-i-live">Where do I live?</h4>
@@ -514,14 +535,17 @@ I can use my Twitter or Github accounts to authenticate</p>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span></span></span></code></pre>
-</figure><p><img src="/post/2020/04/attachments/img/2020/hcard-details.png" title="Some styling distinguishes identity links from details" alt="image"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/hcard-details.png" title="Some styling distinguishes identity links from details" alt="image"/><figcaption>Some styling distinguishes identity links from details</figcaption></figure></p>
 <h3 id="validate-me">Validate me</h3>
 <p>Now my h-card includes all the information I care about. Time to make sure I put it together correctly! h-cards exist in the context of other documents, like my Web page. Validation is less formal: mainly, check that microformats2-aware parsers find your information.</p>
 <p>The <a href="https://pin13.net/mf2/">mf2 validator</a> shows you the results of parsing either a URL or text provided by you, which makes it useful for double-checking your h-card while building it.</p>
-<p><img src="/post/2020/04/../../../attachments/img/2020/mf2-validator.png" alt="attachments/img/2020/mf2-validator.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/mf2-validator.png" alt="attachments/img/2020/mf2-validator.png"/></figure>
 The mv2 validator produces JSON from your h-card</p>
 <p>The <a href="https://indiewebify.me/validate-h-card/">IndieWebify.me validator</a> styles its report for readability. It even offers suggestions for common details you could add.</p>
-<p><img src="/post/2020/04/attachments/img/2020/validated-hcard.png" title="IndieWebify.me h-card summary" alt="IndieWebify.me h-card suggestion screenshot"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/validated-hcard.png" title="IndieWebify.me h-card summary" alt="IndieWebify.me h-card suggestion screenshot"/><figcaption>IndieWebify.me h-card summary</figcaption></figure></p>
 <p>It doesn’t accept raw HTML, though. You need to provide a URL, which is less handy for an in-development h-card.</p>
 <h2 id="what-about-some-other-h-cards">What about some other h-cards?</h2>
 <p>I’m pretty much done, other than a plan to incorporate <a href="https://forkaweso.me/Fork-Awesome/">Fork Awesome</a> for me rel-me links. But that’s a topic for another day, if ever.</p>

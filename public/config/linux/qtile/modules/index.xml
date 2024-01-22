@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>My Qtile custom modulesonRandom Geekery</title>
+    <link>https://randomgeekery.org/config/linux/qtile/modules/</link>
+    <description>
+      Recent contentinMy Qtile custom modules on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:52 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/config/linux/qtile/modules/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Config: An __init__.py for my Qtile modules</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/__init__.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/__init__.py/</guid>
+  <description>Probably going overboard on the literate config.
+# This space intentionally left blank. </description>
+   <category>config</category> 
+  
+  
+  <content:encoded><![CDATA[<p>Probably going overboard on the literate config.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># This space intentionally left blank.</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile const.py module</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/const.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/const.py/</guid>
+  <description>This holds constants — which may become fallback defaults someday. Regardless, the main point is so my config includes fewer magic values.
+FONT_FAMILY_FIXED = &#34;Fira Code&#34; FONT_FAMILY_PROSE = &#34;Atkinson Hyperlegible&#34; </description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>This holds constants — which may become fallback defaults someday.
+Regardless, the main point is so my config includes fewer <a href="https://kyleshevlin.com/what-are-magic-values">magic values</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">FONT_FAMILY_FIXED</span> <span class="o">=</span> <span class="s2">&#34;Fira Code&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">FONT_FAMILY_PROSE</span> <span class="o">=</span> <span class="s2">&#34;Atkinson Hyperlegible&#34;</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile Groups Module</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/groups.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/groups.py/</guid>
+  <description>Or screens, or virtual desktops.
+Imports from libqtile.command import lazy from libqtile.config import Key, Group from .keys import keys, mod Define Screen Groups The defaults use a simple numbering scheme for its nine groups.
+groups = [Group(i) for i in &#34;123456789&#34;] Add keybindings for each group Mod&#43; switches to group &lt;n&gt; Mod&#43;Shift&#43; moves currently focused window to group &lt;n&gt; Mod&#43;Right switches to the group right of current (2 → 3, etc) Mod&#43;Left switches to the group left of current (2 → 1, etc) The directional switches wrap around.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>Or screens, or virtual desktops.</p>
+<h2 id="imports">Imports</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.command</span> <span class="kn">import</span> <span class="n">lazy</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.config</span> <span class="kn">import</span> <span class="n">Key</span><span class="p">,</span> <span class="n">Group</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.keys</span> <span class="kn">import</span> <span class="n">keys</span><span class="p">,</span> <span class="n">mod</span></span></span></code></pre>
+</figure><h2 id="define-screen-groups">Define Screen Groups</h2>
+<p>The defaults use a simple numbering scheme for its nine groups.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">Group</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s2">&#34;123456789&#34;</span><span class="p">]</span></span></span></code></pre>
+</figure><h2 id="add-keybindings-for-each-group">Add keybindings for each group</h2>
+<ul>
+<li><kbd>Mod+<n></kbd> switches to group <code>&lt;n&gt;</code></li>
+<li><kbd>Mod+Shift+<n></kbd> moves currently focused window to group <code>&lt;n&gt;</code></li>
+<li><kbd>Mod+Right</kbd> switches to the group right of current (2 → 3, etc)</li>
+<li><kbd>Mod+Left</kbd> switches to the group left of current (2 → 1, etc)</li>
+</ul>
+<p>The directional switches wrap around.
+Group 1 is to the right of group 9, and group 9 is to the left of group 1.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keys</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># mod1 + letter of group = switch to group</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lazy</span><span class="o">.</span><span class="n">group</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">toscreen</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Switch to group </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Right&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">next_group</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Switch to next group&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Left&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">prev_group</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Switch to previous group&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># mod1 + shift + letter of group = switch to &amp; move focused window to group</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">togroup</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">switch_group</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Switch to &amp; move focused window to group </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">])</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile hooks module</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/hooks.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/hooks.py/</guid>
+  <description>Hooks specific functions to specific Qtile events.
+Imports import os import subprocess from libqtile import hook Run autostart.sh once on startup @hook.subscribe.startup_once def autostart(): home = os.path.expanduser(&#39;~/.config/qtile/autostart.sh&#39;) subprocess.call([home]) </description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>Hooks specific functions to specific Qtile events.</p>
+<h2 id="imports">Imports</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">subprocess</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile</span> <span class="kn">import</span> <span class="n">hook</span></span></span></code></pre>
+</figure><h2 id="run-autostartsh-once-on-startup">Run <code>autostart.sh</code> once on startup</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@hook.subscribe.startup_once</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">autostart</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.config/qtile/autostart.sh&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="n">home</span><span class="p">])</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile keys.py</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/keys.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/keys.py/</guid>
+  <description>Global keybindings and some defaults.
+Imports from libqtile.config import Key from libqtile.lazy import lazy Define some defaults The mod4 key is the logo key — usually a Windows logo on most keyboards I see.
+mod = &#34;mod4&#34; My preferred terminal emulator is WezTerm.
+terminal = &#34;wezterm&#34; Define keybindings Just dumping the defaults for now. We have company on the way.
+keys = [ # Switch between windows Key([mod], &#34;h&#34;, lazy.layout.left(), desc=&#34;Move focus to left&#34;), Key([mod], &#34;l&#34;, lazy.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>Global keybindings and some defaults.</p>
+<h2 id="imports">Imports</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.config</span> <span class="kn">import</span> <span class="n">Key</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.lazy</span> <span class="kn">import</span> <span class="n">lazy</span></span></span></code></pre>
+</figure><h2 id="define-some-defaults">Define some defaults</h2>
+<p>The <code>mod4</code> key is the logo key —
+usually a Windows logo on most keyboards I see.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mod</span> <span class="o">=</span> <span class="s2">&#34;mod4&#34;</span></span></span></code></pre>
+</figure><p>My preferred terminal emulator is WezTerm.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">terminal</span> <span class="o">=</span> <span class="s2">&#34;wezterm&#34;</span></span></span></code></pre>
+</figure><h2 id="define-keybindings">Define keybindings</h2>
+<p>Just dumping the defaults for now.
+We have company on the way.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Switch between windows</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;h&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">left</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move focus to left&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;l&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">right</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move focus to right&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;j&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">down</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move focus down&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">up</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move focus up&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;space&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">next</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move window focus to other window&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&#34;rofi -show combi&#34;</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;spawn rofi&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Move windows between left/right columns or move up/down in current stack.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Moving out of range in Columns layout will create new column.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;h&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">shuffle_left</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move window to the left&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;l&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">shuffle_right</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move window to the right&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;j&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">shuffle_down</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move window down&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">shuffle_up</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Move window up&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Grow windows. If current window is on the edge of screen and direction</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># will be to screen edge - window would shrink.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;h&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">grow_left</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Grow window to the left&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;l&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">grow_right</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Grow window to the right&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;j&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">grow_down</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Grow window down&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">grow_up</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Grow window up&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">normalize</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Reset all window sizes&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Toggle between split and unsplit sides of stack.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Split = all windows displayed</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Unsplit = 1 window displayed, like Max layout, but still with</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># multiple stack panes</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Return&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">toggle_split</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Toggle between split and unsplit sides of stack&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Return&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">terminal</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Launch terminal&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Toggle between different layouts as defined below</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Tab&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">next_layout</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Toggle between layouts&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;w&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">kill</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Kill focused window&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span> <span class="s2">&#34;h&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">swap_column_left</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span> <span class="s2">&#34;l&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">swap_column_right</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span> <span class="s2">&#34;space&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">flip</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">restart</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Restart Qtile&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;control&#34;</span><span class="p">],</span> <span class="s2">&#34;q&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Shutdown Qtile&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([</span><span class="n">mod</span><span class="p">,</span> <span class="s2">&#34;shift&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;r&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span><span class="o">.</span><span class="n">spawncmd</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">desc</span><span class="o">=</span><span class="s2">&#34;Spawn a command using a prompt widget&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([],</span> <span class="s2">&#34;XF86AudioRaiseVolume&#34;</span><span class="p">,</span><span class="n">lazy</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&#34;amixer set Master 3%+&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([],</span> <span class="s2">&#34;XF86AudioLowerVolume&#34;</span><span class="p">,</span><span class="n">lazy</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&#34;amixer set Master 3%-&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Key</span><span class="p">([],</span> <span class="s2">&#34;XF86AudioMute&#34;</span><span class="p">,</span><span class="n">lazy</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&#34;amixer set Master toggle&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile layouts.py</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/layouts.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/layouts.py/</guid>
+  <description>My preferred layouts for Qtile on my ridiculously wide monitor.
+Columns MonadThreeCol Floating Other built-in options that I may evaluate later:
+MonadTall Stack Bsp Matrix MonadTall MonadWide RatioTile Tile TreeTab VerticalTile Zoomy from libqtile import layout from libqtile.config import Match layouts = [ layout.Columns(border_focus_stack=&#39;#d75f5f&#39;), layout.MonadThreeCol(), ] And then a floating layour because some application windows work best floating.
+floating_layout = layout.Floating(float_rules=[ # Run the utility of `xprop` to see the wm class and name of an X client.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>My preferred layouts for Qtile on my ridiculously wide monitor.</p>
+<ul>
+<li>Columns</li>
+<li>MonadThreeCol</li>
+<li>Floating</li>
+</ul>
+<p>Other built-in options that I may evaluate later:</p>
+<ul>
+<li>MonadTall</li>
+<li>Stack</li>
+<li>Bsp</li>
+<li>Matrix</li>
+<li>MonadTall</li>
+<li>MonadWide</li>
+<li>RatioTile</li>
+<li>Tile</li>
+<li>TreeTab</li>
+<li>VerticalTile</li>
+<li>Zoomy</li>
+</ul>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile</span> <span class="kn">import</span> <span class="n">layout</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.config</span> <span class="kn">import</span> <span class="n">Match</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">layouts</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">layout</span><span class="o">.</span><span class="n">Columns</span><span class="p">(</span><span class="n">border_focus_stack</span><span class="o">=</span><span class="s1">&#39;#d75f5f&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">layout</span><span class="o">.</span><span class="n">MonadThreeCol</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure><p>And then a floating layour because some application windows work best floating.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">floating_layout</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">Floating</span><span class="p">(</span><span class="n">float_rules</span><span class="o">=</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Run the utility of `xprop` to see the wm class and name of an X client.</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">layout</span><span class="o">.</span><span class="n">Floating</span><span class="o">.</span><span class="n">default_float_rules</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">wm_class</span><span class="o">=</span><span class="s1">&#39;confirmreset&#39;</span><span class="p">),</span>  <span class="c1"># gitk</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">wm_class</span><span class="o">=</span><span class="s1">&#39;makebranch&#39;</span><span class="p">),</span>  <span class="c1"># gitk</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">wm_class</span><span class="o">=</span><span class="s1">&#39;maketag&#39;</span><span class="p">),</span>  <span class="c1"># gitk</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">wm_class</span><span class="o">=</span><span class="s1">&#39;ssh-askpass&#39;</span><span class="p">),</span>  <span class="c1"># ssh-askpass</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;branchdialog&#39;</span><span class="p">),</span>  <span class="c1"># gitk</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Match</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;pinentry&#39;</span><span class="p">),</span>  <span class="c1"># GPG key password entry</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile mouse.py</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/mouse.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/mouse.py/</guid>
+  <description>What happens when you click a mouse button or tap the trackpad.
+from libqtile.config import Click, Drag from libqtile.lazy import lazy from .keys import mod # Drag floating layouts. mouse = [ Drag([mod], &#34;Button1&#34;, lazy.window.set_position_floating(), start=lazy.window.get_position()), Drag([mod], &#34;Button3&#34;, lazy.window.set_size_floating(), start=lazy.window.get_size()), Click([mod], &#34;Button2&#34;, lazy.window.bring_to_front()) ] </description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>What happens when you click a mouse button or tap the trackpad.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.config</span> <span class="kn">import</span> <span class="n">Click</span><span class="p">,</span> <span class="n">Drag</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.lazy</span> <span class="kn">import</span> <span class="n">lazy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.keys</span> <span class="kn">import</span> <span class="n">mod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Drag floating layouts.</span>
+</span></span><span class="line"><span class="cl"><span class="n">mouse</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Drag</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Button1&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">set_position_floating</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">start</span><span class="o">=</span><span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">get_position</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Drag</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Button3&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">set_size_floating</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">start</span><span class="o">=</span><span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">get_size</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Click</span><span class="p">([</span><span class="n">mod</span><span class="p">],</span> <span class="s2">&#34;Button2&#34;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bring_to_front</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile screens.py</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/screens.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/screens.py/</guid>
+  <description>How the screen is laid out: taskbars and stuff like that.
+import os from libqtile import bar from libqtile.config import Screen from modules.keys import terminal from .widgets import * screens = [ Screen( top=bar.Bar( [ widget.Sep(padding=3, linewidth=0, background=&#34;#2f343f&#34;), widget.Image(filename=&#39;~/.config/qtile/eos-c.png&#39;, margin=3, background=&#34;#2f343f&#34;, mouse_callbacks={&#39;Button1&#39;: lambda: qtile.cmd_spawn(&#34;rofi -show combi&#34;)}), widget.Sep(padding=4, linewidth=0, background=&#34;#2f343f&#34;), widget.GroupBox( highlight_method=&#39;line&#39;, this_screen_border=&#34;#5294e2&#34;, this_current_screen_border=&#34;#5294e2&#34;, active=&#34;#ffffff&#34;, inactive=&#34;#848e96&#34;, background=&#34;#2f343f&#34;), widget.TextBox( text = &#39;&#39;, padding = 0, fontsize = 28, foreground=&#39;#2f343f&#39; ), widget.Prompt(), widget.Spacer(length=5), widget.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>How the screen is laid out: taskbars and stuff like that.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile</span> <span class="kn">import</span> <span class="n">bar</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile.config</span> <span class="kn">import</span> <span class="n">Screen</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">modules.keys</span> <span class="kn">import</span> <span class="n">terminal</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.widgets</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">screens</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Screen</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">top</span><span class="o">=</span><span class="n">bar</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span>   <span class="n">widget</span><span class="o">.</span><span class="n">Sep</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;~/.config/qtile/eos-c.png&#39;</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">,</span> <span class="n">mouse_callbacks</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Button1&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">qtile</span><span class="o">.</span><span class="n">cmd_spawn</span><span class="p">(</span><span class="s2">&#34;rofi -show combi&#34;</span><span class="p">)}),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Sep</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">GroupBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">highlight_method</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">this_screen_border</span><span class="o">=</span><span class="s2">&#34;#5294e2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">this_current_screen_border</span><span class="o">=</span><span class="s2">&#34;#5294e2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">active</span><span class="o">=</span><span class="s2">&#34;#ffffff&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">inactive</span><span class="o">=</span><span class="s2">&#34;#848e96&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span>
+</span></span><span class="line"><span class="cl">                       <span class="p">),</span>    
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Prompt</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">WindowName</span><span class="p">(</span><span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#99c0de&#39;</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Chord</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">chords_colors</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="s1">&#39;launch&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&#34;#ff0000&#34;</span><span class="p">,</span> <span class="s2">&#34;#ffffff&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">name_transform</span><span class="o">=</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">CurrentLayoutIcon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">CheckUpdates</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">update_interval</span><span class="o">=</span><span class="mi">1800</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">distro</span><span class="o">=</span><span class="s2">&#34;Arch_yay&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">display_format</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">{updates}</span><span class="s2"> Updates&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">foreground</span><span class="o">=</span><span class="s2">&#34;#ffffff&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">mouse_callbacks</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="s1">&#39;Button1&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">lambda</span><span class="p">:</span> <span class="n">qtile</span><span class="o">.</span><span class="n">cmd_spawn</span><span class="p">(</span><span class="n">terminal</span> <span class="o">+</span> <span class="s1">&#39; -e yay -Syu&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Systray</span><span class="p">(</span><span class="n">icon_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span>
+</span></span><span class="line"><span class="cl">                       <span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">volume</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>                                                                    
+</span></span><span class="line"><span class="cl">                       <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="p">),</span>   
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span>
+</span></span><span class="line"><span class="cl">                       <span class="p">),</span>    
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">Clock</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39; %Y-%m-</span><span class="si">%d</span><span class="s1"> </span><span class="si">%a</span><span class="s1"> %I:%M %p&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#2f343f&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#9bd689&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>                                                
+</span></span><span class="line"><span class="cl">                       <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="p">),</span>   
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span><span class="o">.</span><span class="n">TextBox</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">mouse_callbacks</span><span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="s1">&#39;Button1&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">lambda</span><span class="p">:</span> <span class="n">qtile</span><span class="o">.</span><span class="n">cmd_spawn</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.config/rofi/powermenu.sh&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#e39378&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="mi">30</span><span class="p">,</span>  <span class="c1"># height in px</span>
+</span></span><span class="line"><span class="cl">            <span class="n">background</span><span class="o">=</span><span class="s2">&#34;#404552&#34;</span>  <span class="c1"># background color</span>
+</span></span><span class="line"><span class="cl">        <span class="p">),</span> <span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Qtile widgets.py</title>
+  <link>https://randomgeekery.org/config/linux/qtile/modules/widgets.py/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/qtile/modules/widgets.py/</guid>
+  <description>Custom widgets for the Qtile desktop.
+Imports from libqtile import qtile, widget from modules import const Theme colors colors = [ [&#34;#282c34&#34;, &#34;#282c34&#34;], # panel background [&#34;#3d3f4b&#34;, &#34;#434758&#34;], # background for current screen tab [&#34;#ffffff&#34;, &#34;#ffffff&#34;], # font color for group names [&#34;#ff5555&#34;, &#34;#ff5555&#34;], # border line color for current tab [&#34;#74438f&#34;, &#34;#74438f&#34;], # border line color for &#39;other tabs&#39; and color for &#39;odd widgets&#39; [&#34;#4f76c7&#34;, &#34;#4f76c7&#34;], # color for the &#39;even widgets&#39; [&#34;#e1acff&#34;, &#34;#e1acff&#34;], # window name [&#34;#ecbbfb&#34;, &#34;#ecbbfb&#34;] # backbround for inactive screens ] Widget Defaults widget_defaults = dict( font=const.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>Custom widgets for the Qtile desktop.</p>
+<h2 id="imports">Imports</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">libqtile</span> <span class="kn">import</span> <span class="n">qtile</span><span class="p">,</span> <span class="n">widget</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">modules</span> <span class="kn">import</span> <span class="n">const</span></span></span></code></pre>
+</figure><h2 id="theme-colors">Theme colors</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#282c34&#34;</span><span class="p">,</span> <span class="s2">&#34;#282c34&#34;</span><span class="p">],</span> <span class="c1"># panel background</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#3d3f4b&#34;</span><span class="p">,</span> <span class="s2">&#34;#434758&#34;</span><span class="p">],</span> <span class="c1"># background for current screen tab</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#ffffff&#34;</span><span class="p">,</span> <span class="s2">&#34;#ffffff&#34;</span><span class="p">],</span> <span class="c1"># font color for group names</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#ff5555&#34;</span><span class="p">,</span> <span class="s2">&#34;#ff5555&#34;</span><span class="p">],</span> <span class="c1"># border line color for current tab</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#74438f&#34;</span><span class="p">,</span> <span class="s2">&#34;#74438f&#34;</span><span class="p">],</span> <span class="c1"># border line color for &#39;other tabs&#39; and color for &#39;odd widgets&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#4f76c7&#34;</span><span class="p">,</span> <span class="s2">&#34;#4f76c7&#34;</span><span class="p">],</span> <span class="c1"># color for the &#39;even widgets&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#e1acff&#34;</span><span class="p">,</span> <span class="s2">&#34;#e1acff&#34;</span><span class="p">],</span> <span class="c1"># window name</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s2">&#34;#ecbbfb&#34;</span><span class="p">,</span> <span class="s2">&#34;#ecbbfb&#34;</span><span class="p">]</span>  <span class="c1"># backbround for inactive screens</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span></span></span></code></pre>
+</figure><h2 id="widget-defaults">Widget Defaults</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">widget_defaults</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">font</span><span class="o">=</span><span class="n">const</span><span class="o">.</span><span class="n">FONT_FAMILY_PROSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">extension_defaults</span> <span class="o">=</span> <span class="n">widget_defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></span></span></code></pre>
+</figure><h2 id="volume-control-widget">Volume Control Widget</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyVolume</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">Volume</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qtile</span><span class="p">,</span> <span class="n">bar</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">widget</span><span class="o">.</span><span class="n">Volume</span><span class="o">.</span><span class="n">_configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qtile</span><span class="p">,</span> <span class="n">bar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_volume</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># drawing here crashes Wayland</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_update_drawer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wob</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">wob</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wob</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>The defaults initialize a MyVolume widget off in the widgets library.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">volume</span> <span class="o">=</span> <span class="n">MyVolume</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">font</span><span class="o">=</span><span class="s1">&#39;Font Awesome 5 Free&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">foreground</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">background</span><span class="o">=</span><span class="s1">&#39;#2f343f&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mouse_callbacks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Button1&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">qtile</span><span class="o">.</span><span class="n">cmd_spawn</span><span class="p">(</span><span class="s2">&#34;pavucontrol&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+</channel>
+</rss>

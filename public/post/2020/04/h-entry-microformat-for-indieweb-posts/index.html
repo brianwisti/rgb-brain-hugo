@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -307,7 +323,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2020/04/../../../attachments/img/2020/cover-2020-04-26.png" alt="attachments/img/2020/cover-2020-04-26.png"/>
+  <p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-04-26.png" alt="attachments/img/2020/cover-2020-04-26.png"/></figure>
 looking at the interpreted microformats for a post, in <a href="https://github.com/sharkdp/bat">bat</a></p>
 <h2 id="h-entry">h-entry?</h2>
 <p>Like <a href="/post/2020/04/indieweb-h-cards/">h-card</a>, <a href="https://microformats.org/wiki/h-entry">h-entry</a> provides an attribute vocabulary. While h-card focuses on people and organizations, h-entry describes shared content — blog posts and comments in particular, but you could expand it as far as you like. Want to generate a feed of git commits? You could use h-entry to describe a commit!</p>
@@ -384,7 +401,8 @@ element.</p>
 </span></span><span class="line"><span class="cl">{{- end -}}
 </span></span><span class="line"><span class="cl">⋮</span></span></code></pre>
 </figure><p>Let’s see that in action with my post on <a href="/post/2019/06/weighing-files-with-python/">weighing files in Python</a></p>
-<p><img src="/post/2020/04/attachments/img/2020/h-entry-with-title.png" alt="post header with minimal h-entry info"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/h-entry-with-title.png" alt="post header with minimal h-entry info"/></figure></p>
 <h3 id="who-wrote-this-anyways">Who wrote this, anyways?</h3>
 <p>Seems a bit silly on my single-author site, but explicit authorship <em>does</em> make things clearer to casual visitors.</p>
 <p>Fortunately I have a canonical h-card that I can link to.</p>
@@ -423,13 +441,15 @@ element.</p>
 <li><code>.Type</code> is a Hugo <a href="https://gohugo.io/variables/page/">page variable</a></li>
 <li>Category and tag <a href="https://gohugo.io/content-management/taxonomies/">taxonomies</a> get   set in front matter.</li>
 </ul>
-<p><img src="/post/2020/04/attachments/img/2020/h-entry-with-categories.png" alt="h-entry with categories"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/h-entry-with-categories.png" alt="h-entry with categories"/></figure></p>
 <h3 id="what-about-cover-images">What about cover images?</h3>
 <p>Many — but not all — of my posts include a cover image. Cover images should almost definitely be <code>u-photo</code>. There’s a <strong>lot</strong> of image processing with it though. To make a long story short — <em>too late!</em> — I’ll just show the microformat-specific addition.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;img {{ if $isCover }}class=&#34;u-photo&#34;{{ end }}</span></span></code></pre>
-</figure><p><img src="/post/2020/04/attachments/img/2020/h-entry-full.png" alt="full h-entry"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/h-entry-full.png" alt="full h-entry"/></figure></p>
 <p>Yep, that’s a post header all right. What about validation? Did I get the microformats right?</p>
 <h2 id="examining-my-microformats-locally">Examining my microformats locally</h2>
 <p>I know I can <a href="https://indiewebify.me/validate-h-entry">validate</a> my h-entry at IndieWebify or copy and paste to <a href="https://microformats.io">https://microformats.io</a>, but I want to look at this stuff from the shell. Preferably with a single command. <em>Ideally</em> with something I can stash in my [[inbox/Pyinvoke|<code>tasks.py</code>]] file.</p>

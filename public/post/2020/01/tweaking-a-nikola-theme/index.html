@@ -177,11 +177,27 @@ In the live site, cover images are prominently displayed at the top of their pag
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -302,7 +318,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <p>I adjusted the default <a href="https://getnikola.com">Nikola</a> theme to show cover images!</p>
-<p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-25.png" alt="attachments/img/2020/cover-2020-01-25.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-01-25.png" alt="attachments/img/2020/cover-2020-01-25.png"/></figure>
 The <a href="/now/">now</a> page, in Nikola</p>
 <h2 id="motivation">Motivation</h2>
 <p>I am a visual person. You might not know that from all the typing and my enthusiasm for command line tools. But many of my posts and pages have cover images. Sometimes the cover images are even relevant to the post.</p>
@@ -452,11 +469,14 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
 </figure><p>Keep in mind what I noticed <a href="/post/2020/01/restructuredtext-basics-for-blogging/">the other day</a>about these not being real figures in reStructuredText. For now I match RST output, as if I’d used a <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure directive</a>. That way I don’t have to find the CSS for this theme.</p>
-<p><img src="/post/2020/01/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/cover-in-post.png" title="Cover image in post" alt="screenshot showing cover image in post"/><figcaption>Cover image in post</figcaption></figure></p>
 <p>It has a cover image, placed right by the title. It doesn’t <em>quite</em> match today’s view of <a href="/post/2019/12/again-with-the-manual-symmetry/">that post</a>, but this has the basic idea. And I only had to edit a single template file!</p>
-<p><img src="/post/2020/01/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/post-hugo-comparison.png" title="The same page on the current site" alt="screenshot of same page with different style"/><figcaption>The same page on the current site</figcaption></figure></p>
 <p>Looks good for posts that have a cover image. How about pages?</p>
-<p><img src="/post/2020/01/attachments/img/2020/cover-in-page.png" title="Cover image in a non-post page" alt="screenshot of /now page with nikola style"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/cover-in-page.png" title="Cover image in a non-post page" alt="screenshot of /now page with nikola style"/><figcaption>Cover image in a non-post page</figcaption></figure></p>
 <p>Excellent. I thought that would take much more work.</p>
 <h2 id="remember-bootstrap">Remember Bootstrap?</h2>
 <p>bootblog4 <em>is</em> based off of Bootstrap. I feel compelled to make the cover image a <a href="https://getbootstrap.com/docs/4.4/components/jumbotron/">Jumbotron</a>.</p>
@@ -470,7 +490,8 @@ The <a href="/now/">now</a> page, in Nikola</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      &lt;/div&gt;
 </span></span></span><span class="line"><span class="cl"><span class="x"></span>  <span class="cp">%</span><span class="k"> endif</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x"></span><span class="cp">&lt;/%</span><span class="nb">block</span><span class="cp">&gt;</span></span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/post-previewimage-jumbotron.png" title="Cover image in Bootstrap Jumbotron" alt="screenshot with large jumbotron element"/><figcaption>Cover image in Bootstrap Jumbotron</figcaption></figure></p>
 <p>Hm. Maybe, maybe not. I’m tempted to tweak it some more, but my task list is long and my time is short.</p>
 <h2 id="did-i-miss-anything">Did I miss anything?</h2>
 <p>Sort of. On the live site, I let Hugo resize cover images to fit in my design and avoid large downloads. Nikola has thumbnails, but that’s not quite the same thing. I’d have to do it myself, maybe with a <a href="https://getnikola.com/handbook.html#custom-plugins">plugin</a>.</p>

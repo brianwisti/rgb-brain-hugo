@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/config/linux/awesome/rc.lua/">
+<meta property="og:title" content="My rc.lua for awesome">
+<meta name="twitter:title" content="My rc.lua for awesome">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="The source code for my awesome window manager config. It started with the default rc.lua and expanded from there — with frequent checks at My first Awesome and Epsi&rsquo;s step by step guide.
+My awesome config started as a single rc.lua. Breaking this down into modules is an ongoing process.
+Require the important libraries If the Lua package manager LuaRocks is installed, make sure that packages installed through it are found (e.">
+    <meta property="og:description" content="The source code for my awesome window manager config. It started with the default rc.lua and expanded from there — with frequent checks at My first Awesome and Epsi&rsquo;s step by step guide.
+My awesome config started as a single rc.lua. Breaking this down into modules is an ongoing process.
+Require the important libraries If the Lua package manager LuaRocks is installed, make sure that packages installed through it are found (e.">
+  
+
+
+
+<title itemprop="name">My rc.lua for awesome - Random Geekery</title>
+<meta property="og:title" content=My&#32;rc.lua&#32;for&#32;awesome&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=My&#32;rc.lua&#32;for&#32;awesome&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=My&#32;rc.lua&#32;for&#32;awesome&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=My&#32;rc.lua&#32;for&#32;awesome&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/config/linux/awesome/rc.lua/" />
+<link rel="canonical" href="https://randomgeekery.org/config/linux/awesome/rc.lua/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/config/linux/awesome/rc.lua/" />
+<meta name="twitter:url" content="https://randomgeekery.org/config/linux/awesome/rc.lua/" />
+<meta property="og:url" content="https://randomgeekery.org/config/linux/awesome/rc.lua/" />
+
+
+<meta property="og:updated_time" content=1001-01-12T10:00:01Z />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/config/shell/zsh/">My $ZDOTDIR</a></li>
+        
+          <li><a href="/config/term/alacritty/">My Alacritty Config</a></li>
+        
+          <li><a href="/config/shell/bash/bash_aliases/">My Bash aliases</a></li>
+        
+          <li><a href="/config/install.conf.yaml/">My Dotbot config</a></li>
+        
+          <li><a href="/config/shell/bash/bash_profile/">My GNU Bash Profile</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/">My Config</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/linux/">My Linux Desktop configs</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/linux/awesome/">My awesome config</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/config/linux/awesome/rc.lua/">My rc.lua for awesome</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/config/linux/awesome/rc.lua/">My rc.lua for awesome</a>
+    </h1>
+    
+        <time datetime="2024-01-21T21:46:53-0800" class="post-date">
+            January 21, 2024
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-config">
+            <a href="https://randomgeekery.org/tags/config">config</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <p>The source code for my <a href="https://awesomewm.org/">awesome</a> window manager config.
+It started with the default <code>rc.lua</code> and expanded from there —
+with frequent checks at <a href="https://awesomewm.org/apidoc/documentation/07-my-first-awesome.md.html#">My first Awesome</a> and Epsi&rsquo;s <a href="https://epsi-rns.github.io/desktop/2019/06/15/awesome-overview.html">step
+by step guide</a>.</p>
+<p>My awesome config started as a single <code>rc.lua</code>.
+Breaking this down into modules is an ongoing process.</p>
+<h2 id="require-the-important-libraries">Require the important libraries</h2>
+<p>If the Lua package manager <a href="https://luarocks.org/">LuaRocks</a> is installed, make sure that
+packages installed through it are found (e.g. lgi). If LuaRocks is not
+installed, do nothing.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">pcall</span><span class="p">(</span><span class="n">require</span><span class="p">,</span> <span class="s2">&#34;luarocks.loader&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>First I load the standard awesome library.</p>
+<dl>
+<dt><code>gears</code></dt>
+<dd>utility library for color parsing and objects</dd>
+<dt><code>awful</code></dt>
+<dd>everything related to window management</dd>
+<dt><code>awful.autofocus</code></dt>
+<dd>support for autofocus, I&rsquo;m guessing</dd>
+</dl>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">gears</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;gears&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">awful</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;awful&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;awful.autofocus&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Then a couple of libraries for widgets and themes.</p>
+<dl>
+<dt><a href="https://awesomewm.org/apidoc/popups_and_bars/wibox.html#"><code>wibox</code></a></dt>
+<dd>Awesome&rsquo;s built-in generic widget framework</dd>
+<dt><a href="https://awesomewm.org/apidoc/theme_related_libraries/beautiful.html"><code>beautiful</code></a></dt>
+<dd>Awesome&rsquo;s build-in theme library</dd>
+</dl>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">wibox</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;wibox&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">beautiful</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;beautiful&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Libraries for some of the more refined behaviors we expect from a desktop these
+days.</p>
+<dl>
+<dt><a href="https://awesomewm.org/apidoc/libraries/naughty.html#"><code>naughty</code></a></dt>
+<dd>notification handling</dd>
+<dt><a href="https://awesomewm.org/apidoc/popups_and_bars/menubar.html#"><code>menubar</code></a></dt>
+<dd><a href="https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html">XDG</a> application menu</dd>
+<dt><a href="https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html"><code>awful.hotkeys_popup</code></a></dt>
+<dd>The awesome help widget, explaining the hotkeys currently available</dd>
+</dl>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">naughty</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;naughty&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">menubar</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;menubar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">hotkeys_popup</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;awful.hotkeys_popup&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Enable hotkeys help widget for VIM and other apps when client with a matching
+name is opened:</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;awful.hotkeys_popup.keys&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="additional-modules">Additional modules</h3>
+<p>Freedesktop so I can have a full application menu.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">freedesktop</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;freedesktop&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p><a href="https://github.com/lcpz/lain">lain</a>&rsquo;s <code>centerwork</code> layout seems be working nice with my ludicrously wide
+monitor.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">lain</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;lain&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="user-preference-variables">User preference variables</h2>
+<p>Refactored to [<code>user-variables.lua</code>][user-variables].</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">RC</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="n">RC.vars</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;main.user-variables&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I use a couple of values from <code>RC.vars</code> pretty frequently.
+May as well pull them into the local namespace.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">editor_cmd</span> <span class="o">=</span> <span class="n">RC.vars</span><span class="p">.</span><span class="n">editor_cmd</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">modkey</span> <span class="o">=</span> <span class="n">RC.vars</span><span class="p">.</span><span class="n">modkey</span></span></span></code></pre>
+</figure><h2 id="error-handling">Error handling</h2>
+<p>Refactored out to [<code>error-handling.lua</code>][error-handling].</p>
+<p>[user-variables]: {{&lt; ref &ldquo;config/linux/awesome/main/user-variables.lua.md&rdquo; &gt;}}
+[error-handling]: {{&lt; ref &ldquo;config/linux/awesome/main/error-handling.lua.md&rdquo; &gt;}}</p>
+<h2 id="autostart">Autostart</h2>
+<p>For <a href="https://github.com/jceb/dex">dex</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">awful.spawn</span><span class="p">.</span><span class="n">with_shell</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;systemctl --user start autostart.target&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="widgets">Widgets</h2>
+<p>Pavel Makhov&rsquo;s <a href="https://pavelmakhov.com/awesome-wm-widgets/">Awesome WM Widgets</a> has several
+goodies.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">//- clone the Awesome WM Widgets repo
+</span></span><span class="line"><span class="cl">git clone <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  git@github.com:streetturtle/awesome-wm-widgets.git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  ~/.config/awesome/awesome-wm-widgets</span></span></code></pre>
+</figure><p>I&rsquo;ll start with the volume widget.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">volume_widget</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;awesome-wm-widgets.volume-widget.volume&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="themes">Themes</h3>
+<p>Refactored to [<code>theme.lua</code>][theme].</p>
+<p>[theme]: {{&lt; ref &ldquo;config/linux/awesome/main/theme.lua.md&rdquo; &gt;}}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">theme</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;main.theme&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="layouts-and-tags">Layouts and tags</h3>
+<p>Layouts are defined over in [<code>layouts.lua</code>][layouts].</p>
+<p>[layouts]: {{&lt; ref &ldquo;config/linux/awesome/main/layous.lua.md&rdquo; &gt;}}</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">RC.layouts</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;main.layouts&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">awful.layout</span><span class="p">.</span><span class="n">layouts</span> <span class="o">=</span> <span class="n">RC.layouts</span></span></span></code></pre>
+</figure><p>Awesome uses string tags to enumerate and identify virtual desktops.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">tags</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;main.tags&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="menu">Menu</h2>
+<p>A handy-dandy application and system menu so I don&rsquo;t have to define and
+memorize hotkeys for <em>everything</em>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;main.menu&#34;</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Adding a menu launcher widget.
+Because I&rsquo;ll need some way to get <em>at</em> the menu I just loaded.
+This goes in by widget bar later.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">menu_launcher</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">launcher</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span> <span class="o">=</span> <span class="n">beautiful.awesome_icon</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">menu</span> <span class="o">=</span> <span class="n">menu.main</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- Menubar configuration</span>
+</span></span><span class="line"><span class="cl"><span class="n">menubar.utils</span><span class="p">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="n">RC.vars</span><span class="p">.</span><span class="n">terminal</span> <span class="c1">-- Set the terminal for applications that require it</span></span></span></code></pre>
+</figure><h2 id="keyboard-map-indicator-and-switcher">Keyboard map indicator and switcher</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">mykeyboardlayout</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">keyboardlayout</span><span class="p">()</span></span></span></code></pre>
+</figure><h2 id="wibar">Wibar</h2>
+<p>Create a textclock widget.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">mytextclock</span> <span class="o">=</span> <span class="n">wibox.widget</span><span class="p">.</span><span class="n">textclock</span><span class="p">()</span></span></span></code></pre>
+</figure><p>Create a wibox for each screen and add it.</p>
+<p>First we need buttons for all the tags.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">taglist_buttons</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">t</span><span class="p">:</span><span class="n">view_only</span><span class="p">()</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">if</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client.focus</span><span class="p">:</span><span class="n">move_to_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewtoggle</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="n">modkey</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">if</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client.focus</span><span class="p">:</span><span class="n">toggle_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">4</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewnext</span><span class="p">(</span><span class="n">t.screen</span><span class="p">)</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">5</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewprev</span><span class="p">(</span><span class="n">t.screen</span><span class="p">)</span> <span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><p>Now we need buttons for all the tasks.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">tasklist_buttons</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c.minimized</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;request::activate&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;tasklist&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="n">awful.menu</span><span class="p">.</span><span class="n">client_list</span><span class="p">({</span> <span class="n">theme</span> <span class="o">=</span> <span class="p">{</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">250</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">},</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.byidx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">awful.button</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="p">},</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.byidx</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><p>Tie everything together for each screen.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">awful.screen</span><span class="p">.</span><span class="n">connect_for_each_screen</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">function</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Create a promptbox for each screen</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mypromptbox</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">prompt</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Create an imagebox widget which will contain an icon indicating which layout we&#39;re using.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- We need one layoutbox per screen.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mylayoutbox</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">layoutbox</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mylayoutbox</span><span class="p">:</span><span class="n">buttons</span><span class="p">(</span><span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">4</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">5</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Create a taglist widget</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mytaglist</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">taglist</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">screen</span>  <span class="o">=</span> <span class="n">s</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">filter</span>  <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">taglist.filter</span><span class="p">.</span><span class="n">all</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">buttons</span> <span class="o">=</span> <span class="n">taglist_buttons</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Create a tasklist widget</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mytasklist</span> <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">tasklist</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">screen</span>  <span class="o">=</span> <span class="n">s</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">filter</span>  <span class="o">=</span> <span class="n">awful.widget</span><span class="p">.</span><span class="n">tasklist.filter</span><span class="p">.</span><span class="n">currenttags</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">buttons</span> <span class="o">=</span> <span class="n">tasklist_buttons</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="o">==&gt;</span> <span class="n">Create</span> <span class="n">wibox</span> <span class="kr">for</span> <span class="n">this</span> <span class="n">screen</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+</figure><p>Create the wibox and add its widgets. This is where I add the volume control I
+required earlier.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="o">//-</span> <span class="n">Create</span> <span class="n">wibox</span> <span class="kr">for</span> <span class="n">this</span> <span class="n">screen</span>
+</span></span><span class="line"><span class="cl"><span class="n">s.mywibox</span> <span class="o">=</span> <span class="n">awful.wibar</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="s2">&#34;top&#34;</span><span class="p">,</span> <span class="n">screen</span> <span class="o">=</span> <span class="n">s</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">s.mywibox</span><span class="p">:</span><span class="n">setup</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">layout</span> <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">align.horizontal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="c1">-- Left widgets</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout</span> <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">fixed.horizontal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">menu_launcher</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s.mytaglist</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s.mypromptbox</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s.mytasklist</span><span class="p">,</span> <span class="c1">-- Middle widget</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="c1">-- Right widgets</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout</span> <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">fixed.horizontal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mykeyboardlayout</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wibox.widget</span><span class="p">.</span><span class="n">systray</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">volume_widget</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mytextclock</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s.mylayoutbox</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h2 id="mouse-bindings">Mouse bindings</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">root.buttons</span><span class="p">(</span><span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">menu.main</span><span class="p">:</span><span class="n">toggle</span><span class="p">()</span> <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">4</span><span class="p">,</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewnext</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">5</span><span class="p">,</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewprev</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="key-bindings">Key bindings</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">global_keys</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;s&#34;</span><span class="p">,</span>      <span class="n">hotkeys_popup.show_help</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;show help&#34;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s2">&#34;awesome&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;Left&#34;</span><span class="p">,</span>   <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewprev</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;view previous&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;Right&#34;</span><span class="p">,</span>  <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewnext</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;view next&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;Escape&#34;</span><span class="p">,</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">history.restore</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;go back&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;j&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.byidx</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;focus next by index&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.byidx</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;focus previous by index&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;w&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">menu.main</span><span class="p">:</span><span class="n">show</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;show main menu&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;awesome&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Layout manipulation</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;j&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.client</span><span class="p">.</span><span class="n">swap.byidx</span><span class="p">(</span>  <span class="mi">1</span><span class="p">)</span>    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;swap with next client by index&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.client</span><span class="p">.</span><span class="n">swap.byidx</span><span class="p">(</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;swap with previous client by index&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;j&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focus_relative</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;focus the next screen&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;screen&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;k&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focus_relative</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;focus the previous screen&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;screen&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;u&#34;</span><span class="p">,</span> <span class="n">awful.client</span><span class="p">.</span><span class="n">urgent.jumpto</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;jump to urgent client&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;Tab&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.history</span><span class="p">.</span><span class="n">previous</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="n">client.focus</span><span class="p">:</span><span class="n">raise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;go back&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Standard program</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;Return&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.spawn</span><span class="p">(</span><span class="n">RC.vars</span><span class="p">.</span><span class="n">terminal</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;open a terminal&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;launcher&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">awesome.restart</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;reload awesome&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;awesome&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;q&#34;</span><span class="p">,</span> <span class="n">awesome.quit</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;quit awesome&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;awesome&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;l&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incmwfact</span><span class="p">(</span> <span class="mf">0.05</span><span class="p">)</span>          <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;increase master width factor&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;h&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incmwfact</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">)</span>          <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;decrease master width factor&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;h&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incnmaster</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;increase the number of master clients&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;l&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incnmaster</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;decrease the number of master clients&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;h&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incncol</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;increase the number of columns&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;l&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.tag</span><span class="p">.</span><span class="n">incncol</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;decrease the number of columns&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;space&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span> <span class="mi">1</span><span class="p">)</span>                <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;select next&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;space&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.layout</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;select previous&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;layout&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">                  <span class="kd">local</span> <span class="n">c</span> <span class="o">=</span> <span class="n">awful.client</span><span class="p">.</span><span class="n">restore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                  <span class="c1">-- Focus restored client</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">if</span> <span class="n">c</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;key.unminimize&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">              <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;restore minimized&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Prompt</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span>            <span class="s2">&#34;r&#34;</span><span class="p">,</span>     <span class="kr">function</span> <span class="p">()</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focused</span><span class="p">().</span><span class="n">mypromptbox</span><span class="p">:</span><span class="n">run</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;run prompt&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;launcher&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">awful.prompt</span><span class="p">.</span><span class="n">run</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">prompt</span>       <span class="o">=</span> <span class="s2">&#34;Run Lua code: &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">textbox</span>      <span class="o">=</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focused</span><span class="p">().</span><span class="n">mypromptbox.widget</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">exe_callback</span> <span class="o">=</span> <span class="n">awful.util</span><span class="p">.</span><span class="n">eval</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">history_path</span> <span class="o">=</span> <span class="n">awful.util</span><span class="p">.</span><span class="n">get_cache_dir</span><span class="p">()</span> <span class="o">..</span> <span class="s2">&#34;/history_eval&#34;</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;lua execute prompt&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;awesome&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Menubar</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span> <span class="s2">&#34;p&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span> <span class="n">menubar.show</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;show the menubar&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;launcher&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clientkeys</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;f&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c.fullscreen</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">c.fullscreen</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">raise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;toggle fullscreen&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span>      <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c</span><span class="p">:</span><span class="n">kill</span><span class="p">()</span>                         <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;close&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;space&#34;</span><span class="p">,</span>  <span class="n">awful.client</span><span class="p">.</span><span class="n">floating.toggle</span>                     <span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;toggle floating&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;Return&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c</span><span class="p">:</span><span class="n">swap</span><span class="p">(</span><span class="n">awful.client</span><span class="p">.</span><span class="n">getmaster</span><span class="p">())</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;move to master&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;o&#34;</span><span class="p">,</span>      <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c</span><span class="p">:</span><span class="n">move_to_screen</span><span class="p">()</span>               <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;move to screen&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span>      <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c.ontop</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">c.ontop</span>            <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;toggle keep on top&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- The client currently has the input focus, so it cannot be</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- minimized, since minimized clients can&#39;t have the focus.</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c.minimized</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span> <span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;minimize&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span>           <span class="p">},</span> <span class="s2">&#34;m&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c.maximized</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">c.maximized</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">raise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span> <span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;(un)maximize&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;m&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c.maximized_vertical</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">c.maximized_vertical</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">raise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span> <span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;(un)maximize vertically&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span>   <span class="p">},</span> <span class="s2">&#34;m&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c.maximized_horizontal</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">c.maximized_horizontal</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">raise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span> <span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;(un)maximize horizontally&#34;</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;client&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- Bind all key numbers to tags.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- Be careful: we use keycodes to make it work on any keyboard layout.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- This should map on the top row of your keyboard, usually 1 to 9.</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">global_keys</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">global_keys</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- View tag only.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span> <span class="p">},</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">screen</span> <span class="o">=</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focused</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">screen.tags</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">tag</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">          <span class="n">tag</span><span class="p">:</span><span class="n">view_only</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;view tag #&#34;</span><span class="o">..</span><span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Toggle tag display.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">screen</span> <span class="o">=</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">focused</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">screen.tags</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">tag</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">          <span class="n">awful.tag</span><span class="p">.</span><span class="n">viewtoggle</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;toggle tag #&#34;</span> <span class="o">..</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;=&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span> <span class="n">lain.util</span><span class="p">.</span><span class="n">useless_gaps_resize</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;increase window gaps on tag #&#34;</span> <span class="o">..</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span> <span class="p">},</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span> <span class="n">lain.util</span><span class="p">.</span><span class="n">useless_gaps_resize</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;decrease window gaps on tag #&#34;</span> <span class="o">..</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Move client to tag.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span> <span class="p">},</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">          <span class="kd">local</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">client.focus</span><span class="p">.</span><span class="n">screen.tags</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="kr">if</span> <span class="n">tag</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">client.focus</span><span class="p">:</span><span class="n">move_to_tag</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;move focused client to tag #&#34;</span><span class="o">..</span><span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Toggle tag on focused client.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.key</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&#34;Control&#34;</span><span class="p">,</span> <span class="s2">&#34;Shift&#34;</span> <span class="p">},</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">client.focus</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">          <span class="kd">local</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">client.focus</span><span class="p">.</span><span class="n">screen.tags</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="kr">if</span> <span class="n">tag</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">client.focus</span><span class="p">:</span><span class="n">toggle_tag</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&#34;toggle focused client on tag #&#34;</span> <span class="o">..</span> <span class="n">i</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s2">&#34;tag&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clientbuttons</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;mouse_click&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;mouse_click&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="n">awful.mouse</span><span class="p">.</span><span class="n">client.move</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">awful.button</span><span class="p">({</span> <span class="n">modkey</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;mouse_click&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="n">awful.mouse</span><span class="p">.</span><span class="n">client.resize</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- Set keys</span>
+</span></span><span class="line"><span class="cl"><span class="n">root.keys</span><span class="p">(</span><span class="n">global_keys</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="rules">Rules</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- Rules to apply to new clients (through the &#34;manage&#34; signal).</span>
+</span></span><span class="line"><span class="cl"><span class="n">awful.rules</span><span class="p">.</span><span class="n">rules</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- All clients will match this rule.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="n">rule</span> <span class="o">=</span> <span class="p">{</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span> <span class="n">border_width</span> <span class="o">=</span> <span class="n">beautiful.border_width</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">border_color</span> <span class="o">=</span> <span class="n">beautiful.border_normal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">focus</span> <span class="o">=</span> <span class="n">awful.client</span><span class="p">.</span><span class="n">focus.filter</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">keys</span> <span class="o">=</span> <span class="n">clientkeys</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">buttons</span> <span class="o">=</span> <span class="n">clientbuttons</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">screen</span> <span class="o">=</span> <span class="n">awful.screen</span><span class="p">.</span><span class="n">preferred</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">placement</span> <span class="o">=</span> <span class="n">awful.placement</span><span class="p">.</span><span class="n">no_overlap</span><span class="o">+</span><span class="n">awful.placement</span><span class="p">.</span><span class="n">no_offscreen</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Floating clients.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="n">rule_any</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">instance</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;DTA&#34;</span><span class="p">,</span>  <span class="c1">-- Firefox addon DownThemAll.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;copyq&#34;</span><span class="p">,</span>  <span class="c1">-- Includes session name in class.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;pinentry&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">class</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Arandr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Blueman-manager&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Gpick&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Kruler&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;MessageWin&#34;</span><span class="p">,</span>  <span class="c1">-- kalarm.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Sxiv&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Tor Browser&#34;</span><span class="p">,</span> <span class="c1">-- Needs a fixed window size to avoid fingerprinting by screen size.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Wpa_gui&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;veromix&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;xtightvncviewer&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- Note that the name property shown in xprop might be set slightly after creation of the client</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- and the name shown there might not match defined rules here.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;Event Tester&#34;</span><span class="p">,</span>  <span class="c1">-- xev.</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">role</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;AlarmWindow&#34;</span><span class="p">,</span>  <span class="c1">-- Thunderbird&#39;s calendar.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;ConfigManager&#34;</span><span class="p">,</span>  <span class="c1">-- Thunderbird&#39;s about:config.</span>
+</span></span><span class="line"><span class="cl">          <span class="s2">&#34;pop-up&#34;</span><span class="p">,</span>       <span class="c1">-- e.g. Google Chrome&#39;s (detached) Developer Tools.</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span> <span class="n">floating</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">}},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Add titlebars to normal clients and dialogs</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="n">rule_any</span> <span class="o">=</span> <span class="p">{</span><span class="n">type</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;normal&#34;</span><span class="p">,</span> <span class="s2">&#34;dialog&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span> <span class="n">titlebars_enabled</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Set Firefox to always map on the tag named &#34;2&#34; on screen 1.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- { rule = { class = &#34;Firefox&#34; },</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">--   properties = { screen = 1, tag = &#34;2&#34; } },</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+</figure><h2 id="signals">Signals</h2>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- Signal function to execute when a new client appears.</span>
+</span></span><span class="line"><span class="cl"><span class="n">client.connect_signal</span><span class="p">(</span><span class="s2">&#34;manage&#34;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- Set the windows at the slave,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- i.e. put it at the end of others instead of setting it master.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- if not awesome.startup then awful.client.setslave(c) end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">awesome.startup</span>
+</span></span><span class="line"><span class="cl">      <span class="ow">and</span> <span class="ow">not</span> <span class="n">c.size_hints</span><span class="p">.</span><span class="n">user_position</span>
+</span></span><span class="line"><span class="cl">      <span class="ow">and</span> <span class="ow">not</span> <span class="n">c.size_hints</span><span class="p">.</span><span class="n">program_position</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- Prevent clients from being unreachable after screen count changes.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">awful.placement</span><span class="p">.</span><span class="n">no_offscreen</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- Add a titlebar if titlebars_enabled is set to true in the rules.</span>
+</span></span><span class="line"><span class="cl"><span class="n">client.connect_signal</span><span class="p">(</span><span class="s2">&#34;request::titlebars&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- buttons for the titlebar</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">buttons</span> <span class="o">=</span> <span class="n">gears.table</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;titlebar&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.mouse</span><span class="p">.</span><span class="n">client.move</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">awful.button</span><span class="p">({</span> <span class="p">},</span> <span class="mi">3</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;titlebar&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.mouse</span><span class="p">.</span><span class="n">client.resize</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">awful.titlebar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">:</span> <span class="n">setup</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="c1">-- Left</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.iconwidget</span><span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">buttons</span> <span class="o">=</span> <span class="n">buttons</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">layout</span>  <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">fixed.horizontal</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="c1">-- Middle</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="c1">-- Title</span>
+</span></span><span class="line"><span class="cl">                <span class="n">align</span>  <span class="o">=</span> <span class="s2">&#34;center&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">widget</span> <span class="o">=</span> <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.titlewidget</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="n">buttons</span> <span class="o">=</span> <span class="n">buttons</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">layout</span>  <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">flex.horizontal</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="c1">-- Right</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.floatingbutton</span> <span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.maximizedbutton</span><span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.stickybutton</span>   <span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.ontopbutton</span>    <span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">awful.titlebar</span><span class="p">.</span><span class="n">widget.closebutton</span>    <span class="p">(</span><span class="n">c</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">layout</span> <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">fixed.horizontal</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout</span> <span class="o">=</span> <span class="n">wibox.layout</span><span class="p">.</span><span class="n">align.horizontal</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- Enable sloppy focus, so that focus follows mouse.</span>
+</span></span><span class="line"><span class="cl"><span class="n">client.connect_signal</span><span class="p">(</span><span class="s2">&#34;mouse::enter&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">:</span><span class="n">emit_signal</span><span class="p">(</span><span class="s2">&#34;request::activate&#34;</span><span class="p">,</span> <span class="s2">&#34;mouse_enter&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">raise</span> <span class="o">=</span> <span class="kc">false</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client.connect_signal</span><span class="p">(</span><span class="s2">&#34;focus&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c.border_color</span> <span class="o">=</span> <span class="n">beautiful.border_focus</span> <span class="kr">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">client.connect_signal</span><span class="p">(</span><span class="s2">&#34;unfocus&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">c.border_color</span> <span class="o">=</span> <span class="n">beautiful.border_normal</span> <span class="kr">end</span><span class="p">)</span></span></span></code></pre>
+</figure>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/config/linux/qtile/modules/__init__.py/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>An __init__.py for my Qtile modules
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/config/linux/qtile/config.py/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>My Qtile config.py
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#require-the-important-libraries">Require the important libraries</a>
+      <ul>
+        <li><a href="#additional-modules">Additional modules</a></li>
+      </ul>
+    </li>
+    <li><a href="#user-preference-variables">User preference variables</a></li>
+    <li><a href="#error-handling">Error handling</a></li>
+    <li><a href="#autostart">Autostart</a></li>
+    <li><a href="#widgets">Widgets</a>
+      <ul>
+        <li><a href="#themes">Themes</a></li>
+        <li><a href="#layouts-and-tags">Layouts and tags</a></li>
+      </ul>
+    </li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#keyboard-map-indicator-and-switcher">Keyboard map indicator and switcher</a></li>
+    <li><a href="#wibar">Wibar</a></li>
+    <li><a href="#mouse-bindings">Mouse bindings</a></li>
+    <li><a href="#key-bindings">Key bindings</a></li>
+    <li><a href="#rules">Rules</a></li>
+    <li><a href="#signals">Signals</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

@@ -11,20 +11,623 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Mon, 18 Jul 2022 09:16:25 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/nushell/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:52 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/nushell/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Config: My Nushell config file</title>
+  <link>https://randomgeekery.org/config/shell/nushell/config.nu/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/shell/nushell/config.nu/</guid>
+  <description>Been taking a closer look at the default config, mainly so I can understand what I want to change.
+// ==&gt; Define completions module. use completions * // ==&gt; Define my themes. // ==&gt; Declare my config. Completions The completions come directly from the default.
+//- Define completions module module completions { # Custom completions for external commands (those outside of Nushell) # Each completions has two parts: the form of the external command, including its flags and parameters # and a helper command that knows how to complete values for those flags and parameters # # This is a simplified version of completions for git branches and git remotes def &#34;nu-complete git branches&#34; [] { ^git branch | lines | each { |line| $line | str replace &#39;[\*\&#43;] &#39; &#39;&#39; | str trim } } def &#34;nu-complete git remotes&#34; [] { ^git remote | lines | each { |line| $line | str trim } } export extern &#34;git checkout&#34; [ branch?</description>
+   <category>config</category> 
+  
+   <category>config</category>  <category>nushell</category> 
+  <content:encoded><![CDATA[<p>Been taking a closer look at the <a href="https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_config.nu">default config</a>,
+mainly so I can understand what I want to change.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >// ==&gt; Define completions module.
+
+use completions *
+
+// ==&gt; Define my themes.
+// ==&gt; Declare my config.</code></pre>
+</figure><h2 id="completions">Completions</h2>
+<p>The completions come directly from the default.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >//- Define completions module
+module completions {
+  # Custom completions for external commands (those outside of Nushell)
+  # Each completions has two parts: the form of the external command, including its flags and parameters
+  # and a helper command that knows how to complete values for those flags and parameters
+  #
+  # This is a simplified version of completions for git branches and git remotes
+  def &#34;nu-complete git branches&#34; [] {
+    ^git branch | lines | each { |line| $line | str replace &#39;[\*\&#43;] &#39; &#39;&#39; | str trim }
+  }
+
+  def &#34;nu-complete git remotes&#34; [] {
+    ^git remote | lines | each { |line| $line | str trim }
+  }
+
+  export extern &#34;git checkout&#34; [
+    branch?: string@&#34;nu-complete git branches&#34; # name of the branch to checkout
+    -b: string                                 # create and checkout a new branch
+    -B: string                                 # create/reset and checkout a branch
+    -l                                         # create reflog for new branch
+    --guess                                    # second guess &#39;git checkout &lt;no-such-branch&gt;&#39; (default)
+    --overlay                                  # use overlay mode (default)
+    --quiet(-q)                                # suppress progress reporting
+    --recurse-submodules: string               # control recursive updating of submodules
+    --progress                                 # force progress reporting
+    --merge(-m)                                # perform a 3-way merge with the new branch
+    --conflict: string                         # conflict style (merge or diff3)
+    --detach(-d)                               # detach HEAD at named commit
+    --track(-t)                                # set upstream info for new branch
+    --force(-f)                                # force checkout (throw away local modifications)
+    --orphan: string                           # new unparented branch
+    --overwrite-ignore                         # update ignored files (default)
+    --ignore-other-worktrees                   # do not check if another worktree is holding the given ref
+    --ours(-2)                                 # checkout our version for unmerged files
+    --theirs(-3)                               # checkout their version for unmerged files
+    --patch(-p)                                # select hunks interactively
+    --ignore-skip-worktree-bits                # do not limit pathspecs to sparse entries only
+    --pathspec-from-file: string               # read pathspec from file
+  ]
+
+  export extern &#34;git push&#34; [
+    remote?: string@&#34;nu-complete git remotes&#34;, # the name of the remote
+    refspec?: string@&#34;nu-complete git branches&#34;# the branch / refspec
+    --verbose(-v)                              # be more verbose
+    --quiet(-q)                                # be more quiet
+    --repo: string                             # repository
+    --all                                      # push all refs
+    --mirror                                   # mirror all refs
+    --delete(-d)                               # delete refs
+    --tags                                     # push tags (can&#39;t be used with --all or --mirror)
+    --dry-run(-n)                              # dry run
+    --porcelain                                # machine-readable output
+    --force(-f)                                # force updates
+    --force-with-lease: string                 # require old value of ref to be at this value
+    --recurse-submodules: string               # control recursive pushing of submodules
+    --thin                                     # use thin pack
+    --receive-pack: string                     # receive pack program
+    --exec: string                             # receive pack program
+    --set-upstream(-u)                         # set upstream for git pull/status
+    --progress                                 # force progress reporting
+    --prune                                    # prune locally removed refs
+    --no-verify                                # bypass pre-push hook
+    --follow-tags                              # push missing but relevant tags
+    --signed: string                           # GPG sign the push
+    --atomic                                   # request atomic transaction on remote side
+    --push-option(-o): string                  # option to transmit
+    --ipv4(-4)                                 # use IPv4 addresses only
+    --ipv6(-6)                                 # use IPv6 addresses only
+  ]
+}</code></pre>
+</figure><h2 id="theme">Theme</h2>
+<p>Again, straight from the defaults.
+For more on themes see the Nushell book section on <a href="https://www.nushell.sh/book/coloring_and_theming.html">coloring and theming</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >//- Define my themes
+let default_theme = {
+    # color for nushell primitives
+    separator: white
+    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
+    header: green_bold
+    empty: blue
+    bool: white
+    int: white
+    filesize: white
+    duration: white
+    date: white
+    range: white
+    float: white
+    string: white
+    nothing: white
+    binary: white
+    cellpath: white
+    row_index: green_bold
+    record: white
+    list: white
+    block: white
+    hints: dark_gray
+
+    # shapes are used to change the cli syntax highlighting
+    shape_garbage: { fg: &#34;#FFFFFF&#34; bg: &#34;#FF0000&#34; attr: b}
+    shape_binary: purple_bold
+    shape_bool: light_cyan
+    shape_int: purple_bold
+    shape_float: purple_bold
+    shape_range: yellow_bold
+    shape_internalcall: cyan_bold
+    shape_external: cyan
+    shape_externalarg: green_bold
+    shape_literal: blue
+    shape_operator: yellow
+    shape_signature: green_bold
+    shape_string: green
+    shape_string_interpolation: cyan_bold
+    shape_datetime: cyan_bold
+    shape_list: cyan_bold
+    shape_table: blue_bold
+    shape_record: cyan_bold
+    shape_block: blue_bold
+    shape_filepath: cyan
+    shape_globpattern: cyan_bold
+    shape_variable: purple
+    shape_flag: blue_bold
+    shape_custom: green
+    shape_nothing: light_cyan
+}</code></pre>
+</figure><h3 id="the-config-record">The config record</h3>
+<p>Here&rsquo;s the important part.
+Got a few little variations from the default but there&rsquo;s a heck of a lot unchanged.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >//- Declare my config
+
+let-env config = {
+  color_config: $default_theme
+  edit_mode: emacs # emacs, vi
+  float_precision: 2
+  footer_mode: &#34;25&#34; # always, never, number_of_rows, auto
+  use_ansi_coloring: true
+  use_grid_icons: true
+
+  filesize: {
+    # true: KB, GB, etc
+    # false: KiB, GiB, etc
+    # On WSL, I get KiB if I don&#39;t explicitly set true
+    metric: true
+  }
+
+  menus: [
+      # Configuration for default nushell menus
+      # Note the lack of souce parameter
+      {
+        name: completion_menu
+        only_buffer_difference: false
+        marker: &#34;| &#34;
+        type: {
+            layout: columnar
+            columns: 4
+            col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
+            col_padding: 2
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      {
+        name: history_menu
+        only_buffer_difference: true
+        marker: &#34;? &#34;
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      {
+        name: help_menu
+        only_buffer_difference: true
+        marker: &#34;? &#34;
+        type: {
+            layout: description
+            columns: 4
+            col_width: 20   # Optional value. If missing all the screen width is used to calculate column width
+            col_padding: 2
+            selection_rows: 4
+            description_rows: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+      # Example of extra menus created using a nushell source
+      # Use the source field to create a list of records that populates
+      # the menu
+      {
+        name: commands_menu
+        only_buffer_difference: false
+        marker: &#34;# &#34;
+        type: {
+            layout: columnar
+            columns: 4
+            col_width: 20
+            col_padding: 2
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.commands
+            | where command =~ $buffer
+            | each { |it| {value: $it.command description: $it.usage} }
+        }
+      }
+      {
+        name: vars_menu
+        only_buffer_difference: true
+        marker: &#34;# &#34;
+        type: {
+            layout: list
+            page_size: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.vars
+            | where name =~ $buffer
+            | sort-by name
+            | each { |it| {value: $it.name description: $it.type} }
+        }
+      }
+      {
+        name: commands_with_description
+        only_buffer_difference: true
+        marker: &#34;# &#34;
+        type: {
+            layout: description
+            columns: 4
+            col_width: 20
+            col_padding: 2
+            selection_rows: 4
+            description_rows: 10
+        }
+        style: {
+            text: green
+            selected_text: green_reverse
+            description_text: yellow
+        }
+        source: { |buffer, position|
+            $nu.scope.commands
+            | where command =~ $buffer
+            | each { |it| {value: $it.command description: $it.usage} }
+        }
+      }
+  ]
+  keybindings: [
+    {
+      name: completion_menu
+      modifier: none
+      keycode: tab
+      mode: emacs # Options: emacs vi_normal vi_insert
+      event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+        ]
+      }
+    }
+    {
+      name: completion_previous
+      modifier: shift
+      keycode: backtab
+      mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
+      event: { send: menuprevious }
+    }
+    {
+      name: history_menu
+      modifier: control
+      keycode: char_x
+      mode: emacs
+      event: {
+        until: [
+          { send: menu name: history_menu }
+          { send: menupagenext }
+        ]
+      }
+    }
+    {
+      name: history_previous
+      modifier: control
+      keycode: char_z
+      mode: emacs
+      event: {
+        until: [
+          { send: menupageprevious }
+          { edit: undo }
+        ]
+      }
+    }
+    # Keybindings used to trigger the user defined menus
+    {
+      name: commands_menu
+      modifier: control
+      keycode: char_t
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: commands_menu }
+    }
+    {
+      name: vars_menu
+      modifier: control
+      keycode: char_y
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: vars_menu }
+    }
+    {
+      name: commands_with_description
+      modifier: control
+      keycode: char_u
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: commands_with_description }
+    }
+  ]
+}</code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Nushell custom libraries</title>
+  <link>https://randomgeekery.org/config/shell/nushell/lib/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/shell/nushell/lib/</guid>
+  <description>task.nu The idea here is to make a pretty Nu-style table from my Taskwarrior reports.
+//- file:nushell/lib/task.nu # Prettify taskwarrior output with nushell # Ensure field has string value or explicit null def upsert-string [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?) { &#34;&#34; } else { $value | str collect &#34; &#34; } } } # Ensure field has datetime value or explicit null def upsert-date [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?</description>
+   <category>config</category> 
+  
+   <category>config</category>  <category>nushell</category> 
+  <content:encoded><![CDATA[<h2 id="tasknu"><code>task.nu</code></h2>
+<p>The idea here is to make a pretty Nu-style table from my Taskwarrior reports.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >//- file:nushell/lib/task.nu
+# Prettify taskwarrior output with nushell
+
+# Ensure field has string value or explicit null
+def upsert-string [field] {
+  $in | upsert $field { |it|
+    let value = ($in | get -i $field)
+
+    if ($value | empty?) { &#34;&#34; } else { $value | str collect &#34; &#34; }
+  }
+}
+
+# Ensure field has datetime value or explicit null
+def upsert-date [field] {
+  $in | upsert $field { |it|
+    let value = ($in | get -i $field)
+
+    if ($value | empty?) { $nothing } else { $value | into datetime }
+  }
+}
+
+# Format a taskwarrior export into a table
+def from-tw [] {
+  (
+    $in
+    | from json
+    | upsert-string project
+    | upsert-date entry
+    | upsert-date modified
+    | upsert-date end
+  )
+}
+
+# stock reports
+
+# next (the default)
+def tw-next [] {
+  (
+    task status:pending -WAITING limit:page -Work -pay -finances -personal export
+    | from-tw
+    | upsert-string tags
+    | select id entry priority project tags description urgency
+    | sort-by -r urgency
+    | rename ID Age P Project Tag Description Urg
+  )
+}
+
+
+# active
+# all
+# blocked
+# blocking
+# burndown.daily
+# burndown.monthly
+# burndown.weekly
+# completed
+# ghistory.annual
+# ghistory.monthly
+# history.annual
+# history.monthly
+# information
+# list
+# long
+# ls
+# minimal
+# newest
+# oldest
+# overdue
+# projects
+# ready
+# recurring
+# summary
+# tags
+# unblocked
+# waiting</code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Nushell environment file</title>
+  <link>https://randomgeekery.org/config/shell/nushell/env.nu/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/shell/nushell/env.nu/</guid>
+  <description>Set up my prompt Adds a Starship prompt on the right and a timestamp on the left.
+def create_left_prompt [] { starship prompt --cmd-duration $env.CMD_DURATION_MS $&#39;--status=($env.LAST_EXIT_CODE)&#39; } def create_right_prompt [] { let time_segment = ([ (date now | date format &#39;%m/%d/%Y %r&#39;) ] | str collect) $time_segment } let-env STARSHIP_SHELL = &#34;nu&#34; let-env PROMPT_COMMAND = { create_left_prompt } let-env PROMPT_COMMAND_RIGHT = { create_right_prompt } let-env PROMPT_INDICATOR = { &#34;&#34; } let-env PROMPT_INDICATOR_VI_INSERT = { &#34;: &#34; } let-env PROMPT_INDICATOR_VI_NORMAL = { &#34;〉&#34; } let-env PROMPT_MULTILINE_INDICATOR = { &#34;::: &#34; } Environment conversions Nushell isn’t my login shell yet.</description>
+   <category>config</category> 
+  
+   <category>config</category>  <category>nushell</category> 
+  <content:encoded><![CDATA[<h2 id="set-up-my-prompt">Set up my prompt</h2>
+<p>Adds a Starship prompt on the right and a timestamp on the left.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >def create_left_prompt [] {
+  starship prompt --cmd-duration $env.CMD_DURATION_MS $&#39;--status=($env.LAST_EXIT_CODE)&#39;
+}
+def create_right_prompt [] {
+    let time_segment = ([
+        (date now | date format &#39;%m/%d/%Y %r&#39;)
+    ] | str collect)
+
+    $time_segment
+}
+let-env STARSHIP_SHELL = &#34;nu&#34;
+let-env PROMPT_COMMAND = { create_left_prompt }
+let-env PROMPT_COMMAND_RIGHT = { create_right_prompt }
+let-env PROMPT_INDICATOR = { &#34;&#34; }
+let-env PROMPT_INDICATOR_VI_INSERT = { &#34;: &#34; }
+let-env PROMPT_INDICATOR_VI_NORMAL = { &#34;〉&#34; }
+let-env PROMPT_MULTILINE_INDICATOR = { &#34;::: &#34; }</code></pre>
+</figure><h2 id="environment-conversions">Environment conversions</h2>
+<p>Nushell isn&rsquo;t my login shell yet.
+This logic converts existing environment variables to Nu equivalents.
+So far it works on Linux, Windows, and macOS.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >let-env ENV_CONVERSIONS = {
+  &#34;PATH&#34;: {
+    from_string: { |s| $s | split row (char esep) }
+    to_string: { |v| $v | str collect (char esep) }
+  }
+  &#34;Path&#34;: {
+    from_string: { |s| $s | split row (char esep) }
+    to_string: { |v| $v | str collect (char esep) }
+  }
+}</code></pre>
+</figure><h2 id="nu-libraries-and-plugins">Nu libraries and plugins</h2>
+<p>I don&rsquo;t have many yet, but here&rsquo;s where Nu should expect to find them.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >let-env NU_LIB_DIRS = [
+    ($nu.config-path | path dirname | path join &#39;scripts&#39;)
+]
+let-env NU_PLUGIN_DIRS = [
+    ($nu.config-path | path dirname | path join &#39;plugins&#39;)
+]</code></pre>
+</figure><h2 id="path-management">Path management</h2>
+<p>Environment variables in Nushell are a bit more strict than other shells.
+You can&rsquo;t just re-export.
+You have to redeclare.
+So this function helps me with my most common case:
+managing entries in the executable path.</p>
+<p>If <code>new_path</code> isn&rsquo;t already in <code>$env.PATH</code>,
+a new <code>$env.PATH</code> is declared by prepending the new path to the current list of paths.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >def-env ensure-path [new_path: string] {
+  let full_path = ($new_path | path expand)
+  let updated_env_path = (
+    if $new_path in $env.PATH { $env.PATH }
+    else {
+      $env.PATH | prepend $full_path
+    }
+  )
+  let-env PATH = $updated_env_path
+}</code></pre>
+</figure><p>And then I use it for the paths I care about most.
+Mostly useful when using Nushell as login,
+since these entries are usually picked up from the parent shell.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >(ensure-path &#34;~/.local/bin&#34;)
+(ensure-path &#34;~/.volta/bin&#34;)
+(ensure-path &#34;~/.cargo/bin&#34;)
+(ensure-path &#34;~/.rakubrew/bin&#34;)</code></pre>
+</figure><p>Kinda suggests maybe these invocations should go in <code>login.nu</code>.</p>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<p>Load the script that nicely formats Taskwarrior output.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >source /home/random/.config/nushell/lib/task.nu</code></pre>
+</figure><p>Add a function to read from EDN sources such as output by <code>nbb-logseq</code>.
+Requires the <code>jet</code> CLI tool.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nu" data-lang="nu"
+      >def from-edn [] {
+  $in | str collect | jet --to json | from json
+}</code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: My Nushell login settings</title>
+  <link>https://randomgeekery.org/config/shell/nushell/login.nu/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:52 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/shell/nushell/login.nu/</guid>
+  <description>For my occasional experiments using Nu as my login shell. Evaluated after env.nu and config.nu.
+let-env BAT_THEME = &#39;Solarized (dark)&#39; let-env BF = &#39;$albumartist | $album | $track/$tracktotal | $title&#39; let-env CLICOLOR = &#39;1&#39; let-env EDITOR = &#39;nvim&#39; let-env LANG = &#39;en_US.UTF-8&#39; let-env NNN_FALLBACK_OPENER = &#39;xdg-open&#39; let-env PAGER = &#39;less -FRX&#39; let-env PLENV_HOME = &#39;/home/random/.plenv&#39; let-env PYENV_ROOT = &#39;/home/random/.pyenv&#39; let-env PYENV_SHELL = &#39;nu&#39; let-env PYENV_VIRTUALENV_INIT = &#39;1&#39; let-env RAKUBREW_HOME = &#39;~/.</description>
+   <category>config</category> 
+  
+   <category>config</category>  <category>nushell</category> 
+  <content:encoded><![CDATA[<p>For my occasional experiments using Nu as my login shell.
+Evaluated <em>after</em> <code>env.nu</code> and <code>config.nu</code>.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >let-env BAT_THEME = &#39;Solarized (dark)&#39;
+let-env BF = &#39;$albumartist | $album | $track/$tracktotal | $title&#39;
+let-env CLICOLOR = &#39;1&#39;
+let-env EDITOR = &#39;nvim&#39;
+let-env LANG = &#39;en_US.UTF-8&#39;
+let-env NNN_FALLBACK_OPENER = &#39;xdg-open&#39;
+let-env PAGER = &#39;less -FRX&#39;
+let-env PLENV_HOME = &#39;/home/random/.plenv&#39;
+let-env PYENV_ROOT = &#39;/home/random/.pyenv&#39;
+let-env PYENV_SHELL = &#39;nu&#39;
+let-env PYENV_VIRTUALENV_INIT = &#39;1&#39;
+let-env RAKUBREW_HOME = &#39;~/.rakubrew&#39;
+let-env STARSHIP_SHELL = &#39;nu&#39;
+let-env TERM = &#39;xterm-256color&#39;</code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
   <title>Post: [2022-07-18 Mon 09:16]</title>
   <link>https://randomgeekery.org/post/2022/07/2022-07-18-mon-0916/</link>
   <pubDate>Mon, 18 Jul 2022 09:16:25 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/07/2022-07-18-mon-0916/</guid>
   <description>&lt;p&gt;Cats haven’t checked in on me for a bit. It’s nice. A bit creepy, but nice.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/07/../../../attachments/img/2022-07-18-cats.jpg&#34; alt=&#34;attachments/img/2022-07-18-cats.jpg&#34;/&gt;
+&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2022-07-18-cats.jpg&#34; alt=&#34;attachments/img/2022-07-18-cats.jpg&#34;/&gt;&lt;/figure&gt;
 Okay human, now do something interesting.&lt;/p&gt;</description>
    <category>post</category> 
    <category>note</category> 
    <category>cats</category>  <category>nushell</category> 
   <content:encoded><![CDATA[<p>Cats haven&rsquo;t checked in on me for a bit. It&rsquo;s nice. A bit creepy, but nice.</p>
-<p><img src="/post/2022/07/../../../attachments/img/2022-07-18-cats.jpg" alt="attachments/img/2022-07-18-cats.jpg"/>
+<p><figure>
+    <img src="/../../../attachments/img/2022-07-18-cats.jpg" alt="attachments/img/2022-07-18-cats.jpg"/></figure>
 Okay human, now do something interesting.</p>
 <p>Oh and for a little bit of <a href="https://nushell.sh">Nushell</a> geekery, here&rsquo;s how I copied the newest photo from Dropbox sync to the folder for this post — since neither are named in a readily accessible pattern for quick typing:</p>
 <figure class="highlight">
@@ -39,13 +642,15 @@ Okay human, now do something interesting.</p>
   <pubDate>Mon, 04 Jul 2022 18:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/</guid>
-  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/07/../../../attachments/img/2022/cover-2022-07-04.png&#34; alt=&#34;attachments/img/2022/cover-2022-07-04.png&#34;/&gt;
+  <description>&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2022/cover-2022-07-04.png&#34; alt=&#34;attachments/img/2022/cover-2022-07-04.png&#34;/&gt;&lt;/figure&gt;
 histogram for post frequency by year using Nushell built-ins&lt;/p&gt;
 &lt;p&gt;Been using the &lt;a href=&#34;https://www.nushell.sh&#34;&gt;Nushell&lt;/a&gt; cross-platform user shell more and more over the last couple years. Might as well start learning it.&lt;/p&gt;</description>
    <category>post</category> 
    <category>post</category> 
    <category>nushell</category>  <category>hugo</category> 
-  <content:encoded><![CDATA[<h2>In which I once again spend all day decomposing one-liners, this time for Nushell</h2><p><img src="/post/2022/07/../../../attachments/img/2022/cover-2022-07-04.png" alt="attachments/img/2022/cover-2022-07-04.png"/>
+  <content:encoded><![CDATA[<h2>In which I once again spend all day decomposing one-liners, this time for Nushell</h2><p><figure>
+    <img src="/../../../attachments/img/2022/cover-2022-07-04.png" alt="attachments/img/2022/cover-2022-07-04.png"/></figure>
 histogram for post frequency by year using Nushell built-ins</p>
 <p>Been using the <a href="https://www.nushell.sh">Nushell</a> cross-platform user shell more and more over the last couple years. Might as well start learning it.</p>
 <p>Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when setting up <a href="/post/2022/04/trying-nushell-on-windows/">Nushell on Windows</a>. I want to try again, and think through the process a little more this time.</p>
@@ -58,7 +663,8 @@ histogram for post frequency by year using Nushell built-ins</p>
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >hugo list all</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/><figcaption>Yep that&#39;s CSV all right.</figcaption></figure></p>
 <h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
 <p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
 <figure class="highlight">
@@ -67,13 +673,15 @@ histogram for post frequency by year using Nushell built-ins</p>
       >hugo list all | from csv</code></pre>
 </figure><p>Of course, the result of that pipe is something a little different from other shells.</p>
 <h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
-<p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/><figcaption>It&#39;s pretty. Just needs a little tidying up.</figcaption></figure></p>
 <p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
 <p>But Nushell tables aren&rsquo;t just pretty printing. They are core to working with the shell. The table you see is a visual representation of a table in memory, which can be further processed however you need.</p>
 <p>Also? Nushell doesn&rsquo;t need me to install an extra CSV processing tool. It can turn that output into something useful without any extra help thanks to an abundance of built-in commands.</p>
 <h2 id="nushell-feature-two-the-built-in-commands-and-interactive-help">Nushell feature two: the built-in commands and interactive help</h2>
 <p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
-<p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/><figcaption>or hit TAB on a blank line</figcaption></figure></p>
 <p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
 <figure class="highlight">
   <pre tabindex="0"
@@ -90,14 +698,16 @@ histogram for post frequency by year using Nushell built-ins</p>
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >help commands | group-by category</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/><figcaption>Not sorted or anything, but you get the idea</figcaption></figure></p>
 <h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
 <p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >help commands | where category =~ formats</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/><figcaption>`to md`? Interesting!</figcaption></figure></p>
 <blockquote>
 <p><strong>NOTE</strong></p>
 <p>I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
@@ -235,7 +845,8 @@ histogram for post frequency by year using Nushell built-ins</p>
     ><code class="language-nushell" data-lang="nushell"
       >help to md</code></pre>
 </figure><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
-<p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/><figcaption>syntax highlighted examples? yes please</figcaption></figure></p>
 <h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
 <p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
 <p>Remember Hugo? This was supposed to be a post about Hugo.</p>
@@ -497,7 +1108,8 @@ I have been puttering a little here and there with card/Nushell, a command line 
    <category>post</category> 
    <category>post</category> 
    <category>nushell</category>  <category>windows</category>  <category>shell</category> 
-  <content:encoded><![CDATA[<h2>They say I can run Nushell on Windows. Let's try that.</h2><p><img src="/post/2022/04/../../../attachments/img/2022/cover-2022-04-22.png" alt="attachments/img/2022/cover-2022-04-22.png"/>
+  <content:encoded><![CDATA[<h2>They say I can run Nushell on Windows. Let's try that.</h2><p><figure>
+    <img src="/../../../attachments/img/2022/cover-2022-04-22.png" alt="attachments/img/2022/cover-2022-04-22.png"/></figure>
 Hugo&rsquo;s article list piped through multiple Nushell built-ins</p>
 <blockquote>
 <p>[!NOTE] The important bit
@@ -535,7 +1147,8 @@ y
 Config file created at: C:\Users\brian\AppData\Roaming\nushell\config.nu
 C:\Users\brian\AppData\Local〉 ls | sort-by modified | last 5</code></pre>
 </figure><p>And it works!</p>
-<p><img src="/post/2022/04/attachments/img/2022/nu-win-initial-ls.png" alt="output of ls in Nushell on Windows"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/nu-win-initial-ls.png" alt="output of ls in Nushell on Windows"/></figure></p>
 <h3 id="integrating-with-windows-terminal">Integrating with Windows Terminal</h3>
 <p><a href="https://docs.microsoft.com/en-us/windows/terminal/">Windows Terminal</a> is my preferred terminal emulator over in the Windows world. Though I could absolutely point and click my way through adding a Nushell profile, I&rsquo;ll follow <a href="https://www.nushell.sh/book/installation.html#setting-the-default-shell-windows-terminal">Setting the default shell</a> and update <code>settings.json</code> myself.</p>
 <p>Here are the relevant changes to my profile.</p>
@@ -654,7 +1267,8 @@ let-env PROMPT_INDICATOR_VI_NORMAL = { &#34;〉&#34; }
 let-env PROMPT_MULTILINE_INDICATOR = { &#34;::: &#34; }
 
 # ...</code></pre>
-</figure><p><img src="/post/2022/04/attachments/img/2022/nu-win-themed-starship.png" alt="Nushell with Fairy Floss theme and a Starship prompt"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/nu-win-themed-starship.png" alt="Nushell with Fairy Floss theme and a Starship prompt"/></figure></p>
 <p>I&rsquo;ll keep the Starship default config for now.</p>
 <p>That&rsquo;s pretty much it! I&rsquo;m good to go explore the world of Nushell on Windows.</p>
 <h2 id="sure-but-why">Sure but why</h2>

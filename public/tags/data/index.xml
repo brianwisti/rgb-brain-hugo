@@ -23,7 +23,8 @@ I figured out how to write Hugo shortcodes to generate tables from CSV and other
    <category>post</category> 
    <category>post</category> 
    <category>hugo</category>  <category>data</category>  <category>showing-it-anyways</category>  <category>csv</category>  <category>rst</category>  <category>and-a-dog</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><img src="/post/2020/06/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/>
+  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/></figure>
 I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</p>
 <p><a href="/card/tldr/">tldr</a>: Use <a href="/card/hugo/">Hugo</a>’s <a href="https://gohugo.io/functions/transform.unmarshal/"><code>transform.Unmarshal</code></a> to turn strings into data structures, which you can feed into a table template. But sometimes <a href="https://gohugo.io/functions/split/"><code>split</code></a> makes more sense.</p>
 <p>I figured out how to write Hugo <a href="https://gohugo.io/templates/shortcode-templates/">shortcodes</a> to generate <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">tables</a> from <a href="/card/csv/">CSV</a> and other formats. Didn’t even occur to me that it was possible — or this easy — so I had to share.</p>
@@ -77,7 +78,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
 </figure><p>Voila! Instant table!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></figure></p>
 <p>Not bad, but it could be better.</p>
 <ul>
 <li>that first row provides column names, which works better as table headers than just another row</li>
@@ -125,7 +127,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
 <p>Better!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></figure></p>
 <p>I still need to fiddle with my styles. This table’s a little wide for these
 values. Maybe later.</p>
 <p>CSV is great, but <code>transform.Unmarshal</code> supports other formats. What about those?</p>
@@ -222,7 +225,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
-<p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/data-table.png" alt="A data table"/></figure></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
 <p>There’s really only one <em>slight</em> problem with <code>data-table</code>. I don’t need it. Not today, anyways.</p>
 <h2 id="what-i-need-list-tables">What I need: list tables</h2>
@@ -288,7 +292,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
-</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/list-table.png" alt="A list table!"/></figure></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>
@@ -324,7 +329,8 @@ Sweet, jmac liked my mention! Wait why are tests failing? Maybe check the dashbo
    <category>post</category> 
    <category>note</category> 
    <category>indieweb</category>  <category>data</category>  <category>i-fixed-it</category>  <category>before-i-pushed-it</category>  <category>yay-for-tests</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-08.png" alt="attachments/img/2020/cover-2020-05-08.png"/></p>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-08.png" alt="attachments/img/2020/cover-2020-05-08.png"/></figure></p>
 <blockquote>
 <p>It’s probably redundant to test HTML structure for my pages, but <a href="/post/2020/03/passing-tests-is-now-required-to-push/">what the heck</a>.</p>
 <p>&ndash; <cite>Me, a couple months ago</cite></p>
@@ -364,7 +370,8 @@ Background I incorporated in my site workflow a while back because of fRew Schmi
    <category>post</category> 
    <category>hugo</category>  <category>python</category>  <category>site</category>  <category>data</category>  <category>workflow</category>  <category>tools</category> 
   <content:encoded><![CDATA[<h2>I had entirely too much fun replacing my site metadata script with sqlite-utils
-</h2><p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-06.png" alt="attachments/img/2020/cover-2020-05-06.png"/>
+</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-06.png" alt="attachments/img/2020/cover-2020-05-06.png"/></figure>
 My blogging output by year – bet you didn’t know there were blogs in 1 CE</p>
 <h2 id="the-plan">The plan</h2>
 <p>Use Simon Williamson’s <a href="https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem">Datasette tools</a> — and maybe the rest of and maybe the rest of <a href="https://datasette.readthedocs.io/en/stable/">Datasette</a> too — to replace an existing data script and perhaps gain new insight into site contents.</p>
@@ -668,11 +675,14 @@ tables. Played with <a href="https://datasette.readthedocs.io/en/stable/metadata
 </span></span></code></pre>
 </figure><p>The basic interface is pleasant enough, especially when you apply some <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> Of course, <a href="https://www.niche-museums.com/">Niche Museums</a> shows you can go a <em>long</em> ways past &ldquo;some CSS&rdquo; with Datasette.</p>
 <p>Oh and more on the pleasant interface. It allows you to edit the SQL for your current view.</p>
-<p><img src="/post/2020/05/attachments/img/2020/datasette-sql.png" alt="lightly styled with custom SQL"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/datasette-sql.png" alt="lightly styled with custom SQL"/></figure></p>
 <p>There are detail pages for each row. Again, the Niche Museums site shows that <a href="https://www.niche-museums.com/browse/museums/21">detail view</a> can be heavily tweaked.</p>
-<p><img src="/post/2020/05/attachments/img/2020/datasette-entry.png" alt="Datasette detail view of a post"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/datasette-entry.png" alt="Datasette detail view of a post"/></figure></p>
 <p><a href="https://datasette.readthedocs.io/en/stable/ecosystem.html#datasette-plugins">Plugins</a> add all sorts of functionality. <a href="https://github.com/simonw/datasette-vega">datasette-vega</a> draws graphs of query results.</p>
-<p><img src="/post/2020/05/attachments/img/2020/datasette-graph.png" alt="Charting interface with entries posted per year"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/datasette-graph.png" alt="Charting interface with entries posted per year"/></figure></p>
 <p>Year 0001? Hang on, let me check that in my shiny new Datasette server.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -785,7 +795,8 @@ Okay not really a mistake. Helped me find a few dozen front matter typos. Simon 
    <category>post</category> 
    <category>note</category> 
    <category>python</category>  <category>data</category>  <category>ooh-a-sparkly</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-05.png" alt="attachments/img/2020/cover-2020-05-05.png"/>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-05.png" alt="attachments/img/2020/cover-2020-05-05.png"/></figure>
 Datasette showing what sqlite-utils put together</p>
 <p>So uh yeah. See I was stumbling my way through using <a href="https://sqlite-utils.readthedocs.io">sqlite-utils</a> to collect site content metadata. Finally figured that out but then made the mistake of looking at that data through <a href="https://datasette.readthedocs.io">Datasette</a>.</p>
 <p>Okay not really a mistake. Helped me find a few dozen front matter typos. <a href="https://simonwillison.net/">Simon Willison</a> makes cool stuff.</p>

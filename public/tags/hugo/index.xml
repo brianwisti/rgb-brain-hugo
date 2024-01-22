@@ -23,14 +23,13 @@ That’s been possible with Hugo since 0.93.0, using render hooks for code block
    <category>post</category> 
    <category>post</category> 
    <category>hugo</category> 
-  <content:encoded><![CDATA[<h2>Captions more than titles, really. No problem. We'll fix it in post.</h2><p><img src="/post/2023/01/../../../attachments/img/2023/cover-2023-01-19.png" alt="attachments/img/2023/cover-2023-01-19.png"/>
+  <content:encoded><![CDATA[<h2>Captions more than titles, really. No problem. We'll fix it in post.</h2><p><figure>
+    <img src="/../../../attachments/img/2023/cover-2023-01-19.png" alt="attachments/img/2023/cover-2023-01-19.png"/></figure>
 an illustrative example</p>
 <p>I like to label my code blocks, especially when they describe the contents of a specific file.</p>
 <p>That&rsquo;s been possible with <a href="/card/hugo/">Hugo</a> since 0.93.0, using <a href="https://gohugo.io/templates/render-hooks/#render-hooks-for-code-blocks">render hooks for code blocks</a>. Render hooks let you use custom templates for all instances of certain Markdown structures such as links, headers, images, and code! I didn&rsquo;t think to try them out for labeling code until just now, though. This <a href="https://discourse.gohugo.io/t/is-there-a-good-reason-not-to-have-a-mechanism-facilitating-a-title-for-code-blocks/40554/3">comment</a> from Hugo Discourse user pamubay got me started. My template builds directly on theirs.</p>
-<p>{% codeblock(
-title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
-) %}</p>
 <figure class="highlight">
+  <figcaption><tt>layouts/_default/render-codeblock.html</tt></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
 </span></span><span class="line"><span class="cl">{{- if isset .Attributes &#34;verbatim&#34; -}}
@@ -59,30 +58,19 @@ title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 </span></span><span class="line"><span class="cl">      <span class="p">&gt;</span>{{ .Inner }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{- end }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
+</figure><p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
 <p>My render hook looks for two attributes, <code>title</code> and <code>verbatim</code>. These attributes are added after the language identifier for the fenced code block.</p>
-<p>{% codeblock(
-title=&ldquo;Titled code block&rdquo;
-verbatim=false
-collapsed=false
-)%}</p>
 <figure class="highlight">
+  <figcaption><span>Titled code block</span></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}</span></span></code></pre>
-</figure><p>{% end %}</p>
-<p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
+</figure><p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
 <p>Most of the time when I label code samples, I use a filename or identifier, and I&rsquo;m used to seeing those in monospace. So it makes sense to have code block captions as verbatim by default. So the <code>verbatim</code> flag only matters if I set it to false, such as for explanatory captions.</p>
-<p>{% codeblock(
-title=&ldquo;non-verbatim code block&rdquo;
-verbatim=false
-collapsed=false
-)%}</p>
 <figure class="highlight">
+  <figcaption><span>non-verbatim code block</span></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}</span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
+</figure><p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
 ]]></content:encoded>
 </item>
 <item>
@@ -91,13 +79,15 @@ collapsed=false
   <pubDate>Mon, 04 Jul 2022 18:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/07/my-three-ish-favorite-nushell-features/</guid>
-  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/07/../../../attachments/img/2022/cover-2022-07-04.png&#34; alt=&#34;attachments/img/2022/cover-2022-07-04.png&#34;/&gt;
+  <description>&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2022/cover-2022-07-04.png&#34; alt=&#34;attachments/img/2022/cover-2022-07-04.png&#34;/&gt;&lt;/figure&gt;
 histogram for post frequency by year using Nushell built-ins&lt;/p&gt;
 &lt;p&gt;Been using the &lt;a href=&#34;https://www.nushell.sh&#34;&gt;Nushell&lt;/a&gt; cross-platform user shell more and more over the last couple years. Might as well start learning it.&lt;/p&gt;</description>
    <category>post</category> 
    <category>post</category> 
    <category>nushell</category>  <category>hugo</category> 
-  <content:encoded><![CDATA[<h2>In which I once again spend all day decomposing one-liners, this time for Nushell</h2><p><img src="/post/2022/07/../../../attachments/img/2022/cover-2022-07-04.png" alt="attachments/img/2022/cover-2022-07-04.png"/>
+  <content:encoded><![CDATA[<h2>In which I once again spend all day decomposing one-liners, this time for Nushell</h2><p><figure>
+    <img src="/../../../attachments/img/2022/cover-2022-07-04.png" alt="attachments/img/2022/cover-2022-07-04.png"/></figure>
 histogram for post frequency by year using Nushell built-ins</p>
 <p>Been using the <a href="https://www.nushell.sh">Nushell</a> cross-platform user shell more and more over the last couple years. Might as well start learning it.</p>
 <p>Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when setting up <a href="/post/2022/04/trying-nushell-on-windows/">Nushell on Windows</a>. I want to try again, and think through the process a little more this time.</p>
@@ -110,7 +100,8 @@ histogram for post frequency by year using Nushell built-ins</p>
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >hugo list all</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/hugo-list-all.png" title="Yep that&#39;s CSV all right." alt="output of command is a dense blast of CSV text"/><figcaption>Yep that&#39;s CSV all right.</figcaption></figure></p>
 <h2 id="nushell-feature-zero-point-five-piping-output">Nushell feature zero point five: Piping output</h2>
 <p>Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.</p>
 <figure class="highlight">
@@ -119,13 +110,15 @@ histogram for post frequency by year using Nushell built-ins</p>
       >hugo list all | from csv</code></pre>
 </figure><p>Of course, the result of that pipe is something a little different from other shells.</p>
 <h2 id="nushell-feature-one-tables">Nushell feature one: tables</h2>
-<p><img src="/post/2022/07/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/from-csv.png" title="It&#39;s pretty. Just needs a little tidying up." alt="screenshot of nushell table display of hugo articles"/><figcaption>It&#39;s pretty. Just needs a little tidying up.</figcaption></figure></p>
 <p>There&rsquo;s the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from <code>hugo</code> to any number of CSV processing tools and pretty printers available to install on your machine.</p>
 <p>But Nushell tables aren&rsquo;t just pretty printing. They are core to working with the shell. The table you see is a visual representation of a table in memory, which can be further processed however you need.</p>
 <p>Also? Nushell doesn&rsquo;t need me to install an extra CSV processing tool. It can turn that output into something useful without any extra help thanks to an abundance of built-in commands.</p>
 <h2 id="nushell-feature-two-the-built-in-commands-and-interactive-help">Nushell feature two: the built-in commands and interactive help</h2>
 <p>Nushell includes <em>many</em> commands. You can see for yourself skimming through the <a href="https://www.nushell.sh/book/command_reference.html">Command Reference</a>. Or see what&rsquo;s available to you in your current version with <code>help commands</code>.</p>
-<p><img src="/post/2022/07/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/nushell-tab.png" title="or hit TAB on a blank line" alt="initial tab-completion display of functions available in Nushell"/><figcaption>or hit TAB on a blank line</figcaption></figure></p>
 <p>How many? Let&rsquo;s ask the shell by piping <code>help commands</code> to the <code>length</code> command.</p>
 <figure class="highlight">
   <pre tabindex="0"
@@ -142,14 +135,16 @@ histogram for post frequency by year using Nushell built-ins</p>
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >help commands | group-by category</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/group-by-category.png" title="Not sorted or anything, but you get the idea" alt="all of the Nushell command categories"/><figcaption>Not sorted or anything, but you get the idea</figcaption></figure></p>
 <h3 id="listing-only-commands-in-a-specific-category-with-where">Listing only commands in a specific category with <code>where</code></h3>
 <p>I read ahead, so I know that <code>from csv</code> is under the &ldquo;formats&rdquo; category. We use <code>where</code> to narrow the command list down so it only contains the format commands.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-nushell" data-lang="nushell"
       >help commands | where category =~ formats</code></pre>
-</figure><p><img src="/post/2022/07/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2022/format-commands.png" title="`to md`? Interesting!" alt="a table of commands in the &ldquo;formats&rdquo; category"/><figcaption>`to md`? Interesting!</figcaption></figure></p>
 <blockquote>
 <p><strong>NOTE</strong></p>
 <p>I bet the Perl devs perked up seeing that <code>=~</code>. Yes it&rsquo;s a regular expression! But it&rsquo;s almost definitely not a Perl regular expression. I haven&rsquo;t gone past literal substring matches yet, and the Nushell <a href="https://www.nushell.sh/book/regular_expressions.html#regular-expressions">regex documentation</a> page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust <a href="https://docs.rs/regex/latest/regex/">regex crate</a> documentation and figure out the differences yourself.</p>
@@ -287,7 +282,8 @@ histogram for post frequency by year using Nushell built-ins</p>
     ><code class="language-nushell" data-lang="nushell"
       >help to md</code></pre>
 </figure><p>One more screenshot, because Nushell help is just so <em>pretty</em>.</p>
-<p><img src="/post/2022/07/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/help-to-md.png" title="syntax highlighted examples? yes please" alt="screenshot of Nushell builtin help, with usage, flags, and examples"/><figcaption>syntax highlighted examples? yes please</figcaption></figure></p>
 <h3 id="applying-what-weve-got-to-the-hugo-list">Applying what we&rsquo;ve got to the Hugo list</h3>
 <p>Let&rsquo;s see if we can apply some of what we just used with our Hugo article list.</p>
 <p>Remember Hugo? This was supposed to be a post about Hugo.</p>
@@ -748,13 +744,15 @@ handling in <a href="/card/hugo/">card/Hugo</a>. I <em>might</em> have the other
   <pubDate>Wed, 08 Jul 2020 21:45:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2020/07/tangling-code-from-hugo-content-with-raku/</guid>
-  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2020/07/../../../attachments/img/2020/cover-2020-07-08.jpg&#34; alt=&#34;attachments/img/2020/cover-2020-07-08.jpg&#34;/&gt;
+  <description>&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2020/cover-2020-07-08.jpg&#34; alt=&#34;attachments/img/2020/cover-2020-07-08.jpg&#34;/&gt;&lt;/figure&gt;
 You know what else I can tangle? Yarn!&lt;/p&gt;
 &lt;p&gt;I spend a while using &lt;a href=&#34;https://randomgeekery.org/card/raku/&#34;&gt;card/Raku&lt;/a&gt; to extract code from a &lt;a href=&#34;https://randomgeekery.org/card/hugo/&#34;&gt;card/Hugo&lt;/a&gt; post.&lt;/p&gt;</description>
    <category>post</category> 
    <category>post</category> 
    <category>raku-lang</category>  <category>literateprogramming</category>  <category>files</category>  <category>hugo</category>  <category>sortof</category>  <category>programming</category> 
-  <content:encoded><![CDATA[<h2>I could just use Org mode, but noo that's too easy</h2><p><img src="/post/2020/07/../../../attachments/img/2020/cover-2020-07-08.jpg" alt="attachments/img/2020/cover-2020-07-08.jpg"/>
+  <content:encoded><![CDATA[<h2>I could just use Org mode, but noo that's too easy</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-07-08.jpg" alt="attachments/img/2020/cover-2020-07-08.jpg"/></figure>
 You know what else I can tangle? Yarn!</p>
 <p>I spend a while using <a href="/card/raku/">card/Raku</a> to extract code from a <a href="/card/hugo/">card/Hugo</a> post.</p>
 <blockquote>
@@ -1174,7 +1172,8 @@ for the code.  I couldn&rsquo;t figure out how to cleanly present the  commented
 </span></span><span class="line"><span class="cl"><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="s2">&#34;**Hello**, *World*.&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="n">md</span><span class="p">))</span></span></span></code></pre>
 </figure><p>Running <code>rich-hello.py</code> looks more interesting with a screenshot than a text block:</p>
-<p><img src="/post/2020/07/attachments/img/2020/rich-panel.png" alt="Formatted output using Rich"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/rich-panel.png" alt="Formatted output using Rich"/></figure></p>
 <p>Okay.  Now I&rsquo;m done.</p>
 <p>I <em>could</em> have done this in Python.  There are decent parsing libraries out there.  But Raku did this on its own, without pulling in any extra — without pulling in <em>any</em> libraries.</p>
 <h2 id="done-you-barely-started">Done? You barely started!</h2>
@@ -1209,7 +1208,8 @@ I figured out how to write Hugo shortcodes to generate tables from CSV and other
    <category>post</category> 
    <category>post</category> 
    <category>hugo</category>  <category>data</category>  <category>showing-it-anyways</category>  <category>csv</category>  <category>rst</category>  <category>and-a-dog</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><img src="/post/2020/06/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/>
+  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/></figure>
 I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</p>
 <p><a href="/card/tldr/">tldr</a>: Use <a href="/card/hugo/">Hugo</a>’s <a href="https://gohugo.io/functions/transform.unmarshal/"><code>transform.Unmarshal</code></a> to turn strings into data structures, which you can feed into a table template. But sometimes <a href="https://gohugo.io/functions/split/"><code>split</code></a> makes more sense.</p>
 <p>I figured out how to write Hugo <a href="https://gohugo.io/templates/shortcode-templates/">shortcodes</a> to generate <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">tables</a> from <a href="/card/csv/">CSV</a> and other formats. Didn’t even occur to me that it was possible — or this easy — so I had to share.</p>
@@ -1263,7 +1263,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
 </figure><p>Voila! Instant table!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></figure></p>
 <p>Not bad, but it could be better.</p>
 <ul>
 <li>that first row provides column names, which works better as table headers than just another row</li>
@@ -1311,7 +1312,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
 <p>Better!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></figure></p>
 <p>I still need to fiddle with my styles. This table’s a little wide for these
 values. Maybe later.</p>
 <p>CSV is great, but <code>transform.Unmarshal</code> supports other formats. What about those?</p>
@@ -1408,7 +1410,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
-<p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/data-table.png" alt="A data table"/></figure></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
 <p>There’s really only one <em>slight</em> problem with <code>data-table</code>. I don’t need it. Not today, anyways.</p>
 <h2 id="what-i-need-list-tables">What I need: list tables</h2>
@@ -1474,7 +1477,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
-</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/list-table.png" alt="A list table!"/></figure></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>

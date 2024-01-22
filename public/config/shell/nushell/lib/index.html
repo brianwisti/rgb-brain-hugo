@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.60856f0f2ed73fb3cd2820ee548c4698ffbc4d743736e852c0e27ce4f52dfd9c.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/favicon.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+<meta property="og:url" content="https://randomgeekery.org/config/shell/nushell/lib/">
+<meta property="og:title" content="My Nushell custom libraries">
+<meta name="twitter:title" content="My Nushell custom libraries">
+
+
+  <meta name="twitter:site" content="@brianwisti">
+
+
+
+  
+    <meta name="twitter:description" content="task.nu The idea here is to make a pretty Nu-style table from my Taskwarrior reports.
+//- file:nushell/lib/task.nu # Prettify taskwarrior output with nushell # Ensure field has string value or explicit null def upsert-string [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?) { &#34;&#34; } else { $value | str collect &#34; &#34; } } } # Ensure field has datetime value or explicit null def upsert-date [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?">
+    <meta property="og:description" content="task.nu The idea here is to make a pretty Nu-style table from my Taskwarrior reports.
+//- file:nushell/lib/task.nu # Prettify taskwarrior output with nushell # Ensure field has string value or explicit null def upsert-string [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?) { &#34;&#34; } else { $value | str collect &#34; &#34; } } } # Ensure field has datetime value or explicit null def upsert-date [field] { $in | upsert $field { |it| let value = ($in | get -i $field) if ($value | empty?">
+  
+
+
+
+<title itemprop="name">My Nushell custom libraries - Random Geekery</title>
+<meta property="og:title" content=My&#32;Nushell&#32;custom&#32;libraries&#32;-&#32;Random&#32;Geekery />
+<meta name="twitter:title" content=My&#32;Nushell&#32;custom&#32;libraries&#32;-&#32;Random&#32;Geekery />
+<meta itemprop="name" content=My&#32;Nushell&#32;custom&#32;libraries&#32;-&#32;Random&#32;Geekery />
+<meta name="application-name" content=My&#32;Nushell&#32;custom&#32;libraries&#32;-&#32;Random&#32;Geekery />
+<meta property="og:site_name" content="Random Geekery" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://randomgeekery.org/config/shell/nushell/lib/" />
+<link rel="canonical" href="https://randomgeekery.org/config/shell/nushell/lib/" itemprop="url" />
+<meta name="url" content="https://randomgeekery.org/config/shell/nushell/lib/" />
+<meta name="twitter:url" content="https://randomgeekery.org/config/shell/nushell/lib/" />
+<meta property="og:url" content="https://randomgeekery.org/config/shell/nushell/lib/" />
+
+
+<meta property="og:updated_time" content=1001-01-12T10:00:01Z />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://randomgeekery.org/sitemap.xml' />
+
+  <link
+      rel="alternate"
+      type="application/rss+xml"
+    
+        href="/index.xml"
+    
+      title="Random Geekery"/>
+
+
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="Random Geekery" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.121.2">
+
+
+    
+    
+
+<link
+    rel="stylesheet"
+    href="/css/style.fe9735814e6394fb590ff4fd2eb036a13152e6808ad90dd06ba181d89087b5d3.css"
+    integrity="sha256-/pc1gU5jlPtZD/T9LrA2oTFS5oCK2Q3Qa6GB2JCHtdM=" 
+    crossorigin="anonymous">
+
+
+</head>
+
+    <body class="">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+        
+            <a href="https://randomgeekery.org">
+                <h1>Random Geekery</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    Collecting my attempts to improve at tech, art, and life
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+      
+        <li class="bullet">
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
+        </li>
+      
+    </ul>
+</nav>
+
+        
+  <div class="related">
+    <div class="related-posts">
+      <h3>Related</h3>
+      <ul>
+        
+          <li><a href="/config/shell/nushell/config.nu/">My Nushell config file</a></li>
+        
+          <li><a href="/config/shell/nushell/env.nu/">My Nushell environment file</a></li>
+        
+          <li><a href="/config/shell/nushell/login.nu/">My Nushell login settings</a></li>
+        
+          <li><a href="/config/shell/zsh/">My $ZDOTDIR</a></li>
+        
+          <li><a href="/config/term/alacritty/">My Alacritty Config</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p class="footnote">
+powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a target="_blank" href="https://github.com/lukeorth/poison">poison</a>
+    <br>
+    &copy; 2024 Brian Wisti. All rights reserved.
+</p>
+<p class="footnote">
+  This work is licensed under a
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+    Creative Commons Attribution 4.0 International License
+  </a>.
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <nav class="masthead">
+    <ul>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+    <li><a href="https://randomgeekery.org/">Random Geekery</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/">My Config</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/shell/">Shells and Shell Utilities</a></li>
+  
+
+    <li><a href="https://randomgeekery.org/config/shell/nushell/">My Nushell config</a></li>
+  
+
+    <li><a class="active" href="https://randomgeekery.org/config/shell/nushell/lib/">My Nushell custom libraries</a></li>
+</nav>
+
+
+
+  <div class="info">
+    <h1 class="post-title">
+        <a href="https://randomgeekery.org/config/shell/nushell/lib/">My Nushell custom libraries</a>
+    </h1>
+    
+        <time datetime="2024-01-21T21:46:52-0800" class="post-date">
+            January 21, 2024
+        </time>
+    
+    
+    <ul class="tags">
+        
+        <li class="tag-config">
+            <a href="https://randomgeekery.org/tags/config">config</a>
+        </li>
+        
+        <li class="tag-nushell">
+            <a href="https://randomgeekery.org/tags/nushell">nushell</a>
+        </li>
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+</div>
+
+  <h2 id="tasknu"><code>task.nu</code></h2>
+<p>The idea here is to make a pretty Nu-style table from my Taskwarrior reports.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-nushell" data-lang="nushell"
+      >//- file:nushell/lib/task.nu
+# Prettify taskwarrior output with nushell
+
+# Ensure field has string value or explicit null
+def upsert-string [field] {
+  $in | upsert $field { |it|
+    let value = ($in | get -i $field)
+
+    if ($value | empty?) { &#34;&#34; } else { $value | str collect &#34; &#34; }
+  }
+}
+
+# Ensure field has datetime value or explicit null
+def upsert-date [field] {
+  $in | upsert $field { |it|
+    let value = ($in | get -i $field)
+
+    if ($value | empty?) { $nothing } else { $value | into datetime }
+  }
+}
+
+# Format a taskwarrior export into a table
+def from-tw [] {
+  (
+    $in
+    | from json
+    | upsert-string project
+    | upsert-date entry
+    | upsert-date modified
+    | upsert-date end
+  )
+}
+
+# stock reports
+
+# next (the default)
+def tw-next [] {
+  (
+    task status:pending -WAITING limit:page -Work -pay -finances -personal export
+    | from-tw
+    | upsert-string tags
+    | select id entry priority project tags description urgency
+    | sort-by -r urgency
+    | rename ID Age P Project Tag Description Urg
+  )
+}
+
+
+# active
+# all
+# blocked
+# blocking
+# burndown.daily
+# burndown.monthly
+# burndown.weekly
+# completed
+# ghistory.annual
+# ghistory.monthly
+# history.annual
+# history.monthly
+# information
+# list
+# long
+# ls
+# minimal
+# newest
+# oldest
+# overdue
+# projects
+# ready
+# recurring
+# summary
+# tags
+# unblocked
+# waiting</code></pre>
+</figure>
+  
+
+
+
+
+
+
+  <hr>
+  
+
+  
+  
+<hr>
+<div class="footer">
+    
+    
+      <a class="previous-post" href="https://randomgeekery.org/config/shell/nushell/env.nu/?ref=footer">
+        <span style="font-weight:bold;">« Previous</span>
+        <br>My Nushell environment file
+      </a>
+    
+    
+      <div class="next-post">
+        <a href="https://randomgeekery.org/config/shell/nushell/config.nu/?ref=footer">
+          <span style="font-weight:bold;">Next »</span>
+          <br>My Nushell config file
+        </a>
+      </div>
+    
+</div>
+
+  
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tasknu"><code>task.nu</code></a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div><script defer data-domain="randomgeekery.org" src="https://plausible.io/js/script.js"></script>
+    </body>
+</html>

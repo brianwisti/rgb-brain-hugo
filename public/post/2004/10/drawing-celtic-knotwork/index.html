@@ -179,11 +179,27 @@ Thanks to everybody for the positive feedback on the first MIRE. I still have yo
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -1007,7 +1023,8 @@ at the end of the article, okay?</p>
 </span></span><span class="line"><span class="cl"><span class="n">panel</span> <span class="o">=</span> <span class="no">KnotworkPanel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">panel</span><span class="o">.</span><span class="n">to_image</span><span class="p">()</span></span></span></code></pre>
 </figure><p>Thanks to all the work we did building Tiles and Grids and ASCII art KnotworkPanels, we only need to add a few lines to allow KnotworkPanels to create a nice black and white PNG image file. Here’s what we get::</p>
-<p><img src="/post/2004/10/attachments/img/2004/panel.png" alt="10x20 panel"/></p>
+<p><figure>
+    <img src="/attachments/img/2004/panel.png" alt="10x20 panel"/></figure></p>
 <p>Cool, eh?</p>
 <h3 id="building-knotworkpanels-of-any-size">Building KnotworkPanels of Any Size</h3>
 <p>Now the program does what I want it to. But if I hand this script off to somebody else and say &ldquo;This program will make knotwork panels of any size,&rdquo; one of their first questions will be how to set the size. &ldquo;Go in and edit the code&rdquo; won’t cut it. Let’s haul out our trusty <a href="http://www.ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html">OptParse</a> library again.</p>
@@ -1051,13 +1068,15 @@ at the end of the article, okay?</p>
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ ruby knotworkpanel.rb</code></pre>
-</figure><p><img src="/post/2004/10/attachments/img/2004/panel-3x3.png" alt="3x3 panel"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/panel-3x3.png" alt="3x3 panel"/></figure></p>
 <p>Setting <code>rows</code> to 2 results in a 4x4 panel.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ ruby knotworkpanel.rb --rows 2</code></pre>
-</figure><p><img src="/post/2004/10/attachments/img/2004/panel-4x4.png" alt="4x4 panel"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/panel-4x4.png" alt="4x4 panel"/></figure></p>
 <blockquote>
 <p><strong>NOTE</strong></p>
 <p>Me from the immediate future says &ldquo;See? This is what I was talking about. You say

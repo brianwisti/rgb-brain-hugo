@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -383,7 +399,8 @@ layout: default
 &lt;/article&gt;</code></pre>
 </figure><p>As far as Jekyll is concerned, the collection item is just another page. Use <code>page</code> to get at front matter for this item.</p>
 <p>Oh and while I was putting this page together I learned about the <a href="https://github.com/octopress/image-tag">Octopress Image Tag</a> plugin. I expect to be using that a lot more in the future!</p>
-<p><img src="/post/2015/07/attachments/img/2015/crafts-project.png" alt="Voila!"/></p>
+<p><figure>
+    <img src="/attachments/img/2015/crafts-project.png" alt="Voila!"/></figure></p>
 <p>Now I have a page for this project, but how will visitors know it’s there? How about I start with some sort of summary on the site’s index page?</p>
 <h3 id="just-the-new-things">Just The New Things</h3>
 <p>Here is a simple approach. Just make a list of the items in the collection.</p>
@@ -399,9 +416,11 @@ layout: default
   &lt;/ul&gt;
   &lt;ul class=&#34;post-list&#34;&gt;
     {% for post in site.posts %}</code></pre>
-</figure><p><img src="/post/2015/07/attachments/img/2015/crafts-summary-01.png" alt="A short and sweet summary"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2015/crafts-summary-01.png" alt="A short and sweet summary"/></figure></p>
 <p>Sure, that works for the moment. Let’s get some more projects in that collection. I can add the projects from my Ravelry account for now.</p>
-<p><img src="/post/2015/07/attachments/img/2015/crafts-summary-02.png" alt="Listing every project"/></p>
+<p><figure>
+    <img src="/attachments/img/2015/crafts-summary-02.png" alt="Listing every project"/></figure></p>
 <p>Ok, new problem.</p>
 <p>I see aesthetic issues here, but that’s not the problem. My site index limits itself to only showing this year’s blog posts. This collection summary shows every craft project I ever documented.</p>
 <p>The project list should only show projects I have finished so far in the year.</p>
@@ -420,7 +439,8 @@ layout: default
   {% endfor %}
 &lt;/ul&gt;</code></pre>
 </figure><p>Jekyll sorts collections by filename. Since time finished matters to me now, I create a copy of the crafts collection sorted from most recently finished to oldest. Now I can step through that copy, only summarizing projects completed this year. Liquid may have an easier way, but I haven’t learned it yet.</p>
-<p><img src="/post/2015/07/attachments/img/2015/crafts-summary-03.png" alt="Just the newest projects please"/></p>
+<p><figure>
+    <img src="/attachments/img/2015/crafts-summary-03.png" alt="Just the newest projects please"/></figure></p>
 <h3 id="all-the-things">All The Things</h3>
 <p>Wait. How will a visitor find those old projects? Time to make an archive page. I can follow the idea of the post archive for now, listing every project ever. <code>crafts/index.html</code> will hold that archive.</p>
 <figure class="highlight">
@@ -455,7 +475,8 @@ permalink: /crafts/
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >&lt;p&gt;See the &lt;a href=&#34;/crafts/&#34;&gt;Crafts&lt;/a&gt; page to see all projects.</code></pre>
-</figure><p><img src="/post/2015/07/attachments/img/2015/crafts-index.png" alt="Short and sweet version of the crafts index"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2015/crafts-index.png" alt="Short and sweet version of the crafts index"/></figure></p>
 <p>Well it is painfully obvious that I need to dig through my photos and fill in gaps for those missing years.</p>
 <p>The “Jekyll collections” part of this blog post is done. I talked about building a collection, creating detail pages — though not every collection needs those — along with a summary for the site index and a page listing every item in the collection. We are done here.</p>
 <h3 id="but-">But —</h3>
@@ -544,7 +565,8 @@ each project.</li>
 </span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="mi">160</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p><img src="/post/2015/07/attachments/img/2015/crafts-summary-04.png" alt="Final version of the crafts summary"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2015/crafts-summary-04.png" alt="Final version of the crafts summary"/></figure></p>
 <p>I’m fairly sure something is horribly wrong with my CSS, but if I clean this bit up I’ll just have to clean everything. This works for now.</p>
 <h3 id="next">Next?</h3>
 <p>Judging by my new yarncraft collection? More knitting and crochet. I need to fill that space! Also, I will gradually hunt down other projects I completed and add them to the collection. Probably some more layout and automation work.</p>

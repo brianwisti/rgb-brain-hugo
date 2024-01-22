@@ -11,7 +11,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 20 Jan 2024 22:42:32 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2002/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:53 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2002/index.xml" rel="self" type="application/rss+xml" /><item>
   <title>Post: PageTemplate - Getting It</title>
   <link>https://randomgeekery.org/post/2002/07/pagetemplate-getting-it/</link>
   <pubDate>Thu, 11 Jul 2002 00:00:00 -0700</pubDate>
@@ -529,40 +529,28 @@ nothing at all if he is logged in. That is exactly the sort of thing
   <pubDate>Sun, 02 Jun 2002 00:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2002/06/pagetemplate-loop/</guid>
-  <description>Loop Basics The loop directive is the most complex, and requires more explanation of its details. Let’s start by just looking at the basic syntax of a loop in PageTemplate.
+  <description>Loop Basics The loop directive is the most complex, and requires more explanation of its details. Let’s start by just looking at the basic syntax of a loop in pagetemplate.
 Loop Use the loop directive when you want PageTempate to insert the same chunk repeatedly for a list of items. It can grab values from the item to be inserted in value directives within the chunk. If there is no list of items, the in chunk is skipped.</description>
    <category>post</category> 
    <category>post</category> 
    <category>pagetemplate</category>  <category>coolnamehere</category> 
   <content:encoded><![CDATA[<h2 id="loop-basics">Loop Basics</h2>
-<p>The <code>loop</code> directive is the most complex, and requires more explanation
-of its details. Let’s start by just looking at the basic syntax of a
-loop in PageTemplate.</p>
+<p>The <code>loop</code> directive is the most complex, and requires more explanation of its details. Let’s start by just looking at the basic syntax of a loop in <a href="/post/2002/06/pagetemplate/">pagetemplate</a>.</p>
 <h3 id="loop">Loop</h3>
-<p>Use the <code>loop</code> directive when you want PageTempate to insert the same
-chunk repeatedly for a list of items. It can grab values from the item
-to be inserted in <code>value</code> directives within the chunk. If there is no
-list of items, the <code>in</code> chunk is skipped.</p>
+<p>Use the <code>loop</code> directive when you want PageTempate to insert the same chunk repeatedly for a list of items. It can grab values from the item to be inserted in <code>value</code> directives within the chunk. If there is no list of items, the <code>in</code> chunk is skipped.</p>
 <h4 id="syntax">Syntax</h4>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
 </span></span><span class="line"><span class="cl">[%end loop %]</span></span></code></pre>
-</figure><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of
-looking at each item in a list back in the misty days of 2002. However,
-the steadily increasing power of <code>in</code> combined with a few suggestions
-led to the addition of <code>loop</code> as a directive for loops. Makes sense. I
-even use it myself most of the time. Still, I hate it when documented
-features disappear without warning, so <code>in</code> was never removed. Here’s
-what <code>in</code> looks like.</p>
+</figure><p>Way back when, <code>loop</code> started as <code>in</code>. It seemed like the natural way of looking at each item in a list back in the misty days of 2002. However, the steadily increasing power of <code>in</code> combined with a few suggestions led to the addition of <code>loop</code> as a directive for loops. Makes sense. I even use it myself most of the time. Still, I hate it when documented features disappear without warning, so <code>in</code> was never removed. Here’s what <code>in</code> looks like.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%in LIST %]
 </span></span><span class="line"><span class="cl">  Value: [%var value %]
 </span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
-</figure><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no
-difference in usage beyond a couple characters’ worth of typing.</p>
+</figure><p><code>in</code> and <code>loop</code> both describe the same directive, so there is no difference in usage beyond a couple characters’ worth of typing.</p>
 <h4 id="example">Example</h4>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -572,21 +560,10 @@ difference in usage beyond a couple characters’ worth of typing.</p>
 </span></span><span class="line"><span class="cl">[%end loop %]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><h3 id="local-values">“Local” Values</h3>
-<p>PageTemplate works a little magic with <code>value</code> directives when stepping
-through a <code>loop</code>. First it examines the list item to see if it has a
-value for the variable named. If it can’t find one there, it checks its
-main variable listing and tries to insert that. If it can’t find a value
-in the main variable listing, it inserts nothing for that <code>value</code>
-directive.</p>
-<p>This logic works for nested lists, too. If you have a <code>loop</code> directive
-embedded in another <code>loop</code> directive - say, a list of books written by
-each one of a list of your favorite authors - PageTemplate first looks
-in the innermost list (the books) for a name, then the next list out
-(the authors), and finally the main variable listing.</p>
+<p>PageTemplate works a little magic with <code>value</code> directives when stepping through a <code>loop</code>. First it examines the list item to see if it has a value for the variable named. If it can’t find one there, it checks its main variable listing and tries to insert that. If it can’t find a value in the main variable listing, it inserts nothing for that <code>value</code> directive.</p>
+<p>This logic works for nested lists, too. If you have a <code>loop</code> directive embedded in another <code>loop</code> directive - say, a list of books written by each one of a list of your favorite authors - PageTemplate first looks in the innermost list (the books) for a name, then the next list out (the authors), and finally the main variable listing.</p>
 <h3 id="empty">Empty</h3>
-<p>Similar to the <code>else</code> directive for <a href="/post/2002/06/pagetemplate-if-else-and-elsif/"><code>if</code> blocks</a>, the <code>empty</code>
-directive provides a block of content to display if the list you are looking at
-is empty.</p>
+<p>Similar to the <code>else</code> directive for [[pagetemplate-if-else-and-elsif|<code>if</code> blocks]], the <code>empty</code> directive provides a block of content to display if the list you are looking at is empty.</p>
 <h4 id="syntax-1">Syntax</h4>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -620,14 +597,7 @@ going to stop you if that’s what you really want to do.</p>
 </span></span><span class="line"><span class="cl">[%end in %]</span></span></code></pre>
 </figure><p>{{&lt; /note &gt;}}</p>
 <h2 id="iterators">Iterators</h2>
-<p>You are normally dealing with a hidden unnamed <code>this_step</code> variable in
-loops. Most of the time this is no problem, but sometimes your template
-would be clearer if you could just hand a name to that hidden variable
-and access its traits instead of letting your value directives fling
-wildly off into space. Maybe you want to access a global value that has
-the same name as a loop value. Iterators provide you with a main spot to
-access loop values without interfering with your ability to access
-global values.</p>
+<p>You are normally dealing with a hidden unnamed <code>this_step</code> variable in loops. Most of the time this is no problem, but sometimes your template would be clearer if you could just hand a name to that hidden variable and access its traits instead of letting your value directives fling wildly off into space. Maybe you want to access a global value that has the same name as a loop value. Iterators provide you with a main spot to access loop values without interfering with your ability to access global values.</p>
 <h3 id="basic-iterators">Basic Iterators</h3>
 <p>Basic iterators provide an explicit name for your loop variable.</p>
 <h4 id="syntax-2">Syntax</h4>
@@ -647,15 +617,8 @@ global values.</p>
 </span></span><span class="line"><span class="cl">[%end loop%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><h3 id="multiple-iterators">Multiple Iterators</h3>
-<p>It’s usually easy enough to handle loops. You just step through and use
-the variable names you’ve been given by the programmer. It’s not always
-that easy. Sometimes you get complex lists with no convenient names
-attached to them. For example, maybe you don’t get a list of books with
-convenient labels for title and author. Maybe each item in your list is
-<em>another</em> list where the first item is a title and the second item is
-the author’s name. Hey, don’t blame me. I didn’t write that code.</p>
-<p>Multiple iterators provide a way for you to make sense out of a
-confusing situation like that.</p>
+<p>It’s usually easy enough to handle loops. You just step through and use the variable names you’ve been given by the programmer. It’s not always that easy. Sometimes you get complex lists with no convenient names attached to them. For example, maybe you don’t get a list of books with convenient labels for title and author. Maybe each item in your list is <em>another</em> list where the first item is a title and the second item is the author’s name. Hey, don’t blame me. I didn’t write that code.</p>
+<p>Multiple iterators provide a way for you to make sense out of a confusing situation like that.</p>
 <h4 id="syntax-3">Syntax</h4>
 <figure class="highlight">
   <pre tabindex="0"
@@ -676,9 +639,7 @@ confusing situation like that.</p>
 [%end loop%]
 &lt;/ul&gt;</code></pre>
 </figure><h2 id="metavariables">Metavariables</h2>
-<p>Metavariables are a really snazzy addition to <code>loop</code> which make
-formatting and organizing list displays much easier, without any work by
-you or the programmers.</p>
+<p>Metavariables are a really snazzy addition to <code>loop</code> which make formatting and organizing list displays much easier, without any work by you or the programmers.</p>
 <h3 id="first"><code>FIRST</code></h3>
 <p>True if you are on the first trip through the loop.</p>
 <h4 id="example-4">Example</h4>
@@ -728,8 +689,7 @@ you or the programmers.</p>
 </span></span><span class="line"><span class="cl">[%end loop%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><h3 id="odd"><code>ODD</code></h3>
-<p>True if you are on an odd-numbered trip through the loop (the first trip
-is odd).</p>
+<p>True if you are on an odd-numbered trip through the loop (the first trip is odd).</p>
 <h4 id="example-6">Example</h4>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -756,8 +716,7 @@ is odd).</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
 </figure><h3 id="index"><code>INDEX</code></h3>
-<p>Counts the number of trips you’ve made through the loop (starts at
-zero).</p>
+<p>Counts the number of trips you’ve made through the loop (starts at zero).</p>
 <h4 id="example-7">Example</h4>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -786,10 +745,7 @@ zero).</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
 </figure><h4 id="lists-and-wysiwyg-editors">Lists and WYSIWYG Editors</h4>
-<p>Here’s a specific problem that might pop up when you are using a WYSIWYG
-editor. Let’s say you’re embedding a list into a table, so that each
-item in the list gets one table row. Dreamweaver is probably not going
-to enjoy code like this:</p>
+<p>Here’s a specific problem that might pop up when you are using a WYSIWYG editor. Let’s say you’re embedding a list into a table, so that each item in the list gets one table row. Dreamweaver is probably not going to enjoy code like this:</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">[%loop books title author%]
@@ -816,10 +772,8 @@ to enjoy code like this:</p>
 </span></span><span class="line"><span class="cl">[%empty%]
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">[%end loop%]</span></span></code></pre>
-</figure><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at
-invalid locations for XHTML, and they may not be allowed by your editor.</p>
-<p>It turns out that the solution is simple, though maybe a little awkward.
-Wrap the offending directives in HTML comments, like this example shows:</p>
+</figure><p>The problem is that the <code>end</code>, <code>else</code>, and <code>if</code> directives are at invalid locations for XHTML, and they may not be allowed by your editor.</p>
+<p>It turns out that the solution is simple, though maybe a little awkward. Wrap the offending directives in HTML comments, like this example shows:</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- [%loop books title author%] --&gt;</span>
@@ -846,13 +800,8 @@ Wrap the offending directives in HTML comments, like this example shows:</p>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%empty%] --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>There are no books in the list.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- [%end loop%] --&gt;</span></span></span></code></pre>
-</figure><p>Your fancy editor should be able to handle this, and PageTemplate should
-be able to understand it just fine. The only side effect is that you
-will have some empty comments in your final page.</p>
-<p>The other solution is to use {{&lt; tag &ldquo;vim&rdquo;&gt;}}, {{&lt; tag &ldquo;emacs&rdquo; &gt;}}, or some
-other effective non-WYSIWYG editor. Personal preference, of course. I know that
-Dreamweaver costs good money, and you aren’t going to toss it aside just
-because I say so. Hopefully this workaround will suit your needs.</p>
+</figure><p>Your fancy editor should be able to handle this, and PageTemplate should be able to understand it just fine. The only side effect is that you will have some empty comments in your final page.</p>
+<p>The other solution is to use Vim, Emacs, or some other effective non-WYSIWYG editor. Personal preference, of course. I know that Dreamweaver costs good money, and you aren’t going to toss it aside just because I say so. Hopefully this workaround will suit your needs.</p>
 ]]></content:encoded>
 </item>
 <item>

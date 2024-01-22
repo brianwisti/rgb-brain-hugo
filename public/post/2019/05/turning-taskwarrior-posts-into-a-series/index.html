@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -299,7 +315,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2019/05/../../../attachments/img/2019/cover-2019-05-12.jpg" alt="attachments/img/2019/cover-2019-05-12.jpg"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-05-12.jpg" alt="attachments/img/2019/cover-2019-05-12.jpg"/></figure></p>
 <p>I want to more clearly show relations between some of my posts. Tags and categories do handle a lot, but they get a bit clunky with stuff like my <a href="/card/taskwarrior/">Taskwarrior</a> posts, which specifically build on each other.</p>
 <p><a href="/card/hugo/">card/Hugo</a> supports series as a <a href="https://gohugo.io/content-management/taxonomies/">taxonomy</a>. Let’s find out what that means.</p>
 <h2 id="update-site-config">Update site config</h2>
@@ -319,9 +336,11 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="l">Taskwarrior Babysteps</span></span></span></code></pre>
 </figure><h2 id="create-a-series-summary-page">Create a series summary page</h2>
 <p>Oh look, there it is, already sitting at <code>/series</code>, thanks to my existing <code>layouts/_default/terms.html</code>.</p>
-<p><img src="/post/2019/05/attachments/img/2019/series-listing.png" alt="Listing of all series, currently just Taskwarrior Babysteps"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/series-listing.png" alt="Listing of all series, currently just Taskwarrior Babysteps"/></figure></p>
 <p>What if I follow <em>taskwarrior-babysteps</em>?</p>
-<p><img src="/post/2019/05/attachments/img/2019/taskwarrior-series-initial.png" alt="The Taskwarrior Babysteps series listing"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/taskwarrior-series-initial.png" alt="The Taskwarrior Babysteps series listing"/></figure></p>
 <p><em>Almost</em> perfect. But since each post is supposed to build on the others, I’d prefer the listing present its posts in chronological order. I’ll add a template for series listings.</p>
 <p><strong><code>layouts/series/series.html</code></strong></p>
 <figure class="highlight">
@@ -355,7 +374,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">[Taskwarrior]: https://taskwarrior.org/</span></span></code></pre>
 </figure><p>That works for now. I can tighten it up later.</p>
-<p><img src="/post/2019/05/attachments/img/2019/taskwarrior-series-adjusted.png" alt="The Taskwarrior Babysteps series after tuning"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/taskwarrior-series-adjusted.png" alt="The Taskwarrior Babysteps series after tuning"/></figure></p>
 <h2 id="link-back-to-the-series-summary-in-every-series-post">Link back to the series summary in every series post</h2>
 <p>Next I want posts to link back to their series main page. I already have a partial for content metadata so I can add it there.</p>
 <p><strong><code>layouts/partials/meta.html</code></strong></p>
@@ -406,7 +426,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
   &lt;/section&gt;
 {{- end -}}</code></pre>
 </figure><p>This is a mess. But hey it works!</p>
-<p><img src="/post/2019/05/attachments/img/2019/taskwarrior-series-post-header.png" alt="Post header with series information, and a little styling to make it stand out"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/taskwarrior-series-post-header.png" alt="Post header with series information, and a little styling to make it stand out"/></figure></p>
 <p>That’s pretty much it! Now it’ll be easier for visitors to understand when posts build on each other. At some point I will dig through the rest of my posts to add series-related front matter when applicable. Not today, though.</p>
 
   

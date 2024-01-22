@@ -19,19 +19,23 @@
   <guid>https://randomgeekery.org/post/2022/12/nanoc-builds-faster-with-3-2-0/</guid>
   <description>just the numbers
 Today is Christmas, which means version 3.2.0 of Ruby has been released. I read Peter Solnica’s post about Benchmarking Ruby 3.2 with YJIT. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:
-{% quote( from=“Noah Gibbs” cite=&#34;https://ruby.social/@codefolio/109573860732354569&#34; ) %} By default, YJIT optimizes a method on the 30th time you call it.</description>
+By default, YJIT optimizes a method on the 30th time you call it.
+— Noah Gibbs, via ruby.social Well hey.</description>
    <category>post</category> 
    <category>post</category> 
    <category>ruby</category>  <category>nanoc</category> 
-  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><img src="/post/2022/12/../../../attachments/img/2022/cover-2022-12-25.png" alt="attachments/img/2022/cover-2022-12-25.png"/>
-just the numbers</p>
+  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><figure>
+    <img src="/attachments/img/2022/cover-2022-12-25.png" title="just the numbers" alt="tabular display of build time values described in post"/><figcaption>just the numbers</figcaption></figure></p>
 <p>Today is Christmas, which means version <a href="https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/">3.2.0</a> of <a href="/card/ruby/">Ruby</a> has been released. I read Peter Solnica&rsquo;s post about <a href="https://www.solnic.dev/p/benchmarking-ruby-32-with-yjit">Benchmarking Ruby 3.2 with YJIT</a>. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:</p>
-<p>{% quote(
-from=&ldquo;Noah Gibbs&rdquo;
-cite=&quot;<a href="https://ruby.social/@codefolio/109573860732354569">https://ruby.social/@codefolio/109573860732354569</a>&quot;
-) %}
-By default, YJIT optimizes a method on the 30th time you call it.
-{% end %}</p>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    cite="https://ruby.social/@codefolio/109573860732354569">
+<p>By default, YJIT optimizes a method on the 30th time you call it.</p>
+  </blockquote><figcaption class="align-right">
+    &mdash;
+    Noah Gibbs, via
+        <a href="https://ruby.social/@codefolio/109573860732354569">ruby.social</a>
+  </figcaption></figure>
 <p>Well hey. The <a href="https://nanoc.app">Nanoc</a> iteration of my site has a few hundred pages. Nanoc probably calls some of its methods 30 or more times for that. Let&rsquo;s find out if 3.2.0 makes a difference.</p>
 <h2 id="i-should-probably-install-320">I should probably install 3.2.0</h2>
 <p>This is in my Windows 11 + WSL2 workspace. I wouldn&rsquo;t be surprised if Linux and macOS tests went faster.</p>
@@ -100,7 +104,8 @@ Nikola’s got the convenience thing down. Someone can sit and start a fresh blo
    <category>post</category> 
    <category>note</category> 
    <category>static-site-generators</category>  <category>nikola</category>  <category>nanoc</category>  <category>spinning-wheels</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2021/05/../../../attachments/img/2021/cover-2021-05-16.png" alt="attachments/img/2021/cover-2021-05-16.png"/></p>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2021/cover-2021-05-16.png" alt="attachments/img/2021/cover-2021-05-16.png"/></figure></p>
 <p>So after bouncing back to <a href="/card/hugo/">card/Hugo</a> from a brief <a href="/card/statamic/">card/Statamic</a> experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?</p>
 <p>No of course not.</p>
 <p>I spent the weekend messing with <a href="https://nanoc.app">Nanoc</a> and <a href="https://getnikola.com">Nikola</a>. Still chasing the high of the perfect site generator? Maybe.</p>

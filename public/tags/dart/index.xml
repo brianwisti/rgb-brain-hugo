@@ -36,8 +36,8 @@ The language itself has evolved, of course. So have all the other languages. Wha
 <li>How do I print variables such as user input?</li>
 </ul>
 <p>There are nearly always multiple answers to each, but here&rsquo;s a start.</p>
-<p>{% codeblock(title=&ldquo;greet_me.dart&rdquo;) %}</p>
 <figure class="highlight">
+  <figcaption><tt>greet_me.dart</tt></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="k">import</span> <span class="s1">&#39;dart:io&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -46,8 +46,7 @@ The language itself has evolved, of course. So have all the other languages. Wha
 </span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="n">name</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">.</span><span class="n">readLineSync</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Hello, </span><span class="si">$</span><span class="n">name</span><span class="s1">!&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>The basic answers to my basic questions:</p>
+</figure><p>The basic answers to my basic questions:</p>
 <ul>
 <li><a href="https://api.dart.dev/stable/2.18.7/dart-io/dart-io-library.html">dart:io</a> gives us handles for standard output, standard error, and standard input</li>
 <li><code>print()</code> prints a string of text on its own line</li>
@@ -170,8 +169,8 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
   <pre tabindex="0" class="chroma"
     ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">dart pub add dcli</span></span></code></pre>
 </figure><p>Since this is a <code>pub</code>​ command, it does not surprise me that this dependency detail has been added to <code>pubspec.yaml</code>​. That&rsquo;s where I&rsquo;ll find most information <em>about</em> the project.</p>
-<p>{% codeblock(title=&ldquo;greet_me/pubspec.yaml&rdquo;) %}</p>
 <figure class="highlight">
+  <figcaption><tt>greet_me/pubspec.yaml</tt></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">greet_me</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">A sample command-line application.</span><span class="w">
@@ -186,8 +185,7 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="l">^1.16.0</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dependencies</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dcli</span><span class="p">:</span><span class="w"> </span><span class="l">^1.36.0</span></span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>Back to the code! I&rsquo;ll write a cute little greeter function in <code>lib/greet_me.dart</code>​ which adds a lightly formatted prompt to my name request.</p>
+</figure><p>Back to the code! I&rsquo;ll write a cute little greeter function in <code>lib/greet_me.dart</code>​ which adds a lightly formatted prompt to my name request.</p>
 <figure class="highlight">
   <figcaption><tt>greet_me/lib/greet_me.dart</tt></figcaption>
   <pre tabindex="0" class="chroma"
@@ -218,7 +216,8 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 </span></span></span><span class="line"><span class="cl"><span class="go">Hello, Brian!
 </span></span></span></code></pre>
 </figure><p>Neat. Okay there&rsquo;s not much in a straight paste of output. Here&rsquo;s a screenshot, so you can see the visual effect from <code>red()</code>​.</p>
-<p><img src="/post/2023/01/attachments/img/2023/dcli-dart-run.png" alt="The same output, with red bold text for the user prompt"/></p>
+<p><figure>
+    <img src="/attachments/img/2023/dcli-dart-run.png" alt="The same output, with red bold text for the user prompt"/></figure></p>
 <p>That&rsquo;s better than what I had.</p>
 <h3 id="compile-the-project-application">Compile the project application</h3>
 <p>What if I want to compile it? That&rsquo;s pretty much the same process as with the script. Dart doesn&rsquo;t make any assumptions about files when it comes to compiling an executable.</p>

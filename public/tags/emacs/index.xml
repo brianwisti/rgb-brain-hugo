@@ -11,20 +11,1276 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 11 Jun 2022 10:05:12 -0700</lastBuildDate><atom:link href="https://randomgeekery.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:55 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Config: My NANO-based Emacs config</title>
+  <link>https://randomgeekery.org/config/emacs/nano/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:55 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/emacs/nano/</guid>
+  <description>This is more or less my vanilla-ish Emacs playground. I start from nano-emacs. It’s pretty and pretty useful. But expect it to veer pretty far from that base over time.
+NOTE
+There’s bound to be a lot of things that make you, the Emacs veteran, wonder “why didn’t he just do X?” The likeliest options:
+I didn’t know X was an option I saw X but wanted to wait until I understood it That last is particularly likely.</description>
+   <category>config</category> 
+  
+   <category>org-config</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<h2>Not quite bespoke</h2><p>This is more or less my vanilla-ish <a href="/card/emacs/">Emacs</a> playground. I start from <a href="https://github.com/rougier/nano-emacs">nano-emacs</a>.  It&rsquo;s pretty and pretty useful.  But expect it to veer pretty far from that base over time.</p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>There&rsquo;s bound to be a lot of things that make you, the Emacs veteran, wonder &ldquo;why didn&rsquo;t he just do X?&rdquo;  The likeliest options:</p>
+<ul>
+<li>I didn&rsquo;t know X was an option</li>
+<li>I saw X but wanted to wait until I understood it</li>
+</ul>
+<p>That last is particularly likely. I keep getting reminded that outsmarting yourself is a major hazard of Emacs configuration.</p>
+<p>I&rsquo;ll add <code>org-pymacs-nodejs-todoist-roam-lsp-mode</code> later. Maybe. I
+may not even need it.</p>
+</blockquote>
+<h2 id="foundations">Foundations</h2>
+<h3 id="give-emacs-some-breathing-room">Give Emacs some breathing room</h3>
+<p><code>max-specpdl-size</code> sets the upper limit for how many variable bindings and <code>unwind-protect</code> Emacs allows.  <code>max-lisp-eval-depth</code> says how deep we can get into a recursive function call.</p>
+<p>I got the RAM so let&rsquo;s go past the respective defaults of 1600 and 800.</p>
+<p><a id="code-snippet--set resource limits"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">max-specpdl-size</span> <span class="mi">3200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">max-lisp-eval-depth</span> <span class="mi">3200</span><span class="p">)</span></span></span></code></pre>
+</figure><p>And of course I&rsquo;m sure to screw something up so let&rsquo;s make sure the debugger is enabled for when I do.</p>
+<p><a id="code-snippet--set debug-on-error"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">debug-on-error</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="enable-local-lisp">Enable local lisp</h3>
+<p><a id="code-snippet--enable local lisp"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">default-directory</span>  <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;lisp&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">load-path</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nf">append</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">load-path</span>  <span class="p">(</span><span class="nf">copy-sequence</span> <span class="nv">load-path</span><span class="p">)))</span> <span class="c1">;; Shadow</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">append</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="nf">copy-sequence</span> <span class="p">(</span><span class="nv">normal-top-level-add-to-load-path</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">(</span><span class="nv">normal-top-level-add-subdirs-to-load-path</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">         <span class="nv">load-path</span><span class="p">)))</span></span></span></code></pre>
+</figure><h3 id="simplify-reloading-my-config">Simplify reloading my config</h3>
+<p>I putter with this config marginally less than I did initially - progress! - but enough that restarting Emacs for every config tweak gets tedious.</p>
+<p>One of the ideas I grabbed from Vianney Lebouteiller&rsquo;s <a href="https://irfu.cea.fr/Pisp/vianney.lebouteiller/emacs.html">Emacs config</a>.</p>
+<p><a id="code-snippet--enable reloading init"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">reload-init-file</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">load-file</span> <span class="nv">user-init-file</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f5&gt;&#34;</span><span class="p">)</span> <span class="ss">&#39;reload-init-file</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="use-straight-dot-el-to-install-packages">Use straight.el to install packages</h3>
+<p><a href="https://github.com/raxod502/straight.el"><code>straight.el</code></a> is my new friend.</p>
+<h4 id="early-init-dot-el"><code>early-init.el</code></h4>
+<p>But if I&rsquo;m using <code>straight.el</code> I better disable <code>package.el</code> during the <em>early init</em>
+stage.</p>
+<p><a id="code-snippet--disable package in early init"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">nil</span><span class="p">)</span></span></span></code></pre>
+</figure><h4 id="bootstrap-straight-dot-el">Bootstrap <code>straight.el</code></h4>
+<p>Boilerplate from the <code>straight.el</code> documentation.</p>
+<p><a id="code-snippet--add straight.el boilerplate"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="nv">bootstrap-version</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">bootstrap-file</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;straight/repos/straight.el/bootstrap.el&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">bootstrap-version</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nf">file-exists-p</span> <span class="nv">bootstrap-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">with-current-buffer</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">url-retrieve-synchronously</span>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="ss">&#39;silent</span> <span class="ss">&#39;inhibit-cookies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">eval-print-last-sexp</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">load</span> <span class="nv">bootstrap-file</span> <span class="no">nil</span> <span class="ss">&#39;nomessage</span><span class="p">))</span></span></span></code></pre>
+</figure><h4 id="integrate-with-use-package">Integrate with <code>use-package</code></h4>
+<p>I tried to avoid <a href="https://jwiegley.github.io/use-package/">use-package</a> here for a more &ldquo;minimal&rdquo; setup. That did not work.
+Since <code>straight.el</code> plays nice with <code>use-package</code>, let&rsquo;s let it do that.</p>
+<p><a id="code-snippet--integrate straight with use-package"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">straight-use-package</span> <span class="ss">&#39;use-package</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">straight</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">straight-use-package-by-default</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="general-usability">General Usability</h2>
+<h3 id="general-guidelines-for-text-handling">General guidelines for text handling</h3>
+<p>Where to put the fill column marker for line wraps, how many pixels to put between lines, stuff like that.</p>
+<p><a id="code-snippet--set text handling guidelines"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">fill-column</span> <span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq-default</span> <span class="nv">line-spacing</span> <span class="mi">1</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="invoke-m-x-without-alt">invoke <code>M-x</code> without <code>Alt</code></h3>
+<p>I read Steve Yegge&rsquo;s <a href="https://sites.google.com/site/steveyegge2/effective-emacs">effective-emacs</a> a <em>long</em> time ago — back when it was an internal Amazon blog. Applied his suggestion to invoke <code>X-m</code> with <code>C-x C-m</code> and that&rsquo;s been part of my Emacs muscle memory ever since.</p>
+<p><a id="code-snippet--use C-x C-m for M-x"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-m&#34;</span><span class="p">)</span> <span class="ss">&#39;execute-extended-command</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="make-a-few-adjustments-for-running-on-macos">Make a few adjustments for running on macOS</h3>
+<p>Make sure the macOS Emacs GUI app picks up environment variables.</p>
+<p><a id="code-snippet--use exec-path-from-shell"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">exec-path-from-shell</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">))</span></span></span></code></pre>
+</figure><p>macOS doesn&rsquo;t use GNU Coreutils and of course its <code>ls</code> isn&rsquo;t what
+<code>dired</code> expects. Adjust for that.</p>
+<p><a id="code-snippet--handle ls on macOS"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;darwin&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">setq</span> <span class="nv">dired-use-ls-dired</span> <span class="no">nil</span><span class="p">))</span></span></span></code></pre>
+</figure><h3 id="visual-fill-column-for-a-nice-soft-wrap"><code>visual-fill-column</code> for a nice soft wrap</h3>
+<p><a id="code-snippet--use visual-fill-column"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">visual-fill-column</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:commands</span> <span class="nv">visual-fill-column-mode</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">fill-column-enable-sensible-window-split</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="s">&#34;C-x p&#34;</span> <span class="o">.</span> <span class="ss">&#39;visual-fill-column-mode</span><span class="p">)))</span></span></span></code></pre>
+</figure><h2 id="aesthetics">Aesthetics</h2>
+<h3 id="fonts">Fonts</h3>
+<p>The <em>Roboto Mono</em> font that NANO wants is <strong>not</strong> part of any <code>*roboto*</code> package I
+found in Pop! OS repositories.  Ended up going to <a href="https://fontlibrary.org/en/font/roboto-mono">Font Library</a> for a direct
+download.</p>
+<p>With that note out of the way - I still lean towards <a href="https://github.com/belluzj/fantasque-sans">Fantasque Sans Mono</a>.</p>
+<p><a id="code-snippet--set font faces"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/face-height-default</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;darwin</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="mi">180</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">140</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">&#39;default</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:background</span> <span class="s">&#34;#000000&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:foreground</span> <span class="s">&#34;#ffffff&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:family</span> <span class="s">&#34;FantasqueSansMono Nerd Font&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:height</span> <span class="nv">bmw/face-height-default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-font-family-monospaced</span> <span class="s">&#34;FantasqueSansMono Nerd Font&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-font-size</span> <span class="p">(</span><span class="nf">/</span> <span class="nv">bmw/face-height-default</span> <span class="mi">10</span><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="configure-nano">Configure <code>nano</code></h2>
+<h3 id="install-nano-and-its-dependencies">Install <code>nano</code> and its dependencies</h3>
+<p>Installing via <code>straight.el</code>.</p>
+<p><a id="code-snippet--install nano"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">straight-use-package</span>
+</span></span><span class="line"><span class="cl"> <span class="o">&#39;</span><span class="p">(</span><span class="nv">nano-emacs</span> <span class="nb">:type</span> <span class="nv">git</span> <span class="nb">:host</span> <span class="nv">github</span> <span class="nb">:repo</span> <span class="s">&#34;rougier/nano-emacs&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><h3 id="load-the-nano-layout">Load the Nano layout</h3>
+<p><a id="code-snippet--require nano-layout"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-layout</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="define-my-colors">Define my colors</h3>
+<p>Because I&rsquo;m the kind of person I am: setting the nano theme colors to match my
+own tacky tastes. Maybe not <em>tacky</em> but certainly not as refined as the author of
+nano.</p>
+<p>This particular set of colors comes from the <a href="https://pineapplegiant.github.io/spaceduck/">Spaceduck</a> theme.</p>
+<p><a id="code-snippet--use spaceduck colors in nano"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">nano-theme-set-spaceduck</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">frame-background-mode</span> <span class="ss">&#39;dark</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-foreground</span> <span class="s">&#34;#ecf0c1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-background</span> <span class="s">&#34;#0f111b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-highlight</span>  <span class="s">&#34;#1b1c36&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-critical</span>   <span class="s">&#34;#e33400&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-salient</span>    <span class="s">&#34;#00a4cc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-strong</span>     <span class="s">&#34;#e39400&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-popout</span>     <span class="s">&#34;#f2ce00&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-subtle</span>     <span class="s">&#34;#7a5ccc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">nano-color-faded</span>      <span class="s">&#34;#b3a1e6&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">nano-theme-set-spaceduck</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="set-up-font-faces">Set up font faces</h3>
+<p>I feel comfortable loading <code>nano-faces</code> for font rules now that I&rsquo;ve defined my colors.
+Will need to fuss a bit more in a second though.</p>
+<p><a id="code-snippet--require nano-faces"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-faces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">nano-faces</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Want to overload some of the defaults, though. nano-emacs does not
+like to show bold text when using Fantasque Sans Mono.</p>
+<p><a id="code-snippet--use bold face in nano"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">&#39;nano-face-strong</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:foreground</span> <span class="p">(</span><span class="nv">face-foreground</span> <span class="ss">&#39;nano-face-default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">:weight</span> <span class="ss">&#39;bold</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="let-nano-theme-everything">Let nano theme everything</h3>
+<p><code>nano-theme</code> maps those custom faces to pretty much everything everywhere.
+Pretty nice.</p>
+<p><a id="code-snippet--require nano-theme"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-theme</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">nano-theme</span><span class="p">)</span></span></span></code></pre>
+</figure><p><em>Except</em> for this little thing where it disables bold for graphical displays? I think?  I&rsquo;m still learning how all this works.</p>
+<p>I know <strong>I</strong> like bold, though. <em>And</em> italics, now that you mention it.</p>
+<p><a id="code-snippet--reassert bold face in nano"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">&#39;bold</span> <span class="no">nil</span> <span class="nb">:weight</span> <span class="ss">&#39;bold</span><span class="p">)</span></span></span></code></pre>
+</figure><p>Once I have my base established, I should be able to load the nano theme.</p>
+<h3 id="load-nano-defaults">Load nano defaults</h3>
+<p><a id="code-snippet--require nano-defaults"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-defaults</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="enable-nano-session-handling">Enable nano session handling</h3>
+<p><a id="code-snippet--require nano-session"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-session</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="enable-the-nano-modeline">Enable the nano modeline</h3>
+<p>One of my favorite bits really.</p>
+<p><a id="code-snippet--require nano-modeline>>"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-modeline</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="enable-nano-key-bindings">Enable nano key bindings</h3>
+<dl>
+<dt><code>C-x k</code></dt>
+<dd>kill current buffer without asking</dd>
+<dt><code>M-n</code></dt>
+<dd>open a new frame</dd>
+<dt><code>M-`</code></dt>
+<dd>switch to other frame</dd>
+<dt><code>C-x C-c</code></dt>
+<dd>delete the current frame; exit if no frames remain</dd>
+<dt><code>C-c r</code></dt>
+<dd>interactive select from recent files</dd>
+<dt><code>&lt;M-return&gt;</code></dt>
+<dd>toggle maximization of current frame&rsquo; not sure if I like this one; it confuses org muscle memory, and if I want &ldquo;maximized&rdquo; I usually toggle tiling in the window manager</dd>
+</dl>
+<!--listend-->
+<p><a id="code-snippet--require nano-bindings"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-bindings</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="nano-counsel-integration">nano Counsel integration</h3>
+<p><code>nano-counsel.el</code> is small. I&rsquo;ll just map its logic directly to some <code>use-package</code> magic.</p>
+<p><a id="code-snippet--use counsel like nano"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">counsel</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="s">&#34;M-x&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-recentf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-x b&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-bookmark</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c r&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-recentf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-x C-b&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-switch-buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c c&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-org-capture</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">ivy</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ivy-height</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ivy-count-format</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ivy-initial-inputs-alist:</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">counsel-minor</span> <span class="o">.</span> <span class="s">&#34;^+&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">counsel-package</span> <span class="o">.</span> <span class="s">&#34;^+&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">counsel-org-capture</span> <span class="o">.</span> <span class="s">&#34;^&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">counsel-M-x</span> <span class="o">.</span> <span class="s">&#34;^&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">counsel-refile</span> <span class="o">.</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">org-agenda-refile</span> <span class="o">.</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">org-capture-refile</span> <span class="o">.</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">Man-completion-table</span> <span class="o">.</span> <span class="s">&#34;^&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                               <span class="p">(</span><span class="nv">woman</span> <span class="o">.</span> <span class="s">&#34;^&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ivy-use-virtual-buffers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">enable-recursive-minibuffers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ivy-mode</span> <span class="mi">1</span><span class="p">))</span></span></span></code></pre>
+</figure><p>I need to give myself a little context here.</p>
+<h4 id="ivy-counsel-and-swiper">Ivy, Counsel, and Swiper</h4>
+<blockquote>
+<p>flexible, simple tools for minibuffer completion in Emacs</p>
+</blockquote>
+<p>These are technically separate packages developed together in the <a href="https://github.com/abo-abo/swiper">swiper</a> repo.</p>
+<dl>
+<dt>Ivy</dt>
+<dd>an alternative completion framework for Emacs</dd>
+<dt>Counsel</dt>
+<dd>Ivy-enhanced alternatives to common Emacs commands</dd>
+<dt>Swiper</dt>
+<dd>Ivy-enhanced alternative to Isearch</dd>
+</dl>
+<p>Loading <code>nano-counsel</code> failed with complaints about missing <code>smex</code>.
+<a href="https://github.com/nonsequitur/smex/">Smex</a> provides enhancements to <code>M-x</code> behavior, such as an interface to recent and commonly used commands.
+Since I want my foundation to be a clean Nano experience, I install smex as well.</p>
+<h3 id="nano-splash">nano splash</h3>
+<p><a id="code-snippet--enable nano splash and help"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">inhibit-message</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Welcome to GNU Emacs / N Λ N O edition&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;Initialization time: %s&#34;</span> <span class="p">(</span><span class="nv">emacs-init-time</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-splash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-help</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="life-management-with-org">Life management with Org</h2>
+<p>Okay here we go. Building up my <code>org-roam</code> experience while keeping Deft handy for the longer, more intentional notes.</p>
+<h3 id="file-locations">File locations</h3>
+<p>I work this out piecemeal, as some of the files and folders build on
+what&rsquo;s been defined before.</p>
+<p>First: what&rsquo;s the top level of everything? That depends on whether I&rsquo;m
+in a UNIX-like system or playing with the native Windows version of
+Emacs.</p>
+<p><a id="code-snippet--set local root"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/local-root</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;windows-nt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;C:/Users/brian&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;~/&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Trying an experiment where first we look for a local <code>~org/</code> folder and
+use that if found, otherwise going with my actual default of
+<code>~/Dropbox/org</code>. Trying to shift over to git-synchronized Org files
+instead of Dropbox-synchronized, but that change will take a bit to
+percolate through all my systems.</p>
+<p><a id="code-snippet--set base directories from root"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/default-org-directory</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;org&#34;</span> <span class="nv">bmw/local-root</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/sync-org-directory</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;Dropbox/org&#34;</span> <span class="nv">bmw/local-root</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/org-dir</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">bmw/default-org-directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">bmw/default-org-directory</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">bmw/sync-org-directory</span><span class="p">))</span></span></span></code></pre>
+</figure><p>That&rsquo;s enough to define most of the files I need.</p>
+<p><a id="code-snippet--define values for specific files"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">bmw/current-journal</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;journal.org&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">bmw/org-id-locations-file</span> <span class="p">(</span><span class="nf">expand-file-name</span>
+</span></span><span class="line"><span class="cl">                            <span class="s">&#34;.org-id-locations&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">bmw/org-roam-directory</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;roam&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Oh, one more thing. I want to include <code>org-roam</code> files in my Org
+agenda. I found <a href="https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html">helpful instructions</a>, but I&rsquo;m not adding that code to
+my config until I understand it. Maybe if I follow the link to the
+<em>beginning</em> of the post series and start there.</p>
+<p>What a novel idea.</p>
+<p>But today? With my small collection of <code>org-roam</code> notes, I can get away
+with directly including them in my agenda searches.</p>
+<p><a id="code-snippet--set agenda file list"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/org-agenda-files</span> <span class="p">(</span><span class="nf">list</span> <span class="nv">bmw/org-dir</span>
+</span></span><span class="line"><span class="cl">                                 <span class="nv">bmw/org-roam-directory</span>
+</span></span><span class="line"><span class="cl">                                 <span class="p">(</span><span class="nf">expand-file-name</span>
+</span></span><span class="line"><span class="cl">                                  <span class="s">&#34;daily&#34;</span> <span class="nv">bmw/org-roam-directory</span><span class="p">)))</span></span></span></code></pre>
+</figure><h3 id="tumblelogging-with-ox-hugo">Tumblelogging with ox-hugo</h3>
+<p>I started an experiment with using Org to drive a <a href="https://kottke.org/05/10/tumblelogs">tumblelog</a> at <a href="https://randomgeekery.life">Random Geekery Life</a>. <em>Tumblelog</em> is an older term for a blog that mainly consists of dumping whatever thoughts, links, or just whatever. Sort of like Twitter or Tumblr, but on my own site and less constrained than a tweet-length <a href="https://www.lifewire.com/what-is-microblogging-3486200">microblog</a>. Someday I may put more words elsewhere and replace this all this explanatory text with a link.</p>
+<p>For now I build the visible tumblelog as a static site with <a href="https://gohugo.io">Hugo</a>. It&rsquo;s quick and it&rsquo;s familiar.</p>
+<p>Org enters the scene with a single file within my Hugo site.</p>
+<p><a id="code-snippet--set tumblelogging file"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">bmw/tumble-log</span> <span class="p">(</span><span class="nf">expand-file-name</span>
+</span></span><span class="line"><span class="cl">                 <span class="s">&#34;~/Sites/rgb-life/content-org/posts.org&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><p>That file contains all the content for the tumblelog, but the important part here is a function to dynamically generate a filename for <a href="https://ox-hugo.scripter.co">ox-hugo</a> based on the current time.</p>
+<p><a id="code-snippet--define function for tumble template"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">bmw/build-tumble-template</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">format-spec</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;* NOW %%U %%?\n:properties:\n:export_file_name: %s.md\n:end:\n&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nf">cons</span> <span class="sc">?s</span> <span class="p">(</span><span class="nf">format-time-string</span> <span class="s">&#34;%s&#34;</span><span class="p">)))))</span></span></span></code></pre>
+</figure><p>Hugo configuration determines permalinks from post dates, which ox-hugo derives from task completion timestamps. If I want to keep all the times for an entry in sync I manually edit, but it&rsquo;s not a big deal yet. <code>C-t d</code> muscle memory so far is quicker than figuring out how to automate <em>that</em> process.</p>
+<p>The actual filename gets ignored, but the epoch timestamp keeps each output file unique at my normal human rate of adding entries.</p>
+<div class="note">
+<p>This also squeaks me past the fact that I came up with this version of the template after I already had a few entries.</p>
+</div>
+<p>Then when I&rsquo;m building <code>org-capture-templates</code> I create a <code>datetree</code> entry for tumblelogging.</p>
+<p><a id="code-snippet--add tumble capture template"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="s">&#34;t&#34;</span> <span class="s">&#34;Tumblelog&#34;</span> <span class="nv">entry</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/tumble-log</span> <span class="s">&#34;Posts&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">function</span> <span class="nv">bmw/build-tumble-template</span><span class="p">))</span></span></span></code></pre>
+</figure><h3 id="custom-keywords">Custom keywords</h3>
+<p>A process vagiuely similar to <a href="https://gettingthingsdone.com/">GTD</a> but my brain insists on its own task
+classifications.</p>
+<dl>
+<dt>LATER</dt>
+<dd>I need to do it, but it can wait (or it&rsquo;s waiting on something)</dd>
+<dt>NOW</dt>
+<dd>I got everything I need to do this</dd>
+<dt>MAYBE</dt>
+<dd>An idea, suggestion, or action that I may or may not want to to</dd>
+<dt>PROJECT</dt>
+<dd>A multi-part task with notable dependencies</dd>
+<dt>DONE</dt>
+<dd>I did it!</dd>
+<dt>NOPE</dt>
+<dd>Never mind</dd>
+</dl>
+<!--listend-->
+<p><a id="code-snippet--define org keywords"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/todo-keywords</span>
+</span></span><span class="line"><span class="cl">      <span class="o">`</span><span class="p">((</span><span class="nv">sequence</span>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;LATER(l!)&#34;</span> <span class="s">&#34;NOW(n!)&#34;</span> <span class="s">&#34;MAYBE(m!)&#34;</span> <span class="s">&#34;PROJECT(p!)&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;|&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="s">&#34;DONE(d!)&#34;</span> <span class="s">&#34;NOPE(-!)&#34;</span><span class="p">)))</span></span></span></code></pre>
+</figure><h3 id="custom-id-generation-via-writequit"><code>CUSTOM_ID</code> generation via writequit</h3>
+<p>Grabbing directly from <a href="https://writequit.org/articles/emacs-org-mode-generate-ids.html">this post</a>.</p>
+<p>More to keep my <code>org-roam-ui</code> graph in order than for publishing, but
+hopefully it&rsquo;ll come in handy there too.</p>
+<p><a id="code-snippet--eos functions for org headline IDs"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">eos/org-custom-id-get</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">pom</span> <span class="nv">create</span> <span class="nv">prefix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Get the CUSTOM_ID property of the entry at point-or-marker POM.
+</span></span></span><span class="line"><span class="cl"><span class="s">     If POM is nil, refer to the entry at point. If the entry does
+</span></span></span><span class="line"><span class="cl"><span class="s">     not have an CUSTOM_ID, the function returns nil. However, when
+</span></span></span><span class="line"><span class="cl"><span class="s">     CREATE is non nil, create a CUSTOM_ID if none is present
+</span></span></span><span class="line"><span class="cl"><span class="s">     already. PREFIX will be passed through to </span><span class="ss">`org-id-new&#39;</span><span class="s">. In any
+</span></span></span><span class="line"><span class="cl"><span class="s">     case, the CUSTOM_ID of the entry is returned.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-with-point-at</span> <span class="nv">pom</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">id</span> <span class="p">(</span><span class="nv">org-entry-get</span> <span class="no">nil</span> <span class="s">&#34;CUSTOM_ID&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">cond</span>
+</span></span><span class="line"><span class="cl">       <span class="p">((</span><span class="nb">and</span> <span class="nv">id</span> <span class="p">(</span><span class="nf">stringp</span> <span class="nv">id</span><span class="p">)</span> <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;\\S-&#34;</span> <span class="nv">id</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">create</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nb">setq</span> <span class="nv">id</span> <span class="p">(</span><span class="nv">org-id-new</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">prefix</span> <span class="s">&#34;h&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">org-entry-put</span> <span class="nv">pom</span> <span class="s">&#34;CUSTOM_ID&#34;</span> <span class="nv">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">org-id-add-location</span> <span class="nv">id</span> <span class="p">(</span><span class="nf">buffer-file-name</span> <span class="p">(</span><span class="nf">buffer-base-buffer</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">id</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">eos/org-add-ids-to-headlines-in-file</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Add CUSTOM_ID properties to all headlines in the
+</span></span></span><span class="line"><span class="cl"><span class="s">     current file which do not already have one.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-map-entries</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">eos/org-custom-id-get</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="ss">&#39;create</span><span class="p">))))</span></span></span></code></pre>
+</figure><h3 id="putting-it-all-together">Putting it all together</h3>
+<p><a id="code-snippet--use org"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="nv">org-plus-contrib</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-files</span> <span class="nv">bmw/org-agenda-files</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-log-done</span> <span class="ss">&#39;time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-log-reschedule</span> <span class="ss">&#39;time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-log-into-drawer</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-startup-indented</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-startup-truncated</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-todo-keywords</span> <span class="nv">bmw/todo-keywords</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-id-track-globally</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-id-link-to-org-use-id</span> <span class="ss">&#39;create-if-interactive-and-no-custom-id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-id-locations-file</span> <span class="nv">bmw/org-id-locations-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-id-locations-file-relative</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c a&#34;</span> <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c c&#34;</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c l&#34;</span> <span class="o">.</span> <span class="nv">org-store-link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-id-link-to-org-use-id</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-capture-templates</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;j&#34;</span> <span class="s">&#34;Jot&#34;</span> <span class="nv">entry</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/current-journal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="s">&#34;* %U %? \n%i\n %a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="s">&#34;t&#34;</span> <span class="s">&#34;Tumblelog&#34;</span> <span class="nv">entry</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nv">file+olp+datetree</span> <span class="nv">bmw/tumble-log</span> <span class="s">&#34;Posts&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">function</span> <span class="nv">bmw/build-tumble-template</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">          <span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq-local</span> <span class="nv">org-fontify-whole-heading-line</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;nano-writer</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="additional-org-tools">Additional Org tools</h3>
+<h4 id="deft">Deft</h4>
+<p>The perfect solution for knowledge management varies by context. But the core thing really needed: someplace to drop my notes where I can find them when I need them.</p>
+<p><a href="https://jblevins.org/projects/deft/">Deft</a> provides exactly that. And since Org mode is the main reason I load Emacs, my <code>~/org</code> folder is where Deft will look for notes.</p>
+<p>I don&rsquo;t want <code>org-roam</code> notes obscuring the more persistent notes in my Org folder. Better ignore them. Also the <code>org-brain</code> stuff until I have a good handle on that.</p>
+<p><a id="code-snippet--use deft"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">deft</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span> <span class="p">(</span><span class="nv">deft-extensions</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;org&#34;</span><span class="p">))</span> <span class="p">(</span><span class="nv">deft-directory</span> <span class="nv">bmw/org-dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">deft-recursive-ignore-dir-regexp</span> <span class="s">&#34;\\(?:\\.\\|\\.\\.\\|roam\\|brain\\)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">deft-ignore-file-regexp</span> <span class="s">&#34;\\(?:~\\|py\\)$&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">deft-recursive</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure><div class="note">
+<p>Helpful hint when enabling <code>deft-recursive: =../</code> is one of the entries in your directory listing, and Deft will do its darndest to follow it if you forget to include it in <code>deft-recursive-ignore-dir-regexp</code> (set to <code>&quot;\\(?:\\.\\|\\.\\.\\)&quot;</code> by default).</p>
+<p>This can lead to all sorts of recursive headaches, so don&rsquo;t forget!</p>
+</div>
+<p>Of course I&rsquo;ll end up tweaking it. But to get me started?</p>
+<p>&ldquo;Ask deft about my notes&rdquo; is more than sufficient.</p>
+<h4 id="org-roam">org-roam</h4>
+<p>Taking advantage of <a href="https://www.orgroam.com/manual.html#Org_002droam-Dailies"><code>org-roam-dailies</code></a> for journaling.  I started by
+copying from <a href="https://orgmode-exocortex.com/2021/06/22/upgrade-to-org-roam-v2-with-use-package-and-quelpa/">OrgMode-ExoCortex</a> and <a href="https://systemcrafters.net/build-a-second-brain-in-emacs/keep-a-journal/">System Crafters</a>.</p>
+<p><a id="code-snippet--use org-roam"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org-roam</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:after</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:demand</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:commands</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-buffer-toggle-display</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-find-file</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-insert</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-switch-to-buffer</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-dailies-capture-today</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-dailies-date</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-roam-dailies-goto-today</span>
+</span></span><span class="line"><span class="cl">   <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-directory</span> <span class="nv">bmw/org-roam-directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-completion-everywhere</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-dailies-directory</span> <span class="s">&#34;daily&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-node-display-template</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;${title:*} &#34;</span> <span class="p">(</span><span class="nf">propertize</span> <span class="s">&#34;${tags:10}&#34;</span> <span class="ss">&#39;face</span> <span class="ss">&#39;org-tag</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="s">&#34;C-c n l&#34;</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c n f&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c n i&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c n j&#34;</span> <span class="o">.</span> <span class="nv">org-roam-dailies-capture-today</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c n t&#34;</span> <span class="o">.</span> <span class="nv">org-roam-tag-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">([</span><span class="nv">f8</span><span class="p">]</span> <span class="o">.</span> <span class="nv">org-roam-dailies-goto-today</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nb">:map</span> <span class="nv">org-mode-map</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="s">&#34;C-M-i&#34;</span> <span class="o">.</span> <span class="nv">completion-at-point</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind-keymap</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c n d&#34;</span> <span class="o">.</span> <span class="nv">org-roam-dailies-map</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;org-roam-dailies</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-roam-db-autosync-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:hook</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">org-load</span> <span class="o">.</span> <span class="nv">org-roam-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span></span></span></code></pre>
+</figure><p>I like to always see backlinks as a side-window of my current view.</p>
+<p><a id="code-snippet--define org-roam side window"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;display-buffer-alist</span>
+</span></span><span class="line"><span class="cl">             <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;\\*org-roam\\*&#34;</span>
+</span></span><span class="line"><span class="cl">               <span class="p">(</span><span class="nv">display-buffer-in-side-window</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">               <span class="p">(</span><span class="nv">side</span> <span class="o">.</span> <span class="nv">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">               <span class="p">(</span><span class="nv">slot</span> <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">               <span class="p">(</span><span class="nv">window-width</span> <span class="o">.</span> <span class="mf">0.33</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">               <span class="p">(</span><span class="nf">window-parameters</span> <span class="o">.</span> <span class="p">((</span><span class="nv">no-other-window</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                     <span class="p">(</span><span class="nv">no-delete-other-windows</span> <span class="o">.</span> <span class="no">t</span><span class="p">)))))</span></span></span></code></pre>
+</figure><p>Something is off with my <code>:bind</code> and <code>:bind-keymap</code> settings for <code>org-roam</code>.
+Until I learn enough to fix that, I&rsquo;ll make a global binding for the
+one I care about: going to today&rsquo;s daily note.</p>
+<p><a id="code-snippet--reassert binding for org-roam-dailies-goto-today"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c d&#34;</span><span class="p">)</span> <span class="ss">&#39;org-roam-dailies-goto-today</span><span class="p">)</span></span></span></code></pre>
+</figure><h4 id="org-roam-ui"><code>org-roam-ui</code></h4>
+<p>For the pretty. Sometimes I enable <code>org-roam-ui-mode</code> on load.</p>
+<p><a id="code-snippet--use org-roam-ui"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org-roam-ui</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:straight</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">:host</span> <span class="nv">github</span> <span class="nb">:repo</span> <span class="s">&#34;org-roam/org-roam-ui&#34;</span> <span class="nb">:branch</span> <span class="s">&#34;main&#34;</span> <span class="nb">:files</span> <span class="p">(</span><span class="s">&#34;*.el&#34;</span> <span class="s">&#34;out&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:after</span> <span class="nv">org-roam</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">;; :hook (after-init . org-roam-ui-mode)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-ui-sync-theme</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">org-roam-ui-follow</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">org-roam-ui-update-on-save</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">org-roam-ui-open-on-start</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure><h4 id="ox-hugo"><code>ox-hugo</code></h4>
+<p>Although <a href="https://ox-hugo.scripter.co">ox-hugo</a> isn&rsquo;t <em>required</em> to use Hugo with Emacs, it sure does simplify things.</p>
+<p><a id="code-snippet--use ox-hugo"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">ox-hugo</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:after</span> <span class="nv">ox</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="project-management-with-projectile-and-friends">Project management with Projectile and friends</h2>
+<p><a href="https://projectile.mx/">Projectile</a> plus a <code>.dir-locals.el</code> file seems like the right way to
+handle development projects without bumping into everything else.</p>
+<p><a id="code-snippet--use projectile"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">projectile</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">projectile-mode</span> <span class="mi">+1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">projectile-mode-map</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;s-p&#34;</span> <span class="o">.</span> <span class="nv">projectile-command-map</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-c p&#34;</span> <span class="o">.</span> <span class="nv">projectile-command-map</span><span class="p">)))</span></span></span></code></pre>
+</figure><h2 id="lsp-mode-and-related-for-an-ide-experience"><code>lsp-mode</code> and related for an IDE experience</h2>
+<p><a href="https://emacs-lsp.github.io/lsp-mode/"><code>lsp-mode</code></a> adds support for Microsoft&rsquo;s <a href="https://github.com/Microsoft/language-server-protocol/">Language Server Protocol</a>. Hypothetically that means easier setup of commonly desired
+features like linting and autocompletion.</p>
+<p><code>lsp-mode</code> uses <a href="https://github.com/joaotavora/yasnippet">YASnippet</a> for abbreviation and expansion.</p>
+<p><a id="code-snippet--use yasnippet"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">yasnippet</span><span class="p">)</span></span></span></code></pre>
+</figure><p><code>nano-modeline</code> and <code>lsp-mode</code>&rsquo;s breadcrumb trail wrestle with each other
+for space on that top line. Maybe someday I can figure out how to
+stack them. Until then, I like the modeline and its placement more
+than I like the breadcrumb.</p>
+<p><a id="code-snippet--use lsp-mode"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">lsp-headerline-breadcrumb-enable</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-keymap-prefix</span> <span class="s">&#34;C-c C-l&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:hook</span> <span class="p">((</span><span class="nv">python-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nv">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-enable-which-key-integration</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:commands</span> <span class="nv">lsp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ui</span> <span class="nb">:commands</span> <span class="nv">lsp-ui-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ivy</span> <span class="nb">:commands</span> <span class="nv">lsp-ivy-workspace-symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-treemacs</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">lsp-mode</span> <span class="nv">treemacs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">lsp-treemacs-sync-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:commands</span> <span class="nv">lsp-treemacs-errors-list</span><span class="p">)</span></span></span></code></pre>
+</figure><h2 id="programming-languages">Programming Languages</h2>
+<h3 id="python">Python</h3>
+<p>Pyenv for Python versions.</p>
+<p><a id="code-snippet--use pyenv"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">pyvenv</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">setenv</span> <span class="s">&#34;WORKON_HOME&#34;</span> <span class="s">&#34;~/.pyenv/versions&#34;</span><span class="p">))</span></span></span></code></pre>
+</figure><p>I manage my projects with <a href="https://python-poetry.org/">Poetry</a>. <a href="https://github.com/galaunay/poetry.el">poetry.el</a> offers a nice Magit-like
+interface to managing and maintaining Poetry projects.</p>
+<p>In particular, it <em>might</em> simplify venv handling when I get to linting
+tools and language server providers.</p>
+<p><a id="code-snippet--use poetry"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">poetry</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">poetry-tracking-mode</span><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="which-key">Which Key?</h2>
+<p><a href="https://github.com/justbur/emacs-which-key"><code>which-key</code></a> adds a completion panel for commands. That helps me learn
+the many Emacs key maps.</p>
+<p><a id="code-snippet--use which-key"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">which-key</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:diminish</span> <span class="nv">which-key-mode</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">which-key-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">which-key-idle-delay</span> <span class="mi">1</span><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="treemacs">Treemacs</h2>
+<p><a href="https://github.com/Alexander-Miller/treemacs">Treemacs</a> is a file explorer sidebar. That part is kind of &ldquo;meh&rdquo; for
+me.  The outliner provided by <a href="https://github.com/emacs-lsp/lsp-treemacs"><code>lsp-treemacs</code></a> interests me much more.</p>
+<div class="note">
+<p>To get Treemacs and nano playing nice I had to comment out line 515 of
+<code>nano-modeline.el</code> in my local copy of nano.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; (setq-default mode-line-format &#34;&#34;)</span></span></span></code></pre>
+</figure><p>Watching issue <a href="https://github.com/rougier/nano-emacs/issues/75">#75</a> for updates on this problem.</p>
+</div>
+<p><a id="code-snippet--use treemacs"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">treemacs</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">with-eval-after-load</span> <span class="ss">&#39;winum</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">define-key</span> <span class="nv">winum-keymap</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-0&#34;</span><span class="p">)</span> <span class="nf">#&#39;</span><span class="nv">treemacs-select-window</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">progn</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">setq</span> <span class="nv">treemacs-collapse-dirs</span>                   <span class="p">(</span><span class="nb">if</span> <span class="nv">treemacs-python-executable</span> <span class="mi">3</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-deferred-git-apply-delay</span>        <span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-directory-name-transformer</span>      <span class="nf">#&#39;identity</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-display-in-side-window</span>          <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-eldoc-display</span>                   <span class="ss">&#39;simple</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-file-event-delay</span>                <span class="mi">5000</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-file-extension-regex</span>            <span class="nv">treemacs-last-period-regex-value</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-file-follow-delay</span>               <span class="mf">0.2</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-file-name-transformer</span>           <span class="nf">#&#39;identity</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-follow-after-init</span>               <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-expand-after-init</span>               <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-find-workspace-method</span>           <span class="ss">&#39;find-for-file-or-pick-first</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-git-command-pipe</span>                <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-goto-tag-strategy</span>               <span class="ss">&#39;refetch-index</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-indentation</span>                     <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-indentation-string</span>              <span class="s">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-is-never-other-window</span>           <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-max-git-entries</span>                 <span class="mi">5000</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-missing-project-action</span>          <span class="ss">&#39;ask</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-move-forward-on-expand</span>          <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-no-png-images</span>                   <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-no-delete-other-windows</span>         <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-project-follow-cleanup</span>          <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-persist-file</span>                    <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;.cache/treemacs-persist&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-position</span>                        <span class="ss">&#39;left</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-read-string-input</span>               <span class="ss">&#39;from-child-frame</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-recenter-distance</span>               <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-recenter-after-file-follow</span>      <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-recenter-after-tag-follow</span>       <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-recenter-after-project-jump</span>     <span class="ss">&#39;always</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-recenter-after-project-expand</span>   <span class="ss">&#39;on-distance</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-litter-directories</span>              <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;/node_modules&#34;</span> <span class="s">&#34;/.venv&#34;</span> <span class="s">&#34;/.cask&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-show-cursor</span>                     <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-show-hidden-files</span>               <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-silent-filewatch</span>                <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-silent-refresh</span>                  <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-sorting</span>                         <span class="ss">&#39;alphabetic-asc</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-select-when-already-in-treemacs</span> <span class="ss">&#39;move-back</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-space-between-root-nodes</span>        <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-tag-follow-cleanup</span>              <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-tag-follow-delay</span>                <span class="mf">1.5</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-text-scale</span>                      <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-user-mode-line-format</span>           <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-user-header-line-format</span>         <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-wide-toggle-width</span>               <span class="mi">70</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-width</span>                           <span class="mi">35</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-width-increment</span>                 <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-width-is-initially-locked</span>       <span class="no">t</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">treemacs-workspace-switch-cleanup</span>        <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">;; The default width and height of the icons is 22 pixels. If you are</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">;; using a Hi-DPI display, uncomment this to double the icon size.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">;;(treemacs-resize-icons 44)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">treemacs-follow-mode</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">treemacs-filewatch-mode</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">treemacs-fringe-indicator-mode</span> <span class="ss">&#39;always</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">pcase</span> <span class="p">(</span><span class="nf">cons</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">null</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">&#34;git&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">                 <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">null</span> <span class="nv">treemacs-python-executable</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="o">`</span><span class="p">(</span><span class="no">t</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">treemacs-git-mode</span> <span class="ss">&#39;deferred</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="o">`</span><span class="p">(</span><span class="no">t</span> <span class="o">.</span> <span class="nv">_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">treemacs-git-mode</span> <span class="ss">&#39;simple</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">treemacs-hide-gitignored-files-mode</span> <span class="no">nil</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">global-map</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;M-0&#34;</span>       <span class="o">.</span> <span class="nv">treemacs-select-window</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t 1&#34;</span>   <span class="o">.</span> <span class="nv">treemacs-delete-other-windows</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t t&#34;</span>   <span class="o">.</span> <span class="nv">treemacs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t d&#34;</span>   <span class="o">.</span> <span class="nv">treemacs-select-directory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t B&#34;</span>   <span class="o">.</span> <span class="nv">treemacs-bookmark</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t C-t&#34;</span> <span class="o">.</span> <span class="nv">treemacs-find-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t M-t&#34;</span> <span class="o">.</span> <span class="nv">treemacs-find-tag</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">treemacs-projectile</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">treemacs</span> <span class="nv">projectile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre>
+</figure><p>I want <code>dired</code> icons, and I want them consistent with my Spaceduck colors.</p>
+<p><a id="code-snippet--use treemacs-icons-dired"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">treemacs-icons-dired</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:hook</span> <span class="p">(</span><span class="nv">dired-mode</span> <span class="o">.</span> <span class="nv">treemacs-icons-dired-enable-once</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">treemacs-no-png-images</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
+  <title>Config: Emacs Doom config</title>
+  <link>https://randomgeekery.org/config/emacs/doom/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:53 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/emacs/doom/</guid>
+  <description>This is the config of a mostly-Vim user who occasionally uses Emacs, and mostly for Org.
+When I do fire up Emacs, it tends to be Doom Emacs with its not-quite-Emacs-not-quite-Vim quirks.
+init.el The best use of init.el is just uncommenting entries from the extensive Doom init file for bundled packages you want enabled, and adding bundle options where relevant.
+Again, grabbing a useful tip from the original
+Move your cursor over a module’s name (or its flags) and press ‘K’ (or ‘C-c c k’ for non-vim users) to view its documentation.</description>
+   <category>config</category> 
+  
+   <category>org-config</category>  <category>emacs</category> 
+  <content:encoded><![CDATA[<p>This is the config of a mostly-<a href="/card/vim/">Vim</a> user who occasionally uses <a href="/card/emacs/">Emacs</a>, and mostly for <a href="/card/org/">Org</a>.</p>
+<p>When I do fire up Emacs, it tends to be <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> with its not-quite-Emacs-not-quite-Vim quirks.</p>
+<h2 id="initel"><code>init.el</code></h2>
+<p>The best use of <code>init.el</code> is just uncommenting entries from the extensive <a href="https://github.com/hlissner/doom-emacs/blob/develop/init.example.el">Doom init file</a> for bundled packages you want enabled, and adding bundle options where relevant.</p>
+<p>Again, grabbing a useful tip from the original</p>
+<blockquote>
+<p>Move your cursor over a module&rsquo;s name (or its flags) and press &lsquo;K&rsquo; (or
+&lsquo;C-c c k&rsquo; for non-vim users) to view its documentation. This works on
+flags as well (those symbols that start with a plus).</p>
+<p>Alternatively, press &lsquo;gd&rsquo; (or &lsquo;C-c c d&rsquo;) on a module to browse its
+directory (for easy access to its source code).</p>
+</blockquote>
+<p>For the moment here&rsquo;s the contents of my <code>init.el</code>. If you&rsquo;ve wandered in from some search engine looking for setup hints, be aware that my package listing here may not be up to date with what you see in a brand new Doom config!</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">doom!</span> <span class="nb">:input</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;japanese</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;layout            ; auie,ctsrnm is the superior home row</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:completion</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">company</span>            <span class="c1">; the ultimate code completion backend</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+childframe</span><span class="p">)</span>       <span class="c1">; - show in child frame rather than tooltip</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;helm              ; the *other* search engine for love and life</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ido               ; the other *other* search engine...</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">ivy</span>               <span class="c1">; a search engine for love and life</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:ui</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">deft</span>              <span class="c1">; notational velocity for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">doom</span>              <span class="c1">; what makes DOOM look the way it does</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">doom-dashboard</span>    <span class="c1">; a nifty splash screen for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">doom-quit</span>         <span class="c1">; DOOM quit-message prompts when you quit Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(emoji +unicode)  ; 🙂</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;fill-column       ; a `fill-column&#39; indicator</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">hl-todo</span>           <span class="c1">; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;hydra</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;indent-guides     ; highlighted indent columns</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ligatures         ; ligatures and symbols to make your code pretty again</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;minimap           ; show a map of the code on the side</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">modeline</span>          <span class="c1">; snazzy, Atom-inspired modeline, plus API</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;nav-flash         ; blink cursor line after big motions</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;neotree           ; a project drawer, like NERDTree for vim</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">ophints</span>           <span class="c1">; highlight the region an operation acts on</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">popup</span> <span class="nv">+defaults</span><span class="p">)</span>   <span class="c1">; tame sudden yet inevitable temporary windows</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;tabs              ; a tab bar for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">treemacs</span>          <span class="c1">; a project drawer, like neotree but cooler</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;unicode           ; extended unicode support for various languages</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">vc-gutter</span>         <span class="c1">; vcs diff in the fringe</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">vi-tilde-fringe</span>   <span class="c1">; fringe tildes to mark beyond EOB</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;window-select     ; visually switch windows</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">workspaces</span>        <span class="c1">; tab emulation, persistence &amp; separate workspaces</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">zen</span>               <span class="c1">; distraction-free coding or writing</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:editor</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">evil</span> <span class="nv">+everywhere</span><span class="p">)</span><span class="c1">; come to the dark side, we have cookies</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">file-templates</span>    <span class="c1">; auto-snippets for empty files</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">fold</span>              <span class="c1">; (nigh) universal code folding</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nf">format</span> <span class="nv">+onsave</span><span class="p">)</span>  <span class="c1">; automated prettiness</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;god               ; run Emacs commands without modifier keys</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;lispy             ; vim for lisp, for people who don&#39;t like vim</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;multiple-cursors  ; editing in many places at once</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;objed             ; text object editing for the innocent</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;parinfer          ; turn lisp into python, sort of</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;rotate-text       ; cycle region at point between text candidates</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">snippets</span>          <span class="c1">; my elves. They type so I don&#39;t have to</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">word-wrap</span>         <span class="c1">; soft wrapping with language-aware indent</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">dired</span>             <span class="c1">; making dired pretty [functional]</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">electric</span>          <span class="c1">; smarter, keyword-based electric-indent</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ibuffer         ; interactive buffer management</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">undo</span>              <span class="c1">; persistent, smarter undo for your inevitable mistakes</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">vc</span>                <span class="c1">; version-control and Emacs, sitting in a tree</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:term</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;eshell            ; the elisp shell that works everywhere</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;shell             ; simple shell REPL for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;term              ; basic terminal emulator for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">vterm</span>             <span class="c1">; the best terminal emulation in Emacs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:checkers</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;syntax              ; tasing you for every semicolon you forget</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;spell             ; tasing you for misspelling mispelling</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;grammar           ; tasing grammar mistake every you make</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:tools</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ansible</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;debugger          ; FIXME stepping through code, to help you add bugs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">direnv</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;docker</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;editorconfig      ; let someone else argue about tabs vs spaces</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ein               ; tame Jupyter notebooks with emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nf">eval</span> <span class="nv">+overlay</span><span class="p">)</span>     <span class="c1">; run code, run (also, repls)</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;gist              ; interacting with github gists</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">lookup</span>              <span class="c1">; navigate your code and its documentation</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">lsp</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">magit</span>             <span class="c1">; a git porcelain for Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;make              ; run make tasks from Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;pass              ; password manager for nerds</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;pdf               ; pdf enhancements</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;prodigy           ; FIXME managing external services &amp; code builders</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;rgb               ; creating color strings</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;taskrunner        ; taskrunner for all your projects</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">terraform</span>         <span class="c1">; infrastructure as code</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">tmux</span>              <span class="c1">; an API for interacting with tmux</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;upload            ; map local to remote projects via ssh/ftp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:os</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">:if</span> <span class="nv">IS-MAC</span> <span class="nv">macos</span><span class="p">)</span>  <span class="c1">; improve compatibility with macOS</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">tty</span>               <span class="c1">; improve the terminal Emacs experience</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:lang</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;agda              ; types of types of types of types...</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;cc                ; C/C++/Obj-C madness</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;clojure           ; java with a lisp</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;common-lisp       ; if you&#39;ve seen one lisp, you&#39;ve seen them all</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;coq               ; proofs-as-programs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">crystal</span>           <span class="c1">; ruby at the speed of c</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;csharp            ; unity, .NET, and mono shenanigans</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">data</span>              <span class="c1">; config/data formats</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(dart +flutter)   ; paint ui and not much else</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;elixir            ; erlang done right</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;elm               ; care for a cup of TEA?</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">emacs-lisp</span>        <span class="c1">; drown in parentheses</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;erlang            ; an elegant language for a more civilized age</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ess               ; emacs speaks statistics</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;faust             ; dsp, but you get to keep your soul</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;fsharp            ; ML stands for Microsoft&#39;s Language</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;fstar             ; (dependent) types and (monadic) effects and Z3</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;gdscript          ; the language you waited for</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">go</span> <span class="nv">+lsp</span><span class="p">)</span>         <span class="c1">; the hipster dialect</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(haskell +dante)  ; a language that&#39;s lazier than I am</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;hy                ; readability of scheme w/ speed of python</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;idris             ; a language you can depend on</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">json</span>              <span class="c1">; At least it ain&#39;t XML</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(java +meghanada) ; the poster child for carpal tunnel syndrome</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">javascript</span>        <span class="c1">; all(hope(abandon(ye(who(enter(here))))))</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">julia</span>             <span class="c1">; a better, faster MATLAB</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;kotlin            ; a better, slicker Java(Script)</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;latex             ; writing papers in Emacs has never been so fun</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;lean</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;factor</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ledger            ; an accounting system in Emacs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">lua</span>               <span class="c1">; one-based indices? one-based indices</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">markdown</span>          <span class="c1">; writing docs for people to ignore</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;nim               ; python + lisp at the speed of c</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;nix               ; I hereby declare &#34;nix geht mehr!&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;ocaml             ; an objective camel</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">org</span>                <span class="c1">; organize your plain life in plain text</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+hugo</span>             <span class="c1">; - export Org files to Hugo sections</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+org-plus-contrib</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+roam2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;php               ; perl&#39;s insecure younger brother</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;plantuml          ; diagrams for confusing people more</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;purescript        ; javascript, but functional</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">python</span>    <span class="c1">; beautiful is better than ugly</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+lsp</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">+pyenv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;qt                ; the &#39;cutest&#39; gui framework ever</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;racket            ; a DSL for DSLs</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">raku</span>              <span class="c1">; the artist formerly known as perl6</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;rest              ; Emacs as a REST client</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">rst</span>               <span class="c1">; ReST in peace</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">ruby</span>     <span class="c1">; 1.step {|i| p &#34;Ruby is #{i.even? ? &#39;love&#39; : &#39;life&#39;}&#34;}</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">rust</span>              <span class="c1">; Fe2O3.unwrap().unwrap().unwrap().unwrap()</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;scala             ; java, but good</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;scheme            ; a fully conniving family of lisps</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">sh</span>                <span class="c1">; she sells {ba,z,fi}sh shells on the C xor</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;sml</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;solidity          ; do you need a blockchain? No.</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;swift             ; who asked for emoji variables?</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;terra             ; Earth and Moon in alignment for performance.</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">web</span> <span class="nv">+web-django-mode</span><span class="p">)</span> <span class="c1">; the tubes</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">yaml</span>              <span class="c1">; JSON, but readable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:email</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(mu4e +gmail)</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;notmuch</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(wanderlust +gmail)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:app</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;calendar</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;irc               ; how neckbeards socialize</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;(rss +org)        ; emacs as an RSS reader</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;twitter           ; twitter client https://twitter.com/vnought</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">;;literate</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nv">default</span> <span class="nv">+bindings</span> <span class="nv">+smartparens</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =init.el=:1 ends here</span></span></span></code></pre>
+</figure><h2 id="configel"><code>config.el</code></h2>
+<p>See the <a href="https://github.com/hlissner/doom-emacs/blob/develop/core/templates/config.example.el">Doom config example</a> for extremely helpful inline comments, which I have impatiently stripped from my own config.</p>
+<p>However, I know I&rsquo;ll need this bit:</p>
+<blockquote>
+<p>Here are some additional functions/macros that could help you configure Doom:</p>
+<ul>
+<li><code>load!</code> for loading external *.el files relative to this one</li>
+<li><code>use-package!</code> for configuring packages</li>
+<li><code>after!</code> for running code after a package has loaded</li>
+<li><code>add-load-path!</code> for adding directories to the <code>load-path</code>, relative to
+this file. Emacs searches the <code>load-path</code> when you load packages with
+<code>require</code> or <code>use-package</code>.</li>
+<li><code>map!</code> for binding new keys</li>
+</ul>
+<p>To get information about any of these functions/macros, move the cursor over
+the highlighted symbol at press <code>K</code> (non-evil users must press <code>C-c c k</code>).
+This will open documentation for it, including demos of how they are used.</p>
+<p>You can also try <code>gd</code> (or <code>C-c c d</code>) to jump to their definition and see how
+they are implemented.</p>
+</blockquote>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="nv">&lt;&lt;config.el</span> <span class="nv">prelude&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;set</span> <span class="nv">personal</span> <span class="nv">variables&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;set</span> <span class="nv">sensitive</span> <span class="nv">variables&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">fonts&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;display</span> <span class="nv">line</span> <span class="nv">numbers&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">org</span> <span class="nv">mode&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;require</span> <span class="nf">backtrace</span> <span class="nv">in</span> <span class="nv">ox-hugo&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">company&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">projectile&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">pylsp&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;use</span> <span class="nv">python-black&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">&lt;&lt;configure</span> <span class="nv">doom</span> <span class="nv">dashboard&gt;&gt;</span></span></span></code></pre>
+</figure><p>This preface seems relevant when you have <code>literate</code> enabled in Doom.</p>
+<p><a id="code-snippet--config.el prelude"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="cl"><span class="c1">;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-</span></span></span></code></pre>
+</figure><h3 id="personal-variables">Personal Variables</h3>
+<p>Some are preferences, some are handy ways to define my environment.</p>
+<p><a id="code-snippet--set personal variables"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nf">user-full-name</span> <span class="s">&#34;Brian Wisti&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">user-mail-address</span> <span class="s">&#34;brianwisti@pobox.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/local-root</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;windows-nt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;C:/Users/brian&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;~/&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/sync-dir</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;Dropbox&#34;</span> <span class="nv">bmw/local-root</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/org-dir</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;org&#34;</span> <span class="nv">bmw/sync-dir</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">bmw/org-brain-path</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;brain&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">))</span></span></span></code></pre>
+</figure><p>And some are for work projects that we don&rsquo;t need to be showing the public.</p>
+<h3 id="aesthetics">Aesthetics</h3>
+<p>My personal favorite code font is FantasqueSansMono.</p>
+<p><a href="https://github.com/hlissner/emacs-doom-themes">emacs-doom-themes</a> includes <em>many</em> options, but I seem to have settled on Fairy Floss for my aesthetic.</p>
+<p><a id="code-snippet--configure fonts"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">bmw/font-mono</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">system-type</span> <span class="s">&#34;windows-nt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;FantasqueSansMono NF&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;FantasqueSansMono Nerd Font&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">doom-font</span> <span class="p">(</span><span class="nf">font-spec</span> <span class="nb">:family</span> <span class="nv">bmw/font-mono</span> <span class="nb">:size</span> <span class="mi">18</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">doom-big-font</span> <span class="p">(</span><span class="nf">font-spec</span> <span class="nb">:family</span> <span class="nv">bmw/font-mono</span> <span class="nb">:size</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">doom-theme</span> <span class="ss">&#39;doom-fairy-floss</span><span class="p">)</span></span></span></code></pre>
+</figure><p><a id="code-snippet--display line numbers"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">display-line-numbers-type</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="org-mode">Org mode</h3>
+<p>Honestly, <a href="https://orgmode.org">Org mode</a> is mostly what I use Emacs for.</p>
+<div class="note">
+<p><a href="https://logseq.com">Logseq</a> does great as a sort of org-mode-light, and I highly recommend it if you want a less complex tool for managing notes and tasks. OTOH its org parser does not yet provide 100% of what I expect. I can&rsquo;t quite abandon org mode yet.</p>
+</div>
+<h4 id="configure-org-mode">Configure Org Mode</h4>
+<p>Tasks could be in notes, journal, or the actual agenda folder.</p>
+<p>Sometimes I want to enable mixed-pitch-mode for Org, and sometimes I don&rsquo;t. Eventually I&rsquo;ll use some clever approach to toggle, but for now I just include this bit when I want it.</p>
+<p><a id="code-snippet--mixed pitch org mode"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">add-hook!</span> <span class="ss">&#39;org-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">mixed-pitch-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">mixed-pitch-variable-pitch-cursor</span> <span class="no">nil</span><span class="p">)</span></span></span></code></pre>
+</figure><p>My <code>org-directory</code> is on a folder synchronized across multiple machines. Probably want to keep things like generated <code>org-id</code> values synchronized as well.</p>
+<p><a id="code-snippet--keep org files and data together"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-directory</span> <span class="nv">bmw/org-dir</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-id-locations-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;.orgids&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-id-locations-file-relative</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-roam-directory</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;roam&#34;</span> <span class="nv">bmw/org-dir</span><span class="p">))</span></span></span></code></pre>
+</figure><p>Make sure that tasks I think of on the spur of the moment in <code>org/roam/daily</code> get included in my Agenda views.</p>
+<p><a id="code-snippet--find agenda tasks recursively"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-agenda-files</span> <span class="p">(</span><span class="nv">directory-files-recursively</span> <span class="nv">bmw/org-dir</span> <span class="s">&#34;\\.org$&#34;</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure><p>My brain insists on a particular set of state keywords for my tasks.</p>
+<p><a id="code-snippet--set my custom org todo keywords"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">org-todo-keywords</span> <span class="o">`</span><span class="p">((</span><span class="nv">sequence</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#34;LATER(l)&#34;</span> <span class="s">&#34;NOW(n)&#34;</span> <span class="s">&#34;MAYBE(m)&#34;</span> <span class="s">&#34;PROJECT(p)&#34;</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#34;|&#34;</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#34;DONE(d)&#34;</span> <span class="s">&#34;NOPE(-)&#34;</span><span class="p">)))</span></span></span></code></pre>
+</figure><p>Throw all of it together, along with the things I don&rsquo;t feel like explaining right now:</p>
+<p><a id="code-snippet--configure org mode"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">after!</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">&lt;&lt;keep</span> <span class="nv">org</span> <span class="nv">files</span> <span class="nb">and</span> <span class="nv">data</span> <span class="nv">together&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">&lt;&lt;find</span> <span class="nv">agenda</span> <span class="nv">tasks</span> <span class="nv">recursively&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">&lt;&lt;set</span> <span class="nv">my</span> <span class="nv">custom</span> <span class="nv">org</span> <span class="nv">todo</span> <span class="nv">keywords&gt;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-catch-invisible-edits</span> <span class="ss">&#39;smart</span> <span class="c1">; try not to change things in hidden blocks</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-log-done</span> <span class="ss">&#39;time</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-log-into-drawer</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-log-redeadline</span> <span class="ss">&#39;time</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-log-reschedule</span> <span class="ss">&#39;time</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-refile-use-outline-path</span> <span class="ss">&#39;file</span>
+</span></span><span class="line"><span class="cl">   <span class="nv">org-use-property-inheritance</span> <span class="no">t</span><span class="p">))</span></span></span></code></pre>
+</figure><h4 id="fiddle-with-ox-hugo">Fiddle with <code>ox-hugo</code></h4>
+<p>Having trouble with <code>ox-hugo</code>. It fails telling me that there&rsquo;s no function for backtraces. Hopefully this fixes it!</p>
+<p><a id="code-snippet--require backtrace in ox-hugo"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">after!</span> <span class="nv">ox-hugo</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;backtrace</span><span class="p">))</span></span></span></code></pre>
+</figure><div class="note">
+<p>It sort of fixes it. I get a backtrace, but I also get my content exported. I&rsquo;ll take it.</p>
+</div>
+<h3 id="company">Company</h3>
+<p>An autocompletion framework of some kind? I&rsquo;d like to tone it down, but first I&rsquo;ll just figure out how to tune it. <a href="https://tecosaur.github.io/emacs-config/config.html#company">tecosaur&rsquo;s notes</a> seems like a good place to start.</p>
+<p>Also keeping <a href="https://docs.doomemacs.org/latest/modules/completion/company/">doom docs</a> handy.</p>
+<p><a id="code-snippet--configure company"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">after!</span> <span class="nv">company</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-idle-delay</span> <span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">company-minimum-prefix-length</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">company-show-numbers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">add-hook</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">&#39;evil-normal-state-entry-hook</span> <span class="nf">#&#39;</span><span class="nv">company-abort</span><span class="p">))</span></span></span></code></pre>
+</figure><h3 id="projectile">Projectile</h3>
+<p><a href="https://docs.projectile.mx/projectile/index.html">Projectile</a> provides one approach to project management in Emacs.</p>
+<p><a id="code-snippet--configure projectile"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">after!</span> <span class="nv">projectile</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">project</span> <span class="nv">bmw/projects</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">projectile-add-known-project</span> <span class="nv">project</span><span class="p">)))</span></span></span></code></pre>
+</figure><h3 id="doom-dashboard">Doom Dashboard</h3>
+<p><a id="code-snippet--configure doom dashboard"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">+doom-dashboard-menu-sections</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;Reload last session&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;history&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:when</span> <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nb">require</span> <span class="ss">&#39;persp-mode</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nf">file-exists-p</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="nv">persp-auto-save-fname</span> <span class="nv">persp-save-dir</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">                <span class="p">((</span><span class="nb">require</span> <span class="ss">&#39;desktop</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nf">file-exists-p</span> <span class="p">(</span><span class="nv">desktop-full-file-name</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:face</span> <span class="p">(</span><span class="nb">:inherit</span> <span class="p">(</span><span class="nv">doom-dashboard-menu-title</span> <span class="nv">bold</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">doom/quickload-session</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Open org-agenda&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;calendar&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:when</span> <span class="p">(</span><span class="nf">fboundp</span> <span class="ss">&#39;org-agenda</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">org-agenda</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Recently opened files&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;file-text&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">recentf-open-files</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Open project&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;briefcase&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">projectile-switch-project</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Jump to bookmark&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;bookmark&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">bookmark-jump</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Open private configuration&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;tools&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:when</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">doom-private-dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">doom/open-private-config</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s">&#34;Open documentation&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:icon</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">&#34;book&#34;</span> <span class="nb">:face</span> <span class="ss">&#39;doom-dashboard-menu-title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">:action</span> <span class="nv">doom/help</span><span class="p">)))</span></span></span></code></pre>
+</figure><h3 id="perl">Perl</h3>
+<p>Doom Emacs doesn&rsquo;t do much with Perl. So I can&rsquo;t just enable a handy <code>init.el</code> module. The handy module that <em>was</em> available didn&rsquo;t actually do much, as it turns out.</p>
+<p>For now let&rsquo;s just use <a href="https://www.emacswiki.org/emacs/CPerlMode">CPerl Mode</a> with everything enabled and the <a href="https://www.emacswiki.org/emacs/IndentingPerl">IndentingPerl</a>. When all else fails, go to the Emacs Wiki.</p>
+<p>#+ name: configure perl settings</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defalias</span> <span class="ss">&#39;perl-mode</span> <span class="ss">&#39;cperl-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-hairy</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-indent-level</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-close-paren-offset</span> <span class="mi">-2</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-continued-statement-offset</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-indent-parens-as-block</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">cperl-tab-always-indent</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre>
+</figure><h3 id="python">Python</h3>
+<p>Having a language server is nice, but I can&rsquo;t just use the defaults.</p>
+<p>For one thing, I prefer black&rsquo;s 88 character default line length to Flake&rsquo;s 79 character default.</p>
+<p><a id="code-snippet--configure pylsp"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-pylsp-plugins-flake8-max-line-length</span> <span class="mi">88</span><span class="p">)</span></span></span></code></pre>
+</figure><p>For some strange reason I&rsquo;m not getting any formatting applied when I save an obviously long line of Python. So I&rsquo;ll borrow from a <a href="https://gist.github.com/jordangarrison/8720cf98126a1a64890b2f18c1bc69f5g">gist</a> describing how someone set <code>python-black</code> up with Doom.</p>
+<p><a id="code-snippet--use python-black"></a></p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">use-package!</span> <span class="nv">python-black</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:demand</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:after</span> <span class="nv">python</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">add-hook!</span> <span class="ss">&#39;python-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">python-black-on-save-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">map!</span> <span class="nb">:leader</span> <span class="nb">:desc</span> <span class="s">&#34;Blacken Buffer&#34;</span> <span class="s">&#34;m b b&#34;</span> <span class="nf">#&#39;</span><span class="nv">python-black-buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">map!</span> <span class="nb">:leader</span> <span class="nb">:desc</span> <span class="s">&#34;Blacken Region&#34;</span> <span class="s">&#34;m b r&#34;</span> <span class="nf">#&#39;</span><span class="nv">python-black-region</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">map!</span> <span class="nb">:leader</span> <span class="nb">:desc</span> <span class="s">&#34;Blacken Statement&#34;</span> <span class="s">&#34;m b s&#34;</span> <span class="nf">#&#39;</span><span class="nv">python-black-statement</span><span class="p">))</span></span></span></code></pre>
+</figure><h2 id="packageel"><code>package.el</code></h2>
+<p>Just trying to get black formatting working with my Doom setup. <code>+black</code> seems to do nothing.</p>
+<p>For general info about <code>packages.el</code>, I may want to look at the <a href="https://github.com/hlissner/doom-emacs/blob/develop/core/templates/packages.example.el">Doom packages example</a>.</p>
+<figure class="highlight">
+  <pre tabindex="0" class="chroma"
+    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="c1">;; -*- no-byte-compile: t; -*-</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">package!</span> <span class="nv">python-black</span><span class="p">)</span></span></span></code></pre>
+</figure>]]></content:encoded>
+</item>
+<item>
   <title>Post: [2022-06-11 Sat 10:05]</title>
   <link>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</link>
   <pubDate>Sat, 11 Jun 2022 10:05:12 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/06/2022-06-11-sat-1005/</guid>
   <description>&lt;p&gt;Got Org Babel playing nice with TypeScript thanks to &lt;a href=&#34;https://github.com/lurdan/ob-typescript&#34;&gt;ob-typescript&lt;/a&gt;. It’s a wild Saturday morning here.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png&#34; alt=&#34;attachments/img/2022-06-11-emacs-typescript.png&#34;/&gt;
+&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2022-06-11-emacs-typescript.png&#34; alt=&#34;attachments/img/2022-06-11-emacs-typescript.png&#34;/&gt;&lt;/figure&gt;
 Takes a bit to get there on WSL but the code &lt;em&gt;does&lt;/em&gt; run&lt;/p&gt;</description>
    <category>post</category> 
    <category>note</category> 
    <category>workflow</category>  <category>emacs</category> 
   <content:encoded><![CDATA[<p>Got Org Babel playing nice with TypeScript thanks to <a href="https://github.com/lurdan/ob-typescript">ob-typescript</a>. It&rsquo;s a wild Saturday morning here.</p>
-<p><img src="/post/2022/06/../../../attachments/img/2022-06-11-emacs-typescript.png" alt="attachments/img/2022-06-11-emacs-typescript.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2022-06-11-emacs-typescript.png" alt="attachments/img/2022-06-11-emacs-typescript.png"/></figure>
 Takes a bit to get there on WSL but the code <em>does</em> run</p>
 <p>That required a few more lines in my config, but not <em>too</em> many.</p>
 <figure class="highlight">
@@ -168,214 +1424,11 @@ This new config starts from nano-emacs, a rather streamlined setup. Of course I 
    <category>post</category> 
    <category>note</category> 
    <category>org-config</category>  <category>emacs</category>  <category>it-keeps-me-out-of-trouble</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2022/02/../../../attachments/img/2022/cover-2022-02-19.png" alt="attachments/img/2022/cover-2022-02-19.png"/>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2022/cover-2022-02-19.png" alt="attachments/img/2022/cover-2022-02-19.png"/></figure>
 screenshot of the Emacs setup in question, with org-roam-ui nearby</p>
 <p>A <em>lot</em> of fiddling with Emacs today. Thought I&rsquo;d try something not so much &ldquo;vanilla&rdquo; as on fewer predetermined rails than the average <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> config.</p>
 <p>This new config starts from <a href="https://github.com/rougier/nano-emacs">nano-emacs</a>, a rather streamlined setup. Of <em>course</em> I enjoyed cluttering it up.</p>
-]]></content:encoded>
-</item>
-<item>
-  <title>Post: Learning a little elisp</title>
-  <link>https://randomgeekery.org/post/2020/12/learning-a-little-elisp/</link>
-  <pubDate>Sat, 19 Dec 2020 16:30:00 -0800</pubDate>
-  
-  <guid>https://randomgeekery.org/post/2020/12/learning-a-little-elisp/</guid>
-  <description>&lt;p&gt;Excuse me while I share a sleep-deprived ramble from last night through about five lines of &lt;a href=&#34;https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html&#34;&gt;Emacs Lisp&lt;/a&gt;, the extension language for &lt;a href=&#34;https://randomgeekery.org/card/emacs/&#34;&gt;Emacs&lt;/a&gt;&lt;/p&gt;</description>
-   <category>post</category> 
-   <category>post</category> 
-   <category>elisp</category>  <category>emacs</category>  <category>org-mode</category>  <category>programming</category> 
-  <content:encoded><![CDATA[<h2>Don't get impressed yet</h2><p>Excuse me while I share a sleep-deprived ramble from last night through about five lines of <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html">Emacs Lisp</a>, the extension language for <a href="/card/emacs/">Emacs</a></p>
-<p>There&rsquo;s <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html">tons</a> of <a href="https://caiorss.github.io/Emacs-Elisp-Programming/">detailed</a> information about Emacs LISP — aka Emacs Lisp, elisp, ELisp, and &ldquo;oh my god they love parentheses&rdquo; — out there.  I just want my old &ldquo;Babysteps&rdquo; approach, so all the detailed sites won&rsquo;t be so intimidating.</p>
-<p>Gotta do it myself, I guess.</p>
-<h2 id="why">Why</h2>
-<p>So far I have treated elisp as an arcane configuration language.  But it’s so much more than that.  It’s also an arcane <em>programming</em> language.  I do love learning programming languages.</p>
-<p>I’ll have an easier time configuring Emacs, and most likely get strange new ideas for ways to extend my frenemy text editing environment.</p>
-<h2 id="how">How</h2>
-<p>Using <a href="https://www.gnu.org/software/emacs/">Emacs</a>, of course!  A little bit with the deep integration for both <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/emacs/Lisp-Eval.html#Lisp-Eva">evaluation</a> and documentation_ of Lisp.  Probably a bit more with <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Org Babel</a>, which provides a layer for evaluating code and exporting the results — say, for example, to a blog post like this one.</p>
-<p>Expect side notes about <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, since that’s the flavor I use lately.</p>
-<h2 id="lets-get-started">Let’s get started</h2>
-<p>I looked up &ldquo;Hello World in ELisp&rdquo; and found something like this.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Hey World!&#34;</span><span class="p">)</span></span></span></code></pre>
-</figure><h3 id="elisp-evaluation">ELisp evaluation</h3>
-<p>Want to write some Emacs Lisp? Here you go.</p>
-<ul>
-<li>open Emacs</li>
-<li>type <code>(message &quot;Hey World!&quot;)</code></li>
-<li>put your cursor — the <em>point</em> — just outside the closing parenthesis.</li>
-<li>Hit <em>C-x e</em></li>
-<li>Emacs prints <code>Hey World!</code></li>
-</ul>
-<p>Boom.  Done.</p>
-<p>The <code>()</code> indicate an <a href="https://en.wikipedia.org/wiki/S-expression">s-expression</a>.  That’s a <em>symbolic expression</em>, or <em>sexpr</em> if you’re cool.  S-expressions aren’t quite the atoms of a Lisp program.  There are smaller bits, like the symbol <code>message</code> or the value <code>&quot;Hey World!&quot;</code>.  But it’s the smallest <em>useful</em> element.  Oh I know.  S-expressions are the <em>molecules</em> of a Lisp program.</p>
-<p>No?  How about words vs sentences?  Okay, whatever.</p>
-<p>This particular s-expression holds an <em>ordered pair</em>, <code>message</code> and <code>&quot;Hey World!&quot;</code>.  <em>Pair</em> because there are two items.  <em>Ordered</em> because the order matters.</p>
-<p>When ELisp sees an ordered pair, it knows what to do:</p>
-<ul>
-<li>figure out what it gets from the second thing</li>
-<li>hand that to the first thing</li>
-<li>hand <em>that</em> result to you</li>
-</ul>
-<p>The part that feels magic is each of the items in the pair can be s-expressions too!  Try <code>(sqrt (* 37 37))</code>.  <code>37.0</code>, right?</p>
-<p>That <code>*</code> is for multiplication.  So we’re multiplying <code>37</code> by <code>37</code> and proving to ourselves that <code>sqrt</code> hands us back <code>37</code>.  It’s a bit of a pointless example, but hey welcome to me learning stuff.  And there’s my first lesson:</p>
-<p>A Lisp program is pretty much just infinitely nested s-expressions.</p>
-<p>And macros.  Macros, near as I can tell, are infinitely nested s-expressions with gloves and a nice hat.</p>
-<p>BTW I don’t know Lisp.  I hope you did not come here expecting a tutorial.</p>
-<h3 id="elisp-documentation">ELisp documentation</h3>
-<p>When we have a question about ELisp functions, we don’t need to look everything up online.  Emacs comes with notes.</p>
-<ul>
-<li>put <em>point</em> over <code>message</code> in <code>(message &quot;Hey world!&quot;)</code></li>
-<li>hit <code>C-h f</code></li>
-<li>see the prompt asking me to specify a function, with <code>message</code> pre-filled</li>
-<li>hit <code>ENTER</code></li>
-<li>Learn things!</li>
-</ul>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!</p>
-</blockquote>
-<h3 id="elisp-in-org-babel">ELisp in Org Babel</h3>
-<p>This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my <a href="/config/">config</a> smarter.  For example, only tangle a section if it’s relevant for that machine.</p>
-<p>And, of course, really handy for blogging about ELisp.</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>Configuration of Org and Babel is traditionally an elaborate ritual.  In Doom, it’s enough for this post to enable <code>org</code>.</p>
-<p>Somewhere in my <code>init.el</code> I have these lines.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="nb">:lang</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">org</span> <span class="nv">+roam</span> <span class="nv">+hugo</span><span class="p">)</span></span></span></code></pre>
-</figure><p>Okay, I added <code>+hugo</code> since I’m using <code>ox-hugo</code> to integrate with my workflow. And <code>+roam</code> because <a href="https://www.orgroam.com/">org-roam</a> is kinda cool.  But not relevant for today.</p>
-</blockquote>
-<p>I need a code block written in a language that Babel knows.  It should not
-surprise us that Babel knows ELisp.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+begin_src elisp
-</span></span><span class="line"><span class="cl">(message &#34;Hey World!&#34;)
-</span></span><span class="line"><span class="cl">#+end_src</span></span></code></pre>
-</figure><p>I press <kbd>C-c C-c</kbd> with <em>point</em> over the code block.</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>Or <kbd>ENTER</kbd> in Doom.</p>
-</blockquote>
-<p>Suddenly: a <code>#+RESULTS:</code> block!</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">#+RESULTS:
-</span></span><span class="line"><span class="cl">: Hey World!</span></span></code></pre>
-</figure><p>I can also write my ELisp inline:</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">src_elisp{(sqrt (* 37 37))}, right?</span></span></code></pre>
-</figure><p>Written like this, Babel replaces my code with its result when <code>ox-hugo</code> exports the post.</p>
-<p>All right. That’s the very basics of evaluating ELisp in Emacs generally and Org mode in particular.</p>
-<p>Let’s get back to the code, please. How do I do variables?</p>
-<h2 id="displaying-a-variable">Displaying a variable</h2>
-<p>Let’s see. <code>setq</code> to set a variable for my name. identifiers can be pretty much whatever. I’ll use lowercase letters and a hyphen.</p>
-<p>Looks like <code>format</code> can smush it into a string for <code>message</code>.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">my-name</span> <span class="s">&#34;Brian&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;hello %s&#34;</span> <span class="nv">my-name</span><span class="p">))</span></span></span></code></pre>
-</figure><p><code>format</code> does its work and hands the result back to <code>message</code>, which displays the result.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">hello Brian</span></span></code></pre>
-</figure><p>Thing is, now <code>my-name</code> is floating around forever what with being a global variable.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span> <span class="nv">my-name</span><span class="p">)</span></span></span></code></pre>
-</figure><figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Brian</span></span></code></pre>
-</figure><p>What if I used a local variable instead?</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">new-name</span> <span class="s">&#34;Whozzomongo&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">message</span> <span class="nv">new-name</span><span class="p">))</span></span></span></code></pre>
-</figure><figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Whozzomongo</span></span></code></pre>
-</figure><p>But back out here it doesn’t exist.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">new-name</span><span class="p">)</span></span></span></code></pre>
-</figure><p>You don’t see anything out here, but when I tried to <kbd>C-c C-c</kbd> that, Emacs complained:</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Symbol’s function definition is void: new-name</span></span></code></pre>
-</figure><p>I consider that a good thing. Global variables make me nervous, especially in long-running applications.</p>
-<p>So I know how to set global or local variables.  I know how to display them.</p>
-<p>How to get them from the user?</p>
-<h2 id="getting-user-input">Getting user input</h2>
-<p><a href="http://www.ergoemacs.org/emacs/elisp%5Fidioms%5Fprompting%5Finput.html">Xah Lee</a> gives a nice rundown on how to get user input. <code>read-string</code> is the one I want.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-string</span> <span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">)</span></span></span></code></pre>
-</figure><p><code>read-string</code> returns whatever I answer.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Waffle Smasher The Magnificent Pineapple</span></span></code></pre>
-</figure><p>Let’s make a question prompt.  The inside-out approach of nested evaluation confuses me a bit, so I’ll happily let Emacs indent things however it wants.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">message</span>
-</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="nb">let</span>
-</span></span><span class="line"><span class="cl">     <span class="p">((</span><span class="nv">question</span> <span class="s">&#34;What&#39;s your name?&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;Go to bed, %s!&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nf">message</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question</span><span class="p">)))))</span></span></span></code></pre>
-</figure><figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Go to bed, Dude!</span></span></code></pre>
-</figure><p>I did some things.  <code>read-string</code> puts the cursor right after the <code>question</code> prompt.  So to help myself while I’m figuring all this out, I created some local variables.  <code>question</code> holds the question to be answered. <code>message</code> holds the —</p>
-<p>Wait, there’s already a global <em>standard</em> function called <code>message</code>!</p>
-<p>It’s cool.  By the time I need the function, <code>let</code> is done and my variable
-doesn’t exist.  Still.  I shouldn’t make this a habit.</p>
-<h2 id="wrapping-it-in-a-function">Wrapping it in a function</h2>
-<p>I wasn’t planning on looking at functions today, but I’m more than halfway there already.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">ask-and-respond</span> <span class="p">(</span><span class="nv">question-for-user</span> <span class="nv">our-response</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="s">&#34;Ask the user a question and show them a response.&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">message</span>
-</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nv">our-response</span>
-</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">read-string</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;%s &#34;</span> <span class="nv">question-for-user</span><span class="p">)))))</span></span></span></code></pre>
-</figure><p>Use the <a href="https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/defun.html#defun">defun</a> macro to <em>define functions</em>. It’s similar enough to function definitions in other languages.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">NAME</span> <span class="p">(</span><span class="nv">ARGUMENTS</span><span class="err">…</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="s">&#34;A docstring&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">THE</span> <span class="nv">CODE</span><span class="p">)</span></span></span></code></pre>
-</figure><p>Though there are some differences right off the bat.  <code>ask-and-respond</code> needs user input.  ELisp requires I mark those as interactive_.</p>
-<p>Other than <em>that</em> it’s similar enough to function definitions in other languages.</p>
-<p>I already know how to call a function.</p>
-<figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-elisp" data-lang="elisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ask-and-respond</span> <span class="s">&#34;What&#39;s your name?&#34;</span> <span class="s">&#34;Goodnight, %s!&#34;</span><span class="p">)</span></span></span></code></pre>
-</figure><figure class="highlight">
-  <pre tabindex="0" class="chroma"
-    ><code class="language-text" data-lang="text"><span class="line"><span class="cl">Goodnight, Brian!</span></span></code></pre>
-</figure><p>Okay, time to take my own hint.  Good night!</p>]]></content:encoded>
-</item>
-<item>
-  <title>Post: Emacs in a Box</title>
-  <link>https://randomgeekery.org/post/2020/12/caiorss-github-io/</link>
-  <pubDate>Sun, 13 Dec 2020 00:00:00 -0800</pubDate>
-  
-  <guid>https://randomgeekery.org/post/2020/12/caiorss-github-io/</guid>
-  <description>Emacs In a Box - Elisp Programming and Customization
-Maybe the bookmark should have been to the Elisp Snippets page. That’s the one I keep going back to. The whole site is a well-organized collection of notes on using and extending Emacs.</description>
-   <category>post</category> 
-   <category>bookmark</category> 
-   <category>emacs</category>  <category>elisp</category> 
-  <content:encoded><![CDATA[<p><a href="https://caiorss.github.io/Emacs-Elisp-Programming/">Emacs In a Box - Elisp Programming and Customization</a></p>
-<p>Maybe the bookmark should have been to the <a href="https://caiorss.github.io/Emacs-Elisp-Programming/Elisp_Snippets.html">Elisp Snippets</a> page.
-That&rsquo;s the one I keep going back to. The whole site is a well-organized collection of notes on using and extending <a href="/card/emacs/">Emacs</a>.</p>
 ]]></content:encoded>
 </item>
 </channel>

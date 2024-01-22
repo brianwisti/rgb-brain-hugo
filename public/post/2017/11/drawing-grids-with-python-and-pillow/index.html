@@ -173,11 +173,27 @@ I enjoy inbox/Drawing. Many of my sketches have repeated elements, like Zentangl
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -293,7 +309,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2017/11/../../../attachments/img/2017/cover-2017-11-24.png" alt="attachments/img/2017/cover-2017-11-24.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2017/cover-2017-11-24.png" alt="attachments/img/2017/cover-2017-11-24.png"/></figure></p>
 <p>Hey I used <a href="/card/python/">card/Python</a> and <a href="https://python-pillow.org/">Pillow</a> to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.</p>
 <p>I enjoy <em>inbox/Drawing</em>. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids. Not much in the way of simple grid-based repetition though.</p>
 <p>Templates exist, but I want custom templates to fit the size of my workspace. I started exploring the Pillow library recently, so let’s use that to make custom grids for my drawings.</p>
@@ -308,7 +325,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
 </figure><p>I use a modest 600 by 600 pixel grayscale image while working out the details. No point saving anything until I know what’s going on, so just <code>show()</code> the image.</p>
-<p><img src="/post/2017/11/attachments/img/2017/grid-blank.png" alt="A blank image"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/grid-blank.png" alt="A blank image"/></figure></p>
 <p>Most of what I want is in the <a href="http://pillow.readthedocs.io/en/4.3.x/reference/ImageDraw.html">ImageDraw</a> module.</p>
 <h2 id="simple-grid">Simple Grid</h2>
 <figure class="highlight">
@@ -330,7 +348,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-single-line.png" alt="Drawing one line"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-single-line.png" alt="Drawing one line"/></figure></p>
 <p>Nice. Okay, how about repeating some lines across?</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -354,7 +373,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-columns.png" alt="Drawing some columns"/>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-columns.png" alt="Drawing some columns"/></figure>
 Lovely. How about an actual grid?</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -385,7 +405,8 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-simple-grid.png" alt="Drawing a simple grid"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-simple-grid.png" alt="Drawing a simple grid"/></figure></p>
 <p>Okay cool but I often need a specific number of squares in my grid.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -417,7 +438,8 @@ Lovely. How about an actual grid?</p>
 </span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">draw</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></span></span></code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-step-count.png" alt="Specifying a step count"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-step-count.png" alt="Specifying a step count"/></figure></p>
 <p>Right but I don’t want to edit the code every time.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -460,7 +482,8 @@ Lovely. How about an actual grid?</p>
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ python grid.py 12</code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-specify-step-count.png" alt="Grabbing a step count from the command line"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-specify-step-count.png" alt="Grabbing a step count from the command line"/></figure></p>
 <p>I can specify step count from the command line. Cool. Uh hey about height and width?</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -565,13 +588,15 @@ optional arguments:
 
 $ python grid.py 500 500 20</code></pre>
 </figure><p>I like <a href="https://docs.python.org/3/library/argparse.html[Argparse]">Argparse</a>.</p>
-<p><img src="/post/2017/11/attachments/img/2017/grid-specify-size-steps.png" alt="Constructing grid from Argparse arguments"/></p>
+<p><figure>
+    <img src="/attachments/img/2017/grid-specify-size-steps.png" alt="Constructing grid from Argparse arguments"/></figure></p>
 <p>Anyways - what if I ask for a rectangle instead of a square?</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ python grid.py 400 600 24 \{\{&lt; /console &gt;}}</code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-rectangular.png" title="Rectangular grid" alt="Rectangular grid"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-rectangular.png" title="Rectangular grid" alt="Rectangular grid"/><figcaption>Rectangular grid</figcaption></figure></p>
 <p>Hold on. I was handing <code>height</code> and <code>width</code> to <a href="http://pillow.readthedocs.io/en/4.3.x/reference/Image.html#the-image-class">Image</a> in the wrong order this whole time.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -586,7 +611,8 @@ $ python grid.py 500 500 20</code></pre>
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ python grid.py 400 600 24</code></pre>
-</figure><p><img src="/post/2017/11/attachments/img/2017/grid-correct-image-init.png" alt="Correct Image initialization"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2017/grid-correct-image-init.png" alt="Correct Image initialization"/></figure></p>
 <p>This works. I have half a dozen ideas left, but I want to use it for a sketch <em>now</em>.</p>
 <p><strong><code>grid.py</code></strong></p>
 <figure class="highlight">

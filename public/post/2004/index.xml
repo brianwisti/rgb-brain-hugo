@@ -11,7 +11,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 20 Jan 2024 22:42:32 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2004/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:53 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2004/index.xml" rel="self" type="application/rss+xml" /><item>
   <title>Post: REBOL Babysteps - 01 Getting Started</title>
   <link>https://randomgeekery.org/post/2004/12/rebol-babysteps-01-getting-started/</link>
   <pubDate>Sun, 26 Dec 2004 00:00:00 -0800</pubDate>
@@ -344,7 +344,8 @@ I’m going to skim through this very quickly. The goal is just for you to see h
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >&gt;&gt; view layout [ text &#34;Hello World!&#34; ]</code></pre>
-</figure><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-01.png" alt="Hello World in REBOL/View"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/rebol-intro-01.png" alt="Hello World in REBOL/View"/></figure></p>
 <p>One way to interpret that series of commands is along the lines of: we want to <code>view</code> the <code>layout</code> defined as containing the <code>text</code> &ldquo;Hello World&rdquo;. I’ll be the first to admit that this is not an impressive demonstration of GUI programming — unless you’ve actually done some, then you might notice how quick it was to put together compared to using a lot of other toolkits and platforms.</p>
 <p>Still, the whole point of using a GUI is having something to <em>click</em>. Let’s revisit our script from last time and putting some pointy-clicky goodness into it.</p>
 <figure class="highlight">
@@ -355,7 +356,8 @@ I’m going to skim through this very quickly. The goal is just for you to see h
 [    field
 [    button &#34;Hi!&#34;
 [    ]</code></pre>
-</figure><p><img src="/post/2004/12/attachments/img/2004/rebol-intro-02.png" alt="Asking for a name"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/rebol-intro-02.png" alt="Asking for a name"/></figure></p>
 <p>Neat. Except that it doesn’t actually do anything if you click the button. Pretty, but non-functional - sort of like my neighbor’s car. Let’s give the <code>button</code> a block of commands along with the string &ldquo;Hi!&rdquo;.</p>
 <figure class="highlight">
   <pre tabindex="0"
@@ -1369,7 +1371,8 @@ at the end of the article, okay?</p>
 </span></span><span class="line"><span class="cl"><span class="n">panel</span> <span class="o">=</span> <span class="no">KnotworkPanel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">panel</span><span class="o">.</span><span class="n">to_image</span><span class="p">()</span></span></span></code></pre>
 </figure><p>Thanks to all the work we did building Tiles and Grids and ASCII art KnotworkPanels, we only need to add a few lines to allow KnotworkPanels to create a nice black and white PNG image file. Here’s what we get::</p>
-<p><img src="/post/2004/10/attachments/img/2004/panel.png" alt="10x20 panel"/></p>
+<p><figure>
+    <img src="/attachments/img/2004/panel.png" alt="10x20 panel"/></figure></p>
 <p>Cool, eh?</p>
 <h3 id="building-knotworkpanels-of-any-size">Building KnotworkPanels of Any Size</h3>
 <p>Now the program does what I want it to. But if I hand this script off to somebody else and say &ldquo;This program will make knotwork panels of any size,&rdquo; one of their first questions will be how to set the size. &ldquo;Go in and edit the code&rdquo; won’t cut it. Let’s haul out our trusty <a href="http://www.ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html">OptParse</a> library again.</p>
@@ -1413,13 +1416,15 @@ at the end of the article, okay?</p>
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ ruby knotworkpanel.rb</code></pre>
-</figure><p><img src="/post/2004/10/attachments/img/2004/panel-3x3.png" alt="3x3 panel"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/panel-3x3.png" alt="3x3 panel"/></figure></p>
 <p>Setting <code>rows</code> to 2 results in a 4x4 panel.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-" data-lang=""
       >$ ruby knotworkpanel.rb --rows 2</code></pre>
-</figure><p><img src="/post/2004/10/attachments/img/2004/panel-4x4.png" alt="4x4 panel"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2004/panel-4x4.png" alt="4x4 panel"/></figure></p>
 <blockquote>
 <p><strong>NOTE</strong></p>
 <p>Me from the immediate future says &ldquo;See? This is what I was talking about. You say

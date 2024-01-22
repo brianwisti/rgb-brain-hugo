@@ -23,7 +23,8 @@ It works well enough, especially once you build up muscle memory for Riv’s lea
    <category>post</category> 
    <category>note</category> 
    <category>vim</category>  <category>rst</category>  <category>second-brain</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2021/10/../../../attachments/img/2021/cover-2021-10-23.png" alt="attachments/img/2021/cover-2021-10-23.png"/>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/../../../attachments/img/2021/cover-2021-10-23.png" alt="attachments/img/2021/cover-2021-10-23.png"/></figure>
 Riv screenshot</p>
 <p><a href="https://github.com/gu-fan/riv.vim">Riv</a> is a wiki, but feels like more of a notebook. Think <a href="https://jblevins.org/projects/deft/">Deft for Emacs</a> with journaling and HTML publishing. What makes Riv interesting — aside from the <a href="https://www.vim.org/">Vim</a> thing — is that it uses <a href="https://docutils.sourceforge.io/">reStructuredText</a> for its native format.</p>
 <p>It works well enough, especially once you build up muscle memory for Riv&rsquo;s leader sequence <kbd>C-e</kbd>. Don&rsquo;t overload it right away though! It includes some insert mode mappings, which can get real confusing if your preferred leader is a space.</p>
@@ -122,7 +123,8 @@ pip install python-frontmatter For experimentation, I copied the build code from
     ><code class="language-rst" data-lang="rst"><span class="line"><span class="cl"><span class="na">:term:</span><span class="nv">`Roles`</span></span></span></code></pre>
 </figure><p>What&rsquo;s a <code>:term:</code> in rst? Nothing. I made it up. Seems like a good role for when I introduce a new name and I want it to stand out.</p>
 <p>I need to define the role to use it. Otherwise?</p>
-<p><img src="/post/2021/09/../../../attachments/img/2021/docutils-unknown-role.png" alt="attachments/img/2021/docutils-unknown-role.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2021/docutils-unknown-role.png" alt="attachments/img/2021/docutils-unknown-role.png"/></figure>
 Docutils embeds an error message below the offending block</p>
 <p>So up at the top of my document use the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#custom-interpreted-text-roles">role directive</a> to create <code>:term:</code> and register it with the parser.</p>
 <figure class="highlight">
@@ -432,7 +434,8 @@ I figured out how to write Hugo shortcodes to generate tables from CSV and other
    <category>post</category> 
    <category>post</category> 
    <category>hugo</category>  <category>data</category>  <category>showing-it-anyways</category>  <category>csv</category>  <category>rst</category>  <category>and-a-dog</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><img src="/post/2020/06/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/>
+  <content:encoded><![CDATA[<h2>Am I reinventing reStructuredText with shortcodes? Don't judge me.</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-06-06.jpg" alt="attachments/img/2020/cover-2020-06-06.jpg"/></figure>
 I&rsquo;ve been looking at screenshots all day. Here&rsquo;s Loud Dog instead.</p>
 <p><a href="/card/tldr/">tldr</a>: Use <a href="/card/hugo/">Hugo</a>’s <a href="https://gohugo.io/functions/transform.unmarshal/"><code>transform.Unmarshal</code></a> to turn strings into data structures, which you can feed into a table template. But sometimes <a href="https://gohugo.io/functions/split/"><code>split</code></a> makes more sense.</p>
 <p>I figured out how to write Hugo <a href="https://gohugo.io/templates/shortcode-templates/">shortcodes</a> to generate <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">tables</a> from <a href="/card/csv/">CSV</a> and other formats. Didn’t even occur to me that it was possible — or this easy — so I had to share.</p>
@@ -486,7 +489,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">code</span> <span class="p">&gt;</span>}}</span></span></code></pre>
 </figure><p>Voila! Instant table!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table-no-header.png" alt="A CSV table"/></figure></p>
 <p>Not bad, but it could be better.</p>
 <ul>
 <li>that first row provides column names, which works better as table headers than just another row</li>
@@ -534,7 +538,8 @@ post of mine about <a href="/post/2017/01/elscreen/">elscreen</a>:</p>
 <li>The regular expression I hand to <a href="https://gohugo.io/functions/findre/"><code>findRE</code></a> is a little naive, but it works for today</li>
 </ul>
 <p>Better!</p>
-<p><img src="/post/2020/06/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/csv-table.png" alt="A CSV table with headers and a caption"/></figure></p>
 <p>I still need to fiddle with my styles. This table’s a little wide for these
 values. Maybe later.</p>
 <p>CSV is great, but <code>transform.Unmarshal</code> supports other formats. What about those?</p>
@@ -631,7 +636,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span></span></span></code></pre>
 </figure><p>These header fields use <a href="https://en.wikipedia.org/wiki/Camel_case">camel case</a> names like &ldquo;TotalRecovered&rdquo;. Piping them through <a href="https://gohugo.io/functions/humanize/"><code>humanize</code></a> and <a href="https://gohugo.io/functions/title/"><code>title</code></a> transforms them into distinct capitalized words: &ldquo;Total Recovered.&rdquo; That’s easier for me to read in a formatted table.</p>
 <p>And — sadly, considering that the topic is <a href="https://www.mayoclinic.org/diseases-conditions/coronavirus/symptoms-causes/syc-20479963">COVID-19</a> cases — <a href="https://gohugo.io/functions/numfmt/"><code>lang.NumFmt</code></a> makes large numbers more readable.</p>
-<p><img src="/post/2020/06/attachments/img/2020/data-table.png" alt="A data table"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/data-table.png" alt="A data table"/></figure></p>
 <p>Wonderful! Wonderful formatting, anyways. The details are pretty sobering. People! Wash your hands and wear a mask!</p>
 <p>There’s really only one <em>slight</em> problem with <code>data-table</code>. I don’t need it. Not today, anyways.</p>
 <h2 id="what-i-need-list-tables">What I need: list tables</h2>
@@ -697,7 +703,8 @@ do. You could get a data structure from CSV, <a href="https://json.org">JSON</a>
 </span></span><span class="line"><span class="cl">    &lt;/tr&gt;
 </span></span><span class="line"><span class="cl">  {{ end }}
 </span></span><span class="line"><span class="cl">&lt;/table&gt;</span></span></code></pre>
-</figure><p><img src="/post/2020/06/attachments/img/2020/list-table.png" alt="A list table!"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/list-table.png" alt="A list table!"/></figure></p>
 <p>Perfect. This will keep me going for a while. Time to stop before I get too clever.</p>
 <p>Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t <em>need</em> a universal data table shortcode. Not yet, anyways.</p>
 <h2 id="what-next">What Next?</h2>
@@ -886,7 +893,8 @@ Nothing about RST limits it to technical writing — well except that most nonte
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>	via the <span class="s">`Worst Cats`_</span> Tumblr blog</span></span></code></pre>
 </figure><p>This directive is conceptually much closer to what I&rsquo;m thinking of. You even get a whole paragraph to set the caption. Text after the first paragraph becomes the legend. Interested parties can read the <a href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure documentation</a> for more details about that.</p>
-<p><img src="/post/2020/01/../../../attachments/img/2020/worst-cat.png" alt="attachments/img/2020/worst-cat.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2020/worst-cat.png" alt="attachments/img/2020/worst-cat.png"/></figure>
 via the <a href="https://worstcats.tumblr.com/post/97243616862/this-is-the-worst-cat">Worst Cats</a> Tumblr blog</p>
 <p>Unfortunately it&rsquo;s not <em>really</em> a <code>&lt;figure&gt;</code>. This is a <code>div.figure</code> holding an <code>img</code> and a <code>p.caption</code> instead of a <code>&lt;figcaption</code>. As a purist, I recognize that I must eventually fix this.</p>
 <h4 id="simple-tables">Simple Tables</h4>

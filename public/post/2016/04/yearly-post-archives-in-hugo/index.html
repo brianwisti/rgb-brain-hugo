@@ -175,11 +175,27 @@ Years give me a fixed point to anchor my archive listings to.">
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -326,7 +342,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 Ace.</p>
 </blockquote>
 <p>Hugo gives the template a title and a collection of pages — along with numerous other <a href="https://gohugo.io/templates/variables/">variables</a>, and at the other end something like this is produced.</p>
-<p><img src="/post/2016/04/attachments/img/2016/site-default-listing.png" title="Default listing applied to Craft section" alt="screenshot"/></p>
+<p><figure>
+    <img src="/attachments/img/2016/site-default-listing.png" title="Default listing applied to Craft section" alt="screenshot"/><figcaption>Default listing applied to Craft section</figcaption></figure></p>
 <h2 id="group-everything-by-date">Group Everything By Date</h2>
 <p>For a first step in the process, let’s see what happens when we tell the Pages to <a href="https://gohugo.io/templates/list/#grouping-by-page-date">group by date</a>.</p>
 <figure class="highlight">
@@ -340,7 +357,8 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">        li </span><span class="cp">{{</span> <span class="nv">.Render</span> <span class="s2">&#34;li&#34;</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
-</figure><p><img src="/post/2016/04/attachments/img/2016/site-single-page-year-headers.png" alt="Now with headers for each year"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2016/site-single-page-year-headers.png" alt="Now with headers for each year"/></figure></p>
 <p>Not too bad. Let’s move on.</p>
 <h2 id="this-years-content">This Year’s Content</h2>
 <p>Hold on a second. I can use the <a href="https://gohugo.io/templates/functions/#first"><code>first</code></a> function to create a list of things published this year. I’ll put that in my <code>index.ace</code> layout.</p>
@@ -357,7 +375,8 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">        li </span><span class="cp">{{</span> <span class="nv">.Render</span> <span class="s2">&#34;li&#34;</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">      </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span><span class="x">
 </span></span></span><span class="line"><span class="cl"><span class="x">  </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
-</figure><p><img src="/post/2016/04/attachments/img/2016/site-this-years-posts.png" alt="This year’s stuff — perfect for the front page"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2016/site-this-years-posts.png" alt="This year’s stuff — perfect for the front page"/></figure></p>
 <p>No matter how hard I tried, I could not find a way to create a page for <em>last year</em> with this technique. Moving on.</p>
 <h2 id="life-hack-use-taxonomies">Life Hack: Use Taxonomies!</h2>
 <p>Hugo does not directly support yearly archive pages. However, this <a href="https://discuss.gohugo.io/t/pagination-and-group-by-date/1441/3">Hugo community comment</a> shows that somebody solved a very similar problem using <a href="http://gohugo.io/taxonomies/overview/">taxonomies</a>.</p>
@@ -427,9 +446,11 @@ Ace.</p>
 </span></span></span><span class="line"><span class="cl"><span class="x">      dd </span><span class="cp">{{</span> <span class="err">$</span><span class="nv">value.Count</span> <span class="cp">}}</span><span class="x"> posts
 </span></span></span><span class="line"><span class="cl"><span class="x">    </span><span class="cp">{{</span> <span class="nv">end</span> <span class="cp">}}</span></span></span></code></pre>
 </figure><p>So by adding one little entry to <code>config.yml</code> and making one little edit — okay, write a Perl script to make one little edit to every page in my site — I get a usable yearly archive!</p>
-<p><img src="/post/2016/04/attachments/img/2016/site-list-all-years.png" alt="all years"/></p>
+<p><figure>
+    <img src="/attachments/img/2016/site-list-all-years.png" alt="all years"/></figure></p>
 <p>I put <code>_default/list.ace</code> back in its original state, and each year has a simple listing.</p>
-<p><img src="/post/2016/04/attachments/img/2016/site-single-year.png" title="Just the stuff I pushed in 2015" alt="screenshot"/></p>
+<p><figure>
+    <img src="/attachments/img/2016/site-single-year.png" title="Just the stuff I pushed in 2015" alt="screenshot"/><figcaption>Just the stuff I pushed in 2015</figcaption></figure></p>
 <h2 id="what-else">What Else?</h2>
 <p>It would sure be nice to have &ldquo;next year&rdquo; / &ldquo;previous year&rdquo; links. I can use <code>GroupBy</code> functionality to create distinct craft and blog sections for each year’s listing. For that matter, I could see breaking Crafts and Posts listings down into yearly archives.</p>
 <p>You know what? This is good enough for now. I set out to have yearly archive pages. I have yearly archive pages. Time to go out and enjoy an unexpectedly pleasant Seattle Sunday.</p>

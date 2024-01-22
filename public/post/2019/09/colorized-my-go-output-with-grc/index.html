@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -296,12 +312,14 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </div>
 
   <p>Enjoying myself with <a href="/card/go/">card/Go</a> as I go through <a href="https://github.com/quii/learn-go-with-tests">Learn Go with Tests</a> by <a href="https://quii.dev/">Chris James</a>.</p>
-<p><img src="/post/2019/09/../../../attachments/img/2019/cover-2019-09-08.png" alt="attachments/img/2019/cover-2019-09-08.png"/>
+<p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-09-08.png" alt="attachments/img/2019/cover-2019-09-08.png"/></figure>
 some go compiler output all pretty</p>
 <p>I didn’t enjoy myself on the <a href="https://tour.golang.org/welcome/1">official tour</a>, or with whatever LinkedIn course it was that I took. The structure and flow of the learn-by-testing piece gives me a familiar context and the pace seems just about right. It’s giving me ideas where I might enjoy Go for my own projects.</p>
 <p>So yeah I like it.</p>
 <p>Still having some <em>tiny</em> issues with the output of <code>go test</code>.</p>
-<p><img src="/post/2019/09/attachments/img/2019/plain.png" alt="normal go test output"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/plain.png" alt="normal go test output"/></figure></p>
 <p>Part of it’s that my brain hasn’t gotten used to how Go displays its errors. Some of it’s that my brain always has — and always will — panic at random symbols without context.</p>
 <p>I figured I wasn’t the first with this problem, so I went looking. Found a <a href="https://stackoverflow.com/a/40160711">Stack Overflow answer</a> pointing me to <a href="https://github.com/garabik/grc">grc</a>. Installed via <a href="https://brew.sh/">Homebrew</a>, then followed directions from Stack Overflow to configure grc, with a slight tweak to <code>~/.grc/conf.gotest</code>.</p>
 <p>grc needs an entry in <code>~/.grc/grc.conf</code> for Go test runs.</p>
@@ -334,7 +352,8 @@ some go compiler output all pretty</p>
 </span></span><span class="line"><span class="cl">regexp=[^\s]+\.go(:\d+)?
 </span></span><span class="line"><span class="cl">colour=cyan</span></span></code></pre>
 </figure><p>Now when I run tests through <code>grc go test</code>, output is colorized and I can track it more easily!</p>
-<p><img src="/post/2019/09/attachments/img/2019/cover-2019-09-08.png" alt="colorized by grc go test"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/cover-2019-09-08.png" alt="colorized by grc go test"/></figure></p>
 <p>Of course I’ll probably get used to how Go presents errors and then forget all about <code>grc</code>, but it’s great for today. Might be more generally useful too, if I want colorized output that my tools don’t already provide!</p>
 
   

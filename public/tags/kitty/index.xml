@@ -23,9 +23,11 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
    <category>post</category> 
    <category>post</category> 
    <category>shell</category>  <category>kitty</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>I installed kitty for font ligatures in terminals on Linux, but it does other stuff too.</h2><p><img src="/post/2019/05/../../../attachments/img/2019/cover-2019-05-27.png" alt="attachments/img/2019/cover-2019-05-27.png"/></p>
+  <content:encoded><![CDATA[<h2>I installed kitty for font ligatures in terminals on Linux, but it does other stuff too.</h2><p><figure>
+    <img src="/../../../attachments/img/2019/cover-2019-05-27.png" alt="attachments/img/2019/cover-2019-05-27.png"/></figure></p>
 <p><a href="https://sw.kovidgoyal.net/kitty/index.html">kitty</a> is a fast terminal emulator for Linux and macOS. It includes many features, but the one that interested me was support for <a href="https://en.wikipedia.org/wiki/Typographic_ligature">ligatures</a> in code. Ligatures <em>basically</em> let you combine symbols, characters, or graphemes to produce a single glyph with compressed meaning.</p>
-<p><img src="/post/2019/05/attachments/img/2019/all_ligatures.png" alt="Fira Code ligatures"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/all_ligatures.png" alt="Fira Code ligatures"/></figure></p>
 <p><em>via <a href="https://github.com/tonsky/FiraCode/blob/master/showcases/all_ligatures.png">Github</a></em></p>
 <p>Confused yet? Me too. I barely understand what I’m trying to describe here. Really it’s just that ligatures make your code look cooler than the plain text most developers enter and read for hours a day. Whether they improve life in any meaningful fashion is arguable, but &ldquo;it looks cooler&rdquo; is good enough for me today.</p>
 <p>By using a special font such as <a href="https://github.com/tonsky/FiraCode">Fira Code</a> and a capable terminal, all sorts of character transformations happen. For example, the <code>&lt;</code> and <code>=</code> characters combined as <code>⇐</code> — to indicate &ldquo;less than or equal to&rdquo; — displays as <code>⩽</code>. It means the same thing, but it says it with a single visual character.</p>
@@ -72,7 +74,8 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 </span></span><span class="line"><span class="cl"><span class="na">Icon</span><span class="o">=</span><span class="s">/home/randomgeek/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png</span>
 </span></span><span class="line"><span class="cl"><span class="na">Categories</span><span class="o">=</span><span class="s">System;TerminalEmulator;</span></span></span></code></pre>
 </figure><p>Course, I still had to tell GNOME the desktop launcher was trustworthy but opening <code>~/.local/share/applications/kitty.desktop</code> in the GNOME file manager.</p>
-<p><img src="/post/2019/05/attachments/img/2019/gnome-trust.png" alt="GNOME trust dialog"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/gnome-trust.png" alt="GNOME trust dialog"/></figure></p>
 <h2 id="font-installation">Font installation</h2>
 <p>I need a font that supports ligatures now. Fira Code is the one I know best, though I wouldn’t mind trying others. Fortunately, Fira Code is available via my system package manager.</p>
 <figure class="highlight">
@@ -98,7 +101,8 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
   <pre tabindex="0" class="chroma"
     ><code class="language-text" data-lang="text"><span class="line"><span class="cl">shell                 /bin/bash --login</span></span></code></pre>
 </figure><h2 id="using-kitty">Using kitty</h2>
-<p><img src="/post/2019/05/attachments/img/2019/mojolicious.png" alt="Ligatures when looking at Mojolicious source"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/mojolicious.png" alt="Ligatures when looking at Mojolicious source"/></figure></p>
 <p>The ligatures are pretty, of course. But what I really notice? Kitty is fast. Maybe that’s just because I became accustomed to GNOME Terminal and its sluggishness. Kitty might not be <a href="http://rxvt.sourceforge.net/">rxvt</a> fast, but it’s much quicker than what I’m used to.</p>
 <p>Since kitty is a terminal emulator, most of the functionality is familiar. The default <a href="https://sw.kovidgoyal.net/kitty/index.html#tabs-and-windows">keyboard shortcuts</a> are similar to those offered by GNOME Terminal, with support for clipboard access and tabs. <em>kitty</em> also supports windows much like panes in <a href="https://github.com/tmux/tmux/wiki">tmux</a>, but for now I’m sticking with the familiarity of tmux.</p>
 <h2 id="speaking-of-tmux">Speaking of tmux</h2>
@@ -122,7 +126,8 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kitty +kitten icat cat-fall.jpeg</span></span></code></pre>
-</figure><p><img src="/post/2019/05/attachments/img/2019/kitty-icat.png" alt="classic cat pics in the terminal!"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2019/kitty-icat.png" alt="classic cat pics in the terminal!"/></figure></p>
 <p>Over on Twitter, <a href="http://techblog.babyl.ca/">Yanick Champoux</a> noted that
 <code>icat</code> does not play well with tmux.</p>
 <p>{{&lt; tweet user=&ldquo;yenzie&rdquo; id=&ldquo;1133131184089681920&rdquo; &gt;}}</p>
@@ -135,7 +140,8 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 </figure><p>Dang. Thanks, Yanick!</p>
 <h3 id="unicode-input">Unicode Input</h3>
 <p><code>Control-Shift-U</code> lets you enter <a href="https://sw.kovidgoyal.net/kitty/kittens/unicode-input.html">Unicode characters</a>, by code or by name.</p>
-<p><img src="/post/2019/05/attachments/img/2019/unicode-entry.png" alt="Entering a unicode character by name in kitty"/></p>
+<p><figure>
+    <img src="/attachments/img/2019/unicode-entry.png" alt="Entering a unicode character by name in kitty"/></figure></p>
 <h2 id="kitty-is-fun">kitty is fun</h2>
 <p>Even if I get tired of ligatures — a distinct possibility — I can see continuing to use kitty for its speed and extensibility. Anyways, it’s fun to expand my toolkit a little more!</p>
 ]]></content:encoded>

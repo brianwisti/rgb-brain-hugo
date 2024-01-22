@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -287,14 +303,13 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2023/01/../../../attachments/img/2023/cover-2023-01-19.png" alt="attachments/img/2023/cover-2023-01-19.png"/>
+  <p><figure>
+    <img src="/../../../attachments/img/2023/cover-2023-01-19.png" alt="attachments/img/2023/cover-2023-01-19.png"/></figure>
 an illustrative example</p>
 <p>I like to label my code blocks, especially when they describe the contents of a specific file.</p>
 <p>That&rsquo;s been possible with <a href="/card/hugo/">Hugo</a> since 0.93.0, using <a href="https://gohugo.io/templates/render-hooks/#render-hooks-for-code-blocks">render hooks for code blocks</a>. Render hooks let you use custom templates for all instances of certain Markdown structures such as links, headers, images, and code! I didn&rsquo;t think to try them out for labeling code until just now, though. This <a href="https://discourse.gohugo.io/t/is-there-a-good-reason-not-to-have-a-mechanism-facilitating-a-title-for-code-blocks/40554/3">comment</a> from Hugo Discourse user pamubay got me started. My template builds directly on theirs.</p>
-<p>{% codeblock(
-title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
-) %}</p>
 <figure class="highlight">
+  <figcaption><tt>layouts/_default/render-codeblock.html</tt></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- $isVerbatim := true -}}
 </span></span><span class="line"><span class="cl">{{- if isset .Attributes &#34;verbatim&#34; -}}
@@ -323,30 +338,19 @@ title=&ldquo;layouts/_default/render-codeblock.html&rdquo;
 </span></span><span class="line"><span class="cl">      <span class="p">&gt;</span>{{ .Inner }}<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">{{- end }}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
+</figure><p>The HTML changes are personal aesthetics. I&rsquo;ve been using <code>&lt;figure/&gt;</code> more and more often for illustrative examples beyond — you know — illustrations.</p>
 <p>My render hook looks for two attributes, <code>title</code> and <code>verbatim</code>. These attributes are added after the language identifier for the fenced code block.</p>
-<p>{% codeblock(
-title=&ldquo;Titled code block&rdquo;
-verbatim=false
-collapsed=false
-)%}</p>
 <figure class="highlight">
+  <figcaption><span>Titled code block</span></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```html{title=&#34;layouts/_default/render-codeblock.html&#34;}</span></span></code></pre>
-</figure><p>{% end %}</p>
-<p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
+</figure><p><code>title</code> is the intended title / caption to attach. The <code>verbatim</code> flag indicates whether I want this in a monospaced font. Grabbed that one from the Org folks since it seems like a useful differentiator between code and not-code.</p>
 <p>Most of the time when I label code samples, I use a filename or identifier, and I&rsquo;m used to seeing those in monospace. So it makes sense to have code block captions as verbatim by default. So the <code>verbatim</code> flag only matters if I set it to false, such as for explanatory captions.</p>
-<p>{% codeblock(
-title=&ldquo;non-verbatim code block&rdquo;
-verbatim=false
-collapsed=false
-)%}</p>
 <figure class="highlight">
+  <figcaption><span>non-verbatim code block</span></figcaption>
   <pre tabindex="0" class="chroma"
     ><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">```markdown{title=&#34;Titled code block&#34; verbatim=false}</span></span></code></pre>
-</figure><p>{% end %}</p>
-<p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
+</figure><p>So now I can rest happily with Hugo now that it can do almost exactly what I — ooh <a href="https://pandoc.org/releases.html#pandoc-3.0-2023-01-18">Pandoc 3.0</a> is out!</p>
 
   
 

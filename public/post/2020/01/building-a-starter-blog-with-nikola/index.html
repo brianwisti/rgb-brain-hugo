@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -299,7 +315,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2020/01/../../../attachments/img/2020/cover-2020-01-05.png" alt="attachments/img/2020/cover-2020-01-05.png"/></p>
+  <p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-01-05.png" alt="attachments/img/2020/cover-2020-01-05.png"/></figure></p>
 <p>I messed with <a href="/card/nikola/">card/Nikola</a> a while back, but ended up going with <a href="/card/hugo/">card/Hugo</a>. Nikola has evolved in the last couple years, though. Let’s check it out!</p>
 <p>Nikola is a static site generator written in <a href="/card/python/">card/Python</a>. Its <a href="https://getnikola.com/features">features</a> support a flexible workflow while still providing a solid blogging experience &ldquo;out of the box.&rdquo; You can extend that flexibility further via plugins.</p>
 <p>That focused flexibility intrigues me. <a href="/post/2019/12/removing-mmark-has-me-grumbly/">Cleaning</a> my site after Hugo <a href="https://gohugo.io/news/0.60.0-relnotes/">deprecated</a> the <a href="https://mmark.miek.nl/">mmark</a> format was a chore. My site has too many moving parts for me to casually port it, but I can still play a little.</p>
@@ -381,7 +398,8 @@ I see nothing for themes, but that’s okay. Nikola starts us off with the <a hr
 <p>Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run <code>nikola auto --browser</code> from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.</p>
 </blockquote>
 <p><code>http://127.0.0.1:8000</code> shows a basically empty front page. Nikola filled in the templates for the default theme with values from <code>conf.py</code>.</p>
-<p><img src="/post/2020/01/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/01-empty-site.png" title="The empty site" alt="screenshot of site header and footer"/><figcaption>The empty site</figcaption></figure></p>
 <p>Each of the &ldquo;Archive,&rdquo; &ldquo;Tags,&rdquo; and &ldquo;RSS Feed&rdquo; links lead to summary pages with nothing listed. Since I have no content for Nikola to summarize yet, that makes sense.</p>
 <p>Following the &ldquo;Random Geekery&rdquo; link at the top takes me to the live site. I consider this incorrect behavior. We want to see how the development site works, not the live site.</p>
 <p>We can probably fix that in theme templates or with an option, but for the moment let’s just update <code>config.py</code>.</p>
@@ -429,7 +447,8 @@ Scanning posts........done!
 RestructuredText, or ReST, is a formatting language similar in spirit to <a href="/card/markdown/">card/Markdown</a>. The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.</p>
 <p>Nikola reads our post’s metadata from ReST comments at the front of the file. I know I will miss something important if I tried summarizing it. Let’s just link to Nikola’s own <a href="https://getnikola.com/handbook.html#metadata-fields">metadata documentation</a>.</p>
 <p>What does the site look like now that it has a post?</p>
-<p><img src="/post/2020/01/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/02-index-with-post.png" title="Index page with one post" alt="screenshot of page with post content"/><figcaption>Index page with one post</figcaption></figure></p>
 <p>This theme shows post content. I prefer showing a quick summary of posts on the front page.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -442,10 +461,12 @@ RestructuredText, or ReST, is a formatting language similar in spirit to <a href
 </span></span></span><span class="line"><span class="cl"><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>Delectus ut aut ea et dolore autem. Sint nihil sapiente voluptate id aut quo impedit. Aut<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>numquam delectus pariatur non accusantium. Aperiam aspernatur nemo sequi in est. Expedita</span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/index-with-teaser.png" title="Index page with teaser" alt="screenshot with truncated post content"/><figcaption>Index page with teaser</figcaption></figure></p>
 <p>Now the index has a summary and the main content is on the post page.
 The tag rests at the bottom, and a source link sits with the headline.</p>
-<p><img src="/post/2020/01/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/03-post.png" title="The post itself" alt="screenshot with post content with metadata"/><figcaption>The post itself</figcaption></figure></p>
 <p>What about that &ldquo;Source&rdquo; link? Nikola lets you download the ReST source of a post. Neat, but not a feature I care about.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
@@ -479,7 +500,8 @@ Scanning posts........done!
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s2">&#34;/rss.xml&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS feed&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="p">),</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
-</figure><p><img src="/post/2020/01/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/now.png" title="The Now page" alt="screenshot of /now page"/><figcaption>The Now page</figcaption></figure></p>
 <h2 id="whats-left">What’s left?</h2>
 <p>If this was a really real site, we would build and deploy.</p>
 <figure class="highlight">

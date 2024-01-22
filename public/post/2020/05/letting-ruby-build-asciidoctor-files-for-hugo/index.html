@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -315,7 +331,8 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-18.jpg" alt="attachments/img/2020/cover-2020-05-18.jpg"/>
+  <p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-18.jpg" alt="attachments/img/2020/cover-2020-05-18.jpg"/></figure>
 actually really proud of myself but this post needs all the disclaimers</p>
 <blockquote>
 <p><strong>WARNING</strong></p>
@@ -620,13 +637,15 @@ This is just general advice to make Asciidoctor and Hugo play nice with each oth
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{​<span class="p">&lt;</span> <span class="nt">show-figure</span> <span class="na">image</span><span class="o">=</span><span class="s">&#34;cover.png&#34;</span> <span class="na">description</span><span class="o">=</span><span class="s">&#34;Taskwarrior edit view&#34;</span> <span class="p">&gt;</span>}}</span></span></code></pre>
 </figure><p>And it looks kind of embarrassing.</p>
-<p><img src="/post/2020/05/attachments/img/2020/escaped-shortcode.png" title="my shortcode got escaped" alt="screenshot showing image shortcode instead of an image"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/escaped-shortcode.png" title="my shortcode got escaped" alt="screenshot showing image shortcode instead of an image"/><figcaption>my shortcode got escaped</figcaption></figure></p>
 <p>The solution? Wrap that shortcode in a <a href="https://asciidoctor.org/docs/user-manual/#pass-macros">passthrough macro</a>.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-adoc" data-lang="adoc"
       >pass:[{{​&lt; show-figure image=&#34;cover.png&#34; description=&#34;Taskwarrior edit view&#34; &gt;}}]</code></pre>
-</figure><p><img src="/post/2020/05/attachments/img/2020/correct-shortcode.png" title="using a passthrough macro" alt="correct shortcode"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/correct-shortcode.png" title="using a passthrough macro" alt="correct shortcode"/><figcaption>using a passthrough macro</figcaption></figure></p>
 <p>Much better.</p>
 </blockquote>
 <h3 id="now-what-do-we-have"><em>Now</em> what do we have?</h3>

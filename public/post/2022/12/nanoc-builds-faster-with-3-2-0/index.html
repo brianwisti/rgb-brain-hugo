@@ -171,11 +171,27 @@
     <ul class="sidebar-nav">
       
         <li class="bullet">
-          <a href="/follow/">Follow</a>
+          <a href="/post/">Posts</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/card/">Cards</a>
         </li>
       
         <li class="bullet">
           <a href="/now/">Now</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/follow/">Follow</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/neighborhood/">Neighborhood</a>
+        </li>
+      
+        <li class="bullet">
+          <a href="/config/">Config</a>
         </li>
       
     </ul>
@@ -291,15 +307,18 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
 
-  <p><img src="/post/2022/12/../../../attachments/img/2022/cover-2022-12-25.png" alt="attachments/img/2022/cover-2022-12-25.png"/>
-just the numbers</p>
+  <p><figure>
+    <img src="/attachments/img/2022/cover-2022-12-25.png" title="just the numbers" alt="tabular display of build time values described in post"/><figcaption>just the numbers</figcaption></figure></p>
 <p>Today is Christmas, which means version <a href="https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/">3.2.0</a> of <a href="/card/ruby/">Ruby</a> has been released. I read Peter Solnica&rsquo;s post about <a href="https://www.solnic.dev/p/benchmarking-ruby-32-with-yjit">Benchmarking Ruby 3.2 with YJIT</a>. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:</p>
-<p>{% quote(
-from=&ldquo;Noah Gibbs&rdquo;
-cite=&quot;<a href="https://ruby.social/@codefolio/109573860732354569">https://ruby.social/@codefolio/109573860732354569</a>&quot;
-) %}
-By default, YJIT optimizes a method on the 30th time you call it.
-{% end %}</p>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    cite="https://ruby.social/@codefolio/109573860732354569">
+<p>By default, YJIT optimizes a method on the 30th time you call it.</p>
+  </blockquote><figcaption class="align-right">
+    &mdash;
+    Noah Gibbs, via
+        <a href="https://ruby.social/@codefolio/109573860732354569">ruby.social</a>
+  </figcaption></figure>
 <p>Well hey. The <a href="https://nanoc.app">Nanoc</a> iteration of my site has a few hundred pages. Nanoc probably calls some of its methods 30 or more times for that. Let&rsquo;s find out if 3.2.0 makes a difference.</p>
 <h2 id="i-should-probably-install-320">I should probably install 3.2.0</h2>
 <p>This is in my Windows 11 + WSL2 workspace. I wouldn&rsquo;t be surprised if Linux and macOS tests went faster.</p>

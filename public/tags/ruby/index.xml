@@ -19,19 +19,23 @@
   <guid>https://randomgeekery.org/post/2022/12/nanoc-builds-faster-with-3-2-0/</guid>
   <description>just the numbers
 Today is Christmas, which means version 3.2.0 of Ruby has been released. I read Peter Solnica’s post about Benchmarking Ruby 3.2 with YJIT. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:
-{% quote( from=“Noah Gibbs” cite=&#34;https://ruby.social/@codefolio/109573860732354569&#34; ) %} By default, YJIT optimizes a method on the 30th time you call it.</description>
+By default, YJIT optimizes a method on the 30th time you call it.
+— Noah Gibbs, via ruby.social Well hey.</description>
    <category>post</category> 
    <category>post</category> 
    <category>ruby</category>  <category>nanoc</category> 
-  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><img src="/post/2022/12/../../../attachments/img/2022/cover-2022-12-25.png" alt="attachments/img/2022/cover-2022-12-25.png"/>
-just the numbers</p>
+  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><figure>
+    <img src="/attachments/img/2022/cover-2022-12-25.png" title="just the numbers" alt="tabular display of build time values described in post"/><figcaption>just the numbers</figcaption></figure></p>
 <p>Today is Christmas, which means version <a href="https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/">3.2.0</a> of <a href="/card/ruby/">Ruby</a> has been released. I read Peter Solnica&rsquo;s post about <a href="https://www.solnic.dev/p/benchmarking-ruby-32-with-yjit">Benchmarking Ruby 3.2 with YJIT</a>. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:</p>
-<p>{% quote(
-from=&ldquo;Noah Gibbs&rdquo;
-cite=&quot;<a href="https://ruby.social/@codefolio/109573860732354569">https://ruby.social/@codefolio/109573860732354569</a>&quot;
-) %}
-By default, YJIT optimizes a method on the 30th time you call it.
-{% end %}</p>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    cite="https://ruby.social/@codefolio/109573860732354569">
+<p>By default, YJIT optimizes a method on the 30th time you call it.</p>
+  </blockquote><figcaption class="align-right">
+    &mdash;
+    Noah Gibbs, via
+        <a href="https://ruby.social/@codefolio/109573860732354569">ruby.social</a>
+  </figcaption></figure>
 <p>Well hey. The <a href="https://nanoc.app">Nanoc</a> iteration of my site has a few hundred pages. Nanoc probably calls some of its methods 30 or more times for that. Let&rsquo;s find out if 3.2.0 makes a difference.</p>
 <h2 id="i-should-probably-install-320">I should probably install 3.2.0</h2>
 <p>This is in my Windows 11 + WSL2 workspace. I wouldn&rsquo;t be surprised if Linux and macOS tests went faster.</p>
@@ -170,7 +174,8 @@ Stick with [Markdown][markdown] if you use [Hugo][hugo]. Use shortcodes or rende
    <category>post</category> 
    <category>post</category> 
    <category>ruby</category>  <category>hugo</category>  <category>asciidoctor</category>  <category>site</category>  <category>don-t-try-this-at-home</category>  <category>fine-go-ahead</category>  <category>but-i-warned-you</category>  <category>programming</category> 
-  <content:encoded><![CDATA[<h2>Stuff like this is why i don't advertise my site repo</h2><p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-18.jpg" alt="attachments/img/2020/cover-2020-05-18.jpg"/>
+  <content:encoded><![CDATA[<h2>Stuff like this is why i don't advertise my site repo</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-18.jpg" alt="attachments/img/2020/cover-2020-05-18.jpg"/></figure>
 actually really proud of myself but this post needs all the disclaimers</p>
 <blockquote>
 <p><strong>WARNING</strong></p>
@@ -475,13 +480,15 @@ This is just general advice to make Asciidoctor and Hugo play nice with each oth
   <pre tabindex="0" class="chroma"
     ><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{​<span class="p">&lt;</span> <span class="nt">show-figure</span> <span class="na">image</span><span class="o">=</span><span class="s">&#34;cover.png&#34;</span> <span class="na">description</span><span class="o">=</span><span class="s">&#34;Taskwarrior edit view&#34;</span> <span class="p">&gt;</span>}}</span></span></code></pre>
 </figure><p>And it looks kind of embarrassing.</p>
-<p><img src="/post/2020/05/attachments/img/2020/escaped-shortcode.png" title="my shortcode got escaped" alt="screenshot showing image shortcode instead of an image"/></p>
+<p><figure>
+    <img src="/attachments/img/2020/escaped-shortcode.png" title="my shortcode got escaped" alt="screenshot showing image shortcode instead of an image"/><figcaption>my shortcode got escaped</figcaption></figure></p>
 <p>The solution? Wrap that shortcode in a <a href="https://asciidoctor.org/docs/user-manual/#pass-macros">passthrough macro</a>.</p>
 <figure class="highlight">
   <pre tabindex="0"
     ><code class="language-adoc" data-lang="adoc"
       >pass:[{{​&lt; show-figure image=&#34;cover.png&#34; description=&#34;Taskwarrior edit view&#34; &gt;}}]</code></pre>
-</figure><p><img src="/post/2020/05/attachments/img/2020/correct-shortcode.png" title="using a passthrough macro" alt="correct shortcode"/></p>
+</figure><p><figure>
+    <img src="/attachments/img/2020/correct-shortcode.png" title="using a passthrough macro" alt="correct shortcode"/><figcaption>using a passthrough macro</figcaption></figure></p>
 <p>Much better.</p>
 </blockquote>
 <h3 id="now-what-do-we-have"><em>Now</em> what do we have?</h3>
@@ -546,7 +553,8 @@ Install glitch-soc locally glitch-soc documentation refers you to Mastodon docs,
    <category>post</category> 
    <category>post</category> 
    <category>rails</category>  <category>mastodon</category>  <category>ruby</category>  <category>sort-of</category>  <category>mostly-rails</category>  <category>tools</category> 
-  <content:encoded><![CDATA[<h2>I remain ambivalent about Rails development</h2><p><img src="/post/2020/05/../../../attachments/img/2020/cover-2020-05-04.png" alt="attachments/img/2020/cover-2020-05-04.png"/></p>
+  <content:encoded><![CDATA[<h2>I remain ambivalent about Rails development</h2><p><figure>
+    <img src="/../../../attachments/img/2020/cover-2020-05-04.png" alt="attachments/img/2020/cover-2020-05-04.png"/></figure></p>
 <p>I wanted to build and test a development instance of <a href="https://glitch-soc.github.io/docs/"><code>glitch-soc</code></a>, a friendly fork of <a href="https://joinmastodon.org/">Mastodon</a>.  I succeeded.  But I am very tired now.  Here are my notes, along with some after-the-fact editorializing.</p>
 <p>It’s less tutorial and more confessional.  I haven’t used Rails much since 4.0 was shiny.  So there’s likely some common practice workflow that I don’t know yet.  But I got it to work.</p>
 <h2 id="install-glitch-soc-locally">Install glitch-soc locally</h2>
@@ -974,7 +982,8 @@ Rating Songs Percent Duration
      4  1716   10.6% 04:10:50:01
      5   370    2.3% 00:23:16:01</code></pre>
 </figure><p>How about that pretty picture?</p>
-<p><img src="/post/2015/07/attachments/img/2015/july-rhythmbox-song-pie.png" alt="The song pie for July"/></p>
+<p><figure>
+    <img src="/attachments/img/2015/july-rhythmbox-song-pie.png" alt="The song pie for July"/></figure></p>
 <p>I’ve made progress since March. It looks less like Pac Man now.</p>
 ]]></content:encoded>
 </item>
@@ -1072,7 +1081,8 @@ $ gem install gruff</code></pre>
    100   273    1.6% 00:17:44:35</code></pre>
 </figure><p>It seems I still like most of the music I own at least a little bit. Many former favorites have drifted to the 60 rating (3 stars), though. Time does change tastes a little bit.</p>
 <p>The graph. Let’s look at that pretty picture.</p>
-<p><img src="/post/2015/03/attachments/img/2015/song-pie.png" alt="Ratings pie chart"/></p>
+<p><figure>
+    <img src="/attachments/img/2015/song-pie.png" alt="Ratings pie chart"/></figure></p>
 <p>Yes. I have much music listening ahead of me.</p>
 ]]></content:encoded>
 </item>

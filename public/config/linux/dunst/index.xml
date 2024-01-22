@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>My dunst configonRandom Geekery</title>
+    <link>https://randomgeekery.org/config/linux/dunst/</link>
+    <description>
+      Recent contentinMy dunst config on Random Geekery
+    </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+      
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:53 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/config/linux/dunst/index.xml" rel="self" type="application/rss+xml" /><item>
+  <title>Config: My dunst dunstrc</title>
+  <link>https://randomgeekery.org/config/linux/dunst/dunstrc/</link>
+  <pubDate>Sun, 21 Jan 2024 21:46:53 -0800</pubDate>
+  
+  <guid>https://randomgeekery.org/config/linux/dunst/dunstrc/</guid>
+  <description>Just a dump of the inline documentation for the EndeavourOS dunst user defaults.
+Global Settings [global] Display Which monitor notifications should be displayed on.
+I only have one, so it’s an easy choice.
+monitor = 0 Display notification on focused monitor. Possible modes are:
+mouse follow mouse pointer keyboard follow window with keyboard focus none don’t follow anything keyboard needs a window manager that exports the _NET_ACTIVE_WINDOW property. This should be the case for almost all modern window managers.</description>
+   <category>config</category> 
+  
+   <category>config</category> 
+  <content:encoded><![CDATA[<p>Just a dump of the inline documentation for the EndeavourOS dunst user defaults.</p>
+<h2 id="global-settings">Global Settings</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[global]</code></pre>
+</figure><h3 id="display">Display</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Which monitor notifications should be displayed on.</p>
+  </blockquote></figure>
+<p>I only have one, so it&rsquo;s an easy choice.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >monitor = 0</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Display notification on focused monitor.  Possible modes are:</p>
+<dl>
+<dt><code>mouse</code></dt>
+<dd>follow mouse pointer</dd>
+<dt><code>keyboard</code></dt>
+<dd>follow window with keyboard focus</dd>
+<dt><code>none</code></dt>
+<dd>don&rsquo;t follow anything</dd>
+</dl>
+<p><code>keyboard</code> needs a window manager that exports the <code>_NET_ACTIVE_WINDOW</code> property.
+This should be the case for almost all modern window managers.</p>
+<p>If this option is set to mouse or keyboard, the monitor option will be ignored.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >follow = mouse</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>The geometry of the window: <code>[{width}]x{height}[+/-{x}+/-{y}]</code></p>
+<p>The geometry of the message window.</p>
+<p>The height is measured in number of notifications everything else in pixels.
+If the width is omitted but the height is given (<code>&quot;-geometry x2&quot;</code>),
+the message window expands over the whole screen (dmenu-like).
+If width is 0, the window expands to the longest message displayed.
+A positive x is measured from the left, a negative from the right side of the screen.
+Y is measured from the top and down respectively.</p>
+<p>The width can be negative.
+In this case the actual width is the screen width minus the width defined in within the geometry option.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >geometry = &#34;0x0-30&#43;20&#34;</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Show how many messages are currently hidden (because of geometry).</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >indicate_hidden = yes</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Shrink window if it&rsquo;s smaller than the width.
+Will be ignored if width is 0.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >shrink = no</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>The transparency of the window.  Range: [0; 100].</p>
+<p>This option will only work if a compositing window manager is present
+(e.g. xcompmgr, compiz, etc.).</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >transparency = 0</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>The height of the entire notification.
+If the height is smaller than the font height and padding combined,
+it will be raised to the font height and padding.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >notification_height = 0</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Draw a line of <code>separator_height</code> pixel height between two notifications.</p>
+<p>Set to <code>0</code> to disable.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >    separator_height = 2</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Padding between text and separator.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >padding = 8</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Horizontal padding.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >horizontal_padding = 8</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Defines width in pixels of frame around the notification window.</p>
+<p>Set to 0 to disable.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >frame_width = 3</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Defines color of the frame around the notification window.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >frame_color = &#34;#aaaaaa&#34;</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Define a color for the separator.
+possible values are:</p>
+<dl>
+<dt><code>auto</code></dt>
+<dd>dunst tries to find a color fitting to the background</dd>
+<dt><code>foreground</code></dt>
+<dd>use the same color as the foreground</dd>
+<dt><code>frame</code></dt>
+<dd>use the same color as the frame</dd>
+</dl>
+<p>Anything else will be interpreted as a X color.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >separator_color = auto</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Sort messages by urgency.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >sort = yes</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Don&rsquo;t remove messages,
+if the user is idle (no mouse or keyboard input) for longer than idle_threshold seconds.</p>
+<p>Set to 0 to disable.</p>
+<p>A client can set the &rsquo;transient&rsquo; hint to bypass this.
+See the rules section for how to disable this if necessary</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >idle_threshold = 120</code></pre>
+</figure><h3 id="text">Text</h3>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >font = JetBrains Mono Medium 10</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>The spacing between lines.
+If the height is smaller than the font height, it will get raised to the font height.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >line_height = 0</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Possible values are:</p>
+<dl>
+<dt>full</dt>
+<dd>Allow a small subset of html markup in notifications
+For a complete reference see <a href="http://developer.gnome.org/pango/stable/PangoMarkupFormat.html">http://developer.gnome.org/pango/stable/PangoMarkupFormat.html</a>.</dd>
+<dt>strip</dt>
+<dd>This setting is provided for compatibility with some broken
+clients that send markup even though it&rsquo;s not enabled on the
+server. Dunst will try to strip the markup but the parsing is
+simplistic so using this option outside of matching rules for
+specific applications <em>IS GREATLY DISCOURAGED</em>.</dd>
+<dt>no</dt>
+<dd>Disable markup parsing, incoming notifications will be treated as
+plain text. Dunst will not advertise that it has the body-markup
+capability if this is set as a global setting.</dd>
+</dl>
+<p>It&rsquo;s important to note that markup inside the format option will be parsed
+regardless of what this is set to.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >markup = full</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>The format of the message.
+Possible variables are:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%a</code></td>
+<td>appname</td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>summary</td>
+</tr>
+<tr>
+<td><code>%b</code></td>
+<td>body</td>
+</tr>
+<tr>
+<td><code>%i</code></td>
+<td>iconname (including its path)</td>
+</tr>
+<tr>
+<td><code>%I</code></td>
+<td>iconname (without its path)</td>
+</tr>
+<tr>
+<td><code>%p</code></td>
+<td>progress value if set ([  0%] to [100%]) or nothing</td>
+</tr>
+<tr>
+<td><code>%n</code></td>
+<td>progress value if set without any extra characters</td>
+</tr>
+<tr>
+<td><code>%%</code></td>
+<td>Literal <code>%</code></td>
+</tr>
+</tbody>
+</table>
+<p>Markup is allowed</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >format = &#34;&lt;b&gt;%s&lt;/b&gt;\n%b&#34;</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Alignment of message text.</p>
+<p>Possible values are &ldquo;left&rdquo;, &ldquo;center&rdquo; and &ldquo;right&rdquo;.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >alignment = center</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Show age of message if message is older than <code>show_age_threshold</code> seconds.</p>
+<p>Set to <code>-1</code> to disable.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >show_age_threshold = 60</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Split notifications into multiple lines if they don&rsquo;t fit into geometry.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >word_wrap = yes</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>When word_wrap is set to no, specify where to make an ellipsis in long lines.</p>
+<p>Possible values are &ldquo;start&rdquo;, &ldquo;middle&rdquo; and &ldquo;end&rdquo;.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >ellipsize = middle</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Ignore newlines <code>\n</code> in notifications.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >ignore_newline = no</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Stack together notifications with the same content</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >stack_duplicates = true</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Hide the count of stacked notifications with the same content</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >hide_duplicate_count = false</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Display indicators for URLs (U) and actions (A).</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >show_indicators = yes</code></pre>
+</figure><h3 id="icons">Icons</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Align icons left/right/off</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >icon_position = left</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Scale larger icons down to this size, set to 0 to disable</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >max_icon_size = 32</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      ># Paths to default icons.</code></pre>
+</figure><h3 id="history">History</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Should a notification popped up from history be sticky or timeout as if it would normally do.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >sticky_history = yes</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Maximum amount of notifications kept in history</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >history_length = 20</code></pre>
+</figure><h3 id="misc--advanced">Misc / Advanced</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>dmenu path.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >dmenu = /usr/bin/dmenu -p dunst:</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Browser for opening urls in context menu.</p>
+  </blockquote></figure>
+<p>Defaults to Brave.
+I use Firefox.</p>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >browser = /usr/bin/firefox</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Always run rule-defined scripts, even if the notification is suppressed</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >always_run_script = true</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Define the title of the windows spawned by dunst</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >title = Dunst</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Define the class of the windows spawned by dunst</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >class = Dunst</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Print a notification on startup.</p>
+<p>This is mainly for error detection, since dbus (re-)starts dunst automatically after a crash.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >startup_notification = false</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Manage dunst&rsquo;s desire for talking</p>
+<p>Can be one of the following values:</p>
+<dl>
+<dt>crit</dt>
+<dd>Critical features. Dunst aborts</dd>
+<dt>warn</dt>
+<dd>Only non-fatal warnings</dd>
+<dt>mesg</dt>
+<dd>Important Messages</dd>
+<dt>info</dt>
+<dd>all unimportant stuff</dd>
+<dt>ebug</dt>
+<dd>all less than unimportant stuff
+</blockquote></figure>
+</dd>
+</dl>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >verbosity = mesg</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Define the corner radius of the notification window in pixel size.
+If the radius is 0, you have no rounded corners.</p>
+<p>The radius will be automatically lowered if it exceeds half of the notification height to avoid clipping text and/or icons.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >corner_radius = 5</code></pre>
+</figure><h3 id="legacy">Legacy</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Use the Xinerama extension instead of RandR for multi-monitor support.
+This setting is provided for compatibility with older nVidia drivers that
+do not support RandR and using it on systems that support RandR is highly
+discouraged.</p>
+<p>By enabling this setting dunst will not be able to detect when a monitor
+is connected or disconnected which might break follow mode if the screen
+layout changes.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >force_xinerama = false</code></pre>
+</figure><h3 id="mouse">Mouse</h3>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Defines action of mouse event</p>
+<p>Possible values are:</p>
+<dl>
+<dt><code>none</code></dt>
+<dd>Don&rsquo;t do anything.</dd>
+<dt><code>do_action</code></dt>
+<dd>If the notification has exactly one action, or one is marked as default,
+invoke it. If there are multiple and no default, open the context menu.</dd>
+<dt><code>close_current</code></dt>
+<dd>Close current notification.</dd>
+<dt><code>close_all</code></dt>
+<dd>Close all notifications.
+</blockquote></figure>
+</dd>
+</dl>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >mouse_left_click = do_action
+mouse_middle_click = close_all
+mouse_right_click = close_current</code></pre>
+</figure><h2 id="experimental">Experimental</h2>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Experimental features that may or may not work correctly.
+Do not expect them to have a consistent behaviour across releases.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[experimental]</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Calculate the dpi to use on a per-monitor basis.</p>
+<p>If this setting is enabled the Xft.dpi value will be ignored and instead
+dunst will attempt to calculate an appropriate dpi value for each monitor
+using the resolution and physical size. This might be useful in setups
+where there are multiple screens with very different dpi values.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >per_monitor_dpi = false</code></pre>
+</figure><h2 id="shortcuts">Shortcuts</h2>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Shortcuts are specified as <code>[modifier+][modifier+]...key</code></p>
+<p>Available modifiers are &ldquo;ctrl&rdquo;, &ldquo;mod1&rdquo; (the alt-key), &ldquo;mod2&rdquo;,
+&ldquo;mod3&rdquo; and &ldquo;mod4&rdquo; (windows-key).</p>
+<p>Xev might be helpful to find names for keys.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[shortcuts]</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Close notification.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >close = ctrl&#43;space</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Close all notifications.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >close_all = ctrl&#43;shift&#43;space</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Redisplay last message(s).</p>
+<p>On the US keyboard layout &ldquo;grave&rdquo; is normally above TAB and left of &ldquo;1&rdquo;.
+Make sure this key actually exists on your keyboard layout,
+e.g. check output of <code>xmodmap -pke</code></p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >history = ctrl&#43;grave</code></pre>
+</figure><figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Context menu.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >context = ctrl&#43;shift&#43;period</code></pre>
+</figure><h2 id="low-urgency-notifications">Low Urgency Notifications</h2>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>IMPORTANT: colors have to be defined in quotation marks.
+Otherwise the &ldquo;#&rdquo; and following would be interpreted as a comment.</p>
+  </blockquote></figure>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[urgency_low]
+background = &#34;#2b2b2b&#34;
+foreground = &#34;#ffffff&#34;
+timeout = 5</code></pre>
+</figure><h2 id="normal-urgency-notifications">Normal Urgency Notifications</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[urgency_normal]
+background = &#34;#2b2b2b&#34;
+foreground = &#34;#ffffff&#34;
+timeout = 5</code></pre>
+</figure><h2 id="critical-urgency-notifications">Critical Urgency Notifications</h2>
+<figure class="highlight">
+  <pre tabindex="0"
+    ><code class="language-conf" data-lang="conf"
+      >[urgency_critical]
+background = &#34;#900000&#34;
+foreground = &#34;#ffffff&#34;
+frame_color = &#34;#ff0000&#34;
+timeout = 5</code></pre>
+</figure><h2 id="everything-else">Everything else</h2>
+<p>There&rsquo;s a lot.
+See the EndeavourOS Qtile Community Edition <a href="https://github.com/EndeavourOS-Community-Editions/qtile/blob/main/.config/dunst/dunstrc">dunstrc</a> for the whole
+thing.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

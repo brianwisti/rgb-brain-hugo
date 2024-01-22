@@ -11,7 +11,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
       
-      <lastBuildDate>Sat, 20 Jan 2024 22:42:34 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2022/index.xml" rel="self" type="application/rss+xml" /><item>
+      <lastBuildDate>Sun, 21 Jan 2024 21:46:54 -0800</lastBuildDate><atom:link href="https://randomgeekery.org/post/2022/index.xml" rel="self" type="application/rss+xml" /><item>
   <title>Post: Nanoc builds sites faster with 3.2.0</title>
   <link>https://randomgeekery.org/post/2022/12/nanoc-builds-faster-with-3-2-0/</link>
   <pubDate>Sun, 25 Dec 2022 11:00:00 -0800</pubDate>
@@ -19,19 +19,23 @@
   <guid>https://randomgeekery.org/post/2022/12/nanoc-builds-faster-with-3-2-0/</guid>
   <description>just the numbers
 Today is Christmas, which means version 3.2.0 of Ruby has been released. I read Peter Solnica’s post about Benchmarking Ruby 3.2 with YJIT. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:
-{% quote( from=“Noah Gibbs” cite=&#34;https://ruby.social/@codefolio/109573860732354569&#34; ) %} By default, YJIT optimizes a method on the 30th time you call it.</description>
+By default, YJIT optimizes a method on the 30th time you call it.
+— Noah Gibbs, via ruby.social Well hey.</description>
    <category>post</category> 
    <category>post</category> 
    <category>ruby</category>  <category>nanoc</category> 
-  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><img src="/post/2022/12/../../../attachments/img/2022/cover-2022-12-25.png" alt="attachments/img/2022/cover-2022-12-25.png"/>
-just the numbers</p>
+  <content:encoded><![CDATA[<h2>Ain't no benchmark like an unscientific ad hoc benchmark</h2><p><figure>
+    <img src="/attachments/img/2022/cover-2022-12-25.png" title="just the numbers" alt="tabular display of build time values described in post"/><figcaption>just the numbers</figcaption></figure></p>
 <p>Today is Christmas, which means version <a href="https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/">3.2.0</a> of <a href="/card/ruby/">Ruby</a> has been released. I read Peter Solnica&rsquo;s post about <a href="https://www.solnic.dev/p/benchmarking-ruby-32-with-yjit">Benchmarking Ruby 3.2 with YJIT</a>. One bit of feedback he got was that YJIT — the now official Just In Time compiler — kicks in for frequently called methods:</p>
-<p>{% quote(
-from=&ldquo;Noah Gibbs&rdquo;
-cite=&quot;<a href="https://ruby.social/@codefolio/109573860732354569">https://ruby.social/@codefolio/109573860732354569</a>&quot;
-) %}
-By default, YJIT optimizes a method on the 30th time you call it.
-{% end %}</p>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    cite="https://ruby.social/@codefolio/109573860732354569">
+<p>By default, YJIT optimizes a method on the 30th time you call it.</p>
+  </blockquote><figcaption class="align-right">
+    &mdash;
+    Noah Gibbs, via
+        <a href="https://ruby.social/@codefolio/109573860732354569">ruby.social</a>
+  </figcaption></figure>
 <p>Well hey. The <a href="https://nanoc.app">Nanoc</a> iteration of my site has a few hundred pages. Nanoc probably calls some of its methods 30 or more times for that. Let&rsquo;s find out if 3.2.0 makes a difference.</p>
 <h2 id="i-should-probably-install-320">I should probably install 3.2.0</h2>
 <p>This is in my Windows 11 + WSL2 workspace. I wouldn&rsquo;t be surprised if Linux and macOS tests went faster.</p>
@@ -93,15 +97,15 @@ my terrible site configuration code.</p>
   <pubDate>Wed, 14 Dec 2022 15:22:46 -0800</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/12/not-the-worst-workspace/</guid>
-  <description>sitting by the pool near the beach while she’s in the pool
+  <description>sitting by the pool near the beach while she&#39;s in the pool
 We got married in March of 2020. Finally getting our Hawai’i honeymoon in December of 2022. But of course I need a few minutes here and there to putter.
 Looking up how IndieWeb folks work with ActivityPub — the standard used by Mastodon and other Fediverse applications to communicate.
 But honestly I’m just taking pics of her and enjoying the sun.</description>
    <category>post</category> 
    <category>note</category> 
    <category>vacation</category>  <category>hawaii</category>  <category>now</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2022/12/../../../attachments/img/2022/cover-2022-12-14.jpg" alt="attachments/img/2022/cover-2022-12-14.jpg"/>
-sitting by the pool near the beach while she&rsquo;s in the pool</p>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/attachments/img/2022/cover-2022-12-14.jpg" title="sitting by the pool near the beach while she&#39;s in the pool" alt="woman in pool visible over laptop screen; palm trees and ocean is in the background"/><figcaption>sitting by the pool near the beach while she&#39;s in the pool</figcaption></figure></p>
 <p>We got <a href="/post/2020/03/got-married-yesterday/">married</a> in March of 2020. Finally getting our Hawai&rsquo;i honeymoon in December of 2022. But of course I need a few minutes here and there to putter.</p>
 <p>Looking up <a href="https://indieweb.org/ActivityPub">how</a> IndieWeb folks work with ActivityPub — the standard used by Mastodon and other <a href="https://fediverse.party">Fediverse</a> applications to communicate.</p>
 <p>But honestly I&rsquo;m just taking pics of her and enjoying the sun.</p>
@@ -113,14 +117,14 @@ sitting by the pool near the beach while she&rsquo;s in the pool</p>
   <pubDate>Mon, 05 Dec 2022 20:00:00 -0800</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/12/testing-justfile-recipe-arguments/</guid>
-  <description>card/tldr:
+  <description>tldr:
 add TITLE: bundle exec ruby _scripts/add-post --title &#39;{{ TITLE }}&#39; Time to fiddle with my site setup some more.
 My site posts are organized by file slug: simplified file paths based on a title. Hugo itself directly supports creating new content by path.
 hugo new content/post/2022/testing-justfile-recipe-arguments/index.adoc.txt It takes thinking to map from a title to a slug. Sometimes I’m not in the mood for that kind of thinking. And I’m not always great about consistency in my slug choices.</description>
    <category>post</category> 
    <category>post</category> 
    <category>site</category>  <category>just</category> 
-  <content:encoded><![CDATA[<h2>In which I make my justfile just a little fancier</h2><p><a href="/card/tldr/">card/tldr</a>:</p>
+  <content:encoded><![CDATA[<h2>In which I make my justfile just a little fancier</h2><p><a href="/card/tldr/">tldr</a>:</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-justfile" data-lang="justfile"><span class="line"><span class="cl"><span class="nf">add TITLE</span><span class="o">:</span>
@@ -172,8 +176,8 @@ But hey, where else can you find me? I’ll update my h-card once the dust settl
    <category>post</category> 
    <category>note</category> 
    <category>site</category> 
-  <content:encoded><![CDATA[<p><img src="/post/2022/11/../../../attachments/img/2022/cover-2022-11-20.jpeg" alt="attachments/img/2022/cover-2022-11-20.jpeg"/>
-Jack wonders when dinner is</p>
+  <content:encoded><![CDATA[<p><figure>
+    <img src="/attachments/img/2022/cover-2022-11-20.jpeg" title="Jack wonders when dinner is" alt="cat peeking at you with just the top of his head visible behind your desk"/><figcaption>Jack wonders when dinner is</figcaption></figure></p>
 <p>The toilet fire that is Twitter&rsquo;s new management strategy continues apace. Felt compelled to take my normally wide-open account and lock it. I don&rsquo;t want to deactivate and delete. Somebody else can come along, grab the name, and spam the hell out of people with it.</p>
 <p>But hey, where else can you find me? I&rsquo;ll update my h-card once the dust settles, but here&rsquo;s where I&rsquo;m at roughly in order of how much attention I&rsquo;ve given it:</p>
 <ul>
@@ -260,7 +264,12 @@ Enthusiastic, too.</description>
    <category>tools</category>  <category>distractions</category>  <category>so-pretty</category> 
   <content:encoded><![CDATA[<p><a href="https://enso.org">Enso</a> is &ldquo;a hybrid visual and textual functional language.&rdquo; So far, the demo is cooler than the alpha. Because so far I have not yet gotten the alpha <a href="https://github.com/enso-org/enso/releases">nightly release</a> to work.</p>
 <p>But good lord that is a cool demo.</p>
-<p><img src="https://www.youtube.com/watch?v=fQvWMoOjmQk"/></p>
+<p><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe src="https://www.youtube.com/embed/fQvWMoOjmQk"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+              allowfullscreen title="YouTube Video"></iframe>
+    </div>
+  </p>
 <p>Enthusiastic, too.</p>
 ]]></content:encoded>
 </item>
@@ -271,16 +280,18 @@ Enthusiastic, too.</description>
   
   <guid>https://randomgeekery.org/post/2022/10/from-perl-to-rust/</guid>
   <description>In Tim Heaney’s introduction to From Perl to Rust:
-{% quote() %} Having to know everything at once makes it hard to teach Rust as well. It seems like no matter where we start, we are always touching on concepts that we haven’t covered yet. This is quite the opposite of Perl, where it’s fairly easy to learn as we go. But perhaps making this one assumption— that we all know Perl— will help us navigate the complexities of Rust.</description>
+Having to know everything at once makes it hard to teach Rust as well. It seems like no matter where we start, we are always touching on concepts that we haven’t covered yet. This is quite the opposite of Perl, where it’s fairly easy to learn as we go. But perhaps making this one assumption— that we all know Perl— will help us navigate the complexities of Rust.</description>
    <category>post</category> 
    <category>note</category> 
    <category>rust</category>  <category>perl</category> 
   <content:encoded><![CDATA[<p>In Tim Heaney&rsquo;s introduction to <a href="https://oylenshpeegul.gitlab.io/from-perl-to-rust/introduction.html">From Perl to Rust</a>:</p>
-<p>{% quote() %}
-Having to know everything at once makes it hard to teach Rust as well. It seems like no matter where we start, we are always touching on concepts that we haven&rsquo;t covered yet. This is quite the opposite of Perl, where it&rsquo;s fairly easy to learn as we go. But perhaps making this one assumption&mdash; that we all know Perl&mdash; will help us navigate the complexities of Rust. I don&rsquo;t know if this is going to work, but I thought I&rsquo;d try it.
-{% end %}</p>
-<p>Not everybody knows <a href="/card/perl/">card/Perl</a>, but I do. I am very much the target audience for this title. We&rsquo;ll just throw it on the TOREAD stack with the others. But maybe I might read it before some of those others?</p>
-<p>I <em>really</em> want to get a better grasp on <a href="/card/rust/">card/Rust</a>.</p>
+<figure class="border-primary border-left pl-9 container-9 centered">
+  <blockquote
+    >
+<p>Having to know everything at once makes it hard to teach Rust as well. It seems like no matter where we start, we are always touching on concepts that we haven&rsquo;t covered yet. This is quite the opposite of Perl, where it&rsquo;s fairly easy to learn as we go. But perhaps making this one assumption&mdash; that we all know Perl&mdash; will help us navigate the complexities of Rust. I don&rsquo;t know if this is going to work, but I thought I&rsquo;d try it.</p>
+  </blockquote></figure>
+<p>Not everybody knows <a href="/card/perl/">Perl</a>, but I do. I am very much the target audience for this title. We&rsquo;ll just throw it on the TOREAD stack with the others. But maybe I might read it before some of those others?</p>
+<p>I <em>really</em> want to get a better grasp on <a href="/card/rust/">Rust</a>.</p>
 ]]></content:encoded>
 </item>
 <item>
@@ -289,15 +300,15 @@ Having to know everything at once makes it hard to teach Rust as well. It seems 
   <pubDate>Sun, 14 Aug 2022 13:00:31 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/08/emoji-breakdowns-with-raku/</guid>
-  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/08/../../../attachments/img/2022/cover-2022-08-14.png&#34; alt=&#34;attachments/img/2022/cover-2022-08-14.png&#34;/&gt;
-If you think that’s weird, you should see what all these emoji have done to my neovim session.&lt;/p&gt;
-&lt;p&gt;Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This Raku script prints out code points for emoji characters with a little help from &lt;a href=&#34;https://raku.land/cpan:ANTONOV/Pretty::Table&#34;&gt;Pretty::Table&lt;/a&gt;.&lt;/p&gt;</description>
+  <description>&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/attachments/img/2022/cover-2022-08-14.png&#34; title=&#34;If you think that&#39;s weird, you should see what all these emoji have done to my neovim session.&#34; alt=&#34;console display of female surfer emoji broken down into its different code points&#34;/&gt;&lt;figcaption&gt;If you think that&#39;s weird, you should see what all these emoji have done to my neovim session.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This &lt;a href=&#34;https://randomgeekery.org/card/raku/&#34;&gt;Raku&lt;/a&gt; script prints out code points for emoji characters with a little help from &lt;a href=&#34;https://raku.land/cpan:ANTONOV/Pretty::Table&#34;&gt;Pretty::Table&lt;/a&gt;.&lt;/p&gt;</description>
    <category>post</category> 
    <category>post</category> 
    <category>raku-lang</category> 
-  <content:encoded><![CDATA[<h2>In which I write a Raku emoji reverse lookup tool.</h2><p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-14.png" alt="attachments/img/2022/cover-2022-08-14.png"/>
-If you think that&rsquo;s weird, you should see what all these emoji have done to my neovim session.</p>
-<p>Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This Raku script prints out code points for emoji characters with a little help from <a href="https://raku.land/cpan:ANTONOV/Pretty::Table">Pretty::Table</a>.</p>
+  <content:encoded><![CDATA[<h2>In which I write a Raku emoji reverse lookup tool.</h2><p><figure>
+    <img src="/attachments/img/2022/cover-2022-08-14.png" title="If you think that&#39;s weird, you should see what all these emoji have done to my neovim session." alt="console display of female surfer emoji broken down into its different code points"/><figcaption>If you think that&#39;s weird, you should see what all these emoji have done to my neovim session.</figcaption></figure></p>
+<p>Had to share, but gotta make this quick because I am about three tangents removed from the stuff I planned to do today. This <a href="/card/raku/">Raku</a> script prints out code points for emoji characters with a little help from <a href="https://raku.land/cpan:ANTONOV/Pretty::Table">Pretty::Table</a>.</p>
 <figure class="highlight">
   <pre tabindex="0" class="chroma"
     ><code class="language-raku" data-lang="raku"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env raku</span>
@@ -376,20 +387,24 @@ If you think that&rsquo;s weird, you should see what all these emoji have done t
   <pubDate>Tue, 09 Aug 2022 11:00:00 -0700</pubDate>
   
   <guid>https://randomgeekery.org/post/2022/08/customizing-a-trilium-report/</guid>
-  <description>&lt;p&gt;&lt;img src=&#34;https://randomgeekery.org/post/2022/08/../../../attachments/img/2022/cover-2022-08-09.png&#34; alt=&#34;attachments/img/2022/cover-2022-08-09.png&#34;/&gt;
+  <description>&lt;p&gt;&lt;figure&gt;
+    &lt;img src=&#34;https://randomgeekery.org/../../../attachments/img/2022/cover-2022-08-09.png&#34; alt=&#34;attachments/img/2022/cover-2022-08-09.png&#34;/&gt;&lt;/figure&gt;
 Trilium also embeds its scripting as notes, which takes some getting used to.&lt;/p&gt;
 &lt;p&gt;Been exploring &lt;a href=&#34;https://github.com/zadam/trilium&#34;&gt;Trilium&lt;/a&gt; for notes. One thing I’ll say is the nerdy features are directly accessible to my existing skills.&lt;/p&gt;</description>
    <category>post</category> 
    <category>post</category> 
    <category>second-brain</category>  <category>trilium-notes</category>  <category>sqlite</category> 
-  <content:encoded><![CDATA[<h2>In which I frolic with a note system that lets me use SQL</h2><p><img src="/post/2022/08/../../../attachments/img/2022/cover-2022-08-09.png" alt="attachments/img/2022/cover-2022-08-09.png"/>
+  <content:encoded><![CDATA[<h2>In which I frolic with a note system that lets me use SQL</h2><p><figure>
+    <img src="/../../../attachments/img/2022/cover-2022-08-09.png" alt="attachments/img/2022/cover-2022-08-09.png"/></figure>
 Trilium also embeds its scripting as notes, which takes some getting used to.</p>
 <p>Been exploring <a href="https://github.com/zadam/trilium">Trilium</a> for notes. One thing I&rsquo;ll say is the nerdy features are directly accessible to my existing skills.</p>
 <p>See, each note system has some way — or a plugin providing some way — to query information about your collected notes. Logseq <a href="https://docs.logseq.com/#/page/advanced%20queries">uses</a> Datascript, which is uh Lisp-ish? Obsidian — if you add the <a href="https://blacksmithgu.github.io/obsidian-dataview/">Dataview</a> plugin — has DQL, which is SQL-ish.</p>
 <p>Trilium keeps everything in a <a href="https://sqlite.org">SQLite</a> database that you can query directly.</p>
-<p><img src="/post/2022/08/attachments/img/2022/trilium-sql-console.png" alt="Trilium in-app SQL console"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/trilium-sql-console.png" alt="Trilium in-app SQL console"/></figure></p>
 <p>My immediate reaction on realizing what I was seeing? Look I don&rsquo;t usually communicate on this site via memes and image captions, but:</p>
-<p><img src="/post/2022/08/attachments/img/2022/its-a-unix-system-I-know-this.jpg" alt="Jurassic Park: &ldquo;It&rsquo;s a UNIX system. I know this.&rdquo;"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/its-a-unix-system-I-know-this.jpg" alt="Jurassic Park: &ldquo;It&rsquo;s a UNIX system. I know this.&rdquo;"/></figure></p>
 <p>I know the gist of SQL. Let&rsquo;s play with this.</p>
 <p>Made a custom <a href="https://github.com/zadam/trilium/wiki/Template">template</a> for notes about people. Assigned that template to the appropriate notes. Got curious about how my template-using notes were spread out.</p>
 <p>Copied the query from <em>Trilium Demo / Statistics / Note type count</em> and tweaked it a little for my needs.</p>
@@ -455,7 +470,8 @@ for clarity here.</p>
 </blockquote>
 <p>I duplicated <em>Note type count</em>, pasted my new query, then adjusted the layout JS to reflect the tweaked query.</p>
 <p>The result:</p>
-<p><img src="/post/2022/08/attachments/img/2022/trilium-template-usage-report.png" alt="Trilium Notes showing pie chart of template usage"/></p>
+<p><figure>
+    <img src="/attachments/img/2022/trilium-template-usage-report.png" alt="Trilium Notes showing pie chart of template usage"/></figure></p>
 <p>The demo graph uses <a href="https://www.chartjs.org">Chart.js</a>, which is fine. I&rsquo;m already thinking about using <a href="https://vega.github.io">Vega</a> instead.</p>
 <p>One thing at a time.</p>
 <p>Trilium. It&rsquo;s got SQL. I like that.</p>]]></content:encoded>
