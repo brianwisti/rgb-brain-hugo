@@ -8,7 +8,7 @@ from pathlib import Path
 import frontmatter
 from rich.logging import RichHandler
 
-CONTENT_DIR = "content";
+CONTENT_DIR = "site/content";
 NOTE_LINK = r"""
   \[
     (?<title> [^\]]+? )

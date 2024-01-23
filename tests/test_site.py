@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 from .util import load_hugo_pages
 
-SITE_PATH = Path("public")
+SITE_PATH = Path("site/public")
 HUGO_PAGES = load_hugo_pages()
 PAGE_HTML_PATHS = [SITE_PATH / page for page in HUGO_PAGES["out"].to_list()]
 PLAUSIBLE_DOMAIN = "randomgeekery.org"

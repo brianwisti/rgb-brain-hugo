@@ -5,7 +5,7 @@ default:
   @just --list
 
 export:
-  obsidian-export /mnt/c/Users/brian/vaults/v2024/ content
+  obsidian-export /mnt/c/Users/brian/vaults/v2024/ site/content
 
 backlinks:
   perl scripts/find-backlinks.pl
@@ -19,7 +19,7 @@ serve:
   hugo serve -D
 
 build:
-  hugo --environment production
+  cd site && hugo --environment production
 
 test: build
   {{ pytest }} -n auto tests

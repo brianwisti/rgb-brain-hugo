@@ -12,7 +12,7 @@ use Mojo::Util 'url_unescape';
 use Path::Tiny;
 use Try::Tiny;
 
-my $CONTENT_DIR = "content";
+my $CONTENT_DIR = "site/content";
 my $NOTE_LINK = qr{
   \[
     (?<title> [^\]]+? )
@@ -63,7 +63,7 @@ sub find_backlinks_in_content() {
 sub main {
   my $backlinks = find_backlinks_in_content();
   my $as_json = encode_json( $backlinks );
-  Mojo::File->new("data/backlinks.json")->spew( $as_json );
+  Mojo::File->new("site/data/backlinks.json")->spew( $as_json );
 }
 
 main();

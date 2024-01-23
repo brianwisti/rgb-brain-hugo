@@ -7,7 +7,7 @@ from subprocess import run
 import frontmatter
 import pytest
 
-CONTENT_PATH = Path("content")
+CONTENT_PATH = Path("site/content")
 ALL_MARKDOWN = list(CONTENT_PATH.glob("**/*.md"))
 
 BLOG_POSTS = [

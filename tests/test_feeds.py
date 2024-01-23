@@ -8,7 +8,7 @@ import feedparser
 import pytest
 import rich
 
-SITE_BUILD_DIR = "public"
+SITE_BUILD_DIR = "site/public"
 
 
 @pytest.fixture(scope="session")
