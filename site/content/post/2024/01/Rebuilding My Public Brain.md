@@ -64,13 +64,13 @@ I pulled in my automated tests from the current site iteration. I really should 
 
 ## What next
 
-Budget is constrained, so before the annual hosting bill comes due I'll shift from a paid host to Netlify. My planned usage tier should be free there. I expect to bounce back out again after resolving the current [Job Search](../../../card/Job%20Search.md) to my satisfaction, but maybe not. We'll see.
-
 Before I have the Python script handle all the processing, I'll revisit the Astro iteration. [remark-obsidian](https://www.npmjs.com/package/remark-obsidian) and [remark-deflist](https://www.npmjs.com/package/remark-definition-list) handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like [now](../../../now.md) and [follow](../../../follow.md) get treated within Astro's dynamic collection approach.
 
 ## What now
 
-Hugo works. My current host works. My notes need work, but hey don't we all. I'm not going to jiggle anything just yet.
+Budget is constrained, so before the annual hosting bill comes due I'll shift from a paid host to Netlify. My planned usage tier should be free there. I expect to bounce back out again after resolving the current [Job Search](../../../card/Job%20Search.md) to my satisfaction, but maybe not. We'll see.
+
+Hugo works. Netlify works. My notes need work, but hey don't we all. I'm not going to jiggle anything else just yet.
 
 I think it's time for `just pull backlinks process build test push`.
 
