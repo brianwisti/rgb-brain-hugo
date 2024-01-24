@@ -18,10 +18,10 @@ from yarl import URL
 # pylint: disable=C0115,C0116,W0621
 
 
-def load_hugo_pages() -> pd.DataFrame:
+def load_hugo_pages(site_path: Path) -> pd.DataFrame:
     """Return data that Hugo reports about site contents."""
     cmd = ("hugo", "list", "all")
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, cwd=site_path)
 
     if not process.stdout:
         raise ValueError(f"No output from {cmd}")
@@ -34,9 +34,10 @@ def load_hugo_pages() -> pd.DataFrame:
     return data
 
 
-SITE_PATH = Path("site/public")
-HUGO_PAGES = load_hugo_pages()
-PAGE_HTML_PATHS = [SITE_PATH / page for page in HUGO_PAGES["out"].to_list()]
+HUGO_SITE_PATH = Path("site")
+HUGO_BUILD_PATH = HUGO_SITE_PATH / "public"
+HUGO_PAGES = load_hugo_pages(HUGO_SITE_PATH)
+PAGE_HTML_PATHS = [HUGO_BUILD_PATH / page for page in HUGO_PAGES["out"].to_list()]
 PLAUSIBLE_DOMAIN = "randomgeekery.org"
 PLAUSIBLE_SRC = "https://plausible.io/js/script.js"
 PLAUSIBLE_TOKEN = (
@@ -52,22 +53,28 @@ def parse_html_path(html_path: Path) -> BeautifulSoup:
     return BeautifulSoup(html, "html.parser")
 
 
-class TestHTML:
+def link_is_local(link: str | None):
+    return (
+        link is not None
+        and not link.startswith("https://")
+        and not link.startswith("http://")
+        and not link.startswith("mailto:")
+        and not link.startswith("tel:")
+        and not link.startswith("sms:")
+        and "#" not in link
+    )
+
+
+class TestGeneratedMarkup:
     @pytest.mark.parametrize("html_path", PAGE_HTML_PATHS, ids=str)
     def test_internal_links(self, html_path):
         soup = parse_html_path(html_path)
         links = [a.get("href") for a in soup.find_all("a")]
-        rich.print(links)
-        # TODO: file-relative links
-        local_links = [
-            link
-            for link in links
-            if link is not None and link.startswith("/") and "#" not in link
-        ]
-        rich.print(local_links)
+        local_links = [link for link in links if link_is_local(link)]
 
         for local_link in local_links:
-            site_link_path = SITE_PATH / local_link[1:]
+            rich.print(f"{html_path} → {local_link}")
+            site_link_path = HUGO_BUILD_PATH / local_link[1:]
             assert site_link_path.is_dir() or site_link_path.is_file()
 
     @pytest.mark.parametrize("html_path", PAGE_HTML_PATHS, ids=str)
