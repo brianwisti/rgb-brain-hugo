@@ -1,81 +1,11 @@
 #!/usr/bin/env python
 
-import logging
-import re
-from dataclasses import dataclass, field
+import sys
 from pathlib import Path
 
-import frontmatter
-from rich.logging import RichHandler
+sys.path.append(str(Path(__file__).parent / "../lib"))
 
-CONTENT_DIR = "site/content";
-NOTE_LINK = r"""
-  \[
-    (?<title> [^\]]+? )
-  \]
-  \(
-    (?<path> [^\)]+? \.md)
-  \)
-"""
-CALLOUT = re.compile(
-    r"""> \s
-        \\\[\! (?P<callout_type>[A-Z]+) \\\]
-        (?: \s (?P<title> [^ \n ]+?))?
-        \n
-    """, re.VERBOSE
-)
-
-logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
-
-def callout_title(match):
-    """Return a formatted title for callouts."""
-    groups = match.groupdict()
-    callout_type = groups["callout_type"]
-
-    if matched_title := groups.get("title"):
-        title = matched_title
-    else:
-        title = callout_type
-
-    logging.debug("Found %s, using %s", groups, title)
-    return f"> **{title}**\n>\n"
-
-@dataclass
-class VaultNote:
-    """Tracks what a note needs to know about itself."""
-    path: Path
-    post: frontmatter.Post = field(init=False)
-    is_dirty: bool = False
-
-    def __post_init__(self):
-        post = frontmatter.loads(self.path.read_text(encoding="utf-8"))
-
-        if "title" not in post.metadata:
-            post.metadata["title"] = self.path.stem
-            self.is_dirty = True
-
-        updated_content = re.sub(CALLOUT, callout_title, post.content)
-
-        if updated_content != post.content:
-            post.content = updated_content
-            logging.debug("updated content")
-            self.is_dirty = True
-
-        self.post = post
-
-
-def main():
-    content_path = Path(CONTENT_DIR)
-
-    for note_path in content_path.glob("**/*.md"):
-        logging.debug("Path: %s", note_path)
-        note = VaultNote(note_path)
-
-        if note.is_dirty:
-            note.path.write_text(frontmatter.dumps(note.post))
-
-
-
+from note_processor import main  # pylint: disable=C0413
 
 if __name__ == "__main__":
     main()
