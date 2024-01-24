@@ -22,7 +22,7 @@ build:
   cd site && hugo --environment production
 
 test: build
-  {{ pytest }} -n auto tests
+  {{ pytest }} -n auto note_processor/tests/site
 
 setup:
   {{ python }} -m pip install --upgrade -r requirements.txt

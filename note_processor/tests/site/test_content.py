@@ -7,6 +7,12 @@ from subprocess import run
 import frontmatter
 import pytest
 
+# Tell pylint not to worry about:
+# - Function docstrings
+# - Class docstrings
+# - Redefined names from outer scope
+# pylint: disable=C0115,C0116,W0621
+
 CONTENT_PATH = Path("site/content")
 ALL_MARKDOWN = list(CONTENT_PATH.glob("**/*.md"))
 
@@ -36,9 +42,7 @@ ARTIFACT_PASS = [
     "using-markdown-it-in-python",
 ]
 
-ARTIFACT_PAGES = [
-    page for page in ALL_MARKDOWN if page.stem not in ARTIFACT_PASS
-]
+ARTIFACT_PAGES = [page for page in ALL_MARKDOWN if page.stem not in ARTIFACT_PASS]
 
 
 IMAGE_ARTIFACT = re.compile(r"^#\[", re.MULTILINE)
@@ -47,10 +51,9 @@ IMAGE_ARTIFACT = re.compile(r"^#\[", re.MULTILINE)
 class TestMarkdown:
     def test_markdownlint(self):
         res = run(
-            ["markdownlint",
-             "-c", ".markdownlint.yml",
-             "content/"],
+            ["markdownlint", "-c", ".markdownlint.yml", "content/"],
             capture_output=True,
+            check=True,
         )
         print(res.stderr.decode())
         assert res.returncode == 0

@@ -2,11 +2,16 @@
 
 from urllib.parse import urlparse
 from pathlib import Path
-from typing import Any, Dict
 
 import feedparser
 import pytest
 import rich
+
+# Tell pylint not to worry about:
+# - Function docstrings
+# - Class docstrings
+# - Redefined names from outer scope
+# pylint: disable=C0115,C0116,W0621
 
 SITE_BUILD_DIR = "site/public"
 

@@ -8,7 +8,7 @@ from pathlib import Path
 import frontmatter
 from rich.logging import RichHandler
 
-from const import CONTENT_DIR, CALLOUT  # pylint: disable=C0413
+from .const import CONTENT_DIR, CALLOUT
 
 logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 
@@ -61,3 +61,7 @@ def main():
 
         if note.is_dirty:
             note.path.write_text(frontmatter.dumps(note.post), encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()
