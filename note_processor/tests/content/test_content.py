@@ -13,7 +13,6 @@ import pytest
 # - Redefined names from outer scope
 # pylint: disable=C0115,C0116,W0621
 
-
 # Setting expected folders will cause a failure when I add a new public folder
 # AND THAT IS OKAY.
 EXPECTED_SECTIONS = [
@@ -24,6 +23,10 @@ EXPECTED_SECTIONS = [
     "post",
 ]
 
+# Notes that I expect to have weird Markdown
+ARTIFACT_PASS = [
+    "using-markdown-it-in-python",
+]
 CONTENT_PATH = Path("site/content")
 ALL_MARKDOWN = list(CONTENT_PATH.glob("**/*.md"))
 ALL_BUT_SITE_INDEX = [
@@ -31,34 +34,7 @@ ALL_BUT_SITE_INDEX = [
     for article in ALL_MARKDOWN
     if str(article.relative_to(CONTENT_PATH)) != "_index.md"
 ]
-BLOG_POSTS = [
-    article
-    for article in ALL_MARKDOWN
-    if article.parts[1] == "post" and article.name == "index.md"
-]
-
-CONFIG_ARTICLES = [article for article in ALL_MARKDOWN if article.parts[1] == "config"]
-
-PAGE_ARTICLES = [
-    article
-    for article in ALL_MARKDOWN
-    if article not in BLOG_POSTS
-    and article not in CONFIG_ARTICLES
-    and article.name == "index.md"
-]
-
-SECTION_PAGES = [
-    article
-    for article in ALL_MARKDOWN
-    if article.name == "_index.md" and article not in CONFIG_ARTICLES
-]
-
-ARTIFACT_PASS = [
-    "using-markdown-it-in-python",
-]
-
 ARTIFACT_PAGES = [page for page in ALL_MARKDOWN if page.stem not in ARTIFACT_PASS]
-
 IMAGE_ARTIFACT = re.compile(r"^#\[", re.MULTILINE)
 
 
