@@ -11,4 +11,4 @@ These folks need to settle down, because they’re both right. Perl and PHP show
 ## Related
 
 * https://www.php.net
-* http://www.phptherightway.com/
+* https://www.phptherightway.com/

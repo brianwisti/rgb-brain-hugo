@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
 ## The Result
 
-Aside from a few dozen PNG files? Well, there’s that nifty animation. Animated GIFs give me a headache sometimes, so I will [link to the GIF](attachments/img/2016/hugo-themes.gif) instead.
+Aside from a few dozen PNG files? Well, there’s that nifty animation. Animated GIFs give me a headache sometimes, so I will [link to the GIF](/attachments/img/2016/hugo-themes.gif) instead.
 
 ## Observations
 

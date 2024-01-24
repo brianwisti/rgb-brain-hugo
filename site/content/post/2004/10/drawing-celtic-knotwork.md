@@ -865,7 +865,7 @@ Hmm … took a few seconds this time. If I cared about performance, I might go i
 >
  > oh god my eyes. The knots are so tiny on a modern monitor, and there are so   many of them. I pulled the link to the big panel out of the main text so it won't catch anybody unawares. If you have any visually-triggered issues maybe don't click.
  > 
- > [you have been warned](attachments/img/2004/panel-100x75.png)
+ > [you have been warned](/attachments/img/2004/panel-100x75.png)
 
 ### Cleaning Up
 
