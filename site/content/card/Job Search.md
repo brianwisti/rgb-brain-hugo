@@ -5,7 +5,8 @@ title: Job Search
 Resources for remote tech work that won't make me hate my life.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > These are my own general resources, but hey yeah. These notes are visible to the world. Hello, world! I am interested in backend development or related opportunities. You can find out more about my professional context at:
  > 
  > [linkedin.com/in/brianwisti/](https://www.linkedin.com/in/brianwisti/)

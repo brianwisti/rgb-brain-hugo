@@ -24,7 +24,8 @@ title: Letting Ruby build Asciidoctor files for Hugo
 actually really proud of myself but this post needs all the disclaimers
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > Normal people: don't do any of this.  The whole post is me compensating for making Hugo do things it's not good at.
  > 
  > Stick with \[Markdown\]\[markdown\] if you use \[Hugo\]\[hugo\].  Use [shortcodes](https://gohugo.io/content-management/shortcodes/) or [render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks) if you want to make things interesting. Experiment with [card/reStructuredText](../../../card/reStructuredText.md) or [card/Asciidoctor](../../../card/Asciidoctor.md) — but anything past a few pages slows builds dramatically.  Move *away* from Hugo if you prefer those formats.  Try \[Nikola\]\[nikola\] for `rst` blogs.  \[Gatsby\]\[gatsby\] has a [plugin](https://www.gatsbyjs.org/packages/gatsby-transformer-asciidoc/?=asciidoctor) to directly transform `adoc` content.  You have options!
@@ -40,7 +41,8 @@ Hugo shines with Markdown, but you can use other [content formats](https://gohug
 I enjoy the flexibility.  And that bit about supporting HTML as an authoring language is about to come in real handy.
 
  > 
- > \[!TIP\]
+ > **TIP**
+>
  > go-org is nice, but [`ox-hugo`](https://ox-hugo.scripter.co/) excels if you want Hugo support tightly integrated with Org mode.
 
 ## So what’s the problem?

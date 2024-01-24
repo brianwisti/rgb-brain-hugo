@@ -201,7 +201,8 @@ say "DONE";
 [`qqx`](https://docs.perl6.org/language/quoting#Shell_quoting_with_interpolation:_qqx) shell quoting allows variable interpolation, though Perl 6 saw `0:s:0` as a thing it needed to interpolate until I wrapped it in quotes. It took me a while to figure out the correct FFmpeg invocation, so breaking it down in the comments made sense. Oh and if there’s any output from the conversion I print it.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I need to remind myself that I’m putting down notes here and not writing a  tutorial, but I suggest newcomers to Perl 6 explore the [types](https://docs.perl6.org/type.html) and [routines](https://docs.perl6.org/routine.html).
  > 
  > Yes, Perl 6 syntax can be strange and intimidating. You don’t need to learn all the syntax to get stuff done. The types and routines hold most of what you need for daily work. Can’t find it there? Look at the [modules](https://modules.perl6.org/). Easy stuff should still be easy. This is Perl, after all.

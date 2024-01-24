@@ -1,3 +1,5 @@
+set dotenv-filename := ".env"
+
 python := 'python3'
 pytest := 'pytest -n auto'
 

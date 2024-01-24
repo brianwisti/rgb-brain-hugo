@@ -59,7 +59,8 @@ My changes are small indeed. I place the post `.Content` in the description inst
 The full entry looks like this.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Updated for Hugo 0.57, which changed how `.Pages` worked. Now use `.RegularPages`, and for top-level RSS use `.Site.RegularPages`
 
 ````xml

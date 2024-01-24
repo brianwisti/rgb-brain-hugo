@@ -89,7 +89,8 @@ When we have a question about ELisp functions, we don’t need to look everythin
 * Learn things!
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!
 
 ### ELisp in Org Babel
@@ -99,7 +100,8 @@ This is great and all, but I am less concerned about live evaluation of ELisp. O
 And, of course, really handy for blogging about ELisp.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Configuration of Org and Babel is traditionally an elaborate ritual.  In Doom, it’s enough for this post to enable `org`.
  > 
  > Somewhere in my `init.el` I have these lines.
@@ -123,7 +125,8 @@ surprise us that Babel knows ELisp.
 I press <kbd>C-c C-c</kbd> with *point* over the code block.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Or <kbd>ENTER</kbd> in Doom.
 
 Suddenly: a `#+RESULTS:` block!

@@ -16,7 +16,8 @@ This is not a review. This is me, excitedly sharing screenshots of the shiny thi
 ![attachments/img/2018/cover-2018-10-14.png](../../../attachments/img/2018/cover-2018-10-14.png)
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > My beorg screenshots are in the Dark theme, which is currently the only paid add-on for the app. All functionality I look at today is part of the free core. I’m perfectly happy putting out 99 cents if it helps development a little bit.
  > 
  > You can also contribute directly to feature development by making a contribution in Settings.

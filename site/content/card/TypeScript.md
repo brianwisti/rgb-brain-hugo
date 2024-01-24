@@ -1,3 +1,7 @@
+---
+title: TypeScript
+---
+
 A strongly typed superset of [JavaScript](JavaScript.md)
 
 ## Related

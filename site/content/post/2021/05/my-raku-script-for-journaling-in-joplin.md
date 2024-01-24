@@ -214,7 +214,8 @@ sub entries-for-today() {
 ````
 
  > 
- > \[!NOTE\] 2021-05-24
+ > **2021-05-24**
+>
  > [@b2gills](https://twitter.com/b2gills) mentioned that I could also use [`Date.today`](https://docs.raku.org/type/Date#method_today[Date.today])
  > here!
  > 

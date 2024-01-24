@@ -45,7 +45,8 @@ Off in the depths of my `~/org/` folder, I create a new `config.org`.
 Everything here will end up going in the `config` section of my site, under `~/Sites/random-geekery-blog/content/config`.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > A while back I got stuck with `ox-hugo` for my site because of how big each section is.  Using an Org file per section might work really well!  It works great for this case, that’s for sure.
 
 Each top-level section will be a page in `/config/`. I show *which* page in the subtree’s `:properties:`.
@@ -62,7 +63,8 @@ Each top-level section will be a page in `/config/`. I show *which* page in the 
 `ox-hugo` automatically [converts](https://ox-hugo.scripter.co/doc/org-meta-data-to-hugo-front-matter/%5D) the `export` properties to Hugo front matter.  `:export_file_name:` of `emacs` maps out to a generated file `emacs/index.md` under `content/config/`.
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > If you’re playing along, remember to tag sensitive config sections as `:noexport:`!
 
 Since I’m showing off [Babel](https://orgmode.org/worg/org-contrib/babel/intro.html)’s ability to tangle, I want to show the tangle references.  `:noweb no-export` tells Babel to tangle when evaluating the block, but *not* when exporting.

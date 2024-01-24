@@ -34,7 +34,8 @@ I won't make you wait around for a proper post. Hugo lets you use reStructuredTe
 Still — why not format it ahead of time?
 
  > 
- > \[!NOTE\] Answer
+ > **Answer**
+>
  > Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using [card/Pelican](../../../card/Pelican.md) or [card/Nikola](../../../card/Nikola.md)?
 
 Shush, me.
@@ -102,7 +103,8 @@ class RSTBuildHugo:
 Lord knows this code ain't perfect. This post is its main test. Who knows what bugs and improvements will come later?
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > *You* will, if you skim the Updates at the end.
 
 If you grab a copy for your own nefarious plans — a similar template could get you fast Asciidoctor transforms as well — just remember a couple things:

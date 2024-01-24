@@ -1,12 +1,13 @@
 ---
+category: post
 date: 2024-01-22
+slug: rebuilding-my-second-brain
+syndication:
+  mastodon: https://hackers.town/@randomgeek/111801976876465759
 tags:
 - site
 - second-brain
-slug: rebuilding-my-second-brain
-category: post
-syndication:
-  mastodon: https://hackers.town/@randomgeek/111801976876465759
+title: Rebuilding My Public Brain
 ---
 
 I changed my blogging workflow — again.

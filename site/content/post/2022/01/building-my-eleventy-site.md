@@ -62,7 +62,8 @@ Here are my core scripts / tasks:
 Build, develop, clean, upload. All the basics are there. I don't think `package.json` *really* has namespaces, but I use `:` to pretend.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I have a few more entries but until I smooth them out a bit they'll just add noise. I left them out for now.
  > 
  > `site:img` is part of that noise to be honest, but it's mentioned prominently in other entries. Basically I preprocess my images with [eleventy-img](https://www.11ty.dev/docs/plugins/image/). We'll talk more about that another day maybe.

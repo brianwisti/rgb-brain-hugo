@@ -12,9 +12,9 @@ tags:
 title: What is build-essentials for openSUSE
 ---
 
-
- > 
- > \[!NOTE\] [tldr](../../../card/tldr.md)
+> 
+ > **[tldr](../../../card/tldr.md)**
+>
  > `devel_basis`
 
 <!--more-->

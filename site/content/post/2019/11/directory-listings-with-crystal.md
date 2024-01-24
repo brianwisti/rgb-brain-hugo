@@ -178,7 +178,8 @@ $ ./list ~/Sync/Books/computer
 `~/Sync/Books/computer` would be the first and only item in `ARGV`.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Some languages include the program name in their list of arguments. Crystal keeps the program name in `PROGRAM_NAME`, and the arguments in `ARGV`.
 
 If I needed anything more than "grab the first item in `ARGV`," I’d probably use [OptionParser](https://crystal-lang.org/api/OptionParser.html). But all I need is "grab the first item in `ARGV`."
@@ -220,7 +221,8 @@ thumbnails-digikam.db                              197,328,896  2019-02-17 15:58
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > When using `crystal run` to execute a script, use `--` to split arguments for `crystal` and those for your script. `list.cr` is for Crystal. `~/Sync/pictures/` is for the script.
 
 This works, if you use it exactly right. Right now is where I’m tempted to say "Error handling is left as an exercise for the reader." But no. Not this time.

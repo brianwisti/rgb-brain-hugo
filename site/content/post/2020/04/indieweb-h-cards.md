@@ -43,7 +43,8 @@ Brian Wisti
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Really that’s my "good enough" name. It’s not the full legal name on my social security card. Most of my friends don’t use it for me unless they’re trying to tell me apart from all the other people named Brian. Now is not the time for [Falsehoods Programmers Believe About Names](https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/), but know that h-card handles this dilemma better than many solutions.
 
 In a stroke of good fortune, this name conforms to local convention. A surname disambiguates my family from others. A given name disambiguates me from other members of my family.

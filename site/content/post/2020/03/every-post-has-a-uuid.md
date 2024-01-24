@@ -21,5 +21,6 @@ Should simplify rearranging the site sources. Helpful hint: don’t rely on file
 I used Python’s [uuid](https://docs.python.org/3/library/uuid.html) library. There’s also the [uuidgen](http://bigdatums.net/2016/10/01/generate-uuid-linux/) command if I switch away from a Python workflow.
 
  > 
- > \[!NOTE\] 2024-01-14
+ > **2024-01-14**
+>
  > Yeah that didn't last. Persistent file paths are way easier to read.

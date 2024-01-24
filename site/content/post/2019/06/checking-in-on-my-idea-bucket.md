@@ -29,5 +29,6 @@ ID  Tags             Description
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > [Oops](../07/task-add-admit-a-mistake.md): This was bad Taskwarrior usage. Use `newest` and `limit`.

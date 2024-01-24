@@ -125,7 +125,8 @@ I don't see anything on my screen, of course, because I piped everything to `xcl
 `xclip` preserves the basic shape of my output. I see a table. The *Visitors* column is right-aligned. The title is centered. But it loses some of the finer formatting bits: bold, italicization, color.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Also? This renders great on Chrome-based browsers and weird on Firefox.  There
  > are definite limitations to just copying and pasting from the terminal.
 
@@ -187,7 +188,8 @@ Rich supports [exporting](https://rich.readthedocs.io/en/stable/console.html#exp
 ## Let Rich get you some HTML
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > For safety reasons, most Markdown converters must be explicitly configured to allow raw HTML through. Check the documentation of your converter or blogging tools to see if and how you need to do that.
 
 A Console created with the `record` option enabled remembers everything it prints. You can get export your copy at any point. The [`export_text`](https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_text) method provides a copy with minimal formatting, while [`export_html`](https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console.export_html) produces HTML pages. That's for sure something I can paste into my post source. Nice!

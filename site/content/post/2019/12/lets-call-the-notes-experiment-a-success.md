@@ -23,5 +23,6 @@ I’m officially assimilating Notes into the main flow of the site. That means t
 Got a few ideas for a tidy separation of the two, but for taxonomy and history we are back to one main flow.
 
  > 
- > \[!NOTE\] 2024-01-14
+ > **2024-01-14**
+>
  > By now "note" is just a category taxonomy, as I'm shifting slightly away from the microblogging [card/tumblelog](../../../card/tumblelog.md) idea to regular snapshots extracted from my personal daily notes.

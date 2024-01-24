@@ -20,7 +20,8 @@ updated: 2017-04-10 00:00:00-07:00
 [YAPC::NA](http://yapcna.org), the Yet Another [card/Perl](../../../card/Perl.md) Conference for North America, just happened. I didn’t go. Since I didn’t go, I want to compile everything I can find about the conference in one place. Videos, slides, blog posts, whatever.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I ended up removing a few links that had been removed since first publishing this post.
 
 I am ready to add, edit, or remove items as needed. Make your suggestions or comments in the comments section.
@@ -28,7 +29,8 @@ I am ready to add, edit, or remove items as needed. Make your suggestions or com
 There’s also an [Eventifier compilation of YAPC::NA](http://eventifier.co/event/yapc13/), which includes most of this and a lot of photos as well.
 
  > 
- > \[!NOTE\] Updates
+ > **Updates**
+>
  > 
  > 2013-06-06
  > : Got links to "Perl - The Detroit of Scripting Languages" and "Be

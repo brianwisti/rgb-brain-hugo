@@ -1,6 +1,7 @@
 ---
 tags:
 - term
+title: PKM
 ---
 
 Personal Knowledge Management

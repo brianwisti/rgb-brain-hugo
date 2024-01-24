@@ -3,8 +3,8 @@ aliases:
 - /bookmark/2021/02/playwright-dev/
 category: bookmark
 date: 2021-02-28 00:00:00-08:00
-slug: playwright-dev
 description: Cross-browser end-to-end testing for modern web apps
+slug: playwright-dev
 tags:
 - python
 - testing
@@ -27,5 +27,6 @@ The [pytest-playwright](https://github.com/microsoft/playwright-pytest) plugin p
 Headless by default, but use `pytest --headful` if you want to watch the browser do its thing.
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > Since pytest-playwright is still in *early* days — 0.0.12 as of this bookmark date — dependency managers might not acknowledge new releases. Watch the repo and manually update your dependencies when you see a new release.

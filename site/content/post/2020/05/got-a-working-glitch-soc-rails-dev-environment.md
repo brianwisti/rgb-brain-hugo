@@ -133,7 +133,8 @@ info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this 
 At some point I should [enable](https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file) automatic `nvm use`.  Meanwhile I’ll just install.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Or maybe I could play with [card/Volta](../../../card/Volta.md).  Not today. Maybe later.
 
 ````console

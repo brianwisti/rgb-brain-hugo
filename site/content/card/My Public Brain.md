@@ -1,3 +1,7 @@
+---
+title: My Public Brain
+---
+
 An attempt at sharing my notes online, like a more freeform version of what I did with [coolnamehere](coolnamehere.md). Mental friction of maintaining multiple sites resulted in me taking it down before it started to rot.
 
 I liked the idea though, and shifted the angle into making my [PKM](PKM.md) the [CMS](CMS.md) for [Random Geekery](Random%20Geekery.md). I imported the posts into a new [Obsidian](Obsidian.md) vault, and refactored – extracting note cards from recurring topics, refactoring or removing some posts that no longer felt right as blog posts.

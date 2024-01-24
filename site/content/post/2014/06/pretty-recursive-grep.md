@@ -12,9 +12,9 @@ tags:
 title: Pretty Recursive Grep
 ---
 
-
- > 
- > \[!NOTE\] [tldr](../../../card/tldr.md)
+> 
+ > **[tldr](../../../card/tldr.md)**
+>
  > Set `GREP_OPTIONS='-RI --color=auto'`. Or install [ack](http://beyondgrep.com).
 
 <!--more-->

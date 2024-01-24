@@ -64,7 +64,8 @@ ORDER BY countNotDeleted desc
 |Book template|1|0|
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I renamed the Trilium demo's included *People template* to *Biography template*
  > for clarity here.
 

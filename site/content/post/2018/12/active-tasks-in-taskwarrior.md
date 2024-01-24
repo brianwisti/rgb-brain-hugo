@@ -15,7 +15,8 @@ title: Active Tasks in Taskwarrior
 ![attachments/img/2018/cover-2018-12-01.png](../../../attachments/img/2018/cover-2018-12-01.png)
 
  > 
- > \[!NOTE\] [card/tldr](../../../card/tldr.md)
+ > **[card/tldr](../../../card/tldr.md)**
+>
  > Use the `start`, `stop`, and `active` [Taskwarrior](../../../card/Taskwarrior.md) commands to manage what you’re doing right now.
 
 I use Taskwarrior’s [priority](../../2017/12/taskwarrior-priorities.md) system to show what I want to be working on now. What if there are several things I want to be working on right now? Even with my priority rules, I still find myself drawn to the lower priority tasks that are more interesting. Realistically, I can only do one thing at a time. How do I remind myself which task should have my active attention?

@@ -1,3 +1,7 @@
+---
+title: obsidian-export
+---
+
 A [Rust](Rust.md) library and CLI tool for exporting [Obsidian](Obsidian.md) vault contents into regular [Markdown](Markdown.md). This cuts down a few steps for your [Static Site Generator](Static%20Site%20Generator.md) or other processing scripts.
 
 There's curl-bash installation instructions corresponding to specific versions on the [Releases](https://github.com/zoni/obsidian-export/releases) page.

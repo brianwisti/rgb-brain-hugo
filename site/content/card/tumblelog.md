@@ -1,6 +1,7 @@
 ---
 tags:
 - term
+title: tumblelog
 ---
 
 A stream of consciousness blog. Like Tumblr but with less branding.

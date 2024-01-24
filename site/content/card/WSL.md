@@ -1,3 +1,7 @@
+---
+title: WSL
+---
+
 Windows Subsystem for Linux
 
 Either a heavyweight container or a lightweight VM. Either way, it's how I do *Linux* when on *Windows*.
@@ -87,7 +91,8 @@ Record a new preference for default Linux distribution.
 Terminate all running distributions and the WSL manager
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > Docker will complain.
 
 ### `--terminate DISTRIBUTION`

@@ -20,7 +20,8 @@ title: Basic DIY Sea Salt Spray
 Sea salt, argan oil, and a spray bottle. You need water too.
 
  > 
- > \[!NOTE\] tl;dr:
+ > **tl;dr:**
+>
  > Heat a cup of water. Mix in 2 teaspoons argan oil, 1 tablespoon sea salt, and a few drops of something pretty. Let it cool. Shake before each use.
 
 ## The recipe
@@ -84,5 +85,6 @@ This recipe is what I came up with last night after giving up on my search. You 
 Then write it down somewhere so you aren’t making something up again when you run out.
 
  > 
- > \[!NOTE\] Update
+ > **Update**
+>
  > I found the recipe I started with! [Gimme Some Oven](https://www.gimmesomeoven.com/diy/diy-sea-salt-texturizing-hair-spray/) has the information you need. Not much different than what you’ll find here, though with less Dr. Strangelove.

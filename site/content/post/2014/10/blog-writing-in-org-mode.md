@@ -139,7 +139,8 @@ I experiment with my rudimentary Emacs Lisp skills to create a new filename that
 Awkward, but it works. It worked at least once, anyways. Should manually remove the original `_draft` file until I know what I’m doing a little more.
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > See that Lisp I wrote? It’s probably wrong in some horrible way. It’s the most complex Elisp I’ve ever managed. Look at it for interesting ideas, but please don’t just copy and paste.
 
 ## Followup

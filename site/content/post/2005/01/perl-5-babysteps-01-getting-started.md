@@ -83,7 +83,8 @@ So.
 What exactly are we doing with that one line? There’s something that looks like math, and `say`. I guess it is fairly obvious what `say` is doing here: it is printing stuff out to our terminal.
 
  > 
- > \[!NOTE\] 2020-02-24
+ > **2020-02-24**
+>
  > 
  > Reading back, and it looks like I was starting to write something about `perldoc`?
 

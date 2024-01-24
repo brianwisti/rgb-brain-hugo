@@ -35,5 +35,6 @@ Hopefully I remember to read my own comments.
 Or the [documentation](https://evil.readthedocs.io/en/latest/overview.html#installation-via-package-el).
 
  > 
- > \[!NOTE\] 2020-04-29
+ > **2020-04-29**
+>
  > [john sj anderson](https://genehack.org) wrote a post   [expanding](https://genehack.blog/2020/04/a-bit-of-emacs-advice/) on a [suggestion](https://mastodon.social/@genehack/103737652356761968) to use [advising functions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html).

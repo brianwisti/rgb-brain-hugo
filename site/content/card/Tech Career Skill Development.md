@@ -1,3 +1,7 @@
+---
+title: Tech Career Skill Development
+---
+
 Mostly for programming because that's me I'm a programmer
 
 ## What to learn?

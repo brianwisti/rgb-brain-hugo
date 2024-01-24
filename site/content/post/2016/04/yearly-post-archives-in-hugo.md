@@ -22,7 +22,8 @@ Hugo already has [pagination](https://gohugo.io/extras/pagination/) functionalit
 Years give me a fixed point to anchor my archive listings to. I could narrow it down to years *and* months, but I am not that prolific. Years will do fine.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Skeptical side-eye from 2024
 
 ## Everything On One Page For Each Section
@@ -39,7 +40,8 @@ Hugo bases [template selection](https://gohugo.io/templates/list/) on specificit
 ````
 
  > 
- > \[!NOTE\] 2022-03-27
+ > **2022-03-27**
+>
  > I used Hugo's support for Ace templates on my site back when writing this post. That support's been removed since then, but the logic holds well enough. The important stuff is in the `{{ … }}` blocks, so try not to get too distracted by
  > Ace.
 

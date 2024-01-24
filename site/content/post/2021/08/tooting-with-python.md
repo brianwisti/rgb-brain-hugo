@@ -32,7 +32,8 @@ account on [one](https://hackers.town/@randomgeek) of many. You can find one sui
 \[Mastodon instances\](https://instances.social.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > If you don't already know Mastodon, think of it as island versions of [Twitter](https://twitter.com).  Each instance has its own practices and policies depending on who runs it, so it's very much a "hanging out at a friend's house" experience. Lots more details, but much more than I feel like covering.
  > 
  > It's fun. You should try it out maybe. You can even host your own instance if you're hard-core into DIY.
@@ -65,7 +66,8 @@ from rich.pretty import pprint
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Spoiler alert: yes I'll be using [Rich](https://rich.readthedocs.io) and [dataclasses](https://docs.python.org/3/library/dataclasses.html) along with Mastodon.py.  Nothing fancy planned with Rich today. It's just part of my regular toolkit.
  > 
  > The dataclasses library comes standard with Python these days, but you may need to install the others::
@@ -176,7 +178,8 @@ Most of the querying methods return a dictionary or a list of dictionaries. [`Ma
 I don't feel like showing every item in that dictionary, though. Let's pick a few to make a decent summary. Oh hey, and let's cache that dictionary to disk so I'm not making a fresh API query every time I check this post while I'm writing it.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Be considerate about server resources for Mastodon. Most instances are run as personal projects. There's no need for us to run up their AWS bill.
 
 ````python

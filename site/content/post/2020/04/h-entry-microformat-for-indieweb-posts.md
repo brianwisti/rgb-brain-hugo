@@ -133,7 +133,8 @@ Now to sprinkle some `p-category` items in to help folks understand where the po
 I organize my Hugo content by [type](https://gohugo.io/content-management/types) — currently Note or Post — and then add optional details with categories and tags. The post should probably show each of those as a `p-category`.
 
  > 
- > \[!NOTE\] 2022-03-27
+ > **2022-03-27**
+>
  > Now the main type is Post. Posts and notes are categories within the blog. All that timestamped stuff goes in one section with this version of the site. Category and tag are still `p-category` though.
 
 ````html

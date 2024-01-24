@@ -16,9 +16,9 @@ tags:
 title: Trusty Mongo Mojo Box
 ---
 
-
- > 
- > \[!NOTE\] [tldr](../../../card/tldr.md)
+> 
+ > **[tldr](../../../card/tldr.md)**
+>
  > Install Vagrant & VirtualBox.
  > 
  > ````
@@ -216,7 +216,8 @@ Installing everything took a *long* time. I do not want to wait for the full pro
 Of course I can. The Vagrant docs provide some [guidelines](http://docs.vagrantup.com/v2/boxes/base.html) for creating a new box for packaging.
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > There is a warning in the packaging documentation that looks serious.
  > 
  >  > 

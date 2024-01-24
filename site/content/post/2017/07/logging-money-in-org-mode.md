@@ -18,7 +18,8 @@ title: Logging Money In Org Mode
 I am setting up Emacs [card/Org](../../../card/Org.md) to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
 
  > 
- > \[!NOTE\] 2020-03-01
+ > **2020-03-01**
+>
  > It wasn’t. I didn’t. But I’ve come back to it for other ideas over time.
 
 I only want to see how I use my money. This can eventually become part of a budget, but all I want today is the ability to make quick money notes.

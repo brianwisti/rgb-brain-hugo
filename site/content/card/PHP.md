@@ -1,3 +1,7 @@
+---
+title: PHP
+---
+
 A popular [Programming Language](Programming%20Language.md) to make fun of, and yet it persists.
 
 It is easy to learn and easy to use. Of course, it is also easy to make a project that is so amazingly baroque that mere humans have no chance of ever editing it. This is a trait that PHP shares with one of its one-time biggest rivals, [Perl](Perl.md). It was funny to listen to arguments between PHP and Perl folks about why their favorite is the best and the other is the worst. The other was always “unstructured and unsuitable for real projects”, while the favorite was “fast and expressive.”

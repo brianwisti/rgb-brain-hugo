@@ -16,9 +16,9 @@ tags:
 title: Exporting From Org to Markdown
 ---
 
-
- > 
- > \[!NOTE\] [tldr](../../../card/tldr.md)
+> 
+ > **[tldr](../../../card/tldr.md)**
+>
  > `C-h v org-export-backends` to ensure that [card/Markdown](../../../card/Markdown.md) export is available. `C-c C-e m m` invokes `org-md-export-to-markdown`. You may need to update [card/Org](../../../card/Org.md), which could be a fussy process.
 
 Let’s say that I am supposed to be writing a blog post. Not this one, another one. I have spent a lot of time learning about [Org mode](http://orgmode.org), and I’m not ready to leave it just yet. There’s a problem, though. The blog that I’m supposed to be contributing to looks a bit like [Jekyll](../../../card/Jekyll.md). Specifically, it uses [Markdown](http://daringfireball.net/projects/markdown) formatting. That’s nice, but I *really* like Org mode formatting this week.

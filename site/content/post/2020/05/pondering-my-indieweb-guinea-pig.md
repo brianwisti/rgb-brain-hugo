@@ -19,5 +19,6 @@ Can't throw the YAPC::NA shirt away yet. Hasn't worn through completely
 The other stuff didn’t work and didn’t give useful errors. I ended up using Web::Mention. It’s fine. Just half to rewrite half the post. That’s fine.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > The other stuff didn't work and didn't give useful errors.  I ended up using Web::Mention.  It's fine.  Just have to rewrite half the post.  That's fine.

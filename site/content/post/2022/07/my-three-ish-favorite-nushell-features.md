@@ -1,7 +1,8 @@
 ---
 category: post
 date: 2022-07-04 18:00:00-07:00
-description: In which I once again spend all day decomposing one-liners, this time for Nushell
+description: In which I once again spend all day decomposing one-liners, this time
+  for Nushell
 slug: my-three-ish-favorite-nushell-features
 syndication:
   mastodon: https://hackers.town/@randomgeek/108592201010750028
@@ -95,7 +96,8 @@ help commands | where category =~ formats
 ![a table of commands in the "formats" category](attachments/img/2022/format-commands.png "`to md`? Interesting!")
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I bet the Perl devs perked up seeing that `=~`. Yes it's a regular expression! But it's almost definitely not a Perl regular expression. I haven't gone past literal substring matches yet, and the Nushell [regex documentation](https://www.nushell.sh/book/regular_expressions.html#regular-expressions) page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust [regex crate](https://docs.rs/regex/latest/regex/) documentation and figure out the differences yourself.
 
 ### Viewing only select columns with `select`

@@ -16,7 +16,8 @@ updated: 2020-04-18 10:24:00-07:00
 No, not the bra that provides appreciated support to countless women around the world.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Originally posted to the now-defunct Vox blog on May 4, 2007.
 
 I have been thinking about the slang word "bra," which I already know is short for "brother" and used pretty much the same way I, as a West coast slacker, would use the word "dude." First of all, I think it is a cool word and I would use it all the time if it didn’t sound so affected coming out of my lips. Second, where the heck did it start?
@@ -24,7 +25,8 @@ I have been thinking about the slang word "bra," which I already know is short f
 The first time I heard the word "bra" was watching [Dog the Bounty Hunter](http://www.dogthebountyhunter.com) a couple of years ago. Why are you looking at me like that? I enjoy cheesy, semi-moralistic entertainment as much as the next guy. I figured "bra" was Hawaiian surfer slang and didn’t think much more about the word’s origin.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > My TV close captioning and a couple of readers point out that the spelling for the Hawaiian version is "brah." I’m on a roll, though.
 
 Last year I heard the term again, listening to [Ob La Di Ob La Da](https://song.link/i/1441133613) by [The

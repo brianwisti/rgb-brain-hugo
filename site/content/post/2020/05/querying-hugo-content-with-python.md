@@ -1,8 +1,9 @@
 ---
 category: post
 date: 2020-05-06 23:37:00-07:00
-description: |
-  I had entirely too much fun replacing my site metadata script with sqlite-utils
+description: 'I had entirely too much fun replacing my site metadata script with sqlite-utils
+
+  '
 slug: querying-hugo-content-with-python
 syndication:
   mastodon: https://hackers.town/@randomgeek/104125796417600382
@@ -190,7 +191,8 @@ $ pip install pyyaml
 I can’t think of a pretty way to get at an entry’s front matter, so let’s just get it out of the way.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > It’s not worth rewriting a whole blog post just yet, but in the years since writing this I use [python-frontmatter](https://github.com/eyeseast/python-frontmatter) to handle frontmatter.
 
 ````python

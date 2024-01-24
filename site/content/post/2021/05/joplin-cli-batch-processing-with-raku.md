@@ -23,7 +23,8 @@ title: Joplin CLI Batch Processing With Raku
 don't get excited; these are the only notes I took
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > This sidetracks enough for three blog posts, mostly about [card/Raku](../../../card/Raku.md).  Sorry about that.  No time to make it shorter.  You know how it is.  There's a little [card/Joplin](../../../card/Joplin.md) stuff in here.
 
 This is embarrassing.  I fired up the Joplin [desktop app](https://joplinapp.org/desktop/) this morning and it told me there was an update.  Makes sense.  I haven't loaded the desktop app in a couple months.
@@ -106,7 +107,8 @@ sys     0m0.140s
 One and a half seconds for a formatted display of every journal entry.  Not bad, considering that I'm running on [WSL](https://docs.microsoft.com/en-us/windows/wsl/).  Plus I don't really know one-liners, Raku, or Joplin.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > The documentation for `joplin ls` mentions a `--sort` flag, but as of v1.8.1 I got no difference when using `joplin ls --sort title`. Didn't see a mention of the specific issue, so I overcame my shyness and filed [\#5004](https://github.com/laurent22/joplin/issues/5004).
 
 ## Fix the script
@@ -140,7 +142,8 @@ sys     0m4.616s
 Lots.  This function needs to be lots quicker.  It took three seconds to display today's lone entry, and over 30 seconds to display all 40 journal entries.  Every new entry slows the whole thing down, because every new entry means a new call to `joplin`.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I don't jot *that* many notes in a day. Some of that's from reorganizing my Joplin notebooks, putting daily journals in with the quick entries.
 
 I tried mimicking the shell magic but couldn't figure out how in the time I allowed myself.  This isn't work code where you have to get things just so. This is a fun little utility for my own amusement.
@@ -400,7 +403,8 @@ my regex day-of-month { \d ** 2 }
 The [general quantifier](https://docs.raku.org/language/regexes#General_quantifier:_**_min..max) `**` indicates how many times you expect a chunk to appear.  To this day I can't remember the exact syntax for quantifiers in old-school regular expressions.  But I can remember the number 4.
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > This regex is wrong for verifying real dates. It's not wrong enough to worry about today. I'm identifying header lines, not validating forms. But if some day I decide to enforce zero-padded months from `01` to `12`, I know exactly which block to edit.
 
 Looks like *clock time* gets saved as *hours*, *minutes*, and *seconds*.  In the interest of time, we'll oversimplify those too.

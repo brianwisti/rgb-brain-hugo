@@ -236,7 +236,8 @@ finish()
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > First off, PNG format works better than SVG when you're drawing 500 random circles.
  > 
  > ````shell

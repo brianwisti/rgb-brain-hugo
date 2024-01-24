@@ -30,7 +30,8 @@ All the URLS have been changed, but hopefully you won't notice thanks to [aliase
 The site looks nice because of the [Hyde-X](https://github.com/zyro/hyde-x) theme. Of course I already modified the theme for my own visual and organizational aesthetics. It'll probably look completely different by the time I'm done. Hyde-X gives a great starting point though.
 
  > 
- > \[!NOTE\] 2024-01-13
+ > **2024-01-13**
+>
  > And now my theme is derived from [Poison](https://themes.gohugo.io/themes/poison/), another Hyde-inspired theme. I have come full circle!
 
 Okay I need to get back to it. There are a lot of rough edges to smooth out.

@@ -1,3 +1,7 @@
+---
+title: Using obsidian-export with Hugo
+---
+
 Copied directly from the [obsidian-export](obsidian-export.md) REAME
 
 ## Transforming links

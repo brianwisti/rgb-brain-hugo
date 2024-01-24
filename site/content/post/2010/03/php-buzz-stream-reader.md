@@ -13,9 +13,9 @@ title: PHP Buzz Stream Reader
 updated: 2020-03-13 00:00:00-07:00
 ---
 
-
- > 
- > \[!NOTE\] 2020-03-13
+> 
+ > **2020-03-13**
+>
  > Of course, Google long ago turned Buzz into [Plus](https://plus.google.com/), then abandoned *that*. Keeping the content here in case some fragment of the [PHP](../../../card/PHP.md) can be useful to others.
 
 ## Why and What?
@@ -769,7 +769,8 @@ href="http://www.google.com/profiles/brian.wisti#buzz">Google Buzz</a>.</p>
 Hopefully you can now go to the [home page](/) and see a Buzz feed!
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > Well, you could have if it was 2010 and Google Buzz was still a thing. Oh well.
 
 Okay, one issue. It’s showing the *whole* feed. Let’s throw in a limit

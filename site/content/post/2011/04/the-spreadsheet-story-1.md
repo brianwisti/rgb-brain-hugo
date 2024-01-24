@@ -5,7 +5,8 @@ aliases:
 - /2011/04/19/the-spreadsheet-story-1/
 category: post
 date: 2011-04-19 00:00:00-07:00
-description: A design experiment figuring out what a local homeless shelter needs to track chores.
+description: A design experiment figuring out what a local homeless shelter needs
+  to track chores.
 slug: the-spreadsheet-story-1
 tags:
 - google-apps-script
@@ -14,9 +15,9 @@ tags:
 title: The Spreadsheet Story 1
 ---
 
-
- > 
- > \[!NOTE\]
+> 
+ > **NOTE**
+>
  > We never used the Google Spreadsheet idea, but working on it helped flesh out the thoughts that went into the Web-based [marysplace-rails](https://github.com/brianwisti/marysplace-rails) project.
 
 There is this spreadsheet project I have been working on. My wife works

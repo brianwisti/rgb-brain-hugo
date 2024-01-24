@@ -94,7 +94,8 @@ It’s not a very good mnemonic.
 Each entry summarizes the reaction, including which of my posts they were reacting to.  That’s kind of important.  Most recently, Twitter user [@junkw](https://twitter.com/junkw) retweeted my announcement about [adding a note from Org mode](../10/i-added-this-note-from-org-mode.md).
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > There’s also a `.json` endpoint for every feed that presents a different structure for mentions.  I prefer it, because it contains fewer `wm-*` fields.  But the documentation uses JF2, so that’s what I’ll do.
 
 ### Checking for new reactions

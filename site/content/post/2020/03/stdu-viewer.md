@@ -27,7 +27,8 @@ That’s honestly all I need. But being able to highlight passages is a nice bon
 "Build Websites with Hugo"
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > STDU Viewer does not alter the files directly when highlighting. Instead, it stores information about highlighted files and passages in  `%HOMEPATH%\AppData\Local\STDUViewer\Highlight.xml`.
 
 STDU Viewer also lets you create split views of your document. Handy when you’re doing exercises! It doesn’t let you open another document in the split, unfortunately.

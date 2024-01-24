@@ -72,7 +72,8 @@ Babel wants to know what languages it can load. I’m only tangling shell files,
 By default, Babel requests confirmation from you for every code block it handles. That’s smart, but also annoying. Disabling `org-confirm-babel-evaluate` means I’m okay with Babel executing or extracting any code it finds. It also means I need to ensure that my code blocks don’t request any dangerous actions. Leave this setting enabled if smart matters more to you than annoying.
 
  > 
- > \[!NOTE\] Correction
+ > **Correction**
+>
  > The Babel settings I added are for code *extraction*, not code evaluation. Babel extracts anything you want. [Code evaluation](https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks) is a different feature, and not needed for this post. Skip my `:custom` and `:config` items if you’re just tangling.
 
 Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.

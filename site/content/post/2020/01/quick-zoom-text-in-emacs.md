@@ -13,7 +13,8 @@ title: Quick Zoom Text in Emacs
 ![attachments/img/2020/cover-2020-01-01.png](../../../attachments/img/2020/cover-2020-01-01.png)
 
  > 
- > \[!NOTE\] tl;dr
+ > **tl;dr**
+>
  > Use `C-x C-=`, `C-x C--`, and `C-x C-0` to scale text on the fly in your [Emacs](../../../card/Emacs.md) buffer.
 
 Hey, happy new year!

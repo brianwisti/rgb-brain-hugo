@@ -569,7 +569,8 @@ NameError: name 'choice' is not defined
 ````
 
  > 
- > \[!WARNING\]
+ > **WARNING**
+>
  > Please don't explore this with other types of bad input. You could end up with a Python process that won't quit unless you force it to quit from your task / process manager.
 
 The problem is that the original exception was a `KeyboardInterrupt`. We don't see that here, because we referred to `choice` which isn't defined until the user provides some input. This causes a `NameError` to be raised, which hides the original exception. Python usually tells you only about the most recent exception that happened. If something truly unexpected happens here, we will never know about it. Python normally tells you about the most recent exception only.

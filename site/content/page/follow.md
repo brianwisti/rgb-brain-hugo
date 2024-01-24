@@ -1,6 +1,7 @@
 ---
 aliases:
 - follow
+title: follow
 ---
 
 Follow the blog, and follow me personally on social networks.

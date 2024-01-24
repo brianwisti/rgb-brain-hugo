@@ -18,7 +18,8 @@ title: Got Married Yesterday
 ![attachments/img/2020/cover-2020-03-20.jpg](../../../attachments/img/2020/cover-2020-03-20.jpg)
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > I mentioned it on [hackers.town](https://hackers.town/@randomgeek/103853335008640787) / [Twitter](https://twitter.com/brianwisti/status/1240848019077111814). Even updated my relationship status on [Facebook](https://www.facebook.com/brianwisti/posts/10158601243074665). I’ll probably leave LinkedIn alone for the moment. But worth remembering here as well.
 
 [Seattle](https://crosscut.com/2020/03/coronavirus-turns-seattle-americas-laboratory), 2020.

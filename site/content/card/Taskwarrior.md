@@ -1,3 +1,7 @@
+---
+title: Taskwarrior
+---
+
 A command line task manager
 
 ## Related

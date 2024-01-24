@@ -12,9 +12,9 @@ tags:
 title: PageTemplate
 ---
 
-
- > 
- > \[!WARNING\]
+> 
+ > **WARNING**
+>
  > Haven't touched PageTemplate in ages. This stuff is only here for the historical record.
 
 ## Introduction

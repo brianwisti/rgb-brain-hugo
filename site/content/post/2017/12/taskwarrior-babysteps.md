@@ -197,7 +197,8 @@ ID Age  Project Description                Urg
 ````
 
  > 
- > \[!NOTE\]
+ > **NOTE**
+>
  > For the curious: "finishing" a knit project is a distinct step that involves sewing in the loose ends.
 
 ## Tags
@@ -410,7 +411,8 @@ The project 'ruana' has changed.  Project 'ruana' is 20% complete (4 of 5 tasks 
 ````
 
  > 
- > \[!NOTE\] `denotate`
+ > **`denotate`**
+>
  > A couple days after posting this article I made an annotation on the wrong task.
  > 
  > ````
