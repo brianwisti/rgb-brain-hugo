@@ -10,7 +10,7 @@ The `obsidian-export` README provides sample templates for [Using obsidian-expor
 
 ## Jots
 
-Obsidian Sync doesn't copy dotfiles. `.export-ignore` needs to be added on every platform that you're running `obsidian-export`
+Obsidian Sync doesn't copy dotfiles. `.export-ignore` needs to be added on every platform that you're running `obsidian-export`. So, better keep track of *My export-ignore*
 
 Transforms unavailable links – say, *2024-01-21 Sun* for example – into unlinked italicized text during export.
 

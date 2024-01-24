@@ -13,9 +13,24 @@ import pytest
 # - Redefined names from outer scope
 # pylint: disable=C0115,C0116,W0621
 
+
+# Setting expected folders will cause a failure when I add a new public folder
+# AND THAT IS OKAY.
+EXPECTED_SECTIONS = [
+    "attachments",
+    "card",
+    "config",
+    "page",
+    "post",
+]
+
 CONTENT_PATH = Path("site/content")
 ALL_MARKDOWN = list(CONTENT_PATH.glob("**/*.md"))
-
+ALL_BUT_SITE_INDEX = [
+    article
+    for article in ALL_MARKDOWN
+    if str(article.relative_to(CONTENT_PATH)) != "_index.md"
+]
 BLOG_POSTS = [
     article
     for article in ALL_MARKDOWN
@@ -44,8 +59,13 @@ ARTIFACT_PASS = [
 
 ARTIFACT_PAGES = [page for page in ALL_MARKDOWN if page.stem not in ARTIFACT_PASS]
 
-
 IMAGE_ARTIFACT = re.compile(r"^#\[", re.MULTILINE)
+
+
+class TestSources:
+    @pytest.mark.parametrize("content_path", ALL_BUT_SITE_INDEX)
+    def test_section_is_expected(self, content_path: Path):
+        assert content_path.relative_to(CONTENT_PATH).parts[0] in EXPECTED_SECTIONS
 
 
 class TestMarkdown:
