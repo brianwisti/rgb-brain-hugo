@@ -8,10 +8,10 @@ export:
   obsidian-export /mnt/c/Users/brian/vaults/v2024/ site/content
 
 backlinks:
-  perl scripts/find-backlinks.pl
+  perl bin/find-backlinks.pl
 
 process:
-  python scripts/process_notes.py
+  python bin/process_notes.py
 
 pull: export backlinks process
 
