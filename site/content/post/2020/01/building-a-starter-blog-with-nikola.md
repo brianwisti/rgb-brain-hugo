@@ -108,8 +108,7 @@ $ nikola auto --browser
 The `auto` command instructs Nikola to serve your site, refreshing whenever you save a change. With the `--browser` flag, it also opens a new browser tab to your development site.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Unless you’re in tmux, in which case it depends on how your desktop and tmux are configured. I had to run `nikola auto --browser` from a separate terminal tab in Linux Cinnamon to get the browser action. I’ll look up how to fix that eventually.
 
 `http://127.0.0.1:8000` shows a basically empty front page. Nikola filled in the templates for the default theme with values from `conf.py`.

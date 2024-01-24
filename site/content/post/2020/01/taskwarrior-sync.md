@@ -16,8 +16,7 @@ title: Taskwarrior Sync
 inthe.AM is pretty, that's for sure.
 
  > 
- > **2024-01-14**
->
+ > \[!WARNING\] 2024-01-14
  > This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
 
 ## The problem
@@ -125,8 +124,7 @@ verbose=blank,header,footnote,label,new-id,affected,edit,special,project,filter,
 This removes messages about sync while leaving everything else. If you want more quiet, try `verbose=off` or even `verbose=nothing`.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > See `man taskrc` for more details about Taskwarrior configuration.
 
 ### Sync automatically with a cron job

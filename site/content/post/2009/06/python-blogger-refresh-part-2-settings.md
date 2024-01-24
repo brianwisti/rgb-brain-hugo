@@ -256,6 +256,5 @@ This code gets the job done, but I will freely admit that this code is getting u
 Although it's still small enough to reasonably paste the code into this blog posting, I think it might be a little easier for folks to work with if they just had an archive of what's been done so far.  I'm going to start making it available directly from coolnamehere.
 
  > 
- > **2015-03-28**
->
+ > \[!NOTE\] 2015-03-28
  > Oh, *that's* what that zipfile was for. No, it's long gone now.

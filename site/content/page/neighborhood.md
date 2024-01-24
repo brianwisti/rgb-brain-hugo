@@ -1,5 +1,4 @@
 ---
-title: neighborhood
 type: blogroll
 ---
 

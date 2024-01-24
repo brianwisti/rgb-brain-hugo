@@ -44,8 +44,7 @@ C:\Program Files\Git\cmd
 I need to start a new session eventually, though.  Can’t go around refreshing my path like that every time I open a new terminal.  Though I suppose I could put this in PowerShell initialization.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I know Git Bash is a thing, but I’m trying to learn Windows — not just paste a comforting layer of UNIX duct tape over everything.  *Said while writing a blog post from Vim on [WSL](../../../card/WSL.md).*
 
 *Anyways*, it looks like `ssh-keygen` is accessible via PowerShell.
@@ -146,8 +145,7 @@ while working through the process that became this post:
 This is significant enough to highlight:
 
  > 
- > **TIP**
->
+ > \[!TIP\]
  > If you’re using the Windows OpenSSH server before the 2020 Fall Update, you
  > may want to skip the `ssh-agent` bits.
 

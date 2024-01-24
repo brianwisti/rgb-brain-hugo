@@ -18,8 +18,7 @@ I think maybe I could spend less time on Twitter and Facebook. Not give them up.
 There is so much noise.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I noticed that the Disqus sections for all post content in 2017 are tied to [my screenshot post](../01/cinnamon-screenshot-shortcuts.md), which also happens to be the first post content of 2017. Made some adjustments and had Disqus recrawl the site.
  > 
  > Then I decided that maybe I can do without comments for a while.

@@ -14,8 +14,7 @@ title: Logseq's Export Formats
 Not the biggest graph but still cumbersome to export one by one
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Trying an experiment where I write a post about [card/Logseq](../../../card/Logseq.md) *in* Logseq. Not a big
  > deal on its own, but it should make publishing the post more interesting.
  > 
@@ -40,8 +39,7 @@ As the screenshot shows, it's not quite the Markdown we're used to.
 * Images are stored with the vault in the `assets/` folder. Need to keep that in mind when shifting all the way over to my site sources.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Logseq understands ATX `# HEADER` syntax, but I've found the heading property is a little more flexible when rearranging nodes, increasing or decreasing size appropriate to its new context.
 
 So that's what a Logseq page looks like. We *could* tweak a Markdown processor to handle each little variation, but it might be easier by working with an exported copy of the graph in some more widely consistent format.

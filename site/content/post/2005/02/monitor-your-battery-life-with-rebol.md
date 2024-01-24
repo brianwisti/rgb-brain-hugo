@@ -16,8 +16,7 @@ One thing you like to keep track of on your laptop is how much juice is left in 
 My point is that I’d like to explore some basic system stuff using REBOL on an [Ubuntu](https://ubuntu.com) 8.10 system. Got it? Okay, good. Now that we’ve settled this little detail, let’s move on.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I should mention that if all you want is a command-line printout of your battery information on Linux, you can get that with the command `acpi -b`. Still, reinventing wheels can be fun. Why not give this a shot?
 
 ## The Raw Materials

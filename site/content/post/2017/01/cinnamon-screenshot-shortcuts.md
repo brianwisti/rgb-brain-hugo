@@ -56,8 +56,7 @@ Sometimes I had to hit this combo a few times to get it work. That could be a so
 ## Record Desktop
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Okay I’ve never done this part before. I probably missed something important. Be warned if you try it yourself.
 
 `Control + Shift + Alt + R` will start recording your desktop. The same combo will end the recording session. No sound is recorded. Recordings are saved as [WebM](http://www.webmproject.org/) files in your home directory. [WebM support](http://caniuse.com/#feat=webm) is widespread, although some browsers require codecs to be installed.
@@ -79,8 +78,7 @@ $ ffmpeg -i ~/cinnamon-20161231-9.webm -vf scale=720:-1 \
 Ta-da!
 
  > 
- > **2024-01-15**
->
+ > \[!NOTE\] 2024-01-15
  > Oh no, where did I put the video? Okay well uh use your imagination.
 
 Well — "ta-da" assuming your browser supports WebM.

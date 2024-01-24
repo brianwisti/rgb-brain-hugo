@@ -518,8 +518,7 @@ Would the story go differently if the user had a flashlight in the cave? Adding 
 ## A Bonus Diversion: Scope
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > This was originally part of the main text, but it didn't really belong anywhere once I had finished writing. I decided to leave it in as one more bout of insane rambling instead of deleting it and probably forever forgetting it. At least this way I have something to start from when I *do* feel like talking about scope.
 
 Hey, you may be wondering how I could get away with using the variable `next_step` in so many places. First, let me make a confession. Reusing the same name like that over and over again is poor form. I should be changing the name to reflect how it is being used in its code block, instead of just cutting and pasting from one block to another. I was in a hurry, though, and being in a hurry can lead to laziness. In my defense, `next_step` is being properly defined with the same line each step of the way: `next_step = paths[ index ]`.

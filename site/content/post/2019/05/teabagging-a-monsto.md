@@ -15,9 +15,9 @@ tags:
 title: Teabagging a Monsto
 ---
 
-> 
- > **2022-11-20**
->
+
+ > 
+ > \[!NOTE\] 2022-11-20
  > This post made more sense before Twitter had new owners and I locked down my account. Oh well. It's still a cute picture.
 
 So there was a [tweet exchange](https://twitter.com/wholemilk/status/1124911645786959872) with a friend on Sunday about "teabagging a monsto."

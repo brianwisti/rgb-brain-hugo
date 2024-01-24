@@ -58,8 +58,7 @@ $ task 220 edit
 I want some way of adding and reviewing information about a particular task without cluttering my Taskwarrior reports.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Honestly [card/Org](../../../card/Org.md) provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.
 
 ## What I need today
@@ -161,8 +160,7 @@ So [os.execlp](https://docs.python.org/3/library/os.html#os.execlp) tells Python
 Sweet. It worked!
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Specifying the program twice confused me at first. Things clicked for me when I tried the `v` variant:
  > 
  > ````python
@@ -250,8 +248,7 @@ if __name__ == "__main__":
 I know. I didn’t want task metadata yet. It quickly became obvious that I would forget what task is involved unless I put *something*. So now the script adds the task description to a header line the first time a note is opened.
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Remember to `flush` your filehandles before handing control over to external processes like [card/Vim](../../../card/Vim.md). Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!
 
 Also threw in some error checking after the first time I tried writing notes for a nonexistent task.

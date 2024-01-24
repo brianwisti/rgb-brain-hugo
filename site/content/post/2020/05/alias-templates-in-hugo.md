@@ -101,8 +101,7 @@ What’s the least I can do to get things working?
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I was going to do a whole post on receiving webmentions, but that’s basically it  right there. Sign up at [Webmention.io](https://webmention.io) and add the `<link>` to your pages.
 
 Brid.gy now sees the webmention link at the old URL.  I can manually resend the relevant mentions.  All is well.

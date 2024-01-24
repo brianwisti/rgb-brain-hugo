@@ -45,8 +45,7 @@ src/assets/style/
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Generally, I have been following the site organization guidelines described in [Structuring Eleventy Projects](https://www.webstoemp.com/blog/eleventy-projects-structure/). If I have some non-content file I need transformed — Sass, images, whatever — I put it under `src/assets`.
 
 Eleventy provides instructions on how to set up [custom templates](https://www.11ty.dev/docs/languages/custom/) for dealing with Sass, and even [skipping a template](https://www.11ty.dev/docs/languages/custom/#skipping-a-template-from-inside-of-the-compile-function) so it doesn't build `_base.scss` and so on.
@@ -132,8 +131,7 @@ const cssOutputPath = path.join(curDir, "dist/assets/style/main.css");
 Yes this does look a lot like what Eleventy would do on its own. Since I turned off permalinks for `scss` files, I need to be careful. I start this with being extremely specific and figuring out what I can relax later — assuming I decide that relaxing is what I want to do.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Common sense sugests these should be defined in a config file somewhere. I'm still getting the hang of Eleventy, though. Common sense won't be an option for some time.
 
 I figure the easiest way to avoid extra recompilation is by watching the clock. If it hasn't been long enough since the last build, skip it. Five seconds is a completely arbitrary value for "long enough" but it seems to be working.

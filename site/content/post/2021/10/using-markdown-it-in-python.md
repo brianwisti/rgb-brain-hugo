@@ -14,9 +14,9 @@ tags:
 title: Using markdown-it in Python
 ---
 
-> 
- > **NOTE**
->
+
+ > 
+ > \[!NOTE\]
  > I hope the information I share here is useful, but I'm just documenting what I
  > needed to know *after* reading the markdown-it-py [user guide](https://markdown-it-py.readthedocs.io/en/latest/using.html) for basic
  > usage and principles.

@@ -18,9 +18,9 @@ title: Building Rakudo and Moarvm on Linux
 updated: 2021-08-21 00:00:00-07:00
 ---
 
-> 
- > **2021-08-21**
->
+
+ > 
+ > \[!NOTE\] 2021-08-21
  > Skip all this and use [Rakubrew](../../2020/05/setting-up-raku-with-rakubrew.md) to manage [card/Raku](../../../card/Raku.md) installations.
 
 Not instructions, but a brain dump of compiling and checking a [Rakudo](https://rakudo.org) installation.

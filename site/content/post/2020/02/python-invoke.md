@@ -131,8 +131,7 @@ Available tasks:
 Nice.
 
  > 
- > **TIP**
->
+ > \[!TIP\]
  > Since Invoke only uses the docstring’s first line for the summary, keep it short and to the point. Deep dives and technical explanations can go in following paragraphs. But you should be doing that anyways. It’s a good documentation habit.
 
 #### Task parameters
@@ -250,8 +249,7 @@ And that’s why I prefer explicit invocations. But if you must know:
 Thankfully Invoke supports another useful feature of Make: requesting more than one task at a time.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Took me years to learn `make build && make test && make install` could be said `make build test install`
 
 Let’s add a setup task.
@@ -289,8 +287,7 @@ def hello(c, name=DEFAULT_NAME):
 The decorator takes `pre` as a list of task names. Invoke calls each of these pre-tasks in order — using their default options if any — before calling the specified task.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Make sure your pre-tasks have been defined *before* listing them in `pre`!
 
 ````

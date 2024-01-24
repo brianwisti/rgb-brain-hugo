@@ -1,18 +1,17 @@
 ---
+title: My NANO-based Emacs config
 description: Not quite bespoke
+updated: 2022-05-08T13:59:25-07:00
 tags:
 - org-config
 - emacs
-title: My NANO-based Emacs config
-updated: 2022-05-08 13:59:25-07:00
 weight: 5
 ---
 
 This is more or less my vanilla-ish [Emacs](../../card/Emacs.md) playground. I start from [nano-emacs](https://github.com/rougier/nano-emacs).  It's pretty and pretty useful.  But expect it to veer pretty far from that base over time.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > There's bound to be a lot of things that make you, the Emacs veteran, wonder "why didn't he just do X?"  The likeliest options:
  > 
  > * I didn't know X was an option

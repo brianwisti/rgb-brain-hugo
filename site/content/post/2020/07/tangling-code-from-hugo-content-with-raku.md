@@ -27,8 +27,7 @@ I spend a while using [card/Raku](../../../card/Raku.md) to extract code from a 
 
 
  > 
- > **2020-09-03**
->
+ > \[!NOTE\] 2020-09-03
  > [@codesections@fosstodon.org](https://fosstodon.org/@codesections) found a typo! I forgot to *show* the target file name once command line arguments are in place. It should go `raku tangle-fragments.raku index.md`.
 
 Let's say I have a file.  The one you're reading, perhaps.  Well, its original Markdown content.
@@ -56,8 +55,7 @@ I *could* use Hugo's [readFile](https://gohugo.io/functions/readfile/) function 
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Actual shortcode logic left as an exercise for the reader.
 
 But that still breaks up the writing flow a little bit.  I'm writing the code over here, and writing *about* it over there.  It's a tiny complaint, but working with [card/Org](../../../card/Org.md) has spoiled me.  I get to write the code in the same document that I'm writing about it in.  Everything stays in sync, more or less.
@@ -153,8 +151,7 @@ I need to remember this commented shortcode syntax.
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Goodness, that looks silly.  Well, I'm writing this blog post as a test case
  > for the code.  I couldn't figure out how to cleanly present the  commented shortcode delimiters without Hugo and my code getting into a fierce argument.
  > 
@@ -262,8 +259,7 @@ I'm not done yet because I don't like to describe my code a full file at a time.
 Consistency counts, so I need to pick a syntax.  Well — you've been reading along.  You can see that I already made my choice.  I got used to `<<fragment-name>>` in Babel, where the attribute is called `name`. Might as well keep doing that over here.  Oh but hang on. I want it to stand out a bit.  I'll use angle quotes `«‥»`.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > On a US keyboard using [card/Vim](../../../card/Vim.md) or [card/Neovim](../../../card/Neovim.md), `«` is a [digraph](https://vimhelp.org/digraph.txt.html#digraph.txt) which can be entered via <kbd>Control-k</kbd> followed by <kbd>\<\<</kbd>.  Or if you've set up a [Compose](https://en.wikipedia.org/wiki/Compose_key) key, it's <kbd>Compose</kbd> followed by <kbd>\<\<</kbd> in any editor.
  > 
  > `»` is the same, but <kbd>\>></kbd> instead.

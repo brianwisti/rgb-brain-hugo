@@ -13,9 +13,9 @@ tags:
 title: Pulling a Remote Branch In Git
 ---
 
-> 
- > **[tldr](../../../card/tldr.md)**
->
+
+ > 
+ > \[!NOTE\] [tldr](../../../card/tldr.md)
  > `git branch -r` to list remote branches. `git checkout --track -b <local-branch> <remote>/<branch>` to check your branch out.
 
 <!--more-->

@@ -44,8 +44,7 @@ $ pip install pyexiftool rich typer
 [Typer](https://typer.tiangolo.com) simplifies turning this random idea into a useful command line tool.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > If you’re already a fan of Perl, consider [`cpanm`](https://metacpan.org/pod/App::cpanminus) instead of [Homebrew](https://brew.sh).
  > 
  > ````console
@@ -169,8 +168,7 @@ And here’s what that looks like.
 Holy crap that’s a lot.  Some of it could be considered sensitive information — unless you read my [now](../../../page/now.md) page.  But it’s all there!  Even in the snipped version you can learn a lot.  Hello from my Windows partition in West Seattle during February of 2021!
 
  > 
- > **TIP**
->
+ > \[!TIP\]
  > Uncomfortable sharing that much with every photo you upload?  You can scrub
  > those tags right out.  [With ExifTool](https://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Remove-EXIF-Metadata-from-Photos-with-exiftool), of course.
 
@@ -252,8 +250,7 @@ def file_table(filename, metadata):
 ````
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Hey, don’t miss that `str(value)`!  Rich tables need strings, and take nothing for granted with the values you give it.  Numeric values won’t necessarily convert straight to strings without a little help.
 
 ````python

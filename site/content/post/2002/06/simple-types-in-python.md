@@ -21,8 +21,7 @@ In this step, we will take our first look at variables and types in the [Python]
 You’re not expected to be some kind of expert to work through this tutorial. I only expect you to know how to use your development environment (such as IDLE) to work within the Python shell and create your own Python scripts. If this sounds unfamiliar to you, you’re in luck — I happen to cover exactly that in the Babysteps tutorial.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I am aiming for simplicity over rigid accuracy with this tutorial, but it sure would be appreciated if you happen to notice any unforgivable Python or general computer science errors within these pages. Being self-taught results in some really odd holes in my programming knowledge. So please, send me a quick note to sweetly and patiently point out any errors you find. Thanks!
 
 For the rest of us non-experts, let’s take the first steps into real, live programming!
@@ -249,6 +248,5 @@ The Python shell does make a handy calculator. You can do all of the handy four-
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Right about here I got distracted by a bright shiny object. Sorry about that!

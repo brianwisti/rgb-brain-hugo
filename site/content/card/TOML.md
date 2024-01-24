@@ -1,7 +1,3 @@
----
-title: TOML
----
-
 Tom's Obvious Minimal Language
 
 A minimal configuration file format.

@@ -1,7 +1,3 @@
----
-title: timedatectl
----
-
 Control system for time and date details on *Linux*
 
 ## Jots

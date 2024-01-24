@@ -98,8 +98,7 @@ Oh that’s right. This is what they were talking about with *template inheritan
 ## Editing templates
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > The [Mako extension](https://marketplace.visualstudio.com/items?itemName=tommorris.mako) for [Visual Studio Code](https://code.visualstudio.com/) associates itself with `.mako` files. You can add `.tmpl` to that with the `files.associations` [setting](https://code.visualstudio.com/docs/getstarted/settings). Might not want to do that globally though. `.tmpl` could be Mako here, but [Jinja2](https://jinja.palletsprojects.com/) in another site.
  > 
  > Instead, change it in the workspace file for your Nikola site.

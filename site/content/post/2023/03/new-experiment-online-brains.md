@@ -14,8 +14,7 @@ title: 'New experiment: online brains'
 I did just enough to have something I could publish
 
  > 
- > **2024-01-12**
->
+ > \[!NOTE\] 2024-01-12
  > It's no longer a separate site, so whatever kind of brain I'm willing to show the world is right here.
 
 Decided to start putting my raw notes online. Okay not *raw* raw. Still gonna be some filtering for content. But ye gods it is raw in the sense of being very rough.

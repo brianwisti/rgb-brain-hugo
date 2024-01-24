@@ -3,8 +3,7 @@ aliases:
 - /2019/06/01/weighing-files-with-python/
 category: post
 date: 2019-06-01 00:00:00-07:00
-description: I want to optimize this site's file sizes, but first I should see if
-  I need to.
+description: I want to optimize this site's file sizes, but first I should see if I need to.
 slug: weighing-files-with-python
 syndication:
   mastodon: https://hackers.town/@randomgeek/102199106551447993
@@ -58,8 +57,7 @@ There are some easily found tools. [Chrome](https://developers.google.com/web/to
 This is helpful on a page-by-page basis, and probably *very* helpful for evaluating a single page application. It doesn’t translate easily to checking an entire site. I suppose I could use [Comcast](https://github.com/tylertreat/Comcast), a command line tool for "simulating shitty network conditions" and maybe [HTTPie](https://httpie.org/) to crawl the site under those conditions.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Brian, stop. This is taking you into the world of resilience testing and [chaos engineering](https://en.wikipedia.org/wiki/Chaos_engineering), which sounds *awesome* and has a wealth of tools already written. It also sounds completely unnecessary for this humble little blog.
  > 
  > "Pick your battles" is another truism that applies here.

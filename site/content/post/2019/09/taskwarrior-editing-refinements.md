@@ -19,8 +19,7 @@ title: Taskwarrior Editing Refinements
 ![attachments/img/2019/cover-2019-09-05.png](../../../attachments/img/2019/cover-2019-09-05.png)
 
  > 
- > **[card/tldr](../../../card/tldr.md)**
->
+ > \[!NOTE\] [card/tldr](../../../card/tldr.md)
  > `edit` and `append` give additional ways to update your [Taskwarrior](../../../card/Taskwarrior.md) tasks. `undo` is there for the errors you catch quickly.
 
 I mentioned `modify` early on, and it works. But it’s real easy to make silly mistakes. Time to talk about a couple extra [commands](https://taskwarrior.org/docs/commands/) that reduce the impact of little daily blunders.
@@ -115,8 +114,7 @@ ID  Tags  Description
 I still made my mistake, but at least I can find the task by its original description.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > `prepend` also exists, and is useful much the same way append is. Which you use is a matter of preference.
 
 But what about bigger changes? Or what about when I change the description and don’t notice until a couple weeks later?

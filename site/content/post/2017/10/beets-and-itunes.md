@@ -109,8 +109,7 @@ The plugins add important functionality.
 : Run commands for specific beet events.
 
  > 
- > **TIP**
->
+ > \[!TIP\]
  > Oh in iTunes uncheck Preferences > Advanced > "Keep iTunes Media folder organized". Otherwise you’ll end up deleting and reimporting songs that iTunes moved.
 
 Configuration is out of the way. Let’s import music.
@@ -154,8 +153,7 @@ Now that beets has imported everything, it’s time to write it all back out and
 ### Write Some AppleScript
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I spent a full day trying to make JXA work for this. It didn’t. I kept crashing Script Editor with whimsical directives like `console.log(iTunes)`. If you want to try JXA, look at this [blog post on JavaScript and iTunes](https://www.macstories.net/tutorials/getting-started-with-javascript-for-automation-on-yosemite/), or the [JXA Cookbook page for iTunes](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/iTunes).
 
 I rarely use [AppleScript](https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptX/AppleScriptX.html), so it took a combination of Web searching and guesswork to come up with this. [This post](https://dougscripts.com/itunes/2010/12/get-a-track-reference-from-a-file-path/) from [Doug's AppleScripts for iTunes](https://dougscripts.com/itunes/index.php#whatsnew) blog and this [Ask Different answer](https://apple.stackexchange.com/questions/202504/searching-itunes-library-for-file-location#222834) got me most of the way there. The guesswork finished it off.
@@ -211,8 +209,7 @@ sqlite> update albums set year = original_year where year != original_year and o
 Everything worked out for me this time. But remember, if you change values in the database, they happen [in real life](https://xkcd.com/180/) too!
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Then somebody mentioned that I could skip this particular mess by setting the [original date](http://beets.readthedocs.io/en/v1.4.5/reference/config.html#original-date) option to `yes` in my beets configuration. beets will update a song’s `year`, `month`, and `day` fields to reflect the values in `original_date`. Use that setting if you would rather not poke around in the database.
 
 ### What Next?

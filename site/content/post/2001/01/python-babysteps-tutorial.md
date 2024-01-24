@@ -44,8 +44,7 @@ Before you can *use* Python, you need to *get* Python.
 ### Which Version of Python?
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > You can also try Python 3, but this tutorial is just going to discuss 2.6. Why is that? I prefer people use the latest version of Python. People who are using this tutorial in the context of a classroom probably aren’t going to have 3.0 as their default yet. There are enough differences between 2.6 and 3.0 that I’ll probably need a distinct Python 3 section on coolnamehere.
 
 There are a few versions of Python available for download:
@@ -60,8 +59,7 @@ Which one you install is mostly a personal choice. The language itself is the sa
 The ActiveState version has the benefit of being from a real, live company. You can purchase support and take advantage of the fact that it comes from a single source. It — the Windows version, anyways — comes with the excellent PythonWin program for developing your Python programs in a Windows environment. Because of the support and the Windows-friendly tools, ActivePython may be the best choice for business users. It’s the version that I’m using for testing the tutorial in Linux, so maybe that has some bearing on your decision.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > PythonWin is still available to you as part of the [win32all](http://starship.python.net/crew/mhammond/win32/) package, but you need to download and install it separately from your Python distribution. ActiveState Python for Linux includes IDLE, so I will be getting my Python from them for this article.
 
 Python 2.6, on the other hand, is the "official" version. It comes with a standard set of tools which are available on every platform that Python can support. Instead of PythonWin, Python 2.6 comes with IDLE: a cross-platform graphical environment for developing your Python programs. IDLE works pretty much the same for you whether you are sitting in front of Windows, Linux, or OS X.

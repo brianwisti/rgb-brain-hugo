@@ -19,8 +19,7 @@ Some socks to go with [the gloves](../03/rainys-mish-mash-gloves.md) I made a fe
 ![attachments/img/2016/cover-2016-04-14.jpg](../../../attachments/img/2016/cover-2016-04-14.jpg)
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > I know I know I've been quiet. I haven't been lazy, though. Mostly work and knitting. Tonight I posted the three knit projects finished since the last time I updated the site in January.
 
 I still have loads of yarn after making a pair of fingerless gloves for my friend. Asked if she wanted some long socks to match, and of course she said yes.

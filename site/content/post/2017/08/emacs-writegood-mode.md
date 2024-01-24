@@ -18,8 +18,7 @@ title: Emacs Writegood Mode
 I rushed through that post about [logging money](../07/logging-money-in-org-mode.md) in Org mode  and didn’t take much time to edit it. This bothers me. Today I went into [`writegood-mode`](https://github.com/bnbeckwith/writegood-mode) to catch my sloppiest writing mistakes.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > [card/Vim](../../../card/Vim.md) users may want to look at [`vim-wordy`](https://github.com/reedes/vim-wordy), a plugin with similar goals to `writegood-mode`.
 
 ## `writegood-mode`
@@ -78,8 +77,7 @@ This ensures that at least Markdown blog posts are automatically checked.
 Today I just take the take the original list as-is and add my own list of weasel words. [`-concat`](https://github.com/magnars/dash.el#-concat-rest-lists) from [`dash.el`](https://github.com/magnars/dash.el) returns the result of concatenating two lists into a single list.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > `dash.el` is an Emacs utility library that adds functions for examining and manipulating lists.
  > 
  > ````

@@ -61,8 +61,7 @@ $ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d ' '
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Found out that Hugo shortcodes look a lot like mmark includes, and that choked my pipes up a bit. Added an initial pass through Perl to remove anything that might be a shortcode. Confuses counting in a couple of my posts *about* Hugo, but I will survive.
  > 
  > ````sh
@@ -83,8 +82,7 @@ Naturally, Hugo reports a different number at this point: 397. You know what, th
 So I know how to get the numbers I want. Now I must learn enough [Vimscript](http://learnvimscriptthehardway.stevelosh.com/) to move that information from the shell to the status line.
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > I've been using Neovim as my main terminal `$EDITOR`. Although it maintains compatibility with Vim, some of the functions here may require a newer release of Vim than you have on your machine.
  > 
  > The goal was to figure this out on my own machine, so unfortunately the only advice I can offer if your Vim complains is: upgrade Vim or switch to Neovim.

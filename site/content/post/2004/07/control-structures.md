@@ -95,8 +95,7 @@ else:
 ````
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Pay attention to how the else-if refinement is spelled in your favorite programming language! It’s `elif` in Python, and in other languages could be `elsif`, `elseif`, `else if`, or something else I haven’t come across yet.
 
 ## Repetition

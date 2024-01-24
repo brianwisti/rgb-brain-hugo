@@ -1,7 +1,3 @@
----
-title: Vim
----
-
 One of the longest-lived `vi` clones.
 
 ## Related

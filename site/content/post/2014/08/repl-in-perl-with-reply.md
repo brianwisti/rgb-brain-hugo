@@ -23,8 +23,7 @@ title: REPL In Perl With Reply
 Time for a quick post about [Reply](https://metacpan.org/release/Reply), a new [Perl](../../../card/Perl.md) toy from [Jesse Luers](http://tozt.net/). There will not be much for me to say, because I have only been playing with it for about twenty minutes.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > This post used Questhub.io for a subject. Unfortunately, that site is no longer with us.
 
 Reply is a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a [plugin](https://metacpan.org/source/DOY/Reply-0.35/lib/Reply/Plugin.pm) system that I may look at later if I have more time.

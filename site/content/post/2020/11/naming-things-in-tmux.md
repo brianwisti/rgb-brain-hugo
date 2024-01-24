@@ -118,8 +118,7 @@ We can cycle through sessions without targeting them, too.  A `-n` argument cycl
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Okay, key bindings might help here.  Cycle through your Tmux sessions with <kbd>C-b )</kbd> and <kbd>C-b (</kbd>.
 
 I don’t think so much about tabbed terminals anymore.  I do forget which session holds work stuff and which holds site stuff, though.

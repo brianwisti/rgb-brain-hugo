@@ -2,9 +2,9 @@
 title: Now
 ---
 
-> 
- > **NOTE**
->
+
+ > 
+ > \[!NOTE\]
  > Check out the [`/now`](https://sive.rs/nowff) page movement started by [Derek Sivers](https://sive.rs). You can get a [profile](https://nownownow.com/p/2ugf) if you set up a `/now` page.
  > 
  > [`/now`](https://nownownow.com) --- it's like a [webring](https://en.wikipedia.org/wiki/Webring) for status pages!

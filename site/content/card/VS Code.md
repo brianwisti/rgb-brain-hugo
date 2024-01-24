@@ -1,7 +1,3 @@
----
-title: VS Code
----
-
 Cross-platform multi-language text editor from *Microsoft* for programmers and others.
 
 ## Key bindings

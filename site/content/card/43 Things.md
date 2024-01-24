@@ -2,7 +2,6 @@
 aliases:
 - 43Things
 - 43-things
-title: 43 Things
 ---
 
 One of the prototypical social networks. I was there instead of Friendster.

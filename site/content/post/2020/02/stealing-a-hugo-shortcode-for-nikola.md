@@ -19,8 +19,7 @@ updated: 2020-02-13 07:30:00-08:00
 I keep waffling on whether to switch from \[Hugo\]\[hugo\] to \[Nikola\]\[nikola\] or some other [card/Static Site Generator](../../../card/Static%20Site%20Generator.md). Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > `nikola check -l` looks for broken internal links on your build output. It found a few in the imported files. I fixed them.
  > 
  > And yes. I wrote a [post/2017/04/making-a-mojo-link-checker](../../2017/04/making-a-mojo-link-checker.md) in 2017. No, I haven’t used it since.
@@ -46,8 +45,7 @@ Here’s what the [Hugo shortcode](https://github.com/gohugoio/hugo/blob/0029708
 I never knew about YouTube privacy configuration for the shortcode. Ah. That’s because it’s not in the [shortcode documentation](https://gohugo.io/content-management/shortcodes/#youtube). I like it though. I think I’ll use it.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Ah. It’s documented in [Hugo and the GDPR](https://gohugo.io/about/hugo-and-gdpr/).
 
 If you want a Nikola configuration available to your shortcode, add it to ``conf.py’s `GLOBAL_CONTEXT`` dictionary.

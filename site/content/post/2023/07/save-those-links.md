@@ -1,13 +1,13 @@
 ---
-category: note
+title: Save those links
 date: 2023-07-01
-slug: save-those-links
-syndication:
-  mastodon: https://hackers.town/@randomgeek/110640551235441677
+category: note
 tags:
 - the-internet
 - second-brain
-title: Save those links
+slug: save-those-links
+syndication:
+  mastodon: https://hackers.town/@randomgeek/110640551235441677
 ---
 
 Saw this post today:
@@ -45,6 +45,5 @@ And then it occurred to me. Between budget and attention span constraints, my [A
 So there’s my productivity quota for the day more or less complete.
 
  > 
- > **2023-10-25**
->
+ > \[!NOTE\] 2023-10-25
  > Sure enough I had to take down my Akkoma instance recently for budget prioritization.

@@ -44,8 +44,7 @@ I start with a prelude, telling Emacs about package manager details: mainly wher
 ````
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Trailing slashes are important! `melpa.org/packages/` gets a list. `melpa.org/packages` does not.
 
 Next I tell use-package that I want org.

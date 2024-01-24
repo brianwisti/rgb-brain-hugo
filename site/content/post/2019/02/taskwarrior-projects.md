@@ -43,8 +43,7 @@ The project 'cards' has changed.  Project 'cards' is 0% complete (4 of 4 tasks r
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Quote your project names if you want to use multiple words.
  > 
  > ````sh

@@ -1,7 +1,3 @@
----
-title: VS Code Snippets
----
-
 Micro-templates for [VS Code](VS%20Code.md) basically
 
 ## How

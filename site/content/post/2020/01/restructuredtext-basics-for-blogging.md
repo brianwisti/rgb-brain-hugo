@@ -1,16 +1,16 @@
 ---
-aliases:
-- /2020/01/19/restructuredtext-basics-for-blogging/
-category: post
-date: 2020-01-19
-description: I got carried away taking notes about basic RST usage
 slug: restructuredtext-basics-for-blogging
+title: reStructuredText Basics For Blogging
+description: I got carried away taking notes about basic RST usage
+date: 2020-01-19
+category: post
 tags:
 - python
 - rst
 - text
 - tools
-title: reStructuredText Basics For Blogging
+aliases:
+- /2020/01/19/restructuredtext-basics-for-blogging/
 ---
 
 ## What is it?
@@ -142,8 +142,7 @@ We've got the basics. After these next few items, I have about 80% of everything
 #### Headers and sections
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Most blog generators demote your headers by at least one level. That way your post title goes at the top of the hierarchy. It also means that my level three section headers generate `<h4>` tags! So don't go overboard with subsections.
 
 You've been looking at section headers already, so it seems silly to put examples here. Plus it messes up the document structure.
@@ -311,8 +310,7 @@ Fortunately, these side notes are part of RST as [admonitions](https://docutils.
 ````
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Don't forget to mention admonitions!
 
 There are several admonition types, from the casual note to the dire alert.
@@ -322,8 +320,7 @@ There are several admonition types, from the casual note to the dire alert.
 ````
 
  > 
- > **WARNING**
->
+ > \[!WARNING\]
  > Don't overuse admonitions!
 
 `note` and `warning` should suffice for most cases.

@@ -14,9 +14,9 @@ tags:
 title: Drawing Celtic Knotwork
 ---
 
-> 
- > **2020-08-01**
->
+
+ > 
+ > \[!NOTE\] 2020-08-01
  > Ye gods. 15,000 words?
  > 
  > I cut this down into smaller blocks after that [Raku tangling post](../../2020/07/tangling-code-from-hugo-content-with-raku.md). I don’t even care that this post is 16 years old. Somebody might accidentally try to read it!
@@ -194,8 +194,7 @@ Now I know each of the major objects in this program, and the duties that they m
 The simplest element of our description is the Tile. I decided that a Tile would be a two dimensional chunk of characters that would let you set or get any point in that space. Remember that this isn’t the only way we could have done things. You could also describe the lines and curves in the tile, or the colors, transparency, and whatever else the crazy kids are coming up with these days. This is my first drawing program, though, and I want to keep it as simple as I can. So I’m going with the bitmap idea. The tile images in the Sloss book are provided in different sizes. Let’s go with 9x9. It’s small and manageable without being too small to see.
 
  > 
- > **2021-08-21**
->
+ > \[!NOTE\] 2021-08-21
  > Unless it's 2021, when you have a big monitor and old eyes.
  > 
  > *squints and continues editing*
@@ -712,8 +711,7 @@ end
 Yeah, that works. Let’s move on.
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Wait. This is me from a few days in the future, editing this page.
  > KnotworkPanel’s initializer kinda bugs me. It’s fine for what it does, but how’s
  > the average person supposed to know that `KnotworkPanel.new(1,2)` actually
@@ -765,8 +763,7 @@ end
 ````
 
  > 
- > **2020-08-01**
->
+ > \[!NOTE\] 2020-08-01
  > Looks like I skipped tests for `Knotwork#to_image` as well. And wasn't I saying something about "image" being one of the nouns that should be a class? Whatever happened to that?
 
 Time to make an image.
@@ -846,8 +843,7 @@ $ ruby knotworkpanel.rb --rows 2
 ![4x4 panel](attachments/img/2004/panel-4x4.png)
 
  > 
- > **NOTE**
->
+ > \[!NOTE\]
  > Me from the immediate future says "See? This is what I was talking about. You say
  > '2 rows', and you get a 4x4 square? How do you think people are going to
  > react? Man, I need more coffee."
@@ -861,8 +857,7 @@ $ ruby knotworkpanel.rb --rows 98 --columns 73
 Hmm … took a few seconds this time. If I cared about performance, I might go in and see where this could be tightened up. I don’t care about performance today, though. I care about results. And the results aren’t too bad.
 
  > 
- > **2021-08-21**
->
+ > \[!WARNING\] 2021-08-21
  > oh god my eyes. The knots are so tiny on a modern monitor, and there are so   many of them. I pulled the link to the big panel out of the main text so it won't catch anybody unawares. If you have any visually-triggered issues maybe don't click.
  > 
  > [you have been warned](attachments/img/2004/panel-100x75.png)

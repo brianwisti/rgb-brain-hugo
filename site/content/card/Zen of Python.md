@@ -1,7 +1,3 @@
----
-title: Zen of Python
----
-
 Some core philosophies of [Python](Python.md), what you see when you `import this`
 
 ````
