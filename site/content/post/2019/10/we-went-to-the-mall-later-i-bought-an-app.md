@@ -25,7 +25,7 @@ We went to the Apple store. I played with a new iPad Pro. Tried hard not to like
 
 The demo iPad had a great note-taking app that could help my search for an app that let me handwrite notes and then search through their content later.
 
-Been messing with Windows and *inbox/WSL* more lately. So we went to the Microsoft store too. I tried hard to like it, but everything felt a little clumsy and disappointing after the smoothness of the Apple devices.
+Been messing with Windows and [WSL](../../../card/WSL.md) more lately. So we went to the Microsoft store too. I tried hard to like it, but everything felt a little clumsy and disappointing after the smoothness of the Apple devices.
 
 When I got home I had to find and install [GoodNotes](https://www.goodnotes.com/), the notebook app I played with at the Apple Store, on my own iPad. Yeah I like it. This will come in real handy.
 

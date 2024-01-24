@@ -14,7 +14,7 @@ title: Tweaking a Nikola Theme
 I adjusted the default [Nikola](https://getnikola.com) theme to show cover images!
 
 ![attachments/img/2020/cover-2020-01-25.png](../../../attachments/img/2020/cover-2020-01-25.png)
-The [now](../../../now.md) page, in Nikola
+The [now](../../../page/now.md) page, in Nikola
 
 ## Motivation
 

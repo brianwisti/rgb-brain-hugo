@@ -12,8 +12,7 @@ tags:
 title: Dendron is officially in maintenance mode
 ---
 
-![attachments/img/2023/cover-2023-02-08.png](../../../attachments/img/2023/cover-2023-02-08.png)
-My Dendron notes from Graceful.Dev [Reproducible Development with Containers](https://graceful.dev/courses/devcontainers/)
+![Visual Studio Code with Dendron active](/attachments/img/2023/cover-2023-02-08.png "Dendron notes from Graceful.Dev Reproducible Development with Containers")
 
 {{% quote
 from="Kevin Lin"
@@ -23,7 +22,7 @@ title="#announcements on Dendron Discord"
 …the tldr: we spent the past two years building a better way for humans to manage knowledge. While we made great strides there, as a business, we were ultimately not able to find product market fit for a venture backed business. After much soul searching, we've made the decision to do a pivot and pursue other business problems.
 {{% /quote %}}
 
-Aw, that's disappointing. [Dendron](https://www.dendron.so) features prominently in my meta-note system. Dendron is the most nearly "just Markdown" of the "just Markdown" knowledge management systems out there. That makes it a safe spot to store and refactor the notes I gather with other tools. Excellent editor integration, too. Dendron kinda feels like core functionality to VS Code for me.
+Aw, that's disappointing. [Dendron](https://www.dendron.so) features prominently in my meta-note system. Dendron is the most nearly "just Markdown" of the "just Markdown" knowledge management systems out there. That makes it a safe spot to store and refactor the notes I gather with other tools. Excellent editor integration, too. Dendron kinda feels like core functionality to [VS Code](../../../card/VS%20Code.md) for me.
 
 But in this time of tech layoffs and reprioritization, I guess it's harder to sell core functionality than shiny shiny features.
 

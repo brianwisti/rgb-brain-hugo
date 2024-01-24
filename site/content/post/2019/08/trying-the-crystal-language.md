@@ -31,8 +31,7 @@ I don’t care if it compiles super fast or the executable is super fast. An exe
 
 ## Installation
 
-The documentation provides instructions on [how to install Crystal](https://crystal-lang.org/reference/installation/) across
-several platforms. Today I’m on my Windows partition. Though they’re working on a full Windows port, the best path for now is to use [Homebrew](https://brew.sh/) on *inbox/WSL*.
+The documentation provides instructions on [how to install Crystal](https://crystal-lang.org/reference/installation/) across several platforms. Today I’m on my Windows partition. Though they’re working on a full Windows port, the best path for now is to use [Homebrew](https://brew.sh/) on [WSL](../../../card/WSL.md).
 
 ````
 $ brew install crystal

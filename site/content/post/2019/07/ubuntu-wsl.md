@@ -14,7 +14,7 @@ tags:
 title: ubuntu-wsl
 ---
 
-And when I *do* get home and start playing with *inbox/WSL* 2, I'll make sure to install the [ubuntu-wsl](https://packages.ubuntu.com/bionic-updates/ubuntu-wsl) package.
+And when I *do* get home and start playing with [WSL](../../../card/WSL.md) 2, I'll make sure to install the [ubuntu-wsl](https://packages.ubuntu.com/bionic-updates/ubuntu-wsl) package.
 
  > 
  > Among the highlights: –

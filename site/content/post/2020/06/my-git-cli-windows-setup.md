@@ -46,7 +46,7 @@ I need to start a new session eventually, though.  Can’t go around refreshing 
  > 
  > **NOTE**
 >
- > I know Git Bash is a thing, but I’m trying to learn Windows — not just paste a comforting layer of UNIX duct tape over everything.  *Said while writing a blog post from Vim on WSL 2.*
+ > I know Git Bash is a thing, but I’m trying to learn Windows — not just paste a comforting layer of UNIX duct tape over everything.  *Said while writing a blog post from Vim on [WSL](../../../card/WSL.md).*
 
 *Anyways*, it looks like `ssh-keygen` is accessible via PowerShell.
 

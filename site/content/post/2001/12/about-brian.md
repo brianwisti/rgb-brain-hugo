@@ -14,7 +14,7 @@ title: About Brian
 
 ![Photo of Brian](/attachments/img/2001-brian-greenlake.jpg)
 
-This page exists for historical purposes — so you can see the cute old picture of me. More current versions of its information is in *about*, [follow](../../../follow.md), and [now](../../../now.md).
+This page exists for historical purposes — so you can see the cute old picture of me. More current versions of its information is in [about](../../../page/about.md), [follow](../../../page/follow.md), and [now](../../../page/now.md).
 
 Just want to contact me? That’s easy enough.
 

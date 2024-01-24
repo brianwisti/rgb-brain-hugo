@@ -17,14 +17,7 @@ Resources for remote tech work that won't make me hate my life.
 
 Not particularly well-vetted, as I've mostly glanced at these.
 
-* [Teal Career Growth, On Your Terms. Track and Manage Job Search Applications](https://www.tealhq.com/)
-  * Career Growth, On Your Terms. Track and Manage Job Search Applications
-  * Organizing your leads and applications
-  * Integrates with LinkedIn
-  * Billing for premium accounts
-    * $9 / week
-    * $29 / month
-    * $79 / 3 months
+* [Teal Career Growth, On Your Terms. Track and Manage Job Search Applications](https://www.tealhq.com/) (requires money)
 * [Job Board, AI Cover Letter and Resume Generator](https://swooped.co/)
 
 ## Job Boards and Search Engines

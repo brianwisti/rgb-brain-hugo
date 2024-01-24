@@ -15,7 +15,7 @@ title: Full Content Hugo Feeds
 updated: 2019-09-19 00:00:00-07:00
 ---
 
-[card/Hugo](../../../card/Hugo.md) defaults to filling your [follow](../../../follow.md) with the summary of every post. I prefer the full content of the most recent posts. Today I make my [card/RSS](../../../card/RSS.md) feed reflect my preferences.
+[card/Hugo](../../../card/Hugo.md) defaults to filling your [follow](../../../page/follow.md) with the summary of every post. I prefer the full content of the most recent posts. Today I make my [card/RSS](../../../card/RSS.md) feed reflect my preferences.
 
 ## The Problem
 

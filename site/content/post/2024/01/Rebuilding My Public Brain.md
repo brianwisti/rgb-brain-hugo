@@ -64,7 +64,7 @@ I pulled in my automated tests from the current site iteration. I really should 
 
 ## What next
 
-Before I have the Python script handle all the processing, I'll revisit the Astro iteration. [remark-obsidian](https://www.npmjs.com/package/remark-obsidian) and [remark-deflist](https://www.npmjs.com/package/remark-definition-list) handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like [now](../../../now.md) and [follow](../../../follow.md) get treated within Astro's dynamic collection approach.
+Before I have the Python script handle all the processing, I'll revisit the Astro iteration. [remark-obsidian](https://www.npmjs.com/package/remark-obsidian) and [remark-deflist](https://www.npmjs.com/package/remark-definition-list) handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like [now](../../../page/now.md) and [follow](../../../page/follow.md) get treated within Astro's dynamic collection approach.
 
 ## What now
 

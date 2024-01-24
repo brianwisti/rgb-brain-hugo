@@ -23,6 +23,6 @@ From [OMG! Ubuntu](https://www.omgubuntu.co.uk/2019/09/microsoft-linux-conferenc
  > 
  > The two day event will feature presentations by the Microsoft team behind the Windows Subsystem for Linux (WSL) feature; the creators of the ‘Pengwin‘ WSL distributions; and (more pertinent to our tastes, perhaps) the Ubuntu on WSL team at Canonical.
 
-The free-but-small [WSLConf](https://www.wslconf.dev/) is scheduled for March of next year, so *inbox/WSL* 2 will probably be generally available. Much easier than staying caught up with the Fast Ring.
+The free-but-small [WSLConf](https://www.wslconf.dev/) is scheduled for March of next year, so [WSL](../../../card/WSL.md) 2 will probably be generally available. Much easier than staying caught up with the Fast Ring.
 
 I may have to check this out.

@@ -13,7 +13,7 @@ title: Enjoyed this Derek Sivers interview
 ---
 
 I'm not a money podcast person, but this episode was worth an hour of my time.
-I found myself nodding along with this interview with [Derek Sivers](https://sivers.org) — who I already love for [now](../../../now.md) pages and the [NowNowNow](https://nownownow.com/) project. His emphasis on making enough vs making all the billions meshes well with my preference for using the tech you need vs emulating Google-scale solutions for *every* project.
+I found myself nodding along with this interview with [Derek Sivers](https://sivers.org) — who I already love for [now](../../../page/now.md) pages and the [NowNowNow](https://nownownow.com/) project. His emphasis on making enough vs making all the billions meshes well with my preference for using the tech you need vs emulating Google-scale solutions for *every* project.
 
 I also enjoyed the shout-out to [Amy Hoy](https://stackingthebricks.com/).
 

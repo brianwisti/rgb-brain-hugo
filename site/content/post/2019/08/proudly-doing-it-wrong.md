@@ -20,7 +20,7 @@ title: Proudly doing it wrong
 Yeah that's Visual Studio Code. I'm trying new things.
 
 1. write a [site weight](../06/weighing-files-with-python.md) script that prints a report to the console
-1. make the script write the report to a file, and include the file in [now](../../../now.md). Now site building looks like:
+1. make the script write the report to a file, and include the file in [now](../../../page/now.md). Now site building looks like:
    1. build the site
    1. weigh the site
    1. build the site and include the new report

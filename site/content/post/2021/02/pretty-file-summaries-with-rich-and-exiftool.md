@@ -166,7 +166,7 @@ And here’s what that looks like.
 <span style="font-weight: bold">}</span>
 </pre>
 
-Holy crap that’s a lot.  Some of it could be considered sensitive information — unless you read my [now](../../../now.md) page.  But it’s all there!  Even in the snipped version you can learn a lot.  Hello from my Windows partition in West Seattle during February of 2021!
+Holy crap that’s a lot.  Some of it could be considered sensitive information — unless you read my [now](../../../page/now.md) page.  But it’s all there!  Even in the snipped version you can learn a lot.  Hello from my Windows partition in West Seattle during February of 2021!
 
  > 
  > **TIP**

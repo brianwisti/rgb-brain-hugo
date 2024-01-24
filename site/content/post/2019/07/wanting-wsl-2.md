@@ -17,7 +17,7 @@ tags:
 title: Wanting WSL 2
 ---
 
-Been impatiently waiting for the general release of *inbox/WSL* 2 -- the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about). What's interesting about WSL 2?
+Been impatiently waiting for the general release of [WSL](../../../card/WSL.md) 2 -- the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about). What's interesting about WSL 2?
 
  > 
  > WSL 2 delivers a much faster file system performance and full system call compatibility, which lets you run more applications like Docker!

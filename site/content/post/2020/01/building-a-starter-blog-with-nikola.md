@@ -232,7 +232,7 @@ Scanning posts........done!
 [2020-01-05T09:37:40Z] INFO: new_page: Your page's text is at: pages/now.rst
 ````
 
-Everybody could use a [now](../../../now.md) page. Excuse me a moment while I edit `pages/now.rst`. Oh! Since it’s not a post, it won’t show up unless we link to it. The `/now` page is significant enough that it should go on the site menu.
+Everybody could use a [now](../../../page/now.md) page. Excuse me a moment while I edit `pages/now.rst`. Oh! Since it’s not a post, it won’t show up unless we link to it. The `/now` page is significant enough that it should go on the site menu.
 
 Back over to `config.py`:
 
