@@ -2,7 +2,7 @@
 
 import logging
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import frontmatter
@@ -33,12 +33,38 @@ def callout_title(match):
 
 
 @dataclass
-class VaultNote:
+class VaultResource:
+    """Some file in the vault."""
+
+    # Where this resource is located
+    path: Path
+
+    def get_name(self):
+        """Return a handy stringified reference to this resource."""
+        return self.path.stem
+
+
+@dataclass
+class NoteLink:
+    """A link between two internal resources."""
+
+    # Where the link was found
+    source: VaultResource
+
+    # Where the link points to
+    target: VaultResource
+
+    # what the user sees
+    link_text: str
+
+
+@dataclass
+class VaultNote(VaultResource):
     """Tracks what a note needs to know about itself."""
 
-    path: Path
     note: frontmatter.Post
     is_dirty: bool = False
+    internal_links: list[NoteLink] = field(init=False, default_factory=list)
 
     def __post_init__(self):
         self.__ensure_title()
@@ -82,6 +108,10 @@ class VaultNote:
             is_dirty = True
 
         return cls(path=path, note=post, is_dirty=is_dirty)
+
+    def add_link(self, resource: VaultResource, link_text: str):
+        """Remembers a vault link from this note."""
+        self.internal_links.append(NoteLink(self, resource, link_text))
 
     def dumps(self):
         """Return the note's Markdown content as a string."""

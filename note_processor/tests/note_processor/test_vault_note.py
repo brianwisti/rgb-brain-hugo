@@ -5,7 +5,7 @@ from pathlib import Path
 import frontmatter
 import pytest
 
-from note_processor.lib.vault_note import VaultNote
+from note_processor.lib.vault_note import VaultNote, VaultResource
 
 # Tell pylint not to worry about:
 # - Function docstrings
@@ -29,6 +29,12 @@ def md_path(faker):
 
 
 @pytest.fixture
+def vault_resource(faker):
+    path = Path(faker.file_path())
+    return VaultResource(path)
+
+
+@pytest.fixture
 def vault_note(post, md_path):
     return VaultNote(md_path, post)
 
@@ -47,6 +53,11 @@ def vault_note_with_callout(vault_note):
     note = vault_note.note
     note.content = new_content
     return VaultNote(vault_note.path, note)
+
+
+class TestVaultResource:
+    def test_get_name(self, vault_resource):
+        assert vault_resource.get_name() == vault_resource.path.stem
 
 
 class TestVaultNote:
@@ -83,12 +94,40 @@ class TestVaultNoteContent:
         assert vault_note_with_callout.is_dirty
 
 
+class TestVaultNoteLinks:
+    def test_empty(self, vault_note):
+        assert len(vault_note.internal_links) == 0
+
+    def test_add_link(self, vault_note, vault_resource, faker):
+        link_text = faker.word()
+        vault_note.add_link(vault_resource, link_text)
+
+        assert len(vault_note.internal_links) > 0
+
+    def test_add_link_sets_source(self, vault_note, vault_resource, faker):
+        link_text = faker.word()
+        vault_note.add_link(vault_resource, link_text)
+        link = vault_note.internal_links[-1]
+
+        assert link.source == vault_note
+        assert link.target == vault_resource
+        assert link.link_text == link_text
+
+    @pytest.mark.skip(reason="Not implemented")
+    def test_single_untitled_link(self):
+        assert False
+
+    @pytest.mark.skip(reason="Not implemented")
+    def test_single_link_with_title(self):
+        assert False
+
+
 class TestVaultNoteTitle:
     def test_title_get(self, vault_note: VaultNote):
         assert vault_note.title == vault_note.meta["title"]
 
     def test_title_get_from_path(self, untitled_vault_note: VaultNote):
-        assert untitled_vault_note.title == untitled_vault_note.path.stem
+        assert untitled_vault_note.title == untitled_vault_note.get_name()
 
     def test_title_from_path_persists(self, untitled_vault_note: VaultNote):
         title = untitled_vault_note.title
