@@ -1,6 +1,6 @@
 ---
 aliases:
-- follow
+- /follow
 title: follow
 ---
 

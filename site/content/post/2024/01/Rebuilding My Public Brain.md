@@ -37,7 +37,7 @@ The process itself was manual:
 * drop all the Markdown from my Hugo site into [Post](../../_index.md)
 * arrange posts by year and month so they match permalink expectations, cleaning up and extracting (laughably minimal) new notes for recurring topics as I go; sometimes a post no longer has even personal historical relevance, so I remove it
 * periodically review those new notes, maybe flesh them out a little bit, and move them to public [Card](../../../card/_index.md)
-* Drop in my [Config](../../../config/_index.md) files, clean them up a tiny bit, and pinky-promise I'll do more with them later
+* Drop in my *Config* files, clean them up a tiny bit, and pinky-promise I'll do more with them later
 
 This process of evaluation and refactoring was fundamentally manual, so I limited the plugins to what I needed to mark progress and visually distinguish links.
 
