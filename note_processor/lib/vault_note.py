@@ -2,6 +2,7 @@
 
 import logging
 import re
+import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -131,6 +132,10 @@ class VaultNote(VaultResource):
         """Return the note's Markdown content as a string."""
         return frontmatter.dumps(self.note)
 
+    def get_name(self):
+        """Return a handy stringified reference to this resource."""
+        return self.title
+
     def write_file(self):
         """Write the note's Markdown content to its file."""
         self.path.write_text(self.dumps(), encoding="utf-8")
@@ -163,4 +168,6 @@ class VaultNote(VaultResource):
         """Find all internal links in the note's content."""
         for match in NOTE_LINK.finditer(self.content):
             link_text, link_path = match.groups()
-            self.add_link(VaultResource(Path(link_path)), link_text)
+            fs_path = urllib.parse.unquote(link_path)
+            target_path = (self.path.parent / fs_path).resolve()
+            self.add_link(VaultResource(target_path), link_text)

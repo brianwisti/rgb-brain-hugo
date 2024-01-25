@@ -10,20 +10,17 @@ default:
 # Build and test the site
 site: build test-site
 
-pull: export backlinks process
+pull: export process
 
 # Grab my Obsidian notes for Hugo
 export:
   obsidian-export $VAULT_HOME site/content
 
-backlinks:
-  perl bin/find-backlinks.pl
-
 process:
   python bin/process_notes.py
 
 serve:
-  hugo serve -D
+  cd site && hugo serve -D
 
 build:
   cd site && hugo --environment production
