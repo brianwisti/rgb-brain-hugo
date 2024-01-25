@@ -17,6 +17,19 @@ CALLOUT_BLOCK = re.compile(
     re.VERBOSE,
 )
 
+# Obsidian Markdown: wiki links
+NOTE_LINK = re.compile(
+    r"""
+  \[
+    ( [^\]]+? )
+  \]
+  \(
+    ( [^\)]+? \.md)
+  \)
+""",
+    re.VERBOSE,
+)
+
 
 def callout_title(match):
     """Return a formatted title for callouts."""
@@ -68,6 +81,7 @@ class VaultNote(VaultResource):
 
     def __post_init__(self):
         self.__ensure_title()
+        self.__find_links()
         self.__adjust_content()
 
     @property
@@ -144,3 +158,9 @@ class VaultNote(VaultResource):
         if "title" not in self.meta:
             self.meta["title"] = self.path.stem
             self.is_dirty = True
+
+    def __find_links(self):
+        """Find all internal links in the note's content."""
+        for match in NOTE_LINK.finditer(self.content):
+            link_text, link_path = match.groups()
+            self.add_link(VaultResource(Path(link_path)), link_text)

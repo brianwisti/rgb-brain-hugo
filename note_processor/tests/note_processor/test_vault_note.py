@@ -5,7 +5,48 @@ from pathlib import Path
 import frontmatter
 import pytest
 
-from note_processor.lib.vault_note import VaultNote, VaultResource
+from note_processor.lib.vault_note import (
+    NOTE_LINK,
+    NoteLink,
+    VaultNote,
+    VaultResource,
+)
+
+
+def generate_md_path(faker):
+    """Return a random Markdown file path."""
+    return Path(faker.file_path(extension="md"))
+
+
+def generate_post(faker):
+    """Return a random frontmatter.Post."""
+    meta = {"title": faker.sentence()}
+    content = faker.text()
+    handler = None
+
+    return frontmatter.Post(content, handler, **meta)
+
+
+def generate_post_with_note_links(faker, note_link_list):
+    """Return a random frontmatter.Post with note links."""
+    meta = {"title": faker.sentence()}
+    content = generate_text_with_note_links(faker, note_link_list)
+    handler = None
+
+    return frontmatter.Post(content, handler, **meta)
+
+
+def generate_text_with_note_links(faker, note_link_list):
+    """Return a string of text with note links."""
+    return " ".join(
+        [f"{note_link_as_markdown(link)} {faker.text()}" for link in note_link_list]
+    )
+
+
+def note_link_as_markdown(link: NoteLink):
+    """Return a Markdown-formatted link."""
+    return f"[{link.link_text}]({link.target.path})"
+
 
 # Tell pylint not to worry about:
 # - Function docstrings
@@ -15,17 +56,25 @@ from note_processor.lib.vault_note import VaultNote, VaultResource
 
 
 @pytest.fixture
-def post():
-    meta = {"title": "My Card"}
-    content = "This is my card."
-    handler = None
-
-    return frontmatter.Post(content, handler, **meta)
+def md_path(faker):
+    return generate_md_path(faker)
 
 
 @pytest.fixture
-def md_path(faker):
-    return Path(faker.file_path(extension="md"))
+def md_paths(faker, limit=10):
+    return [generate_md_path(faker) for _ in range(limit)]
+
+
+@pytest.fixture
+def post(faker):
+    return generate_post(faker)
+
+
+@pytest.fixture
+def markdown_link(faker, md_path):
+    link_text = faker.word()
+    text = f"[{link_text}]({md_path})"
+    return text
 
 
 @pytest.fixture
@@ -45,6 +94,22 @@ def untitled_vault_note(vault_note):
     del note.metadata["title"]
 
     return VaultNote(vault_note.path, note)
+
+
+@pytest.fixture
+def note_link(faker, vault_note, md_path):
+    link_text = faker.word()
+
+    return NoteLink(vault_note, VaultResource(md_path), link_text)
+
+
+@pytest.fixture
+def note_links(faker, vault_note, md_paths):
+    link_text = faker.word()
+
+    return [
+        NoteLink(vault_note, VaultResource(md_path), link_text) for md_path in md_paths
+    ]
 
 
 @pytest.fixture
@@ -113,13 +178,58 @@ class TestVaultNoteLinks:
         assert link.target == vault_resource
         assert link.link_text == link_text
 
-    @pytest.mark.skip(reason="Not implemented")
-    def test_single_untitled_link(self):
-        assert False
+    def test_vault_note_with_links(self, faker, md_path, note_links):
+        note = generate_post_with_note_links(faker, note_links)
+        vault_note = VaultNote(md_path, note)
 
-    @pytest.mark.skip(reason="Not implemented")
-    def test_single_link_with_title(self):
-        assert False
+        assert len(vault_note.internal_links) == len(note_links)
+
+        for link, internal_link in zip(note_links, vault_note.internal_links):
+            assert internal_link.source == vault_note
+            assert internal_link.target == link.target
+            assert internal_link.link_text == link.link_text
+
+
+class TestNoteLinkPattern:
+    def test_empty(self, faker):
+        text = faker.sentence()
+        assert len(NOTE_LINK.findall(text)) == 0
+
+    def test_single_untitled_link(self, note_link):
+        md = note_link_as_markdown(note_link)
+        links = NOTE_LINK.findall(md)
+
+        assert len(links) == 1
+
+        link_text, link_path = links[0]
+        assert link_text == note_link.link_text
+        assert link_path == str(note_link.target.path)
+
+    def test_non_note_link(self, faker):
+        text = f"[{faker.word()}]({faker.url()})"
+        links = NOTE_LINK.findall(text)
+
+        assert len(links) == 0
+
+    def test_text_with_multiple_links(self, note_links):
+        md = "\n".join([note_link_as_markdown(link) for link in note_links])
+        links = NOTE_LINK.findall(md)
+
+        assert len(links) == len(note_links)
+
+        for link, (link_text, link_path) in zip(note_links, links):
+            assert link_text == link.link_text
+            assert link_path == str(link.target.path)
+
+    def test_line_with_multiple_links(self, faker, note_links):
+        md = generate_text_with_note_links(faker, note_links)
+        links = NOTE_LINK.findall(md)
+
+        assert len(links) == len(note_links)
+
+        for link, (link_text, link_path) in zip(note_links, links):
+            assert link_text == link.link_text
+            assert link_path == str(link.target.path)
 
 
 class TestVaultNoteTitle:
