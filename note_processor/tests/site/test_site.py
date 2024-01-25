@@ -1,6 +1,7 @@
 """Automatic tests for the generated site."""
 
 import io
+import re
 import subprocess
 from pathlib import Path
 from typing import cast
@@ -44,6 +45,12 @@ PLAUSIBLE_TOKEN = (
     f'<script defer data-domain="{PLAUSIBLE_DOMAIN}"'
     ' src="https://plausible.io/js/script.js"></script>'
 )
+EXTERNAL_LINK = re.compile(
+    r"""
+    ^ (?: http | https | mailto | tel | sms) :
+""",
+    re.VERBOSE,
+)
 
 
 def parse_html_path(html_path: Path) -> BeautifulSoup:
@@ -54,15 +61,7 @@ def parse_html_path(html_path: Path) -> BeautifulSoup:
 
 
 def link_is_local(link: str | None):
-    return (
-        link is not None
-        and not link.startswith("https://")
-        and not link.startswith("http://")
-        and not link.startswith("mailto:")
-        and not link.startswith("tel:")
-        and not link.startswith("sms:")
-        and "#" not in link
-    )
+    return link is not None and not EXTERNAL_LINK.match(link) and "#" not in link
 
 
 class TestGeneratedMarkup:

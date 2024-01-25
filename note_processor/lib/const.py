@@ -14,13 +14,3 @@ NOTE_LINK = r"""
     (?<path> [^\)]+? \.md)
   \)
 """
-
-# Obsidian Markdown: callouts
-CALLOUT = re.compile(
-    r"""> \s
-        \\\[\! (?P<callout_type>[A-Z]+) \\\]
-        (?: \s (?P<title> [^ \n ]+?))?
-        \n
-    """,
-    re.VERBOSE,
-)

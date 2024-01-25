@@ -1,7 +1,8 @@
 set dotenv-filename := ".env"
 
-python := 'python3'
-pytest := 'pytest -n auto'
+pyenv := 'pyenv exec'
+python := 'pyenv exec python3'
+pytest := 'pyenv exec pytest -n auto'
 
 default:
   @just --list
@@ -48,5 +49,5 @@ test-site:
 
 # Refresh Python dependencies from requirements.in
 update:
-  pip-compile --resolver=backtracking requirements.in > requirements.txt
-  pip-sync requirements.txt
+  {{ pyenv }} pip-compile requirements.in > requirements.txt
+  {{ pyenv }} pip-sync requirements.txt
