@@ -1,5 +1,6 @@
 ---
 category: note
+created: 2024-01-15 15:25:59-08:00
 date: 2023-07-01
 slug: save-those-links
 syndication:
@@ -8,6 +9,7 @@ tags:
 - the-internet
 - second-brain
 title: Save those links
+updated: 2024-01-26 10:18:20-08:00
 ---
 
 Saw this post today:

@@ -13,9 +13,11 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 07 - Writing Subroutines
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:58:34-08:00
 ---
 
-## Introduction
+# Introduction
 
 We accomplished quite a bit in [parrot-babysteps-06-files-and-hashes](parrot-babysteps-06-files-and-hashes.md).
 We figured out how to parse a 20 MB star catalog and search for information that
@@ -30,7 +32,7 @@ that would take me far beyond what is appropriate for a babystep. However, a
 quick glance at the chapter should suggest that Parrot subroutines are quite 
 powerful and worth deeper exploration on your own.
 
-## Subroutines
+# Subroutines
 
 We've been working with subroutines since [parrot-babysteps-01-getting-started](../07/parrot-babysteps-01-getting-started.md) Every Parrot application has a subroutine tagged as `:main` to show that it contains the main logic for the program. Let's start adding our own supplementary subroutines. 
 
@@ -245,7 +247,7 @@ $ parrot example-07-01.pir
 It sure does. The code is still rather awkward, though. How about we add a
 subroutine for transforming a line from the text file into star data?
 
-## Returning Values
+# Returning Values
 
 ````
 # example-07-02
@@ -373,7 +375,7 @@ Is our application cleaner? Yes, a little bit. I'm tired of having so many unnam
 stars, though. Let's add a little logic to attempt an alternate name if no proper
 name is available.
 
-### Making `say_star_details` Smarter
+## Making `say_star_details` Smarter
 
 ````
 # example-07-03
@@ -521,7 +523,7 @@ $ parrot example-07-03.pir | more
 568 stars exactly matched Sol's spectrum G2V
 ````
 
-## Conclusion
+# Conclusion
 
 Right. Our script has grown to the point where it shows every `G2V` star
 in the HYG database, and some of the complexity of this task has been

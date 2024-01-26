@@ -13,6 +13,8 @@ tags:
 - mental-health
 - neurodiversity
 title: Useful Overview of Neurodiversity
+created: 2024-01-15T15:26:31-08:00
+updated: 2024-01-26T11:03:02-08:00
 ---
 
 Myk Bolkonstky's [Things Every Software Engineer Should Know About Neurodiversity](https://egghead.io/lessons/egghead-things-every-software-engineer-should-know-about-neurodiversity):

@@ -10,6 +10,8 @@ tags:
 - linux
 - tools
 title: My Ubuntu Setup
+created: 2024-01-15T15:25:29-08:00
+updated: 2024-01-26T10:11:59-08:00
 ---
 
 I installed [Ubuntu](http://ubuntu.com) 14.04 on a partition of my laptop today. This is not a novelty. What *is* unusual is the fact that today I decided to track what I installed before I felt like I had a "Minimum Viable Linux." Turns out there was quite a bit.

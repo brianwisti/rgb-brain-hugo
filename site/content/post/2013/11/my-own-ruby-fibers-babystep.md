@@ -13,6 +13,8 @@ tags:
 - site
 - programming
 title: My Own Ruby Fibers Babystep
+created: 2024-01-15T15:25:31-08:00
+updated: 2024-01-26T10:11:17-08:00
 ---
 
 My adventures [rereading](rereading-the-pickaxe.md) the Pickaxe Book have reached the chapter on [Ruby](../../../card/Ruby.md) Fibers. Interesting stuff. Thought I would extrapolate from their initial example. My old static pages started from a MANIFEST file that looked something like this:

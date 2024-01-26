@@ -10,6 +10,8 @@ tags:
 - perl
 - coolnamehere
 title: Perl Hacks In My Workspace
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:58:25-08:00
 ---
 
 Looking at some specific hacks from the O'Reilly [Perl Hacks](http://oreilly.com/catalog/9780596526740/) book for my own [Perl](../../../card/Perl.md) workflow. It should be obvious from the tone and content that this is not intended to replace any of the  original material or take credit for anything in the book. 
@@ -32,13 +34,13 @@ intact when I come back to my workspace the next morning.
 
 Naturally, I had to examine Hack #1 in the context of ELinks.
 
-## Hack #1: Add CPAN Shortcuts to ELinks
+# Hack #1: Add CPAN Shortcuts to ELinks
 
 There are a couple of preliminary steps to get out of the way before adding
 CPAN shortcuts to ELinks. First, install ELinks. Second, make sure smart
 prefixes are enabled.
 
-### Installing ELinks
+## Installing ELinks
 
 The first requirement for this hack is ELinks. The [ELinks download page](http://elinks.cz/download.html) shows all sorts of nifty ways to install it. I went the easy way and just used my system package managers.
 
@@ -56,7 +58,7 @@ $ sudo port install elinks
 
 Windows folks are left to their own devices, since most of my Windows `elinks`  usage is on other systems via [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/). I do know that ELinks is available in [cygwin](../../2004/07/cygwin.md).
 
-### Enable Smart Prefixes
+## Enable Smart Prefixes
 
 The easiest way to test if smart prefixes are enabled is by trying to use
 one that's already been defined. Try opening the following URL in ELinks:
@@ -80,7 +82,7 @@ Now go back and try to open `g Modern::Perl` again. That did the trick for me.
 
 On to the CPAN shortcuts.
 
-### Adding a Smart Prefix
+## Adding a Smart Prefix
 
 * Enter `o` to open the Options Manager
 * Open Protocols / URI Rewriting / Smart Prefixes
@@ -91,7 +93,7 @@ On to the CPAN shortcuts.
 * Enter the URL for the smart prefix, then select `[OK]`
 * Select `[Save]`
 
-### The Smart Prefixes
+## The Smart Prefixes
 
 |Description|Prefix|URL|
 |-----------|------|---|
@@ -99,7 +101,7 @@ On to the CPAN shortcuts.
 |Show Module Documentation|cpod|`http://search.cpan.org/perldoc/%s`|
 |AnnoCPAN Module Documentation|apod|`http://www.annocpan.org/?mode=search;field=Module;latest=1;name=%s`|
 
-### Try Them Out!
+## Try Them Out!
 
 Try the following URLs to get you started.
 
@@ -107,7 +109,7 @@ Try the following URLs to get you started.
 * `cpod Acme::Python`
 * `apod Moose`
 
-## References
+# References
 
 * [Perl Hacks](http://oreilly.com/catalog/9780596526740/) by chromatic with 
   Damian Conway and Curtis 'Ovid' Poe. Copyright 2006 O'Reilly Media, Inc., 0-596-52674-1

@@ -11,6 +11,8 @@ tags:
 - learn
 - coolnamehere
 title: Perl 5 Babysteps 02 - User Input
+created: 2024-01-15T15:25:35-08:00
+updated: 2024-01-26T09:41:23-08:00
 ---
 
 Having a [Perl](../../../card/Perl.md) program that displays the exact same message every time you run is nice when it comes to being consistent, but not so entertaining as a program. "What does it do?" "It prints out my name." "Oh." Let's make things a little more interesting. We could change the value  of `$name` in the code, but it might be a little tiresome to do this before  showing it to each new person. How about making the program ask for a name? User interaction - a neat idea.
@@ -19,7 +21,7 @@ Having a [Perl](../../../card/Perl.md) program that displays the exact same mess
 
 It's so neat that I'm going to show you two ways to do it.
 
-## Traditional
+# Traditional
 
 Here's how I got user input before Perl 5.10. You'll find a lot of code that looks like this.
 
@@ -96,7 +98,7 @@ $
 
 You can see that you're going to use `chomp` a lot when getting user input. But what if there were an easier way? There is ... sort of.
 
-## A new way
+# A new way
 
 The new way looks better to my eyes, but I'm willing to admit that there's a lot going on for a beginner. You can feel free to ignore this section if you like, and my feelings won't be hurt at all.
 
@@ -122,7 +124,7 @@ say "Hello, $name!";
 
 The program is doing nearly the same thing as before, but the code looks a lot different. We `use` some new stuff, added a new variable, and have changed the way we get the user's name. On the other hand, we don't have to `chomp` anything.
 
-### Looking at the changes
+## Looking at the changes
 
 ````perl
 use Term::UI;

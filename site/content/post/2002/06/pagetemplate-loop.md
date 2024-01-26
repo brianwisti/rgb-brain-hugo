@@ -9,17 +9,19 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Loop
+created: 2024-01-15T15:25:50-08:00
+updated: 2024-01-26T09:17:52-08:00
 ---
 
-## Loop Basics
+# Loop Basics
 
 The `loop` directive is the most complex, and requires more explanation of its details. Let’s start by just looking at the basic syntax of a loop in [pagetemplate](pagetemplate.md).
 
-### Loop
+## Loop
 
 Use the `loop` directive when you want PageTempate to insert the same chunk repeatedly for a list of items. It can grab values from the item to be inserted in `value` directives within the chunk. If there is no list of items, the `in` chunk is skipped.
 
-#### Syntax
+### Syntax
 
 ````html
 [%loop LIST %]
@@ -37,7 +39,7 @@ Way back when, `loop` started as `in`. It seemed like the natural way of looking
 
 `in` and `loop` both describe the same directive, so there is no difference in usage beyond a couple characters’ worth of typing.
 
-#### Example
+### Example
 
 ````html
 <ul>
@@ -47,17 +49,17 @@ Way back when, `loop` started as `in`. It seemed like the natural way of looking
 </ul>
 ````
 
-### “Local” Values
+## “Local” Values
 
 PageTemplate works a little magic with `value` directives when stepping through a `loop`. First it examines the list item to see if it has a value for the variable named. If it can’t find one there, it checks its main variable listing and tries to insert that. If it can’t find a value in the main variable listing, it inserts nothing for that `value` directive.
 
 This logic works for nested lists, too. If you have a `loop` directive embedded in another `loop` directive - say, a list of books written by each one of a list of your favorite authors - PageTemplate first looks in the innermost list (the books) for a name, then the next list out (the authors), and finally the main variable listing.
 
-### Empty
+## Empty
 
 Similar to the `else` directive for \[\[pagetemplate-if-else-and-elsif|`if` blocks\]\], the `empty` directive provides a block of content to display if the list you are looking at is empty.
 
-#### Syntax
+### Syntax
 
 ````html
 [%loop LIST %]
@@ -67,7 +69,7 @@ Similar to the `else` directive for \[\[pagetemplate-if-else-and-elsif|`if` bloc
 [%end loop %]
 ````
 
-#### Example
+### Example
 
 ````html
 <ul>
@@ -96,15 +98,15 @@ going to stop you if that’s what you really want to do.
 
 {{\< /note >}}
 
-## Iterators
+# Iterators
 
 You are normally dealing with a hidden unnamed `this_step` variable in loops. Most of the time this is no problem, but sometimes your template would be clearer if you could just hand a name to that hidden variable and access its traits instead of letting your value directives fling wildly off into space. Maybe you want to access a global value that has the same name as a loop value. Iterators provide you with a main spot to access loop values without interfering with your ability to access global values.
 
-### Basic Iterators
+## Basic Iterators
 
 Basic iterators provide an explicit name for your loop variable.
 
-#### Syntax
+### Syntax
 
 ````html
 [%loop LIST ITERATOR %]
@@ -112,7 +114,7 @@ Basic iterators provide an explicit name for your loop variable.
 [%end loop %]
 ````
 
-#### Example
+### Example
 
 ````html
 <ul>
@@ -124,13 +126,13 @@ Basic iterators provide an explicit name for your loop variable.
 </ul>
 ````
 
-### Multiple Iterators
+## Multiple Iterators
 
 It’s usually easy enough to handle loops. You just step through and use the variable names you’ve been given by the programmer. It’s not always that easy. Sometimes you get complex lists with no convenient names attached to them. For example, maybe you don’t get a list of books with convenient labels for title and author. Maybe each item in your list is *another* list where the first item is a title and the second item is the author’s name. Hey, don’t blame me. I didn’t write that code.
 
 Multiple iterators provide a way for you to make sense out of a confusing situation like that.
 
-#### Syntax
+### Syntax
 
 ````
 [%loop LIST ITERATOR_1 ITERATor_2 ... iterator_n %]
@@ -138,7 +140,7 @@ Multiple iterators provide a way for you to make sense out of a confusing situat
 [%end loop %]
 ````
 
-#### Example
+### Example
 
 ````
 #!html
@@ -151,15 +153,15 @@ Multiple iterators provide a way for you to make sense out of a confusing situat
 </ul>
 ````
 
-## Metavariables
+# Metavariables
 
 Metavariables are a really snazzy addition to `loop` which make formatting and organizing list displays much easier, without any work by you or the programmers.
 
-### `FIRST`
+## `FIRST`
 
 True if you are on the first trip through the loop.
 
-#### Example
+### Example
 
 ````html
 <table class="booklist">
@@ -183,11 +185,11 @@ True if you are on the first trip through the loop.
 </pre>
 ````
 
-### `LAST`
+## `LAST`
 
 True if you are on the last trip through the loop.
 
-#### Example
+### Example
 
 ````html
 [%loop books title author%]
@@ -211,11 +213,11 @@ True if you are on the last trip through the loop.
 </pre>
 ````
 
-### `ODD`
+## `ODD`
 
 True if you are on an odd-numbered trip through the loop (the first trip is odd).
 
-#### Example
+### Example
 
 ````html
 [%loop books title author%]
@@ -242,11 +244,11 @@ True if you are on an odd-numbered trip through the loop (the first trip is odd)
 [%end loop%]
 ````
 
-### `INDEX`
+## `INDEX`
 
 Counts the number of trips you’ve made through the loop (starts at zero).
 
-#### Example
+### Example
 
 ````html
 [%loop books title author%]
@@ -275,7 +277,7 @@ Counts the number of trips you’ve made through the loop (starts at zero).
 [%end loop%]
 ````
 
-#### Lists and WYSIWYG Editors
+### Lists and WYSIWYG Editors
 
 Here’s a specific problem that might pop up when you are using a WYSIWYG editor. Let’s say you’re embedding a list into a table, so that each item in the list gets one table row. Dreamweaver is probably not going to enjoy code like this:
 

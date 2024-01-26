@@ -10,6 +10,8 @@ slug: reinstalling-jruby
 tags:
 - blogspot
 title: Reinstalling JRuby
+created: 2024-01-15T15:25:38-08:00
+updated: 2024-01-26T09:40:56-08:00
 ---
 
 I'm still getting everything back together after the iMac upgrade fiasco. [JRuby](http://jruby.org), my favorite [Ruby](../../../card/Ruby.md) implementation, is still missing. I think I'll fix that now.

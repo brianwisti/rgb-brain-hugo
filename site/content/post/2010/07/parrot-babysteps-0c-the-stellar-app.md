@@ -14,6 +14,8 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 0c - The Stellar App
+created: 2024-01-15T15:25:34-08:00
+updated: 2024-01-26T10:10:01-08:00
 ---
 
 Our search journey continues. We have accomplished the hard 
@@ -24,7 +26,7 @@ back into the full [HYG Catalog](http://www.astronexus.com) and search for stars
 That's right. After all this work, `stellar` grows up and becomes an
 application.
 
-### Note
+# Note
 
 There are easier ways to get searches out of a large CSV file. If
 that was really all I wanted to do, I could use a higher level language like
@@ -32,7 +34,7 @@ that was really all I wanted to do, I could use a higher level language like
 query the database. However, we are not building a SQL database. We are learning
 how to do interesting things with [Parrot](../../../card/Parrot.md).
 
-## Building a Catalog and Searching It
+# Building a Catalog and Searching It
 
 The first thing that's tripping me up is how to set up the catalog itself. You
 know the "set of stars" I was talking about? The easy way to do this from a test
@@ -60,7 +62,7 @@ slow because my code overall is simplistic. Maybe I can revisit this idea after
 learning more about Parrot.
 </aside>
 
-### Searching The Catalog
+## Searching The Catalog
 
 I do not want to dig right into searching the full 119,617 entries of the real
 catalog. Instead, let's set up a small test catalog and write some tests.
@@ -177,7 +179,7 @@ the fastest approach, but it works.
 It works well enough that I am ready to add real data and some way for people
 to use it!
 
-### Searching From The Command Line
+## Searching From The Command Line
 
 Now that we know `stellar` can read a CSV and return results, it's time to work
 on that empty `main` that has been sitting in `stellar.pir`. Oh yeah - we will
@@ -232,7 +234,7 @@ $ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
 
 Hey, this thing is almost useful!
 
-## Conclusion
+# Conclusion
 
 `stellar` has reached a major milestone. When I started fiddling with the [HYG
 Database](http://astronexus.com/node/34), I wanted to write a command-line Parrot tool that could look up

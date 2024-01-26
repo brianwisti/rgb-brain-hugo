@@ -14,13 +14,15 @@ tags:
 - learn
 - programming
 title: Hello Dancer2
+created: 2024-01-15T15:26:51-08:00
+updated: 2024-01-26T10:17:09-08:00
 ---
 
 The [PerlDancer](https://github.com/PerlDancer/) team’s [Dancer2](https://metacpan.org/pod/Dancer2) project is a [card/Perl](../../../card/Perl.md) framework for writing Web applications with less [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_code) than other Web frameworks. I am slowly exploring what it offers. Feel free to follow along.
 
 This is sort of a tutorial. I assume you know Perl and maybe a bit about Web server programming, but not that you have mastered either. My pace may annoy you if you *have* mastered Perl, Web programming, or Dancer2.
 
-## Installation
+# Installation
 
 I use Perl 5.24.0 and [cpanm](https://metacpan.org/pod/App::cpanminus) via [Perlbrew](http://perlbrew.pl/). Installation of Dancer2 and its dependencies requires a single command.
 
@@ -28,7 +30,7 @@ I use Perl 5.24.0 and [cpanm](https://metacpan.org/pod/App::cpanminus) via [Perl
 $ cpanm Dancer2
 ````
 
-## Hey
+# Hey
 
 You do not need much code to create a Dancer2 application.
 
@@ -55,7 +57,7 @@ Loading `http://localhost:3000/hey` in a browser shows our simple message.
 
 Dancer2 gives you a [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) — Domain-Specific Language — to describe your application. These DSL [keywords](https://metacpan.org/pod/distribution/Dancer2/lib/Dancer2/Manual.pod#DSL-KEYWORDS) cut down the boilerplate code common in some Web development frameworks.
 
-### `get`
+## `get`
 
 The [get](https://metacpan.org/pod/distribution/Dancer2/lib/Dancer2/Manual.pod#get) keyword defines a [route](https://metacpan.org/pod/Dancer2::Core::Route) for Dancer2. Routes tell Dancer2 how to respond when someone requests a path — the /hey bit — from your application. `get` is also a method from [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). Use it when you only want to "get" something from the application. Dancer2 has keywords for more HTTP methods, but `get` is fine for now.
 
@@ -65,7 +67,7 @@ Your Dancer2 application returns an error page informing them that the path does
 
 With the HTTP method and path defined, the last important part of our route is the code. Your application runs that code and sends its return value to the visitor. Our first route code example is an anonymous subroutine that returns the text "Hello!", but they can be as complicated as you need.
 
-### `start`
+## `start`
 
 [start](https://metacpan.org/pod/distribution/Dancer2/lib/Dancer2/Manual.pod#start) tells Dancer2 that you finished defining your application and it can begin serving to the world.
 
@@ -77,7 +79,7 @@ Keywords make the Dancer2 DSL work, but the code style takes advantage of Perl�
 get('/hey', sub { return 'Hey!'; });
 ````
 
-## Hey You
+# Hey You
 
 How about greeting the visitor by name? Since form processing involves more steps than I want to think about today, we use route parameters instead.
 
@@ -113,11 +115,11 @@ Now we should be able to see <http://localhost:3000/hey/Brian> — or whatever n
 
 !["Hey Brian!" in Dancer2](attachments/img/2016/dancer2-hey-brian.png)
 
-### `route_parameters`
+## `route_parameters`
 
 [route\_parameters](https://metacpan.org/pod/distribution/Dancer2/lib/Dancer2/Manual.pod#route_parameters) returns a [hash-like object](https://metacpan.org/pod/Hash::MultiValue) which stores tokens and their values from a route match. Use the `get` method when you need those values in your route code.
 
-## Wrap It Up
+# Wrap It Up
 
 We installed Dancer2, made just about the simplest Web application I could think of, and explored a little bit about declaring routes.
 

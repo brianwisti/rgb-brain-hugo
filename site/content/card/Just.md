@@ -2,13 +2,15 @@
 aliases:
 - justfile
 title: just
+created: 2024-01-15T15:26:14-08:00
+updated: 2024-01-26T09:07:10-08:00
 ---
 
 
  > 
  > Just a command runner
 
-## Loading from `.env`
+# Loading from `.env`
 
 Once you tell it where to look, `just` loads dotenv files and treats its contents as environment variables.
 
@@ -29,6 +31,6 @@ export:
 
 Then I can stop hard-coding paths in my [obsidian-export](obsidian-export.md) invocation.
 
-## Related
+# Related
 
 * https://github.com/casey/just

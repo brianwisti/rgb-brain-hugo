@@ -10,6 +10,8 @@ tags:
 - linea-sketch
 - bedtime-drawing
 title: Dream Aesthetic
+created: 2024-01-15T15:25:59-08:00
+updated: 2024-01-26T10:18:17-08:00
 ---
 
 ![attachments/img/2023/cover-2023-08-29.png](../../../attachments/img/2023/cover-2023-08-29.png)

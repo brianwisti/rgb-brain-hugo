@@ -9,21 +9,23 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Other Features
+created: 2024-01-15T15:25:48-08:00
+updated: 2024-01-26T09:17:54-08:00
 ---
 
 PageTemplate has a number of other features for the designer, and I
 couldn’t figure out where to put them. Let’s just dump them here until
 the day I *do* figure out where a good spot for them would be.
 
-## Filter
+# Filter
 
 Filtering seemed so handy with variables that we thought it would be fun
 to have filtering as an independent action. All the contents of a
 `filter` block are passed through the named filter during output.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 [%filter :escapeHTML %]
@@ -31,7 +33,7 @@ to have filtering as an independent action. All the contents of a
 [%end]
 ````
 
-## Include
+# Include
 
 `include` is somewhat tricky. The idea is easy enough. You want to
 include the same template fragment in several other templates. A login
@@ -41,16 +43,16 @@ fragment and made it available to you as a sort of variable. The other
 is where you request that a specific file be processed. Okay, that
 wasn’t so hard after all.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 [%include login_form %]
 [%include fragments/login_form.tmpl %]
 ````
 
-## Define
+# Define
 
 Occasionally you will have information that the developer doesn’t. No, I
 don’t mean the name of the great Mexican restaurant on the north side of
@@ -70,9 +72,9 @@ template without waiting for the developers to incorporate them into the
 code. It’s kind of a shortcut and only good for simple string values,
 but every once in a while a shortcut is exactly what you need.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 [%define restaurant Jalisco %]
@@ -81,14 +83,14 @@ but every once in a while a shortcut is exactly what you need.
 <p>I really enjoy the [%var dish %] at [%var restaurant%]</p>
 ````
 
-## Case
+# Case
 
 The `case` directive is a special extra directive which allows you to
 show different content based on the value of a single variable.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 [%case role %]
@@ -104,19 +106,19 @@ show different content based on the value of a single variable.
 You must make sure the developer includes the `PageTemplate/case.rb`
 library in his code to use the `case` directive.
 
-## Comments
+# Comments
 
 Comments are useful if you want to make notes to yourself as the
 template designer, but you don’t want those comments showing up in the
 final template output.
 
-### Syntax
+## Syntax
 
 ````html
 [%-- Random Commentary %]
 ````
 
-## Alternate Syntax
+# Alternate Syntax
 
 One of PageTemplate’s features is the ability to come up with your own
 directive syntax. If you feel that the default syntax is less than

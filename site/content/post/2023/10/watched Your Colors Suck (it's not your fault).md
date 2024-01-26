@@ -7,6 +7,8 @@ tags:
 - watch
 - css
 - art
+created: 2024-01-15T15:25:59-08:00
+updated: 2024-01-26T09:03:36-08:00
 ---
 
 Hey do you want a 37 minute info dump about digital color? Of course you do.

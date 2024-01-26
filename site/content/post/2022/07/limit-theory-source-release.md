@@ -7,6 +7,8 @@ tags:
 - gaming
 - limit-theory
 - lua
+created: 2024-01-15T15:26:03-08:00
+updated: 2024-01-26T10:19:18-08:00
 ---
 
 Josh Parnell released the source code for [Limit Theory](http://ltheory.com), one of those Kickstarter-backed game projects that kind of imploded on a combo of complexity and high expectations.

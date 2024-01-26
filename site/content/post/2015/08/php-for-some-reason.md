@@ -6,12 +6,14 @@ aliases:
 category: post
 date: 2015-08-14 00:00:00-07:00
 description: |
-  I have been looking at PHP for the first time in years. I don't know why.
+  "I have been looking at PHP for the first time in years. I don't know why."
 slug: php-for-some-reason
 tags:
 - php
 - programming
 title: PHP, for Some Reason
+created: 2024-01-15T15:25:26-08:00
+updated: 2024-01-26T10:13:11-08:00
 ---
 
 I have been looking at [PHP](../../../card/PHP.md) for the first time in years. I don't know why.

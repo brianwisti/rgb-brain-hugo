@@ -12,6 +12,8 @@ tags:
 - surprise
 - now
 title: All I Did Was Click Bulk Download
+created: 2024-01-15T15:26:30-08:00
+updated: 2024-01-26T11:03:09-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-02.png](../../../attachments/img/2020/cover-2020-03-02.png)

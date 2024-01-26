@@ -3,6 +3,7 @@ aliases:
 - /note/2020/81/every-post-has-a-uuid/
 - /note/2020/03/every-post-has-a-uuid/
 category: note
+created: 2024-01-15 15:26:28-08:00
 date: 2020-03-21 19:06:00-07:00
 slug: every-post-has-a-uuid
 syndication:
@@ -12,6 +13,7 @@ tags:
 - site
 - helpful-hint
 title: Every Post Has a UUID
+updated: 2024-01-26 11:03:10-08:00
 ---
 
 Gave them all a Universally Unique Identifer, per [RFC 4122](http://www.faqs.org/rfcs/rfc4122.html).

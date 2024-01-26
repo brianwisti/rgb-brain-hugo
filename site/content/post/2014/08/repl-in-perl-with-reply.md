@@ -4,6 +4,7 @@ aliases:
 - /post/2014/perl-reply-repl/
 - /2014/08/14/repl-in-perl-with-reply/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2014-08-14 00:00:00-07:00
 series:
 - The Reply Perl REPL
@@ -16,6 +17,7 @@ tags:
 - mojolicious
 - tools
 title: REPL In Perl With Reply
+updated: 2024-01-26 10:11:53-08:00
 ---
 
 ![attachments/img/2014/cover-2014-08-14.png](../../../attachments/img/2014/cover-2014-08-14.png)
@@ -29,7 +31,7 @@ Time for a quick post about [Reply](https://metacpan.org/release/Reply), a new [
 
 Reply is a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) for Perl. It is an interactive shell that simplifies quick experimentation with language features. It is extensible via a [plugin](https://metacpan.org/source/DOY/Reply-0.35/lib/Reply/Plugin.pm) system that I may look at later if I have more time.
 
-## Installation
+# Installation
 
 I use [perlbrew](http://perlbrew.pl) and [cpanm](https://github.com/miyagawa/cpanminus), so installation was easy.
 
@@ -39,7 +41,7 @@ $ cpanm Reply
 
 Oh. It is worth pointing out that if you do not have [GNU Readline](http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html) or a similar library installed, you will not get command-line editing or history in Reply.
 
-## Hello Reply
+# Hello Reply
 
 The `reply` command starts a new session. Once the session is going, it’s pretty much just Perl.
 
@@ -80,7 +82,7 @@ And `exit` will quit Reply. It all seems straightforward.
 7> exit
 ````
 
-## A Marginally More Complex Example
+# A Marginally More Complex Example
 
 I have been working on a little experiment: fetching Questhub.io JSON with [Mojo::UserAgent](http://mojolicio.us/perldoc/Mojo/UserAgent) and [Mojo::JSON](http://mojolicio.us/perldoc/Mojo/JSON). I decided to see if I could try some of that experiment in Reply.
 
@@ -114,7 +116,7 @@ $res[1] = [
 
 Yes, I can.
 
-## What Do I Think?
+# What Do I Think?
 
 I like Reply overall. I am not used to thinking in REPL terms when it comes to Perl, and need to spend more than twenty minutes with it. I like Reply enough that I do expect to spend more time with it.
 

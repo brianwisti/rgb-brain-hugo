@@ -12,6 +12,8 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 0d - The SpaceTrade Project
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T10:10:11-08:00
 ---
 
 I might be done with the [Stellar](../07/parrot-babysteps-0c-the-stellar-app.md) application for the moment, but I don't think I'm done with the space theme in [Parrot](../../../card/Parrot.md) yet. 
@@ -24,7 +26,7 @@ This one is going to take some work. It is a fairly elaborate game. The map is r
 
 I talked about using a text interface, but I know that eventually I will want to choose my own interface for the game. Players can choose their own approach, and bored coders will be able to create new ones. I will start by keeping the game logic as abstract as I can, and worry about the details of play later.
 
-## SpaceTrade Summary
+# SpaceTrade Summary
 
 Space Trade is a turn-based game in which one or more players assumes the role of an interstellar merchant in the future. The game has a fixed number of turns, determined during game setup. Players are competing to have a pilot with the highest worth at the end of the game. The single player goal is to beat her own previous high scores.
 
@@ -32,7 +34,7 @@ Game play occurs on a map of star systems. Each star system has a trade classifi
 
 Traders may encounter hazards such as planetoids or pirates while travelling between systems. The results of these encounters could be cargo loss or damage to the trader's ship. If a ship accumulates enough damage without repair, it could be destroyed. Destruction of a ship ends the game for that trader.
 
-### Development Tasks
+## Development Tasks
 
 My summary is a little vague compared to your average game, but there are a lot of juicy programming tasks in there.
 
@@ -68,7 +70,7 @@ This is more complex than Stellar, and it will take more than a few steps to fin
 
 This should be fun. Let's get started!
 
-## Setting up the project
+# Setting up the project
 
 Thanks to Stellar, I already know how I like to prepare my workspace for a new project.  The setup from [parrot-babysteps-09-simple-projects](../04/parrot-babysteps-09-simple-projects.md) will provide the starting point for SpaceTrade.
 
@@ -102,7 +104,7 @@ The `setup.pir` script will start out the same as the one used for Stellar.
 
 There is one basic feature I want to get out of the way before I start handling game logic. User interaction is important. Oh sure, there may eventually be interfaces in [Curses](https://github.com/parrot/parrot/blob/master/runtime/parrot/library/Curses.pir) or [SDL](https://github.com/parrot/parrot/tree/master/runtime/parrot/library/SDL), but all that's needed for now is a simple command line [shell](http://en.wikipedia.org/wiki/Shell_(computing)). This shell will be used to examine the nuts and bolts of SpaceTrade and to play a simple text-based version of the game.
 
-### The SpaceTrade Interactive Shell
+## The SpaceTrade Interactive Shell
 
 I believe that every interactive shell needs a few minimal components to be useful.
 
@@ -182,7 +184,7 @@ For a start, the commands are kind of a mess. When I add commands, I will have t
 
 One approach would be to add a registry which stores the commands recognized by the shell.
 
-### Creating a Command Registry
+## Creating a Command Registry
 
 The idea is that I could have a simple structure that stores information about available commands, and the application could add commands as needed. Let's start with a simple Hash and two subroutines for adding and evaluating shell commands.
 
@@ -355,7 +357,7 @@ if_null command_sub, INVALID_COMMAND
 
 This will check if `command_sub` is null, and branch to `INVALID_COMMAND` if the subroutine we just tried to grab is indeed null. To be perfectly honest with you, I'm not sure if a branch is the same as a `goto`. It behaves the same in this code, so for now I will pretend that it is the same.
 
-### Setting Up Those Default Shell Commands
+## Setting Up Those Default Shell Commands
 
 This ends up working pretty much the same as the earlier code did, and it's a bit more flexible. Is this how we make programming languages in Parrot? Well, no. This is not how we make programming languages in Parrot. This is a very simple shell which will have a few simple commands, but try to pass everything else off to the game itself. Proper language development is still a few Babysteps away.
 
@@ -618,7 +620,7 @@ ok 6 - Shell should warn about invalid commands
 
 How about that - it worked. PIR subroutines will apparently ignore positional parameters that they didn't ask for, which means that `evaluate_command` can call `say_dude` and `default_help` with the same parameter list and nothing bad will happen.
 
-### The New and Slightly Improved Shell
+## The New and Slightly Improved Shell
 
 A lot of work has gone into making the shell easier to use for me and people who want to hack on the game in the future. Let's apply that work to the `run_shell` subroutine itself.
 

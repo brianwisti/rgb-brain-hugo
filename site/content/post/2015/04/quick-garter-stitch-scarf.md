@@ -10,6 +10,8 @@ tags:
 - scarf
 - craft
 title: Quick Garter Stitch Scarf
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:12:55-08:00
 ---
 
 ![attachments/img/2015/cover-2015-04-04.jpg](../../../attachments/img/2015/cover-2015-04-04.jpg)

@@ -10,6 +10,8 @@ tags:
 - site
 - marginalia
 title: Fickle
+created: 2024-01-15T15:25:31-08:00
+updated: 2024-01-26T10:11:10-08:00
 ---
 
 I've got a pretty nice flow here. It's easy to make quick posts and have a mini blog along with the lengthy stuff - whenever I get around to those. 

@@ -15,6 +15,8 @@ tags:
 - amaziograph
 - fun
 title: inv note
+created: 2024-01-15T15:26:30-08:00
+updated: 2024-01-26T11:03:24-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-05.jpg](../../../attachments/img/2020/cover-2020-02-05.jpg)

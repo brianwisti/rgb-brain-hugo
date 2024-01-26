@@ -10,6 +10,8 @@ syndication:
 tags:
 - watch
 title: Watched an old Tom Waits interview
+created: 2024-01-15T15:26:24-08:00
+updated: 2024-01-26T11:00:15-08:00
 ---
 
 It's a work of art in its own right. Promoting 1999's "Glitter and Doom" tour.

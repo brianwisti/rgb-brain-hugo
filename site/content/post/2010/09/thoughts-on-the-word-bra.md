@@ -4,13 +4,14 @@ aliases:
 - /post/2010/thoughts-on-the-word-bra/
 - /2010/09/30/thoughts-on-the-word-bra/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2010-09-30 00:00:00-07:00
 slug: thoughts-on-the-word-bra
 tags:
 - babblings
 - coolnamehere
 title: Thoughts on the word "Bra"
-updated: 2020-04-18 10:24:00-07:00
+updated: 2024-01-26 10:10:16-08:00
 ---
 
 No, not the bra that provides appreciated support to countless women around the world.

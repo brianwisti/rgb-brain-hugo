@@ -12,6 +12,8 @@ tags:
 - windows
 - blogspot
 title: Another Link
+created: 2024-01-15T15:25:38-08:00
+updated: 2024-01-26T09:22:55-08:00
 ---
 
 The [Ruby on Windows](http://rubyonwindows.blogspot.com/) blog may well be the single best resource ever created for those of use who are learning how to automate *Windows* with [Ruby](../../../card/Ruby.md).

@@ -4,6 +4,7 @@ aliases:
 - /post/2005/01-getting-started/
 - /2005/01/04/perl-5-babysteps-01-getting-started/
 category: post
+created: 2024-01-15 15:25:43-08:00
 date: 2005-01-04 00:00:00-08:00
 description: Installing and first steps with Perl
 slug: perl-5-babysteps-01-getting-started
@@ -12,9 +13,10 @@ tags:
 - learn
 - coolnamehere
 title: Perl 5 Babysteps 01 - Getting Started
+updated: 2024-01-26 09:19:05-08:00
 ---
 
-## Installing Perl
+# Installing Perl
 
 Okay. Everybody not on *Windows*, go install [perlbrew](../../2011/09/perlbrew.md).
 
@@ -25,15 +27,15 @@ $ perlbrew install perl-5.14.1
 $ perlbrew switch perl-5.14.1
 ````
 
-### Installing Perl on Windows
+## Installing Perl on Windows
 
 On Windows, the preferred option is usually to download an installation package.
 
-#### ActivePerl
+### ActivePerl
 
 [ActivePerl](http://activestate.com/Products/activeperl/) is a commercially supported version of Perl for Windows. ActivePerl can be downloaded for free. It comes with a wealth of widely used third-party libraries such as an DBI, LWP, and the XML bundle. It is released by [ActiveState](http://activestate.com), a company based out of Canada. It is also the only readily available release of Perl 5.14 for Windows at this exact moment.
 
-### Verify Your Perl
+## Verify Your Perl
 
 We want to make sure that `perl` installed where we expected it to and that our system finds the right one.
 
@@ -51,11 +53,11 @@ this system using "man perl" or "perldoc perl".  If you have access to the
 Internet, point your browser at http://www.perl.org/, the Perl Home Page.
 ````
 
-## Using Perl From The Command Line
+# Using Perl From The Command Line
 
 It would be unfair of me to ignore simple command-line Perl.
 
-### `perl -E`
+## `perl -E`
 
 Although most of my Perl time is spent on large projects, occasionally I just want a quick answer. Because I usually have a terminal open, Perl presents itself as a convenient calculator:
 
@@ -88,7 +90,7 @@ What exactly are we doing with that one line? There’s something that looks lik
  > 
  > Reading back, and it looks like I was starting to write something about `perldoc`?
 
-### `perldoc -f`
+## `perldoc -f`
 
 We can ask about specific built-in functions using the `-f` parameter.
 
@@ -118,9 +120,9 @@ Yeah I had a bad habit of posting unfinished content in the pre-blog days.
 
 </aside>
 
-### `perldoc -q`
+## `perldoc -q`
 
-## Creating Perl Programs
+# Creating Perl Programs
 
 The tradition in programming literature is to start by creating a program that prints a simple phrase, such as "Hello, World!" The idea is to give you some clue how much work is involved in creating a minimal program. I am not going to argue with tradition. Not this one, at least. Type the following into your text editor:
 
@@ -139,7 +141,7 @@ say "Hello, World!";
 
 Save the file as `hello.pl`. We will run it in a few moments -- but first, let’s take a quick look at what we’ve got so far.
 
-### POD
+## POD
 
 ````perl
 =head1 hello.pl
@@ -163,7 +165,7 @@ $ perldoc perlpod
 
 There’s also an [HTML version](http://perldoc.perl.org/perlpod.html) if `perldoc` is not available on your system or you just want to see something pretty.
 
-### Comments
+## Comments
 
 ````perl
 # Depends on features not in older Perls.
@@ -171,7 +173,7 @@ There’s also an [HTML version](http://perldoc.perl.org/perlpod.html) if `perld
 
 On each line, everything from `#` to the end of the line is a *comment*. Perl ignores comments, so they allow you to communicate with other people who read your code. Comments are *good*. When you come back to look at a complex script after a few months, you might forget what some block of code does, or why you chose one solution over another. Having the comments there help to remind you what you were intending, and generally serve to make it much easier sorting everything out.
 
-### `use`
+## `use`
 
 ````perl
 use 5.14.0;
@@ -185,7 +187,7 @@ Oh, about that semi-colon (`;`): `perl` uses the semi-colon to separate statemen
 
 Let’s get back to looking at `hello.pl`
 
-### `say`
+## `say`
 
 ````perl
 say "Hello, World!";
@@ -195,7 +197,7 @@ We use `say` to print things out on a line in Perl 5.14. This time we’re askin
 
 Hm. I really thought it would take more effort to explain that. Oh well, guess there’s nothing left to do but see it in action.
 
-## Running it
+# Running it
 
 Now you would probably like to know how to actually run your program. Save the file you have been editing and switch to a command line. Make sure you are in the same directory as your script - this should be as simple as `cd project-directory`. Once you are in the right place, type the following into the command line:
 
@@ -229,7 +231,7 @@ $ perl hello.pl Hello, Brian!
 
 There, I feel better. Let’s move on to talking about variables.
 
-### Variables
+## Variables
 
 We stored the string "Brian" in the variable `$name`. You can think of a *variable* as a tag - a name we use for some value that we want the program to remember. Later, we can get that value back by referring to the tag.
 
@@ -288,7 +290,7 @@ $ perl hello.pl Hello, !
 
 Since `$name` has no value, Perl has nothing to put in that string. That’s exactly what it puts there: nothing.
 
-### `use warnings;`
+## `use warnings;`
 
 Perl generally assumes that you know what you are doing. It will not argue with you if you want to use a variable that has no value. However, that behavior is not always helpful. Using a variable without a value is usually a mistake, and it can often be a very difficult mistake to track down.
 

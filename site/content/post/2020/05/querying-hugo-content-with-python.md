@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:32-08:00
 date: 2020-05-06 23:37:00-07:00
 description: 'I had entirely too much fun replacing my site metadata script with sqlite-utils
 
@@ -15,19 +16,19 @@ tags:
 - workflow
 - tools
 title: Querying Hugo Content With Python
-updated: 2021-06-05 00:00:00-07:00
+updated: 2024-01-26 11:01:16-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-06.png](../../../attachments/img/2020/cover-2020-05-06.png)
 My blogging output by year – bet you didn’t know there were blogs in 1 CE
 
-## The plan
+# The plan
 
 Use Simon Williamson’s [Datasette tools](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem) — and maybe the rest of and maybe the rest of [Datasette](https://datasette.readthedocs.io/en/stable/) too — to replace an existing data script and perhaps gain new insight into site contents.
 
 Also: puttering is fun.
 
-## Background
+# Background
 
 I incorporated in my site workflow a while back because of [fRew Schmidt](https://blog.afoolishmanifesto.com/).  See, he wrote an interesting post about his Hugo / Unix / Vim [blogging workflow](https://blog.afoolishmanifesto.com/posts/hugo-unix-vim-integration/). I immediately copied [`q`](https://blog.afoolishmanifesto.com/posts/hugo-unix-vim-integration/#advanced-unix-tools), a [card/Perl](../../../card/Perl.md) script he wrote for querying site metadata via an in-memory [SQLite](https://sqlite.org) database.
 
@@ -67,7 +68,7 @@ I converted it to [card/Python](../../../card/Python.md) eventually, of course. 
 
 Aside from answering idle questions like "how many drawings have I posted?" my little database streamlines the process of publishing site updates and automatically announcing new posts.
 
-## What’s the problem?
+# What’s the problem?
 
 I’m thinking about adding more tables to improve [card/IndieWeb](../../../card/IndieWeb.md) integration. But to be honest, my creation has grown unwieldy. And *slow*.
 
@@ -100,7 +101,7 @@ I’ll stick to Python for now. But surely we can do better than the duct tape s
 
 [Simon Willison](https://simonwillison.net/)'s `sqlite-utils` may be just the thing.
 
-## What’s `sqlite-utils`?
+# What’s `sqlite-utils`?
 
 [`sqlite-utils`](https://sqlite-utils.readthedocs.io/) provides both a Python library and a command
 line too for building and querying SQLite databases. It can guess a schema from
@@ -121,11 +122,11 @@ $ time sqlite-utils site.db 'select publishDate, title from entries order by pub
 sqlite-utils site.db  --table  0.54s user 0.16s system 158% cpu 0.442 total
 ````
 
-## Creating `site.db` with `sqlite-utils`
+# Creating `site.db` with `sqlite-utils`
 
 Okay! Let’s do this. I want to load and prepare details from my content entries before I let `sqlite-utils` turn it into a database.
 
-### Getting metadata from Hugo and front matter
+## Getting metadata from Hugo and front matter
 
 We could recursively walk through the `content/` folder, collecting front matter details about everything we find. Most of the time, this is more than I want. [Hugo site organization](https://gohugo.io/content-management/organization/) includes supplemental material like page bundles and `_index` pages. That’s distracting when I only want to focus on my posts and notes. If you just want core content — posts, pages, stuff like that — ask Hugo.
 
@@ -269,7 +270,7 @@ def prepare_entry(entry):
 
 I got everything tidy and pretty. We’re ready for the database.
 
-### Loading the data
+## Loading the data
 
 ````console
 $ pip install sqlite-utils
@@ -353,7 +354,7 @@ $ sqlite-utils tables site.db --counts --json-cols | python -m json.tool
 
 I’m content. But I’m also curious. What does my site metadata look like in Datasette?
 
-## Exploring `site.db` with Datasette
+# Exploring `site.db` with Datasette
 
 I don’t have any great insights here. I just wanted to look at the pretty
 tables. Played with [metadata](https://datasette.readthedocs.io/en/stable/metadata.html) and checked out the results.
@@ -396,7 +397,7 @@ order by
   publishDate desc
 ````
 
-### Year 0001 content
+## Year 0001 content
 
 |path|title|publishDate|draft|section|category|
 |----|-----|-----------|-----|-------|--------|
@@ -413,7 +414,7 @@ No I’m too embarrassed to share the full list. I get lots of ideas, okay? Then
 
 Yep. Datasette is pretty nifty. I’m not missing `q` at all. And I’m *really* not missing my Python `query` script.
 
-## What’s next?
+# What’s next?
 
 That was fun! Still got a lot ahead of me.
 
@@ -423,7 +424,7 @@ That was fun! Still got a lot ahead of me.
 * Fixing those tasks that still call out to my old and busted `query` Python
 * Make my Datasette site dashboard pretty
 
-## Explore
+# Explore
 
 Check out some other [datasettes](https://github.com/simonw/datasette/wiki/Datasettes) available online!
 

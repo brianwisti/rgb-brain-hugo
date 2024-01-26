@@ -1,5 +1,7 @@
 ---
 title: coolnamehere
+created: 2024-01-18T21:46:08-08:00
+updated: 2024-01-26T09:05:54-08:00
 ---
 
 RIP `coolnamehere.com` 2000 - 2013

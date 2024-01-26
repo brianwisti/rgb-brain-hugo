@@ -10,6 +10,8 @@ tags:
 - procreate
 - craft
 title: Wings
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:17:21-08:00
 ---
 
 Trying to draw people.

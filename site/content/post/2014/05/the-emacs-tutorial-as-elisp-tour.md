@@ -12,6 +12,8 @@ tags:
 - tutorial
 - tools
 title: The Emacs Tutorial as ELisp Tour
+created: 2024-01-15T15:25:28-08:00
+updated: 2024-01-26T10:11:38-08:00
 ---
 
 I am trying to *really* learn how to use [Emacs](../../../card/Emacs.md). One thing that strikes me is how the Emacs user interface can be thought of as a client application to an Emacs Lisp API. This is not a revolutionary thought, but it really stuck in my head. I reread the official tutorial, focusing on the functions rather than the keybindings that invoke them.

@@ -1,5 +1,5 @@
 ---
-title: 'Watching: The Densest City on Earth'
+title: Watching The Densest City on Earth
 date: 2023-09-21
 category: note
 tags:
@@ -8,6 +8,8 @@ tags:
 slug: watching-the-densest-city-on-earth
 syndication:
   mastodon: https://hackers.town/@randomgeek/111106857778895334
+created: 2024-01-15T15:25:59-08:00
+updated: 2024-01-26T09:04:11-08:00
 ---
 
 via [Aeon](https://aeon.co/videos/the-rise-and-fall-of-kowloon-walled-city-hong-kongs-infamous-urban-monolith).

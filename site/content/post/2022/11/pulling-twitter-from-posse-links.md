@@ -9,6 +9,8 @@ tags:
 - posse
 - site
 title: Pulling Twitter From POSSE Links
+created: 2024-01-15T15:26:02-08:00
+updated: 2024-01-26T10:19:04-08:00
 ---
 
 Lots of Elon Musk madness going on at Twitter. From a [Platformer summary](https://www.platformer.news/p/inside-the-twitter-meltdown) of the last day or two.

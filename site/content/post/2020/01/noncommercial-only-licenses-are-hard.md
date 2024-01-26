@@ -10,6 +10,8 @@ tags:
 - legal
 - quagmire
 title: Noncommercial-only licenses are hard
+created: 2024-01-15T15:26:32-08:00
+updated: 2024-01-26T11:03:41-08:00
 ---
 
 [Christopher Lemmer Webber](https://dustycloud.org) makes a fair point:

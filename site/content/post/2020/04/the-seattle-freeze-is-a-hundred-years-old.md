@@ -11,7 +11,8 @@ tags:
 - seattle
 - history
 title: The Seattle Freeze Is a Hundred Years Old
-updated: 2020-04-26 11:40:00-07:00
+updated: 2024-01-26T11:03:01-08:00
+created: 2024-01-15T15:26:30-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-24.jpg](../../../attachments/img/2020/cover-2020-04-24.jpg)

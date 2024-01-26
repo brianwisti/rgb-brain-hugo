@@ -10,6 +10,8 @@ tags:
 - socks
 - craft
 title: Mom's Stansfield 12 Socks
+created: 2024-01-15T15:26:51-08:00
+updated: 2024-01-26T10:17:01-08:00
 ---
 
 ![attachments/img/2016/cover-2016-02-07.jpg](../../../attachments/img/2016/cover-2016-02-07.jpg)

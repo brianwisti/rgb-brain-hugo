@@ -4,6 +4,7 @@ aliases:
 - /post/2007/01-handling-a-single-round/
 - /2007/04/19/python-interactive-fiction-01-handling-a-single-round/
 category: post
+created: 2024-01-15 15:25:40-08:00
 date: 2007-04-19 00:00:00-07:00
 series:
 - Python Interactive Fiction
@@ -13,13 +14,14 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 01 Handling a Single Round
+updated: 2024-01-26 09:21:58-08:00
 ---
 
 I think the next step is to write the code for a single round of the game. We'll limit ourselves to Scene 1 to stay focused.
 
 <!--more-->
 
-### Presenting a Scene to the user
+# Presenting a Scene to the user
 
 First you want to show the description. Start a new [Python](../../../card/Python.md) file in your favorite editor, or in IDLE with the menu command "File" -> "New".
 
@@ -48,7 +50,7 @@ s a valley.
 
 This may not be happening for you, but when I run the script the description text gets cut off at inconvenient points. What happens next is a little more advanced than I was planning to show you, but that is just going to bug me too much if I don't fix it now.
 
-#### Wrapping text with the `textwrap` module
+## Wrapping text with the `textwrap` module
 
 One of Python's charms is the fact that it has a [huge standard library](http://docs.python.org/lib/ "Python Standard Library Reference"). This means that a lot of things you would like to do have already been written and included for free. That's why some folks say that Python comes with "batteries included." The standard library is a collection of modules with useful features and functions. I am just concerned with the `fill` function from the [textwrap](https://docs.python.org/2/library/textwrap.html) module right now, because I want the text of the description wrapped so that no words get cut off.
 
@@ -82,7 +84,7 @@ the south of you is a valley.
 
 Of course, if the wrapping text isn't an issue for you, feel free to leave out the `textwrap` related code completely.
 
-### Back to the game: paths
+# Back to the game: paths
 
 Now for the paths. We could just print the paths and make the user type in the full path to go anywhere, but that would be unkind. What we want is an easy way to show the list of paths and say "You picked path #1: Go to the mountains".
 
@@ -127,7 +129,7 @@ Go to the valley
 
 I want to do a bit of formatting to break things up, but you get the idea of what is going on. We have created a variable called `paths` to hold our list of paths. What can I say? I like my variable names to be obvious. You can recognize a list by the square brackets `[]`. Items in the list are separated by commas. I like to put each list item on a line by itself, using indentation to show that we are looking inside the list. Little things like this make your code easier to read, which gets very important as your program grows.
 
-#### The `for` loop
+## The `for` loop
 
 Okay, I need to take the next few ideas slowly, because I have put a lot of important new concepts in two lines of code.
 
@@ -253,7 +255,7 @@ the south of you is a valley.
 
 It's starting to look like something! Now go take a break for a minute. I threw a lot of information at you all at once, and you may still need to process it. You at least need to look at something besides a computer monitor for a few seconds and shake your fingers loose. It's good for you.
 
-### Getting the user's selection
+# Getting the user's selection
 
 I am pleased that we have the scene description code working, but user input is still missing. All we need is `raw_input`, which we encountered in the initial [Python Babysteps](../../2001/01/python-babysteps-tutorial.md). Add a line to get user input and another line to show the result.
 
@@ -300,7 +302,7 @@ Make a selection: 3
 Choice 3 - Go into the cave
 ````
 
-#### Quitting the game
+## Quitting the game
 
 Our specification mentioned that users may quit the game at any point, so we should add the code to make that possible.  Normal choices are numbers and they start at one, so let's take the easy way out and say that zero quits the game. The `if` selection control structures can be used to recognize the quit command.
 
@@ -342,7 +344,7 @@ A little note about being careful. I spent five minutes debugging the above code
 
 Now, why did I use the `int` function on the user input? Keyboard input comes to you in the form of a String, which is a different [type](../../2002/06/simple-types-in-python.md) than numbers. If we want to be able to use the input as an index for the `paths` list, we need a way to turn that String into an integer, or whole number. This is exactly what `int` does. What happens when the user entry can't be turned into a number? That's part of the next topic.
 
-### Ensuring valid choices
+# Ensuring valid choices
 
 User input needs to be in the form of a number. Not only that, but that number needs to be a valid index for `paths`. If either of these turns out to be false, Python panics. Let's explore this in the shell. As a special treat, I'll show you a glimpse at making functions in Python.
 
@@ -557,7 +559,7 @@ What is going on here? We have created a variable `next_step` and assigned it th
 
 Now for the `while` loop. We specify a condition here, similar to the way we did with `if` earlier. The condition is that `next_step` must not be `None`. It is an easy enough requirement. The test will fail if we successfully assign a `next_step` in the loop.
 
-#### Catching specific exceptions
+## Catching specific exceptions
 
 There is one more minor issue to take care of before we wrap up this stage of writing the game. It is good that we are handling exceptions raised from user input, but we are catching *every* exception that is raised. This doesn't sound like a bad thing until you remember that our error message is really written for a specific kind of error: the user entered something that can't be used by our menu handler. There are [many things](https://docs.python.org/2/library/exceptions.html "Python built-in exceptions summary")) that can go wrong in a Python code.  We don't want to be handling exceptions that we aren't ready for. Why not? The error messages won't make sense, for starters. Say you decided to hit `Control-C` in the program to force quit. Here's what we end up seeing:
 

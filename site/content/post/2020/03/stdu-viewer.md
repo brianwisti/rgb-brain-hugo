@@ -3,6 +3,7 @@ aliases:
 - /2020/03/26/stdu-viewer/
 - /post/2020/03/stdu-viewer/
 category: post
+created: 2024-01-15 15:26:26-08:00
 date: 2020-03-26 23:42:16-07:00
 description: I think I found my PDF reader for Windows
 slug: stdu-viewer
@@ -10,6 +11,7 @@ tags:
 - windows
 - tools
 title: STDU Viewer
+updated: 2024-01-26 11:03:15-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-26.png](../../../attachments/img/2020/cover-2020-03-26.png)
@@ -35,7 +37,7 @@ STDU Viewer also lets you create split views of your document. Handy when you’
 
 ![screenshot of split view](attachments/img/2020/stdu-split-view.png "Split view of Laurent Rosenfeld’s [Think Raku](https://greenteapress.com/wp/think-perl-6/)")
 
-## Caveats
+# Caveats
 
 1. Use the "Download free STDU Viewer" link. I couldn’t get the MSI
    installer to work.
@@ -47,12 +49,12 @@ STDU Viewer also lets you create split views of your document. Handy when you’
    selecting them with the "Select Text" tool and right clicking over
    selected text.
 
-## Tweaks
+# Tweaks
 
 I don’t like clicking any more than I have to, so I set extra shortcut keys in Options. One for highlighting with `h`, and a couple to get `j` / `k` scrolling like I’m accustomed to in my Linux desktop.
 
 ![screenshot of options panel](attachments/img/2020/stdu-preferences.png "STDU Viewer options showing keyboard shortcuts")
 
-## That’s it, really
+# That’s it, really
 
 Despite my annoyance at the documentation, [STDU Viewer](http://www.stdutility.com/stduviewer.html) provides the functionality I needed in a PDF reader. No more, and no less. Check it out if that sounds pleasing to you!

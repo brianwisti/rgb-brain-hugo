@@ -10,6 +10,8 @@ tags:
 - node-js
 - programming
 title: Wrote a Node.js version of my content format counter
+created: 2024-01-15T15:26:27-08:00
+updated: 2024-01-26T10:21:33-08:00
 ---
 
 ![attachments/img/2021/cover-2021-09-04.png](../../../attachments/img/2021/cover-2021-09-04.png)

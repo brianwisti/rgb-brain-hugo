@@ -9,6 +9,8 @@ slug: tools
 tags:
 - coolnamehere
 title: Tools
+created: 2024-01-15T15:25:47-08:00
+updated: 2024-01-26T09:18:07-08:00
 ---
 
 I already talk a little bit on this site about the language tools I use, such as [Perl](../../../card/Perl.md), [Ruby](../../../card/Ruby.md), and [Python](../../../card/Python.md). There’s a section where I touch on the most important tool of a geek like me: the *Editor*.

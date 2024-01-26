@@ -11,6 +11,8 @@ tags:
 - python
 - blogspot
 title: Elaborate Answers To Simple Questions
+created: 2024-01-15T15:25:32-08:00
+updated: 2024-01-26T10:10:25-08:00
 ---
 
 Use `string` methods instead of importing `string`. Build email messages

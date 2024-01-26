@@ -9,6 +9,8 @@ slug: geekery
 tags:
 - coolnamehere
 title: Geekery
+created: 2024-01-15T15:25:49-08:00
+updated: 2024-01-26T09:17:13-08:00
 ---
 
 Computers are all about programs. If you take the time to learn how to program, then you’re “on the inside” - more than just an ordinary user. The computer will obey your every whim, and you will be able to sneer at “lusers” (loser-users) who have no idea how their computer works. You will make millions of dollars working in your shorts. Beautiful people will throw themselves off of cliffs to be near you. The planet will be yours for the taking!

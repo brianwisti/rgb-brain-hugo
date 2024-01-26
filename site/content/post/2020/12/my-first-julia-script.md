@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:20-08:00
 date: 2020-12-25 00:00:00-08:00
 description: Weaving code in Hugo posts with Julia
 slug: my-first-julia-script
@@ -12,6 +13,7 @@ tags:
 - site
 - programming
 title: My first Julia script
+updated: 2024-01-26 10:59:44-08:00
 ---
 
 ![attachments/img/2020/cover-2020-12-25.png](../../../attachments/img/2020/cover-2020-12-25.png)
@@ -19,7 +21,7 @@ Drawn with [Luxor.jl](http://juliagraphics.github.io/Luxor.jl/stable/)
 
 Merry Christmas! I wrote a little [Julia](https://julialang.org) code.
 
-## The inspiration
+# The inspiration
 
 Been getting frustrated with [card/Python](../../../card/Python.md)'s type hinting system. I usually start with loose and informal code, but eventually I specify types. And when I do, I want the language to check my work. I dislike relying on an external tool like [MyPy](https://mypy.readthedocs.io/en/stable/) that runs separately.
 
@@ -68,7 +70,7 @@ I love [literate programming](http://literateprogramming.com/index.html). One of
 
 There's [Literate.jl](https://fredrikekre.github.io/Literate.jl/v2/), which processes Markdown and code in Julia scripts. [Weave.jl](http://weavejl.mpastell.com/stable/) is more my style, processing Julia code in Markdown files. I can write my post and weave it into an ordinary-looking Markdown file. [card/Hugo](../../../card/Hugo.md) won't have to know the difference.
 
-## The setup
+# The setup
 
 Julia treats environment and package management as core functionality. Everything I need is in [Pkg](https://docs.julialang.org/en/v1/stdlib/Pkg/). Not to pick too much on Python — it really is a great language — but its environment management options are [infamously byzantine](https://xkcd.com/1987/).
 
@@ -88,7 +90,7 @@ Here I can initialize my project and add dependencies.
 
 Now I have `Project.toml` and `Manifest.toml` files describing my Hugo site's new Julia needs. I can start writing this post.
 
-### Writing with Weave
+## Writing with Weave
 
 Write the stuff you want to write, using [Julia-flavored Markdown](https://docs.julialang.org/en/v1/stdlib/Markdown/). Any code block fenceposted with triple backticks and labeled as "julia" gets evaluated by
 Weave.
@@ -118,7 +120,7 @@ julia> [f(x) for x in [0, 1, 2, 3]]
 ```
 ````
 
-## The script
+# The script
 
 AKA the point of this blog post. It looks in my content folder for recently modified `.jmd` files. Anything found gets handed off to `weave`, which does the hard work. Heck, `weave` even has a `hugo` option so I can generate Markdown specifically formatted to satisfy Hugo.
 
@@ -195,7 +197,7 @@ julia --project=. scripts/weave-content.jl
 
 Okay. That's great. I mean — all that so I could do a little math, but whatever.
 
-## That's it?
+# That's it?
 
 Hey. Maybe we could do something cool. Make a cover image for this post with [Luxor](http://juliagraphics.github.io/Luxor.jl/stable/).
 

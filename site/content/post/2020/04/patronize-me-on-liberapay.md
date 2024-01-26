@@ -14,7 +14,8 @@ tags:
 - money
 - filthy-lucre
 title: Patronize Me on Liberapay
-updated: 2020-04-27 07:00:00-07:00
+updated: 2024-01-26T11:02:53-08:00
+created: 2024-01-15T15:26:29-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)

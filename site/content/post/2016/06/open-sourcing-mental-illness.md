@@ -10,7 +10,8 @@ tags:
 - mental-health
 - marginalia
 title: Open Sourcing Mental Illness
-updated: 2018-06-13 00:00:00-07:00
+updated: 2024-01-26T10:17:07-08:00
+created: 2024-01-15T15:26:51-08:00
 ---
 
 Watching [YAPCNA](http://www.yapcna.org) videos, and the most important to me today had nothing to do with [card/Perl](../../../card/Perl.md). I loved  [Ed Finkler](https://funkatron.com)'s talk about mental health among developers. His [OSMI](https://osmihelp.org) project - Open Sourcing Mental Illness - aims to improve workplace and community awareness and resources for mental health. Good stuff. Many domains and communities need this effort,

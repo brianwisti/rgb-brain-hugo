@@ -10,6 +10,8 @@ tags:
 - perl
 - programming
 title: Perl 5.20 Signatures in Subroutine References
+created: 2024-01-15T15:25:28-08:00
+updated: 2024-01-26T10:11:42-08:00
 ---
 
 [Perl](../../../card/Perl.md) 5.20 has experimental support for function signatures. That's  good news. I just thought to check if signatures can be used in subroutine references. They can.

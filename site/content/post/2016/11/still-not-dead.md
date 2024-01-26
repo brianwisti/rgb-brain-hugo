@@ -11,6 +11,8 @@ tags:
 - indieweb
 - marginalia
 title: Still Not Dead
+created: 2024-01-15T15:25:24-08:00
+updated: 2024-01-26T10:17:26-08:00
 ---
 
 Another one of those "no I’m not dead" posts. Instead of writing I’ve been *Drawing* quite a bit this year. The writing will resume. For now, enjoy a sample of my favorite sketches from the last several months.

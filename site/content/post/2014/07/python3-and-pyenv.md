@@ -10,6 +10,8 @@ tags:
 - python
 - tools
 title: Python3 and pyvenv
+created: 2024-01-15T15:26:15-08:00
+updated: 2024-01-26T10:11:48-08:00
 ---
 
 I have been spending much of my coding time in [card/Python](../../../card/Python.md) recently. This site is built in [card/Pelican](../../../card/Pelican.md). Many lines of Python have been written for work. I have even been poking at [Google App Engine](https://developers.google.com/appengine/docs/python/) in what spare time is available. The only disappointment is that all of these have been in Python 2. I would prefer to be using [Python 3](https://wiki.python.org/moin/Python2orPython3). There is a little free time today, so I will set up a nice Python 3 workspace.

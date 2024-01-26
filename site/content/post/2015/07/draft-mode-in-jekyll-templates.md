@@ -4,6 +4,7 @@ aliases:
 - /post/2015/draft-mode-in-jekyll-templates/
 - /2015/07/20/draft-mode-in-jekyll-templates/
 category: post
+created: 2024-01-15 15:25:26-08:00
 date: 2015-07-20 00:00:00-07:00
 description: 'Use site.show_drafts in your template to keep site development from
   cluttering analytics
@@ -16,6 +17,7 @@ tags:
 - jekyll
 - tools
 title: Draft Mode in Jekyll Templates
+updated: 2024-01-26 10:12:59-08:00
 ---
 
 > 

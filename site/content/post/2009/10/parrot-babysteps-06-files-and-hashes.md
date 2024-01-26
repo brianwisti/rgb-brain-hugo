@@ -13,17 +13,19 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 06 - Files and Hashes
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T09:58:30-08:00
 ---
 
 ![attachments/img/2009/cover-2009-10-02.jpg](../../../attachments/img/2009/cover-2009-10-02.jpg)
 
 This one's a bit more bloggy than the earlier steps, but that's just the mood I was in when writing it. You can ignore the commentary and focus on the code if that's your preference.
 
-## Introduction
+# Introduction
 
 We have inched our way forward in our understanding of [Parrot](../../../card/Parrot.md) and PIR. I think that it's time to take a big step, though. We're going to add file handling to our toolkit. Reading and writing files are easy tasks in Parrot - so easy that I could probably discuss both in a couple of paragraphs and be more or less done. But I'm hungry for something meatier. I want to work with a lot of data and get curious trivia from that data. Hashes are good, too. Let's look at Parrot hashes at some point today as well.
 
-## First, Get the Data
+# First, Get the Data
 
 It took me some time to decide exactly what sort of data I wanted to look at. I was thinking of [nutritional data](http://www.ars.usda.gov/Services/docs.htm?docid=8964), but I'm not ready  for all of the cross-referencing I'd have to do in order to produce information that would be meaningful to me. 
 
@@ -58,7 +60,7 @@ My goodness, there are a lot of commas and numbers in there. The structure is se
 
 Let's start small, by counting the number of stars listed in the HYG database.
 
-## Counting Stars
+# Counting Stars
 
 To count stars, we can read each line of the file and count the number of lines read. Remember not to count the header line!
 
@@ -136,7 +138,7 @@ There are 119618 stars in the HYG catalog.
 
 That is a big number. Nowhere near the billions of stars in our universe, but I think we can stay busy for quite some time with nearly one hundred twenty thousand stars.
 
-### Intermission: File Mode Indicators
+## Intermission: File Mode Indicators
 
 Now is as good a time as any to summarize the indicator codes that `open` accepts.
 
@@ -153,7 +155,7 @@ Order doesn't matter, either. `rw` and `wr` are both valid ways to say you plan 
 
 We will just be reading files today, but you might as well remember it now. It will come up eventually.
 
-## Counting Names
+# Counting Names
 
 All right. I'm manually counting commas in HYG. It looks like "ProperName" is the seventh field. It also looks like there are quite a few stars in the catalog that have no proper name. How many?
 
@@ -354,7 +356,7 @@ There are 119618 stars in the HYG catalog.
 
 I get the same result. The hand-counting of fields I did earlier worked. That's a relief, but I'm much happier now that Parrot is counting for me.
 
-## Understanding the Data by Looking at Sol
+# Understanding the Data by Looking at Sol
 
 I want to get a lot more information from this data, but in order to do that I'll need a nice way to understand the information about each star in the set. We're going to go about that by focusing on Sol, our own sun.
 
@@ -692,7 +694,7 @@ What does our output look like now?
 
 I'm tempted to print out all the data this way, but there are well over a hundred thousand. Printing takes a while. Reading takes a lot of whiles. How about just printing the information for stars with a matching spectrum?
 
-## Stars Like Ours
+# Stars Like Ours
 
 Now that we have a Hash to describe characteristics of our own Sun, we can build Hashes for other stars and look for the ones that are similar to ours. We'll use the spectrum as our guideline, and look for an exact match rather than just a vague similarity. We're also going to filter out the ones that don't have a name, because we know that many of the stars in this set don't have proper names.
 
@@ -856,7 +858,7 @@ On the other hand, this program does take a couple of seconds to run on my machi
 
 Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the [Gliese](http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm) or [Bayer-Flamsteed](http://www.skyviewcafe.com/bayer_flamsteed.html) designations. I don't think that's practical with how we're writing our Parrot application today.
 
-## Conclusion
+# Conclusion
 
 Wow. There has been a lot of new stuff today. Not only did we learn how to read files and use Hashes, we also saw how to load bytecode libraries. We counted, searched through, and displayed data from a 20 Megabyte text file with nearly 120,000 entries. We also learned that [Rigel Kentaurus A](http://en.wikipedia.org/wiki/Alpha_Centauri) is the only named neighbor in the database that is the same spectral type as our Sun.
 

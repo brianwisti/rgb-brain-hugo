@@ -13,6 +13,8 @@ tags:
 - vscode
 - editors
 title: VS Code pylint needs pylintrc
+created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26T11:03:17-08:00
 ---
 
 [Visual Studio Code](https://code.visualstudio.com/) doesn’t seem to pick up my environment’s [PYTHONPATH](https://docs.python.org/3.8/using/cmdline.html#envvar-PYTHONPATH) when running [pylint](https://www.pylint.org/). Makes project-local modules a headache. The solution: put it in your pylint config.

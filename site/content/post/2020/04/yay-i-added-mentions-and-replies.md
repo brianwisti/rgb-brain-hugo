@@ -12,6 +12,8 @@ tags:
 - indieweb
 - site
 title: Yay I Added Mentions and Replies
+created: 2024-01-15T15:26:33-08:00
+updated: 2024-01-26T11:03:05-08:00
 ---
 
 Not real time, of course. It updates when I build the site. The layout needs touching up. But all the details are there.

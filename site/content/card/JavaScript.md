@@ -1,5 +1,7 @@
 ---
 title: JavaScript
+created: 2024-01-15T15:26:14-08:00
+updated: 2024-01-26T09:06:54-08:00
 ---
 
 The [Programming Language](Programming%20Language.md) that's eating the world.
@@ -8,6 +10,6 @@ When I first got into Web programming, JavaScript was not my favorite language. 
 
 Well that was 1997, and a lot has happened since then. Perl is still funny-looking and capable of nearly anything, but it's faded as new generations of developers came onto the scene. JavaScript has become a much more powerful, dominating nearly every aspect of Web development and makes significant appearances in many other domains. Throw in a meaningful superset like [TypeScript](TypeScript.md) and you effectively have a different language. Big success story.
 
-## Related
+# Related
 
 * http://en.wikipedia.org/wiki/JavaScript

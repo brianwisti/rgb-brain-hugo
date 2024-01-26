@@ -9,6 +9,8 @@ tags:
 - css
 - tools
 title: Bob Ross CSS
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-01-26T10:13:24-08:00
 ---
 
 Note to self: use the [Bob Ross CSS](https://gist.github.com/thomaspark/41f381048adcceb6d261) that [Thomas Park](http://thomaspark.co/2015/11/bob-ross-color-palette-in-css/) conveniently worked out.
@@ -24,7 +26,7 @@ Here's a nice little clip in case you don't know who Bob Ross is.
 
 I like that. And his insistence on sticking to a limited palette was kind of inspiring too. Sometimes we get overloaded by choice. Maybe it's better to get a solid core of colors - or tools - and work with those.
 
-## The Bob Ross CSS Palette
+# The Bob Ross CSS Palette
 
 ````css
 .sap-green {

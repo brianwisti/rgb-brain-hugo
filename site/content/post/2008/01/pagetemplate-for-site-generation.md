@@ -11,6 +11,8 @@ tags:
 - ruby
 - blogspot
 title: PageTemplate for Site Generation
+created: 2024-01-15T15:25:38-08:00
+updated: 2024-01-26T09:22:57-08:00
 ---
 
 So I was looking at my [Python Blogger client](../../2007/12/python-loves-blogger-part-1.md) and I tried implementing the same thing in [Ruby](../../../card/Ruby.md). [gdata-ruby](https://code.google.com/p/gdata-ruby-util/) confusion stymied me. I still don't know whether library issues or my own ignorance blocked me.
@@ -21,7 +23,7 @@ That, of course, set me off on yet another thought. What if I tried to define my
 
 Let's see if I can build a site like coolnamehere with Ruby and PageTemplate. I plan to borrow heavily from ZenWeb, since there are a lot of things to like about the ZenSpider approach. I especially like   building a site from a collection of pages and a chain of filters. Hey, PageTemplate has filters thanks to Greg Millam. Why don't I try *using* them?
 
-## Start Small
+# Start Small
 
 I am going to start small, by teaching SiteTemplate about [Maruku](https://github.com/bhollis/maruku).
 

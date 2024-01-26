@@ -11,6 +11,8 @@ tags:
 - ruby
 - blogspot
 title: PageTemplate for Site Generation Part 2
+created: 2024-01-15T15:25:38-08:00
+updated: 2024-01-26T09:23:00-08:00
 ---
 
 I've got my [Ruby](../../../card/Ruby.md) code [filtering Markdown](pagetemplate-for-site-generation.md) and now I want to stuff that filtered content into an HTML page. I could just use `maruku#to_html_document`, but I need the ability to add details like a title and site-related links.
@@ -31,7 +33,7 @@ This page intentionally left blank.
 
 I want an object that makes the title available in some way (simple Hash style access is fine), and makes the HTML-formatted content available. After a few minutes of fiddling and poking around, I end up with tests and application code.
 
-#### Article Test Code
+# Article Test Code
 
 ````ruby
 #!/usr/local/bin/ruby
@@ -50,7 +52,7 @@ class TC_Article < Test::Unit::TestCase
 end
 ````
 
-#### The Application Code
+# The Application Code
 
 ````ruby
 #!/usr/local/bin/ruby
@@ -100,11 +102,11 @@ end
 
 It's a really simple, slow parser, but it works. I won't try to optimize it before I've actually figured out what it's supposed to be doing.
 
-### The Template
+# The Template
 
 The next target is stuffing this content into a template. That's *easy*. Here's the template:
 
-#### simple.html Template File
+## simple.html Template File
 
 ````html
 <html>
@@ -120,7 +122,7 @@ The next target is stuffing this content into a template. That's *easy*. Here's 
 
 I could assemble my page manually if I felt like it. As a matter of fact, let's do that in one of the tests.
 
-#### Manual Page Generation Test
+## Manual Page Generation Test
 
 ````ruby
 require 'PageTemplate'
@@ -140,7 +142,7 @@ end
 
 Do I really want to manually apply even that little bit of code, though? No, I don't.
 
-#### Automatic Page Generation Test
+## Automatic Page Generation Test
 
 ````ruby
 class TC_HTML_Page < Test::Unit::TestCase
@@ -154,7 +156,7 @@ class TC_HTML_Page < Test::Unit::TestCase
 end
 ````
 
-#### Automatic Page Generation Code
+## Automatic Page Generation Code
 
 ````ruby
 require 'PageTemplate'
@@ -174,11 +176,11 @@ class HTML_Page
 end
 ````
 
-### Saving a File
+# Saving a File
 
 Okay, now I have article files with content and metadata being consumed, formatted, and handed off to PageTemplate for wrapping into a pretty HTML page. The only thing remaining at this stage is to actually *write* the file.
 
-#### Test Writes
+## Test Writes
 
 ````ruby
 require 'fileutils'
@@ -206,7 +208,7 @@ class TC_HTML_Page < Test::Unit::TestCase
 end
 ````
 
-#### Code to Make the Writes Happen
+## Code to Make the Writes Happen
 
 Oh heck, just take the whole thing. This is what my `SiteTemplate.rb` file looks like right now.
 
@@ -281,7 +283,7 @@ class HTML_Page
 end
 ````
 
-### Wrapup
+# Wrapup
 
 This stage is done. We've taken some article files that look a lot like my blog files and turned them into fully-fleshed HTML files. They will fit into a PageTemplate that's been defined by the site maintainer, guaranteeing a standard look for the site.
 

@@ -11,9 +11,11 @@ tags:
 - learn
 - coolnamehere
 title: Look at the Latest Fark Headlines
+created: 2024-01-15T15:26:14-08:00
+updated: 2024-01-26T09:18:39-08:00
 ---
 
-## The Problem
+# The Problem
 
 I want to look at the [Fark](http://fark.com/) headlines without opening a browser. Why? I dunno, maybe I just want to see what’s new since the last time I looked, without being distracted by the site clutter.
 
@@ -25,7 +27,7 @@ ahem.
 
 I want to look at the [Fark](http://fark.com/) headlines without opening a browser. Why? Well, as it so happens, I am logged into a machine via `ssh`, and using `elinks` to load the page will result in a lot of extra clutter from text versions of ads which obscure the headlines. I’m just interested in seeing what interesting, scary, or amusing things have been posted on Fark since the last time I checked.
 
-## Finding a Solution
+# Finding a Solution
 
 Well, we could always just dump the Fark page to the console:
 
@@ -476,7 +478,7 @@ This program now does everything that I set out to do, and then some. I might ch
 
 I hope you enjoyed working along with me as much as I enjoyed sitting here and typing random nonsense to myself.
 
-## What Else?
+# What Else?
 
 I may be done with this exercise for now, but here are a few ideas about features that can be added to make it a little cooler. Go ahead and try them out!
 

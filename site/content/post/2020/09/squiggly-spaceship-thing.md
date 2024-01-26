@@ -11,6 +11,8 @@ tags:
 - drawing
 - linea-sketch
 title: Squiggly Spaceship Thing
+created: 2024-01-15T15:26:24-08:00
+updated: 2024-01-26T11:00:10-08:00
 ---
 
 ![attachments/img/2020/cover-2020-09-07.jpg](../../../attachments/img/2020/cover-2020-09-07.jpg)

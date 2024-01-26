@@ -12,6 +12,8 @@ tags:
 - rst
 - second-brain
 title: Try Riv if you like Vim and reStructuredText
+created: 2024-01-15T15:26:09-08:00
+updated: 2024-01-26T10:21:28-08:00
 ---
 
 ![attachments/img/2021/cover-2021-10-23.png](../../../attachments/img/2021/cover-2021-10-23.png)

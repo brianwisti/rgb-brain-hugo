@@ -14,6 +14,8 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 0a - The Stellar Project
+created: 2024-01-15T15:25:33-08:00
+updated: 2024-01-26T10:09:49-08:00
 ---
 
 We just learned how to create and test [simple Parrot projects](/post/2010/04/parrot-babysteps-09-simple-projects). The next step
@@ -27,7 +29,7 @@ about adding new things and using new [Parrot](../../../card/Parrot.md) features
 though. They kept breaking because I wasn't building from a stable, testable 
 foundation. Today we're going to get that step our of the way.
 
-## Set up the project
+# Set up the project
 
 Let's apply what we learned last time putting together [larger projects](/post/2010/04/parrot-babysteps-09-simple-projects), and
 set up a project named `stellar`.
@@ -65,12 +67,12 @@ empty. We will steadily build up all of our functionality in the Stellar library
 and eventually add a very simple file to act as the face of Stellar for
 Parrot. Right now, we just have an empty `lib/stellar.pir`.
 
-## Reimplementing Features
+# Reimplementing Features
 
 The basic skeleton is in place. Now we can start adding the features we had
 written before.
 
-### Extracting Details
+## Extracting Details
 
 It's important to keep test files organized. One helpful approach is to think of
 each test as a story. This story describes a single specific thing we want the
@@ -249,7 +251,7 @@ detail doesn't work out the way we expect it to.
 
 Our first story is pretty much out of the way. Let's move on to the next one.
 
-### Stringifying Stars
+## Stringifying Stars
 
 Next up is the string representation of a star. In the original application, we
 had the `say_star_details` sub, which printed the star information as soon as it
@@ -499,7 +501,7 @@ I do not know if I have saved much work, but it is easier for me to read the
 test story. That is important to me, because debugging and improving the code is
 easier if I can easily understand what is happening.
 
-## Conclusion
+# Conclusion
 
 It is time to take a break. The script we wrote a while back is evolving into a
 tested library that can be used by others. Now that we have our foundation, we 

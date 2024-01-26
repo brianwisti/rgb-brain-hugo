@@ -15,6 +15,8 @@ tags:
 - site
 - programming
 title: Listing Hugo Content Extensions With Raku
+created: 2024-01-15T15:26:27-08:00
+updated: 2024-01-26T11:03:12-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-31.jpg](../../../attachments/img/2020/cover-2020-03-31.jpg)
@@ -31,17 +33,17 @@ Mostly [Markdown](../../../card/Markdown.md), with a fair chunk of [reStructured
 
 Okay that’s it. That’s the post, everyone. Time to go home!
 
-## Breaking it down
+# Breaking it down
 
 It helps me to understand the pieces I smash together in my one-liners. Read along if you like, or move on to more interesting topics. I don’t judge.
 
-### First off: why?
+## First off: why?
 
 The [Hugo](https://gohugo.io) static site generator supports multiple [content formats](https://gohugo.io/content-management/formats/). I use a few of them, which complicates my occasional urge to rebuild the whole site with something else.
 
 If I know how my content formats are distributed, it will help me understand how much work I have cut out for me in The Eventual Inevitable Rebuild.
 
-### `hugo list`
+## `hugo list`
 
 Hugo’s [list](https://gohugo.io/commands/hugo_list) commands print a [CSV](../../../card/CSV.md) list of your site’s content files. The content listed depends on which subcommand you use:
 
@@ -75,7 +77,7 @@ Now that I think to look, there’s the [Awesome CSV](https://github.com/secretG
 
 But no. Today I handed it off to the first tool that came to mind.
 
-### `raku -e`
+## `raku -e`
 
 Look, we’ve all been stuck at home for a bit. I need a break from Python. How about [Perl](../../../card/Perl.md)'s sister language, [Raku](../../../card/Raku.md)?
 
@@ -83,11 +85,11 @@ Look, we’ve all been stuck at home for a bit. I need a break from Python. How 
 bag(lines[1..*].map({ .split(",")[0].IO.extension })).say
 ````
 
-#### `bag(…).say`
+### `bag(…).say`
 
 [`bag`](https://docs.raku.org/routine/bag) uses its arguments to create a [Bag](https://docs.raku.org/type/Bag) — basically, a set that gives each member a "weight" based on integer values. [`say`](https://docs.raku.org/type/Mu#method_say) prints the [`gist`](https://docs.raku.org/routine/gist) of the Bag, telling me what I need to know. The highest level view of this one-liner is "make a Bag and give me a general idea what it looks like."
 
-#### `lines[1..*].map({ … })`
+### `lines[1..*].map({ … })`
 
 Now I need to create that bag from `hugo list all`. [`lines`](https://docs.raku.org/type/IO::Handle#routine_lines) called as
 a routine creates a list of lines from [`$*ARGFILES`](https://docs.raku.org/language/variables#$*ARGFILES), which currently holds the piped output from my Hugo invocation. I don’t need the header line, so I use a
@@ -95,7 +97,7 @@ a routine creates a list of lines from [`$*ARGFILES`](https://docs.raku.org/lang
 
 [`map`](https://docs.raku.org/routine/map#class_Any) applies a block to each of those lines, returning a new list to create our Bag. What’s going on in that map?
 
-#### `.split(",")[0].IO.extension`
+### `.split(",")[0].IO.extension`
 
 That leading dot? It’s an [item context](https://docs.raku.org/language/contexts#Item_context) view of the [topic variable](https://docs.raku.org/language/variables#The_$__variable) handed to the block by `map`. Yes, for folks who don’t feel like clicking: *topic variable* is Raku’s name for `$_`, an easily abused blessing of Perl languages.
 
@@ -116,11 +118,11 @@ $ hugo list all | raku -e 'bag(lines[1..*].map({ .split(",")[0].IO.extension }))
 Bag(adoc(4), html, md(327), rst(109))
 ````
 
-## Alternate versions
+# Alternate versions
 
 While I was learning more about my impulsive little invocation, I wondered about other ways to get the same information from Raku.
 
-### A bit more Perlish
+## A bit more Perlish
 
 All those method dots bother you? No problem. We can use them like plain old subroutines too. Course, we have to reach for [`$*SPEC`](https://docs.raku.org/language/variables#$*SPEC). This lower-level [IO::Spec](https://docs.raku.org/type/IO::Spec) object understands file extensions on our platform.
 
@@ -129,7 +131,7 @@ $ hugo list all | raku -e 'say bag(map({ $*SPEC.extension(split(",", $_)[0]) }, 
 Bag(adoc(4), html, md(327), rst(109))
 ````
 
-### Using Text::CSV
+## Using Text::CSV
 
 I know what to expect from Hugo’s CSV output, but what if I didn’t? I’d feed the standard input handle `$*IN` to H. Merijn Brand’s [Text::CSV](https://github.com/Tux/CSV) module.
 

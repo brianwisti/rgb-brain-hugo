@@ -15,6 +15,8 @@ tags:
 - yeah-i-know
 - oh-no-the-dishes
 title: that thing
+created: 2024-01-15T15:26:30-08:00
+updated: 2024-01-26T11:03:48-08:00
 ---
 
 That thing where you’re doing a thing but need to look up something and get an idea and start a thing but need a thing and you notice a thing and get an idea and start a thing and you notice a thing…

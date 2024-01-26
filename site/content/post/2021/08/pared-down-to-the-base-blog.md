@@ -10,6 +10,8 @@ tags:
 - ssg
 - site
 title: pared down to the base blog
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-01-26T10:21:41-08:00
 ---
 
 ![attachments/img/2021/cover-2021-08-21.png](../../../attachments/img/2021/cover-2021-08-21.png)

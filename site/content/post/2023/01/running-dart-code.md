@@ -9,6 +9,8 @@ syndication:
 tags:
 - dart
 title: Running Dart Code
+created: 2024-01-15T15:26:01-08:00
+updated: 2024-01-26T10:18:45-08:00
 ---
 
 I haven't played with [Dart](https://dart.dev) since – oh, I don't know, 2013 or so. It was nice, but nothing felt compelling compared to the languages I already used. I stopped hearing about Dart when I stopped using Google+.
@@ -21,7 +23,7 @@ That's pretty dang cool.
 
 I want to look at the Dart language itself – figure out how to use it for basic command line applications before I confuse myself with multi-platform GUI development.
 
-## Writing a Dart script
+# Writing a Dart script
 
 I start exploring a new or forgotten language by answering a few questions:
 
@@ -50,7 +52,7 @@ The basic answers to my basic questions:
 
 The big question though is how do I even run the dang thing
 
-### Running my Dart script
+## Running my Dart script
 
 ````console
 $ dart run greet_me.dart
@@ -61,7 +63,7 @@ Hello, Brian!
 
 I *could* give it a `#!/usr/bin/env`​ shebang line at the top and `chmod 755 hello.dart`​. Then I'd have a nice traditional script executable on any machine with the Dart runtime. But there's a better way, and that starts with using the Dart compiler.
 
-### Using the Dart compiler
+## Using the Dart compiler
 
 Compiling this Dart code into an executable for my current machine takes one line.
 
@@ -114,7 +116,7 @@ Looks like [DCli](https://dcli.onepub.dev) has what I'm looking for today, and f
 
 Time to move from a standalone script file to a project, so I can more easily manage dependencies.
 
-## Building a Dart Project
+# Building a Dart Project
 
 [`dart create`](https://dart.dev/tools/dart-create) generates a project scaffold. It needs at least a project name. By default it creates what you need for a command line application, and those defaults are exactly what I need today. More than I need today, really.
 
@@ -143,7 +145,7 @@ Created project greet_me in greet_me! In order to get started, run the following
 
 There's a lot going on in there, most of which I ignore in my dedicated pursuit of "running some Dart code."
 
-### Add a project dependency
+## Add a project dependency
 
 The [`dart pub`](https://dart.dev/tools/pub/cmd) commands handle dependency management and publishing your project to Pub. So let's use that to add Dcli as a dependency.
 
@@ -195,7 +197,7 @@ void main(List<String> arguments) => greetMe();
 
 Not that I'm writing any test code today.
 
-### Run the project application
+## Run the project application
 
 ​`dart run`​ works without arguments here, probably because I only have a single file with `main()`​ defined.
 
@@ -213,7 +215,7 @@ Neat. Okay there's not much in a straight paste of output. Here's a screenshot, 
 
 That's better than what I had.
 
-### Compile the project application
+## Compile the project application
 
 What if I want to compile it? That's pretty much the same process as with the script. Dart doesn't make any assumptions about files when it comes to compiling an executable.
 
@@ -223,7 +225,7 @@ dart compile exe bin/greet_me.dart -o ./greet_me
 
 I'm sure there's some kind of build tool out there to simplify the process, but my knowledge hasn't gotten that far yet. Until then, this invocation could be put in a [justfile](https://just.systems/man/en/)\``​ for my normal project flow.
 
-## What now?
+# What now?
 
 I'm still early in my exploration of Dart and Flutter, learning not just what Dart code looks like but what it *should* look like. I may add some notes about linting and code analysis tools later. I'm sure to explore DCli, which has a wealth of functions relevant to command line utility scripts. And I definitely want to learn more about how big cross-platform Dart projects are handled.
 

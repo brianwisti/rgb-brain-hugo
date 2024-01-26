@@ -9,6 +9,8 @@ tags:
 - emacs
 - tools
 title: Start Using Emacsclient
+created: 2024-01-15T15:25:29-08:00
+updated: 2024-01-26T10:11:44-08:00
 ---
 
 I have been curious about the [Emacs Client](http://www.emacswiki.org/emacs/EmacsClient) for a long time. Because [Emacs](../../../card/Emacs.md) can have a long startup time, it can be made to run in a persistent mode. All buffers are handled by a central process. Your editor interface connects to that central process rather than managing its own buffers. Thinking about the Emacs client is what started me down the path of studying Emacs as a client/server Lisp environment. Anyways, I looked up some blog posts to tell me what to do.

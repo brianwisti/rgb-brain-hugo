@@ -3,7 +3,6 @@ aliases:
 - /coolnamehere/2010/06/15_0b-subroutine-params.html
 - /post/2010/0b-subroutine-params/
 - /2010/06/15/parrot-babysteps-0b-subroutine-params/
-- /post/2010/06/parrot-babysteps-0b-subroutine-params/
 category: post
 date: 2010-06-15 00:00:00-07:00
 series:
@@ -14,7 +13,8 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 0b - Subroutine Params
-updated: 2011-04-11 00:00:00-07:00
+updated: 2024-01-26T10:09:51-08:00
+created: 2024-01-15T15:25:33-08:00
 ---
 
 It's time to treat the star database like a database. Well, it's time to treat
@@ -34,7 +34,7 @@ First I am going to describe what is being built, then I'm going to work on the
 very important detail of examining a single star. We'll have to wait until the
 next Baby Step before we start searching the catalog.
 
-## Thinking Through The Problem
+# Thinking Through The Problem
 
 We could start by creating a simple search function, testing every line in the
 HYG Catalog and verifying the results by hand. That will obviously not work.
@@ -64,11 +64,11 @@ The conditions would need to allow for ranges or approximate matches.
 Luckily, this code is not indented for use in the real world. I can be as clumsy
 as I want, as long as my program gives the right answer.
 
-## Writing Code
+# Writing Code
 
 Now we're ready to go back to the `stellar` project and write some code.
 
-### Testing a Condition
+## Testing a Condition
 
 Our first approach to checking a star's details will be to check a single field.
 The star `ProperName` is a good field to start with:
@@ -127,7 +127,7 @@ value held in the `star`. I rely on Parrot to do the right thing when comparing
 `desired_value` with `actual_value`. [Remember](/post/2009/07/parrot-babysteps-02-variables-and-types) that Parrot automatically
 handles any type conversions, so we can ignore type for now.
 
-### Revisiting the `header_string`
+## Revisiting the `header_string`
 
 I want to stop for a moment and look at my tests. One annoying fact is that
 every single test file includes the full `header_string` and `delimiter`. That
@@ -392,7 +392,7 @@ stick around but as wrappers that call `check_star_field`. That is entirely
 reasonable. I am comfortable using the general purpose sub as my main checker,
 though. I will delete the specific subs and their tests in my code.
 
-### Testing Multiple Conditions
+## Testing Multiple Conditions
 
 `stellar` does a convincing job of checking a single field in a star. The next
 step is figuring out how to check multiple fields.
@@ -440,7 +440,7 @@ Yes, I did go through several variations on testing multiple fields. I wanted to
 make sure that `check_star` behaved *exactly* the way I expected. How am I going
 to make those tests succeed?
 
-#### `:slurpy` and `:flat` Save the Day
+### `:slurpy` and `:flat` Save the Day
 
 Parrot gives us two excellent modifiers that simplify the job of checking
 multiple fields. The `:slurpy` param modifier to effectively say "Oh,
@@ -519,7 +519,7 @@ Parrot optimization effects yet.
 .end
 ````
 
-## Conclusion
+# Conclusion
 
 We can now examine multiple fields to determine if a star matches a description
 we've provided. Along the way, we explored subroutine parameters. We learned how

@@ -10,6 +10,8 @@ tags:
 - sublime-text
 - tools
 title: Looks like Sublime Text is shifting to a subscription plan
+created: 2024-01-15T15:26:20-08:00
+updated: 2024-01-26T10:59:30-08:00
 ---
 
 ![attachments/img/2021/cover-2021-01-30.png](../../../attachments/img/2021/cover-2021-01-30.png)

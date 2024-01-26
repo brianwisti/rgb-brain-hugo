@@ -13,6 +13,8 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 02 Getting Started With View
+created: 2024-01-15T15:25:46-08:00
+updated: 2024-01-26T09:18:55-08:00
 ---
 
 I’m sure you thought that getting started was fun, but it really didn’t do anything to show off [post/2004/12/rebol](rebol.md). I’d like to go through almost exactly the same process, but this time focussing my attention on [REBOL/View](http://www.rebol.com/prod-view.html). So let’s give it a try!
@@ -68,7 +70,7 @@ Hey, that was neat. We’ve got a pointy-clicky version of the "Hello" script we
 
 Let’s turn this into a script so we can share our newfound REBOL/View knowledge with our other friends who have REBOL/View installed.
 
-## A REBOL/View Script
+# A REBOL/View Script
 
 Just rewrite the code in your favorite text editor. Don’t forget the script header we talked about last time, and the shebang line if you’re on Linux!
 
@@ -95,6 +97,6 @@ view layout [
 
 You still have the same execution options as before, but REBOL/View under Windows gives you an additional choice. You can find your View script via Explorer and double-click. Easy as that!
 
-## All Done
+# All Done
 
 This overview didn’t even scratch the surface of REBOL/View. It didn’t even *touch* the surface, but instead just gave the surface a sideways glance while hurrying to an urgent appointment. I encourage you to take a closer look at REBOL/View and its official documentation.

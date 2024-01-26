@@ -3,6 +3,7 @@ aliases:
 - /2020/03/20/got-married-yesterday/
 - /post/2020/03/got-married-yesterday/
 category: post
+created: 2024-01-15 15:26:28-08:00
 date: 2020-03-20 11:00:21-07:00
 description: Can't let our dystopian sci-fi setting stop us
 slug: got-married-yesterday
@@ -13,6 +14,7 @@ tags:
 - marginalia
 - now
 title: Got Married Yesterday
+updated: 2024-01-26 11:03:11-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-20.jpg](../../../attachments/img/2020/cover-2020-03-20.jpg)

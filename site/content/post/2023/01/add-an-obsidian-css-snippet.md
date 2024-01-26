@@ -9,6 +9,8 @@ tags:
 - obsidian
 - second-brain
 title: Add an Obsidian CSS Snippet
+created: 2024-01-15T15:26:01-08:00
+updated: 2024-01-26T10:18:50-08:00
 ---
 
 ![attachments/img/2023/cover-2023-01-24.png](../../../attachments/img/2023/cover-2023-01-24.png)

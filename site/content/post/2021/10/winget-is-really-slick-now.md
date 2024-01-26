@@ -12,6 +12,8 @@ tags:
 - package-manager
 - respect-the-command-line
 title: winget is pretty slick now
+created: 2024-01-15T15:26:25-08:00
+updated: 2024-01-26T10:21:26-08:00
 ---
 
 Just updated PowerShell via [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/), Microsoft's command line package manager. And Firefox. And Volta. And HeidiSQL. And Alacritty. And Go. And some other stuff.

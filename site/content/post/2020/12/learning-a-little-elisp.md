@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/12/learning-a-little-elisp/
 category: post
+created: 2024-01-15 15:26:21-08:00
 date: 2020-12-19 16:30:00-08:00
 description: Don't get impressed yet
 slug: learning-a-little-elisp
@@ -14,6 +15,7 @@ tags:
 - org-mode
 - programming
 title: Learning a little elisp
+updated: 2024-01-26 10:59:45-08:00
 ---
 
 Excuse me while I share a sleep-deprived ramble from last night through about five lines of [Emacs Lisp](https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html), the extension language for [Emacs](../../../card/Emacs.md)
@@ -24,19 +26,19 @@ There's [tons](https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index
 
 Gotta do it myself, I guess.
 
-## Why
+# Why
 
 So far I have treated elisp as an arcane configuration language.  But it’s so much more than that.  It’s also an arcane *programming* language.  I do love learning programming languages.
 
 I’ll have an easier time configuring Emacs, and most likely get strange new ideas for ways to extend my frenemy text editing environment.
 
-## How
+# How
 
 Using [Emacs](https://www.gnu.org/software/emacs/), of course!  A little bit with the deep integration for both [evaluation](https://www.gnu.org/software/emacs/manual/html%5Fnode/emacs/Lisp-Eval.html#Lisp-Eva) and documentation\_ of Lisp.  Probably a bit more with [Org Babel](https://orgmode.org/worg/org-contrib/babel/intro.html), which provides a layer for evaluating code and exporting the results — say, for example, to a blog post like this one.
 
 Expect side notes about [Doom Emacs](https://github.com/hlissner/doom-emacs), since that’s the flavor I use lately.
 
-## Let’s get started
+# Let’s get started
 
 I looked up "Hello World in ELisp" and found something like this.
 
@@ -44,7 +46,7 @@ I looked up "Hello World in ELisp" and found something like this.
 (message "Hey World!")
 ````
 
-### ELisp evaluation
+## ELisp evaluation
 
 Want to write some Emacs Lisp? Here you go.
 
@@ -78,7 +80,7 @@ And macros.  Macros, near as I can tell, are infinitely nested s-expressions wit
 
 BTW I don’t know Lisp.  I hope you did not come here expecting a tutorial.
 
-### ELisp documentation
+## ELisp documentation
 
 When we have a question about ELisp functions, we don’t need to look everything up online.  Emacs comes with notes.
 
@@ -93,9 +95,9 @@ When we have a question about ELisp functions, we don’t need to look everythin
 >
  > Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with a specific mode!
 
-### ELisp in Org Babel
+## ELisp in Org Babel
 
-This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my *Config* smarter.  For example, only tangle a section if it’s relevant for that machine.
+This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my [Config](../../../config/_index.md) smarter.  For example, only tangle a section if it’s relevant for that machine.
 
 And, of course, really handy for blogging about ELisp.
 
@@ -148,7 +150,7 @@ All right. That’s the very basics of evaluating ELisp in Emacs generally and O
 
 Let’s get back to the code, please. How do I do variables?
 
-## Displaying a variable
+# Displaying a variable
 
 Let’s see. `setq` to set a variable for my name. identifiers can be pretty much whatever. I’ll use lowercase letters and a hyphen.
 
@@ -205,7 +207,7 @@ So I know how to set global or local variables.  I know how to display them.
 
 How to get them from the user?
 
-## Getting user input
+# Getting user input
 
 [Xah Lee](http://www.ergoemacs.org/emacs/elisp%5Fidioms%5Fprompting%5Finput.html) gives a nice rundown on how to get user input. `read-string` is the one I want.
 
@@ -241,7 +243,7 @@ Wait, there’s already a global *standard* function called `message`!
 It’s cool.  By the time I need the function, `let` is done and my variable
 doesn’t exist.  Still.  I shouldn’t make this a habit.
 
-## Wrapping it in a function
+# Wrapping it in a function
 
 I wasn’t planning on looking at functions today, but I’m more than halfway there already.
 

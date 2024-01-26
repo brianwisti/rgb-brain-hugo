@@ -9,6 +9,8 @@ slug: lisp
 tags:
 - coolnamehere
 title: Lisp
+created: 2024-01-15T15:25:45-08:00
+updated: 2024-01-26T09:18:47-08:00
 ---
 
 Okay, I’ll be honest. LISP scares the dickens out of me. It’s ancient by the standards of computer languages. The language is completely different from any of the stuff I use in my day-to-day programming. Yet it has all the features of those languages and more. Garbage collection? Got it. The ability to pass functions around as easily as an integer? Done (and not in a cranky C function pointer manner, either). Object-oriented programming? Well sure, but you might not need it as much as you thought you did. Not only that - LISP has had these features for *decades*.

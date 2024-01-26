@@ -13,6 +13,8 @@ tags:
 - puttering
 - wild-weekend
 title: I wrote this note in Hugo with markdown-it-py
+created: 2024-01-15T15:26:10-08:00
+updated: 2024-01-26T10:21:29-08:00
 ---
 
 Blog post pending. But yeah. [`markdown-it-py`](https://markdown-it-py.readthedocs.io/en/latest/index.html) preprocessing Markdown content for my [card/Hugo](../../../card/Hugo.md) site.

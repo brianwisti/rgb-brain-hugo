@@ -9,6 +9,8 @@ tags:
 - experiment
 - org-mode
 title: How About a Tumblelog
+created: 2024-01-15T15:26:05-08:00
+updated: 2024-01-26T10:19:55-08:00
 ---
 
 Thanks to Twitter turbulence, folks are rediscovering the joys of blogging. I've got a blog — this site right here — so I thought I'd try a [card/tumblelog](../../../card/tumblelog.md) instead. Mixing Org mode journaling and ox-hugo for the next evolution of this site's Notes experiment.

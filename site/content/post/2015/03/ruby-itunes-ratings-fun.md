@@ -16,11 +16,13 @@ tags:
 - music
 - programming
 title: Ruby iTunes Ratings Fun
+created: 2024-01-15T15:25:25-08:00
+updated: 2024-01-26T10:12:52-08:00
 ---
 
 I use the [plist](https://github.com/bleything/plist) and [gruff](https://github.com/topfunky/gruff) gems to summarize my iTunes music ratings with [Ruby](../../../card/Ruby.md)
 
-## Introduction
+# Introduction
 
 Earlier this year I did a fresh operating system install on my laptop. Part of that install involved moving all my music from an older machine. I moved the music, but not the iTunes details. My tastes changed over the years. Why not start with a fresh listen and fresh ratings for all?
 
@@ -39,7 +41,7 @@ $ gem install plist
 $ gem install gruff
 ````
 
-## Here It Is
+# Here It Is
 
 No big code explanation this time around. My last few attempts at that have gone stale in my drafts folder. Plus, I’m worn out. I *tried* the naive XML parsing thing, and it frustrated me quickly. Thank goodness for [plist](https://github.com/bleything/plist).
 

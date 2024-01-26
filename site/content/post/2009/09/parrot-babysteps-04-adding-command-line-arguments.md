@@ -13,9 +13,11 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 04 - Adding Command Line Arguments
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:57:36-08:00
 ---
 
-## Introduction
+# Introduction
 
 We have learned a reasonable amount so far. We know how to write fairly trivial applications using [Parrot](../../../card/Parrot.md) Intermediate Representation. We could probably write a simple formula calculator that gets input from the user, ensures that the content is valid, and presents the results of applying user input to the formula.
 
@@ -23,11 +25,11 @@ It would be nice to write more ambitious programs, though. It would be painful -
 
 We can start examining PMCs by writing a version of our hypotenuse calculator from [a few steps ago](../07/parrot-babysteps-02-variables-and-types.md) that has command line arguments.
 
-## Command Line Arguments
+# Command Line Arguments
 
 How do we tell Parrot that our program accepts command line arguments, though? We need some way to show that our `:main` sub is ready to take parameters. Turns out that's actually pretty easy.
 
-### `.param` directive
+## `.param` directive
 
 The `.param` directive is used at the start of a subroutine to indicate that the subroutine will accept a parameter and place it in the named variable.
 
@@ -70,7 +72,7 @@ I was called with 3 arguments
 
 Three? Let's look at the arguments individually and see if we can figure this out.
 
-### `shift`
+## `shift`
 
 The `shift` opcode lets us pull the first item from an array. This shrinks the `argv` array by one as it shifts the rest of its contents over to fill the empty space, but it's not a concern for us right now.
 
@@ -107,7 +109,7 @@ This argument: there
 
 Oh, right. The program name is the first argument. That is not unusual, especially in some lower level languages. I should have remembered.
 
-### Calculating a Hypotenuse
+## Calculating a Hypotenuse
 
 Let's take what we've learned about handling the command line and apply it to our hypotenuse calculator.
 
@@ -178,6 +180,6 @@ That worked.
 
 Parrot has many special opcodes [for dealing with PMCs](http://docs.parrot.org/parrot/latest/html/src/ops/pmc.ops.html) and soon we'll be looking at more of them. I am especially interested in the opcodes that allow us to use arrays and other collection types.
 
-## Summary
+# Summary
 
 Yes, this has been a *very* quick step. Maybe we didn't learn a whole lot,  but there's a little bit of new stuff in there. We did learn how to add command line handling by using `.param` to tell Parrot that our `:main` method accepts parameters. We learned that for `:main`, the parameter is a particular PMC - something called a ResizableStringArray. The `shift` opcode removes the first item in a ResizableStringArray and lets us use it in a variable. We also saw that we can use the `members` opcode to get the number of members in an array.

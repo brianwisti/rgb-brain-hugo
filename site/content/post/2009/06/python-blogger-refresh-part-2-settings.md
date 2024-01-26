@@ -4,6 +4,7 @@ aliases:
 - /post/2009/python-blogger-refresh-part-2-settings/
 - /2009/06/12/python-blogger-refresh-part-2-settings/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2009-06-12 00:00:00-07:00
 series:
 - Python Blogger Refresh
@@ -14,11 +15,12 @@ tags:
 - python
 - blogspot
 title: Python Blogger Refresh Part 2 - Settings
+updated: 2024-01-26 09:41:27-08:00
 ---
 
 <!--more-->
 
-## The Idea
+# The Idea
 
 I had to focus my efforts in [python-blogger-refresh-part-1](python-blogger-refresh-part-1.md) on restoring the original functionality of my [Python](../../../card/Python.md) Blogger script. That's out of the way. I can now start looking at enhancements. The first annoyance - of many - is the fact that Blogger connection settings are hard-coded into the script. Do you want to post to a different blog? That's going to require editing the source.
 
@@ -28,7 +30,7 @@ Let's fix that three ways:
 1. Adding the ability to define connection details from a config file.
 1. Adding the ability to interactively request connection details when they have not been specified on the command line or in a config file.
 
-### From the Command Line
+## From the Command Line
 
 We're already using [optparse](https://docs.python.org/library/optparse.html) , so adding the ability to define connection settings from the command line won't be difficult. Three options are needed:
 
@@ -117,7 +119,7 @@ DeprecationWarning: the sha module is deprecated; use the hashlib module instead
 
 A quick look at the drafts in my Blogspot dashboard confirms that the code works. That command line has gotten a bit long, though. How about adding a config file?
 
-### From a Config File
+## From a Config File
 
 It's good to have a configuration file holding most of your details. We can keep sensitive information out of the application code, and not have to remember them on the command line every time we run the script.
 
@@ -196,7 +198,7 @@ The application reads the configuration file before handling the command line to
 
 It's nice to get the settings both ways, but I think we can be a little nicer still.
 
-### Interactively
+## Interactively
 
 What if there's no config file, or the config file is incomplete, and there are still missing pieces even after parsing the command line? The behavior I would hope for in an app like this is that it would ask me to fill in the missing blanks. Might as well allow the post filename to be one of the blanks.
 
@@ -243,15 +245,15 @@ if options.doTests:
 
 Let's stop here and get ready for the next leg.
 
-### What Was Accomplished
+## What Was Accomplished
 
 At the start of this post, we had a script which would submit a blog posting based on a filename command parameter, using connection settings that were hard-coded into the script. After a little fiddling around, we've added the ability to get all connection details from the command line, from a configuration file, from interactive input, or some combination of all three. That's a pretty big step in making this blog post code more useful for people who aren't me.
 
-## Next Time
+# Next Time
 
 This code gets the job done, but I will freely admit that this code is getting ugly. Half the application has tests, and the other half is in `main`. Next time I visit this code I'll have to take a long hard look at refactoring and maybe adding some tests for the stuff that is currently in `main`. I should also look at packaging the whole thing up with [distutils](https://docs.python.org/library/distutils.html). The next post is going to be a long one, isn't it?
 
-## Getting The Code
+# Getting The Code
 
 Although it's still small enough to reasonably paste the code into this blog posting, I think it might be a little easier for folks to work with if they just had an archive of what's been done so far.  I'm going to start making it available directly from coolnamehere.
 

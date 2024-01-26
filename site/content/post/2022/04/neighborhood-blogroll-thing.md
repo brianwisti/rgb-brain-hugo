@@ -9,6 +9,8 @@ tags:
 - site
 - rss
 title: Added a Neighborhood Blogroll Thing
+created: 2024-01-15T15:26:06-08:00
+updated: 2024-01-26T10:20:29-08:00
 ---
 
 Been wanting to list at least some of the sites I follow. Blog discovery is almost as hard as finding a six month old tweet. [Recent events](https://www.techdirt.com/2022/04/26/twitters-legal-team-has-been-an-aggressive-defender-of-free-speech-will-that-continue-under-musk/) add some urgency to the thought.

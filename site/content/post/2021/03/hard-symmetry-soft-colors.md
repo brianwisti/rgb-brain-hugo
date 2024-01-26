@@ -11,6 +11,8 @@ tags:
 - symmetry
 - craft
 title: Hard symmetry soft colors
+created: 2024-01-15T15:26:19-08:00
+updated: 2024-01-26T10:22:14-08:00
 ---
 
 ![intricate art deco floral themed drawing in primarily purple tones on a blue background](attachments/img/2021/2021-03-06.png "intricate patterns drawn in the middle of the night is my jam")

@@ -10,15 +10,17 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - If, Else, and Elsif
+created: 2024-01-15T15:25:48-08:00
+updated: 2024-01-26T09:17:49-08:00
 ---
 
-## If
+# If
 
 The `if` directive tells PageTemplate to only display a chunk of content
 when some condition is true. PageTemplate will skip the block and move
 on if the condition is false.
 
-### Syntax
+## Syntax
 
 ````html
 [%if condition %]
@@ -38,12 +40,12 @@ In this example, if the application tells PageTemplate that `pageowner`
 is true, PageTemplate inserts a link to an administrative page.
 Otherwise, nothing happens here.
 
-## Else
+# Else
 
 The `else` directive adds extra power to `if`, by indicating a chunk of
 content to use when a condition is not true.
 
-### Syntax
+## Syntax
 
 ````html
 [%if value%]
@@ -53,7 +55,7 @@ content to use when a condition is not true.
 [%end if %]
 ````
 
-### Example
+## Example
 
 ````html
 [%if login%]
@@ -77,7 +79,7 @@ This example also shows a convenient approach to `if` conditions. We
 about here is the presence of a login, we have PageTemplate test that as
 if it were a regular condition.
 
-## Elsif
+# Elsif
 
 There are many cases where a simple “yes” or “no” doesn’t do enough. You
 want to display something different in the same spot depending on
@@ -94,7 +96,7 @@ multiple tests on the same variable.
 
 </aside>
 
-### Syntax
+## Syntax
 
 ````html
 [%if condition1 %]
@@ -109,7 +111,7 @@ multiple tests on the same variable.
 [%end if %]
 ````
 
-### Example
+## Example
 
 ````html
 [%if cart.items %]
@@ -121,14 +123,14 @@ multiple tests on the same variable.
 [%end if %]
 ````
 
-## Unless
+# Unless
 
 Sometimes you want to ask if something is false. For example, you may
 want to show a login form in one spot if the user is not logged in, but
 nothing at all if he is logged in. That is exactly the sort of thing
 `unless` was intended for.
 
-### Syntax
+## Syntax
 
 ````html
 [%unless condition %]
@@ -136,7 +138,7 @@ nothing at all if he is logged in. That is exactly the sort of thing
 [%end unless %]
 ````
 
-### Example
+## Example
 
 ````html
 [%unless user.has_donated %]

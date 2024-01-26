@@ -2,6 +2,7 @@
 aliases:
 - /2020/01/26/taskwarrior-sync/
 category: post
+created: 2024-01-15 15:26:27-08:00
 date: 2020-01-26 00:00:00-08:00
 series:
 - Taskwarrior Babysteps
@@ -10,6 +11,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Sync
+updated: 2024-01-26 11:03:47-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-26.png](../../../attachments/img/2020/cover-2020-01-26.png)
@@ -20,7 +22,7 @@ inthe.AM is pretty, that's for sure.
 >
  > This post no longer works as-is. Freecinc and InThe.AM have both shut down. Their efforts all these years have been appreciated!
 
-## The problem
+# The problem
 
 You’ve been doing great with your [Taskwarrior](../../../card/Taskwarrior.md) tasks. You tag them. You collect them into projects. You set priorities and due dates. Maybe you even track blockers and active tasks.
 
@@ -34,19 +36,19 @@ How do you get at your carefully maintained task list from another machine?
  > 
  > Me? Mostly I take notes when out and about. Sometimes those notes become tasks when I’m in front of a computer.
 
-## A solution: taskservers
+# A solution: taskservers
 
 Technically, you could keep your task files on a shared folder like `Sync/`, `Dropbox/`. I do not recommend it. Eventually your task management gets ahead of folder synchronization. Now you’re sorting out file conflicts.
 
 Taskwarrior provides a better solution with [taskservers](https://taskwarrior.org/docs/taskserver/why.html). Taskservers manage the details of accessing the task list. They help you avoid file conflicts, and — even better — give you a backup of your task history.
 
-### Run your own task server
+## Run your own task server
 
 I’ve done this. It’s fiddly. Not impossible. Just fiddly. Anyone who wants to host their own taskserver should just play along with [this slide deck](https://gitpitch.com/GothenburgBitFactory/taskserver-setup#/). It provides explicit and careful instructions for setup.
 
 I also suggest you put the taskserver on a host or VPS — something you can reach from outside your home. I put mine on a Raspberry Pi at home, but never exposed it to the outside world. Made it difficult to stay properly synchronized.
 
-### Hosted taskservers
+## Hosted taskservers
 
 They did the hard work of setting up a taskserver, and made it easy for you to connect. Hosted taskservers are easy to reach anywhere you have Internet access.
 
@@ -54,7 +56,7 @@ On the other hand, a copy of your data is on someone else’s server. If you wan
 
 I’m comfortable with hosted services, so let’s look at a couple I’ve tried.
 
-#### Freecinc
+### Freecinc
 
 ![freecinc.com](attachments/img/2020/freecinc.png)
 
@@ -62,7 +64,7 @@ Freecinc seems to have one goal: make it easy to connect to a taskserver. There 
 
 Though yeah — that’s a bit more involved than just connecting to theirs.
 
-#### inthe.AM
+### inthe.AM
 
 ![inthe.AM Web interface](attachments/img/2020/inthe-am.png)
 
@@ -72,7 +74,7 @@ Though yeah — that’s a bit more involved than just connecting to theirs.
 
 This is fantastic if you use those features. I have not. For my usage style, Freecinc and inthe.AM are pretty much the same.
 
-## Using `task sync`
+# Using `task sync`
 
 Since I’m not really using inthe.AM’s features, let’s set myself up on Freecinc. I click the big friendly "Generate My Keys" link, and the site tells me what to do.
 
@@ -103,11 +105,11 @@ Sync successful.  1 changes uploaded.
 
 That’s it. Run `task sync` occasionally and you’re golden.
 
-## Nits and tips
+# Nits and tips
 
 Task servers dramatically improve life with Taskwarrior. Some little annoyances become more apparent though. Let’s deal with those now.
 
-### Cutting down on the verbosity
+## Cutting down on the verbosity
 
 You get tired of this pretty quick:
 
@@ -129,7 +131,7 @@ This removes messages about sync while leaving everything else. If you want more
 >
  > See `man taskrc` for more details about Taskwarrior configuration.
 
-### Sync automatically with a cron job
+## Sync automatically with a cron job
 
 The hardest part of synchronization is remembering to do it. Let’s set up a [cron](https://opensource.com/article/17/11/how-use-cron-linux) job so I don’t have to remember.
 

@@ -10,6 +10,8 @@ slug: about-brian
 tags:
 - coolnamehere
 title: About Brian
+created: 2024-01-15T15:25:49-08:00
+updated: 2024-01-26T09:17:21-08:00
 ---
 
 ![Photo of Brian](/attachments/img/2001-brian-greenlake.jpg)

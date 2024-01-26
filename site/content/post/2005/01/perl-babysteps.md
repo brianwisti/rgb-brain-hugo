@@ -11,6 +11,8 @@ tags:
 - learn
 - coolnamehere
 title: Perl Babysteps
+created: 2024-01-15T15:25:43-08:00
+updated: 2024-01-26T09:19:08-08:00
 ---
 
 Let’s admit it. Perl is *everywhere*. It powers most of the Internet, in one form or another. What? Your site doesn’t use Perl and CGI? Well, what about the administrative scripts that keep it running smoothly when everyone is snug in their beds? Even a fair chunk of Microsoft IIS servers rely on Perl for administrative tasks. I’m not saying that Perl is being used on every site on the Internet, including yours. I’m saying that Perl is probably being used on any random site you happen to look at on the Internet, including yours.
@@ -25,12 +27,12 @@ Even more specifically, how a beginner can use the features of Perl 5.14 to writ
 
 It is explicitly *not* a tutorial for people who need to maintain a big pile of legacy code that hides dragons and dark secrets — or for somebody who wants to whip out quick one-liners and scripts to accomplish amazing administrative tasks. See below for some of my favorite books for different approaches to learning Perl.
 
-## The Series
+# The Series
 
 1. [perl-5-babysteps-01-getting-started](perl-5-babysteps-01-getting-started.md): Installing Perl and writing your first script
 1. [perl-5-babysteps-02-user-input](../../2009/05/perl-5-babysteps-02-user-input.md): Getting user input from the command line
 
-## Other Resources
+# Other Resources
 
 * [Learning Perl](http://oreilly.com/catalog/9781449303587/) - now in its sixth edition - is the standard for learning how to get stuff done in Perl. It is very easy to understand and gives you a broad understanding of how to speak native Perl.
 * [Minimal Perl](http://manning.com/maher/) keeps a strong focus on the sort of Perl you would want for shell scripting and administrative tasks. Its greatest strength is that it shows you how little code you must write to accomplish big jobs.

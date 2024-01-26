@@ -12,6 +12,8 @@ tags:
 - jekyll
 - tools
 title: Using Octopress 3
+created: 2024-01-15T15:25:26-08:00
+updated: 2024-01-26T10:13:06-08:00
 ---
 
 [Octopress](http://octopress.org/) is "an obsessively designed toolkit for writing and deploying *Jekyll* blogs." A [blog post](http://octopress.org/2015/01/15/octopress-3.0-is-coming/) earlier this year by author Brandon Mathis described frustrations with Octopress 2, along with plans for [Octopress 3](https://github.com/octopress/octopress). I didn't use Octopress before, so I can't tell you anything about how much better or worse the newest Octopress is. This release feels like a straightforward and useful extension to Jekyll. Apparently the older releases did not.

@@ -11,6 +11,8 @@ tags:
 - python
 - programming
 title: All The Hugo Themes
+created: 2024-01-15T15:26:12-08:00
+updated: 2024-01-26T10:16:58-08:00
 ---
 
 ![attachments/img/2016/cover-2016-01-02.png](../../../attachments/img/2016/cover-2016-01-02.png)
@@ -24,7 +26,7 @@ $ cd mysite/
 $ git clone --depth 1 --recursive https://github.com/spf13/hugoThemes.git themes
 ````
 
-## Code
+# Code
 
 The idea here is to ask Hugo to build and serve the site once for each theme. For each built theme, ask the browser to load and screenshot the site with that theme.
 
@@ -111,15 +113,15 @@ if __name__ == '__main__':
     subprocess.run(convert_command)
 ````
 
-## The Result
+# The Result
 
 Aside from a few dozen PNG files? Well, there’s that nifty animation. Animated GIFs give me a headache sometimes, so I will [link to the GIF](/attachments/img/2016/hugo-themes.gif) instead.
 
-## Observations
+# Observations
 
 I noticed a few things with this experiment.
 
-### Configuration
+## Configuration
 
 ![attachments/img/2016/chrome-redlounge-medium.png](../../../attachments/img/2016/chrome-redlounge-medium.png)
 Red Lounge theme
@@ -128,7 +130,7 @@ Themes vary significantly in their expected configuration options. Some want soc
 
 This is not an issue if you pick a favorite from the themes repository and make your site work with your favorite. It *is* an issue if you’re looking at your site in every theme. I turned my `config.yaml` into sort of a mess to make it work with more of the themes.
 
-### Layout
+## Layout
 
 Although many themes focus on blog content, some have a different purpose. Their authors may have created them with project documentation, portfolios, or company sites in mind. Their structure is more complex or requires metadata beyond a simple blog.
 
@@ -141,7 +143,7 @@ But it does help understand why sometimes the site renders as an attractive blan
 
 Well - reading documentation for the thing you’re using is generally a good idea anyways.
 
-### Sections
+## Sections
 
 ![attachments/img/2016/chrome-pixyll-medium.png](../../../attachments/img/2016/chrome-pixyll-medium.png)
 Pixyll theme
@@ -150,7 +152,7 @@ The themes seemed a little confused by my Craft section. Some ignored craft proj
 
 You will probably need to [customize your template](http://gohugo.io/themes/customizing/) if you have special content.
 
-## What Theme Should I Use?
+# What Theme Should I Use?
 
 Maybe you were wondering which theme you could use for your new site. I suggest [Hyde-X](http://themes.gohugo.io/hyde-x/) for blog sites. It has nice defaults, and provides quality documentation for its many configuration options. My site started with Hyde-X as a base before moving in its own direction.
 

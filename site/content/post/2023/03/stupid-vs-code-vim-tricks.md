@@ -9,6 +9,8 @@ tags:
 - vs-code
 - config
 title: Stupid VS Code Vim Tricks
+created: 2024-01-15T15:26:10-08:00
+updated: 2024-01-26T10:18:33-08:00
 ---
 
 Still trying my experiment with using [Dendron](https://dendron.so) in [Visual Studio Code](https://code.visualstudio.com) as part of some sort of public second brain. Honestly I don't know how long that'll last, so I figure better share the fun stuff I learn here too.

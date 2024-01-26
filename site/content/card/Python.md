@@ -1,5 +1,7 @@
 ---
+created: 2024-01-15 15:26:16-08:00
 title: Python
+updated: 2024-01-26 09:08:38-08:00
 ---
 
 > 
@@ -7,6 +9,6 @@ title: Python
 
 Convincing people to give Python a try used to take a lot more work.
 
-## Related
+# Related
 
 * https://www.python.org

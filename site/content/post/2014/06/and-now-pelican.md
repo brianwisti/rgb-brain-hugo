@@ -13,6 +13,8 @@ tags:
 - site
 - marginalia
 title: And now, Pelican!
+created: 2024-01-15T15:26:15-08:00
+updated: 2024-01-26T10:11:40-08:00
 ---
 
 I’m not sure why, but I wasn’t *quite* comfortable with [o-blog](https://github.com/renard/o-blog). It works well enough, but decided it was time to poke around with [card/Jekyll](../../../card/Jekyll.md) again.

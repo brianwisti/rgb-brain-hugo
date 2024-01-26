@@ -10,6 +10,8 @@ tags:
 - i-fixed-it
 - blogspot
 title: dv9310 bios issues
+created: 2024-01-15T15:25:42-08:00
+updated: 2024-01-26T09:22:27-08:00
 ---
 
 I turned an offhand comment about how I fixed my problem into more of a step-by-step guide, in case some poor soul is in the same spot and finds me via Google.

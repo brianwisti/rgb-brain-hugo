@@ -5,6 +5,8 @@ category: note
 slug: better-than-a-gist
 tags:
 - community-support
+created: 2024-01-15T15:26:04-08:00
+updated: 2024-01-26T10:19:25-08:00
 ---
 
 If you aren't sure about the new 988 suicide prevention hotline, here are some other numbers you can call in the US, via Twitter.

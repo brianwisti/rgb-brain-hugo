@@ -10,17 +10,19 @@ tags:
 - perl
 - coolnamehere
 title: In Which Brian Whinges About The Perl 5 Release Schedule
+created: 2024-01-15T15:25:36-08:00
+updated: 2024-01-26T09:41:30-08:00
 ---
 
-### Update: 2015-03-27
+# Update: 2015-03-27
 
 The current version of [Perl](../../../card/Perl.md) 5 is 5.20.2. My complaints from this post have been addressed and then some since 2009.
 
-### Update: 2010-02-23
+# Update: 2010-02-23
 
 I just have to say that none of this is personal against the pumpkings. It's a tough job, and not many people have the right combination of skills and time to pull it off. I just had thoughts I wanted to get off my chest.
 
-## First, The Whinging
+# First, The Whinging
 
 Perl 5.10.0 was released on 18 December, 2007. [chromatic](http://modernperlbooks.com), a fairly prominent Perl hacker, has been pushing hard for some kind of update to Perl 5 since - well, probably about 19 December 2007. For their own reasons, the pumpkings have not been willing to produce such an update. That is annoying.
 
@@ -36,9 +38,9 @@ What prompted this bit of extended whining? Well, on the ride to work this morni
 
 So I looked up the language releases as well as I could. Not the alphas, betas, or even the release candidates. Not the supplemental projects like <a href="https://metacpan.org/pod/Moose">Moose</a>, <a href="http://rubyonrails.com">Rails</a>, or <a href="http://pygame.org">Pygame</a> which add tons of fun to their respective languages and application domains. Just language releases, including bug fixes.
 
-## Releases Between 18 December 2007 and 2 July 2009 of Languages I Care About
+# Releases Between 18 December 2007 and 2 July 2009 of Languages I Care About
 
-### Python
+## Python
 
 <table>
 <thead>
@@ -62,7 +64,7 @@ So I looked up the language releases as well as I could. Not the alphas, betas, 
 
 Total releases since 18 December 2007: <em>12</em>
 
-### Ruby
+## Ruby
 
 <table>
 <thead>
@@ -109,7 +111,7 @@ Total releases since 18 December 2007: <em>12</em>
 
 Total releases since 18 December 2007: <em>8</em>
 
-### PHP
+## PHP
 
 <table>
 <thead>
@@ -156,7 +158,7 @@ Total releases since 18 December 2007: <em>8</em>
 
 Total releases since 18 December 2007: <em>8</em>
 
-### Parrot
+## Parrot
 
 Parrot releases are harder to count because of their prolific release cycle. 1.0.0 is considered the "stable" release, although the 3 monthly releases since then are quite stable for me and the project had many public monthly releases prior to 1.0.
 
@@ -249,11 +251,11 @@ Parrot releases are harder to count because of their prolific release cycle. 1.0
 
 Total releases since 18 December 2007: <em>19</em>, <em>4</em>, or <em>1</em> depending on whether you count <em>all</em> public releases, all 1.x releases, or only the stable 1.0.0 release.
 
-### Rakudo
+## Rakudo
 
 It's not completely fair to include Rakudo in this list, since it's still shy of a 1.0 release. However, it is worth pointing out that Rakudo has had 5 monthly development releases since outgrowing Parrot and adopting its own cycle in early 2009.
 
-### Perl 5
+## Perl 5
 
 <table>
 <thead>
@@ -275,7 +277,7 @@ It's not completely fair to include Rakudo in this list, since it's still shy of
 </table>
 Total releases since 18 December 2007: <em>2</em>
 
-## What Do These Numbers Say To Me?
+# What Do These Numbers Say To Me?
 
 Not much, really. They're numbers. This is not detailed analysis. This is just looking, whining, and pondering. But the overall feel I get when I look at this list is that Perl 5 is not active compared to other languages.  Its maintainers have things to do besides fix or apply patches for <a href="http://rt.perl.org/rt3/Public/Search/Simple.html?Query=Queue%20=%20%27perl5%27%20AND%20%28Status%20=%20%27open%27%20OR%20Status%20=%20%27new%27%20OR%20Status%20=%20%27stalled%27%29">existing bugs</a> or new features. If I were a developer or startup CTO looking for a language to work and play with - and that's the perspective I'm taking, rather than the grizzled veterans maintaining 12 year old apps running on
 a custom patched Perl - I would have a hard time believing that Perl is worth my time.

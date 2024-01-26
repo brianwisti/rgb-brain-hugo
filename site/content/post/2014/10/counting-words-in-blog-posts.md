@@ -11,6 +11,8 @@ tags:
 - ruby
 - programming
 title: Counting Words in Blog Posts
+created: 2024-01-15T15:25:30-08:00
+updated: 2024-01-26T10:12:03-08:00
 ---
 
 I want to write at least 250 words per day. This is not a 30 day challenge. It is just something I want to do. I write more than 250 words daily when you count social network posts and chat text. Wouldn't it be nice if some of those words were organized around a single idea?

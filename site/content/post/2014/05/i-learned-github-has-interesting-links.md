@@ -10,6 +10,8 @@ tags:
 - tools
 - link
 title: I Learned GitHub Has Interesting Links
+created: 2024-01-15T15:25:28-08:00
+updated: 2024-01-26T10:11:35-08:00
 ---
 
 Today I got to take part in a User Experience Research interview with some fine folks from GitHub. It was straightforward. We chatted for about half an hour, mostly discussing GitHub. Makes sense. They learned how I used it. Since there is so little of GitHub that I use, they got to show me some nifty things.

@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:03-08:00
 date: 2022-08-09 11:00:00-07:00
 description: In which I frolic with a note system that lets me use SQL
 slug: customizing-a-trilium-report
@@ -10,6 +11,7 @@ tags:
 - trilium-notes
 - sqlite
 title: Customizing a Trilium Report
+updated: 2024-01-26 10:19:12-08:00
 ---
 
 ![attachments/img/2022/cover-2022-08-09.png](../../../attachments/img/2022/cover-2022-08-09.png)

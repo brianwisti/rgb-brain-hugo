@@ -11,13 +11,15 @@ tags:
 - recipe
 - marginalia
 title: Fantastic Foods' Sloppy Joe French Bread Pizza Recipe
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T10:11:30-08:00
 ---
 
 ![attachments/img/2014/cover-2014-04-12.jpg](../../../attachments/img/2014/cover-2014-04-12.jpg)
 
 <!--more-->
 
-## Fantastic Foods Sloppy Joe French Bread Pizza
+# Fantastic Foods Sloppy Joe French Bread Pizza
 
  > 
  > * 1 package Fantastic Foods Sloppy Joe Mix
@@ -35,7 +37,7 @@ title: Fantastic Foods' Sloppy Joe French Bread Pizza Recipe
 
 Oh, one thing I like to do is toast the halved loaf under the broiler for *maybe* a minute. It's just enough to get some crispiness, which I think goes well with the hot melty mess up top.
 
-## The the story
+# The the story
 
 About ten years ago, my wife got me to start experimenting with vegetarian food. I started with what I knew best: boxed things. [Fantastic Foods](http://www.fantasticfoods.com/) has a [few tasty boxes](http://www.fantasticfoods.com/content/products) such as mixes for sloppy joes and tacos.
 

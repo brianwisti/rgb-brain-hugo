@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/07/tangling-code-from-hugo-content-with-raku/
 category: post
+created: 2024-01-15 15:26:25-08:00
 date: 2020-07-08 21:45:00-07:00
 description: I could just use Org mode, but noo that's too easy
 slug: tangling-code-from-hugo-content-with-raku
@@ -16,6 +17,7 @@ tags:
 - sortof
 - programming
 title: Tangling code from Hugo content with Raku
+updated: 2024-01-26 11:00:20-08:00
 ---
 
 ![attachments/img/2020/cover-2020-07-08.jpg](../../../attachments/img/2020/cover-2020-07-08.jpg)
@@ -66,7 +68,7 @@ What I want is to write about `hello.py` here, and with a command have `hello.py
 
 And I want to do it without disturbing Hugo. Let it turn Markdown into HTML.
 
-## Tangling
+# Tangling
 
 This process is called "tangling," and it's popular in the admittedly small
 world of [Literate Programming](http://literateprogramming.com/).  The code is interleaved
@@ -137,7 +139,7 @@ Sweet.
 
 Except — this Markdown file I'm writing.  It has *two* file code blocks now.  I want to tangle both of them.
 
-## Multiple output files
+# Multiple output files
 
 This requires a couple changes, since I'm writing code about Hugo shortcodes in a Hugo post.
 
@@ -255,7 +257,7 @@ $ bat tangle.raku
 
 Unfortunately, I'm not quite done yet.
 
-## Multiple fragments
+# Multiple fragments
 
 I'm not done yet because I don't like to describe my code a full file at a time.  I'd rather talk about this bit here, explain that bit over there, then mash it all up in the end.
 
@@ -318,7 +320,7 @@ print(Panel(md))
 
 I *might* spend some time talking about the `code` shortcode in another post, but I dislike Go's templating enough that this does not sound like fun.
 
-### Rounding up fragments to tangle
+## Rounding up fragments to tangle
 
 Recognizing an additional parameter doesn't make my regular expression *that* much more complicated, but I can see things getting  ore complex.  I could even find a better pattern later.  Let's give the params their own named regex for some encapsulation.
 
@@ -369,7 +371,7 @@ for $markdown.match(/<shortcode>/, :global) -> $block {
 }
 ````
 
-### Tangling my fragments
+## Tangling my fragments
 
 Let's see here.  I know before I can write any files, I need to make sure everything's tangled Trying to keep fragments easy to identify.  They sit on a line by themselves, possibly with some leading whitespace.
 
@@ -424,7 +426,7 @@ The idea of the thing is clear enough.  Find and recursively `tangle` each fragm
 
 I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a `Match` and a `String`.  There *must* be better ways. But the most important thing?  I got it to work eventually.
 
-### Writing tangled files
+## Writing tangled files
 
 After all that, writing the tangled files felt easy.
 
@@ -524,7 +526,7 @@ Okay.  Now I'm done.
 
 I *could* have done this in Python.  There are decent parsing libraries out there.  But Raku did this on its own, without pulling in any extra — without pulling in *any* libraries.
 
-## Done? You barely started!
+# Done? You barely started!
 
 My tangle script is no competition for Org mode's Babel.
 

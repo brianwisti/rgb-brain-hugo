@@ -2,6 +2,7 @@
 aliases:
 - /2020/04/28/from-dotfiles-to-org-file/
 category: post
+created: 2024-01-15 15:26:27-08:00
 date: 2020-04-28 01:36:54-07:00
 description: at 1:30am they're all good ideas
 slug: from-dotfiles-to-org-file
@@ -15,13 +16,14 @@ tags:
 - orgconfig
 - tools
 title: From Dotfiles to Org File
+updated: 2024-01-26 11:02:28-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-28.png](../../../attachments/img/2020/cover-2020-04-28.png)
 
 I read [Literate Configuration](https://leanpub.com/lit-config/) by [Diego Zamboni](https://zzamboni.org/). Now I want to replace my [Dotbot](https://github.com/anishathalye/dotbot)-managed dotfiles with an [card/Org](../../../card/Org.md) file.
 
-## Literate Configuration?
+# Literate Configuration?
 
 Literate configuration comes out of [literate programming](http://literateprogramming.com/index.html), which mixes code and text about the code in a single document. Okay yes. Like code comments. Where literate programming gets more interesting than comments is how it "tangles" snippets together, creating files out of these code snippets you’ve described. It’ll be a little easier to understand when you try it. But you can describe the reasoning behind your code or look at your code as high level components.
 
@@ -30,13 +32,13 @@ Folks still argue whether literate programming is a useful approach to software 
 Diego Zamboni’s booklet includes 17 pages of instruction and 80 pages of sample config for Emacs, the [Hammerspoon](https://www.hammerspoon.org/) macOS automation tool, and the [Elvish](https://elv.sh/) shell, all of which you can also find [on his blog](https://zzamboni.org/post/2017-12-17-my-emacs-configuration-with-commentary/). I have no regrets about spending $5 on *Literate Configuration*. The
 formatting is better, for one thing.
 
-## Dotfiles?
+# Dotfiles?
 
 An informal reference to one person’s collection of configurations and settings. They’re named for the common Unix convention of using a leading dot in config filenames: `.zshrc`, for example. Many folks, including me, like to keep those dotfiles in version control. Makes it easier to track changes or roll back when something doesn’t work like you thought it would. Also simplifies setting up new machines.
 
 You can find a nice introductory site for the version-controlled dotfiles approach on [Github](https://dotfiles.github.io/).
 
-## In an Org file?
+# In an Org file?
 
 Well of course. What did you think I was going to use — [Markdown](https://github.com/jostylr/literate-programming)? [reStructuredText](https://slott56.github.io/PyLit-3/_build/html/index.html)? [Asciidoctor](https://aimlesslygoingforward.com/blog/2019/10/02/roguelike-tutorial-up-to-date-and-literate/)?
 
@@ -46,7 +48,7 @@ Maybe later, Asciidoctor.
 
 Yeah, Org. [Babel](https://orgmode.org/worg/org-contrib/babel/) lets Org execute and/or [extract](https://orgmode.org/manual/Extracting-Source-Code.html#Extracting-Source-Code) source code. It supports a long list of [languages](https://orgmode.org/worg/org-contrib/babel/languages.html). I don’t need to find or write extensions for basic functionality.
 
-## Prepare Org mode
+# Prepare Org mode
 
 Babel used to be an extension to Org, but it’s been a core part of the framework for a bit now. Thing is, Babel is powerful and a little dangerous. You need to give it permission.
 
@@ -78,7 +80,7 @@ By default, Babel requests confirmation from you for every code block it handles
 
 Zamboni’s booklet provides directions for automatic export on save, but I’m still new to this. I’ll stick with manually triggering extraction for now.
 
-## My literate config
+# My literate config
 
 Let’s keep my starting point really really simple. Just a little bit out of my [Zsh](https://www.zsh.org/) config.
 

@@ -12,6 +12,8 @@ tags:
 - unix
 - blogspot
 title: I'm too cheap to buy a radio alarm
+created: 2024-01-15T15:26:23-08:00
+updated: 2024-01-26T09:22:07-08:00
 ---
 
 I have trouble waking up on time. That's probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it's 1:40 in the morning right now and I'm writing a little blog post instead of going to bed.

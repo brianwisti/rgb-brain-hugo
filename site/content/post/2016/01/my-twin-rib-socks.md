@@ -12,6 +12,8 @@ tags:
 - socks
 - craft
 title: My Twin Rib Socks
+created: 2024-01-15T15:26:51-08:00
+updated: 2024-01-26T10:16:59-08:00
 ---
 
 ![attachments/img/2016/cover-2016-01-30.jpg](../../../attachments/img/2016/cover-2016-01-30.jpg)

@@ -4,6 +4,7 @@ aliases:
 - /2015/09/27/next-hugo/
 - /post/2015/09/next-hugo/
 category: post
+created: 2024-01-15 15:26:12-08:00
 date: 2015-09-27 13:36:30-07:00
 description: I Rebuilt Random Geekery with Hugo
 slug: next-hugo
@@ -14,6 +15,7 @@ tags:
 - hugo
 - tools
 title: Next? Hugo
+updated: 2024-01-26 10:13:17-08:00
 ---
 
 Hey it has been a while since I shuffled the site around completely. I'll

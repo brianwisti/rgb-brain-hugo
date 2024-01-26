@@ -12,6 +12,8 @@ tags:
 - site
 - i-fixed-it
 title: yay fresh webmentions again
+created: 2024-01-15T15:26:19-08:00
+updated: 2024-01-26T10:22:17-08:00
 ---
 
 Finally reconnected the site flow bits that grab and file fresh [Webmentions](https://webmention.io). Probably going to tweak rendering of the [Bridgy](https://brid.gy/) bits that feed reactions from bigger social networks. It's that or add threading *here* for conversation that happens *there*. No thank you.

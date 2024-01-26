@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:11-08:00
 date: 2021-08-09 00:00:00-07:00
 description: testing a python remote plugin for quicker reStructuredText in Hugo
 slug: trying-a-thing-with-neovim
@@ -14,18 +15,18 @@ tags:
 - site
 - tools
 title: trying a thing with neovim
-updated: 2021-08-10 00:00:00-07:00
+updated: 2024-01-26 10:21:39-08:00
 ---
 
 But will it even work?
 
 Oh right I need to `:UpdateRemotePlugins` first.
 
-## Test \[PASSED\]
+# Test \[PASSED\]
 
 It worked!
 
-### What did I just do?
+## What did I just do?
 
 I used a [remote plugin](https://neovim.io/doc/user/remote_plugin.html) in [card/Neovim](../../../card/Neovim.md) to transform my [card/reStructuredText](../../../card/reStructuredText.md) into an HTML source document, simplifying [card/Hugo](../../../card/Hugo.md)'s site-building duties.
 
@@ -40,7 +41,7 @@ Still — why not format it ahead of time?
 
 Shush, me.
 
-### The Implementation
+## The Implementation
 
 Start with `content/whatever/index.rst.txt`.
 
@@ -59,7 +60,7 @@ With the code down below in my Neovim python3 — that's *python3* not *python* 
 
 The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.
 
-#### The Code
+### The Code
 
 ````python{title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"}
 """Give my reStructuredText posts in Hugo a little boost."""
@@ -115,7 +116,7 @@ If you grab a copy for your own nefarious plans — a similar template could get
 
 * run `:UpdateRemotePlugins` and restart Neovim when you make changes to the plugin file
 
-### Libraries Used
+## Libraries Used
 
 * [Docutils](https://docutils.sourceforge.io/) of course, for transforming the reStructuredText
 * Docutils takes advantage of the fact that I have [Pygments](https://pygments.org/) installed, for syntax highlighting

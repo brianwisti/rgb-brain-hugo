@@ -10,6 +10,8 @@ tags:
 - shouldn-t-you-be-working
 - it-s-sunday
 title: I'm trying a "notes" collection
+created: 2024-01-15T15:26:19-08:00
+updated: 2024-01-26T10:22:03-08:00
 ---
 
 ![attachments/img/2021/cover-2021-04-18.png](../../../attachments/img/2021/cover-2021-04-18.png)

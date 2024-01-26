@@ -8,6 +8,8 @@ tags:
 - the-internet
 - and-other-delusions
 title: Maybe lock chat-gpt3 out of your blog
+created: 2024-01-15T15:26:01-08:00
+updated: 2024-01-26T10:18:47-08:00
 ---
 
 Random post crossed into my field of view today.

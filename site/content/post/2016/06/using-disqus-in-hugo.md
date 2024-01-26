@@ -11,6 +11,8 @@ tags:
 - disqus
 - tools
 title: Using Disqus in Hugo
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-01-26T10:17:07-08:00
 ---
 
 All right fine. Some visitor may want to leave a comment about one or another of my posts. I can do that with Hugo.

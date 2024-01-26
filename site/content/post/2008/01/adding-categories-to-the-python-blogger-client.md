@@ -12,9 +12,11 @@ tags:
 - python
 - blogspot
 title: Adding Categories to the Python Blogger Client
+created: 2024-01-15T15:25:38-08:00
+updated: 2024-01-26T09:22:54-08:00
 ---
 
-## Update 2009-06-09
+# Update 2009-06-09
 
 I've revisited the code for Blogger posting with [Python](../../../card/Python.md). Start with [python-blogger-refresh-part-1](../../2009/06/python-blogger-refresh-part-1.md) to see the new starting point.
 

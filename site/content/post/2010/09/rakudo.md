@@ -11,6 +11,8 @@ tags:
 - raku-lang
 - coolnamehere
 title: Rakudo
+created: 2024-01-15T15:25:34-08:00
+updated: 2024-01-26T10:10:13-08:00
 ---
 
 The [Perl](../../../card/Perl.md) world has evolved over the years. Once upon a time, it was a simple glue language that made life easier for system administrators. It's grown up a lot since then, and now powers much of the Internet. The language has added new features, and the [CPAN](http://cpan.org) has made a dizzying number of libraries available.
@@ -21,7 +23,7 @@ Yet in a way, Perl was stuck. Developers had to be careful about adding new feat
 
 There's still some bickering out there. There always will be. Some people thrive on conflict. Meanwhile, Rakudo runs and it's pretty darn cool.
 
-## Getting Started
+# Getting Started
 
 There is a lot of material to get you started with Rakudo. The [Perl 6 Book](http://github.com/perl6/book) is included with Rakudo Star. Moritz Lenz has written an amazing [series of blog posts](http://perlgeek.de/en/article/5-to-6) helping Perl 5 programmers transition to Perl 6. There is also a [Perl 6 wikibook](http://en.wikibooks.org/wiki/Perl_6_Programming). If you want to learn more about the guts of Rakudo, take a look at Parrot.
 

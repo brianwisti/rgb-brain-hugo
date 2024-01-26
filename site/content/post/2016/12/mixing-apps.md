@@ -11,6 +11,8 @@ tags:
 - procreate
 - craft
 title: Mixing Apps
+created: 2024-01-15T15:25:53-08:00
+updated: 2024-01-26T10:17:28-08:00
 ---
 
 Used [Amaziograph](http://amaziograph.com/) for the design, then switched over to [Procreate](http://procreate.si/) for the color and detail.

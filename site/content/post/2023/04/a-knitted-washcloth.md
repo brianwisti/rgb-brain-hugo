@@ -9,6 +9,8 @@ tags:
 - it-s-been-84-years
 - okay-maybe-two
 title: A Knitted Washcloth
+created: 2024-01-15T15:26:00-08:00
+updated: 2024-01-26T10:18:31-08:00
 ---
 
 ![attachments/img/2023/cover-2023-04-23.jpg](../../../attachments/img/2023/cover-2023-04-23.jpg)

@@ -9,6 +9,8 @@ slug: cygwin
 tags:
 - coolnamehere
 title: Cygwin
+created: 2024-01-15T15:25:45-08:00
+updated: 2024-01-26T09:18:36-08:00
 ---
 
 ## Unix for the Windows World
@@ -21,7 +23,7 @@ The solution is surprisingly straightforward. Get [Cygwin](http://www.cygwin.com
 
 So that’s all I’ll say for now. If I ever talk about some UNIXy thing on this site, the odds are good that you can also do it from Cygwin.
 
-## Cygwin Ports Project
+# Cygwin Ports Project
 
 Cygwin on its own is fairly handy, but one of the blessings of a major open source project like this is that people are always working to add more. These additions may eventually get incorporated into the main Cygwin repository. It wasn’t that long ago that X11 was considered an experimental add-on which only the brave should try. Nowadays it’s standard and readily available.
 

@@ -11,13 +11,15 @@ tags:
 - python
 - blogspot
 title: Python Loves Blogger (Part 1)
+created: 2024-01-15T15:25:42-08:00
+updated: 2024-01-26T09:22:33-08:00
 ---
 
 I've revisited the code for Blogger posting with Python. Start [here](../../2009/06/python-blogger-refresh-part-1.md) to see the new starting point.
 
 <!--more-->
 
-## The Original Tale
+# The Original Tale
 
 I want the ability to post to my blogs from the command line. That's because I prefer to do *everything* from the command line, but that's not really the point. The point is that I want an excuse to write a new quick script and satisfy that constant urge to gain some new superpower. Okay, so blogging's not a superpower. Hush.
 
@@ -28,7 +30,7 @@ All of the hard work is going to be done with [Python](../../../card/Python.md).
 
 I could just as easily have used Perl or Ruby for this project. Heck, I could have used REBOL for this project if I was willing to craft some of the library by hand. All of these things are possibilities for the future. One thing I love to do is reimplement applications in various languages. It's a sickness.
 
-## The Application Skeleton
+# The Application Skeleton
 
 Basic usage will be `python post-to-blog.py post.txt`. `post.txt` is a text file containing details like title or tags and the post body.
 
@@ -56,7 +58,7 @@ I plan to use the [doctest](https://docs.python.org/2/library/doctest.html) modu
 
 I already know what libraries I'm going to use, so let's install those.
 
-## Installing Dependencies
+# Installing Dependencies
 
 I need a few things to make this work:
 
@@ -99,7 +101,7 @@ $ python BloggerExample.py --email [email] --password [password]
 
 There's a bunch of spew, and posts are made and deleted along with comments. Looks like it works.
 
-## Posting Formats
+# Posting Formats
 
 My blog post files will have a fairly straightforward layout, with a head section and a body section. It'll look ... well, it'll look a lot like the `lj-compose` buffer in Emacs for composing Livejournal posts, now that I think about it.
 
@@ -127,7 +129,7 @@ key2: value2,value3,value4,value5
 
 The body section is just Markdown-formatted text, including extensions that are available in the Python Markdown library.
 
-### Parsing the Config Header
+## Parsing the Config Header
 
 There is a very handy [ConfigParser](https://docs.python.org/2/library/configparser.html) class available in the Python standard libs, but it's actually a little more than I need in a single post file. I just want to examine each line for key/value pairings without worrying about providing sections or a filehandle-like object
 to make ConfigParser happy.
@@ -168,7 +170,7 @@ if __name__ == '__main__':
 
 That was pretty easy, although I did have to do a little thinking to work around the fact that newline escapes tend to be read before `doctest` can get to them. Anyways, config lines are split on the `: ` pair of characters. A regular expression might be better for general use but I'm still going for quick, dirty, and exactly what *I* want.
 
-### Parsing the Post Body
+## Parsing the Post Body
 
 Now let's get some HTML out of a block of Markdown-formatted text.
 
@@ -288,7 +290,7 @@ if __name__ == '__main__':
    doctest.testmod()
 ````
 
-## Command Line Options
+# Command Line Options
 
 Before I get too carried away, I want to make sure that there are no ugly surprises in the formatting of my posts. Let's do the heavy lifting with [optparse](https://docs.python.org/2/library/optparse.html).
 
@@ -410,7 +412,7 @@ I'll save you the details of the full output. It looked about right, though.
 
 Enough stalling. It's time to login and post this article.
 
-## Interacting with Blogger
+# Interacting with Blogger
 
 I'll be using [the official guide](https://developers.google.com/blogger/docs/3.0/getting_started) for Python and Blogger to choose my steps. You aren't likely to find anything here that isn't already there.
 
@@ -561,7 +563,7 @@ That posted, but I lost all the line breaks in my `pre` blocks. I decided to pic
 
 At some point I'll figure out how to add labels.
 
-## The Code So Far
+# The Code So Far
 
 This is the code I used to publish this post. Definitely a work in progress - this version will submit your post as a draft, for example.
 

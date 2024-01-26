@@ -9,6 +9,8 @@ tags:
 - linux
 - links
 title: A finished Awesomewm post from someone else is better than a draft from me
+created: 2024-01-15T15:26:11-08:00
+updated: 2024-01-26T10:21:47-08:00
 ---
 
 I've been revisiting my [awesome](https://awesomewm.org) config, starting by refactoring the default `rc.lua`.  Was even thinking about making a post.

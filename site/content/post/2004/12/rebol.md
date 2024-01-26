@@ -10,6 +10,8 @@ tags:
 - rebol
 - coolnamehere
 title: REBOL
+created: 2024-01-15T15:25:46-08:00
+updated: 2024-01-26T09:18:49-08:00
 ---
 
 This is unusual. I’ve come across the first language that I don’t want
@@ -23,13 +25,13 @@ Give REBOL a look-see. You might like it.
 
 Oh, there is a random bit of trivia that amused and unnerved me when I first discovered it. REBOL Technologies is based in Ukiah, California, where I spent those vitally important early childhood years. I was only there from age six to age eight, but a lot of my thoughts, beliefs, etcetera were established among the redneck hippies of northern California. And now there’s this cool language coming from the same town. Freaky.
 
-## REBOL Links
+# REBOL Links
 
 The Rebol community is incredibly active for its small size. To me, this says a lot about Rebol’s potential in the future, and I would like to do what I can to encourage others to at least take a look at the language and some of the sites devoted to Rebol out on the Web. There are more links than these, but I’m pointing out the ones that I have been using or referring to a lot.
 
 * <http://www.rebol.com/>
 
-### Tutorials
+## Tutorials
 
 * <http://musiclessonz.com/rebol_tutorial.html> - An *excellent*   introduction to REBOL and REBOL/View. More thorough than any of my meanderings and updated more frequently, too.
 * <http://www.plain.at/vpavlu/REBOL/tutorial/>
@@ -37,14 +39,14 @@ The Rebol community is incredibly active for its small size. To me, this says a 
 * <http://rebol.com/docs/core23/rebolcore.html>
 * <http://rebol.com/docs/easy-vid.html>
 
-### Community
+## Community
 
 * <http://www.rebol.org/>
 * <http://compkarori.com/vanilla/display/rebol-main>
 * <http://www.reboltalk.com/>
 * <http://www.rebolplanet.com/>
 
-### Applications created with REBOL
+## Applications created with REBOL
 
 * [AltMe](http://www.altme.com/) : An instant messenger
 * <http://www.vanillasite.at/> : A Wiki engine

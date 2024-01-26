@@ -13,6 +13,8 @@ tags:
 - site
 - marginalia
 title: coolnamehere Content Update
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:12:51-08:00
 ---
 
 I got bored of the old [card/coolnamehere](../../../card/coolnamehere.md)  pages effectively sitting outside of the site because of the way [Jekyll](../../../card/Jekyll.md) — and pretty much every other static blogging system — treats pages as secondary to posts. It makes sense, anyways. Once you stop bikeshedding about where to put content in your elaborate directory structure, it gets easier to add stuff.

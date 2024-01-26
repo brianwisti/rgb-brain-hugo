@@ -10,7 +10,8 @@ tags:
 - unix
 - coolnamehere
 title: GNU screen
-updated: 2009-07-11 00:00:00-07:00
+updated: 2024-01-26T09:20:46-08:00
+created: 2024-01-15T15:25:39-08:00
 ---
 
 Sometimes it's helpful to have multiple consoles open during a *Linux* session. The best example I can think of is when you are logged in to a machine via `ssh`. There are other ways, of course. You could try to log in to the server with '-X' so that X11 applications can run on the remote host but display on your computer. That's not always easy, though. The administrator of the server may not allow X11 forwarding. Your machine may not allow or even understand X11 requests. You could log in to multiple `ssh` sessions. This is what I did for several years. It works, but it's not the most convenient approach, since it clutters up your desktop. `screen` is a better option.
@@ -19,12 +20,12 @@ Sometimes it's helpful to have multiple consoles open during a *Linux* session. 
 
 `screen` lets you log in once, and have multiple command line consoles open and controlled from within your single `ssh` session. It even keeps your session active as an added bonus. This means that after the inevitable network hiccup that hoses your `ssh` login, you can log in once more and simple start from where you left off with a simple `screen -Dr`.
 
-## Where To Find `screen`
+# Where To Find `screen`
 
 `screen` is part of the [GNU](http://www.gnu.org/) project. You can find more info at the [GNU Screen project page](https://savannah.gnu.org/projects/screen/). It's also on many distributions, so search with your package manager before 
 you download and install the source package.
 
-## How To Use `screen`
+# How To Use `screen`
 
 Once you've installed screen by whatever approach needed, starting a screen session is as simple as invoking the `screen` command.
 
@@ -34,7 +35,7 @@ $ screen
 
 From there the best way to learn is to monkey around with screen, using the quick list of commands below as your guide. All `screen` commands start with `Ctrl-A`, as seen below.
 
-### Common `screen` Commands
+## Common `screen` Commands
 
 |Combination|Action|
 |-----------|------|

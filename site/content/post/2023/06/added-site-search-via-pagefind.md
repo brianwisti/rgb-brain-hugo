@@ -7,6 +7,8 @@ syndication:
 tags:
 - site
 title: Added site search via Pagefind
+created: 2024-01-15T15:25:59-08:00
+updated: 2024-01-26T10:18:27-08:00
 ---
 
 ![attachments/img/2023/cover-2023-06-20.png](../../../attachments/img/2023/cover-2023-06-20.png)

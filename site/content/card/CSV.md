@@ -2,6 +2,8 @@
 tags:
 - term
 title: CSV
+created: 2024-01-16T07:20:18-08:00
+updated: 2024-01-26T09:06:00-08:00
 ---
 
 Comma-Separated Values
@@ -14,7 +16,7 @@ d,e,f
 
 Also TSV for Tab-Separated Values
 
-## Related
+# Related
 
 * [GitHub - secretGeek/AwesomeCSV: 🕶️A curated list of awesome tools for dealing with CSV.](https://github.com/secretGeek/AwesomeCSV)
 * [Comma-separated values - Wikipedia](https://en.wikipedia.org/wiki/Comma-separated_values)

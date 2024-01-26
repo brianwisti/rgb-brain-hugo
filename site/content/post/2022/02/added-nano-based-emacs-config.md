@@ -11,6 +11,8 @@ tags:
 - emacs
 - it-keeps-me-out-of-trouble
 title: Added an Emacs config based off of nano-emacs
+created: 2024-01-15T15:26:06-08:00
+updated: 2024-01-26T10:20:35-08:00
 ---
 
 ![attachments/img/2022/cover-2022-02-19.png](../../../attachments/img/2022/cover-2022-02-19.png)

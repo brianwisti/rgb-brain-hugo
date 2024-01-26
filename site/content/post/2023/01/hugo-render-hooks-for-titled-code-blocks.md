@@ -9,6 +9,8 @@ syndication:
 tags:
 - hugo
 title: Hugo Render Hooks for Titled Code Blocks
+created: 2024-01-15T15:26:01-08:00
+updated: 2024-01-26T10:18:48-08:00
 ---
 
 ![attachments/img/2023/cover-2023-01-19.png](../../../attachments/img/2023/cover-2023-01-19.png)

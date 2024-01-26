@@ -4,13 +4,14 @@ aliases:
 - /post/2010/php-buzz-stream-reader/
 - /2010/03/12/php-buzz-stream-reader/
 category: post
+created: 2024-01-15 15:25:33-08:00
 date: 2010-03-12 00:00:00-08:00
 slug: php-buzz-stream-reader
 tags:
 - php
 - coolnamehere
 title: PHP Buzz Stream Reader
-updated: 2020-03-13 00:00:00-07:00
+updated: 2024-01-26 10:09:29-08:00
 ---
 
 > 
@@ -18,7 +19,7 @@ updated: 2020-03-13 00:00:00-07:00
 >
  > Of course, Google long ago turned Buzz into [Plus](https://plus.google.com/), then abandoned *that*. Keeping the content here in case some fragment of the [PHP](../../../card/PHP.md) can be useful to others.
 
-## Why and What?
+# Why and What?
 
 Recently I updated the site so that it would summarize the latest posts
 from my blog. The motive is simple: my site does not get updated often,
@@ -52,7 +53,7 @@ have my blog and [Flickr](http://www.flickr.com/photos/brianwisti/)
 activity fed into Buzz, so my Buzz stream includes anything from either
 of those.
 
-## How?
+# How?
 
 Let me throw an immediate disclaimer by saying that 80% of what I want
 is already implemented in the [Google Buzz
@@ -102,13 +103,13 @@ PHP, then that’s what I’ll use.
 If they had [mod\_perlite](http://modperlite.org), it would be a
 significantly different story. Oh well. Let’s begin.
 
-## Start!
+# Start!
 
 The initial local development will be on the home Mac, running OS X 10.5
 and PHP 5.2.11. My Web host supports newer versions of PHP - all the way
 up to 6 -but I’m not going to worry about it today.
 
-### Grab my own copy of the feed
+## Grab my own copy of the feed
 
 All right. I know for a fact that I’m going to be loading and
 manipulating this data a *lot* during the initial stage of development.
@@ -128,7 +129,7 @@ $ wget http://buzz.googleapis.com/feeds/brian.wisti/public/posted -O buzz.xml
 2010-03-11 18:48:44 (754 KB/s) - `buzz.xml` saved [92972]
 ````
 
-### Parse and Print
+## Parse and Print
 
 The first task is to parse the XML and display the results. I enjoy
 [SimpleXML](http://php.net/manual/en/book.simplexml.php) when handling
@@ -169,7 +170,7 @@ as I examine the information being displayed.
 
 ![Google Buzz dumped image](attachments/img/2010/buzz-dump.png "Google Buzz dumped image")
 
-### Show Entries
+## Show Entries
 
 Now I want to display the entries. How about I start by dumping them?
 
@@ -636,7 +637,7 @@ Here are the style rules that I used.
 And the result may not be pretty, but it’s definitely better looking
 than it was before.
 
-### Live Data
+## Live Data
 
 Most of my fiddling is done. It is time to use live data. On the home
 machine, I only need to change the value of $source, because I have
@@ -815,7 +816,7 @@ function load_buzz($source, $limit = 10) {
 
 Okay. That’s a good enough hack for a low-traffic site like mine.
 
-### Cache the Output
+## Cache the Output
 
 What would happen if I got twelve million hits per minute because the
 world had suddenly become obsessed over whether I would ever finish
@@ -899,7 +900,7 @@ to forget about that.
 Sweet. It worked. I make a couple minor adjustments relevant to my
 shared host settings, upload what I have, and hope for the best.
 
-### A Quick Bug Fix
+## A Quick Bug Fix
 
 One issue is that the output gets displayed twice when the cache is
 first built.
@@ -950,7 +951,7 @@ if (!isset($output)) {
 ?>
 ````
 
-## Next Steps
+# Next Steps
 
 There is a lot more information in the XML that I haven’t used with my
 naive application of SimpleXML. Once my eyes have uncrossed from this

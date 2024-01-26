@@ -13,17 +13,18 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 09 - Simple Projects
-updated: 2011-04-12 00:00:00-07:00
+updated: 2024-01-26T10:09:42-08:00
+created: 2024-01-15T15:25:33-08:00
 ---
 
-## Introduction
+# Introduction
 
 I spent a lot of time exploring [Parrot](../../../card/Parrot.md) testing with [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) in the [last step](/post/2009/12/parrot-babysteps-08-testing-with-testmore). That's because
 I want to start building larger projects, and testing is a vital part of most
 projects. Another major part is a properly organized workspace with a script that
 can simplify testing or other tasks.
 
-## Creating a Simple Project
+# Creating a Simple Project
 
 A nice Parrot project layout includes a `t` folder for tests, a `lib` folder for
 library code, and a `setup.pir` file to drive the whole thing.
@@ -252,7 +253,7 @@ test driven approach, but other developers will like you more if you consistentl
 test the code you write. The easiest way to consistently test it is to write the
 test before you write the code.
 
-## Conclusion
+# Conclusion
 
 Combining what we've learned about [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) with `setup.pir` allows us to
 confidently build more complicated applications, testing as we go along. It is

@@ -13,6 +13,8 @@ tags:
 - hugo
 - site
 title: testing a thing
+created: 2024-01-15T15:26:28-08:00
+updated: 2024-01-26T10:22:20-08:00
 ---
 
 Sometime [last year](../../2020/05/letting-ruby-build-asciidoctor-files-for-hugo.md) I had half of a great idea for better [card/Asciidoctor](../../../card/Asciidoctor.md)

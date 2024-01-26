@@ -10,6 +10,8 @@ tags:
 - site
 - marginalia
 title: coolnamehere -> Random Geekery
+created: 2024-01-15T15:25:30-08:00
+updated: 2024-01-26T10:11:05-08:00
 ---
 
 So I used to have another site. I also used to have a Yahoo email account. The domain name was registered under a Network Solutions account using the Yahoo account. All was well for years.

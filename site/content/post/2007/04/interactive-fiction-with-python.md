@@ -12,13 +12,15 @@ tags:
 - python
 - coolnamehere
 title: Interactive Fiction with Python
+created: 2024-01-15T15:25:40-08:00
+updated: 2024-01-26T09:21:55-08:00
 ---
 
 The idea for this article came from a coolnamehere reader named Laura. Thanks, Laura! I was looking for good [Python](../../../card/Python.md) ideas.
 
 <!--more-->
 
-## Introduction
+# Introduction
 
 I loved [Choose Your Own Adventure](http://www.cyoa.com/ "Choose Your Own Adventure Home") books when as a kid. I consumed them pretty much non-stop until my hobbies expanded into gaming and programming. 
 
@@ -28,7 +30,7 @@ I ended up sending her an email that said "You can do it" followed by several hu
 
 By the way - if what you *really* want to do is create interactive fiction and you're not interested in creating the game engine itself, I suggest you take a close look at [Inform](http://inform-fiction.org/). It is a remarkable system with its own custom language for creating your tales.
 
-## Describing the Game
+# Describing the Game
 
 Interactive fiction can be more straightforward than a lot of games, because the game author decides everything that can happen. The game we're making here is even more straightforward than most interactive fiction, because we are only providing the user with narrow lists of choices.
 
@@ -47,11 +49,11 @@ This is a fair description of what we are trying to do, but it is missing at lea
  > 
  > There is a *quit* command available on every menu, whether there are actions available for that scene or not. Selecting *quit* will end the program.
 
-## The Story Map
+# The Story Map
 
 Okay - you've got the rough idea of what you want. You probably want to map the story out on paper before turning it into code, because that will make the task of programming it a lot easier. Let's start with a really small story, say five scenes. Each scene has a description and a menu of paths to other scenes.
 
-### Scene 1: The Field
+## Scene 1: The Field
 
  > 
  > You are standing in a field. To the north of you are some mountains, to the east of you is a forest, to the west of you is a cave, and to the south of you is a valley.
@@ -63,7 +65,7 @@ Paths
 * Go into the cave
 * Go to the valley
 
-### Scene 2: The Mountains
+## Scene 2: The Mountains
 
  > 
  > You are standing at the foot of a mountain range. Huge impassable peaks loom over you. There is a cave to the east, and a field south of you leading into a valley.
@@ -73,7 +75,7 @@ Paths
 * Go into the cave
 * Go south into the field
 
-### Scene 3: The Forest
+## Scene 3: The Forest
 
  > 
  > A giant confused bear mistakes you for one of her cubs and takes you away with her. Although you eventually learn to love your new bear family, your adventuring days are over.
@@ -82,7 +84,7 @@ Paths
 
 * None *(This is a story ending)*
 
-### Scene 4: The Cave
+## Scene 4: The Cave
 
  > 
  > You are in a long dark cave. You see points of daylight at either end of the cave, one to the northeast and one to the southwest.
@@ -92,7 +94,7 @@ Paths
 * Go northeast *(leads to the mountains)*
 * Go southwest *(leads to the field)*
 
-### Scene 5: The Valley
+## Scene 5: The Valley
 
  > 
  > You are standing in the middle of a huge, beautiful valley. Standing right before you is ... whatever it you were looking for. Success!

@@ -8,6 +8,8 @@ tags:
 - read
 - blogging
 title: The Memex Method Works For Me
+created: 2024-01-15T15:26:11-08:00
+updated: 2024-01-26T10:21:50-08:00
 ---
 
 

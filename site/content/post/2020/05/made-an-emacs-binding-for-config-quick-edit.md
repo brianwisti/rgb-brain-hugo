@@ -11,6 +11,8 @@ tags:
 - emacs
 - orgconfig
 title: Made an Emacs Binding for Config Quick Edit
+created: 2024-01-15T15:26:31-08:00
+updated: 2024-01-26T11:01:24-08:00
 ---
 
 I hit `F5`, [Emacs](../../../card/Emacs.md) opens my `config.org` for editing. It might not be much but it feels good to scratch such a specific itch. Feeling pretty good about myself.

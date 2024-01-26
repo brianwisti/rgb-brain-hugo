@@ -10,15 +10,17 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - The Programmer's Perspective
+created: 2024-01-15T15:26:02-08:00
+updated: 2024-01-26T09:17:59-08:00
 ---
 
 Using [pagetemplate](pagetemplate.md) within [Ruby](../../../card/Ruby.md) applications.
 
-## Getting Started
+# Getting Started
 
 Before you dig into the code, you might want to take a look at  [pagetemplate-the-designers-perspective](pagetemplate-the-designers-perspective.md)
 
-## Using PageTemplate In Your Ruby Code
+# Using PageTemplate In Your Ruby Code
 
 This is a *very* quick overview, because I just spent hours going over the designer documents and I’m a little tired.
 
@@ -146,7 +148,7 @@ cgi.out { template.output }
 
 I’m not a [Rails](http://rubyonrails.com/) person, so I really don’t know how well PageTemplate works with Rails these days. Definitely send reports if you have any troubles, though. See [pagetemplate](pagetemplate.md) for links to bug filing and the forum.
 
-### Caching Templates
+## Caching Templates
 
 PageTemplate has some support for saving template information to disk. This means that your application needs less time to prepare its templates. You still need to provide a Namespace when you need output, though.
 
@@ -158,6 +160,6 @@ template = PageTemplate.new(
 )
 ````
 
-### Creating Your Own Syntax
+## Creating Your Own Syntax
 
 For now, use the source as your guides.

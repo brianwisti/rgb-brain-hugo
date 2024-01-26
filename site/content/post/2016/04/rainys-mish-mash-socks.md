@@ -3,6 +3,7 @@ aliases:
 - /craft/2016/rainys-mishmash-socks/
 - /2016/04/14/rainys-mish-mash-socks/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2016-04-14 00:00:00-07:00
 slug: rainys-mish-mash-socks
 tags:
@@ -10,6 +11,7 @@ tags:
 - socks
 - craft
 title: Rainy's Mish-Mash Socks
+updated: 2024-01-26 10:17:04-08:00
 ---
 
 Some socks to go with [the gloves](../03/rainys-mish-mash-gloves.md) I made a few weeks ago.

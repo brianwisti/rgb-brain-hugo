@@ -13,7 +13,8 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 01 Getting Started
-updated: 2017-04-09 00:00:00-07:00
+updated: 2024-01-26T09:18:53-08:00
+created: 2024-01-15T15:25:46-08:00
 ---
 
 [REBOL](../../../card/REBOL.md) is the "Relative Expression-Based Object Language", developed by Carl Sassenrath. Who is Carl Sassenrath? Why, he’s one of the people responsible for the amazing operating system which powered the Amiga computer. What’s the Amiga? Why, the Amiga was only the incredibly robust and cool computer — released by the same company that brought the world’s first personal computer, Commodore. What’s Commodore? Stop bothering me, kid. Take it from a relative old-timer: Amiga put a *heck* of a lot of power into a consumer-affordable personal computer. It wasn’t really matched by other computers for a good five or ten years. Nowadays, I look at [REBOL](http://www.rebol.com/) and it feels like the first language I’ve come across to take lessons from past languages and apply them in a new context, rather than just reimplement them with different syntax.
@@ -28,13 +29,13 @@ This impresses me to no end. Maybe you’re not so impressed by it, but that’s
 
 These pages are intended to provide the non-programmer with a gentle introduction to the REBOL language and environment. When you are done with it, you should feel ready to learn more, and curious to dig into the possibilities. You won’t be an expert, but maybe you’ll feel bold enough to become one and share what you’ve found with the rest of the world. Beginners and experts alike should feel free to send suggestions about how I can improve this tutorial.
 
-## Installing REBOL
+# Installing REBOL
 
 Installing REBOL is a straightforward task, as long as you are using one of the 40+ supported platforms.
 
-### Platform Notes
+## Platform Notes
 
-#### Installation on Windows
+### Installation on Windows
 
 * Download the archived installer for your platform from
   * <http://www.rebol.com/download.html>
@@ -42,7 +43,7 @@ Installing REBOL is a straightforward task, as long as you are using one of the 
 * Run the installer
 * Follow the installation wizard until you have installed the version you downloaded.
 
-#### Installation on Linux
+### Installation on Linux
 
 Here is what I had to do in order to get REBOL/Core and REBOL/View running on my Ubuntu laptop:
 
@@ -61,11 +62,11 @@ Why did I install both Core and View? There’s no real need to. I just prefer t
 
 There’s an intermittent problem with ugly fonts when using View under Linux. I’ll post instructions for handling that on this site as soon as I find my notes.
 
-### Which Version?
+## Which Version?
 
 You have a few different choices for what version of REBOL to download, depending on what you need and what is available for your platform.
 
-#### REBOL/Core
+### REBOL/Core
 
  > 
  > <http://www.rebol.com/prod-core.html>
@@ -79,7 +80,7 @@ Find out if REBOL/Core has been released for your platform at this URL:
 
 REBOL/Core will probably do fine for most hobbyists, but you might want to look on if you enjoy pointy clicky GUI environments as much as I do.
 
-#### REBOL/View
+### REBOL/View
 
  > 
  > <http://www.rebol.com/prod-view.html>
@@ -93,11 +94,11 @@ Find out if REBOL/View has been released for your platform at this URL:
  > 
  > <http://rebol.com/view-platforms.html>
 
-#### REBOL/SDK and REBOL/Command
+### REBOL/SDK and REBOL/Command
 
 These are also very easy to get, and add a number of useful features to REBOL/View. I’ll be ignoring them for now, because they have a dollar cost associated with them.
 
-## Using REBOL
+# Using REBOL
 
 In Windows, all you need to do is find REBOL in your Start menu. In Linux, it should be directly callable from your command line if you handled installation the same way I described.
 
@@ -129,7 +130,7 @@ You can also go straight to the console when executing `rebview` from the comman
 $ rebview -v
 ````
 
-## How to use REBOL/Core
+# How to use REBOL/Core
 
 Getting REBOL to do something for you is as simple as typing in the commands and looking at the results.
 
@@ -199,7 +200,7 @@ Hey, that made me feel pretty good! As always, it’s great how much we can be c
 
 Let’s find our how to do that.
 
-## How to make your own REBOL script
+# How to make your own REBOL script
 
 Using your favorite *Editor*, type this text in and save it as `hello.r`. I like to keep my code files in a special "projects" directory, to keep from losing them in a mass of articles, pictures, and random files. You might want to follow the same habit, but it’s entirely up to you.
 
@@ -215,7 +216,7 @@ print [ "Hello" name "- good to see you!" ]
 
 Make sure that you are using an editor which saves its files as plain text. REBOL can’t make any sense of Word documents or HTML.
 
-### The Script Header
+## The Script Header
 
 You recognize the code from before, but I imagine you’re curious about the block prefaced by the word `REBOL`. That is the *script header*, where you put important information about the script that you are writing. You need to put something, even if it’s just an empty block, or Rebol won’t recognize it as a script.
 
@@ -278,7 +279,7 @@ print ["Hello" name "- good to see you!"]
 
 Just try to keep the size of the script header appropriate for the size of your script. A full script header might be overkill for a script with only two lines of code - unless you happen to think that people need a lot of information when handling your script.
 
-### Running your script
+## Running your script
 
 There are two ways to actually load your script and make it do its thing.
 
@@ -345,7 +346,7 @@ REBOL also supports the classic "shebang" line for UNIX shell scripts.
 
 Cool, eh? Now you can share this script with all of your Rebol friends just by sending them the file. Of course, you might want to send them something more impressive, but think of it this way - this just gives you the motivation to learn how to do *more*!
 
-## Wrapping Up
+# Wrapping Up
 
 There you have it. You’ve learned how to write a simple script. Heck,
 I’ve even snuck in a couple of Rebol’s many datatypes while you weren’t looking. You’re well on the way to becoming a real Rebol programmer!

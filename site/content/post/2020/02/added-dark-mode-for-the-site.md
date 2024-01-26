@@ -12,6 +12,8 @@ tags:
 - site
 - css
 title: Added dark mode for the site
+created: 2024-01-15T15:26:31-08:00
+updated: 2024-01-26T11:03:19-08:00
 ---
 
 Got tired of blowing my eyeballs out during evening work.

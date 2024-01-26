@@ -9,6 +9,8 @@ slug: there-must-be-something-wrong-with-me
 tags:
 - blogspot
 title: There Must Be Something Wrong With Me
+created: 2024-01-15T15:25:43-08:00
+updated: 2024-01-26T09:20:28-08:00
 ---
 
 There must be something wrong with me. I've been sitting here for the last hour, merrily watching Jigdo downloading components for a [Debian](http://www.debian.org) ISO. This is roughly equivalent to watching paint dry, except for the fact that at least the latter provides you with a dry painted surface when it's done.

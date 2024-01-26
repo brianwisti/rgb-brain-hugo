@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:31-08:00
 date: 2021-02-06 00:00:00-08:00
 description: Want to see something cool?
 slug: pretty-file-summaries-with-rich-and-exiftool
@@ -15,6 +16,7 @@ tags:
 - exiftool
 - tools
 title: Pretty File Summaries with Rich and ExifTool
+updated: 2024-01-26 10:22:21-08:00
 ---
 
 ![attachments/img/2021/cover-2021-02-06.jpg](../../../attachments/img/2021/cover-2021-02-06.jpg)
@@ -32,7 +34,7 @@ Besides — ExifTool is a standalone command line tool.  We don’t need to writ
 
 Rich and pyexiftool make Python an easy choice for this task.
 
-## Setting up
+# Setting up
 
 If you want to play along at home, make sure you have the dependencies.
 
@@ -54,7 +56,7 @@ $ pip install pyexiftool rich typer
  > 
  > Now you can use [Image::ExifTool](https://metacpan.org/pod/distribution/Image-ExifTool/lib/Image/ExifTool.pod) in your own Perl projects.
 
-## Some scaffolding
+# Some scaffolding
 
 Even though I’m the only user, I still need to figure out how I plan to use it. At minimum?  I hand my script a filename.  It hands me metadata.
 
@@ -108,7 +110,7 @@ I confirmed that Typer handles the CLI bits, and Rich handles the formatting. No
 
 Oh and I’ll skip logging output from here on.  Rich’s [logging handler](https://rich.readthedocs.io/en/latest/logging.html) output is a joy to look at, but really that stuff is for me.  For you it’ll just add noise.
 
-## Some metadata
+# Some metadata
 
 I need exiftool, of course.  Plus a Rich [Console](https://rich.readthedocs.io/en/latest/console.html) object, masterminding the display details for my terminal.
 
@@ -176,7 +178,7 @@ Holy crap that’s a lot.  Some of it could be considered sensitive information 
 
 But back to the other gripe about all this metadata.  It’s way too much for me to take in all at once.  I need some kind of filter!
 
-### Filtering the firehose
+## Filtering the firehose
 
 ````python
 def filter_metadata(metadata, filter):
@@ -230,7 +232,7 @@ It’s nice.  Don’t get me wrong.  But all we’ve added to default `exiftool`
 
 I’ve played with Rich a bit.  I know we can do better.
 
-## A metadata table!
+# A metadata table!
 
 Rich lets us create and display [tables](https://rich.readthedocs.io/en/stable/tables.html) in the terminal.
 
@@ -292,7 +294,7 @@ $ ./richexif.py hoku-hopes-for-snacksjpg.jpg --filter=Image
 
 Pretty nifty.
 
-## A metadata tree!
+# A metadata tree!
 
 We can do more than tables though.  with that `type:tag` split, there's kind of a heirarchy.  We *could* add a column for the tag type, but why not use a [Tree](https://rich.readthedocs.io/en/stable/tree.html)?
 

@@ -11,6 +11,8 @@ tags:
 - sketch-club
 - craft
 title: That Was Fun
+created: 2024-01-15T15:25:53-08:00
+updated: 2024-01-26T10:17:30-08:00
 ---
 
 Made from a friend's suggestion, mixing ideas from a couple of favorite images.

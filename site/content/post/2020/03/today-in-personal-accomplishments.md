@@ -11,6 +11,8 @@ syndication:
 tags:
 - site
 title: Today in Personal Accomplishments
+created: 2024-01-15T15:26:30-08:00
+updated: 2024-01-26T11:03:16-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-05.png](../../../attachments/img/2020/cover-2020-03-05.png)

@@ -12,6 +12,8 @@ tags:
 - symmetry
 - infinite-painter
 title: Skinny Lines and Flat Colors
+created: 2024-01-15T15:26:33-08:00
+updated: 2024-01-26T11:01:11-08:00
 ---
 
 I was going to make this a coloring thing but I accidentally did my own colors on the wrong layer. Too bad Infinite Painter doesn’t have infinite undo.

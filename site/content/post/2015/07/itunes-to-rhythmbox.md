@@ -6,7 +6,7 @@ aliases:
 category: post
 date: 2015-07-27 00:00:00-07:00
 description: |
-  I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado's version of iTunesToRhythm.
+  "I nearly wrote a script that transfers my iTunes ratings to Rhythmbox. Instead I used Edgar Salgado's version of iTunesToRhythm."
 slug: itunes-to-rhythmbox
 tags:
 - itunes
@@ -14,6 +14,8 @@ tags:
 - music
 - tools
 title: iTunes to Rhythmbox
+created: 2024-01-15T15:25:26-08:00
+updated: 2024-01-26T10:13:00-08:00
 ---
 
 I nearly wrote a script that transfers my [2015-03-16-ruby-itunes-ratings-fun|iTunes ratings](../03/ruby-itunes-ratings-fun.md) to [Rhythmbox](https://wiki.gnome.org/Apps/Rhythmbox). Instead I used Edgar Salgado’s version of [iTunesToRhythm](https://github.com/esalgado/iTunesToRhythm).

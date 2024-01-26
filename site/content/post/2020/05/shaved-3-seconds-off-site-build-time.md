@@ -13,6 +13,8 @@ tags:
 - cause-it-s-there
 - site
 title: Shaved 3 Seconds Off Site Build Time!
+created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26T11:01:12-08:00
 ---
 
 And I spent two days doing it. So let's see. If I somehow post every day, that work should pay off somewhere around — *counts on fingers* — 2026?

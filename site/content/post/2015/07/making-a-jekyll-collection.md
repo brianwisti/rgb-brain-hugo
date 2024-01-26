@@ -15,14 +15,15 @@ tags:
 - site
 - tools
 title: Making a Jekyll Collection
-updated: 2020-02-25 00:00:00-08:00
+updated: 2024-01-26T10:13:01-08:00
+created: 2024-01-15T15:25:26-08:00
 ---
 
 [Jekyll](../../../card/Jekyll.md) currently generates the HTML for my site. I am curious about the experimental [collections](http://jekyllrb.com/docs/collections/) feature, and whether it could be useful for me.
 
 This post should not be too difficult to read along with — and I will happily fix any problems you notice — but I do assume you know the basics of creating a blog with Jekyll. The code and templates were initially build on Jekyll 3.0.0.beta8.
 
-## What? Why?
+# What? Why?
 
 So what the heck is a collection? From the Jekyll collections documentation:
 
@@ -51,7 +52,7 @@ I could use collections for my knitting and crochet projects. I have a couple of
 
 The blog posts work fine as blog posts, but I still want a separate way to organize those projects. The stuff on Ravelry can only be seen if you have an account with the service. That’s fine, but I have spent 2015 consolidating material I’ve created elsewhere onto my site. Ravelry is a reasonable next target for me.
 
-## Fine. How?
+# Fine. How?
 
 First I need to add a `collections` entry to my `_config.yml`
 [configuration](http://jekyllrb.com/docs/configuration/) file. This entry contains a list of all collections in the site, and metadata for each collection. I want these collections displayed on the site, so I must set the `output` metadata for the collection to `true`. I also want give consistent URLs for my project pages. This has been an issue for me bouncing between Jekyll 2.5.3 and 3.0.0 beta. Setting `permalink` takes care of that issue.
@@ -69,7 +70,7 @@ Next I create the folder to hold this collection. By default its name must match
 $ mkdir _crafts
 ````
 
-### One Thing
+## One Thing
 
 Time to put something in the collection. I can use my recent [garter stitch scarf post](../04/quick-garter-stitch-scarf.md) as a starting point, filling in the details of a new collection item from that post.
 
@@ -132,7 +133,7 @@ Oh and while I was putting this page together I learned about the [Octopress Ima
 
 Now I have a page for this project, but how will visitors know it’s there? How about I start with some sort of summary on the site’s index page?
 
-### Just The New Things
+## Just The New Things
 
 Here is a simple approach. Just make a list of the items in the collection.
 
@@ -178,7 +179,7 @@ Jekyll sorts collections by filename. Since time finished matters to me now, I c
 
 ![Just the newest projects please](attachments/img/2015/crafts-summary-03.png)
 
-### All The Things
+## All The Things
 
 Wait. How will a visitor find those old projects? Time to make an archive page. I can follow the idea of the post archive for now, listing every project ever. `crafts/index.html` will hold that archive.
 
@@ -221,7 +222,7 @@ Well it is painfully obvious that I need to dig through my photos and fill in ga
 
 The “Jekyll collections” part of this blog post is done. I talked about building a collection, creating detail pages — though not every collection needs those — along with a summary for the site index and a page listing every item in the collection. We are done here.
 
-### But —
+## But —
 
 I know. I mentioned an aesthetic issue earlier. You want to *see* the knitting projects in those summaries. I will gloss over the details. They deserve a blog post of their own.
 
@@ -321,13 +322,13 @@ figure {
 
 I’m fairly sure something is horribly wrong with my CSS, but if I clean this bit up I’ll just have to clean everything. This works for now.
 
-### Next?
+## Next?
 
 Judging by my new yarncraft collection? More knitting and crochet. I need to fill that space! Also, I will gradually hunt down other projects I completed and add them to the collection. Probably some more layout and automation work.
 
 Mostly I want to find out what other Jekyll bloggers use collections for, or want to use collections for. I’d love to hear what you’ve got going on. Feel free to comment, email, tweet, or whatever!
 
-## Other Resources
+# Other Resources
 
 * [Explain Like I’m Five: Jekyll Collections](http://ben.balter.com/2015/02/20/jekyll-collections/) by Ben Balter
 * [Getting Started with Jekyll Collections](http://www.sitepoint.com/getting-started-jekyll-collections/) by Taylor Jones

@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:32-08:00
 date: 2020-11-10 00:00:00-08:00
 description: Fetching my IndieWeb mentions with HTTPie and Requests
 series:
@@ -15,6 +16,7 @@ tags:
 - site
 - tools
 title: Using the Webmention.io API
+updated: 2024-01-26 11:00:01-08:00
 ---
 
 ![attachments/img/2020/cover-2020-11-10.jpg](../../../attachments/img/2020/cover-2020-11-10.jpg)
@@ -30,7 +32,7 @@ The Webmention.io [API](https://github.com/aaronpk/webmention.io#api) lets me ga
 
 Let’s acquaint ourselves with the important parts of this API.  You’ll need your API token, which can be found in the Webmention [settings](https://webmention.io/settings) once you sign up.
 
-## Reading the feed with HTTPie
+# Reading the feed with HTTPie
 
 I’ll use [HTTPie](https://httpie.io) for my little exploration.  I like the way it works.
 
@@ -38,7 +40,7 @@ I’ll use [HTTPie](https://httpie.io) for my little exploration.  I like the wa
 pip install httpie
 ````
 
-### Getting recent reactions
+## Getting recent reactions
 
 We mainly care about the mentions endpoint.  Hand it your domain and API token, and it will send you the 20 most recent responses for your site.
 
@@ -98,7 +100,7 @@ Each entry summarizes the reaction, including which of my posts they were reacti
 >
  > There’s also a `.json` endpoint for every feed that presents a different structure for mentions.  I prefer it, because it contains fewer `wm-*` fields.  But the documentation uses JF2, so that’s what I’ll do.
 
-### Checking for new reactions
+## Checking for new reactions
 
 Maybe I’m checking again later and only want to see the *new* reactions.  I request mentions received since the value of the `wm-received` field in the last entry I have.
 
@@ -119,7 +121,7 @@ http get https://webmention.io/api/mentions.jf2 \
 
 Well, yeah.  That makes sense.  I don’t get the kind of traffic where you’d expect fresh reactions every time you check.
 
-### Fetching the oldest reactions first
+## Fetching the oldest reactions first
 
 As I mentioned at the start, my site is a little broken.  I need to rebuild the full list of reactions so my [card/Hugo](../../../card/Hugo.md) site can work with a complete record. To do that, I should probably start from the oldest mentions and work my way forward.
 
@@ -177,7 +179,7 @@ http get https://webmention.io/api/mentions.jf2 \
 20
 ````
 
-### Handling result pagination
+## Handling result pagination
 
 I can specify how many responses I want in each response with the `per-page` parameter.  With `per-page` set to 100, I get a hundred entries.
 
@@ -247,7 +249,7 @@ http get https://webmention.io/api/mentions.jf2 \
 
 Right.  That’s Bridgy catching a Twitter thread.  At least I can see the full conversation from my site.  Or I will once I’m done fixing everything.
 
-### Bonus: checking for reactions to a specific post
+## Bonus: checking for reactions to a specific post
 
 I could get a JF2 feed for specific URLs on my site if I was so inclined.
 
@@ -285,7 +287,7 @@ http get https://webmention.io/api/mentions.jf2 \
 
 I deal with my site reactions in bulk so they can be incorporated in the Hugo build.  This could be handy for JavaScript-driven update on reactions since the site was last built and pushed, though.
 
-## Rebuilding the local mentions file
+# Rebuilding the local mentions file
 
 Now I want to take what I learned about the API to build a local copy of my site’s mention history.  Let’s step away from HTTPie and the command line before I try something dangerous.
 
@@ -353,7 +355,7 @@ Wrote 383 entries to mentions.jf2
 
 This gives me the first requirement for rebuilding my mentions: an intact historical record, up to the current moment.
 
-## Intermission
+# Intermission
 
 Time to pause.
 

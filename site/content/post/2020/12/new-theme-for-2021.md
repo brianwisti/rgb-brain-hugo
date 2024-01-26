@@ -12,6 +12,8 @@ tags:
 - spring-cleaning-for-websites
 - site
 title: New theme for 2021
+created: 2024-01-15T15:26:22-08:00
+updated: 2024-01-26T10:59:43-08:00
 ---
 
 ![attachments/img/2020/cover-2020-12-07.png](../../../attachments/img/2020/cover-2020-12-07.png)

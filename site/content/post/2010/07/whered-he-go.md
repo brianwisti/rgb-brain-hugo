@@ -9,6 +9,8 @@ slug: whered-he-go
 tags:
 - blogspot
 title: Where'd He Go?
+created: 2024-01-15T15:25:34-08:00
+updated: 2024-01-26T10:10:08-08:00
 ---
 
 I haven't updated this blog in a while, and to be honest I don't really plan to. I tend to dump my thoughts of the moment on
@@ -17,7 +19,7 @@ is still at [my site](/).
 
 <!--more-->
 
-## A few years pass ...
+# A few years pass ...
 
 Heh. Google Buzz. Well I do spend time on [Google+](https://plus.google.com/+BrianWisti), but I am elsewhere too.
 Check the links in the footer for your preferred social network.

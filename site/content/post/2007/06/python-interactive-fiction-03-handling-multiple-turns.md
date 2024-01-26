@@ -4,6 +4,7 @@ aliases:
 - /post/2007/03-handling-multiple-turns/
 - /2007/06/14/python-interactive-fiction-03-handling-multiple-turns/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2007-06-14 00:00:00-07:00
 series:
 - Python Interactive Fiction
@@ -13,6 +14,7 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 03 Handling Multiple Turns
+updated: 2024-01-26 09:22:12-08:00
 ---
 
 This is Part 3 of an [ongoing series](../04/python-interactive-fiction-01-handling-a-single-round.md) [ongoing series](../04/python-interactive-fiction-01-handling-a-single-round.md) about writing interactive fiction games in [Python](../../../card/Python.md). By the end of [python-interactive-fiction-02-tying-the-scenes-together](../04/python-interactive-fiction-02-tying-the-scenes-together.md) we had created a text-based user interface and explored one way of storing multiple scenes. This part will finally bring the needed glue for the player to move between all of the scenes in the story. In other words, we'll have a game!
@@ -155,7 +157,7 @@ Congratulations, it's a game!
 
 You can stop at this point. The game is complete, and there is nothing more that *needs* to be done. There are some more things I would like to do with the game before I move on. I invite you to follow me in the process of making our code more pleasant to read. I will spend time wandering from thought to thought. You will probably learn less about programming, but quite a bit about how I look at programs.
 
-## Cleaning up
+# Cleaning up
 
 The game works, but it could stand to be cleaned up. *Refactoring* is the practice of examining your application code and deciding what changes would make the code easier to read, faster, or just plain better in some way, but *without changing what the program does*. That's the hard part. It is so tempting to add new features as soon as you think of them. That leads to a pile of unreadable code, sooner or later. That pile usually shows up sooner if you don't refactor often enough. Trust me. I am speaking from years of experience creating huge piles of unreadable code.
 
@@ -499,23 +501,23 @@ play_game(scenes["field"])
 We are more or less done with this train of thought. I have introduced you to many topics, but I have taken my own strange path through them. Your next step should be to reexamine the [official Python tutorial](https://docs.python.org/2/tutorial/index.html)
 and see if it makes any more sense than the first time you read it.
 
-## More ideas
+# More ideas
 
 Now that you have a complete game, what else can you do? There are many ideas. I may even tackle a few of them in future installments. You don't have to wait for me, though.
 
-### Different story maps
+## Different story maps
 
 What happens when you want a different story? Right now, you have to rewrite the `scenes` dictionary within the program. Wouldn't it be better if you could load a story from another file? It's Python code, so you could try experimenting with `import`.
 
-### Saving a game
+## Saving a game
 
 What do you do if you have a very large story map and the player can't handle the whole thing in one session? Right now, nothing. The user has to restart the game every time. It would be very generous if you came up with some way to save the key of the current scene to a configuration file, and resume from that scene when the game restarted. You would have to add a command for saving and quitting instead of simply quitting.
 
-### Inventory
+## Inventory
 
 Would the story go differently if the user had a flashlight in the cave? Adding inventory and letting it affect the available paths in your story is one way to make your game richer, at the cost of making the code much more complicated. Still, go ahead and give it a shot if you are interested!
 
-## A Bonus Diversion: Scope
+# A Bonus Diversion: Scope
 
  > 
  > **NOTE**

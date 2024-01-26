@@ -11,6 +11,8 @@ tags:
 - personal
 - marginalia
 title: Starting The Coursera Programming Languages Course
+created: 2024-01-15T15:26:52-08:00
+updated: 2024-01-26T10:12:03-08:00
 ---
 
 I signed up for the Coursera [Programming Languages](https://www.coursera.org/course/proglang) course. I may even complete it. See, I signed up for a Scala course earlier this year, but did not get past the first video. That made me sad. Scala is one of those things that I would like to learn.

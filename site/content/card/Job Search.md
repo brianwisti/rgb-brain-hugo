@@ -1,5 +1,7 @@
 ---
+created: 2024-01-15 15:26:52-08:00
 title: Job Search
+updated: 2024-01-26 09:06:59-08:00
 ---
 
 Resources for remote tech work that won't make me hate my life.
@@ -13,14 +15,14 @@ Resources for remote tech work that won't make me hate my life.
 
 [Tech Career Skill Development](Tech%20Career%20Skill%20Development.md)
 
-## Resume and Cover Letter Resources
+# Resume and Cover Letter Resources
 
 Not particularly well-vetted, as I've mostly glanced at these.
 
 * [Teal Career Growth, On Your Terms. Track and Manage Job Search Applications](https://www.tealhq.com/) (requires money)
 * [Job Board, AI Cover Letter and Resume Generator](https://swooped.co/)
 
-## Job Boards and Search Engines
+# Job Boards and Search Engines
 
 * [FlexJobs Best Remote Jobs, Work from Home Jobs, Online Jobs & More](https://www.flexjobs.com/)
   * requires money
@@ -35,12 +37,12 @@ Not particularly well-vetted, as I've mostly glanced at these.
 * [We Work Remotely Remote jobs in design, programming, marketing and more](https://weworkremotely.com/)
 * [Working Nomads](https://www.workingnomads.com/jobs)
 
-## Newsletters
+# Newsletters
 
 * [People-First Jobs — Remote, flexible jobs at companies with a people-first culture](https://peoplefirstjobs.com)
 * [Pyjama Jobs Club | Tomas Ondrejka | Substack](https://pyjamajobsclub.substack.com/?r=3akf2&utm_campaign=subscribe-page-share-screen&utm_medium=web)
 
-## General Suggestions
+# General Suggestions
 
 via [Kat Talley on LinkedIn](https://www.linkedin.com/posts/kat-talley-%F0%9F%9B%B8-a3b435226_opentowork-activity-7104780204727799808-dq-m?utm_source=share&utm_medium=member_desktop)
 
@@ -50,7 +52,7 @@ via [Kat Talley on LinkedIn](https://www.linkedin.com/posts/kat-talley-%F0%9F%9B
  > * Make sure to add 1-2 sentences that are personalized that reference the conversation you had, this helps them remember you.
  > * Tip 💡 attach all documents; CV, cover letter, pitch, 30/60/90 day plan etc.
 
-## Related
+# Related
 
 * [JustRemote](https://justremote.co)
 * [Wellfound](https://wellfound.com) — formerly *AngelList Talent*

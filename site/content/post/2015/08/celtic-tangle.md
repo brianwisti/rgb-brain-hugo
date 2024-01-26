@@ -12,6 +12,8 @@ tags:
 - celtic
 - craft
 title: Celtic Tangle
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:13:10-08:00
 ---
 
 Another [Zentangle](../../../card/Zentangle.md) practice. This time I mixed in a couple of minor Celtic design elements.

@@ -15,6 +15,8 @@ tags:
 - warm-fuzzies
 - boomstick
 title: I Helped genehack!
+created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26T11:02:48-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-27.jpg](../../../attachments/img/2020/cover-2020-04-27.jpg)

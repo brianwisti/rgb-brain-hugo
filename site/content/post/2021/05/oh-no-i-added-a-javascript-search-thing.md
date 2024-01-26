@@ -12,6 +12,8 @@ tags:
 - javascript
 - hyperscript
 title: oh no i added a javascript search thing
+created: 2024-01-15T15:26:11-08:00
+updated: 2024-01-26T10:21:51-08:00
 ---
 
 And a touch of [\_hyperscript](https://hyperscript.org/).

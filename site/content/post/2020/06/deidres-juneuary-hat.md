@@ -11,6 +11,8 @@ tags:
 - knitting
 - hat
 title: Deidre's Juneuary Hat
+created: 2024-01-15T15:26:25-08:00
+updated: 2024-01-26T11:00:23-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-24.jpg](../../../attachments/img/2020/cover-2020-06-24.jpg)

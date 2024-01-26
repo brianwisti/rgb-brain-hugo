@@ -11,6 +11,8 @@ tags:
 - links
 - markdown
 title: Maybe I don't know much about Markdown, he says
+created: 2024-01-15T15:26:19-08:00
+updated: 2024-01-26T10:22:06-08:00
 ---
 
 John Gruber, the creator of [card/Markdown](../../../card/Markdown.md), [commenting](https://daringfireball.net/linked/2021/03/05/snell-ios-markdown-editors) on Markdown editors and their trend towards hiding the syntax:

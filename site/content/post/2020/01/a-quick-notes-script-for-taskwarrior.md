@@ -2,6 +2,7 @@
 aliases:
 - /2020/01/12/a-quick-notes-script-for-taskwarrior/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2020-01-12 00:00:00-08:00
 slug: a-quick-notes-script-for-taskwarrior
 tags:
@@ -9,7 +10,7 @@ tags:
 - python
 - programming
 title: A Quick Notes Script for Taskwarrior
-updated: 2020-01-13 00:00:00-08:00
+updated: 2024-01-26 11:03:33-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-12.png](../../../attachments/img/2020/cover-2020-01-12.png)
@@ -20,7 +21,7 @@ People with blogs need to keep in mind that most people do not know how  blogs w
 
 I plan to work on that today, but — well — there’s another problem too.
 
-## What’s the problem?
+# What’s the problem?
 
 What tasks am I working on right now? Let’s get the [active](../../2018/12/active-tasks-in-taskwarrior.md) task report.
 
@@ -62,11 +63,11 @@ I want some way of adding and reviewing information about a particular task with
 >
  > Honestly [card/Org](../../../card/Org.md) provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.
 
-## What I need today
+# What I need today
 
 I need the ability to open a text file with notes for a specific task. I shouldn’t have to find or name the file myself. If the file doesn’t exist yet, it should be created.
 
-## What I don’t need today
+# What I don’t need today
 
 Things I’m sure will be useful at some point, but I don’t need *today*.
 
@@ -78,13 +79,13 @@ Things I’m sure will be useful at some point, but I don’t need *today*.
 * Configuration. For now, everything’s hard-coded in the script.
   Except `$EDITOR`.
 
-## Let’s get to it.
+# Let’s get to it.
 
 I’m not good at Python for quick glue tasks. Maybe [card/Perl](../../../card/Perl.md)? I need to learn how to do this in Python at some point. Let’s try anyways.
 
 That will be today’s learning experience.
 
-### Writing notes
+## Writing notes
 
  > 
  > Given a task, open `$EDITOR` in a Markdown file for that task. The task can be indicated via ID, UUID, or a filter that returns a single task
@@ -190,7 +191,7 @@ Sweet. It worked!
  > exec($ENV{EDITOR}, $notes_file);
  > ````
 
-## Generalize for any task
+# Generalize for any task
 
 I learned what I needed to learn. Next is cleaning up and accepting command line arguments.
 
@@ -256,7 +257,7 @@ I know. I didn’t want task metadata yet. It quickly became obvious that I woul
 
 Also threw in some error checking after the first time I tried writing notes for a nonexistent task.
 
-## What’s Next?
+# What’s Next?
 
 * Keeping that description header current
 * Adding other task data?

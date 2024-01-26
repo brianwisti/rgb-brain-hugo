@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/06/ox-hugo-for-the-orgconfig/
 category: post
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-27 00:00:00-07:00
 description: Putting a couple how-to details down for easy searching later
 slug: ox-hugo-for-the-orgconfig
@@ -11,19 +12,20 @@ tags:
 - site
 - tools
 title: Ox Hugo for the Orgconfig
+updated: 2024-01-26 11:00:26-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-27.png](../../../attachments/img/2020/cover-2020-06-27.png)
 
-## What?
+# What?
 
 I’m combining all my [card/Org](../../../card/Org.md) config files into one, and then using [`ox-hugo`](https://ox-hugo.scripter.co) to generate Markdown files for my [card/Hugo](../../../card/Hugo.md) site.
 
-## Why?
+# Why?
 
 Hugo renders Org files just fine, but I wanted my config to be a bit more tightly integrated.  `ox-hugo` works well as both plain old Org and as an intermediary that exports Hugo content.  A single Org file can become as many Hugo pages as I want.
 
-## Getting it to work
+# Getting it to work
 
 This week my favorite Emacs flavor is [Doom Emacs](https://github.com/hlissner/doom-emacs).  Their [org module](https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/org) supports `ox-hugo` as an option, so enabling that option in my init should do the trick — after a `doom sync` of course.
 
@@ -96,6 +98,6 @@ This is my live config, written as an [[https://orgmode.org/][Org]] file and int
 
 Now my config section summary is part of the config org file.  I find this aesthetically pleasing.
 
-## The rest is implementation details
+# The rest is implementation details
 
 This whole process is fiddly.  Org mode.  Literate config.  Hugo.  `ox-hugo`. That makes the whole thing fiddly^4 or something.  But these quick notes covered things that got in my way while gluing the whole thing together.  If you want to try it out, at least *some* of the fiddliness should be clearer.

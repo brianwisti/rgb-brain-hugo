@@ -13,49 +13,32 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 08 - Testing With Test::More
-updated: 2011-04-12 00:00:00-07:00
+updated: 2024-01-26T10:08:40-08:00
+created: 2024-01-15T15:25:37-08:00
 ---
 
-Co-written by [Jonathan "Duke" Leto](http://leto.net), [Parrot](../../../card/Parrot.md) core developer
-and author of [Tapir](http://github.com/leto/tapir).
+Co-written by [Jonathan "Duke" Leto](http://leto.net), [Parrot](../../../card/Parrot.md) core developer and author of [Tapir](http://github.com/leto/tapir).
 
 <!--more-->
 
-## Introduction
+# Introduction
 
-I'll be creating more complex PIR programs soon, but first I want to stop for a minute and look at
-testing in Parrot. Why? Code is a weird thing. You need to pin 
-down its behavior as specifically as you can, or it'll become 
-unreadable before you realize what's going on. Good tests help you describe
-how your program should behave. Tests aren't a magic pill that will guarantee 
-perfect programs, but they *will* help you check that your program behaves the 
-way you claim it does.
+I'll be creating more complex PIR programs soon, but first I want to stop for a minute and look at testing in Parrot. Why? Code is a weird thing. You need to pin down its behavior as specifically as you can, or it'll become unreadable before you realize what's going on. Good tests help you describe how your program should behave. Tests aren't a magic pill that will guarantee perfect programs, but they *will* help you check that your program behaves the way you claim it does.
 
 There are many testing libraries in the programming world, but I will focus
 on [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) for Parrot.
 
-## Using Test::More to Write Tests
+# Using Test::More to Write Tests
 
-[Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) is more or less an implementation of [Perl's Test::More](http://perldoc.perl.org/Test/More.html). It provides a set of simple
-assertions such as `ok`, `is`, and `isnt`, along with a few testing-specific
-commands like `skip` and `todo`. I'll be looking at some of those simple assertions, but
-not spending so much time on the testing commands. This *is* a Babystep, after all.
+Test::More is more or less an implementation of [Perl's Test::More](http://perldoc.perl.org/Test/More.html). It provides a set of simple assertions such as `ok`, `is`, and `isnt`, along with a few testing-specific commands like `skip` and `todo`. I'll be looking at some of those simple assertions, but not spending so much time on the testing commands. This *is* a Babystep, after all.
 
-Test::More is already included in the standard Parrot runtime, so we don't need
-to do anything special to install it. Even better - there's a [test_more.pir](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) include
-file that you can include to import all of the important Test::More subroutines 
-automatically.
+Test::More is already included in the standard Parrot runtime, so we don't need to do anything special to install it. Even better - there's a [test_more.pir](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) include file that you can include to import all of the important Test::More subroutines automatically.
 
 Let's start writing tests.
 
-### `plan`
+## `plan`
 
-Every test needs a plan. The `plan` subroutine in Test::More tells the world
-one simple thing: how many tests are in this file. Accuracy is important,
-because it's no fun when you are told to expect ten tests but only five run.
-The other five might not have run for a number of reasons: the test script failed,
-Parrot failed in some mysterious way, or you just forgot to mention that you
-removed half of your tests.
+Every test needs a plan. The `plan` subroutine in Test::More tells the world one simple thing: how many tests are in this file. Accuracy is important, because it's no fun when you are told to expect ten tests but only five run. The other five might not have run for a number of reasons: the test script failed, Parrot failed in some mysterious way, or you just forgot to mention that you removed half of your tests.
 
 We don't plan to have any tests yet, so let's be honest.
 
@@ -68,9 +51,7 @@ We don't plan to have any tests yet, so let's be honest.
 .end
 ````
 
-The `.include` directive will insert the contents of `test_more.pir` into the
-subroutine, which saves us a lot of namespace wrangling. The testing starts
-when a *plan* is declared.
+The `.include` directive will insert the contents of `test_more.pir` into the subroutine, which saves us a lot of namespace wrangling. The testing starts when a *plan* is declared.
 
 Of course, this is *not* the most exciting test plan in the world to run.
 
@@ -97,16 +78,11 @@ $ parrot example-08-02.pir
 1..10
 ````
 
-Now Parrot is telling whoever cares that there will be ten tests in this file.
-It's true that nothing exploded. For right now, you're going to have to trust me
-when I say that honesty is the best policy. You'll see later that some tools
-do care about how many tests you claim to run.
+Now Parrot is telling whoever cares that there will be ten tests in this file. It's true that nothing exploded. For right now, you're going to have to trust me when I say that honesty is the best policy. You'll see later that some tools do care about how many tests you claim to run.
 
-### `diag`
+## `diag`
 
-All right. Sometimes we want to make a comment in our test for the world to see.
-We could just `say` what we want to say, but Test::More provides the `diag` 
-subroutine to produce those comments in a manner that will make testers happy later.
+All right. Sometimes we want to make a comment in our test for the world to see. We could just `say` what we want to say, but Test::More provides the `diag`  subroutine to produce those comments in a manner that will make testers appy later.
 
 ````
 # example-08-03.pir
@@ -126,11 +102,9 @@ $ parrot example-08-03.pir
 # There are no tests. The plan is a lie.
 ````
 
-See the `#`? That's supposed to make our diagnostic comment stand out from
-the test results without confusing anyone. But the diagnostic makes me sad.
-Let's write an actual test.
+See the `#`? That's supposed to make our diagnostic comment stand out from the test results without confusing anyone. But the diagnostic makes me sad. Let's write an actual test.
 
-### `ok`
+## `ok`
 
 ````
 # example-08-04.pir
@@ -147,8 +121,7 @@ Let's write an actual test.
 * The value you are testing
 * A description of the test
 
-The value being tested is obviously the most important part, but don't underestimate
-the helpfulness of those descriptions. They are a form of documentation.
+The value being tested is obviously the most important part, but don't underestimate the helpfulness of those descriptions. They are a form of documentation.
 
 ````
 $ parrot example-08-04.pir
@@ -180,23 +153,17 @@ ok 1 - `ok` tests for simple truth
 not ok 2 - 0 is false, so this should fail.
 ````
 
-Oh hey, this is starting to get interesting! Now we can see clearly that the output
-from `ok` is a line split into three parts:
+Oh hey, this is starting to get interesting! Now we can see clearly that the output from `ok` is a line split into three parts:
 
 * The result of the test: "`ok`" or "`not ok`"
 * The test number
 * Our description string
 
-`ok` has shown us what a test result line looks like. Let's look at
-some of the other simple assertions.
+`ok` has shown us what a test result line looks like. Let's look at some of the other simple assertions.
 
-### `nok`
+## `nok`
 
-Sometimes you are more concerned if something is true which shouldn't be. For
-example, let's say we have a Web site building script. It builds temporary
-cache files to save time when building subpage links, but those cache files
-need to go away when it's done. So we would test for existence of a cache file
-and fail if the file exists.
+Sometimes you are more concerned if something is true which shouldn't be. For example, let's say we have a Web site building script. It builds temporary cache files to save time when building subpage links, but those cache files need to go away when it's done. So we would test for existence of a cache file and fail if the file exists.
 
 ````
 # example-08-06.pir
@@ -214,8 +181,7 @@ and fail if the file exists.
 .end
 ````
 
-The assertion may be `nok`, but the output is still `ok` or not based on whether
-the assertion was true.
+The assertion may be `nok`, but the output is still `ok` or not based on whether the assertion was true.
 
 ````
 $ parrot example-08-06.pir
@@ -232,19 +198,15 @@ $ parrot example-08-06.pir
 not ok 1 - Cache files should be cleaned up
 ````
 
-Yes. That's what I hoped to see. Let's clean up after ourselves to avoid future
-confusion.
+Yes. That's what I hoped to see. Let's clean up after ourselves to avoid future confusion.
 
 ````
 $ rm subpages.data
 ````
 
-### `is`
+## `is`
 
-There are many times where we want to compare two values. Let's continue with our Web site
-building tool. This tool sets the title of a page in metadata. We obviously want to be
-certain that it reads the metadata correctly. We would use the `is` assertion for
-that kind of test.
+There are many times where we want to compare two values. Let's continue with our Web site building tool. This tool sets the title of a page in metadata. We obviously want to be certain that it reads the metadata correctly. We would use the `is` assertion for that kind of test.
 
 ````
 # example-08-07.pir
@@ -302,20 +264,13 @@ not ok 1 - The title should be correct.
 # Want: 08 - Test::More and Tapir
 ````
 
-There's the test result line, which shows 'not ok', just like we expected.
-We also have a couple of diagnostic lines describing what we want and what we
-actually have.
+There's the test result line, which shows 'not ok', just like we expected. We also have a couple of diagnostic lines describing what we want and what we actually have.
 
-`ok` has its opposite assertion `nok`, so there must be an opposite for `is`, right?
-There sure is.
+`ok` has its opposite assertion `nok`, so there must be an opposite for `is`, right? There sure is.
 
-### `isnt`
+## `isnt`
 
-Occasionally we care less about what a value is than making sure it's *not* something
-in particular. Maybe we have a user registration process that uses social security numbers
-to satisfy an obscure corporate tracking requirement, but can't save them as-is because of 
-privacy concerns. In this case we don't care what the stored value is. We want to be certain
-that it's not the social security number.
+Occasionally we care less about what a value is than making sure it's *not* something in particular. Maybe we have a user registration process that uses social security numbers to satisfy an obscure corporate tracking requirement, but can't save them as-is because of  privacy concerns. In this case we don't care what the stored value is. We want to be certain that it's not the social security number.
 
 ````
 # example-08-09.pir
@@ -372,7 +327,7 @@ not ok 1 - SSN should not be stored as-is
 # Want: not 5551234567
 ````
 
-### `is_deeply`
+## `is_deeply`
 
 `is` fails us when we need to compare PMCs. Well, it *sort of* works:
 
@@ -408,8 +363,7 @@ not ok 1 - Super Man is not Super Woman
 # Want: Hash[0x25ee48]
 ````
 
-Thankfully, we have the `is_deeply` assertion to tell use exactly how a test
-has failed.
+Thankfully, we have the `is_deeply` assertion to tell use exactly how a test has failed.
 
 ````
 # example-08-12.pir
@@ -442,33 +396,18 @@ not ok 1 - Super Man is not Super Woman
 # Mismatch at [last]: expected Man, received Woman
 ````
 
-With `is_deeply` under our belt, we now know enough assertions to get started putting them to use in real
-projects.
+With `is_deeply` under our belt, we now know enough assertions to get started putting them to use in real projects.
 
-### What About The Other Assertions and Commands?
+## What About The Other Assertions and Commands?
 
-We won't be talking about them. I may eventually visit more as we get
-the hang of Parrot, but this is a good enough core to start with. Do
-you want to dig deeper? Go right ahead. The best resource for the 
-moment is the documentation within [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) itself.
+We won't be talking about them. I may eventually visit more as we get the hang of Parrot, but this is a good enough core to start with. Do you want to dig deeper? Go right ahead. The best resource for the moment is the documentation within Test::More itself.
 
-### TAP - The Test Anything Protocol
+## TAP - The Test Anything Protocol
 
-All of this output has looked remarkably consistent. There's a reason
-for that. [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) formats its result in a format known as TAP - the
-[Test Anything Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol). All of the output can be read by another program
-to provide you with a summary report. This other program is usually referred
-to as a [test harness](http://en.wikipedia.org/wiki/Test_harness). The
-test harness runs your tests and then tells you how many of them failed, or
-if there were any surprises.
+All of this output has looked remarkably consistent. There's a reason for that. Test::More formats its result in a format known as TAP - the [Test Anything Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol). All of the output can be read by another program to provide you with a summary report. This other program is usually referred to as a [test harness](http://en.wikipedia.org/wiki/Test_harness). The test harness runs your tests and then tells you how many of them failed, or if there were any surprises.
 
-All I need is a test harness. I'll be back to talk about [Tapir](http://github.com/leto/tapir) very soon.
+All I need is a test harness.
 
-### Conclusion
+## Conclusion
 
-Hey, we can test now! We learned how to use the [Test::More](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/runtime/parrot/library/Test/More.pir) library, making
-simple assertions and reporting the results using the [Test Anything Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol).
-As long as we stay disciplined and run our tests regularly, we will learn
-immediately when we have an "inspired" moment that breaks existing code. Since
-I'm such a huge fan of Test-Driven Development, you can be assured of seeing many assertions in
-future Parrot Babysteps.
+Hey, we can test now! We learned how to use the Test::More library, making simple assertions and reporting the results using the Test Anything Protocol. As long as we stay disciplined and run our tests regularly, we will learn immediately when we have an "inspired" moment that breaks existing code. Since I'm such a huge fan of Test-Driven Development, you can be assured of seeing many assertions in future Parrot Babysteps.

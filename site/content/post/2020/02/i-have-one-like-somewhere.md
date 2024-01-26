@@ -9,6 +9,8 @@ tags:
 - indieweb
 - site
 title: I have one like somewhere
+created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26T11:03:22-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-18.png](../../../attachments/img/2020/cover-2020-02-18.png)

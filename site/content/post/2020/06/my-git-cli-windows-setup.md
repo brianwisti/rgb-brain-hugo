@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/06/my-git-cli-windows-setup/
 category: post
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-18 22:55:00-07:00
 description: This was mostly an excuse to get better with PowerShell
 slug: my-git-cli-windows-setup
@@ -14,11 +15,12 @@ tags:
 - powershell
 - tools
 title: My Git CLI Windows setup
+updated: 2024-01-26 11:00:24-08:00
 ---
 
 For the sake of continuous learning — and so I could use a couple work-related applications that don’t work even with [WINE](https://winehq.org) — I decided to spend more time in *inbox/Windows*.  Let’s see if I can comfortably use *inbox/Git* from [PowerShell](https://docs.microsoft.com/en-us/powershell/).  I’ll use the [OpenSSH for Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse) server for key management, since it’s already available on my system.
 
-## Setting up Git
+# Setting up Git
 
 [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) knows about several Git-related packages, so my installation command needs to be specific.
 
@@ -65,7 +67,7 @@ Cloning into 'random-geekery-blog'...
 
 That was easy enough.  There are a couple bits missing from my regular Git day, though.
 
-## Conveniences with posh-git
+# Conveniences with posh-git
 
 For starters, I enjoy a pretty shell prompt with version control details.
 Let’s install the [beta release](https://github.com/dahlbyk/posh-git) of [posh-git](https://www.powershellgallery.com/packages/posh-git/).
@@ -82,7 +84,7 @@ PS C:\Users\brian\Projects\random-geekery-blog> Import-Module posh-git
 
 Lovely! I can customize it later.
 
-## Getting an SSH agent with posh-sshell
+# Getting an SSH agent with posh-sshell
 
 I dislike entering my ssh passphrase every time I interact with a version control server.  Need to get some sort of `ssh-agent` working.
 

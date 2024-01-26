@@ -13,13 +13,15 @@ tags:
 - tutorial
 - tools
 title: Elisp Functions Described in the Emacs Tutorial
+created: 2024-01-15T15:25:28-08:00
+updated: 2024-01-26T10:11:32-08:00
 ---
 
 The [other day](the-emacs-tutorial-as-elisp-tour.md) I talked some sort of nonsense about organizing my notes into some sort of coherent blog post. Heck with that. Life is too short. Instead I will just dump them here and hope somebody finds them useful. Maybe later I can do something with it. For now it's just supplemental material for the official [Emacs](../../../card/Emacs.md) tutorial.
 
 <!--more-->
 
-## Functions in the Emacs Tutorial
+# Functions in the Emacs Tutorial
 
 |Function|Keybinding|Description|
 |--------|----------|-----------|
@@ -85,11 +87,11 @@ The [other day](the-emacs-tutorial-as-elisp-tour.md) I talked some sort of nonse
 |`info`|`C-h i`|Enter the Info documentation browser|
 |`info-emacs-manual`|`C-h r`|Display the Emacs manual in Info mode|
 
-## Notes
+# Notes
 
 I found some things noteworthy while building this list. 
 
-### Numeric Arguments
+## Numeric Arguments
 
 * Digits or minus sign after `C-u` form the numeric argument. 
 * Default is `4`
@@ -102,23 +104,23 @@ I found some things noteworthy while building this list.
 |`C-u C-f`|Move forward 4 characters|
 |`C-u 2 C-v`|Scroll screen 2 lines|
 
-### Disabled Commands
+## Disabled Commands
 
 Some commands such as `downcase-region` `C-x C-l` are disabled by default in Emacs. They confuse beginners. You get an interactive prompt to try it, enable it, and whatever.
 
 There's no big list of disabled commands. Instead each command has a hook telling whether it's disabled or not. The EmacsWiki [DisabledCommands](http://www.emacswiki.org/emacs/DisabledCommands) page presents functions to list and enable disabled functions.
 
-### Inserting and Deleting
+## Inserting and Deleting
 
 *Everything* you type invokes a function. Most of the alphanumeric keys simply insert the character and move point. Some, like `newline` and `delete-backward-character`, trigger functions that relate to behavior users expect when entering those keys.
 
 They take numeric arguments too. `C-u 4 *` will insert `****` into the buffer.
 
-### Undo
+## Undo
 
 Undo ignores movement commands, and `self-insert-command` are lumped into groups of up to 20.
 
-### Extending the Command Set
+## Extending the Command Set
 
 There are only so many keys on the average keyboard. Less common commands get invoked either through an extended keybinding like `C-x <character>` or direct invocation via `M-x <name>`.
 
@@ -126,11 +128,11 @@ There are only so many keys on the average keyboard. Less common commands get in
 * `M-x <name>` Named command eXtend
   * Offers tab completion
 
-### Searching
+## Searching
 
 Incremental search is like a minibuffer mode. There are special bindings for the keys and everything.
 
-### Multiple Frames
+## Multiple Frames
 
 *Frames* are what what most windowing systems refer to as *windows*, but Emacs was already using that term.
 

@@ -3,7 +3,6 @@ aliases:
 - /programming/2014/12/13_duplicate-files.html
 - /post/2014/duplicate-files/
 - /2014/12/13/finding-and-removing-duplicate-files/
-- /post/2014/12/finding-and-removing-duplicate-files/
 category: post
 date: 2014-12-13 00:00:00-08:00
 description: Perl CPAN modules to simplify file cleanup
@@ -15,6 +14,8 @@ tags:
 - files
 - programming
 title: Finding and Removing Duplicate Files
+created: 2024-01-15T15:25:30-08:00
+updated: 2024-01-26T10:12:07-08:00
 ---
 
 [Perl](../../../card/Perl.md) CPAN modules to simplify file cleanup
@@ -24,7 +25,7 @@ title: Finding and Removing Duplicate Files
 I had a clever idea a couple months ago: to write a blog post detailing how to find recursively find duplicate files in a folder. My technique was good enough: track file sizes, find files that had the same file
 size and [MD5 hash](http://en.wikipedia.org/wiki/MD5#MD5_hashes), and display the resulting list. It wasn’t foolproof, but it showed some thought. After spending a little too much time on the post, I realized I had never checked [CPAN](http://www.cpan.org/). Of course there is already a module to handle that exact task.
 
-## The Problem
+# The Problem
 
 So here is my problem. I have — let’s see —
 
@@ -39,7 +40,7 @@ I organized my home machines recently. When I say "organized" I mean that everyt
 
 Well, now it is time to clean that single folder up. I want to find and delete duplicate files. I planned to focus on image files, but File::Find::Duplicates makes it easier to find *all* duplicates.
 
-## The Solution
+# The Solution
 
 [File::Find::Duplicates](https://metacpan.org/pod/File::Find::Duplicates) exports a `find_duplicate_files` subroutine, which finds the duplicate files in a list of folders.
 
@@ -117,7 +118,7 @@ Found 0 sets of duplicates in /Users/brian/Sync
 
 Thing is, I suspect that my `Sync` directory contains many empty subdirectories.
 
-## About Those Directories
+# About Those Directories
 
 [File::Find::Rule::DirectoryEmpty](https://metacpan.org/pod/File::Find::Rule::DirectoryEmpty) helps with exactly that problem. It extends the useful [File::Find::Rule](https://metacpan.org/pod/File::Find::Rule) module to simplify finding files with characteristics you define.
 
@@ -186,7 +187,7 @@ Found 5 empty directories
 
 I might dig in later to *actually* organize the remaining files. I may even automate it with some Perl. This is good enough for today, though.
 
-## Done
+# Done
 
 ````
 $ find ~/Sync/ -type f | wc -l

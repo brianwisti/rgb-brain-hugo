@@ -52,6 +52,15 @@
       </p>
     </section>
   {{ end }}
+  <p class="footnote">
+    {{- with .Params.created -}}
+      Added to vault {{ dateFormat "2006-01-02" . }}.
+    {{- end -}}
+    {{- with .Params.updated }}
+      Updated on {{ dateFormat "2006-01-02" . }}
+    {{- end -}}
+    
+  </p>
   {{ partial "post/navigation.html" . }}
   {{ if or (.Site.Params.remark42) (.Site.DisqusShortname) }}
     {{ partial "post/comments.html" . }}

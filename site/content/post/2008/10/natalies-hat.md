@@ -10,6 +10,8 @@ tags:
 - hat
 - craft
 title: Natalie's Hat
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T09:41:07-08:00
 ---
 
 Now for a hat using the same yarn I used for her sweater.

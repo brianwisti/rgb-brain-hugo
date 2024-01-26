@@ -10,6 +10,8 @@ tags:
 - tools
 - llm
 title: Nah on Copilot for now
+created: 2024-01-15T15:26:00-08:00
+updated: 2024-01-26T10:18:25-08:00
 ---
 
 [GitHub Copilot](https://github.com/features/copilot) is a development tool from Microsoft driven by a [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_model) — one piece of the very big tech trend described as "AI".

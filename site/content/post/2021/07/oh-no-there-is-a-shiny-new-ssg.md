@@ -9,6 +9,8 @@ tags:
 - ssg
 - astro
 title: oh no there is a shiny new SSG
+created: 2024-01-15T15:26:12-08:00
+updated: 2024-01-26T10:21:46-08:00
 ---
 
 Saw [card/Astro](../../../card/Astro.md) mentioned in my Twitter feed today. Tempting.

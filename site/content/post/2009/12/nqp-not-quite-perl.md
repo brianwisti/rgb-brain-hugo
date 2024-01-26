@@ -10,6 +10,8 @@ tags:
 - perl
 - coolnamehere
 title: NQP - Not Quite Perl
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:58:44-08:00
 ---
 
 [Parrot](../../../card/Parrot.md) is more than just PIR and PASM. I'm not talking about the
@@ -25,13 +27,13 @@ However, the Parrot distribution also ships with an extra language: NQP.
 can be used as a higher level Parrot language than PIR. It is especially useful
 in defining the grammars for your Parrot languages.
 
-## Getting NQP
+# Getting NQP
 
 You already have NQP if you have a fresh installation of Parrot. You can
 find directions for installing in [parrot-babysteps-01-getting-started](../07/parrot-babysteps-01-getting-started.md) if
 you do not yet have Parrot installed.
 
-## Example
+# Example
 
 Let's just do a brutally fast NQP example.
 
@@ -91,7 +93,7 @@ to use Rakudo or implement it in your own Parrot language.
 You could even use NQP to implement it. Is my logic circular enough for
 you?
 
-## Learning NQP
+# Learning NQP
 
 There is a good overview of NQP available at
 [wikibooks](http://en.wikibooks.org/wiki/Parrot_Virtual_Machine/Not_Quite_Perl).

@@ -9,6 +9,8 @@ slug: vmware-installed
 tags:
 - blogspot
 title: VMWare installed
+created: 2024-01-15T15:26:18-08:00
+updated: 2024-01-26T09:22:23-08:00
 ---
 
 Okay, now I feel good. I've got [VMWare](http://www.vmware.com/) installed with Windows XP as the guest OS. That means Office and who knows how many other apps are readily accessible for me. [REBOL](http://rebol.com/), for starters. It's supposed to be cross-platform, but REBOL is happiest by far under Windows.

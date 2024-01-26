@@ -10,6 +10,8 @@ tags:
 - procreate
 - craft
 title: Bad Kitty
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:17:18-08:00
 ---
 
 Dunno but pretty sure it's a bad kitty. I think I had spent a whole day listening to psychobilly music.

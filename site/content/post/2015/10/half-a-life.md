@@ -10,6 +10,8 @@ tags:
 - space
 - marginalia
 title: Half a Life
+created: 2024-01-15T15:25:27-08:00
+updated: 2024-01-26T10:13:20-08:00
 ---
 
 Scientists discovered Pluto had a moon when I was six years old. This is what they had to work with.

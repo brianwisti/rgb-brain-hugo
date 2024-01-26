@@ -10,6 +10,8 @@ tags:
 - unix
 - coolnamehere
 title: UNIX
+created: 2024-01-15T15:25:45-08:00
+updated: 2024-01-26T09:18:43-08:00
 ---
 
 People who come to UNIX (or *Linux*) from the world of Windows are often disappointed by the apparent clunkiness and lack of unified tools. "Where’s Visual Studio? Where’s C++ Builder? Heck, Notepad would be nice." These folks are looking all around for an IDE, or Integrated Development Environment. What they don’t realize is that UNIX *is* an Integrated Development Environment. You can’t get around the fact that this environment was made for geeks, by geeks. That means a lot of the programs that seem so clunky and awkward to the Windows person are, in fact, intended to work together to make development easier. Okay, so they aren’t all pointy-clicky and pretty, but that’s because pointy-clicky and pretty aren’t as important to these particular folks.

@@ -13,6 +13,8 @@ tags:
 - good-idea
 - the-bad-idea-is-up-to-me
 title: Eleventy 1.0 beta handles custom templates
+created: 2024-01-15T15:26:12-08:00
+updated: 2024-01-26T10:20:49-08:00
 ---
 
 I got [card/Eleventy](../../../card/Eleventy.md) handing Sass processing more or less per the [instructions](https://www.11ty.dev/docs/languages/custom/#example-add-sass-support-to-eleventy).

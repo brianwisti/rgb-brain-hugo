@@ -10,6 +10,8 @@ tags:
 - javascript
 - blogspot
 title: A Glance at Client-Side Frameworks
+created: 2024-01-15T15:25:31-08:00
+updated: 2024-01-26T10:10:23-08:00
 ---
 
 I was one of those lucky suckers who got a [Google CR-48 netbook](http://www.google.com/chromeos/pilot-program-cr48.html) a few months back.
@@ -26,7 +28,7 @@ I've been looking at a few different frameworks, thinking that I'll find the One
 No such luck.
 There are three biggies that I'm going to end up bouncing back and forth between.
 
-## jQuery
+# jQuery
 
 [jQuery](https://jquery.com) gives me what I need to add awesome interactive features to a site *right now*.
 I would like to compare its virtue of immediate gratification to that of PHP.
@@ -34,7 +36,7 @@ There's a lot of hate out there for PHP, so I won't.
 Except I just did.
 Oh, the inconsistency.
 
-## Google Closure
+# Google Closure
 
 [Google Closure](https://code.google.com/closure) is this massive collection that seemingly provides everything that core JavaScript is missing:
 type annotations, templating, compilation, and probably a lot of other stuff.
@@ -45,7 +47,7 @@ It will take me a while to find out.
 One thing's for sure.
 Closure rewards the patient more than those of us who like instant gratification.
 
-## Sproutcore
+# Sproutcore
 
 [SproutCore](https://www.sproutcore.com) is somewhere in between the two.
 There's some instant gratification, assuming you're already familiar with basic MVC as seen on the Web.

@@ -14,11 +14,13 @@ tags:
 - python
 - blogspot
 title: Python Blogger Refresh, Part 1
+created: 2024-01-15T15:25:35-08:00
+updated: 2024-01-26T09:41:26-08:00
 ---
 
 <!--more-->
 
-## The Idea
+# The Idea
 
 I  [wrote a post](../../2007/12/python-loves-blogger-part-1.md) a while back about using [Python](../../../card/Python.md) to write [Blogspot](http://blogspot.com) posts from the command line. It took me about two weeks to completely forget about it. Still, it's one of the few posts on this blog that gets regular visits, and the code ... well, the code is not great. It was a fair effort, but it didn't even accomplish the things I had initially set out to do. Account information is hard-coded into the code, for example. I also blundered along haphazardly with parsing metadata information myself despite the fact that [Python Markdown](https://pypi.python.org/pypi/Markdown) has an extension which is perfectly capable of [handling metadata](https://pythonhosted.org/Markdown/extensions/meta_data.html). Well, let's look at that code again.
 
@@ -39,7 +41,7 @@ $ python post-to-blog.py <post.txt>
 
 I'll be starting from the code that already exists in the earlier posts. We can start this project with confidence once we have everything set up and we're sure the old code still does what we expect it to.
 
-## Setup
+# Setup
 
 Ubuntu 9.04 already has a copy of Python 2.6 installed. I suppose I could grab a fresh copy of the Python source and build it myself, but I don't really feel like it right now. Sometimes I'm just lazy. Ubuntu's 2.6 will work well enough for my needs.
 
@@ -58,7 +60,7 @@ $ cd Markdown-2.0/
 $ sudo python setup.py install
 ````
 
-## The Starting Code
+# The Starting Code
 
 Now that I have the most important dependencies installed, I can revisit the code from the earlier posts. There's no local copy of the code, so I will just copy and paste the original code, run the tests, and share the starting code. What could possibly go wrong?
 
@@ -71,7 +73,7 @@ $ python post-to-blog.py -D
 
 Ouch. Something has gone horribly wrong in copying and pasting the code from the posts, the module behaviors have changed, or maybe they never worked as well as I thought they did. Either way, this is bad. Let me fix these issues and then I'll share the *new* starting code with you.
 
-## The New Starting Code
+# The New Starting Code
 
 ````python
 # post-to-blog.py
@@ -216,6 +218,6 @@ if __name__ == '__main__':
     main()
 ````
 
-## Coming Up Next
+# Coming Up Next
 
 These posts will be short, since I want to get *something* up while still getting things done at work. We have our starting point reestablished, and [next time](python-blogger-refresh-part-2-settings.md) we will be concentrating on loading user settings rather than embedding those details right in our code.

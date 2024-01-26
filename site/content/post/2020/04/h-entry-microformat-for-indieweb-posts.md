@@ -2,6 +2,7 @@
 aliases:
 - /2020/04/26/h-entry-microformat-for-indieweb-posts/
 category: post
+created: 2024-01-15 15:26:53-08:00
 date: 2020-04-26 13:02:33-07:00
 description: In which I go overboard with Hugo and Python for a quick Sunday task
 slug: h-entry-microformat-for-indieweb-posts
@@ -16,12 +17,13 @@ tags:
 - site
 - tools
 title: h-entry Microformat for Indieweb Posts
+updated: 2024-01-26 11:02:37-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)
 looking at the interpreted microformats for a post, in [bat](https://github.com/sharkdp/bat)
 
-## h-entry?
+# h-entry?
 
 Like [h-card](indieweb-h-cards.md), [h-entry](https://microformats.org/wiki/h-entry) provides an attribute vocabulary. While h-card focuses on people and organizations, h-entry describes shared content — blog posts and comments in particular, but you could expand it as far as you like. Want to generate a feed of git commits? You could use h-entry to describe a commit!
 
@@ -33,7 +35,7 @@ Like [h-card](indieweb-h-cards.md), [h-entry](https://microformats.org/wiki/h-en
  > 
  > But you don’t need to wait for me. There are fine tutorials out there to walk you through the process. <https://IndieWebify.me> in particular tells you everything you need to know.
 
-## Fine. Let’s get on with it
+# Fine. Let’s get on with it
 
 IndieWeb entries identify themselves with the `h-entry` class. `e-content` marks the *content* of the entry. You could always mark the same element as both. In fact that’s basically what I’ve been doing for a while.
 
@@ -70,7 +72,7 @@ Time to focus on putting useful metadata in the article header. Might as well ex
 {{ end }}
 ````
 
-### The bare minimum
+## The bare minimum
 
 For IndieWeb purposes, we need to know at least two things about every entry:
 
@@ -113,7 +115,7 @@ Let’s see that in action with my post on [weighing files in Python](../../2019
 
 ![post header with minimal h-entry info](attachments/img/2020/h-entry-with-title.png)
 
-### Who wrote this, anyways?
+## Who wrote this, anyways?
 
 Seems a bit silly on my single-author site, but explicit authorship *does* make things clearer to casual visitors.
 
@@ -126,7 +128,7 @@ Fortunately I have a canonical h-card that I can link to.
    href="{{ .Site.BaseURL }}">{{ .Site.Author.name }}</a>
 ````
 
-### How do I classify my entry?
+## How do I classify my entry?
 
 Now to sprinkle some `p-category` items in to help folks understand where the post fits with the rest of my site.
 
@@ -161,7 +163,7 @@ I organize my Hugo content by [type](https://gohugo.io/content-management/types)
 
 ![h-entry with categories](attachments/img/2020/h-entry-with-categories.png)
 
-### What about cover images?
+## What about cover images?
 
 Many — but not all — of my posts include a cover image. Cover images should almost definitely be `u-photo`. There’s a **lot** of image processing with it though. To make a long story short — *too late!* — I’ll just show the microformat-specific addition.
 
@@ -173,7 +175,7 @@ Many — but not all — of my posts include a cover image. Cover images should 
 
 Yep, that’s a post header all right. What about validation? Did I get the microformats right?
 
-## Examining my microformats locally
+# Examining my microformats locally
 
 I know I can [validate](https://indiewebify.me/validate-h-entry) my h-entry at IndieWebify or copy and paste to <https://microformats.io>, but I want to look at this stuff from the shell. Preferably with a single command. *Ideally* with something I can stash in my \[\[inbox/Pyinvoke|`tasks.py`\]\] file.
 
@@ -329,7 +331,7 @@ $ inv mf2 http://localhost:1313/2019/06/01/weighing-files-with-python -i
 
 *Nice*. I can tidy it up a bit later. Probably end up using those mf2util functions. But this works great for now. And my h-entry looks good!
 
-### Examine microformats on other sites
+## Examine microformats on other sites
 
 Oh hey I can grab any URL. This handles another issue I had: trying to
 examine microformats on other sites.

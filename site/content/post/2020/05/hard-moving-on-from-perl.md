@@ -12,6 +12,8 @@ tags:
 - right-tool-for-the-right-job
 - chainsaws-everywhere
 title: Hard Moving on From Perl When It Keeps Being More Good Enough Than the Other Good Enough Solutions
+created: 2024-01-15T15:26:32-08:00
+updated: 2024-01-26T11:01:29-08:00
 ---
 
 So I still love my [Datasette](https://datasette.readthedocs.io) dashboard. But — [Mastodon::Client](https://metacpan.org/pod/Mastodon::Client) with a variation on [fREW’s `q`](https://blog.afoolishmanifesto.com/posts/hugo-unix-vim-integration/#advanced-unix-tools) script I mentioned [the other day](querying-hugo-content-with-python.md)? Works real good. Fast.

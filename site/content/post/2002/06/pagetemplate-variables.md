@@ -10,6 +10,8 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Variables
+created: 2024-01-15T15:25:48-08:00
+updated: 2024-01-26T09:18:01-08:00
 ---
 
 The major directives require *variables*, which are just names for the
@@ -17,14 +19,14 @@ value your want inserted, checked, or otherwise accessed. It’s a good
 idea to use variable names that make sense(`name` for a person’s name,
 `title` for the title of the page, etc.).
 
-## Value Substitution
+# Value Substitution
 
 Substitution is the easiest concept to master. When PageTemplate comes
 across a value directive, it replaces that directive with some text.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 <h1>Hello, [%var name%]</h1>
@@ -47,7 +49,7 @@ up looking like this:
 <h1>Hello,</h1>
 ````
 
-## Filters
+# Filters
 
 Text on the Web is a funny thing. Your page can be unreadable if you
 forget to escape a few `<` characters. You could rely on your
@@ -57,9 +59,9 @@ care of these things yourself, and that’s where *preprocessors* come in.
 They take the contents of a variable and reformat it according to
 specific rules.
 
-### Syntax
+## Syntax
 
-### Example
+## Example
 
 ````html
 <p>You have received a message on the Wensleydale Advocacy Forum.</p>
@@ -83,7 +85,7 @@ That might end up looking like this:
 <p>WAF Management</p>
 ````
 
-## Dots, Objects, and Traits
+# Dots, Objects, and Traits
 
 What? Oh, some of you might have noticed that little dot in the variable
 names for the last example. This is a little bit of geek code getting
@@ -102,7 +104,7 @@ code. PageTemplate is a little more flexible in how it gets an object’s
 details, so a more general name seemed appropriate. You can call them
 “Waffle Monkeys of the Yukon” if you like.
 
-### Syntax
+## Syntax
 
 ````
 variable.trait

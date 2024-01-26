@@ -4,12 +4,14 @@ aliases:
 - /post/2014/pretty-recursive-grep/
 - /2014/06/18/pretty-recursive-grep/
 category: post
+created: 2024-01-15 15:25:29-08:00
 date: 2014-06-18 00:00:00-07:00
 slug: pretty-recursive-grep
 tags:
 - shell
 - tools
 title: Pretty Recursive Grep
+updated: 2024-01-26 10:11:43-08:00
 ---
 
 > 

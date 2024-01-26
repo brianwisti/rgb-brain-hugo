@@ -13,6 +13,8 @@ tags:
 - show-me-the-tables
 - old-reference-is-old
 title: Fred Brooks was right
+created: 2024-01-15T15:26:24-08:00
+updated: 2024-01-26T11:00:17-08:00
 ---
 
 Fred Brooks, [The Mythical Man-Month](https://archive.org/details/MythicalManMonth)

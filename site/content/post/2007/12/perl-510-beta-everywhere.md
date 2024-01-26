@@ -10,6 +10,8 @@ tags:
 - perl
 - blogspot
 title: Perl 5.10 beta Everywhere
+created: 2024-01-15T15:25:42-08:00
+updated: 2024-01-26T09:22:32-08:00
 ---
 
 I decided to install [Perl](../../../card/Perl.md) 5.10 on all my machines after the thrill of installing ActivePerl 5.10 beta on my Windows VM last night. Yes yes, it is true that strange things will thrill me.

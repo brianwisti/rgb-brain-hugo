@@ -11,6 +11,8 @@ tags:
 - emacs
 - orgmode
 title: I added this note from org mode
+created: 2024-01-15T15:26:23-08:00
+updated: 2024-01-26T11:00:05-08:00
 ---
 
 Trying an experiment with setting up a [capture template](https://orgmode.org/manual/Capture-templates.html) so [ox-hugo](https://ox-hugo.scripter.co/) can add short notes to the site from [card/Org](../../../card/Org.md).

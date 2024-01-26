@@ -10,6 +10,8 @@ tags:
 - procreate
 - craft
 title: Mask Face
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:17:15-08:00
 ---
 
 Getting a feel for how to use Procreate.

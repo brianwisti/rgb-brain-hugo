@@ -10,6 +10,8 @@ tags:
 - perl
 - blogspot
 title: Perl 5.10.1 is available
+created: 2024-01-15T15:25:36-08:00
+updated: 2024-01-26T09:54:41-08:00
 ---
 
 Find it at <https://perl.org>. I can stop whining - for a little bit, at least. About [Perl](../../../card/Perl.md), anyways.

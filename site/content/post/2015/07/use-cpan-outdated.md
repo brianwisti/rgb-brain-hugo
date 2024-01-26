@@ -10,13 +10,15 @@ tags:
 - perl
 - tools
 title: Use cpan-outdated
+created: 2024-01-15T15:25:26-08:00
+updated: 2024-01-26T10:13:04-08:00
 ---
 
 Thought I'd share [TOKUHIROM](https://metacpan.org/author/TOKUHIROM)'s [cpan-outdated](https://metacpan.org/pod/distribution/cpan-outdated/script/cpan-outdated) tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to [card/Perl](../../../card/Perl.md) modules you have installed. That functionality is available in the CPAN shell with the `r` command, but it is hard to beat the convenience of the `cpan-outdated` command line tool.
 
 <!--more-->
 
-## Installing cpan-outdated
+# Installing cpan-outdated
 
 cpan-outdated is available on CPAN as "App::cpanoutdated". Install it with your preferred tool - in my case, \[cpanminus\]\[\].
 
@@ -26,7 +28,7 @@ $ cpanm App::cpanoutdated
 
 Installation will put  `cpan-outdated` on your path.
 
-## Using cpan-outdated
+# Using cpan-outdated
 
 Like any good executable, `cpan-outdated` has a `--help` option.
 

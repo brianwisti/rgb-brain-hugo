@@ -2,6 +2,7 @@
 aliases:
 - /post/2021/10/using-markdown-it-in-python/
 category: post
+created: 2024-01-15 15:26:11-08:00
 date: 2021-10-16 00:00:00-07:00
 description: Figuring out just enough markdown-it-py to write this post
 slug: using-markdown-it-in-python
@@ -12,6 +13,7 @@ tags:
 - python
 - markdown
 title: Using markdown-it in Python
+updated: 2024-01-26 10:21:27-08:00
 ---
 
 > 
@@ -21,13 +23,13 @@ title: Using markdown-it in Python
  > needed to know *after* reading the markdown-it-py [user guide](https://markdown-it-py.readthedocs.io/en/latest/using.html) for basic
  > usage and principles.
 
-## What is it
+# What is it
 
 [markdown-it-py](https://pypi.org/project/markdown-it-py/) is a Python markdown library based on [markdown-it](https://github.com/markdown-it/markdown-it) from the JavaScript world. markdown-it-py provides the core flexibility needed by [MyST Markdown](https://myst-nb.readthedocs.io/en/latest/use/markdown.html), a particularly capable Markdown flavor for the [Executable Book Project](https://executablebooks.org/en/latest/).
 
 markdown-it-py is configurable, extensible, and --- most important for me today — not too hard to get started with.
 
-## How do I install it
+# How do I install it
 
 markdown-it-py alone gets you "enough". Everything you need for [CommonMark](https://commonmark.org), at least. But I want more than enough. I want all the features I can reasonably gather under one install.
 
@@ -46,7 +48,7 @@ What did that just install?
 [`mdit-py-plugins`](https://pypi.org/project/mdit-py-plugins/)
 : provides a collection of core plugins that make `markdown-it-py` useful to a feature-happy person such as myself
 
-## How do I use it
+# How do I use it
 
 ````python
 from markdown_it import MarkdownIt
@@ -117,7 +119,7 @@ Options:
 
 Now I start adding capabilities. If you see this post on the site, you'll know it worked.
 
-## Picking a preset for common patterns
+# Picking a preset for common patterns
 
 `markdown-it-py` provides predefined parser presets, allowing you to choose between common parsing patterns.
 
@@ -144,7 +146,7 @@ def make_html(markdown):
     return md.render(markdown)
 ````
 
-## Using options to tune your parser
+# Using options to tune your parser
 
 Even with presets available, there are common tweaks that some folks can't live with and others can't live without. `markdown-it-py` wraps those up in a single dictionary of options.
 
@@ -191,7 +193,7 @@ Presets have default values for each of these options.
 
 I like fancy quotes. I expect URLs to display as links. I occasionally need to fall back to raw <abbr title="HyperText Markup Language">HTML</abbr>.But most importantly on this here blog: I insist on syntax highlighting.
 
-### Adding a highlight function
+## Adding a highlight function
 
 Rather than decide for themselves how syntax highlighting is done, the markdown-it-py folks added a single option for us to hook in a function using *our* preferred approach.
 
@@ -243,11 +245,11 @@ Still a few pieces missing from *my* minimal toolkit. I need to dig a little dee
 
 For that I need to use some plugins. Good thing I installed `mdit-py-plugins`.
 
-## Adding parser functionality with plugins
+# Adding parser functionality with plugins
 
 mdit-py-plugins bundles many plugins into a single library. Today I need no plugins beyond what that library provides.
 
-### definition lists
+## definition lists
 
 [Description lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl) have been core to my HTML authoring flow since forever. I'll write the HTML myself if I have to. Fortunately, I don't have to, thanks to the [deflist](https://mdit-py-plugins.readthedocs.io/en/latest/#definition-lists) plugin.
 
@@ -291,7 +293,7 @@ And markdown-it-py produces a proper description list:
 </dl>
 ````
 
-### admonition blocks
+## admonition blocks
 
 So about a week ago, I was writing the first version of this post. I was nearly done. Then I got a little too tired and deleted the wrong file — without adding it to the repo first!
 
@@ -327,7 +329,7 @@ Without any additional configuration, it produces this HTML:
 </div>
 ````
 
-## Good enough!
+# Good enough!
 
 Stopping here because it's good enough for what I wrote so far today. But there is plenty more to explore. markdown-it-py allows reviewing and manipulating parsed [tokens](https://markdown-it-py.readthedocs.io/en/latest/using.html#the-token-stream) directly. Plus there's the whole MyST Markdown thing to explore.
 

@@ -10,6 +10,8 @@ tags:
 - perl
 - coolnamehere
 title: Moose
+created: 2024-01-15T15:25:32-08:00
+updated: 2024-01-26T10:10:36-08:00
 ---
 
 I have been dabbling a lot with [Moose](https://metacpan.org/module/Moose), a solid framework
@@ -20,7 +22,7 @@ to create a section for it on [card/coolnamehere](../../../card/coolnamehere.md)
 
 <!--more-->
 
-## Boilerplate
+# Boilerplate
 
 Perl OO has a reputation for boilerplate: large chunks of code that
 have little relation to the task at hand, but are necessary for the
@@ -55,7 +57,7 @@ boilerplate that I use.
 That's it, really. You can move on if you're not interested in my rambling
 explanations.
 
-## The Rambling Explanation
+# The Rambling Explanation
 
 Let's examine the boilerplate code.
 

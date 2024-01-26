@@ -11,6 +11,8 @@ tags:
 - craft
 title: My Garter Stitch Hat
 description: It's not the best hat I've made. It wasn't even the best hat I'd made when I made it.
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T09:22:20-08:00
 ---
 
 ![attachments/img/2007/cover-2007-10-15.jpg](../../../attachments/img/2007/cover-2007-10-15.jpg)

@@ -1,5 +1,7 @@
 ---
+created: 2024-01-15 15:26:02-08:00
 title: Ruby
+updated: 2024-01-26 09:09:02-08:00
 ---
 
 A friendly object-oriented [Programming Language](Programming%20Language.md).
@@ -10,7 +12,7 @@ It operates on The Principle Of Least Surprise, which basically means that code 
 
 Too bad I'm not as big a fan of Rails, or I could've made a lot of money for a while there.
 
-## Related
+# Related
 
 * https://ruby-lang.org
 * https://ruby-doc.org/3.2.2/

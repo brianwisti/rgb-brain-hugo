@@ -13,6 +13,8 @@ tags:
 - procreate
 - art-attack
 title: Kistler Tree
+created: 2024-01-15T15:25:59-08:00
+updated: 2024-01-26T09:01:53-08:00
 ---
 
 Found this in my image folder the other day. It’s from working through [Mark Kistler](https://markkistler.com/)'s book *You can Draw in 30 Days* last year. I like it. Sure I kinda already know I can draw. But it’s good to refresh yourself every so often.

@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/05/alias-templates-in-hugo/
 category: post
+created: 2024-01-15 15:26:27-08:00
 date: 2020-05-20 15:15:00-07:00
 description: I killed some redirects for accessibility and likes
 slug: alias-templates-in-hugo
@@ -17,6 +18,7 @@ tags:
 - site
 - tools
 title: Alias Templates in Hugo
+updated: 2024-01-26 11:01:40-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-20.png](../../../attachments/img/2020/cover-2020-05-20.png)
@@ -34,13 +36,13 @@ Anyways — the post!  People responded on Twitter and Mastodon.  It was gre
 
 Except none of those responses show up in the "IndieWeb Reactions" section of the post here on the site.
 
-## A problem
+# A problem
 
 I know why — basically.
 
 My post title and URL referenced Rakubrew’s predecessor "Rakudobrew," which I considered an unacceptable faux pas.  So I fixed it.
 
-## Hugo aliases: A solution to for my URL typo
+# Hugo aliases: A solution to for my URL typo
 
 This faux pas was easily corrected with [Hugo Aliases](https://gohugo.io/content-management/urls/#aliases).  Move your content where it needs to be, and add an alias for the old link to content front matter.
 
@@ -69,7 +71,7 @@ With default configuration, Hugo generates an HTML redirect page for every alias
 
 The visitor may briefly see a blank page.  Browsers visiting the old URL see the `http-equiv="refresh"` element and immediately go to the new `url`. Normally, this is fine.
 
-## Now for today’s problem
+# Now for today’s problem
 
 Now my *inbox/Webmention* feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
 
@@ -79,7 +81,7 @@ Well of *course* there’s no Webmention support.  The generated alias files hav
 
 Took me a solid hour to figure that one out.
 
-## Use a custom alias template for my webmention problem
+# Use a custom alias template for my webmention problem
 
 Oh thank goodness. Hugo supports [custom alias templates](https://gohugo.io/content-management/urls/#customize).
 
@@ -109,7 +111,7 @@ Brid.gy now sees the webmention link at the old URL.  I can manually resend the 
 
 Almost.  Now that I’m looking at my templates, I see problems.
 
-## This afternoon’s problem: accessibility
+# This afternoon’s problem: accessibility
 
 Non-essential page refreshes cause accessibility issues.  Visitors may not have enough time to read the page before it redirects them.  And what if the refresh doesn’t happen, either due to user preference or browser bug?  The blank page offers no clue as to what they should expect.
 

@@ -9,6 +9,8 @@ tags:
 - site
 - just
 title: Testing Justfile Recipe Arguments
+created: 2024-01-15T15:26:01-08:00
+updated: 2024-01-26T10:18:57-08:00
 ---
 
 [tldr](../../../card/tldr.md):

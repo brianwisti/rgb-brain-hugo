@@ -12,6 +12,8 @@ tags:
 - possum
 - the-logo-makes-the-project
 title: Eleventy 0.10.0 is out and I am distracted again
+created: 2024-01-15T15:26:31-08:00
+updated: 2024-01-26T11:03:39-08:00
 ---
 
 Making note of this [tweet](https://twitter.com/eleven_ty/status/1214681563507699713) for later:

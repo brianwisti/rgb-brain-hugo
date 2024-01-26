@@ -10,8 +10,10 @@ tags:
 - editors
 - coolnamehere
 title: Editors
+created: 2024-01-15T15:25:48-08:00
+updated: 2024-01-26T09:17:07-08:00
 ---
 
-## Choose your weapon
+# Choose your weapon
 
 As a geek, your text editor is your most important tool. Pick one or two, and really get to know it. I don’t care if you choose Emacs, vi, SciTE, or whatever else. Pick it and learn how to use it. I want you to *really* get the hang of your editing environment. Being more skilled with your tools will make it easier for you to get work done. And geek play, of course.

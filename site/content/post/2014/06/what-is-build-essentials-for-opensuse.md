@@ -4,12 +4,14 @@ aliases:
 - /post/2014/what-is-build-essentials-for-opensuse/
 - /2014/06/22/what-is-build-essentials-for-opensuse/
 category: post
+created: 2024-01-15 15:25:28-08:00
 date: 2014-06-22 00:00:00-07:00
 slug: what-is-build-essentials-for-opensuse
 tags:
 - suse
 - tools
 title: What is build-essentials for openSUSE
+updated: 2024-01-26 10:11:45-08:00
 ---
 
 > 

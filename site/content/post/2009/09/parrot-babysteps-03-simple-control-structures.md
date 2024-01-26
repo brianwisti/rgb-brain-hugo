@@ -13,13 +13,15 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 03 - Simple Control Structures
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:57:32-08:00
 ---
 
 I won't spend a whole lot of time on what control structures *are* and more time on how to implement them in [Parrot](../../../card/Parrot.md).
 
 This material follows pretty much the same steps as the Parrot book chapter on [control structures](http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch05_control_structures.pod.html). You could follow that chapter and end up with the same knowledge that you would get from reading today's step. Maybe even a little more.
 
-## Sequence
+# Sequence
 
 As usual for many programming languages, the the sequence control structure is 
 implemented in Parrot as a pattern of one instruction following another.
@@ -39,46 +41,31 @@ implemented in Parrot as a pattern of one instruction following another.
 .end
 ````
 
-## Selection
+# Selection
 
-Parrot uses simple mechanisms for building selection and repetition structures. Why is this?
-This is because Parrot and PIR are built for designing new programming languages. The
-designers opted to have the core control structures be simplistic so you wouldn't be stuck
-with what Parrot thinks a repetition loop - as one example - should look like. This does
-mean that moderately experienced developers such as myself must release some of our prejudices
-about what is "good" or "bad" in code. Very experienced developers and complete newcomers
-should have an easier time with Parrot's controls, due to broadened horizons or lack of
-preconceptions.
+Parrot uses simple mechanisms for building selection and repetition structures. Why is this? This is because Parrot and PIR are built for designing new programming languages. The designers opted to have the core control structures be simplistic so you wouldn't be stuck with what Parrot thinks a repetition loop - as one example - should look like. This does mean that moderately experienced developers such as myself must release some of our prejudices about what is "good" or "bad" in code. Very experienced developers and complete newcomers should have an easier time with Parrot's controls, due to broadened horizons or lack of preconceptions.
 
-Selection structures are created in Parrot with a combination of labels, `goto`, and `if` test 
-instructions. Yes, the [infamous `goto`](http://www.c2.com/cgi/wiki?GotoConsideredHarmful). Let's 
-relinquish our [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult_programming) 
-habits and start learning how `goto` is used in Parrot.
+Selection structures are created in Parrot with a combination of labels, `goto`, and `if` test instructions. Yes, the [infamous `goto`](http://www.c2.com/cgi/wiki?GotoConsideredHarmful). Let's relinquish our [cargo cult](http://en.wikipedia.org/wiki/Cargo_cult_programming) habits and start learning how `goto` is used in Parrot.
 
 We'll look at labels first, which are how we tell `goto` where to go.
 
-## Labels
+# Labels
 
-Labels consist of a series of letters, numbers, and underscores followed by a colon `:` character. 
-Although it's not strictly required, I use uppercase letters for label identifiers.
-You will generally find labels by themselves, outdented from the other instructions around it.
+Labels consist of a series of letters, numbers, and underscores followed by a colon `:` character.  Although it's not strictly required, I use uppercase letters for label identifiers. You will generally find labels by themselves, outdented from the other instructions around it.
 
 ````
 <IDENTIFIER>:
     # Code following instruction
 ````
 
-Again: this is not required. I follow this convention because I believe it makes my
-code easier to read. You could just as easily have the following instruction on the same line,
-but it has the risk of making your code visually cluttered.
+Again: this is not required. I follow this convention because I believe it makes my code easier to read. You could just as easily have the following instruction on the same line, but it has the risk of making your code visually cluttered.
 
 ````
 SET_NAME: $S0 = 'Brian'
 say $S0
 ````
 
-Labels serve as markers in your code. They don't accomplish much by themselves, but can
-show some of your program structure if named and placed intelligently.
+Labels serve as markers in your code. They don't accomplish much by themselves, but can show some of your program structure if named and placed intelligently.
 
 ````
 # example-03-02.pir
@@ -98,19 +85,15 @@ GET_NAME:
 .end
 ````
 
-### `goto`
+## `goto`
 
-A `goto` instruction sends Parrot execution to a specific labelled location
-in your code. 
+A `goto` instruction sends Parrot execution to a specific labelled location in your code. 
 
 ````
 goto <LABEL_IDENTIFIER>
 ````
 
-When it follows a `goto`, Parrot picks up by executing the first
-instruction following the label. In this example, it creates an
-infinite loop which can only be interrupted by pressing
-Control-C.
+When it follows a `goto`, Parrot picks up by executing the first instruction following the label. In this example, it creates an infinite loop which can only be interrupted by pressing Control-C.
 
 ````
 # example-03-03.pir
@@ -132,8 +115,7 @@ GET_NAME:
 .end
 ````
 
-Infinite loops have their occasional uses, but most of the time they're just
-annoying.
+Infinite loops have their occasional uses, but most of the time they're just annoying.
 
 ````
 $ parrot example-03-03.pir
@@ -143,19 +125,15 @@ What is your name? I said "Brian!"
 What is your name? <Control-C>
 ````
 
-### `if`
+## `if`
 
-The `if` operation lets us perform specific instructions when a particular
-condition is true by branching control. At our level of expertise, that
-branching is performed with `goto`. So for us, the general `if` syntax looks
-like this:
+The `if` operation lets us perform specific instructions when a particular condition is true by branching control. At our level of expertise, that branching is performed with `goto`. So for us, the general `if` syntax looks like this:
 
 ````
 if <conditional> goto <LABEL>
 ````
 
-Let's see `if` in action by adding a little control logic to our name
-prompt.
+Let's see `if` in action by adding a little control logic to our name prompt.
 
 ````
 # example-03-04.pir
@@ -181,14 +159,9 @@ prompt.
 .end
 ````
 
-I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while
-another greeting is prepared for everybody else. The program accomplishes this by examining the value of `name`.
-If `name` is "Brian", the program is instructed to `goto` the label `GREETING_FOR_BRIAN`. Otherwise it continues
-on, preparing a generic response and going to the `SAY_IT` label. `GREETING_FOR_BRIAN` prepares a custom response
-and follows up to the next instruction, which happens to be the `SAY_IT` code. Remember that labels are just markers.
-They don't cut the labeled code off from the rest of your code.
+I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while another greeting is prepared for everybody else. The program accomplishes this by examining the value of `name`. If `name` is "Brian", the program is instructed to `goto` the label  `GREETING_FOR_BRIAN`. Otherwise it continues on, preparing a generic response and going to the `SAY_IT` label. `GREETING_FOR_BRIAN` prepares a custom response and follows up to the next instruction, which happens to be the `SAY_IT` code. Remember that labels are just markers. They don't cut the labeled code off from the rest of your code.
 
-#### Conditionals
+### Conditionals
 
 The conditional in an `if` operation is checked to see if it looks false. The
 conditional can be a simple variable, in which case the value of the variable
@@ -235,8 +208,7 @@ END:
 .end
 ````
 
-This little script grabs two values from the user and reports which one is greater -
-or reports the special case when they are the same.
+This little script grabs two values from the user and reports which one is greater - or reports the special case when they are the same.
 
 ````
 $ parrot example-03-05.pir
@@ -257,10 +229,7 @@ Here are the comparison operators that are available for your conditionals.
 |`a >= b`|Is `a` greater than or equal to `b`?|
 |`a <= b`|Is `a` less than or equal to `b`?|
 
-What about having multiple tests? For example, maybe you will only accept
-a number if it's within a certain range. Parrot does not let us chain 
-comparisons, but we can still use multiple tests with the `and` and `or`
-opcodes.
+What about having multiple tests? For example, maybe you will only accept a number if it's within a certain range. Parrot does not let us chain comparisons, but we can still use multiple tests with the `and` and `or` opcodes.
 
 ````
 # example-03-06.pir
@@ -295,9 +264,7 @@ GET_NUMBER:
 .end
 ````
 
-`and` compares its arguments, and returns true if the arguments all look true.
-Parrot lets you store test results in a variable, as you can see. Then you can
-examine the truthiness of the variable in your `if` condition.
+`and` compares its arguments, and returns true if the arguments all look true. Parrot lets you store test results in a variable, as you can see. Then you can examine the truthiness of the variable in your `if` condition.
 
 ````
 $ parrot example-03-06.pir
@@ -310,8 +277,7 @@ That is in the acceptable range.
 Thank you!
 ````
 
-This approach looked odd enough to me that I thought I'd show the equivalent
-Perl code.
+This approach looked odd enough to me that I thought I'd show the equivalent Perl code.
 
 This Parrot code:
 
@@ -342,8 +308,7 @@ if ($input >= $MINIMUM && $input <= $MAXIMUM) {
 say "Thank you!";
 ````
 
-We could also use `or`, which compares its arguments and returns true if *either*
-argument looks true.
+We could also use `or`, which compares its arguments and returns true if *either* argument looks true.
 
 ````
 # example-03-07.pir
@@ -377,19 +342,15 @@ END_PROGRAM:
 .end
 ````
 
-### `unless`
+## `unless`
 
-Sometimes the normal `if` test does not clearly describe your needs. You 
-may only want to branch if a test fails. While you *can* do this with `if`,
-Parrot also provides the `unless` test for exactly this situation. `unless`
-looks similar to `if`:
+Sometimes the normal `if` test does not clearly describe your needs. You may only want to branch if a test fails. While you *can* do this with `if`, Parrot also provides the `unless` test for exactly this situation. `unless` looks similar to `if`:
 
 ````
 unless <conditional> goto <LABEL>
 ````
 
-I can use it in the user prompt program to streamline the description of
-the application's response to anyone but me.
+I can use it in the user prompt program to streamline the description of the application's response to anyone but me.
 
 ````
 # example-03-08.pir
@@ -416,20 +377,13 @@ the application's response to anyone but me.
 
 The program will run the same after this little change. Try it and see.
 
-Usage of `unless` is a personal choice. I like it because it lets me describe
-my program a little more concisely. Others don't like to use `unless` because
-it adds to the mental load of reading application code: "let's see, `unless` 
-means '`if` this is not true." Both points of view are valid, and ultimately
-it's up to you whether `unless` belongs in your code.
+Usage of `unless` is a personal choice. I like it because it lets me describe my program a little more concisely. Others don't like to use `unless` because it adds to the mental load of reading application code: "let's see, `unless` means '`if` this is not true." Both points of view are valid, and ultimately it's up to you whether `unless` belongs in your code.
 
-### Repetition
+## Repetition
 
-We saw the infinite loop earlier when we first looked at `goto`. Let's
-explore more controlled loops.
+We saw the infinite loop earlier when we first looked at `goto`. Let's explore more controlled loops.
 
-Believe it or not, the combination of `if` and `goto` provide us with the
-core features we need for a wide range of control structures. Things can
-get interesting now that we've added these tools to our kit.
+Believe it or not, the combination of `if` and `goto` provide us with the core features we need for a wide range of control structures. Things can get interesting now that we've added these tools to our kit.
 
 How about a countdown?
 
@@ -452,9 +406,7 @@ How about a countdown?
 .end
 ````
 
-This presents a simple count-controlled loop. We set a loop counter `current` to a reasonable start value before we
-start looping. We check the value of the loop counter each time we start the loop, quitting if `current` is less
-than our stopping value. After our check, we display the value, subtract one, and run the loop again.
+This presents a simple count-controlled loop. We set a loop counter `current` to a reasonable start value before we start looping. We check the value of the loop counter each time we start the loop, quitting if `current` is less than our stopping value. After our check, we display the value, subtract one, and run the loop again.
 
 A condition-controlled loop is easy, too.
 
@@ -479,10 +431,7 @@ GREET_USER:
 .end
 ````
 
-Our script will now continue to check to see if the user actually entered
-anything for a name. If the user has entered a name, control goes to
-the `GREET_USER` label. Otherwise, control is sent backwards to the 
-`GET_USER` label.
+Our script will now continue to check to see if the user actually entered anything for a name. If the user has entered a name, control goes to the `GREET_USER` label. Otherwise, control is sent backwards to the `GET_USER` label.
 
 ````
 $ parrot example-03-10.pir
@@ -493,13 +442,6 @@ Hello, Brian
 
 Collection loops such as list iterators will have to wait until we examine PMCs.
 
-## Summary
+# Summary
 
-Adding `if` and `goto` to our toolkit has given us the means to build fundamental
-control structures in our Parrot programs. We know how to use simple conditionals
-as well as how to create more complex conditionals using `and` and `or`. We have
-`unless` for those situations when `if` doesn't describe our intent clearly 
-enough. We can use the simple combination of `if` and `goto` to create counter
-and condition controlled loops. A really determined person could create useful 
-programs with just this information. However, even simple useful
-programs would benefit from using the library of PMCs that are available.
+Adding `if` and `goto` to our toolkit has given us the means to build fundamental control structures in our Parrot programs. We know how to use simple conditionals as well as how to create more complex conditionals using `and` and `or`. We have `unless` for those situations when `if` doesn't describe our intent clearly enough. We can use the simple combination of `if` and `goto` to create counter and condition controlled loops. A really determined person could create useful programs with just this information. However, even simple useful programs would benefit from using the library of PMCs that are available.

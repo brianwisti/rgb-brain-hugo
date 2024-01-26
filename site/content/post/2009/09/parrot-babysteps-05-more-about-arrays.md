@@ -13,13 +13,15 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 05 - More About Arrays
+created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26T09:58:02-08:00
 ---
 
-## Introduction
+# Introduction
 
 We started looking at arrays in the [last step](parrot-babysteps-04-adding-command-line-arguments.md). We're going to take a closer look today, exploring different ways of looking at [Parrot](../../../card/Parrot.md) arrays to build an averaging calculator. We'll start with no array at all, to build the basic flow of our program and to demonstrate that an array is not always needed. Then we'll move on to more interesting stuff, with array indexing, stack opcodes, and iterators.
 
-## Building the Basic Flow
+# Building the Basic Flow
 
 Our averaging program is going to get its input from the user, and will take an
 arbitrary quantity of Numbers. Basically, it will keep accepting Numbers until the
@@ -81,7 +83,7 @@ Notice that the string is converted to a number using normal Perl rules: if it
 doesn't have any numbers, it's treated as zero. We could put in some error
 checking to chastise the user for bad input, but I don't feel like it right now.
 
-## Averaging With No Arrays
+# Averaging With No Arrays
 
 I would like to point something out before we start digging into array features.
 We don't *need* to use arrays when calculating something like an average. Here's 
@@ -145,7 +147,7 @@ I'm not sure what it'll show them.
 Anyways - I wrote this version because I felt like it. Let's start writing 
 code that uses arrays, okay?
 
-## Stacks - Pushing and Popping
+# Stacks - Pushing and Popping
 
 The [stack](http://en.wikipedia.org/wiki/Stack_(data_structure)) is one of
 the fundamental data structures. The mental image is straightforward: you have
@@ -251,7 +253,7 @@ Enter a number (or "quit" to quit): quit
 33670
 ````
 
-### `shift` and `unshift` - The Bottom of the Stack
+## `shift` and `unshift` - The Bottom of the Stack
 
 While `push` and `pop` work on the end of an array, Parrot also provides `unshift`
 and `shift` which handle corresponding functionality on the front of an array.
@@ -311,7 +313,7 @@ and popping because it's easier to visualize.
 However, when you combine `push` and `shift` you get a whole new structure called
 a queue.
 
-## Queues
+# Queues
 
 A [queue](http://en.wikipedia.org/wiki/Queue_(data_structure)) is yet another way of looking at your array when you are concerned about order. Stacks are LIFO: when you pop an item from the stack, you're getting the last item that was pushed. Queues are FIFO: when you shift an item from the queue, you get the first item that was pushed. Okay - the technical term for placing an item in the queue is *enqueue* and for grabbing an item is *dequeue*. Pushing and shifting refer to the opcodes we're using. Use whatever term you're happier with.
 
@@ -409,7 +411,7 @@ That output could fill up the screen if I had a lot of values. I might want to
 fine-tune the debug output. Then again, I might want to just move on to the next
 subject.
 
-## Accessing by Index
+# Accessing by Index
 
 Stacks and queues are a practical solution to a wide range of collection-handling
 problems. They do have one shortcoming, though. Both of them are destructive.
@@ -494,7 +496,7 @@ own code. The sooner I can see if I need to move on, the happier I'll be. I
 could even test if we've somehow gone below zero if I was feeling especially
 paranoid. I won't do that today, though. You're welcome.
 
-## Using an Iterator
+# Using an Iterator
 
 We're nearly done. There is only one more way of traversing arrays that I want to look at. Parrot [Iterators](http://docs.parrot.org/parrot/devel/html/src/pmc/iterator.pmc.html) allow you to step through the contents of an array without doing anything to the array itself, while ignoring the details of array indexing.
 
@@ -547,14 +549,7 @@ We're nearly done. There is only one more way of traversing arrays that I want t
 .end
 ````
 
-All right. This example is easier for me to read than the others for some reason.
-That could be due to the simple fact that I've been looking at Parrot arrays for
-a couple of hours now. Maybe it's because my blocks are more clearly labelled.
-Maybe it's because using an iterator allowed me to build up a sum and still get
-the length the length of `numbers` later, rather than building up two values
-at the same time. I'm not really sure. I do know that I feel like the iterator
-has given me a nice little convenience layer for handling my array. The output
-is still the same.
+All right. This example is easier for me to read than the others for some reason. That could be due to the simple fact that I've been looking at Parrot arrays for a couple of hours now. Maybe it's because my blocks are more clearly labelled. Maybe it's because using an iterator allowed me to build up a sum and still get the length the length of `numbers` later, rather than building up two values at the same time. I'm not really sure. I do know that I feel like the iterator has given me a nice little convenience layer for handling my array. The output is still the same.
 
 ````
 $ parrot example-05-07.pir
@@ -568,6 +563,6 @@ Sum of values:  50
 Average:        12.5
 ````
 
-## Conclusion
+# Conclusion
 
 We had already taken a glance at arrays when we worked with the command line. Today we dove a little deeper, looking into different ways we can access the contents of an array. Now you understand how to treat a 'ResizableFloatArray' like a stack, a queue, a plain old array, or an iterable collection. These principles should work for other array types as well. Parrot has many array PMCs, and you can find them on the list of core PMCs [here](http://docs.parrot.org/parrot/devel/html/pmc.html).

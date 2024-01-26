@@ -1,5 +1,6 @@
 ---
 category: post
+created: 2024-01-15 15:26:13-08:00
 date: 2022-01-10 01:00:00-08:00
 description: Specifically, building `main.scss` when `_base.scss` changes
 slug: processing-sass-in-eleventy
@@ -11,6 +12,7 @@ tags:
 - css
 - site
 title: Processing Sass in Eleventy
+updated: 2024-01-26 10:20:47-08:00
 ---
 
 ![attachments/img/2022/cover-2022-01-10.jpg](../../../attachments/img/2022/cover-2022-01-10.jpg)
@@ -57,7 +59,7 @@ But I also don't want it randomly rebuilding the stylesheet 20 times because it 
 
 I need to think my way through this one.
 
-## Add a SassHandler
+# Add a SassHandler
 
 Keeping with Jérôme Coupé's structural suggestions, I keep my more complex JavaScript logic under `src/_11ty/`.
 
@@ -182,7 +184,7 @@ Again, I've disabled `permalink` so it's on me to ensure the output directory ex
 
 So there it is! Probably not optimal but hey we're all learning something every day.
 
-## Load that SassHandler
+# Load that SassHandler
 
 Then the relevant bits of my `.eleventy.js`:
 
@@ -198,6 +200,6 @@ module.exports = function (eleventyConfig) {
 
 This site still builds and the styles update as expected, so: yay!
 
-## What's next?
+# What's next?
 
 I dunno. Knowing me? Probably [Asciidoctor](https://asciidoctor.org).

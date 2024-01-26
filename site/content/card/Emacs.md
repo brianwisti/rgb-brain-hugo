@@ -1,5 +1,7 @@
 ---
 title: Emacs
+created: 2024-01-15T15:26:21-08:00
+updated: 2024-01-26T09:06:21-08:00
 ---
 
 More than a text editor, it's a lifestyle.
@@ -22,6 +24,6 @@ My main advice to you if you want to use Emacs: do more than just edit text with
 What’s that? "Play Tetris with it?" Yes, that’s right. I said "Tetris".
 `M-x tetris` and see for yourself.
 
-## Related
+# Related
 
 * [GNU Emacs - GNU Project](https://www.gnu.org/software/emacs/)

@@ -1,10 +1,12 @@
 ---
+created: 2024-01-21 08:31:10-08:00
 title: Using obsidian-export with Hugo
+updated: 2024-01-26 09:09:53-08:00
 ---
 
 Copied directly from the [obsidian-export](obsidian-export.md) REAME
 
-## Transforming links
+# Transforming links
 
 Turns `../../Card/ADHD.md` to `/card/adhd`.
 
@@ -29,7 +31,7 @@ Turns `../../Card/ADHD.md` to `/card/adhd`.
 {{- /* whitespace stripped here to avoid trailing newline in rendered result caused by file EOL */ -}}
 ````
 
-## Transforming images
+# Transforming images
 
 ````go-html-template {title="layouts/_default/_markup/render-image.html"}
 {{- $url := urls.Parse .Destination -}}

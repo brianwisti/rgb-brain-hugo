@@ -12,6 +12,8 @@ tags:
 - taskwarrior
 - orgmode
 title: OrgMode-ish VimWiki
+created: 2024-01-15T15:26:25-08:00
+updated: 2024-01-26T11:00:18-08:00
 ---
 
 ![attachments/img/2020/cover-2020-07-03.png](../../../attachments/img/2020/cover-2020-07-03.png)

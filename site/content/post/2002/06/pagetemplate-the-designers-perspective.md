@@ -9,9 +9,11 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - The Designer's Perspective
+created: 2024-01-15T15:25:47-08:00
+updated: 2024-01-26T09:17:56-08:00
 ---
 
-## Who Are You?
+# Who Are You?
 
 You are the esteemed Web Designer, aesthetically talented and perhaps
 artistically inclined. You know what makes a good Web page. You are not
@@ -25,7 +27,7 @@ Okay, I’ve had too much coffee. This page explains how templating works,
 and how to put PageTemplate to use when laying out the HTML of your
 page.
 
-## What’s a Template?
+# What’s a Template?
 
 When you are designing pages for a dynamic site or Web application,
 there are a lot of details you won’t know in advance. Some examples
@@ -38,7 +40,7 @@ page, and let programmers worry about filling it with data.
 
 These placeholders are known as *directives* in PageTemplate.
 
-## How Do I Use PageTemplate In My Pages?
+# How Do I Use PageTemplate In My Pages?
 
 PageTemplate uses a very simple language which you can embed in your
 page. You should be able to use your favorite design tools to create an

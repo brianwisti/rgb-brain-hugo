@@ -14,6 +14,8 @@ tags:
 - having-fun
 - killing-time-while-scripts-run
 title: Random Geekery a la Nikola
+created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26T11:03:44-08:00
 ---
 
 Told you I was checking out [card/Nikola](../../../card/Nikola.md). Importing the live site has been fun. I may have outgrown the default theme though, nice though it is.

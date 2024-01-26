@@ -10,6 +10,8 @@ tags:
 - marginalia
 - now
 title: AlphaCard Sent Us A Printer
+created: 2024-01-15T15:25:31-08:00
+updated: 2024-01-26T10:11:13-08:00
 ---
 
 [AlphaCard](https://www.alphacard.com) generously donated a badge printer & supplies for [Mary's Place](https://marysplaceseattle.org) day shelter in Seattle.

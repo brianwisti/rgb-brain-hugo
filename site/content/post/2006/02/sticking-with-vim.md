@@ -12,6 +12,8 @@ tags:
 - editors
 - blogspot
 title: Sticking with Vim
+created: 2024-01-15T15:25:42-08:00
+updated: 2024-01-26T09:20:09-08:00
 ---
 
 I've been experimenting with several excellent editors for Windows, including [UltraEdit](http://www.ultraedit.com) and [Crimson Editor](http://www.crimsoneditor.com). The experiments will continue, but for now I am going to stick to a Windows install of [Vim](../../../card/Vim.md). Becoming familiar with Windows doesn't mean I have to drop everything I already know in the dust!

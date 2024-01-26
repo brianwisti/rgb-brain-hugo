@@ -10,5 +10,11 @@
       {{- with .Site.Params.PlausibleDomain -}}
         <script defer data-domain="{{ . }}" src="https://plausible.io/js/script.js"></script>
       {{- end }}
+      {{- if .Page.Store.Get "hasMermaid" -}}
+        <script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          mermaid.initialize({ startOnLoad: true });
+        </script>
+      {{- end }}
     </body>
 </html>

@@ -4,6 +4,7 @@ aliases:
 - /post/2004/control-structures/
 - /2004/07/11/control-structures/
 category: post
+created: 2024-01-15 15:25:45-08:00
 date: 2004-07-11 00:00:00-07:00
 slug: control-structures
 tags:
@@ -11,7 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Control Structures
-updated: 2004-07-11 00:00:00-07:00
+updated: 2024-01-26 09:18:35-08:00
 ---
 
 There are several different approaches to programming, but the one that is easiest for me to grasp is *imperative programming*. The imperative approach allows you to tell the computer exactly what you want it to do and how you want it done. The best analogy I can think of is a cooking recipe. You have a list of ingredients and a specific set of instructions to follow. Veer from the recipe and you may not be happy with the results. Veer too far from the recipe and your house could burn down.
@@ -20,7 +21,7 @@ Control structures are the basic building blocks of imperative programming. They
 
 I kind of played with the existing names for these structures to give them what I think is a more poetic quality.
 
-## Sequence
+# Sequence
 
 The fundamental control structure doesn’t seem like a control structure at all. *Sequence* refers to the fact that one thing usually happens after another.
 
@@ -36,7 +37,7 @@ print "Hello", name
 
 You don’t try to beat the eggs in the bowl after you’ve put the sugar in. I suppose you could, but you are just making your life more difficult. Similarly, you don’t try to print the name before you’ve defined it. Bad things will happen if you even try.
 
-## Selection
+# Selection
 
 Selection structures allow you to mark some code as optional.
 
@@ -99,7 +100,7 @@ else:
 >
  > Pay attention to how the else-if refinement is spelled in your favorite programming language! It’s `elif` in Python, and in other languages could be `elsif`, `elseif`, `else if`, or something else I haven’t come across yet.
 
-## Repetition
+# Repetition
 
 The next control structure is *repetition*, which will execute a block of code repeatedly until some condition is true.
 
@@ -168,7 +169,7 @@ for item in capitalized:
 
 Many other languages have similar approaches, such as Perl’s `map` function.
 
-## Remote
+# Remote
 
 The last major control structure I am going to look at is *remote code*. This isn’t technically code on another machine, but I suppose it could be. Remote code was written outside of the main sequence of the application, but you can use it (repeatedly) from within the main sequence. I guess the easiest cooking equivalent would be to hire a person who makes the cookies for you.
 

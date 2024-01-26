@@ -11,6 +11,8 @@ tags:
 - learn
 - coolnamehere
 title: Perldoc
+created: 2024-01-15T15:25:41-08:00
+updated: 2024-01-26T09:22:10-08:00
 ---
 
 I have heard first-time [Perl](../../../card/Perl.md) programmers complain about the lack of documentation. This is understandable. They don't know all the nifty stuff that comes with the standard Perl distribution. 
@@ -47,33 +49,33 @@ perldoc perltoc
 
 This contains an extensive overview of the documentation available, including summaries, keywords, and a table of contents for each article. Look close enough and you will notice that there are several tutorials available.
 
-## Accessing information about a specific module
+# Accessing information about a specific module
 
 ````
 $ perldoc <module>
 ````
 
-### Viewing the source of that module
+## Viewing the source of that module
 
 ````
 $ perldoc -m <module>
 ````
 
-### Finding out exactly which file contains the documentation
+## Finding out exactly which file contains the documentation
 
 ````
 $ perldoc -l <module>
 ````
 
-## Accessing specific information
+# Accessing specific information
 
-### Perl built-in functions
+## Perl built-in functions
 
 ````
 $ perldoc -f <function>
 ````
 
-### The Perl FAQ
+## The Perl FAQ
 
 ````
 $ perldoc -q <search-expression>
@@ -81,6 +83,6 @@ $ perldoc -q <search-expression>
 
 `perldoc` will then look for a FAQ question containing the search expression, and present it to you.
 
-## Wrapping Up
+# Wrapping Up
 
 These are the main features of `perldoc` that I use, but that's not all there is to it. Check `perldoc perldoc` for all the gory details.

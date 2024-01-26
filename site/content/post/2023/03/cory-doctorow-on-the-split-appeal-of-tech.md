@@ -8,6 +8,8 @@ tags:
 - quotes
 - culture
 title: Cory Doctorow on the split appeal of tech
+created: 2024-01-15T15:26:00-08:00
+updated: 2024-01-26T10:18:38-08:00
 ---
 
 {{% quote

@@ -11,6 +11,8 @@ tags:
 - python
 - browser-testing
 title: Checking out Playwright for Python
+created: 2024-01-15T15:26:23-08:00
+updated: 2024-01-26T11:00:04-08:00
 ---
 
 From [Announcing Playwright for Python: Reliable end-to-end testing for the web](https://devblogs.microsoft.com/python/announcing-playwright-for-python-reliable-end-to-end-testing-for-the-web/):

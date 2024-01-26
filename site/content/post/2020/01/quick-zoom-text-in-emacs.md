@@ -2,12 +2,14 @@
 aliases:
 - /2020/01/01/quick-zoom-text-in-emacs/
 category: post
+created: 2024-01-15 15:26:32-08:00
 date: 2020-01-01 00:00:00-08:00
 slug: quick-zoom-text-in-emacs
 tags:
 - emacs
 - tools
 title: Quick Zoom Text in Emacs
+updated: 2024-01-26 11:03:42-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-01.png](../../../attachments/img/2020/cover-2020-01-01.png)

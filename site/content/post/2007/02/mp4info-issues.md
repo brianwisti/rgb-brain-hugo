@@ -4,12 +4,14 @@ aliases:
 - /post/2007/mp4info-issues/
 - /2007/02/12/mp4info-issues/
 category: post
+created: 2024-01-15 15:25:40-08:00
 date: 2007-02-12 00:00:00-08:00
 slug: mp4info-issues
 tags:
 - ruby
 - blogspot
 title: Mp4Info issues
+updated: 2024-01-26 09:21:44-08:00
 ---
 
 > 

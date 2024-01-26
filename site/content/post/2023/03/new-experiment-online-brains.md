@@ -1,5 +1,6 @@
 ---
 category: note
+created: 2024-01-15 15:26:12-08:00
 date: 2023-03-09
 slug: new-experiment-online-brains
 syndication:
@@ -8,6 +9,7 @@ syndication:
 tags:
 - second-brain
 title: 'New experiment: online brains'
+updated: 2024-01-26 10:18:36-08:00
 ---
 
 ![attachments/img/2023/cover-2023-03-09.jpg](../../../attachments/img/2023/cover-2023-03-09.jpg)

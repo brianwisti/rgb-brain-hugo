@@ -10,6 +10,8 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Getting It
+created: 2024-01-15T15:25:48-08:00
+updated: 2024-01-26T09:18:10-08:00
 ---
 
 We have tried to make installing PageTemplate as easy as possible. There
@@ -19,7 +21,7 @@ are three basic ways to install PageTemplate:
 * With Rake
 * Manually
 
-## With RubyGems
+# With RubyGems
 
 This is by far the easiest approach.
 
@@ -34,7 +36,7 @@ local copy it if that’s your preference:
 
 gem install -l PageTemplate-x.y.z.gem
 
-## With Rake
+# With Rake
 
 Download the archived file from the [PageTemplate project
 page](http://rubyforge.org/projects/pagetemplate). Extract the file into
@@ -44,7 +46,7 @@ $ rake
 $ rake test
 $ sudo rake install
 
-## Manually
+# Manually
 
 Download the archived file from the [PageTemplate project
 page](http://rubyforge.org/projects/pagetemplate). Extract the file into

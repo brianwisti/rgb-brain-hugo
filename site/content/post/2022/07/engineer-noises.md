@@ -9,6 +9,8 @@ tags:
 - toem
 - actually
 title: Engineer Noises
+created: 2024-01-15T15:26:03-08:00
+updated: 2024-01-26T10:19:22-08:00
 ---
 
 ![attachments/img/2022/cover-2022-07-17.jpg](../../../attachments/img/2022/cover-2022-07-17.jpg)

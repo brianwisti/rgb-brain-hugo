@@ -12,6 +12,8 @@ tags:
 - seen
 - seattle
 title: Sign of the Times
+created: 2024-01-15T15:26:33-08:00
+updated: 2024-01-26T11:02:56-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-05.jpg](../../../attachments/img/2020/cover-2020-04-05.jpg)

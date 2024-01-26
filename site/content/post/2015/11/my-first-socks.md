@@ -10,6 +10,8 @@ tags:
 - socks
 - craft
 title: My First Socks
+created: 2024-01-15T15:25:52-08:00
+updated: 2024-01-26T10:13:21-08:00
 ---
 
 Not my first socks ever, of course. But there are many firsts in these socks.

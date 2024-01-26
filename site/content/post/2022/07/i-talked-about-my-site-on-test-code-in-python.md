@@ -11,6 +11,8 @@ tags:
 - ssg
 - my-brand
 title: I Talked About My Site on Test & Code in Python
+created: 2024-01-15T15:26:04-08:00
+updated: 2024-01-26T10:19:20-08:00
 ---
 
 In the latest [episode](https://testandcode.com/191) of the Test & Code podcast, Brian Okken — host and author of the excellent [Python Testing with pytest](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/) — and I talked about the little joys of running your own Web site.

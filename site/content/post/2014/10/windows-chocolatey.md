@@ -12,6 +12,8 @@ tags:
 - package-manager
 - tools
 title: chocolatey
+created: 2024-01-15T15:25:30-08:00
+updated: 2024-01-26T10:12:04-08:00
 ---
 
 I don't know about you, but I had a pleasant Saturday. It started with an hour or so of the Coursera [Programming Languages](https://www.coursera.org/course/proglang/) videos. I learned a little bit about [SML](http://www.smlnj.org/), and have been trying to remember the instructor's caution about comparing what's learned in class to other languages. It's supposed to be a fresh perspective on programming.

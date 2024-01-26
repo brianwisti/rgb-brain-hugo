@@ -11,7 +11,8 @@ tags:
 - babblings
 - coolnamehere
 title: Stalking Star Wars Fans
-updated: 2017-04-09 00:00:00-07:00
+updated: 2024-01-26T09:17:36-08:00
+created: 2024-01-15T15:25:47-08:00
 ---
 
 {{% note %}}
@@ -20,7 +21,7 @@ The events, individuals, and quotes in this story are based on actual events. Th
 
 This thing is also deeply covered in my own opinions. If you see "I" or "me" then it is Brian’s opinion you’re reading. If you see an actual name, or "he" or "they", you know it’s John and / or Jeff.
 
-## Brian Finds His Purpose
+# Brian Finds His Purpose
 
 Sometime on a damp February weekend in 2002,your Boldly Unemployed Web Programmer was drinking his coffee and reading up on the latest news from that fine site [Fark](https://www.fark.com). I came across an article discussing two Star Wars fans. Seems they’re waiting to see the next George Lucas movie "Attack of the Clones", which was due to be released on May 16. In case you’re bad at math like me, that was about four months away. My first impression was that these were two of the sorriest individuals I had heard about since Junior High.
 
@@ -57,7 +58,7 @@ To be certain of the best answers, I made them swear on my DVD copy of "The Phan
 
 They both swore, and the interview had begun.
 
-## Waiting For Star Wars
+# Waiting For Star Wars
 
 The two fans in question are Jeff Tweiten and John Guth. According to my copious notes — **humor me** — Jeff is "the hat", and John is "orange."
 
@@ -91,7 +92,7 @@ A few people online even had harsh words for the stripper that visited them, cal
 
 Both John and Jeff seemed a little startled by the question, like it was something that hadn’t even occurred to them. Jeff started a line of argument that began "I’ve seen uglier strippers", but thought better of it and changed tactics. They both agreed that the stripper was quite attractive — "very cute" — and theorized that the people who were making these comments were the same folks who would paste Natalie Portman’s face on the stripper’s body. I wish I’d thought to ask the lady’s name, but we shall have to call her Nice Stripper Lady. Nice Stripper Lady, I salute you and your efforts to bring sunshine to the lives of these dedicated fans!
 
-## When Fanboys Collide
+# When Fanboys Collide
 
 Enough about them and Nice Stripper Lady. Let’s discuss the Star Wars movies. Before we go further, I have to confess to you, Dear Reader, that I was one of "those guys". I saw Star Wars as a kid 13 or 14 times in the theater, and countless times on cable or video. There was the mountain of action figures, my discovery and interpretation of Taoism in terms of The Force, and I learned my grammar from Yoda, I did. Even though I’m not as dedicated as I once was — I eventually decided girls were cuter than ewoks — there’s still a bit of the fanboy in me. I will see each of the new Star Wars movies in the theater, whether they suck or not, simply because I am going to Hell if I don’t. So while I don’t have the fanaticism of John and Jeff, I felt like we could talk shop about Star Wars.
 
@@ -116,7 +117,7 @@ Cover your eyes, kids, this question is about the darker side of a fan’s love 
 
 It was a split decision, with Jeff choosing Queen Amidahla and John choosing Princess Leia. John was confused at first, thinking that I was asking which he would prefer to have as a sister. I felt really dirty when explaining to him that I meant in a sick-geek-fantasy sort of way. I was also suddenly aware of all the 10 year olds standing in line waiting to see "Fellowship of the Ring". Hopefully I won’t go to Hell for that one.
 
-## A Hard Rain’s Gonna Fall
+# A Hard Rain’s Gonna Fall
 
 They were obviously determined to stay firmly planted where they were, no matter the cost. Personally, I was almost ready to leave because of steadily increasing rainfall. I had to find out what might get **them** out of the line. What would it be? Offers of sex? Another big Seattle earthquake? Perhaps an alien invasion?
 

@@ -10,6 +10,8 @@ tags:
 - perl
 - blogspot
 title: Reading the Modern Perl Book
+created: 2024-01-15T15:25:33-08:00
+updated: 2024-01-26T10:09:44-08:00
 ---
 
 I'm in the Perl phase of my language obsession rotation. I've created a handy

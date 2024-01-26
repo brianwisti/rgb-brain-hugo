@@ -12,6 +12,8 @@ tags:
 - perl
 - gist
 title: How many recent authors on CPAN?
+created: 2024-01-15T15:26:27-08:00
+updated: 2024-01-26T11:02:35-08:00
 ---
 
 Sorry, I couldn’t fit this in a tweet.

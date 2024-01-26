@@ -12,28 +12,29 @@ tags:
 - learn
 - coolnamehere
 title: Python 2 Babysteps 01 Installing Python 2
-updated: 2011-06-21 00:00:00-07:00
+updated: 2024-01-26T10:10:29-08:00
+created: 2024-01-15T15:25:32-08:00
 ---
 
-## Installation
+# Installation
 
 You need to *get* [Python](../../../card/Python.md) before you can *use* Python. There are many versions available, such as [ActivePython](http://www.activestate.com/activepython), [Jython](http://jython.org/), and [IronPython](http://www.codeplex.com/wikipage?ProjectName=IronPython). They each offer distinct advantages. ActivePython offers commercial support. Jython runs on the [Java](http://www.java.com/en/) platform, providing access to the underlying JVM and many support libraries. IronPython runs on the [.NET](http://www.microsoft.com/NET/) and [Mono](http://www.mono-project.com/Python) platforms, providing access to *their* underlying virtual machine and support libraries.
 
 I decided to focus on the official release of Python rather than get overwhelmed by choice. You can probably follow along if you decide to install an alternate Python. I will provide notes where I can, but cannot make any guarantees about their accuracy. Check the documentation for your Python choice.
 
-### Why Not Python 3?
+## Why Not Python 3?
 
 Python 3 has been available for a while now, and is actually up to [Python 3.2](http://python.org/download/releases/3.2/). Why don’t I cover it in this Babystep? I would rather talk about the newest Python release. but that’s impractical. Many widely used libraries have not been updated so that they are compatible with the Python 3 series. Although the differences between Python 2 and Python 3 are small, they add up for large projects like [Django](http://djangoproject.com). I want you to be able to use your Python skills right away.
 
 Fortunately, the Python developers continue to support the 2.x line, and continue to release versions with fixes and new features for Python 2. If you started learning Python 2 today, it would continue to be useful for quite some time.
 
-### OS X
+## OS X
 
 You must install the Xcode and Developer Tools to get the full usage out of Python on OS X, although I will not be spending any time in the XCode environment. The Developer Tools should have come with your installation kit. If not, they are available online.
 
 OS X 10.6 includes Python 2.6.1, which is probably good enough for our purposes. I like having the latest version of a language, though.
 
-#### Just Download It
+### Just Download It
 
 If you are using a version of OX X older than 10.6, or you don’t care about 64 bit functionality, just grab the [Mac OS X 32-bit i386/PPC](http://python.org/ftp/python/2.7.2/python-2.7.2-macosx10.3.dmg) installer and skip to "Installing Python From the Disk Image".
 
@@ -52,13 +53,13 @@ All of this is unnecessary to play with Python in general. These steps just make
 
 Now that we have the right TCL/Tk installed (or have decided that we don’t care), go to the download page for [Python 2.7.2](http://python.org/download/releases/2.7.2/) and grab the [Mac OS X 64-bit/32-bit Installer](http://python.org/ftp/python/2.7.2/python-2.7.2-macosx10.6.dmg).
 
-#### Installing Python From the Disk Image
+### Installing Python From the Disk Image
 
 Open the image and double click `Python.mpkg` to run the installation. The default settings should be good enough.
 
 Well that wasn’t hard. Okay, there were a few details if you insisted on the latest and greatest.
 
-#### MacPorts
+### MacPorts
 
 On my home machine, I use [MacPorts](http://macports.org) to access a large repository of open source software that can be installed on OS X. Although [installing MacPorts](http://www.macports.org/install.php) is not difficult, it is well beyond the scope of this tutorial. I will instead show you the commands I ran from a Terminal to install Python 2.7 on that machine.
 
@@ -71,7 +72,7 @@ Python 2.7.1
 
 That will do. The differences between 2.7.1 and 2.7.2 are so small that I doubt I will notice any of them.
 
-#### Homebrew
+### Homebrew
 
 And some of you use [Homebrew](http://mxcl.github.com/homebrew/) to install open source software. No problem. Here are the instructions for installing and verifying a fresh Python once you [install Homebrew](https://github.com/mxcl/homebrew/wiki/Installation).
 
@@ -81,11 +82,11 @@ $ python -V
 Python 2.7.2
 ````
 
-### Linux
+## Linux
 
 Python is well supported in Linux.
 
-#### Redhat-based distributions (Fedora)
+### Redhat-based distributions (Fedora)
 
 [Fedora](http://fedoraproject.org) 15 ships with Python 2.7.1, and that is good enough for me. We need to install the `python-tools` package if we want IDLE, though.
 
@@ -94,7 +95,7 @@ $ su -
 # yum install python-tools
 ````
 
-#### Debian-based Distributions (Ubuntu, Mint)
+### Debian-based Distributions (Ubuntu, Mint)
 
 [Ubuntu](http://ubuntu.com) 11.04 has Python 2.7.1 installed by default, and that’s good enough for us.
 
@@ -111,11 +112,11 @@ IDLE is not installed by default, though. That can be fixed.
 $ sudo apt-get install idle
 ````
 
-#### Others
+### Others
 
 Check the documentation for your distribution. The odds are that you already have Python installed, or can easily install it using your distribution’s tools.
 
-### Windows
+## Windows
 
 I do not have a Windows installation handy right now, so most of this section is just going from memory. Thank goodness installation on Windows is easy.
 
@@ -141,13 +142,13 @@ Eventually, you are presented with a little progress bar while the installer put
 
 Guess what? You are now a proud owner of Python 2! All that’s left is learning how to program.
 
-### Building From Source
+## Building From Source
 
 And if you are feeling bold, you can grab the [source distribution](http://python.org/ftp/python/2.7.2/Python-2.7.2.tar.bz2) and build your own copy. It is not difficult, but will require installing different tools on different machines. Go right ahead and do this if you want to. The instructions within the source distribution are clear enough. I am not going to build my own copy. I have installed Python four times today, and frankly that is enough.
 
 It is time to get acquainted with this new language.
 
-## Using Python
+# Using Python
 
 There are already a lot of online tutorials for learning Python. Maybe that’s because Python is as fun to teach as it is to learn. Anyways, I am not going to try and tell you that *my* rough little Web site has the best introduction you’ll ever find.
 
@@ -168,7 +169,7 @@ You can find some information about IDLE at its [documentation page](http://docs
 
 In the next couple of sections, I will help you with the basics of using IDLE. We’ll use the shell for some simple code, then make and run our own little Python script. That’s right, you’ll be creating your own programs within the next few minutes.
 
-## How to use IDLE
+# How to use IDLE
 
 Starting IDLE under Windows is a matter of finding it in your Start menu.
 
@@ -187,7 +188,7 @@ If you happen to have IDLE in your environment’s equivalent of a Start menu, t
 
 IDLE will start with something that looks like some sort of command line interface (kind of like a colorful DOS box or XTerm). That is the shell, and it allows you to perform the next step:
 
-### Using the IDLE Shell (*Writing Code!*)
+## Using the IDLE Shell (*Writing Code!*)
 
 Let’s see, how do we run Python code in the IDLE shell?
 
@@ -266,7 +267,7 @@ What if we wanted to be able to get that warm fuzzy feeling any time? It’s onl
 
 Let’s find out how to do just that.
 
-## How to Make Your Own Python Program
+# How to Make Your Own Python Program
 
 Even though the IDLE shell is pretty neat, and *very* useful for figuring out whether a code idea will work, it’s not any good for actual programs.
 
@@ -377,7 +378,7 @@ edit, save, and run your very own Python scripts. You’re a programmer
 now! Okay, there’s still plenty more to learn, but you are ready to
 start exploring.
 
-## What Next?
+# What Next?
 
 This was just the quickest introduction to Python. Hopefully you are warmed up and ready for more. Now you should start one of the recommended tutorials at the [Python BeginnersGuide](http://wiki.python.org/moin/BeginnersGuide).
 
@@ -391,7 +392,7 @@ I have a few favorites of my own.
 * How To Think Like a Computer Scientist In Python
   <http://openbookproject.net/thinkcs/python/english2e/>
 
-### Quick Reference: Using IDLE
+## Quick Reference: Using IDLE
 
 |To Do This…|Use This Menu Command|
 |-------------|---------------------|

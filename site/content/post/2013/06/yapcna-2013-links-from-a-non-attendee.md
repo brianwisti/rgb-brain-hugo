@@ -5,6 +5,7 @@ aliases:
 - /post/2013/yapcna-links-from-a-non-attendee/
 - /2013/06/06/yapcna-2013-links-from-a-non-attendee/
 category: post
+created: 2024-01-15 15:25:30-08:00
 date: 2013-06-06 00:00:00-07:00
 slug: yapcna-2013-links-from-a-non-attendee
 syndication:
@@ -14,7 +15,7 @@ tags:
 - links
 - programming
 title: YAPC::NA 2013 Links From a Non-Attendee
-updated: 2017-04-10 00:00:00-07:00
+updated: 2024-01-26 10:11:06-08:00
 ---
 
 [YAPC::NA](http://yapcna.org), the Yet Another [card/Perl](../../../card/Perl.md) Conference for North America, just happened. I didn’t go. Since I didn’t go, I want to compile everything I can find about the conference in one place. Videos, slides, blog posts, whatever.
@@ -50,11 +51,11 @@ There’s also an [Eventifier compilation of YAPC::NA](http://eventifier.co/even
  > 2013-06-10
  > : Buddy Burden’s blog post, from raiph mellor
 
-## Videos
+# Videos
 
 Here’s the YouTube playlist of [YAPC::NA 2013 Talk Videos](https://www.youtube.com/playlist?list=PLA9_Hq3zhoFy0zej1j4QZtz5awFKXunZX).
 
-## Slides
+# Slides
 
 From a #yapcna search on Twitter and scrubbing around on the YAPC::NA site.
 
@@ -134,7 +135,7 @@ Yusuke Wada
 Joe Axford
 : [Notes from a Newbie](http://blogs.perl.org/users/j0e/2013/05/notes-from-a-newbie-20-yapcna-2013-austin.html)
 
-## Posts
+# Posts
 
 * Curtis Poe (Ovid): [A Test::Class Anti-Pattern](http://blogs.perl.org/users/ovid/2013/06/a-testclass-anti-pattern.html), a post-talk blog post which includes slides from his Test::Class::Moose talk.
 * Brent Laabs offers a blog post on what it was like for somebody who actually attended YAPC::NA at [Thanking the Perl Community for an Awesome YAPC](http://blog.brentlaabs.com/2013/06/thanking-perl-community-for-awesome-yapc.html)
@@ -142,6 +143,6 @@ Joe Axford
 * Whipped Cream Difficulties - [Random notes on YAPC 2013.](http://www.sportsfirings.com/?p=10106), [No Sleep Till Sunday.](http://www.sportsfirings.com/?p=10111)
 * Buddy Burden’s [YAPC Reflections (2013)](http://blogs.perl.org/users/buddy_burden/2013/06/yapc-reflections-2013.html) on being a speaker at YAPC, thoughts on different visions of Perl’s future, and having his bare feet defeated (see what I did there?) by Austin’s blacktop.
 
-## Whatever
+# Whatever
 
 * [Matt and the Dancing Droid video](http://youtu.be/BocdZBqyTqg)

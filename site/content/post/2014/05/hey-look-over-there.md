@@ -11,6 +11,8 @@ tags:
 - site
 - marginalia
 title: Hey look over there!
+created: 2024-01-15T15:25:28-08:00
+updated: 2024-01-26T10:11:34-08:00
 ---
 
 I'm not using Wordpress at the moment. Unless and until I change my  mind, you should probably look [here](https://randomgeekery.org/) for the newest content.

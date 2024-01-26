@@ -14,6 +14,8 @@ tags:
 - site
 - marginalia
 title: Blogspot Content Imported
+created: 2024-01-15T15:25:25-08:00
+updated: 2024-01-26T10:12:51-08:00
 ---
 
 I enjoyed importing the [card/coolnamehere](../../../card/coolnamehere.md) content so much last weekend that I decided to import the posts from a neglected [card/Blogger](../../../card/Blogger.md) blog this weekend. [jekyll-import](http://import.jekyllrb.com/docs/blogger/) simplified the actual import process, though I still had a lot of manual cleanup to perform.

@@ -9,6 +9,8 @@ tags:
 - ruby
 - nanoc
 title: Nanoc builds sites faster with 3.2.0
+created: 2024-01-15T15:26:02-08:00
+updated: 2024-01-26T10:19:01-08:00
 ---
 
 ![tabular display of build time values described in post](attachments/img/2022/cover-2022-12-25.png "just the numbers")
@@ -24,7 +26,7 @@ By default, YJIT optimizes a method on the 30th time you call it.
 
 Well hey. The [Nanoc](https://nanoc.app) iteration of my site has a few hundred pages. Nanoc probably calls some of its methods 30 or more times for that. Let's find out if 3.2.0 makes a difference.
 
-## I should probably install 3.2.0
+# I should probably install 3.2.0
 
 This is in my Windows 11 + WSL2 workspace. I wouldn't be surprised if Linux and macOS tests went faster.
 
@@ -32,7 +34,7 @@ Installed 3.2.0 on my system using `rbenv`. Worth mentioning that I had to `expo
 
 I have a very fiddly system.
 
-## The "test"
+# The "test"
 
 1. Switch to the right version
 1. Install dependencies for that version

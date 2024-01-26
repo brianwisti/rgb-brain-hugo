@@ -14,6 +14,8 @@ tags:
 - exiftool
 - tools
 title: Getting File Info From The Shell
+created: 2024-01-15T15:26:48-08:00
+updated: 2024-01-26T11:02:30-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-21.jpg](../../../attachments/img/2020/cover-2020-04-21.jpg)
@@ -21,7 +23,7 @@ also, it is time to vacuum my desk again
 
 Use [`file`](https://en.wikipedia.org/wiki/File_(command)) for everyday summaries. Use [ExifTool](https://exiftool.org/) when you need to know **everything**.
 
-## The problem
+# The problem
 
 I am once again puttering around with my site.
 
@@ -42,7 +44,7 @@ No I don’t mean file size. I mean geometry. How many pixels wide, and how many
 
 I don’t want to leave my shell session to do it either. Sure that’s just stubbornness on my part. I *could* get the necessary information from my desktop’s file browser, but I type quicker than I click.
 
-## `file` is everywhere
+# `file` is everywhere
 
 `file` is a standard utility, which means it’s available on pretty much any Unix or Unix-like system you use. It works by matching a file’s internal details to entries in a [`magic`](https://linux.die.net/man/5/magic) database and reporting its findings. `magic` can be extended, though the details are beyond me for now.
 
@@ -55,7 +57,7 @@ basement-original.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), de
 
 I want more detail, but this is all I can get from `file`. That’s what ExifTool is for.
 
-## ExifTool knows everything
+# ExifTool knows everything
 
 ExifTool lets me read and edit metadata for images, music, PDF, Word files, videos — a dizzying assortment of files are [supported](https://exiftool.org/#supported).
 
@@ -194,7 +196,7 @@ index.adoc: ASCII text
 
 I could probably write some `magic` configuration to get more information. But installing ExifTool was easier.
 
-## Good enough?
+# Good enough?
 
 `file` is universally available and gave me the details I needed today. ExifTool gives me everything I needed and then some. I’ll most likely keep it available on my systems.
 

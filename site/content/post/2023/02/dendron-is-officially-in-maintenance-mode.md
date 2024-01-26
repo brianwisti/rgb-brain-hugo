@@ -10,6 +10,8 @@ tags:
 - second-brain
 - dendron
 title: Dendron is officially in maintenance mode
+created: 2024-01-15T15:26:00-08:00
+updated: 2024-01-26T10:18:43-08:00
 ---
 
 ![Visual Studio Code with Dendron active](/attachments/img/2023/cover-2023-02-08.png "Dendron notes from Graceful.Dev Reproducible Development with Containers")

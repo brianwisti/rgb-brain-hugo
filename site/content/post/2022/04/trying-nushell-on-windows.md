@@ -11,6 +11,8 @@ tags:
 - windows
 - shell
 title: Trying Nushell on Windows
+created: 2024-01-15T15:26:32-08:00
+updated: 2024-01-26T10:20:27-08:00
 ---
 
 ![attachments/img/2022/cover-2022-04-22.png](../../../attachments/img/2022/cover-2022-04-22.png)
@@ -22,11 +24,11 @@ Hugo's article list piped through multiple Nushell built-ins
 
 I have been puttering a little here and there with [card/Nushell](../../../card/Nushell.md), a command line shell in the spirit of Bash, Zsh, and Fish. It's different from any of the above, though. It starts from the same "let me run my commands" starting point, but data handling, filtering, and transformation are core to Nu's functionality.
 
-## You said something about Windows
+# You said something about Windows
 
 Right. I have also been spending more time in Windows recently. No big deal. I bounce between emphasizing Windows and Linux on my hard drive routinely.
 
-### Installing Nushell with Winget
+## Installing Nushell with Winget
 
 The quickstart on the Nushell suggests using [winget](https://www.nushell.sh/book/installation.html). Lucky me, I happen to have played with that recently enough to remember it's there.
 
@@ -61,7 +63,7 @@ And it works!
 
 ![output of `ls` in Nushell on Windows](attachments/img/2022/nu-win-initial-ls.png)
 
-### Integrating with Windows Terminal
+## Integrating with Windows Terminal
 
 [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/) is my preferred terminal emulator over in the Windows world. Though I could absolutely point and click my way through adding a Nushell profile, I'll follow [Setting the default shell](https://www.nushell.sh/book/installation.html#setting-the-default-shell-windows-terminal) and update `settings.json` myself.
 
@@ -121,7 +123,7 @@ You can ignore my choices for font and color scheme. But if you *do* want exactl
         },
 ````
 
-### Integration with Starship
+## Integration with Starship
 
 Nushell provides all sorts of customization options, but I prefer [Starship](https://starship.rs)'s cross-shell prompt setup. Unfortunately Starship is not yet available through Winget on my system. It is available through [Chocolatey](https://chocolatey.org). It just so happens I have Chocolatey installed.
 
@@ -196,7 +198,7 @@ I'll keep the Starship default config for now.
 
 That's pretty much it! I'm good to go explore the world of Nushell on Windows.
 
-## Sure but why
+# Sure but why
 
 Well, now that I have all this set up along with a local checkout of the site's current [card/Hugo](../../../card/Hugo.md) iteration, I can play with Hugo's article listing.
 

@@ -1,20 +1,22 @@
 ---
+created: 2024-01-23 19:33:10-08:00
 title: VS Code Snippets
+updated: 2024-01-26 09:10:05-08:00
 ---
 
 Micro-templates for [VS Code](VS%20Code.md) basically
 
-## How
+# How
 
 Manage snippets with *Snippets: Configure User Snippets*
 
 Launch snippet selector with `C-SPC`
 
-## Snippet Variables
+# Snippet Variables
 
 The breakdown they use does keep the list from getting overwhelming. So I'll just sing along.
 
-### Buffer, workspace, and clipboard variables
+## Buffer, workspace, and clipboard variables
 
 |Variable|Value|
 |--------|-----|
@@ -34,7 +36,7 @@ The breakdown they use does keep the list from getting overwhelming. So I'll jus
 |`CURSOR_INDEX`|cursor number (zero-indexed)|
 |`CURSOR_NUMBER`|cursor number (one-indexed)|
 
-### Date and time variables
+## Date and time variables
 
 |Variable|Value|
 |--------|-----|
@@ -51,7 +53,7 @@ The breakdown they use does keep the list from getting overwhelming. So I'll jus
 |`CURRENT_SECOND`|current second as `SS`|
 |`CURRENT_SECONDS_UNIX`|seconds since the Unix epoch|
 
-### Random value generation variables
+## Random value generation variables
 
 |Variable|Value|
 |--------|-----|
@@ -59,7 +61,7 @@ The breakdown they use does keep the list from getting overwhelming. So I'll jus
 |`RANDOM_HEX`|6 random hex digits|
 |`UUID`|version 4 UUID|
 
-### Language-appropriate comment generation variables
+## Language-appropriate comment generation variables
 
 |Variable|Value|
 |--------|-----|
@@ -67,6 +69,6 @@ The breakdown they use does keep the list from getting overwhelming. So I'll jus
 |`BLOCK_COMMENT_END`|block comment end for buffer language|
 |`LINE_COMMENT`|line comment start for buffer language|
 
-## Related
+# Related
 
 * [Snippets in Visual Studio Code](https://code.visualstudio.com/docs/editor/userdefinedsnippets)

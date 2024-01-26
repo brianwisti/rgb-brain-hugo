@@ -1,11 +1,13 @@
 ---
 title: Eleventy
+created: 2024-01-15T15:26:07-08:00
+updated: 2024-01-26T09:06:17-08:00
 ---
 
 A static site generator powered by [JavaScript](JavaScript.md).
 
 It's fast. Not as fast as [Hugo](Hugo.md) but much friendlier to work with.
 
-## Related
+# Related
 
 * https://11ty.dev

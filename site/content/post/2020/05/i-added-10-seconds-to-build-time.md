@@ -14,6 +14,8 @@ tags:
 - still-feels-good
 - site
 title: I Added 10 Seconds to Build Time!
+created: 2024-01-15T15:26:28-08:00
+updated: 2024-01-26T11:01:26-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-13.jpg](../../../attachments/img/2020/cover-2020-05-13.jpg)

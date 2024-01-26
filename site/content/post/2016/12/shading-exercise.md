@@ -10,6 +10,8 @@ tags:
 - procreate
 - craft
 title: Shading Exercise
+created: 2024-01-15T15:25:53-08:00
+updated: 2024-01-26T10:17:29-08:00
 ---
 
 Exercise in light values

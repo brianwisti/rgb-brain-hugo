@@ -9,6 +9,8 @@ tags:
 - rust
 - perl
 title: From Perl to Rust
+created: 2024-01-15T15:26:14-08:00
+updated: 2024-01-26T10:19:06-08:00
 ---
 
 In Tim Heaney's introduction to [From Perl to Rust](https://oylenshpeegul.gitlab.io/from-perl-to-rust/introduction.html):

@@ -4,6 +4,7 @@ aliases:
 - /post/2011/spreadsheet-story-1-general-idea/
 - /2011/04/19/the-spreadsheet-story-1/
 category: post
+created: 2024-01-15 15:25:32-08:00
 date: 2011-04-19 00:00:00-07:00
 description: A design experiment figuring out what a local homeless shelter needs
   to track chores.
@@ -13,6 +14,7 @@ tags:
 - javascript
 - blogspot
 title: The Spreadsheet Story 1
+updated: 2024-01-26 10:10:26-08:00
 ---
 
 > 
@@ -81,7 +83,7 @@ Somebody’s bound to find that useful. Right?
 
 The important thing is that I’ll have some fun.
 
-## The Spreadsheet Itself
+# The Spreadsheet Itself
 
 I can almost pretend this is an
 [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
@@ -105,7 +107,7 @@ scripts.
 So. Let’s look at the worksheets. I also made mock ups of the common
 task views, just for the fun of it.
 
-### People
+## People
 
 Presents information about the clients that take part in the incentive
 program.
@@ -135,7 +137,7 @@ into account.
 
 ![Add Person Dialog](attachments/img/2011/NewPersonDialog.png)
 
-### Categories
+## Categories
 
 The different ways to gain and lose points. Pretty much a list of
 predefined chores and a couple of catchall buckets.
@@ -149,7 +151,7 @@ loss in points for the client.
 
 ![Add Category Dialog](attachments/img/2011/NewCategoryDialog.png)
 
-### Points Log
+## Points Log
 
 This sheet contains records of the actual transactions which affect a
 client’s point total. It depends on the other worksheets for some of its
@@ -170,19 +172,19 @@ Date
 
 ![Points Logger Dialog](attachments/img/2011/PointsLoggerDialog.png)
 
-### What’s Missing
+## What’s Missing
 
 There is no sheet to track inventory for items available in the
 incentive store. The items and their value vary too much for this to be
 a practical feature right now.
 
-### What Do I Have Now?
+## What Do I Have Now?
 
 I have an incredibly dull spreadsheet.
 
 ![spreadsheet](attachments/img/2011/spreadsheet-01.png)
 
-## What’s Next?
+# What’s Next?
 
 I plan to spend the next few days — or weeks, depending on how much
 bloggy spreadsheet time I have — exploring Google Apps Script,

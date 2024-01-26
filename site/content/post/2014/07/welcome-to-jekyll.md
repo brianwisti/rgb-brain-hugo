@@ -13,6 +13,8 @@ tags:
 - ruby
 - programming
 title: Welcome to Jekyll!
+created: 2024-01-15T15:25:29-08:00
+updated: 2024-01-26T10:11:49-08:00
 ---
 
 Just don't even ask. I am in a highly fickle phase with the Web site.

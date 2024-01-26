@@ -13,6 +13,8 @@ tags:
 - socks
 - craft
 title: Deidre's Double Moss Socks
+created: 2024-01-15T15:26:20-08:00
+updated: 2024-01-26T10:59:28-08:00
 ---
 
 ![attachments/img/2021/cover-2021-01-01.jpg](../../../attachments/img/2021/cover-2021-01-01.jpg)
@@ -20,13 +22,13 @@ blocked and ready to wear
 
 Took me six months to make these. It’s a good thing she likes them!
 
-## The pattern
+# The pattern
 
 Using [Sensational Knitted Socks](https://www.goodreads.com/book/show/399836.Sensational_Knitted_Socks) by Charlene Schurch, as usual.
 Been a while since I knitted any socks, so I went with a safe [moss
 stitch](https://www.gathered.how/knitting-and-crochet/knitting/moss-stitch/) fallback.
 
-## The yarn
+# The yarn
 
 brand
 : Think Bamboo
@@ -46,6 +48,6 @@ site
 The yarn is pretty, and works nice once you get going.  It is beyond a hassle
 to wind up, though.
 
-## The review
+# The review
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Omg my beautiful handmade socks are so soft and a thing of BEAUTY <a href="https://t.co/cXmYHyI1CC">pic.twitter.com/cXmYHyI1CC</a></p>&mdash; Deidre Wisti (@IamMrsGeek) <a href="https://twitter.com/IamMrsGeek/status/1341594975629283328?ref_src=twsrc%5Etfw">December 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

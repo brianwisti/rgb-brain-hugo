@@ -13,6 +13,8 @@ tags:
 - site
 - tools
 title: Still pondering new site approaches
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-01-26T10:22:00-08:00
 ---
 
 I haven’t exactly *loved* [Hugo](../../../card/Hugo.md) since they stuck me with Go templates as the only option.  But Hugo doesn’t need me to love it, and it works well enough for me.  Still.  You look around and try stuff out with different builders.

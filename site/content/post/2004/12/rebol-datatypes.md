@@ -10,6 +10,8 @@ tags:
 - rebol
 - coolnamehere
 title: REBOL Datatypes
+created: 2024-01-15T15:25:46-08:00
+updated: 2024-01-26T09:18:57-08:00
 ---
 
 One of [REBOL](../../../card/REBOL.md)’s strengths is the rich selection

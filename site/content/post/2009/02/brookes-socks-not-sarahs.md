@@ -10,6 +10,8 @@ tags:
 - socks
 - craft
 title: Brooke's Socks - Not Sarah's
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-01-26T09:41:21-08:00
 ---
 
 Made scads of mistakes, so I gave them to Brooke. She loved them.

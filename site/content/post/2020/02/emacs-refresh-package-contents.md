@@ -3,6 +3,7 @@ aliases:
 - /note/2020/59/emacs-refresh-package-contents/
 - /note/2020/02/emacs-refresh-package-contents/
 category: note
+created: 2024-01-15 15:26:39-08:00
 date: 2020-02-28 07:23:53-08:00
 slug: emacs-refresh-package-contents
 syndication:
@@ -12,7 +13,7 @@ tags:
 - emacs
 - packages
 title: Emacs refresh-package-contents
-updated: 2020-04-29 08:52:12-07:00
+updated: 2024-01-26 11:03:20-08:00
 ---
 
 Tried adding [Evil](https://www.emacswiki.org/emacs/Evil)  to [Emacs](../../../card/Emacs.md) with [use-package](../../2019/11/emacs-use-package.md). Didn’t work.
