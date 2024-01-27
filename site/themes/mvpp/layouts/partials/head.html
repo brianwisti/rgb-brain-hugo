@@ -1,0 +1,59 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {{ with .Title }}{{ . | safeHTML }}{{ end }} :
+        {{ with .Site.Title }}{{ . | safeHTML }}{{ end }}
+    </title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <!-- favicon -->
+    {{- with .Site.Params.favicon -}}
+        <link rel="icon" href="{{ . }}">
+    {{- end }}
+    <!-- Search Engine Crawler Tags -->
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot" content="index,follow" />
+
+    <!-- Sitemap & alternate outputs -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href='{{ "sitemap.xml" | absURL }}' />
+    {{ range .AlternativeOutputFormats -}}
+        {{ printf `<link href="%s" rel="%s" type="%s" title="%s" />` .Permalink .Rel .MediaType.Type $.Site.Title | safeHTML }}
+    {{ end -}}
+    {{ with .Site.GetPage "/" }}
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            {{ with .OutputFormats.Get "RSS" }}
+                href="{{ .RelPermalink }}"
+            {{ end }}
+            title="{{ .Site.Title }}"/>
+    {{ end }}
+    <!-- social graph and sharing -->
+    <meta property="og:type" content="article" />
+    {{- with .Site.Params.facebook_url -}}
+        <meta property="article:publisher" content="{{ . }}" />
+    {{- end }}
+    <meta property="og:article:published_time"
+        content={{ .Date.Format "2001-02-03T14:05:06Z0700" | safeHTML }} />
+    <meta property="article:published_time"
+        content={{ .Date.Format "2001-02-03T14:05:06Z0700" | safeHTML }} />
+    {{- with .Params.author }}
+        <meta property="og:article:author" content="{{humanize . }}" />
+        <meta property="article:author" content="{{humanize . }}" />
+        <meta name="author" content="{{humanize . }}" />
+    {{ end -}}
+    {{- with.Params.category }}
+        <meta name="news_keywords" content="{{ index . 0 }}" />
+        <meta property="article:section" content="{{ index . 0 }}" />
+    {{ end -}}
+    {{- $opts := dict "targetPath" "css/style.css" -}}
+    {{- with resources.Get "scss/main.scss" | toCSS $opts | fingerprint -}}
+        <link
+            rel="stylesheet"
+            href="{{ .RelPermalink }}"
+            integrity="{{ .Data.Integrity }}" 
+            crossorigin="anonymous">
+    {{- end -}}
+  </head>

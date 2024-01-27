@@ -1,0 +1,26 @@
+{{ define "main" -}}
+    <div class="post">
+        {{ partial "breadcrumb-trail.html" . }}
+        {{ .Content }}
+        {{- range $section, $info := $.Site.Data.neighborhood -}}
+            <section>
+                <header>
+                    <h2>{{ $section }}</h2>
+                </header>
+                {{- range $info -}}
+                    <div>
+                        <header>
+                            {{ .frequency }}
+                        </header>
+                        <ul>
+                            {{- range .neighbors -}}
+                                <li><a href="{{ .url }}">{{ .title }}</a></li>
+                            {{- end -}}
+                        </ul>
+                    </div>
+                {{- end -}}
+            </section>
+        {{- end -}}
+        {{ partial "backlinks.html" . }}
+    </div>
+{{ end }}

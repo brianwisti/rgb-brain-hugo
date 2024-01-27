@@ -1,0 +1,105 @@
+{{ define "main" -}}
+    <article>
+        <header>
+            <h1>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </h1>
+            <footer>
+                {{ if eq .Section "post" }}
+                    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
+                        {{ .Date.Format .Site.Params.DateForm }}
+                    </time>
+                {{ end }}
+            </footer>
+                {{ range .Params.tags }}
+                    <a class="p-category" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">
+                        <b>{{ . }}</b>
+                    </a>
+                {{ end }}
+            
+            {{ $Site := .Site }}
+            {{ if .Params.series }}
+                <p>
+                    Series: <a href="{{ $Site.BaseURL }}series/{{ .Params.series | urlize }}">{{ .Params.series }}</a>
+                </p>
+            {{ end }}
+            {{- $cover_image := .Page.Params.cover_image -}}
+
+            {{ with $cover_image }}
+                {{- $image := $.Resources.GetMatch .path -}}
+                {{- $caption := .caption -}}
+                {{- with $image -}}
+                {{- $resized := .Resize "1280x" -}}
+                <figure>
+                    <img src="{{ $resized.RelPermalink }}" class="u-photo">
+                    <figcaption class="text-small align-right pb-1 pr-2">
+                    {{ with $cover_image.caption }} {{ . | markdownify }} {{ end }}
+                    <a href="{{ $image.RelPermalink }}" target="_blank" rel="noopener noreferrer">
+                    (view full size)
+                    </a>
+                    </figcaption>
+                </figure>
+                {{- else -}}
+                <div class="alert alert-warning">No image '<tt>{{ .path }}</tt>'</div>
+                {{- end -}}
+            {{ end }}
+        </header>
+        {{ .Content }}
+        {{ $page := . }}
+        {{ $backlinks := slice }}
+        {{ $path_base := .File.Path }}
+        {{ partial "backlinks.html" . }}
+        <hr>
+        {{ with .Params.syndication }}
+            <section>
+            <p>
+                Got a comment? A question? More of a comment than a question?
+            </p>
+            <p>
+                Talk to me about this page on:
+                {{ range $service, $url := . }}
+                {{ if ne $service "twitter" }}
+                    <a
+                    href="{{ $url }}"
+                    class="u-syndication"
+                    title="{{ title $service }}"
+                    rel="syndication"
+                    aria-label="{{ title $service }}"
+                    >
+                    {{ $service }}
+                    </a>
+                {{ end }}
+                {{ end }}
+            </p>
+            </section>
+        {{ end }}
+        <p>
+            {{- with .Params.created -}}
+            Added to vault {{ dateFormat "2006-01-02" . }}.
+            {{- end -}}
+            {{- with .Params.updated }}
+            Updated on {{ dateFormat "2006-01-02" . }}
+            {{- end -}}
+        </p>
+        {{ $typePages := where .Site.RegularPages "Type" .Type }}
+        <footer>
+            {{ range .Params.series }}
+                <p>Series: <a href="/series/{{ . | urlize }}">{{ . }}</a></p>
+            {{ end }}
+            <div class="timeline">
+                {{ with $typePages.Prev . }}
+                    <a href="{{ .Permalink }}?ref=footer">
+                        <span>« Previous</span>
+                        <br>{{ .Title | truncate 50 "..."}}
+                    </a>
+                {{ end }}
+                {{ with $typePages.Next . }}
+                    <a href="{{ .Permalink }}?ref=footer">
+                        <span>Next »</span>
+                        <br>{{ .Title | truncate 50 "..." }}
+                    </a>
+                {{ end }}
+            </div>
+        </footer>
+    </article>
+{{- end }}

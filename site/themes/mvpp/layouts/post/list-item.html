@@ -1,0 +1,11 @@
+<li>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <span>
+        {{ with .RegularPages -}}
+            {{ .Len }} Posts
+        {{- else -}}
+            Published
+            <time>{{ .Date | time.Format .Site.Params.DateForm }}</time>
+        {{- end }}
+    </span>
+</li>

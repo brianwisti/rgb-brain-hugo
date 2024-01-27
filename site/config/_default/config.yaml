@@ -7,14 +7,13 @@ metaDataFormat: "yaml"
 preserveTaxonomyNames: false
 rssLimit: 20
 # theme: "github.com/brianwisti/rgbModTheme"
-theme: "poison"
+theme: "mvpp"
 title: "Random Geekery"
 Author:
   name: Brian Wisti
 frontmatter:
   date:
     - "date"
-    - ":fileModTime"
 markup:
   goldmark:
     extensions:
@@ -22,7 +21,8 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    noClasses: false
+    # noClasses: false
+    style: "witchhazel"
 output:
   home:
     - "HTML"
@@ -75,17 +75,17 @@ Menu:
   - identifier: now
     name: now
     title: Now
-    url: /now/
+    url: /page/now/
     weight: 30
   - identifier: follow
     name: follow
     title: Follow
-    url: /follow/
+    url: /page/follow/
     weight: 40
   - identifier: neighborhood
     name: neighborhood
     title: Neighborhood
-    url: /neighborhood/
+    url: /page/neighborhood/
     weight: 45
   - identifier: config
     name: config
@@ -93,7 +93,7 @@ Menu:
     url: /config/
     weight: 50
 Params:
-  DateForm: "Monday, 2 January, 2006"
+  DateForm: "Monday, 2 January 2006"
   ISODateForm: "2006-01-02"
   TimeForm: "Monday, 2 January, 2006, at 3:04 pm"
   TimestampForm: "2006-01-02T15:04:00-07:00"
@@ -116,22 +116,11 @@ Params:
         href: "https://liberapay.com/randomgeek"
         class: "u-url"
         icon: "fa fa-liberapay"
-  menu:
-    - URL: post
-      Name: Post
-      HasChildren: false
-    - URL: /now/
-      Name: Now
-      HasChildren: false
-    - URL: follow
-      Name: Follow
-      HasChildren: false
 
 permalinks:
   post: "/post/:year/:month/:slug/"
   note: "/note/:year/:month/:slug/"
 taxonomies:
-  draft: "drafts"
   category: "category"
   tag: "tags"
   series: "series"

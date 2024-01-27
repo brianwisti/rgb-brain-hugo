@@ -1,0 +1,18 @@
+{{ define "main" -}}
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    {{ with .Sections }}
+        <ul>
+            {{ range . }}
+                {{ .Render "list-item"}}
+            {{ end }}
+        </ul>
+    {{ end }}
+    {{ with .RegularPages }}
+        <ul>
+            {{ range . }}
+                {{ .Render "list-item"}}
+            {{ end }}
+        </ul>
+    {{ end }}
+{{ end }}

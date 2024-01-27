@@ -1,0 +1,25 @@
+{{ define "main" -}}
+    {{ partial "h-card.html" . }}
+    {{ .Content }}
+    <div>
+        <header>
+            <h2>Recently Published Posts</h2>
+        </header>
+        <ul>
+            {{ range first 5 (where .Site.RegularPages "Type" "eq" "post") }}
+            {{ .Render "list-item" }}
+            {{ end }}
+        </ul>
+    </div>
+    <div>
+        <header>
+            <h2>Recently Updated Cards</h2>
+        </header>
+        <ul>
+            {{ range first 5 (
+                sort (where .Site.RegularPages "Type" "eq" "card") "Params.updated" "desc") }}
+            {{ .Render "list-item" }}
+            {{ end }}
+        </ul>
+    </div>
+{{- end }}

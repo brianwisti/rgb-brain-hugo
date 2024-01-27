@@ -1,0 +1,12 @@
+{{ define "main" -}}
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    <ul>
+        {{ range .Pages.GroupByDate "2006" -}}
+            <h3>{{ .Key }}</h3>
+            {{ range .Pages -}}
+                {{ .Render "list-item"}}
+            {{- end }}
+        {{- end }}
+    </ul>
+{{ end }}

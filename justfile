@@ -10,7 +10,7 @@ default:
 # Build and test the site
 site: build test-site
 
-pull: export process
+pull: export process test-content
 
 # Grab my Obsidian notes for Hugo
 export:

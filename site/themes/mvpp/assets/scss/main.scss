@@ -1,0 +1,32 @@
+@import "mvp";
+// @import "syntax-highlighting";
+
+
+a {
+    &[href^="/card"]:before {
+        content: "🗃️";
+    }
+
+    &[href^="/post"]:before {
+        content: "📅"
+    }
+
+    &[href^="/config"]:before {
+        content: "🔨"
+    }
+}
+
+.breadcrumb {
+    font-size: small;
+    border-top: thin solid var(--color-bg-secondary);
+    padding-block-start: .5rem;
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    a:last-child {
+        text-align: right;
+    }
+}

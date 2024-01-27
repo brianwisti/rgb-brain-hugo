@@ -85,6 +85,9 @@ class VaultNote(VaultResource):
         self.__find_links()
         self.__adjust_content()
 
+        if "updated" in self.meta:
+            self.meta["updated"] = self.meta["updated"].strftime("%Y-%m-%dT%H:%M:%S")
+
     @property
     def content(self):
         """Return the note's raw Markdown content."""

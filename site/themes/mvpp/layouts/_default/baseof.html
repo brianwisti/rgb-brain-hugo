@@ -24,8 +24,23 @@
             </p>
         </header>
         <main>
+            {{ partial "breadcrumb-trail.html" . }}
             {{ block "main" . -}}{{- end }}
         </main>
+        <footer>
+            <p>
+                Built with <a target="_blank" href="https://gohugo.io">Hugo</a> |
+                Theme derived from <a target="_blank" href="https://andybrewer.github.io/mvp/">MVP.css</a>
+                <br>
+                &copy; {{ now.Format "2006"}} {{ or .Site.Author.name .Site.Title }}. All rights reserved.
+            </p>
+            <p>
+                This work is licensed under a
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                    Creative Commons Attribution 4.0 International License
+                </a>.
+            </p>
+        </footer>
         {{- with .Site.Params.PlausibleDomain -}}
             <script defer data-domain="{{ . }}" src="https://plausible.io/js/script.js"></script>
         {{- end }}

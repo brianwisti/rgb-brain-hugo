@@ -1,0 +1,12 @@
+{{- $site := .Site -}}
+<li>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <span>
+        {{ with .RegularPages -}}
+            {{ .Len }} Cards
+        {{- else -}}
+            Updated
+            <time>{{ .Params.updated | time.AsTime | time.Format $site.Params.DateForm }}</time>
+        {{- end }}
+    </span>
+</li> 

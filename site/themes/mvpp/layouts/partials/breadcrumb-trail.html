@@ -1,0 +1,11 @@
+<p class="breadcrumb">
+  {{ partial "breadcrumb-parent" . }}
+  / {{ .Title }}
+</p>
+
+{{ define "partials/breadcrumb-parent" }}
+  {{ with .Parent }}
+    {{ partial "breadcrumb-parent" . }}
+    / <a href="{{ .Permalink }}">{{ .Title }}</a>
+  {{ end }}
+{{ end }}
