@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{- partial "head.html" . -}}
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    {{- if .Site.Title }}
+                        <li>
+                            <a href="{{ .Site.BaseURL }}">
+                                {{ .Site.Title }}
+                            </a>
+                        </li>
+                    {{ end -}}
+                  {{- range .Site.Menus.main }}
+                    <li>
+                      <a href="{{ .URL }}">{{ .Title }}</a>
+                    </li>
+                  {{ end -}}
+                </ul>
+            </nav>
+            <p>
+                {{ with .Site.Params.slogan }}{{. | safeHTML}}{{end}}
+            </p>
+        </header>
+        <main>
+            {{ block "main" . -}}{{- end }}
+        </main>
+        {{- with .Site.Params.PlausibleDomain -}}
+            <script defer data-domain="{{ . }}" src="https://plausible.io/js/script.js"></script>
+        {{- end }}
+        {{- if .Page.Store.Get "hasMermaid" -}}
+            <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+            </script>
+        {{- end }}
+    </body>
+</html>
