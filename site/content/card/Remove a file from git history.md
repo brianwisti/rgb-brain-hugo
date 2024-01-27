@@ -1,7 +1,7 @@
 ---
 created: 2024-01-24 07:56:36-08:00
 title: Remove a file from git history
-updated: 2024-01-26 09:08:52-08:00
+updated: '2024-01-26T09:08:52'
 ---
 
 \#process

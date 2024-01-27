@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:15-08:00
 title: Perl
-updated: 2024-01-26 09:08:30-08:00
+updated: '2024-01-26T09:08:30'
 ---
 
 The Swiss Army Chainsaw [Programming Language](Programming%20Language.md)

@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:34-08:00
 title: Zen of Python
-updated: 2024-01-26 09:10:21-08:00
+updated: '2024-01-26T09:10:21'
 ---
 
 Some core philosophies of [Python](Python.md), what you see when you `import this`

@@ -3,7 +3,7 @@ aliases:
 - /follow
 created: 2024-01-15 15:26:13-08:00
 title: follow
-updated: 2024-01-26 09:15:35-08:00
+updated: '2024-01-26T09:15:35'
 ---
 
 Follow the blog, and follow me personally on social networks.

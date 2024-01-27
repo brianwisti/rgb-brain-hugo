@@ -12,7 +12,7 @@ tags:
 - css
 - site
 title: Processing Sass in Eleventy
-updated: 2024-01-26 10:20:47-08:00
+updated: '2024-01-26T10:20:47'
 ---
 
 ![attachments/img/2022/cover-2022-01-10.jpg](../../../attachments/img/2022/cover-2022-01-10.jpg)

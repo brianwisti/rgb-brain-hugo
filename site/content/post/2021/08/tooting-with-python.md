@@ -12,7 +12,7 @@ tags:
 - mastodon
 - programming
 title: Tooting with Python
-updated: 2024-01-26 10:21:40-08:00
+updated: '2024-01-26T10:21:40'
 ---
 
 # What?

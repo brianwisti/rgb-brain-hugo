@@ -18,7 +18,7 @@ tags:
 - oops
 - i-fixed-it
 title: Joplin CLI Batch Processing With Raku
-updated: 2024-01-26 10:21:56-08:00
+updated: '2024-01-26T10:21:56'
 ---
 
 ![attachments/img/2021/cover-2021-05-24.jpg](../../../attachments/img/2021/cover-2021-05-24.jpg)

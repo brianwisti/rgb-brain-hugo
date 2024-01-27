@@ -9,7 +9,7 @@ syndication:
 tags:
 - second-brain
 title: 'New experiment: online brains'
-updated: 2024-01-26 10:18:36-08:00
+updated: '2024-01-26T10:18:36'
 ---
 
 ![attachments/img/2023/cover-2023-03-09.jpg](../../../attachments/img/2023/cover-2023-03-09.jpg)

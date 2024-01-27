@@ -15,7 +15,7 @@ tags:
 - jekyll
 - tools
 title: Blog Writing in Org Mode
-updated: 2024-01-26 10:12:02-08:00
+updated: '2024-01-26T10:12:02'
 ---
 
 # Introduction

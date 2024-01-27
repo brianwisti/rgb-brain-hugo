@@ -12,7 +12,7 @@ tags:
 - site
 - tools
 title: Indieweb h-cards
-updated: 2024-01-26 11:02:50-08:00
+updated: '2024-01-26T11:02:50'
 ---
 
 ![attachments/img/2020/cover-2020-04-11.png](../../../attachments/img/2020/cover-2020-04-11.png)

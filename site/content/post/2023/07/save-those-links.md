@@ -9,7 +9,7 @@ tags:
 - the-internet
 - second-brain
 title: Save those links
-updated: 2024-01-26 10:18:20-08:00
+updated: '2024-01-26T10:18:20'
 ---
 
 Saw this post today:

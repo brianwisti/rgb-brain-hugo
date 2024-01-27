@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Job Search
-updated: 2024-01-26 09:06:59-08:00
+updated: '2024-01-26T09:06:59'
 ---
 
 Resources for remote tech work that won't make me hate my life.

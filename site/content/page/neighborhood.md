@@ -4,7 +4,7 @@ aliases:
 created: 2024-01-15 15:26:06-08:00
 title: neighborhood
 type: blogroll
-updated: 2024-01-26 09:15:41-08:00
+updated: '2024-01-26T09:15:41'
 ---
 
 I started asking everyone to [follow](follow.md) me a long time ago. But there has a big gap on this site: who *else* should you follow? Who do *I* follow?

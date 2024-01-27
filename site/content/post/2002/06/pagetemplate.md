@@ -11,7 +11,7 @@ tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate
-updated: 2024-01-26 09:17:45-08:00
+updated: '2024-01-26T09:17:45'
 ---
 
 > 

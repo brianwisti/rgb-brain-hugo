@@ -10,7 +10,7 @@ tags:
 - python
 - programming
 title: A Quick Notes Script for Taskwarrior
-updated: 2024-01-26 11:03:33-08:00
+updated: '2024-01-26T11:03:33'
 ---
 
 ![attachments/img/2020/cover-2020-01-12.png](../../../attachments/img/2020/cover-2020-01-12.png)

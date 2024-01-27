@@ -15,7 +15,7 @@ tags:
 - org-mode
 - programming
 title: Learning a little elisp
-updated: 2024-01-26 10:59:45-08:00
+updated: '2024-01-26T10:59:45'
 ---
 
 Excuse me while I share a sleep-deprived ramble from last night through about five lines of [Emacs Lisp](https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html), the extension language for [Emacs](../../../card/Emacs.md)

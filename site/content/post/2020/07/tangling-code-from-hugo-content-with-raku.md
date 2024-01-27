@@ -17,7 +17,7 @@ tags:
 - sortof
 - programming
 title: Tangling code from Hugo content with Raku
-updated: 2024-01-26 11:00:20-08:00
+updated: '2024-01-26T11:00:20'
 ---
 
 ![attachments/img/2020/cover-2020-07-08.jpg](../../../attachments/img/2020/cover-2020-07-08.jpg)

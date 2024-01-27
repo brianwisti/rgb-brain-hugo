@@ -11,7 +11,7 @@ tags:
 - rich
 - tools
 title: Extracting Rich Output for fun and profit
-updated: 2024-01-26 10:21:42-08:00
+updated: '2024-01-26T10:21:42'
 ---
 
 ![attachments/img/2021/cover-2021-08-24.png](../../../attachments/img/2021/cover-2021-08-24.png)

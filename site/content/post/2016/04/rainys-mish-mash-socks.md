@@ -11,7 +11,7 @@ tags:
 - socks
 - craft
 title: Rainy's Mish-Mash Socks
-updated: 2024-01-26 10:17:04-08:00
+updated: '2024-01-26T10:17:04'
 ---
 
 Some socks to go with [the gloves](../03/rainys-mish-mash-gloves.md) I made a few weeks ago.

@@ -16,7 +16,7 @@ tags:
 - exiftool
 - tools
 title: Pretty File Summaries with Rich and ExifTool
-updated: 2024-01-26 10:22:21-08:00
+updated: '2024-01-26T10:22:21'
 ---
 
 ![attachments/img/2021/cover-2021-02-06.jpg](../../../attachments/img/2021/cover-2021-02-06.jpg)

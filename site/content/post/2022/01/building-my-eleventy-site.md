@@ -14,7 +14,7 @@ tags:
 - node-js
 - site
 title: Building my Eleventy site
-updated: 2024-01-26 10:20:52-08:00
+updated: '2024-01-26T10:20:52'
 ---
 
 ![attachments/img/2022/cover-2022-01-03.jpg](../../../attachments/img/2022/cover-2022-01-03.jpg)

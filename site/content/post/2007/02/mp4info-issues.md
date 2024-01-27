@@ -11,7 +11,7 @@ tags:
 - ruby
 - blogspot
 title: Mp4Info issues
-updated: 2024-01-26 09:21:44-08:00
+updated: '2024-01-26T09:21:44'
 ---
 
 > 

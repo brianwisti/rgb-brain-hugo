@@ -4,7 +4,7 @@ tags:
 - org-config
 - emacs
 title: My NANO-based Emacs config
-updated: 2022-05-08 13:59:25-07:00
+updated: '2022-05-08T13:59:25'
 weight: 5
 ---
 

@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:16-08:00
 title: Zola
-updated: 2024-01-26 09:10:28-08:00
+updated: '2024-01-26T09:10:28'
 ---
 
 A [Static Site Generator](Static%20Site%20Generator.md) implemented in [Rust](Rust.md)

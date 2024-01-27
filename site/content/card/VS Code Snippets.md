@@ -1,7 +1,7 @@
 ---
 created: 2024-01-23 19:33:10-08:00
 title: VS Code Snippets
-updated: 2024-01-26 09:10:05-08:00
+updated: '2024-01-26T09:10:05'
 ---
 
 Micro-templates for [VS Code](VS%20Code.md) basically

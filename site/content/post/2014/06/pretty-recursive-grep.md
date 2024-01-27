@@ -11,7 +11,7 @@ tags:
 - shell
 - tools
 title: Pretty Recursive Grep
-updated: 2024-01-26 10:11:43-08:00
+updated: '2024-01-26T10:11:43'
 ---
 
 > 

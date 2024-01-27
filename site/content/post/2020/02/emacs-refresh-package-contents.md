@@ -13,7 +13,7 @@ tags:
 - emacs
 - packages
 title: Emacs refresh-package-contents
-updated: 2024-01-26 11:03:20-08:00
+updated: '2024-01-26T11:03:20'
 ---
 
 Tried adding [Evil](https://www.emacswiki.org/emacs/Evil)  to [Emacs](../../../card/Emacs.md) with [use-package](../../2019/11/emacs-use-package.md). Didn’t work.

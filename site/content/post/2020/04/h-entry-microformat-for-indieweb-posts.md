@@ -17,7 +17,7 @@ tags:
 - site
 - tools
 title: h-entry Microformat for Indieweb Posts
-updated: 2024-01-26 11:02:37-08:00
+updated: '2024-01-26T16:44:03'
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)
@@ -55,7 +55,7 @@ I’m trying to move away from that though. Let’s give it a little structure.
 </article>
 ````
 
-Time to focus on putting useful metadata in the article header. Might as well expose some of the [card/Hugo](../../../card/Hugo.md) templating as well.
+Time to focus on putting useful metadata in the article header. Might as well expose some of the [Hugo](../../../card/Hugo.md) templating as well.
 
 ````html{title="layouts/_default/single.html"}
 {{ define "main" }}

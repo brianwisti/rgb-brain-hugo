@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Tech Career Skill Development
-updated: 2024-01-26 09:09:29-08:00
+updated: '2024-01-26T09:09:29'
 ---
 
 Mostly for programming because that's me I'm a programmer

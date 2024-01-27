@@ -15,7 +15,7 @@ tags:
 - hugo
 - tools
 title: Next? Hugo
-updated: 2024-01-26 10:13:17-08:00
+updated: '2024-01-26T10:13:17'
 ---
 
 Hey it has been a while since I shuffled the site around completely. I'll

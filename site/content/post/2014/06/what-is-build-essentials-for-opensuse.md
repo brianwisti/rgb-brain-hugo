@@ -11,7 +11,7 @@ tags:
 - suse
 - tools
 title: What is build-essentials for openSUSE
-updated: 2024-01-26 10:11:45-08:00
+updated: '2024-01-26T10:11:45'
 ---
 
 > 

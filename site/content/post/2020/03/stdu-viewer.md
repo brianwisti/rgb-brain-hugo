@@ -11,7 +11,7 @@ tags:
 - windows
 - tools
 title: STDU Viewer
-updated: 2024-01-26 11:03:15-08:00
+updated: '2024-01-26T11:03:15'
 ---
 
 ![attachments/img/2020/cover-2020-03-26.png](../../../attachments/img/2020/cover-2020-03-26.png)

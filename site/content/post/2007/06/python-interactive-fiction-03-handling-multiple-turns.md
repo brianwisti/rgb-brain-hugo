@@ -14,7 +14,7 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 03 Handling Multiple Turns
-updated: 2024-01-26 09:22:12-08:00
+updated: '2024-01-26T09:22:12'
 ---
 
 This is Part 3 of an [ongoing series](../04/python-interactive-fiction-01-handling-a-single-round.md) [ongoing series](../04/python-interactive-fiction-01-handling-a-single-round.md) about writing interactive fiction games in [Python](../../../card/Python.md). By the end of [python-interactive-fiction-02-tying-the-scenes-together](../04/python-interactive-fiction-02-tying-the-scenes-together.md) we had created a text-based user interface and explored one way of storing multiple scenes. This part will finally bring the needed glue for the player to move between all of the scenes in the story. In other words, we'll have a game!

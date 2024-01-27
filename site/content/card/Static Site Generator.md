@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:17-08:00
 title: Static Site Generator
-updated: 2024-01-26 09:09:25-08:00
+updated: '2024-01-26T09:09:25'
 ---
 
 Takes some source content — usually something in a [Lightweight Text Formatting Language](Lightweight%20Text%20Formatting%20Language.md) — and generates a Web site. This gives you consistent appearance and behavior throughout that site without requiring interaction from a server.

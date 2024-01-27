@@ -13,7 +13,7 @@ tags:
 - celtic
 - coolnamehere
 title: Drawing Celtic Knotwork
-updated: 2024-01-26 09:18:44-08:00
+updated: '2024-01-26T09:18:44'
 ---
 
 > 

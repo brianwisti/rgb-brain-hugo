@@ -14,7 +14,7 @@ tags:
 - javascript
 - blogspot
 title: The Spreadsheet Story 1
-updated: 2024-01-26 10:10:26-08:00
+updated: '2024-01-26T10:10:26'
 ---
 
 > 

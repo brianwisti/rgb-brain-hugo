@@ -18,7 +18,7 @@ tags:
 - site
 - tools
 title: Alias Templates in Hugo
-updated: 2024-01-26 11:01:40-08:00
+updated: '2024-01-26T11:01:40'
 ---
 
 ![attachments/img/2020/cover-2020-05-20.png](../../../attachments/img/2020/cover-2020-05-20.png)

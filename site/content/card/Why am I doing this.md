@@ -1,7 +1,7 @@
 ---
 created: 2024-01-19 18:02:39-08:00
 title: Why am I doing this
-updated: 2024-01-26 09:10:07-08:00
+updated: '2024-01-26T09:10:07'
 ---
 
 My first site [coolnamehere](coolnamehere.md) was an organized collection of notes. My current site [Random Geekery](Random%20Geekery.md)  has basically just been a blog for its first ten years. But blogs alone are too ephemeral. Everything is ephemeral, but a blog — my blog — has been about what has my attention a specific point in time. Once my attention moves on, I don't track a post's contents too closely.

@@ -15,7 +15,7 @@ tags:
 - python
 - blogspot
 title: Python Blogger Refresh Part 2 - Settings
-updated: 2024-01-26 09:41:27-08:00
+updated: '2024-01-26T09:41:27'
 ---
 
 <!--more-->

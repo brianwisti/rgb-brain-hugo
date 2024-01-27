@@ -12,7 +12,7 @@ tags:
 - hugo
 - tools
 title: Stealing a Hugo Shortcode for Nikola
-updated: 2024-01-26 11:03:28-08:00
+updated: '2024-01-26T11:03:28'
 ---
 
 ![attachments/img/2020/cover-2020-02-12.png](../../../attachments/img/2020/cover-2020-02-12.png)
