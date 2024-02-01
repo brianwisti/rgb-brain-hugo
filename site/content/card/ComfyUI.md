@@ -4,12 +4,12 @@ created: 2024-01-19T15:51:14-08:00
 updated: 2024-01-26T09:05:43-08:00
 ---
 
-A pretty front-end for *Stable Diffusion*
+A pretty front-end for [Stable Diffusion](Stable%20Diffusion.md)
 
 # Installation
 
 * Put your SD checkpoints (the huge ckpt / safetensors files) in `models/checkpoints`
-* Put your *VAE* in `models/vae`
+* Put your [VAE](VAE.md) in `models/vae`
 
 ## Installing ComfyUI on Windows
 

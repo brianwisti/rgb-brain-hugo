@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:16-08:00
 title: Python
-updated: '2024-01-26T09:08:38'
+updated: '2024-01-28T18:54:04'
 ---
 
 > 
@@ -9,6 +9,7 @@ updated: '2024-01-26T09:08:38'
 
 Convincing people to give Python a try used to take a lot more work.
 
-# Related
+## Related
 
 * https://www.python.org
+* [GitHub - dabeaz-course/python-mastery: Advanced Python Mastery (course by @dabeaz)](https://github.com/dabeaz-course/python-mastery)

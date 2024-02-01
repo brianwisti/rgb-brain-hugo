@@ -12,7 +12,7 @@ tags:
 - shell
 title: Trying Nushell on Windows
 created: 2024-01-15T15:26:32-08:00
-updated: 2024-01-26T10:20:27-08:00
+updated: 2024-01-30T19:43:25-08:00
 ---
 
 ![attachments/img/2022/cover-2022-04-22.png](../../../attachments/img/2022/cover-2022-04-22.png)
@@ -24,7 +24,7 @@ Hugo's article list piped through multiple Nushell built-ins
 
 I have been puttering a little here and there with [card/Nushell](../../../card/Nushell.md), a command line shell in the spirit of Bash, Zsh, and Fish. It's different from any of the above, though. It starts from the same "let me run my commands" starting point, but data handling, filtering, and transformation are core to Nu's functionality.
 
-# You said something about Windows
+## You said something about Windows
 
 Right. I have also been spending more time in Windows recently. No big deal. I bounce between emphasizing Windows and Linux on my hard drive routinely.
 
@@ -198,7 +198,7 @@ I'll keep the Starship default config for now.
 
 That's pretty much it! I'm good to go explore the world of Nushell on Windows.
 
-# Sure but why
+## Sure but why
 
 Well, now that I have all this set up along with a local checkout of the site's current [card/Hugo](../../../card/Hugo.md) iteration, I can play with Hugo's article listing.
 
