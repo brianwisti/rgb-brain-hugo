@@ -1,7 +1,7 @@
 ---
 created: 2024-01-19 15:37:27-08:00
 title: timedatectl
-updated: '2024-01-26T09:09:33'
+updated: 2024-01-26 09:09:33-08:00
 ---
 
 Control system for time and date details on *Linux*

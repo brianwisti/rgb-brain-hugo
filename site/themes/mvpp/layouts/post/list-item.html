@@ -1,11 +1,10 @@
-<li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    <span>
+<li class="entry-list-item">
+    <a href="{{ .RelPermalink }}" class="entry">{{ .Title }}</a>
+    <span class="date">
         {{ with .RegularPages -}}
             {{ .Len }} Posts
         {{- else -}}
-            Published
-            <time>{{ .Date | time.Format .Site.Params.DateForm }}</time>
+            <time>{{ .Date | time.Format .Site.Params.ISODateForm }}</time>
         {{- end }}
     </span>
 </li>

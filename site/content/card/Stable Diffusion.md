@@ -1,7 +1,7 @@
 ---
 created: 2024-01-19 15:56:22-08:00
 title: Stable Diffusion
-updated: '2024-02-01T06:33:39'
+updated: 2024-02-01 06:33:39-08:00
 ---
 
 An [Artificial Intelligence](Artificial%20Intelligence.md) image generation model focused on photorealistic outputs

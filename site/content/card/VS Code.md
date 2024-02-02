@@ -1,7 +1,7 @@
 ---
 created: 2024-01-18 21:46:07-08:00
 title: VS Code
-updated: '2024-01-26T09:10:03'
+updated: 2024-01-26 09:10:03-08:00
 ---
 
 Cross-platform multi-language text editor from *Microsoft* for programmers and others.

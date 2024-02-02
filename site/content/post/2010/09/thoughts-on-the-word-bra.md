@@ -11,7 +11,7 @@ tags:
 - babblings
 - coolnamehere
 title: Thoughts on the word "Bra"
-updated: '2024-01-26T10:10:16'
+updated: 2024-01-26 10:10:16-08:00
 ---
 
 No, not the bra that provides appreciated support to countless women around the world.

@@ -15,7 +15,7 @@ tags:
 - mojolicious
 - tools
 title: Trusty Mongo Mojo Box
-updated: '2024-01-26T10:11:55'
+updated: 2024-01-26 10:11:55-08:00
 ---
 
 > 

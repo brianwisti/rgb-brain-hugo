@@ -3,7 +3,7 @@ aliases:
 - RAG
 created: 2024-01-19 15:57:47-08:00
 title: Retrieval Augmented Generation
-updated: '2024-02-01T06:35:14'
+updated: 2024-02-01 06:35:14-08:00
 ---
 
 A type of [Large Language Model](Large%20Language%20Model.md) application that augments  its generation capabilities by retrieving relevant information from an external knowledge base.

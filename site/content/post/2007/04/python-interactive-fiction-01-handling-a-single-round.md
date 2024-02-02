@@ -14,7 +14,7 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 01 Handling a Single Round
-updated: '2024-01-26T09:21:58'
+updated: 2024-01-26 09:21:58-08:00
 ---
 
 I think the next step is to write the code for a single round of the game. We'll limit ourselves to Scene 1 to stay focused.

@@ -12,7 +12,7 @@ tags:
 - nikola
 - tools
 title: Building a starter blog with Nikola
-updated: '2024-01-26T11:03:35'
+updated: 2024-01-26 11:03:35-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-05.png](../../../attachments/img/2020/cover-2020-01-05.png)

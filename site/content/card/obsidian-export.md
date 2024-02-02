@@ -1,7 +1,7 @@
 ---
 created: 2024-01-21 08:19:33-08:00
 title: obsidian-export
-updated: '2024-01-26T09:08:22'
+updated: 2024-01-26 09:08:22-08:00
 ---
 
 A [Rust](Rust.md) library and CLI tool for exporting [Obsidian](Obsidian.md) vault contents into regular [Markdown](Markdown.md). This cuts down a few steps for your [Static Site Generator](Static%20Site%20Generator.md) or other processing scripts.

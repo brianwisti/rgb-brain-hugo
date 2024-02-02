@@ -11,7 +11,7 @@ tags:
 - trilium-notes
 - sqlite
 title: Customizing a Trilium Report
-updated: '2024-01-26T10:19:12'
+updated: 2024-01-26 10:19:12-08:00
 ---
 
 ![attachments/img/2022/cover-2022-08-09.png](../../../attachments/img/2022/cover-2022-08-09.png)

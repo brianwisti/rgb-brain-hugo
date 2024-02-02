@@ -13,7 +13,7 @@ tags:
 - python
 - markdown
 title: Using markdown-it in Python
-updated: '2024-01-26T10:21:27'
+updated: 2024-01-26 10:21:27-08:00
 ---
 
 > 

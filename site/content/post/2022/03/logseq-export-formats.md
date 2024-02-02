@@ -9,7 +9,7 @@ syndication:
 tags:
 - logseq
 title: Logseq's Export Formats
-updated: '2024-01-26T10:20:33'
+updated: 2024-01-26 10:20:33-08:00
 ---
 
 ![attachments/img/2022/cover-2022-03-13.png](../../../attachments/img/2022/cover-2022-03-13.png)

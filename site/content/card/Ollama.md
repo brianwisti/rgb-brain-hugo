@@ -1,7 +1,7 @@
 ---
 created: 2024-01-19 15:58:35-08:00
 title: Ollama
-updated: '2024-02-01T05:52:45'
+updated: 2024-02-01 05:52:45-08:00
 ---
 
 Local [LLM](Large%20Language%20Model.md) host.

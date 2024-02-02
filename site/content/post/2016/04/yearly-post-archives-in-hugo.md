@@ -14,7 +14,7 @@ tags:
 - perl
 - tools
 title: Yearly Post Archives In Hugo
-updated: '2024-01-26T10:17:05'
+updated: 2024-01-26 10:17:05-08:00
 ---
 
 I spent a little time this weekend creating yearly post archives for my [card/Hugo](../../../card/Hugo.md) site.

@@ -15,7 +15,7 @@ tags:
 - mostly-rails
 - tools
 title: Got a Working glitch-soc Rails Dev Environment
-updated: '2024-01-26T11:01:31'
+updated: 2024-01-26 11:01:31-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-04.png](../../../attachments/img/2020/cover-2020-05-04.png)

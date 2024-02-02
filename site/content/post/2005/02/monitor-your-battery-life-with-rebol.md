@@ -11,7 +11,7 @@ tags:
 - learn
 - coolnamehere
 title: Monitor Your Battery Life With REBOL
-updated: '2024-01-26T09:19:19'
+updated: 2024-01-26 09:19:19-08:00
 ---
 
 One thing you like to keep track of on your laptop is how much juice is left in your battery. There’s nothing quite like being in the middle of some insane hacking session and watching as the computer suddenly gets tired and blacks out on you. Of course, I’ve already got a handy battery monitor in my [KDE](https://kde.org) panel, but what if I’m not in KDE? Okay, okay, there are handy battery monitors for nearly every desktop environment out there. That’s not my point, though.

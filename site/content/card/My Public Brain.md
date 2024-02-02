@@ -1,7 +1,7 @@
 ---
 created: 2024-01-21 08:06:20-08:00
 title: My Public Brain
-updated: '2024-01-26T09:07:53'
+updated: 2024-01-26 09:07:53-08:00
 ---
 
 An attempt at sharing my notes online, like a more freeform version of what I did with [coolnamehere](coolnamehere.md). Mental friction of maintaining multiple sites resulted in me taking it down before it started to rot.

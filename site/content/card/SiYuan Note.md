@@ -1,7 +1,7 @@
 ---
 created: 2024-01-28 16:53:50-08:00
 title: SiYuan Note
-updated: '2024-01-28T16:58:06'
+updated: 2024-01-28 16:58:06-08:00
 ---
 
 Open source desktop [PKM](PKM.md) from China.

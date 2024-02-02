@@ -14,7 +14,7 @@ tags:
 - marginalia
 - now
 title: Got Married Yesterday
-updated: '2024-01-26T11:03:11'
+updated: 2024-01-26 11:03:11-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-20.jpg](../../../attachments/img/2020/cover-2020-03-20.jpg)

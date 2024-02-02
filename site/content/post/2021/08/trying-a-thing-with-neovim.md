@@ -15,7 +15,7 @@ tags:
 - site
 - tools
 title: trying a thing with neovim
-updated: '2024-01-26T10:21:39'
+updated: 2024-01-26 10:21:39-08:00
 ---
 
 But will it even work?

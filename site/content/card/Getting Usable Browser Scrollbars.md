@@ -3,7 +3,7 @@ created: 2024-01-26 17:56:20-08:00
 tags:
 - process
 title: Getting Usable Browser Scrollbars
-updated: '2024-01-26T18:03:24'
+updated: 2024-01-26 18:03:24-08:00
 ---
 
 Pencil-thin scrollbars. I hate 'em.  I can't escape them either.

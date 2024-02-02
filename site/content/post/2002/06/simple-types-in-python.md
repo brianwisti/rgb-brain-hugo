@@ -13,7 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Simple Types in Python
-updated: '2024-01-26T09:18:04'
+updated: 2024-01-26 09:18:04-08:00
 ---
 
 Ok, it’s been over a year since the first step of my [post/2001/01/python-babysteps-tutorial](../../2001/01/python-babysteps-tutorial.md). It’s about time to dig a little deeper.

@@ -11,7 +11,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Sync
-updated: '2024-01-26T11:03:47'
+updated: 2024-01-26 11:03:47-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-26.png](../../../attachments/img/2020/cover-2020-01-26.png)

@@ -15,7 +15,7 @@ tags:
 - org-mode
 - programming
 title: Learning a little elisp
-updated: '2024-01-26T10:59:45'
+updated: 2024-01-26 10:59:45-08:00
 ---
 
 Excuse me while I share a sleep-deprived ramble from last night through about five lines of [Emacs Lisp](https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html), the extension language for [Emacs](../../../card/Emacs.md)
@@ -97,7 +97,7 @@ When we have a question about ELisp functions, we don’t need to look everythin
 
 ## ELisp in Org Babel
 
-This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my [Config](../../../config/_index.md) smarter.  For example, only tangle a section if it’s relevant for that machine.
+This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my *Config* smarter.  For example, only tangle a section if it’s relevant for that machine.
 
 And, of course, really handy for blogging about ELisp.
 

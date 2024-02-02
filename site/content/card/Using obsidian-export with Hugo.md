@@ -1,7 +1,7 @@
 ---
 created: 2024-01-21 08:31:10-08:00
 title: Using obsidian-export with Hugo
-updated: '2024-01-26T09:09:53'
+updated: 2024-01-26 09:09:53-08:00
 ---
 
 Copied directly from the [obsidian-export](obsidian-export.md) REAME

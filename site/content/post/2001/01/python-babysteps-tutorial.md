@@ -13,7 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Python Babysteps Tutorial
-updated: '2024-01-26T09:16:51'
+updated: 2024-01-26 09:16:51-08:00
 ---
 
 This is my original Python Babysteps tutorial, which has existed in more or less the same form since 2001. 

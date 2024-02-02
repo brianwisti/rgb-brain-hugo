@@ -9,7 +9,7 @@ tags:
 - emacs
 - tools
 title: Quick Zoom Text in Emacs
-updated: '2024-01-26T11:03:42'
+updated: 2024-01-26 11:03:42-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-01.png](../../../attachments/img/2020/cover-2020-01-01.png)

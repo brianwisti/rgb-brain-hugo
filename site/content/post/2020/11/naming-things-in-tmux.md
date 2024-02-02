@@ -14,7 +14,7 @@ tags:
 - tmux
 - tools
 title: Naming things in tmux
-updated: '2024-01-26T11:00:00'
+updated: 2024-01-26 11:00:00-08:00
 ---
 
 I got the basics of [tmux](https://github.com/tmux/tmux) down:

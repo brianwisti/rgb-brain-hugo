@@ -11,7 +11,7 @@ tags:
 - todo
 - forgot-to-post-this-yesterday
 title: Checking in on my idea bucket
-updated: '2019-07-03T09:18:47'
+updated: 2019-07-03 09:18:47-07:00
 ---
 
 $ task '(+learn or +idea)' count

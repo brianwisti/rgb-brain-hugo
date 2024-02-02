@@ -13,7 +13,7 @@ tags:
 - site
 - programming
 title: My first Julia script
-updated: '2024-01-26T10:59:44'
+updated: 2024-01-26 10:59:44-08:00
 ---
 
 ![attachments/img/2020/cover-2020-12-25.png](../../../attachments/img/2020/cover-2020-12-25.png)

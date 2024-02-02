@@ -3,7 +3,7 @@ created: 2024-01-25 14:01:36-08:00
 tags:
 - term
 title: DSL
-updated: '2024-01-26T09:06:14'
+updated: 2024-01-26 09:06:14-08:00
 ---
 
 Domain-Specific Language

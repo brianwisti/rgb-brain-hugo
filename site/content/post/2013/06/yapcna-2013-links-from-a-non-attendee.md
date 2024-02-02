@@ -15,7 +15,7 @@ tags:
 - links
 - programming
 title: YAPC::NA 2013 Links From a Non-Attendee
-updated: '2024-01-26T10:11:06'
+updated: 2024-01-26 10:11:06-08:00
 ---
 
 [YAPC::NA](http://yapcna.org), the Yet Another [card/Perl](../../../card/Perl.md) Conference for North America, just happened. I didn’t go. Since I didn’t go, I want to compile everything I can find about the conference in one place. Videos, slides, blog posts, whatever.

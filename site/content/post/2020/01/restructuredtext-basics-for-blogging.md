@@ -12,7 +12,7 @@ tags:
 - text
 - tools
 title: reStructuredText Basics For Blogging
-updated: '2024-01-26T11:03:45'
+updated: 2024-01-26 11:03:45-08:00
 ---
 
 # What is it?

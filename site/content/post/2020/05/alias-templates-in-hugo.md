@@ -18,7 +18,7 @@ tags:
 - site
 - tools
 title: Alias Templates in Hugo
-updated: '2024-01-26T11:01:40'
+updated: 2024-02-01 15:45:51-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-20.png](../../../attachments/img/2020/cover-2020-05-20.png)
@@ -36,13 +36,13 @@ Anyways — the post!  People responded on Twitter and Mastodon.  It was gre
 
 Except none of those responses show up in the "IndieWeb Reactions" section of the post here on the site.
 
-# A problem
+## A problem
 
 I know why — basically.
 
 My post title and URL referenced Rakubrew’s predecessor "Rakudobrew," which I considered an unacceptable faux pas.  So I fixed it.
 
-# Hugo aliases: A solution to for my URL typo
+## Hugo aliases: A solution to for my URL typo
 
 This faux pas was easily corrected with [Hugo Aliases](https://gohugo.io/content-management/urls/#aliases).  Move your content where it needs to be, and add an alias for the old link to content front matter.
 
@@ -71,7 +71,7 @@ With default configuration, Hugo generates an HTML redirect page for every alias
 
 The visitor may briefly see a blank page.  Browsers visiting the old URL see the `http-equiv="refresh"` element and immediately go to the new `url`. Normally, this is fine.
 
-# Now for today’s problem
+## Now for today’s problem
 
 Now my *inbox/Webmention* feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
 
@@ -81,7 +81,7 @@ Well of *course* there’s no Webmention support.  The generated alias files hav
 
 Took me a solid hour to figure that one out.
 
-# Use a custom alias template for my webmention problem
+## Use a custom alias template for my webmention problem
 
 Oh thank goodness. Hugo supports [custom alias templates](https://gohugo.io/content-management/urls/#customize).
 
@@ -111,7 +111,7 @@ Brid.gy now sees the webmention link at the old URL.  I can manually resend the 
 
 Almost.  Now that I’m looking at my templates, I see problems.
 
-# This afternoon’s problem: accessibility
+## This afternoon’s problem: accessibility
 
 Non-essential page refreshes cause accessibility issues.  Visitors may not have enough time to read the page before it redirects them.  And what if the refresh doesn’t happen, either due to user preference or browser bug?  The blank page offers no clue as to what they should expect.
 
@@ -126,19 +126,16 @@ I tried that, and it still caused confusion about webmentions.  Services out the
 
 They list specific tests for client-side page refreshes.  I could compare what I have to the list.
 
-{{% quote
-from="WCAG21"
-cite="https://www.w3.org/WAI/WCAG21/Techniques/failures/F41.html"
-title="Failure of Success Criterion 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh to reload the page"
-%}}
-For a page that uses `meta http-equiv="refresh"`:
+ > 
+ > For a page that uses `meta http-equiv="refresh"`:
+ > 
+ > 1. Check that the numerical value for seconds until refresh in the content attribute is present.
+ > 1. Check that the numerical value for seconds until refresh in the content attribute is less than one or greater than 72,000.
+ > 1. Check if the page qualifies for Real-time or Essential Exceptions in Success Criterion 2.2.1 Timing Adjustable.
+ > 1. Check if the user is provided an opportunity to turn off, extend, or adjust the timing of the page refresh.
+ > 1. Check if the page does not refresh after the duration specified in the content attribute.
 
-1. Check that the numerical value for seconds until refresh in the content attribute is present.
-1. Check that the numerical value for seconds until refresh in the content attribute is less than one or greater than 72,000.
-1. Check if the page qualifies for Real-time or Essential Exceptions in Success Criterion 2.2.1 Timing Adjustable.
-1. Check if the user is provided an opportunity to turn off, extend, or adjust the timing of the page refresh.
-1. Check if the page does not refresh after the duration specified in the content attribute.
-   {{% /quote %}}
+— WCAG21, [Failure of Success Criterion 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh to reload the page](https://www.w3.org/WAI/WCAG21/Techniques/failures/F41.html)
 
 * There is a numerical value: `0`. Yay!
 * zero is less than one. Yay!

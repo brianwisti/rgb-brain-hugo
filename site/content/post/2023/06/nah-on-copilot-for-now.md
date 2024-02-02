@@ -11,31 +11,26 @@ tags:
 - llm
 title: Nah on Copilot for now
 created: 2024-01-15T15:26:00-08:00
-updated: 2024-01-26T10:18:25-08:00
+updated: 2024-02-01T16:07:26-08:00
 ---
 
-[GitHub Copilot](https://github.com/features/copilot) is a development tool from Microsoft driven by a [Large Language Model (LLM)](https://en.wikipedia.org/wiki/Large_language_model) — one piece of the very big tech trend described as "AI".
+[GitHub Copilot](https://github.com/features/copilot) is a development tool from Microsoft driven by a [Large Language Model](../../../card/Large%20Language%20Model.md) — one piece of the very big tech trend described as [Artificial Intelligence](../../../card/Artificial%20Intelligence.md).
 
 Copilot acts as a super-powered autocomplete for developers. Sort of like an [LSP](https://microsoft.github.io/language-server-protocol/), but this goes much further. Where an LSP might give you an identifier or point you to a definition, Copilot generates entire expressions and blocks of code. It assembles reasonable-looking code from what it's been fed, including your own current projects.
 
 Some people like Copilot.
 
-{{% quote
-from="Curtis Poe"
-title="Using Github Copilot with Vim"
-cite="https://ovid.github.io/articles/using-github-copilot-with-vim.html"
-%}}
-This technology is in its infancy and it’s already writing code that’s better than many developers I’ve met.
-{{% /quote %}}
+ > 
+ > This technology is in its infancy and it’s already writing code that’s better than many developers I’ve met.
+
+— Curtis Poe, [Using Github Copilot with Vim](https://ovid.github.io/articles/using-github-copilot-with-vim.html)
 
 Some people dislike it so much they are taking Microsoft to court over it.
 
-{{% quote
-title="GitHub Copilot litigation · Joseph Saveri Law Firm & Matthew Butterick"
-cite="https://githubcopilotlitigation.com/"
-%}}
-By training their AI sys­tems on pub­lic GitHub repos­i­to­ries (though based on their pub­lic state­ments, pos­si­bly much more) we con­tend that the defen­dants have vio­lated the legal rights of a vast num­ber of cre­ators who posted code or other work under cer­tain open-source licenses on GitHub.
-{{% /quote %}}
+ > 
+ > By training their AI sys­tems on pub­lic GitHub repos­i­to­ries (though based on their pub­lic state­ments, pos­si­bly much more) we con­tend that the defen­dants have vio­lated the legal rights of a vast num­ber of cre­ators who posted code or other work under cer­tain open-source licenses on GitHub.
+
+— [GitHub Copilot litigation · Joseph Saveri Law Firm & Matthew Butterick](https://githubcopilotlitigation.com/)
 
 I tried Copilot out, even though I'm unhappy about the wholesale appropriation of publicly visible code regardless of license. Ignoring it seemed impractical. What if it really is a game-changer?
 

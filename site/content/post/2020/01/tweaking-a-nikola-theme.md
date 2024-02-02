@@ -10,7 +10,7 @@ tags:
 - site
 - tools
 title: Tweaking a Nikola Theme
-updated: '2024-01-26T11:03:49'
+updated: 2024-01-26 11:03:49-08:00
 ---
 
 I adjusted the default [Nikola](https://getnikola.com) theme to show cover images!

@@ -465,13 +465,13 @@ blockquote footer {
   border-radius: 10px; }
 
 a[href^="/card"]:before {
-  content: "🗃️"; }
+  content: "🗃️ "; }
 
 a[href^="/post"]:before {
-  content: "📅"; }
+  content: "📅 "; }
 
 a[href^="/config"]:before {
-  content: "🔨"; }
+  content: "🔨 "; }
 
 .breadcrumb {
   font-size: small;
@@ -483,3 +483,23 @@ a[href^="/config"]:before {
   grid-template-columns: 1fr 1fr; }
   .timeline a:last-child {
     text-align: right; }
+
+.recent {
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+
+.entry-list-item {
+  display: flex; }
+  .entry-list-item::after {
+    background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+    background-position: bottom;
+    background-size: 1ex 3.5px;
+    background-repeat: space no-repeat;
+    content: "";
+    flex-grow: 1;
+    height: 1.1em;
+    order: 2; }
+  .entry-list-item .entry {
+    order: 1; }
+  .entry-list-item .date {
+    order: 3; }

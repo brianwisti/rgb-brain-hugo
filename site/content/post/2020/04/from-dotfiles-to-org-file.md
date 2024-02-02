@@ -16,7 +16,7 @@ tags:
 - orgconfig
 - tools
 title: From Dotfiles to Org File
-updated: '2024-01-26T11:02:28'
+updated: 2024-01-26 11:02:28-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-28.png](../../../attachments/img/2020/cover-2020-04-28.png)

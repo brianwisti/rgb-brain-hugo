@@ -11,7 +11,7 @@ tags:
 - nushell
 - hugo
 title: My Three(ish) Favorite Nushell Features
-updated: '2024-01-26T10:19:17'
+updated: 2024-01-26 10:19:17-08:00
 ---
 
 ![attachments/img/2022/cover-2022-07-04.png](../../../attachments/img/2022/cover-2022-07-04.png)

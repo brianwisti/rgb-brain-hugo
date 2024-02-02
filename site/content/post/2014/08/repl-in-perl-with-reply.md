@@ -17,7 +17,7 @@ tags:
 - mojolicious
 - tools
 title: REPL In Perl With Reply
-updated: '2024-01-26T10:11:53'
+updated: 2024-01-26 10:11:53-08:00
 ---
 
 ![attachments/img/2014/cover-2014-08-14.png](../../../attachments/img/2014/cover-2014-08-14.png)

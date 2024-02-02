@@ -13,7 +13,7 @@ tags:
 - site
 - helpful-hint
 title: Every Post Has a UUID
-updated: '2024-01-26T11:03:10'
+updated: 2024-01-26 11:03:10-08:00
 ---
 
 Gave them all a Universally Unique Identifer, per [RFC 4122](http://www.faqs.org/rfcs/rfc4122.html).

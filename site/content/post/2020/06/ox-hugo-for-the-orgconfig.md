@@ -12,7 +12,7 @@ tags:
 - site
 - tools
 title: Ox Hugo for the Orgconfig
-updated: '2024-01-26T11:00:26'
+updated: 2024-01-26 11:00:26-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-27.png](../../../attachments/img/2020/cover-2020-06-27.png)

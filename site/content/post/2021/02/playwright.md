@@ -11,7 +11,7 @@ tags:
 - testing
 - browser-testing
 title: Playwright for Python
-updated: '2024-01-26T10:59:18'
+updated: 2024-01-26 10:59:18-08:00
 ---
 
 There's a [card/Python](../../../card/Python.md) interface to the very handy [Playwright](https://playwright.dev) browser automation library. The 1.9.x releases feel more Pythonic. Naming conventions, stuff like that. Feels much less like just a wrapper.

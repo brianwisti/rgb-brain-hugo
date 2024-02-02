@@ -17,7 +17,7 @@ tags:
 - jekyll
 - tools
 title: Draft Mode in Jekyll Templates
-updated: '2024-01-26T10:12:59'
+updated: 2024-02-01 11:49:55-08:00
 ---
 
 > 

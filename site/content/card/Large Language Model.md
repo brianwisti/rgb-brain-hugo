@@ -3,7 +3,7 @@ aliases:
 - LLM
 created: 2024-01-19 15:57:31-08:00
 title: Large Language Model
-updated: '2024-02-01T06:47:47'
+updated: 2024-02-01 06:47:47-08:00
 ---
 
 A particular technology of [Artificial Intelligence](Artificial%20Intelligence.md)

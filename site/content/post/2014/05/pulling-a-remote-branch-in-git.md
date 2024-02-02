@@ -12,7 +12,7 @@ tags:
 - shell
 - tools
 title: Pulling a Remote Branch In Git
-updated: '2024-01-26T10:11:37'
+updated: 2024-01-26 10:11:37-08:00
 ---
 
 > 

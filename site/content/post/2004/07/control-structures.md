@@ -12,7 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Control Structures
-updated: '2024-01-26T09:18:35'
+updated: 2024-01-26 09:18:35-08:00
 ---
 
 There are several different approaches to programming, but the one that is easiest for me to grasp is *imperative programming*. The imperative approach allows you to tell the computer exactly what you want it to do and how you want it done. The best analogy I can think of is a cooking recipe. You have a list of ingredients and a specific set of instructions to follow. Veer from the recipe and you may not be happy with the results. Veer too far from the recipe and your house could burn down.

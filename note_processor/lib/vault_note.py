@@ -85,9 +85,6 @@ class VaultNote(VaultResource):
         self.__find_links()
         self.__adjust_content()
 
-        if "updated" in self.meta:
-            self.meta["updated"] = self.meta["updated"].strftime("%Y-%m-%dT%H:%M:%S")
-
     @property
     def content(self):
         """Return the note's raw Markdown content."""
@@ -116,6 +113,7 @@ class VaultNote(VaultResource):
     @classmethod
     def from_path(cls: type["VaultNote"], path: Path):
         """Return a VaultNote by processing the file at a given path."""
+        logging.debug("VaultNote.from_path %s", path)
         post = frontmatter.loads(path.read_text(encoding="utf-8"))
         is_dirty = False
         updated_content = re.sub(CALLOUT_BLOCK, callout_title, post.content)

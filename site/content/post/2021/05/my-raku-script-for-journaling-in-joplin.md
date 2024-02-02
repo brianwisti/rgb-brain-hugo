@@ -15,7 +15,7 @@ tags:
 - joplin
 - shell
 title: My Raku script for Journaling in Joplin
-updated: '2024-01-26T10:21:55'
+updated: 2024-01-26 10:21:55-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-22.png](../../../attachments/img/2021/cover-2021-05-22.png)

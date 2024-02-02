@@ -16,7 +16,7 @@ tags:
 - site
 - tools
 title: Using the Webmention.io API
-updated: '2024-01-26T11:00:01'
+updated: 2024-01-26 11:00:01-08:00
 ---
 
 ![attachments/img/2020/cover-2020-11-10.jpg](../../../attachments/img/2020/cover-2020-11-10.jpg)

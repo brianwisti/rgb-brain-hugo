@@ -1,5 +1,4 @@
 ---
-category: note
 date: 2023-03-16
 slug: elf-sternberg-on-how-ssg-is-not-a-reaction
 syndication:
@@ -9,16 +8,14 @@ tags:
 - ssg
 title: Elf Sternberg on how SSG is not a reaction
 created: 2024-01-15T15:26:00-08:00
-updated: 2024-01-26T10:18:37-08:00
+updated: 2024-02-01T16:02:00-08:00
 ---
 
-{{% quote
-cite="<https://elfsternberg.com/blog/static-site-generation/>"
-from="Elf Sternberg"
-title="Static site generation is not a 'reaction' to client-site rendering"
-%}}
-It was literally the first thing we did.
-{{% /quote %}}
+
+ > 
+ > It was literally the first thing we did.
+
+— Elf Sternberg, [Static site generation is not a 'reaction' to client-site rendering](https://elfsternberg.com/blog/static-site-generation/)
 
 Strong agree. I've heard variations on static site generators being something invented after SPAs turned out to be a less than universal solution. Sounds like Elf's start was with [Muse](https://www.gnu.org/software/emacs-muse/index.html) — an Emacs tool that I heard of but never played with.
 
@@ -28,9 +25,8 @@ Oh, and my first interesting project was converting Vim's text documentation to 
 
 Anyways, there's also some good points in there about "the eternal amnesia." That's one name for — basically, when folks have no foundational context. They think they're the first ones to think about some issue that was addressed in 1999, or 1968, or ~260 BCE.
 
-{{% quote %}}
-The Eternal Amnesia is a consequence of how programming works... it encourages programmers to fill their brains with the sort of intellectual puzzle solving that used to be left to the rare professional mathematician, but without giving us the time to write it all down and explain how it works to other people.
-{{% /quote %}}
+ > 
+ > The Eternal Amnesia is a consequence of how programming works... it encourages programmers to fill their brains with the sort of intellectual puzzle solving that used to be left to the rare professional mathematician, but without giving us the time to write it all down and explain how it works to other people.
 
 No time to write it and not much time to read it, either. The kind of thoughtful effort it takes to build your context runs counter to the whole "if you got time to lean, you got time to clean" rut we call a work ethic.
 

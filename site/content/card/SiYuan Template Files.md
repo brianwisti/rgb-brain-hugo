@@ -1,7 +1,7 @@
 ---
 created: 2024-01-28 16:55:17-08:00
 title: SiYuan Template Files
-updated: '2024-01-28T16:57:13'
+updated: 2024-01-28 16:57:13-08:00
 ---
 
 Using template snippets to insert predefined content to [SiYuan Note](SiYuan%20Note.md)

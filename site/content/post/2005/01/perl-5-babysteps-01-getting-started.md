@@ -13,7 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Perl 5 Babysteps 01 - Getting Started
-updated: '2024-01-26T09:19:05'
+updated: 2024-01-26 09:19:05-08:00
 ---
 
 # Installing Perl

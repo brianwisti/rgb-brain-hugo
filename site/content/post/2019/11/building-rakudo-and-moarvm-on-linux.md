@@ -15,7 +15,7 @@ tags:
 - linux
 - tools
 title: Building Rakudo and Moarvm on Linux
-updated: '2021-08-21T00:00:00'
+updated: 2021-08-21 00:00:00-07:00
 ---
 
 > 

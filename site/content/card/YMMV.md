@@ -3,7 +3,7 @@ created: 2024-01-25 13:46:40-08:00
 tags:
 - term
 title: YMMV
-updated: '2024-01-26T09:10:19'
+updated: 2024-01-26 09:10:19-08:00
 ---
 
 Your Mileage May Vary

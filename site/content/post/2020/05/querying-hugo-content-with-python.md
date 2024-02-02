@@ -16,7 +16,7 @@ tags:
 - workflow
 - tools
 title: Querying Hugo Content With Python
-updated: '2024-01-26T11:01:16'
+updated: 2024-01-26 11:01:16-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-06.png](../../../attachments/img/2020/cover-2020-05-06.png)

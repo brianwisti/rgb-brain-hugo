@@ -17,7 +17,7 @@ created: 2024-01-15T15:26:26-08:00
 updated: 2024-01-26T11:00:28-08:00
 ---
 
-All jealous of [john sj anderson](https://genehack.org)'s [uses](https://genehack.org/uses/) page. Started making my own. Decided it would be easier just to share my [Config](../../../config/_index.md). Might as well, since [card/Hugo](../../../card/Hugo.md) directly supports [card/Org](../../../card/Org.md) content via [go-org](https://github.com/niklasfasching/go-org).
+All jealous of [john sj anderson](https://genehack.org)'s [uses](https://genehack.org/uses/) page. Started making my own. Decided it would be easier just to share my *Config*. Might as well, since [card/Hugo](../../../card/Hugo.md) directly supports [card/Org](../../../card/Org.md) content via [go-org](https://github.com/niklasfasching/go-org).
 
 I'll add `/uses` later. Anyways, time for music.
 
