@@ -3,6 +3,7 @@ aliases:
 - /post/2017/full-content-hugo-feeds/
 - /2017/09/15/full-content-hugo-feeds/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-09-15 00:00:00-07:00
 slug: full-content-hugo-feeds
 syndication:
@@ -12,10 +13,10 @@ tags:
 - hugo
 - tools
 title: Full Content Hugo Feeds
-updated: 2019-09-19 00:00:00-07:00
+updated: 2024-02-01 20:12:40-08:00
 ---
 
-[card/Hugo](../../../card/Hugo.md) defaults to filling your [follow](../../../page/follow.md) with the summary of every post. I prefer the full content of the most recent posts. Today I make my [card/RSS](../../../card/RSS.md) feed reflect my preferences.
+[Hugo](../../../card/Hugo.md) defaults to filling your [follow](../../../page/follow.md) with the summary of every post. I prefer the full content of the most recent posts. Today I make my [RSS](../../../card/RSS.md) feed reflect my preferences.
 
 ## The Problem
 

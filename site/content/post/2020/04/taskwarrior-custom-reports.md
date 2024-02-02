@@ -17,7 +17,7 @@ tags:
 - tools
 title: Taskwarrior Custom Reports
 created: 2024-01-15T15:26:47-08:00
-updated: 2024-01-26T11:02:59-08:00
+updated: 2024-02-01T20:59:21-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-30.png](../../../attachments/img/2020/cover-2020-04-30.png)
@@ -28,7 +28,7 @@ It happened again. I have a couple dozen great ideas for the blog. Loads of othe
 I’ve been dutifully adding everything to Taskwarrior, assigning
 [priorities](../../2017/12/taskwarrior-priorities.md) as I go.
 
-In case you forgot, or haven’t been following from the [beginning](../../2017/12/taskwarrior-babysteps.md), I use [card/Taskwarrior](../../../card/Taskwarrior.md)’s `Priority` field to show how soon I want to work on a task. `Priority:M`? I want to work on it soon. `Priority:H`? Either I am working on it right now or I really want to be.
+In case you forgot, or haven’t been following from the [beginning](../../2017/12/taskwarrior-babysteps.md), I use [Taskwarrior](../../../card/Taskwarrior.md)’s `Priority` field to show how soon I want to work on a task. `Priority:M`? I want to work on it soon. `Priority:H`? Either I am working on it right now or I really want to be.
 
  > 
  > \[!NOTE\] Yeah I know
@@ -47,7 +47,7 @@ In case you forgot, or haven’t been following from the [beginning](../../2017/
 
 Time for me to figure out `or` in Taskwarrior.
 
-# Filtering with `or`
+## Filtering with `or`
 
 Filters already have an implied `and`. It looks like this.
 
@@ -96,7 +96,7 @@ Tada!
 
 Okay, it works, but I just know there will be more typos using this filter from memory. How can I avoid typing it in every time?
 
-# Use a context
+## Use a context
 
 I could add that priority filter to my "focused" [context](../../2018/02/taskwarrior-contexts.md), used when I need to ignore distracting ideas.
 
@@ -123,7 +123,7 @@ Plus it’s easy to forget which context you’re in. I once spent 15 minutes tr
 $ task context blog
 ````
 
-# Use a shell alias
+## Use a shell alias
 
 Part of Taskwarrior’s charm is the fact that we use `task` from the command line. I could take advantage of that with a shell alias for `task` using the preface filter.
 
@@ -144,7 +144,7 @@ I could use `ttop` with any Taskwarrior command, so `ttop next` would be a fine 
 
 But I’d kind of like to have a custom report for reviewing tasks I’ve set as important. Something with a little more information than `task minimal` but a bit less than `task next`.
 
-# Use a custom report
+## Use a custom report
 
 Might be easier to show than tell. For more of a "tell" approach, check the "REPORTS" section of `man taskrc`. Here’s my custom "top" report, loosely based on Taskwarrior’s `minimal` report.
 

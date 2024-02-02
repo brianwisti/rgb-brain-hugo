@@ -14,12 +14,12 @@ tags:
 - coolnamehere
 title: REBOL Babysteps - 04 Repeating Yourself
 created: 2024-01-15T15:25:44-08:00
-updated: 2024-01-26T09:19:42-08:00
+updated: 2024-02-01T20:44:23-08:00
 ---
 
 Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with [REBOL](../../../card/REBOL.md). We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.
 
-# Simple Loops
+## Simple Loops
 
 The simplest sort of repetition involves doing exactly the same thing again and again.
 The simplest sort of repetition involves doing exactly the same thing again and again.
@@ -28,7 +28,7 @@ The simplest sort of repetition –
 
 Sorry, I got carried away. Hopefully you get the idea. Sometimes all you need to do is repeat a process a set number of times.
 
-## `loop`
+### `loop`
 
 ````
 >> loop 5 [
@@ -82,7 +82,7 @@ Nothing fancy is going on here. We just `loop` through the question and answer p
 
 You’re right. A plain old `loop` isn’t very interesting. Let’s move on.
 
-## Looping `forever`
+### Looping `forever`
 
 I’m only telling you this because I can see that one or two of you really want to know. What if you want to run a loop forever? Well, you don’t want to. Maybe you want to run a loop until some signal is received, or the user wants to quit, or something sensible like that. You don’t want a loop to run forever. But that doesn’t mean you *can’t* run a loop forever. REBOL provides us with the `forever` word to let us do exactly that.
 
@@ -98,7 +98,7 @@ And so on until you hit `Ctrl + C`, or kill the process, or do something to make
 
 But please, don’t use `forever` without a mighty good reason.
 
-## `break` out of a loop
+### `break` out of a loop
 
 Sometimes you’re right in the middle of a loop and you want to break out of it and get back to the rest of the program. That’s easy enough.
 
@@ -121,11 +121,11 @@ Oh, you noticed that `prin` in there? That’s a different way of printing. Each
 
 Right. So we’ve covered simple loops. Now let’s start getting a little more interesting.
 
-# Monitored Loops
+## Monitored Loops
 
 Plain old repetition isn’t actually all that common. We usually want to do something a little different each time we step through the loop. REBOL gives us a few words which help us in that situation.
 
-## `repeat`
+### `repeat`
 
 `repeat` works almost exactly the same as `loop`. The main difference is that it stores the number of trips you’ve taken through the loop in a variable that you can get to from inside the loop. The variable has a value of `1` on the first trip through, `2` on the second trip through, and so on.
 
@@ -144,7 +144,7 @@ Plain old repetition isn’t actually all that common. We usually want to do som
 3 x 9 is 27
 ````
 
-## `for`
+### `for`
 
 The next sort of repetition structure is `for`, which adds a starting point, stopping point, and step size to the `repeat` loop. `for` is useful for producing very specific loops. It might be a little wordy for simple loops which can be handled by the `repeat` word:
 
@@ -196,7 +196,7 @@ Start on January 3, step 7 days at a time until we reach March 7, and print the 
 
 Or maybe I looked at a calendar. I’ll never tell.
 
-# Conditional Loops
+## Conditional Loops
 
 Then there are the times when you aren’t sure exactly when you’ll need to stop. You need to keep going until it’s time to stop, basically. Now, you could use a `forever` loop and `break` whenever you need to stop. But I don’t want you to do that. Why am I so opposed to an approach like that? It comes down to clarity. Somebody will be reading your code a few weeks, months, or even years after you write it. That person could be you.
 
@@ -204,7 +204,7 @@ Don’t laugh - I’m still haunted by a script that I wrote years ago when I wa
 
 But I digress. Let’s look at the conditional loops. There are two main conditional loops, `until` and `while`. The difference between the two from our perspective is when they test to see whether it’s time to quit the loop.
 
-## Keep going `until` something is true
+### Keep going `until` something is true
 
 The `until` loop tests at the end of each step of the loop. If the block returns true, then it’s time to quit. How do you know if the block returns `true`? Because the block returns the value of the last statement in the block. This means that we could put a simple test as the last statement, using the guidelines from the chapter on [selection structures](../02/rebol-babysteps-03-making-decisions.md).
 
@@ -227,7 +227,7 @@ Spam
 
 Because it doesn’t test until the end of the loop, `until` will step through the loop at least once.
 
-## Keep going `while` something is true
+### Keep going `while` something is true
 
 `while` takes a test block and a loop block. There’s all sorts of clever things we can do in the test block, but for now we’ll just put simple tests in it. If the test comes up false, then `while` doesn’t bother running through the loop. If it’s true, then it runs through the loop and tests again.
 
@@ -251,11 +251,11 @@ Spam.
 
 `while` will not run at all if the condition isn’t true at the start of the loop, because it tests the condition before beginning each step.
 
-# Stepping Through a List
+## Stepping Through a List
 
 The last form of repetition is iterating through a list. A copy of each item in the list is passed to a temporary variable that you can play with in the loop block. I will only look briefly at this form of repetition in this chapter, because list manipulation and iteration is a big topic in its own right. Nevertheless, many of you will want to do *something* with lists before I get around to writing that next chapter.
 
-## `foreach`
+### `foreach`
 
 The basic list iteration function is `foreach`. It takes a name, a list variable, and a block. `foreach` repeats the loop once for each item in the list. The name is set to the value of the current item in the list. It is easier to demonstrate a `foreach` loop than it is to describe one.
 Here’s a quick example.
@@ -320,6 +320,6 @@ Now that we’ve written the code, let’s run the script:
 
 Naturally, your results may vary. In fact, they will almost definitely vary unless you read this article the day I updated it or your clock is set wrong. I encourage you to play with this script and come up with your own variations. How about a script that asks the user for a date and tells how far that day is from today? You’ll probably need to use `to-date` on the user input.
 
-# Conclusion and Congratulations
+## Conclusion and Congratulations
 
 Completing this chapter means you have hit a significant milestone in programming by learning all of the basic elements of something called "Structured Programming". It is now possible for you to build non-trivial, "real-world" programs using REBOL. I will try to keep this in mind when putting together future chapters in this tutorial.

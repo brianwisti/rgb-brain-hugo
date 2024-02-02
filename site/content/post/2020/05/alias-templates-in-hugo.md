@@ -18,7 +18,7 @@ tags:
 - site
 - tools
 title: Alias Templates in Hugo
-updated: 2024-02-01 15:45:51-08:00
+updated: 2024-02-01 22:06:25-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-20.png](../../../attachments/img/2020/cover-2020-05-20.png)
@@ -28,9 +28,9 @@ It's not a redirect anymore
  > \[!WARNING\] Don't do this
  > This was an interesting experiment, but messed with results on search engine pages. Nothing but "This Page Has Moved!" as far as the eye can see after a few months.
  > 
- > Use regular [card/Hugo](../../../card/Hugo.md) alias frontmatter and leave it at that.
+ > Use regular [Hugo](../../../card/Hugo.md) alias frontmatter and leave it at that.
 
-Yesterday I [wrote](setting-up-raku-with-rakubrew.md) about using [rakubrew](https://rakubrew.org/), a tool for managing installations of the [card/Raku](../../../card/Raku.md) programming language.  It’s an okay post.  I liked my little shoutout to [Jeff Goff](https://web.archive.org/web/20200212094016/http://theperlfisher.com/).  Those who knew him better shared [better words](https://wendyga.wordpress.com/2020/04/06/jeff-goff-thanks-for-being-a-friend/).
+Yesterday I [setting-up-raku-with-rakubrew](setting-up-raku-with-rakubrew.md) I wrote about using [rakubrew](https://rakubrew.org/), a tool for managing installations of the [Raku](../../../card/Raku.md) programming language.  It’s an okay post.  I liked my little shoutout to [Jeff Goff](https://web.archive.org/web/20200212094016/http://theperlfisher.com/).  Those who knew him better shared [better words](https://wendyga.wordpress.com/2020/04/06/jeff-goff-thanks-for-being-a-friend/).
 
 Anyways — the post!  People responded on Twitter and Mastodon.  It was great.
 
@@ -73,7 +73,7 @@ The visitor may briefly see a blank page.  Browsers visiting the old URL see the
 
 ## Now for today’s problem
 
-Now my *inbox/Webmention* feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
+Now my *Webmention* feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
 
 ![Bridgy dashboard showing "No webmention support" in responses to my old URL](attachments/img/2020/bridgy.png)
 

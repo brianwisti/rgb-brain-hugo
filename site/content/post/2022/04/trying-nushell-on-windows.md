@@ -12,7 +12,7 @@ tags:
 - shell
 title: Trying Nushell on Windows
 created: 2024-01-15T15:26:32-08:00
-updated: 2024-01-30T19:43:25-08:00
+updated: 2024-02-01T21:03:34-08:00
 ---
 
 ![attachments/img/2022/cover-2022-04-22.png](../../../attachments/img/2022/cover-2022-04-22.png)
@@ -22,7 +22,7 @@ Hugo's article list piped through multiple Nushell built-ins
  > \[!NOTE\] The important bit
  > Jack — one of the cats — has recovered from whatever was bothering him with a little help from vet drugs. Thank goodness for that! Now I can get back to puttering.
 
-I have been puttering a little here and there with [card/Nushell](../../../card/Nushell.md), a command line shell in the spirit of Bash, Zsh, and Fish. It's different from any of the above, though. It starts from the same "let me run my commands" starting point, but data handling, filtering, and transformation are core to Nu's functionality.
+I have been puttering a little here and there with [Nushell](../../../card/Nushell.md), a command line shell in the spirit of Bash, Zsh, and Fish. It's different from any of the above, though. It starts from the same "let me run my commands" starting point, but data handling, filtering, and transformation are core to Nu's functionality.
 
 ## You said something about Windows
 
@@ -200,7 +200,7 @@ That's pretty much it! I'm good to go explore the world of Nushell on Windows.
 
 ## Sure but why
 
-Well, now that I have all this set up along with a local checkout of the site's current [card/Hugo](../../../card/Hugo.md) iteration, I can play with Hugo's article listing.
+Well, now that I have all this set up along with a local checkout of the site's current [Hugo](../../../card/Hugo.md) iteration, I can play with Hugo's article listing.
 
 ````
 ❯ hugo list all | from csv | select title publishDate draft | sort-by -r publishDate | first 5

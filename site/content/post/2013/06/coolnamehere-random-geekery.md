@@ -22,4 +22,4 @@ Except that all was not well. The Yahoo account was frequently compromised. I st
 
 Random Geekery is the same thing that coolnamehere was: a mix of notes and tutorials about geeky code stuff along with occasional personal updates. Unlike the old site, I'm starting out with a blog and enabling comments.
 
-The old [card/coolnamehere](../../../card/coolnamehere.md) content will be uploaded here so that sites which link to its resources will still have something to point to. I'll make a note when that happens.
+The old [coolnamehere](../../../card/coolnamehere.md) content will be uploaded here so that sites which link to its resources will still have something to point to. I'll make a note when that happens.

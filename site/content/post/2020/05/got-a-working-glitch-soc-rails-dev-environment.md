@@ -15,7 +15,7 @@ tags:
 - mostly-rails
 - tools
 title: Got a Working glitch-soc Rails Dev Environment
-updated: 2024-01-26 11:01:31-08:00
+updated: 2024-02-01 20:13:52-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-04.png](../../../attachments/img/2020/cover-2020-05-04.png)
@@ -24,7 +24,7 @@ I wanted to build and test a development instance of [`glitch-soc`](https://glit
 
 It’s less tutorial and more confessional.  I haven’t used Rails much since 4.0 was shiny.  So there’s likely some common practice workflow that I don’t know yet.  But I got it to work.
 
-# Install glitch-soc locally
+## Install glitch-soc locally
 
 `glitch-soc` documentation refers you to [Mastodon docs](https://docs.joinmastodon.org), Mastodon’s [installation instructions](https://docs.joinmastodon.org/admin/install/) seem focused on production installations.  I bounce back and forth between Mastodon’s [README](https://github.com/tootsuite/mastodon) and its [developer documentation](https://docs.joinmastodon.org/dev/setup/).
 
@@ -32,12 +32,12 @@ The README says I need:
 
 * [PostgreSQL](https://www.postgresql.org/) 9.5+
 * [Redis](https://redis.io/) 4+
-* [card/Ruby](../../../card/Ruby.md) 2.5+
-* [card/Node.js](../../../card/Node.js.md) 10.13+
+* [Ruby](../../../card/Ruby.md) 2.5+
+* [Node.js](../../../card/Node.js.md) 10.13+
 
 [rbenv](https://github.com/rbenv/rbenv) and [nvm](https://github.com/nvm-sh/nvm) help with the language requirements, but this fresh [Manjaro](https://manjaro.org/) partition lacks the other requirements.
 
-## Install Redis
+### Install Redis
 
 Used the [Arch wiki](https://wiki.archlinux.org/index.php/Redis) as a guide.  Didn’t need to edit config, though.  Instance installed via [Pamac](https://wiki.manjaro.org/index.php?title=Pamac) is already configured to only listen to `127.0.0.1`.
 
@@ -50,7 +50,7 @@ $ sudo systemctl enable redis
 Version installed
 : 6.0
 
-## Install Postgresql
+### Install Postgresql
 
 Once again, going off the [Arch wiki entry](https://wiki.archlinux.org/index.php/PostgreSQL).
 
@@ -74,11 +74,11 @@ That reminds me.  I want to finish reading [The Art of PostgreSQL](https://thear
 Version installed
 : 12.2
 
-## Clone project and install dev dependencies
+### Clone project and install dev dependencies
 
 Not the required services.  I just installed those.  Languages and libraries.
 
-### fork & clone repo
+#### fork & clone repo
 
 Since I hope to contribute bug fixes someday, I’ll fork the [repo](https://github.com/glitch-soc/mastodon) rather than just clone it.  I clone my fork instead.
 
@@ -105,7 +105,7 @@ version. Time to install the gems.
 $ bundle install
 ````
 
-Oh hey what’s this? It seems relevant to my [interests](../../../card/IndieWeb.md)
+Oh hey what’s this? It seems relevant to my [IndieWeb](../../../card/IndieWeb.md) interests:
 
 ````text
 ⋮
@@ -137,7 +137,7 @@ At some point I should [enable](https://github.com/nvm-sh/nvm#calling-nvm-use-au
  > 
  > **NOTE**
 >
- > Or maybe I could play with [card/Volta](../../../card/Volta.md).  Not today. Maybe later.
+ > Or maybe I could play with [Volta](../../../card/Volta.md).  Not today. Maybe later.
 
 ````console
 $ nvm install
@@ -182,9 +182,9 @@ Loads of text follows. That’s good, right?
 
 Instructions go straight to running the application, but that’s not my style.
 
-# Getting tests to pass
+## Getting tests to pass
 
-I want to run tests first. Blame [card/Perl](../../../card/Perl.md). I have certain expectations after years of watching `cpan` run tests before declaring something installed.
+I want to run tests first. Blame [Perl](../../../card/Perl.md). I have certain expectations after years of watching `cpan` run tests before declaring something installed.
 
 ````text
 $ rspec
@@ -278,7 +278,7 @@ Clearly I need to automate this.  Maybe something to do with Foreman.  Maybe jus
 
 A real fix — if one is needed, and I didn’t just miss a vital paragraph of documentation — would be to give CircleCI its own environment distinct from the default test environment.
 
-# Good enough
+## Good enough
 
 Will I actually do anything with my `glitch-soc` fork?  No idea.  But I want to share this for other dusty Ruby folks whose Rails applications predate [Webpack](https://webpack.js.org/).
 

@@ -17,13 +17,13 @@ tags:
 - site
 - tools
 title: h-entry Microformat for Indieweb Posts
-updated: 2024-01-26 16:44:03-08:00
+updated: 2024-02-01 20:14:48-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)
 looking at the interpreted microformats for a post, in [bat](https://github.com/sharkdp/bat)
 
-# h-entry?
+## h-entry?
 
 Like [h-card](indieweb-h-cards.md), [h-entry](https://microformats.org/wiki/h-entry) provides an attribute vocabulary. While h-card focuses on people and organizations, h-entry describes shared content — blog posts and comments in particular, but you could expand it as far as you like. Want to generate a feed of git commits? You could use h-entry to describe a commit!
 
@@ -31,11 +31,11 @@ Like [h-card](indieweb-h-cards.md), [h-entry](https://microformats.org/wiki/h-en
  > \[!NOTE\] But I want to try Webmentions!
  > You totally can!
  > 
- > I plan to examine *inbox/Webmention* — the mechanism behind replies, likes, reposts, etc. They’re the fun conversation part of [card/IndieWeb](../../../card/IndieWeb.md) after all. But I need to make sure that when I get to the conversation I have a clear understanding of who is taking part — the h-cards — and where the discussions take place — the h-entries.
+ > I plan to examine *Webmention* — the mechanism behind replies, likes, reposts, etc. They’re the fun conversation part of [IndieWeb](../../../card/IndieWeb.md) after all. But I need to make sure that when I get to the conversation I have a clear understanding of who is taking part — the h-cards — and where the discussions take place — the h-entries.
  > 
  > But you don’t need to wait for me. There are fine tutorials out there to walk you through the process. <https://IndieWebify.me> in particular tells you everything you need to know.
 
-# Fine. Let’s get on with it
+## Fine. Let’s get on with it
 
 IndieWeb entries identify themselves with the `h-entry` class. `e-content` marks the *content* of the entry. You could always mark the same element as both. In fact that’s basically what I’ve been doing for a while.
 
@@ -72,7 +72,7 @@ Time to focus on putting useful metadata in the article header. Might as well ex
 {{ end }}
 ````
 
-## The bare minimum
+### The bare minimum
 
 For IndieWeb purposes, we need to know at least two things about every entry:
 
@@ -115,7 +115,7 @@ Let’s see that in action with my post on [weighing files in Python](../../2019
 
 ![post header with minimal h-entry info](attachments/img/2020/h-entry-with-title.png)
 
-## Who wrote this, anyways?
+### Who wrote this, anyways?
 
 Seems a bit silly on my single-author site, but explicit authorship *does* make things clearer to casual visitors.
 
@@ -128,7 +128,7 @@ Fortunately I have a canonical h-card that I can link to.
    href="{{ .Site.BaseURL }}">{{ .Site.Author.name }}</a>
 ````
 
-## How do I classify my entry?
+### How do I classify my entry?
 
 Now to sprinkle some `p-category` items in to help folks understand where the post fits with the rest of my site.
 
@@ -163,7 +163,7 @@ I organize my Hugo content by [type](https://gohugo.io/content-management/types)
 
 ![h-entry with categories](attachments/img/2020/h-entry-with-categories.png)
 
-## What about cover images?
+### What about cover images?
 
 Many — but not all — of my posts include a cover image. Cover images should almost definitely be `u-photo`. There’s a **lot** of image processing with it though. To make a long story short — *too late!* — I’ll just show the microformat-specific addition.
 
@@ -175,11 +175,11 @@ Many — but not all — of my posts include a cover image. Cover images should 
 
 Yep, that’s a post header all right. What about validation? Did I get the microformats right?
 
-# Examining my microformats locally
+## Examining my microformats locally
 
-I know I can [validate](https://indiewebify.me/validate-h-entry) my h-entry at IndieWebify or copy and paste to <https://microformats.io>, but I want to look at this stuff from the shell. Preferably with a single command. *Ideally* with something I can stash in my \[\[inbox/Pyinvoke|`tasks.py`\]\] file.
+I know I can [validate](https://indiewebify.me/validate-h-entry) my h-entry at IndieWebify or copy and paste to <https://microformats.io>, but I want to look at this stuff from the shell. Preferably with a single command. *Ideally* with something I can stash in my *Pyinvoke* `tasks.py` file.
 
-[mfpy](https://github.com/microformats/mf2py) and [mf2util](https://mf2util.readthedocs.io/en/latest/) provide microformats2 handling for [card/Python](../../../card/Python.md) code.
+[mfpy](https://github.com/microformats/mf2py) and [mf2util](https://mf2util.readthedocs.io/en/latest/) provide microformats2 handling for [Python](../../../card/Python.md) code.
 
 I mainly want a dump of microformats found in a given URL, in a format easier for me to read than JSON. Here’s what I came up with.
 
@@ -196,7 +196,7 @@ from ruamel.yaml import YAML
 import toml
 ````
 
-I need different formats for different purposes, so I import Python libraries for [card/YAML](../../../card/YAML.md) and [card/TOML](../../../card/TOML.md) along with the standard library [JSON](https://docs.python.org/3/library/json.html) support.
+I need different formats for different purposes, so I import Python libraries for [YAML](../../../card/YAML.md) and [TOML](../../../card/TOML.md) along with the standard library [JSON](https://docs.python.org/3/library/json.html) support.
 
 ````python
 def shorten_properties(d, width=80):
@@ -331,7 +331,7 @@ $ inv mf2 http://localhost:1313/2019/06/01/weighing-files-with-python -i
 
 *Nice*. I can tidy it up a bit later. Probably end up using those mf2util functions. But this works great for now. And my h-entry looks good!
 
-## Examine microformats on other sites
+### Examine microformats on other sites
 
 Oh hey I can grab any URL. This handles another issue I had: trying to
 examine microformats on other sites.

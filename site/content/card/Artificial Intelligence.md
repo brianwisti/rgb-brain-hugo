@@ -39,7 +39,7 @@ from "Artificial Intelligence: A Modern Approach" by Peter Norvig and Stuart Rus
 * Robotics
   * Robotic Perception
   * Robotic Actuation
-  * Mapping, Localication
+  * Mapping, Localization
 * Object Recognition
   * Vision
   * 3D Reconstruction

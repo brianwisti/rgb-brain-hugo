@@ -16,15 +16,15 @@ tags:
 - tools
 title: CLI Journaling in Joplin with Raku
 created: 2024-01-15T15:26:52-08:00
-updated: 2024-01-26T10:21:58-08:00
+updated: 2024-02-01T19:59:48-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-21.png](../../../attachments/img/2021/cover-2021-05-21.png)
 the formatted output of my journal-reading one-liner
 
-Let's write a couple one-liners so I can journal in [card/Joplin](../../../card/Joplin.md) from the command line!
+Let's write a couple one-liners so I can journal in [Joplin](../../../card/Joplin.md) from the command line!
 
-# But why?
+## But why?
 
 Journaling is great.  Now I'm not talking about big name [Bujo](https://bulletjournal.com/) bullet journaling process.  I mean getting a thought down quick before I lose it. Even better if I can get that thought down in a place where I can find it later.
 
@@ -36,7 +36,7 @@ Those apps and tools are yet another interface, another set of rules.  I already
 
 With uncharacteristic restraint, today I choose to get better at the tools I have rather than installing a new one.
 
-# Adding a journal entry
+## Adding a journal entry
 
 ````bash
 joplin use Journal && joplin edit $(date --iso=minute)
@@ -66,7 +66,7 @@ I'm okay with the confirmation request for now. That way I have fewer moments of
 
 ![Editing a journal entry](attachments/img/2021/editing-note.png)
 
-## What about more of a diary?
+### What about more of a diary?
 
 Leave `minute` off the `--iso` argument if you prefer a tidy collection of daily pages to my big stack of notes.
 
@@ -76,7 +76,7 @@ joplin edit $(date --iso)
 
 Now you'll be editing the single entry for today's date.
 
-# Reading journal entries
+## Reading journal entries
 
 The best review path will be via the Joplin app itself.  That way you can tag and edit.
 
@@ -97,7 +97,7 @@ joplin use Journal \
 
 Let me stall for a second.
 
-## Pretty print with Rich
+### Pretty print with Rich
 
 We already talked about `joplin use Journal`. [Rich Markdown](https://rich.readthedocs.io/en/stable/markdown.html) formats Markdown — Joplin's default format — for rich display in a terminal.  It can even run as a standalone application.  I take advantage of that here to get a pretty view of my Joplin entries:
 
@@ -150,9 +150,9 @@ the easy copy buffer.
 
 You can also use [Glow](https://github.com/charmbracelet/glow) if you want a standalone Markdown pretty printer. It works.  Rich is already part of my toolkit, so I'll keep using it.
 
-## Am I ready to explain myself?
+### Am I ready to explain myself?
 
-Okay, I think I've stalled enough.  That middle bit.  That's [card/Raku](../../../card/Raku.md).
+Okay, I think I've stalled enough.  That middle bit.  That's [Raku](../../../card/Raku.md).
 
 ````raku
 for qx{ joplin ls }.lines.sort {

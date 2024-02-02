@@ -13,9 +13,11 @@ tags:
 - terminal
 - the-most-important-app
 title: Installed Windows Terminal Preview
+created: 2024-01-15T15:26:37-08:00
+updated: 2024-02-01T21:55:21-08:00
 ---
 
-*inbox/Windows* partition is [Fast Ring](https://insider.windows.com/en-us/how-to-overview/) now, but that took the full night. All
+*Windows* partition is [Fast Ring](https://insider.windows.com/en-us/how-to-overview/) now, but that took the full night. All
 I had time for this morning was installing the fancy – and [open source](https://github.com/microsoft/terminal/blob/master/LICENSE)! –
 [terminal](https://devblogs.microsoft.com/commandline/windows-terminal-microsoft-store-preview-release/) preview from the [Windows Store](https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab).
 

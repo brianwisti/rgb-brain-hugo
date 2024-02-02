@@ -18,7 +18,7 @@ tags:
 - oops
 - i-fixed-it
 title: Joplin CLI Batch Processing With Raku
-updated: 2024-01-26 10:21:56-08:00
+updated: 2024-02-01 20:20:46-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-24.jpg](../../../attachments/img/2021/cover-2021-05-24.jpg)
@@ -27,7 +27,7 @@ don't get excited; these are the only notes I took
  > 
  > **NOTE**
 >
- > This sidetracks enough for three blog posts, mostly about [card/Raku](../../../card/Raku.md).  Sorry about that.  No time to make it shorter.  You know how it is.  There's a little [card/Joplin](../../../card/Joplin.md) stuff in here.
+ > This sidetracks enough for three blog posts, mostly about [Raku](../../../card/Raku.md).  Sorry about that.  No time to make it shorter.  You know how it is.  There's a little [Joplin](../../../card/Joplin.md) stuff in here.
 
 This is embarrassing.  I fired up the Joplin [desktop app](https://joplinapp.org/desktop/) this morning and it told me there was an update.  Makes sense.  I haven't loaded the desktop app in a couple months.
 
@@ -35,9 +35,9 @@ Oh hang on.  What about the [terminal app](https://joplinapp.org/terminal/) whic
 
 Yep.  The [Changelog](https://joplinapp.org/changelog_cli) shows updates, one of which includes batch processing.  Batch processing sounds like exactly the thing to address my many complaints about performance.
 
-# Update Joplin with Volta
+## Update Joplin with Volta
 
-I use [Volta](https://volta.sh) to manage my[card/Node.js](../../../card/Node.js.md) resources.  Volta treats installing and updating as the same action.
+I use [Volta](https://volta.sh) to manage my[Node.js](../../../card/Node.js.md) resources.  Volta treats installing and updating as the same action.
 
 ````sh
 volta install joplin
@@ -52,7 +52,7 @@ joplin 1.8.1 (prod)
 
 Now I'm up to date.  Let's see what changes I can make to my journaling code.
 
-# Fix the one-liners
+## Fix the one-liners
 
 The one-liner for adding journal entries works fine as-is.
 
@@ -113,7 +113,7 @@ One and a half seconds for a formatted display of every journal entry.  Not bad,
 >
  > The documentation for `joplin ls` mentions a `--sort` flag, but as of v1.8.1 I got no difference when using `joplin ls --sort title`. Didn't see a mention of the specific issue, so I overcame my shyness and filed [\#5004](https://github.com/laurent22/joplin/issues/5004).
 
-# Fix the script
+## Fix the script
 
 Splitting up the Raku script into logical pieces the other day means that today I only need to fix a single function.  Thank goodness.
 
@@ -164,7 +164,7 @@ The end result is the same: a file that goes away when you no longer need it.
 
 I like friendly. Let's see how `Temp::Path` does.
 
-## Try `Temp::Path`
+### Try `Temp::Path`
 
 Need to install it, of course.  [`zef`](https://github.com/ugexe/zef) handles Raku modules.  I set that up a while back with \[\[post/2020/05/setting-up-raku-with-rakubrew|`rakubrew`\]\].
 
@@ -234,7 +234,7 @@ But why is my one-liner twice as fast?  Is it Temp::Path?  Raku?  Joplin? Someth
 
 Let's find out if File::Temp does any better.
 
-## Try File::Temp
+### Try File::Temp
 
 Out comes `zef`…
 
@@ -293,7 +293,7 @@ What I'm saying is don't get hung up on trivia.
 
 Speaking of trivia…
 
-# About that regular expression
+## About that regular expression
 
 I need to do something about this.
 
@@ -305,7 +305,7 @@ We already know that regular expressions are their own little language embedded 
 
 Let's tackle this backwards.  Top-down.  Whatever it is the fancy people say. I'm going to split it out into its own function.  Makes it easier to think of this transformation in isolation.
 
-## Hide it in a function
+### Hide it in a function
 
 What do I want this function to do?  I want it to give me my *journal text*, but with *formatted headers* in the right places.
 
@@ -317,7 +317,7 @@ sub format-headers($journal-text) {
 }
 ````
 
-## Use a named capture
+### Use a named capture
 
 Do I want to format every `$0`? No. I want to format every *entry title*.
 
@@ -332,7 +332,7 @@ sub format-journal($journal-text) {
 
 Of course Raku supports [named captures](https://docs.raku.org/language/regexes#Named_captures).  The part we care about is stored in the match object.  Behind the scenes, `$<entry-title>` is getting the value stored under the key `"entry-title"`.
 
-# An `rx{}` block for legibility
+## An `rx{}` block for legibility
 
 How do I know the *entry title*?  I know the *entry title* because I found a
 *lone timestamp*.
@@ -356,7 +356,7 @@ But rather than the expected elaborate chain of metacharacters, the pattern we s
 
 I told you I was getting there.
 
-## Name your regex, not just your capture
+### Name your regex, not just your capture
 
 What's a *lone timestamp*? It's a *timestamp* on a line by itself.
 
@@ -368,7 +368,7 @@ my regex lone-timestamp {
 
 Now we have a regular expression as its own scoped code object.  The [regex](https://docs.raku.org/language/regexes#Named_regex_definition_syntax) is the rawest component of a family that includes tokens, rules, and entire [grammars](https://docs.raku.org/language/grammar_tutorial).  I'm not ready to get into grammars yet, but I am absolutely getting closer.
 
-## It's not an expression; it's a composition
+### It's not an expression; it's a composition
 
 What does a *timestamp* look like?  Well, a [DateTime String](https://docs.raku.org/type/DateTime#method_Str) holds an *ISO 8601 date*, a *clock time*, and and *offset*, with a `'T'` between the date and the clock time.
 
@@ -462,13 +462,13 @@ And this is just me composing regex objects.  Eventually I'm going to try gramma
  > 
  > We should absolutely use that opportunity and encourage new languages to steal *these* regular expressions rather than the stuff that impressed us twenty years ago.
 
-## Ship it!
+### Ship it!
 
 What am I doing on this soapbox? Time to step down.
 
 My script works. It's still not fast, but at least it's never slow. It's readable. And most important of all, I had fun.
 
-# The complete script
+## The complete script
 
 Includes a couple more steps into composition that I didn't feel merited extra blog post paragraphs.
 

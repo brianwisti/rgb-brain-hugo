@@ -13,7 +13,7 @@ tags:
 - coolnamehere
 title: Rake
 created: 2024-01-15T15:25:32-08:00
-updated: 2024-01-26T10:10:32-08:00
+updated: 2024-02-01T20:41:15-08:00
 ---
 
 [Rake](https://ruby.github.io/rake/) is a simple build program. 
@@ -39,7 +39,7 @@ A Rakefile is a collection of Ruby instructions organized into *tasks*.
 
 This is not going to be an in-depth Rake tutorial.  I’ve noticed a lack of simple real-world Rakefile examples, aside from one excellent [Rake introduction](https://www.stuartellis.eu/articles/rake). I have a Rakefile I need to build.  That makes this a good opportunity for me to write a page about Rake.
 
-# Building a Simple Rakefile
+## Building a Simple Rakefile
 
 I have a Web site. You may have noticed that. 
 If you only know me from my frequent postings on social network sites like [Plurk](https://plurk.com) or Google+.
@@ -65,7 +65,7 @@ It is just coherent enough to build the site you’re reading.
 It is *certainly* not up to the job of driving Compass. 
 That’s where Rake comes in.
 
-## One Task
+### One Task
 
 You might want to use the exact same Rake tasks as me while you read this. 
 Here is a dummy version of `site-builder.py` that you can use. 
@@ -130,7 +130,7 @@ rake html  # Generate Web site
 A Rakefile can have many tasks, but some of them may be utility tasks which are not expected to be called by the user.
 That is why limiting the task list to described tasks is a good idea.
 
-## A Second Task
+### A Second Task
 
 As I mentioned before, part of the reason I am writing a Rakefile is because I want to use Compass to define the styles for coolnamehere. 
 I set up a Compass project parallel to my site sources, including the blueprint module. 
@@ -196,7 +196,7 @@ cp -r style/images/grid.png source/inc/images
 Good enough. 
 Excuse me while I adjust my HTML template to point at the right stylesheets.
 
-## Setting a Dependency
+### Setting a Dependency
 
 There are already awkward bits to the Rakefile as it is right now. 
 I need to run two commands in order to build the site completely. 
@@ -241,28 +241,21 @@ Excellent.
 Now I can generate both CSS and HTML from a single Rake command. 
 I am going to work a little bit on the styles, and to see if I notice any other little issues with my Rakefile.
 
-## Setting The Default Task
+### Setting The Default Task
 
-It has been pretty effective so far. 
-Incidentally, Compass is kind of awesome. 
-I highly recommend you check it out for your Web design needs.
+It has been pretty effective so far. Incidentally, Compass is kind of awesome. I highly recommend you check it out for your Web design needs.
 
 It would be nice if I could make the `rake` call a little shorter, though. 
 I have a shortcut set up in [Vim](../../../card/Vim.md) that invokes Rake with a default argument. 
 It would be nice to use that shortcut while I am working on coolnamehere.
 
-Rake already has rules for default tasks, actually. 
-It looks for a task named "default" or `:default`. 
-That makes sense. 
-Let me set up a default task that depends on the `:html` task.
+Rake already has rules for default tasks, actually. It looks for a task named "default" or `:default`. That makes sense. Let me set up a default task that depends on the `:html` task.
 
 ````ruby
 task :default => [:html]
 ````
 
-That is all I need to do, actually. 
-A task can simply be a name and its dependencies. 
-You do not *need* to define a block of actions for that task.
+That is all I need to do, actually. A task can simply be a name and its dependencies.  You do not *need* to define a block of actions for that task.
 
 ````console
 $ rake
@@ -276,15 +269,11 @@ python site-builder.py
 Look at me, I'm building a site!
 ````
 
-## Something I Have Been Meaning To Get Around To
+### Something I Have Been Meaning To Get Around To
 
-I have been promising myself for years that I will assemble some sort of script that would automate the process of uploading my site. 
-I never get around to it, though. 
-Instead I fire up NCFTP, load the "coolnamehere" bookmark I’ve had for years, and upload.
+I have been promising myself for years that I will assemble some sort of script that would automate the process of uploading my site. I never get around to it, though. Instead I fire up NCFTP, load the "coolnamehere" bookmark I’ve had for years, and upload.
 
-It is time to fix that by adding an "upload" task. 
-I will take advantage of the [syncftp](https://github.com/glejeune/syncftp) Ruby library,
-which looks like it will handle all of the little details.
+It is time to fix that by adding an "upload" task. I will take advantage of the [syncftp](https://github.com/glejeune/syncftp) Ruby library, which looks like it will handle all of the little details.
 
 ````sh
 gem install syncftp
@@ -303,7 +292,7 @@ task :upload => [:html] do
 end
 ````
 
-# Conclusion
+## Conclusion
 
 Here’s the complete Rakefile, with the as-yet untested "upload" task.
 

@@ -14,13 +14,15 @@ tags:
 - site
 - tools
 title: Turning Taskwarrior Posts Into a Series
+created: 2024-01-15T15:26:37-08:00
+updated: 2024-02-01T21:05:03-08:00
 ---
 
 ![attachments/img/2019/cover-2019-05-12.jpg](../../../attachments/img/2019/cover-2019-05-12.jpg)
 
 I want to more clearly show relations between some of my posts. Tags and categories do handle a lot, but they get a bit clunky with stuff like my [Taskwarrior](../../../card/Taskwarrior.md) posts, which specifically build on each other.
 
-[card/Hugo](../../../card/Hugo.md) supports series as a [taxonomy](https://gohugo.io/content-management/taxonomies/). Let’s find out what that means.
+[Hugo](../../../card/Hugo.md) supports series as a [taxonomy](https://gohugo.io/content-management/taxonomies/). Let’s find out what that means.
 
 ## Update site config
 

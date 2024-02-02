@@ -18,7 +18,7 @@ created: 2024-01-15T15:26:20-08:00
 updated: 2024-01-26T10:22:23-08:00
 ---
 
-Finally reading [Programming Crystal](https://pragprog.com/titles/crystal/programming-crystal/), by Ivo Balbaert and [Simon St.  Laurent](http://simonstl.com/).  Good stuff.  The [card/Crystal](../../../card/Crystal.md) language has advanced some since the book came out, but nearly all the code runs as-is.
+Finally reading [Programming Crystal](https://pragprog.com/titles/crystal/programming-crystal/), by Ivo Balbaert and [Simon St.  Laurent](http://simonstl.com/).  Good stuff.  The [Crystal](../../../card/Crystal.md) language has advanced some since the book came out, but nearly all the code runs as-is.
 
 Something that jumped out at me was the difference between their results and mine with the [benchmarking](https://github.com/Ivo-Balbaert/programming_crystal/blob/master/code/managing_projects/benchmarking.cr) example.  Not the raw numbers.  I'd be a little confused if those were exactly the same.  The ratios caught my attention.
 

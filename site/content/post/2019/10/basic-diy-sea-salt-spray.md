@@ -2,6 +2,7 @@
 aliases:
 - /2019/10/21/basic-diy-sea-salt-spray/
 category: post
+created: 2024-01-15 15:26:36-08:00
 date: 2019-10-21 00:00:00-07:00
 description: In which I write a hair spray recipe and *then* share the story
 slug: basic-diy-sea-salt-spray
@@ -14,6 +15,7 @@ tags:
 - grooming
 - marginalia
 title: Basic DIY Sea Salt Spray
+updated: 2024-02-01 19:55:19-08:00
 ---
 
 ![attachments/img/2019/cover-2019-10-21.jpg](../../../attachments/img/2019/cover-2019-10-21.jpg)
@@ -70,7 +72,7 @@ One batch lasts me over a month of daily use, but I intentionally go for a light
 
 Now that the recipe is out of the way — I thought cookbooks were bad about forcing you to read a long story before giving you their instructions. Cookbooks are nothing. Those self-care blogs are *awful*. An evening searching and I couldn’t find the source for the basic recipe I’ve been using over the last year or so because I couldn’t get through all the *stories*.
 
-I had this big story in mind about how I was watching a beard care video one night and they said "use sea salt spray! It’s good on your hair!" and I said "okay!" and they said "use *our* sea salt spray!" and I said "at that price? H\*ck no!" I was even going to work in some [card/Perl](../../../card/Perl.md) references. Talk about how making your own hair spray is another application of [The Three Virtues](http://threevirtues.com/).
+I had this big story in mind about how I was watching a beard care video one night and they said "use sea salt spray! It’s good on your hair!" and I said "okay!" and they said "use *our* sea salt spray!" and I said "at that price? H\*ck no!" I was even going to work in some [Perl](../../../card/Perl.md) references. Talk about how making your own hair spray is another application of [The Three Virtues](http://threevirtues.com/).
 
 But I got bored just writing the outline for that particular story. Now it’s a year later, and I’m writing down the recipe somewhere permanent to avoid losing it again.
 

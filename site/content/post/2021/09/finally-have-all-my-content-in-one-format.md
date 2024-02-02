@@ -12,7 +12,7 @@ tags:
 - asciidoctor
 title: finally have all my content in one format
 created: 2024-01-15T15:26:11-08:00
-updated: 2024-01-26T10:21:37-08:00
+updated: 2024-02-01T20:12:23-08:00
 ---
 
 
@@ -30,4 +30,4 @@ content/**/*{.md,.md.txt,.rst,.rst.txt,.adoc,.adoc.txt,.org}
 
 Okay yes I also have it in several other formats. Came up with an approach where I can keep all my formats in the [base blog](../08/pared-down-to-the-base-blog.md) and build whatever I prefer.
 
-My *point* is that all the content that counts is available in [card/Asciidoctor](../../../card/Asciidoctor.md) format. Better choice for me than Markdown since Asciidoctor already has built-in understanding of notes and asides. Better choice for me than [card/reStructuredText](../../../card/reStructuredText.md) because it's easier to find Asciidoctor processors for assorted static site generators.
+My *point* is that all the content that counts is available in [Asciidoctor](../../../card/Asciidoctor.md) format. Better choice for me than Markdown since Asciidoctor already has built-in understanding of notes and asides. Better choice for me than [reStructuredText](../../../card/reStructuredText.md) because it's easier to find Asciidoctor processors for assorted static site generators.

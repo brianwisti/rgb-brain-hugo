@@ -6,9 +6,11 @@ tags:
 - site
 - marginalia
 title: New Theme for a Bit
+created: 2024-01-15T15:26:14-08:00
+updated: 2024-02-01T20:30:19-08:00
 ---
 
-I adapted the [Nederburg](https://github.com/appernetic/hugo-nederburg-theme) theme for my [card/Hugo](../../../card/Hugo.md) site. I probably won't keep it but I'll darn well use it for a bit.
+I adapted the [Nederburg](https://github.com/appernetic/hugo-nederburg-theme) theme for my [Hugo](../../../card/Hugo.md) site. I probably won't keep it but I'll darn well use it for a bit.
 
 <!--more-->
 

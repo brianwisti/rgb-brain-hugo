@@ -12,10 +12,10 @@ tags:
 - orgmode
 title: I added this note from org mode
 created: 2024-01-15T15:26:23-08:00
-updated: 2024-01-26T11:00:05-08:00
+updated: 2024-02-01T20:18:04-08:00
 ---
 
-Trying an experiment with setting up a [capture template](https://orgmode.org/manual/Capture-templates.html) so [ox-hugo](https://ox-hugo.scripter.co/) can add short notes to the site from [card/Org](../../../card/Org.md).
+Trying an experiment with setting up a [capture template](https://orgmode.org/manual/Capture-templates.html) so [ox-hugo](https://ox-hugo.scripter.co/) can add short notes to the site from [Org](../../../card/Org.md).
 
 I built up the [ox-hugo capture sample](https://ox-hugo.scripter.co/doc/org-capture-setup/) to get my preferred `SECTION/YEAR/MONTH/STUB` folder layout.
 
@@ -71,4 +71,4 @@ Trying an experiment: setting up a [[https://orgmode.org/manual/Capture-template
 
 Still loads to figure out — for example, how will I get cover images working? But at least I proved to myself that it works.
 
-Back to fixing the broken [card/IndieWeb](../../../card/IndieWeb.md) mentions, which is why I opened my editor a couple of hours ago.
+Back to fixing the broken [IndieWeb](../../../card/IndieWeb.md) mentions, which is why I opened my editor a couple of hours ago.

@@ -10,7 +10,7 @@ tags:
 - site
 - tools
 title: Tweaking a Nikola Theme
-updated: 2024-01-26 11:03:49-08:00
+updated: 2024-02-01 21:05:23-08:00
 ---
 
 I adjusted the default [Nikola](https://getnikola.com) theme to show cover images!
@@ -18,19 +18,19 @@ I adjusted the default [Nikola](https://getnikola.com) theme to show cover image
 ![attachments/img/2020/cover-2020-01-25.png](../../../attachments/img/2020/cover-2020-01-25.png)
 The [now](../../../page/now.md) page, in Nikola
 
-# Motivation
+## Motivation
 
 I am a visual person. You might not know that from all the typing and my enthusiasm for command line tools. But many of my posts and pages have cover images. Sometimes the cover images are even relevant to the post.
 
 In the live site, cover images are prominently displayed at the top of their pages. They get referenced when a post gets shared on social media. A cropped and adjusted version of the cover image gets displayed in post summaries.
 
-So if I’m using [card/Nikola](../../../card/Nikola.md) to build something like my current site, I need cover images.
+So if I’m using [Nikola](../../../card/Nikola.md) to build something like my current site, I need cover images.
 
 Nikola site uses the [bootblog4](https://themes.getnikola.com/v8/bootblog4/) theme by default, taking advantage of the [Bootstrap](https://getbootstrap.com/) toolkit. bootblog4 doesn’t support cover images, so I’ll make a version that does.
 
 Mind you, I don’t want to build a whole new theme. That can come later. There’s even a nice tutorial for [creating a theme](https://getnikola.com/creating-a-theme.html). For now I just want to tweak the default a little.
 
-# Set up files and metadata
+## Set up files and metadata
 
 Nikola starts with a few assumptions I can work with. bootblog4 already looks for `previewimage` [metadata](https://getnikola.com/handbook.html#metadata-fields) to build thumbnails for [featured posts](https://getnikola.com/handbook.html#featured-posts). Nikola also expects to find image files in your site’s `images/` folder. Makes sense.
 
@@ -51,7 +51,7 @@ previewimage: /images/2019/12/again-with-the-manual-symmetry/cover.jpg
 ---
 ````
 
-I prefer how [card/Hugo](../../../card/Hugo.md) handles [page bundles](https://gohugo.io/content-management/page-bundles/). Everything for your content is in the same folder. Many other static site generators — including Nikola — keep supplemental content separate from posts.
+I prefer how [Hugo](../../../card/Hugo.md) handles [page bundles](https://gohugo.io/content-management/page-bundles/). Everything for your content is in the same folder. Many other static site generators — including Nikola — keep supplemental content separate from posts.
 
 Hugo uses a powerful but sometimes confusing [taxonomy](https://gohugo.io/content-management/taxonomies/) system in layout customization. Nikola prefers a powerful but sometimes confusing "theme inheritance" system. Look. They’re all confusing. It’s just a matter of finding the kind of confusing you don’t mind.
 
@@ -59,7 +59,7 @@ With theme inheritance, my tweaks *are* a new theme. But the new theme basically
 
 So let’s inherit a theme.
 
-# Nikola’s `theme` command
+## Nikola’s `theme` command
 
 |Option|Description|
 |------|-----------|
@@ -97,7 +97,7 @@ Sweet. I have a new `themes/rgb-bootblog4` folder. Wait. It has no templates.
 
 Oh that’s right. This is what they were talking about with *template inheritance*. The templates are still in the parent. It’s up to me to copy and change specific templates. That’s both good and a little risky when the parent theme updates. What if my tweak turns out to be incompatible? Okay, not going to worry about it today. If you’re going to veer wildly from the parent, you should probably use [base](https://themes.getnikola.com/v8/base/) as the parent.
 
-# Editing templates
+## Editing templates
 
  > 
  > **NOTE**
@@ -174,7 +174,7 @@ Looks good for posts that have a cover image. How about pages?
 
 Excellent. I thought that would take much more work.
 
-# Remember Bootstrap?
+## Remember Bootstrap?
 
 bootblog4 *is* based off of Bootstrap. I feel compelled to make the cover image a [Jumbotron](https://getbootstrap.com/docs/4.4/components/jumbotron/).
 
@@ -193,6 +193,6 @@ bootblog4 *is* based off of Bootstrap. I feel compelled to make the cover image 
 
 Hm. Maybe, maybe not. I’m tempted to tweak it some more, but my task list is long and my time is short.
 
-# Did I miss anything?
+## Did I miss anything?
 
 Sort of. On the live site, I let Hugo resize cover images to fit in my design and avoid large downloads. Nikola has thumbnails, but that’s not quite the same thing. I’d have to do it myself, maybe with a [plugin](https://getnikola.com/handbook.html#custom-plugins).

@@ -20,6 +20,6 @@ updated: 2024-01-26T11:00:33-08:00
 ![attachments/img/2020/cover-2020-06-11.jpg](../../../attachments/img/2020/cover-2020-06-11.jpg)
 once again, the pic is irrelevant but Jumpy Dog sure is cute
 
-Starting a new job on Monday, which is pretty exciting. Also, figured out a whole bunch of breadcrumb and timeline stuff for the site, starting from a [shortcode example](https://gohugo.io/content-management/sections/#example-breadcrumb-navigation) I never noticed in the [card/Hugo](../../../card/Hugo.md) documents before.
+Starting a new job on Monday, which is pretty exciting. Also, figured out a whole bunch of breadcrumb and timeline stuff for the site, starting from a [shortcode example](https://gohugo.io/content-management/sections/#example-breadcrumb-navigation) I never noticed in the [Hugo](../../../card/Hugo.md) documents before.
 
 Hoping I finish before I get all distracted on Monday.

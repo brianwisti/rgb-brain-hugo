@@ -1,7 +1,7 @@
 ---
 title: Kotlin
 created: 2024-01-18T21:46:09-08:00
-updated: 2024-01-31T14:10:42-08:00
+updated: 2024-02-01T20:22:13-08:00
 ---
 
 A general purpose [Programming Language](Programming%20Language.md)  for the *JVM* and beyond.

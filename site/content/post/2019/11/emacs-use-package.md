@@ -2,6 +2,7 @@
 aliases:
 - /2019/11/09/emacs-use-package/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2019-11-09 00:00:00-08:00
 description: Just declared `.emacs` bankruptcy. Starting over with `use-package`.
 slug: emacs-use-package
@@ -10,9 +11,10 @@ tags:
 - packages
 - tools
 title: Emacs use-package
+updated: 2024-02-01 20:11:30-08:00
 ---
 
-I admit it. My [Emacs](../../../card/Emacs.md) usage is intermittent at best. But I do use Emacs *sometimes*. Still haven’t found anything to match [card/Org](../../../card/Org.md) for taking notes or writing posts.
+I admit it. My [Emacs](../../../card/Emacs.md) usage is intermittent at best. But I do use Emacs *sometimes*. Still haven’t found anything to match [Org](../../../card/Org.md) for taking notes or writing posts.
 
 So until I find something better than Org mode — which may take a while — I need Emacs. That means I need to get better at using it. *That* starts with configuration that isn’t a tribute to the [Flying Spaghetti Monster](http://spaghettimonster.com).
 

@@ -17,7 +17,7 @@ tags:
 - tools
 title: CSV and Data Tables in Hugo
 created: 2024-01-15T15:26:53-08:00
-updated: 2024-01-26T11:00:21-08:00
+updated: 2024-02-01T22:13:51-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-06.jpg](../../../attachments/img/2020/cover-2020-06-06.jpg)
@@ -29,7 +29,7 @@ I figured out how to write Hugo [shortcodes](https://gohugo.io/templates/shortco
 
 This approach only works as-is for uniform, shallow structures: every row has the same number of fields, and every field translates cleanly to a string. If you have more complex structures, you need more complex templates.
 
-# Why?
+## Why?
 
 Most Markdown parsers include some way to handle tables. Usually it involves
 drawing your table with ASCII characters. Something like this, from an older
@@ -47,9 +47,9 @@ Function            | Keys    | Description
 
 I can read it just fine, but I find managing Markdown tables tedious without editor extensions. I want easy tables. I don’t care if they look like a table while I’m editing them. If I can copy and paste something into a shortcode? Even better.
 
-[card/reStructuredText](../../../card/reStructuredText.md) and [card/Asciidoctor](../../../card/Asciidoctor.md) both provide table-handling approaches beyond drawing ASCII, though the default [rst table](https://docutils.sourceforge.io/rst.html) is lovely if you *do* like fiddling with columns. I looked at them for shortcode inspiration — particularly rst’s [csv-table](https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4) and [list-table](https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table) directives.
+[reStructuredText](../../../card/reStructuredText.md) and [Asciidoctor](../../../card/Asciidoctor.md) both provide table-handling approaches beyond drawing ASCII, though the default [rst table](https://docutils.sourceforge.io/rst.html) is lovely if you *do* like fiddling with columns. I looked at them for shortcode inspiration — particularly rst’s [csv-table](https://docutils.sourceforge.io/docs/ref/rst/directives.html#id4) and [list-table](https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table) directives.
 
-# CSV tables
+## CSV tables
 
 First up: CSV, "Comma-Separated Values". I work a fair amount with CSV on the command line. I may want to copy and paste something into a table for a blog post every once in a while.
 
@@ -71,7 +71,7 @@ Date,Visitors
 
 My shortcode receives that data as a string in the [`.Inner`](https://gohugo.io/templates/shortcode-templates/#inner) variable. How to turn that string into a table?
 
-## Just use `transform.Unmarshal`
+### Just use `transform.Unmarshal`
 
 Give `transform.Unmarshal` a formatted string, and it gives you back a data structure. CSV text becomes an array of arrays, which we turn into a table by iterating through everything with [`range`](https://gohugo.io/functions/range/).
 
@@ -101,7 +101,7 @@ Not bad, but it could be better.
 
 Give me a minute.
 
-## Fine-tuning the table with parameters
+### Fine-tuning the table with parameters
 
 I’ll add a parameter for the caption. Maybe another parameter indicating whether to expect a header row, since the first row of CSV doesn’t *always* contain column names.
 
@@ -152,10 +152,10 @@ values. Maybe later.
 
 CSV is great, but `transform.Unmarshal` supports other formats. What about those?
 
-# Digression: data tables
+## Digression: data tables
 
 I got a little carried away when I learned how much `transform.Unmarshal` can
-do. You could get a data structure from CSV, [JSON](https://json.org), [card/TOML](../../../card/TOML.md), or [card/YAML](../../../card/YAML.md)!
+do. You could get a data structure from CSV, [JSON](https://json.org), [TOML](../../../card/TOML.md), or [YAML](../../../card/YAML.md)!
 
 What about — what about a **data** table? Mind you, I’m not talking about Hugo [data files](https://gohugo.io/templates/data-templates/) or [`getJSON`](https://gohugo.io/templates/data-templates/#data-driven-content). That’s a great idea for later.
 
@@ -261,7 +261,7 @@ Wonderful! Wonderful formatting, anyways. The details are pretty sobering. Peopl
 
 There’s really only one *slight* problem with `data-table`. I don’t need it. Not today, anyways.
 
-# What I need: list tables
+## What I need: list tables
 
 What about that first table I mentioned? You know, the `elscreen` quick reference? *That* is the kind of table I need a shortcode for. Something like a reStructuredText `list-table`, or [Asciidoctor tables](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables).
 
@@ -337,7 +337,7 @@ Perfect. This will keep me going for a while. Time to stop before I get too clev
 
 Try to keep the original goal in mind when working on a thing. I could try making a universal data table shortcode. I don’t *need* a universal data table shortcode. Not yet, anyways.
 
-# What Next?
+## What Next?
 
 * Make a universal data table shortcode.
 

@@ -9,6 +9,8 @@ tags:
 - ruby
 - coolnamehere
 title: Ruby and the HYG Star Catalog
+created: 2024-01-15T15:25:35-08:00
+updated: 2024-02-01T21:58:06-08:00
 ---
 
 One of my big projects over the last year has been a [Parrot Babysteps](../../2009/07/parrot-babysteps.md) tutorial. One of the more interesting tasks in that tutorial was [reading a CSV file in Parrot](../../2009/10/parrot-babysteps-06-files-and-hashes.md). I used the [HYG Star Catalog](http://www.astronexus.com/node/34) as a sample [CSV](../../../card/CSV.md) file that was large enough to present some interesting data. This was fun in [Parrot](../../../card/Parrot.md), but obviously I thought quite a bit about how I would tackle the problem in a higher level language such as [Ruby](../../../card/Ruby.md). Today seems like a good day to find out.
@@ -17,7 +19,7 @@ One of my big projects over the last year has been a [Parrot Babysteps](../../20
 
 I am emphasizing the *Moderately* in this Moderately Interesting Ruby Exercise. After exploring the `csv` library for Ruby, we'll use [Sequel](http://sequel.rubyforge.org/) to build a database that can be quickly queried. Even though I have an unhealthy love for making projects larger and more complex than they need to be, I want to keep this short and sweet.
 
-### What I'm Using
+## What I'm Using
 
 My primary machine for these projects is the happy home iMac. It is running OS X 10.6 plus [MacPorts](http://macports.org). My default Ruby is 1.9.2, installed via [rvm](http://rvm.beginrescueend.com/).
 
@@ -197,7 +199,7 @@ Sorry, I got sleepy. Is it done? I should have put a `break` in that code after 
 
 ### Creating a Database
 
-I would imagine that stuffing these values into a database should make simple questions like "show me the star named 'Sol'" or "count the stars within 10 light years" pretty straightforward. We can use a lightweight database such as *inbox/SQLite*. There may be nearly 120,000 stars in the catalog, but that is trivial for SQLite. I have heard anecdotal reports of it being used for tables with millions of rows. 
+I would imagine that stuffing these values into a database should make simple questions like "show me the star named 'Sol'" or "count the stars within 10 light years" pretty straightforward. We can use a lightweight database such as *SQLite*. There may be nearly 120,000 stars in the catalog, but that is trivial for SQLite. I have heard anecdotal reports of it being used for tables with millions of rows. 
 
 First, I want to install `sqlite3`.
 

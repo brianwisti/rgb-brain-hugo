@@ -19,7 +19,7 @@ tags:
 - tools
 title: replyrc And Mojo
 created: 2024-01-15T15:26:14-08:00
-updated: 2024-01-26T10:11:54-08:00
+updated: 2024-02-01T20:46:50-08:00
 ---
 
 ![attachments/img/2014/cover-2014-08-19.png](../../../attachments/img/2014/cover-2014-08-19.png)
@@ -28,9 +28,9 @@ It has been a few days since I [started playing](repl-in-perl-with-reply.md) wit
 
 <!--more-->
 
-There are still customizations that I would like to make. For example, I write most of my personal code using [card/Perl](../../../card/Perl.md) 5.20's experimental [subroutine signature](http://perldoc.perl.org/perldelta.html#Experimental-Subroutine-signatures) and [postderef](http://perldoc.perl.org/perldelta.html#Experimental-Postfix-Dereferencing) features.
+There are still customizations that I would like to make. For example, I write most of my personal code using [Perl](../../../card/Perl.md) 5.20's experimental [subroutine signature](http://perldoc.perl.org/perldelta.html#Experimental-Subroutine-signatures) and [postderef](http://perldoc.perl.org/perldelta.html#Experimental-Postfix-Dereferencing) features.
 
-# Use Shiny Perl 5.20 Features Automatically
+## Use Shiny Perl 5.20 Features Automatically
 
 A default `$HOME/.replyrc` is created the first time you run Reply - unless you already have one, of course. It includes a selection of plugins that will be loaded and a collection of `script_line` entries that are evaluated automatically for any new Reply session. I fiddled with mine so that I had a Perl with syntactical sugar in place.
 
@@ -56,7 +56,7 @@ $res[1] = 'Hello Brian!'
 
 That's better.
 
-# Enabling The Editor
+## Enabling The Editor
 
 You need [Proc::InvokeEditor](https://metacpan.org/pod/Proc::InvokeEditor) in order to activate the [Editor plugin](https://metacpan.org/pod/Reply::Plugin::Editor). I suppose that makes sense. Proc::InvokeEditor is a module that makes it easy to launch your default text editor on behalf of the application, sending the editor buffer back to your application as user input.
 
@@ -78,9 +78,9 @@ And just like that, here is a new `#e` command.
 
 It can probably work with [EmacsClient](../06/start-using-emacsclient.md), but I have been lazy lately and fallen back to Vim as my `$EDITOR` default.
 
-# Specifying a Module at Start
+## Specifying a Module at Start
 
-I have been exploring [card/Mojolicious](../../../card/Mojolicious.md), which is a surprisingly full-featured framework considering its small size. The [ojo](http://mojolicio.us/perldoc/ojo) library is a Mojolicious command line tool focused on making your one-liners even more useful. Since Reply is sort of an extended one-liner environment - okay, you can call it a "shell" - ojo and Reply can go together perfectly.
+I have been exploring [Mojolicious](../../../card/Mojolicious.md), which is a surprisingly full-featured framework considering its small size. The [ojo](http://mojolicio.us/perldoc/ojo) library is a Mojolicious command line tool focused on making your one-liners even more useful. Since Reply is sort of an extended one-liner environment - okay, you can call it a "shell" - ojo and Reply can go together perfectly.
 
 There is no need to add ojo to my `.replyrc`, because I will not be needing its functionality every single time I load Reply. Instead I will just tell Reply to load the library when starting those particular sessions.
 
@@ -142,6 +142,6 @@ j( g( 'https://questhub.io/api/realm' )->body )->@*
 
 `$ref->@*` is an experimental new syntax for accessing the contents of an array reference. It is equivalent to `@{ $ref }` or `@$ref`. The postderef syntax is a little easier for me to read, but your experience may be different.
 
-# All Done
+## All Done
 
 That is enough for now. With the ReadLine plugin and Editor plugin enabled, a nice 2014-ish Perl setup in my `.replyrc`, and ojo available when I want it, Reply is downright useful for me.

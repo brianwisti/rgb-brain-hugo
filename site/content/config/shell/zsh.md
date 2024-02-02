@@ -2,14 +2,11 @@
 title: My $ZDOTDIR
 tags:
 - config
+created: 2024-01-24T19:56:35-08:00
+updated: 2024-02-01T16:11:11-08:00
 ---
 
-{{% warning %}}
-I don't use Zsh much at the moment.
-These files are in for the sake of completeness.
-That way I have all my dotfiles in this collection.
-But consider it untested while this warning is up.
-{{% /warning %}}
+I don't use Zsh much at the moment. These files are in for the sake of completeness. That way I have all my dotfiles in this collection. But consider it untested while this warning is up.
 
 ## `zshenv`
 

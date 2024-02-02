@@ -3,6 +3,7 @@ aliases:
 - /2019/11/03/building-rakudo-and-moarvm-on-linux/
 - /post/2019/11/building-rakudo-and-moarvim-on-linux/
 category: post
+created: 2024-01-15 15:26:41-08:00
 date: 2019-11-03 00:00:00-07:00
 description: In which I rediscover `make && make test && make install`
 slug: building-rakudo-and-moarvim-on-linux
@@ -15,13 +16,13 @@ tags:
 - linux
 - tools
 title: Building Rakudo and Moarvm on Linux
-updated: 2021-08-21 00:00:00-07:00
+updated: 2024-02-01 22:10:10-08:00
 ---
 
 > 
  > **2021-08-21**
 >
- > Skip all this and use [Rakubrew](../../2020/05/setting-up-raku-with-rakubrew.md) to manage [card/Raku](../../../card/Raku.md) installations.
+ > Skip all this and use \[setting-up-raku-with-rakubrew|Rakubrew\]\] to manage [Raku](../../../card/Raku.md) installations.
 
 Not instructions, but a brain dump of compiling and checking a [Rakudo](https://rakudo.org) installation.
 
@@ -119,7 +120,7 @@ Yo, World! This is Perl 6 - specifically: Perl 6 (6.d) moar (2019.07.1) ubuntu (
 
 Using `gist` instead of normal stringification because I wanted all the details. You can see with `$*PERL` inside the string that `Str` is not for the gory details.
 
-It’s a bit like `str` versus `repr` in the [card/Python](../../../card/Python.md) world.
+It’s a bit like `str` versus `repr` in the [Python](../../../card/Python.md) world.
 
 Anyways yay, it worked! If I ever get enough free time, I might investigate the `brew` bug. But it took me three days to finish *this* post.
 

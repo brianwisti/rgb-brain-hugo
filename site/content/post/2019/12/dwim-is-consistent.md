@@ -14,6 +14,8 @@ tags:
 - dwim
 - programming
 title: DWIM is consistent
+created: 2024-01-15T15:26:34-08:00
+updated: 2024-02-01T20:06:29-08:00
 ---
 
 Moshe Zadka has been [writing](https://opensource.com/users/moshez) a mostly excellent exploration of the [Zen of  Python](https://www.python.org/dev/peps/pep-0020/) for [Opensource.com](https://opensource.com). Not sure I approve of this take on guessing, from [The importance of consistency in your Python code](https://opensource.com/article/19/12/zen-python-consistency):
@@ -27,7 +29,7 @@ Moshe Zadka has been [writing](https://opensource.com/users/moshez) a mostly exc
  > In Perl, the result is 2. In `C`, naturally, the result is the empty
  > string. In the face of ambiguity, JavaScript, Perl, and C all guess.
 
-I can’t speak for the other languages, but [card/Perl](../../../card/Perl.md) isn’t guessing. It’s adding these two values as numbers because we *told it to* by using the numeric `+` operator. If we wanted a string, we would tell Perl by using the `.` concatenation operator.
+I can’t speak for the other languages, but [Perl](../../../card/Perl.md) isn’t guessing. It’s adding these two values as numbers because we *told it to* by using the numeric `+` operator. If we wanted a string, we would tell Perl by using the `.` concatenation operator.
 
 Let’s fire up [tinyrepl](https://metacpan.org/pod/distribution/Eval-WithLexicals/bin/tinyrepl) for a quick demonstration.
 
@@ -45,4 +47,4 @@ Are `1 + "1"` and `1 . "1"` better than `1 + int("1")` and `str(1) + "1"`? I don
 
 DWIM can be surprising to those unfamiliar with this approach. But it’s not guessing.
 
-The points about consistency and ambiguity are solid. The [card/Zen of Python](../../../card/Zen%20of%20Python.md) can be applied with slight modifications to all programming. Just remember that "obvious" is different in different languages.
+The points about consistency and ambiguity are solid. The [Zen of Python](../../../card/Zen%20of%20Python.md) can be applied with slight modifications to all programming. Just remember that "obvious" is different in different languages.

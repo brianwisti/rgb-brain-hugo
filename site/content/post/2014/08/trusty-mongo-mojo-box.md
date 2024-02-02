@@ -15,7 +15,7 @@ tags:
 - mojolicious
 - tools
 title: Trusty Mongo Mojo Box
-updated: 2024-01-26 10:11:55-08:00
+updated: 2024-02-01 21:02:13-08:00
 ---
 
 > 
@@ -31,11 +31,11 @@ updated: 2024-01-26 10:11:55-08:00
  > 
  > Be aware that this is my first packaged Vagrant box, and it is probably not great.
 
-# Motivation
+## Motivation
 
 I want to explore [Mojolicious](http://mojolicio.us/) framework for [Perl](../../../card/Perl.md) along with [MongoDB](https://www.mongodb.org/). Both of these are available for each operating system I use. Unfortunately, each operating system is a unique environment, with its own quirks. I usually work my way around these quirks, but I also want to explore a number of [virtualization](http://en.wikipedia.org/wiki/Virtualization) tools that have become popular. This is an opportunity to learn how to set up a [Vagrant](http://vagrantup.com) box for my Mojolicious / MongoDB explorations.
 
-# Creating The Box
+## Creating The Box
 
 A [virtual machine](http://en.wikipedia.org/wiki/Virtual_machine) is basically a simulated operating system running on whatever your host machine is: Windows, Linux, OS X - whatever. That virtual machine lives its life as if it has its own environment. It is useful for application development, testing, application hosting, and security research. You can have a library of guest virtual machines, each dedicated to a particular task.
 
@@ -144,7 +144,7 @@ Okay, okay. I admit that it took me a couple of tries to get those shell scripts
 
 Eventually it finishes.
 
-# Testing the Box
+## Testing the Box
 
 I will not even pretend I know what I am doing here. The whole point of this exercise is to learn Mojolicious, MongoDB, and Mango. Oh yeah, and Vagrant. I just copy the sample application from the [Mango Github README](https://github.com/kraih/mango).
 
@@ -211,7 +211,7 @@ Back in my browser, I hit `http://localhost:3000` a couple times and get:
 
 Well how about that? Everything works!
 
-# Packaging
+## Packaging
 
 Installing everything took a *long* time. I do not want to wait for the full provisioning process every time I create a new box. Can I take a snapshot of this box and use it for other projects?
 
@@ -260,7 +260,7 @@ the comments in the Vagrantfile as well as documentation on
 
 I test it with the same Mojolicious application I used above and — hot dog — it works.
 
-# Sharing
+## Sharing
 
 Now is the part where I jump straight off the cliff of rational thinking and share every horrible mistake I made with you and anyone else who wants it.
 
@@ -272,11 +272,11 @@ $ vagrant init brianwisti/trusty-mongo-mojo
 
 Have fun.
 
-# Was It Worth It?
+## Was It Worth It?
 
 That’s a good question. It was great as a learning experience. I enjoyed learning more about [Vagrant](http://vagrantup.com). I don’t know yet whether it was worth my time to create this bundle. Mojolicious and MongoDB are already fairly easy to install on whatever platform. We’ll see. I do know that I’d like to revisit this package, clean it up, and maybe follow up with a similar package for [Dancer](http://perldancer.org/). It’s just plain *fun* to make these packages.
 
-# What Now?
+## What Now?
 
 All that’s left now is to learn all the things. The online [Perl documentation](http://perldoc.perl.org/) is current with Perl 5.20. [Mojolicious::Lite](http://mojolicio.us/perldoc/Mojolicious/Lite) is as good a place as any to start with learning Mojolicious. There’s a [MongoDB manual](http://docs.mongodb.org/manual/) to peruse. Mango does not yet have the polished guides that Mojolicious does, but browsing the [Mango MetaCPAN page](https://metacpan.org/release/Mango) will get me a ways.
 

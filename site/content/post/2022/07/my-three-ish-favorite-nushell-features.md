@@ -11,7 +11,7 @@ tags:
 - nushell
 - hugo
 title: My Three(ish) Favorite Nushell Features
-updated: 2024-01-26 10:19:17-08:00
+updated: 2024-02-01 20:27:58-08:00
 ---
 
 ![attachments/img/2022/cover-2022-07-04.png](../../../attachments/img/2022/cover-2022-07-04.png)
@@ -27,7 +27,7 @@ This post, and any that may follow on the topic, won't be any kind of deep dive 
 
 Let's get started.
 
-# Nushell feature zero: showing program output
+## Nushell feature zero: showing program output
 
 If you can't easily run a program and see its output, you are in a REPL, not a shell. I have not come across a command shell that fails that test yet, but I use it as an immediate reassurance that I haven't confused myself by launching `ipython` again.
 
@@ -39,7 +39,7 @@ hugo list all
 
 ![output of command is a dense blast of CSV text](attachments/img/2022/hugo-list-all.png "Yep that's CSV all right.")
 
-# Nushell feature zero point five: Piping output
+## Nushell feature zero point five: Piping output
 
 Most shells let you pipe between processes, using the output of one as the input of the next. Nushell provides that functionality. No problem.
 
@@ -49,7 +49,7 @@ hugo list all | from csv
 
 Of course, the result of that pipe is something a little different from other shells.
 
-# Nushell feature one: tables
+## Nushell feature one: tables
 
 ![screenshot of nushell table display of hugo articles](attachments/img/2022/from-csv.png "It's pretty. Just needs a little tidying up.")
 
@@ -59,7 +59,7 @@ But Nushell tables aren't just pretty printing. They are core to working with th
 
 Also? Nushell doesn't need me to install an extra CSV processing tool. It can turn that output into something useful without any extra help thanks to an abundance of built-in commands.
 
-# Nushell feature two: the built-in commands and interactive help
+## Nushell feature two: the built-in commands and interactive help
 
 Nushell includes *many* commands. You can see for yourself skimming through the [Command Reference](https://www.nushell.sh/book/command_reference.html). Or see what's available to you in your current version with `help commands`.
 
@@ -77,7 +77,7 @@ help commands | length
 
 That's a little overwhelming. Let's see if we can narrow it down. That gives me a chance to show off some of the table processing I got so excited about.
 
-## Listing command categories by grouping
+### Listing command categories by grouping
 
 All these commands are organized into categories. To see what categories, we can `group` the help table.
 
@@ -87,7 +87,7 @@ help commands | group-by category
 
 ![all of the Nushell command categories](attachments/img/2022/group-by-category.png "Not sorted or anything, but you get the idea")
 
-## Listing only commands in a specific category with `where`
+### Listing only commands in a specific category with `where`
 
 I read ahead, so I know that `from csv` is under the "formats" category. We use `where` to narrow the command list down so it only contains the format commands.
 
@@ -102,7 +102,7 @@ help commands | where category =~ formats
 >
  > I bet the Perl devs perked up seeing that `=~`. Yes it's a regular expression! But it's almost definitely not a Perl regular expression. I haven't gone past literal substring matches yet, and the Nushell [regex documentation](https://www.nushell.sh/book/regular_expressions.html#regular-expressions) page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust [regex crate](https://docs.rs/regex/latest/regex/) documentation and figure out the differences yourself.
 
-## Viewing only select columns with `select`
+### Viewing only select columns with `select`
 
 That's still a little busy. How about we `select` the name and usage? And heck — tables make for great screenshots, but let's try see what `to md` gives us.
 
@@ -144,7 +144,7 @@ Awesome. All that and we're still in the realm of Nushell built-in commands.
 
 Note the pattern of commands and subcommands. The "formats" category includes two primary commands, `from` and `to`. Then many subcommands for converting *from* assorted formats to a table, and their counterparts for converting from a table *to* assorted formats.
 
-## Getting help for a specific command
+### Getting help for a specific command
 
 We can ask for help with a specific command. Most shells offer this in one form or another, though they don't generally provide the command discovery path we just walked down.
 
@@ -156,7 +156,7 @@ One more screenshot, because Nushell help is just so *pretty*.
 
 ![screenshot of Nushell builtin help, with usage, flags, and examples](attachments/img/2022/help-to-md.png "syntax highlighted examples? yes please")
 
-## Applying what we've got to the Hugo list
+### Applying what we've got to the Hugo list
 
 Let's see if we can apply some of what we just used with our Hugo article list.
 
@@ -176,7 +176,7 @@ hugo list all | from csv | last 5 | select title publishDate | to md
 
 That's better. Sort of. I expected the last few posts to be a bit more recent. I need to do some intentional filtering and sorting. In order to do that, I need a real date instead of Hugo's timestamp string. You can use a block for that.
 
-# Nushell feature two: blocks
+## Nushell feature two: blocks
 
 The really basic idea is that [blocks](https://www.nushell.sh/book/types_of_data.html#blocks) run arbitrary commands on a parameter, and let us do what we like with the result.
 
@@ -206,7 +206,7 @@ That `published-at` column contains the result of running a block of commands. I
 hugo list all | from csv | insert published-at { |it| ... }
 ````
 
-Nushell blocks look and work a bit like [Ruby](../../../card/Ruby.md) blocks. That means they also work similar to lambdas in [card/Python](../../../card/Python.md) and anonymous functions in other languages — cosmetic and shell-specific details aside.
+Nushell blocks look and work a bit like [Ruby](../../../card/Ruby.md) blocks. That means they also work similar to lambdas in [Python](../../../card/Python.md) and anonymous functions in other languages — cosmetic and shell-specific details aside.
 
 The block returns a column with dates for every value in my table's `publishDate` column.
 
@@ -266,7 +266,7 @@ Okay I think that covers it.
 
 Yeesh I have been writing this stuff down for a long time.
 
-# Nushell feature three: data types
+## Nushell feature three: data types
 
 My experience with data types in shells is limited and mostly unpleasant: values are strings that can be interchangeably treated as strings or numbers. Sometimes you can treat them like lists. Oops you broke something.
 
@@ -292,7 +292,7 @@ It also supports more complex structured types like records and of course tables
 
 What about conversions? In my fiddling so far, Nushell treats output from external programs like a string until you tell it otherwise, like a moment ago piping Hugo's output `from csv` and then the `publishDate` column `into datetime`.
 
-## Date math
+### Date math
 
 All right. Let's figure this out. What datetime is it right now?
 
@@ -344,7 +344,7 @@ Since `((date now) - 90day)` is a date and `published-at` is a date, I can do a 
 
 Yeah I fibbed on the publish date for the post I'm writing. Figured it would be quicker than adding and explaining another filter for draft posts.
 
-# Wrapping up
+## Wrapping up
 
 True confession time: my three or so favorite features in Nushell are also the only features I've played with, and much of that was today.
 Just realized it's been about a year since I started poking at Nushell as more than "that thing with cool `ls` output."

@@ -16,6 +16,6 @@ updated: 2024-01-26T10:22:03-08:00
 
 ![attachments/img/2021/cover-2021-04-18.png](../../../attachments/img/2021/cover-2021-04-18.png)
 
-Using [card/Statamic](../../../card/Statamic.md) for the site this split second. Titles are mandatory in Statamic, but I'll figure something out. Could always treat "title" like a lead paragraph. That's the direction I was headed in with the Hugo site.
+Using [Statamic](../../../card/Statamic.md) for the site this split second. Titles are mandatory in Statamic, but I'll figure something out. Could always treat "title" like a lead paragraph. That's the direction I was headed in with the Hugo site.
 
 Course, I already changed my blueprint layout from the screenshot.

@@ -18,7 +18,7 @@ updated: 2024-01-26T11:03:40-08:00
 
 ![attachments/img/2020/cover-2020-01-16.png](../../../attachments/img/2020/cover-2020-01-16.png)
 
-Woke up with the terrible idea of rewriting [WebMake](http://webmake.taint.org/) as a [card/Gatsby](../../../card/Gatsby.md) plugin but:
+Woke up with the terrible idea of rewriting [WebMake](http://webmake.taint.org/) as a [Gatsby](../../../card/Gatsby.md) plugin but:
 
 * I don’t even know who would know what I’m talking about
 * I don’t know how to do that

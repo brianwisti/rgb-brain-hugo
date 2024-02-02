@@ -15,12 +15,14 @@ tags:
 - drawing
 - chunky-bacon
 title: Chunky Bacon
+created: 2024-01-15T15:26:42-08:00
+updated: 2024-02-01T19:59:15-08:00
 ---
 
 ![attachments/img/2019/cover-2019-07-04.png](../../../attachments/img/2019/cover-2019-07-04.png)
 Seriously. Chunky. Bacon.
 
-Outlining a post about my Notes experiment. Learned that [\_why](https://en.wikipedia.org/wiki/Why_the_lucky_stiff) coined [card/tumblelog](../../../card/tumblelog.md), which is sort of what the notes are. And then I wanted to make this note. With the foxes. But I couldn't find a nice big version. So I made a nice big
+Outlining a post about my Notes experiment. Learned that [\_why](https://en.wikipedia.org/wiki/Why_the_lucky_stiff) coined [tumblelog](../../../card/tumblelog.md), which is sort of what the notes are. And then I wanted to make this note. With the foxes. But I couldn't find a nice big version. So I made a nice big
 version. It's [Attribution-ShareAlike](https://creativecommons.org/licenses/by-sa/2.5/), just like the original. You can use it.
 
 Go read the [Poignant Guide](https://poignant.guide/) when you have time. I put [CLOSURE](https://github.com/steveklabnik/CLOSURE) on my list.

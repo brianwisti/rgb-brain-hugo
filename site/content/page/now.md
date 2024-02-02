@@ -3,7 +3,7 @@ aliases:
 - /now
 created: 2024-01-15 15:25:53-08:00
 title: Now
-updated: 2024-01-26 09:15:43-08:00
+updated: 2024-02-01 20:31:19-08:00
 ---
 
 > 
@@ -13,27 +13,27 @@ updated: 2024-01-26 09:15:43-08:00
  > 
  > [`/now`](https://nownownow.com) --- it's like a [webring](https://en.wikipedia.org/wiki/Webring) for status pages!
 
-# Where I am now
+## Where I am now
 
 Living in [Federal Way](https://www.cityoffederalway.com), a suburb between Seattle and Tacoma. Been here over almost two years and frankly I still haven't gotten used to the suburbs.
 
-# Who I am around now
+## Who I am around now
 
 Let's see. There are four humans and five critters. I am happily married to [one of](https://hackers.town/@IamMrsGeek) the humans. The other two are pretty cool.
 
 The critters? Two dogs, three cats.
 
-# What I am doing now
+## What I am doing now
 
 Looking for work. Check out my [LinkedIn Profile](https://www.linkedin.com/in/brianwisti/) if you're looking for a remote or hybrid mostly backend senior dev with reasonably strong [Python](../card/Python.md) skills, based near Seattle.
 
-# What else?
+## What else?
 
 * getting old; better than the alternative, but complaints range from perpetually blocked ear to fingernail ridges
 * studying enterprise technologies like [Kotlin](https://kotlinlang.org) and [Kubernetes](https://kubernetes.io) for greater confidence answering "yes" when someone asks if I know them
 * using [Obsidian](../card/Obsidian.md) for notes
 * puttering with new ways to organize this site
 
-# Want more?
+## Want more?
 
 You can contact me via [email](mailto:brianwisti@pobox.com) — or [follow](follow.md) me online!

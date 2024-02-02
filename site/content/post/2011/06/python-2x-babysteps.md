@@ -11,11 +11,11 @@ tags:
 - python
 - coolnamehere
 title: Python 2.x Babysteps
-updated: 2024-01-26T10:10:30-08:00
+updated: 2024-02-01T20:39:15-08:00
 created: 2024-01-15T15:25:32-08:00
 ---
 
-# Introduction
+## Introduction
 
 If you have never programmed before in your life, then do I have the perfect 
 programming language for you. It's called [Python](../../../card/Python.md). It is easy to learn, 

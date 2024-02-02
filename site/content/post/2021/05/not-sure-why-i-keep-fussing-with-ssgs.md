@@ -14,12 +14,12 @@ tags:
 - spinning-wheels
 title: Not sure why I keep fussing with every single SSG. It's fun, I guess?
 created: 2024-01-15T15:26:12-08:00
-updated: 2024-01-26T10:21:54-08:00
+updated: 2024-02-01T20:31:11-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-16.png](../../../attachments/img/2021/cover-2021-05-16.png)
 
-So after bouncing back to [card/Hugo](../../../card/Hugo.md) from a brief [card/Statamic](../../../card/Statamic.md) experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?
+So after bouncing back to [Hugo](../../../card/Hugo.md) from a brief [Statamic](../../../card/Statamic.md) experiment, what do I do? Do I post the slides from a talk I gave the other day, like I promised?
 
 No of course not.
 

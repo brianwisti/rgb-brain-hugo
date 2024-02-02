@@ -9,18 +9,18 @@ syndication:
   mastodon: https://hackers.town/@randomgeek/111801976876465759
 title: Rebuilding My Public Brain
 created: 2024-01-22T12:04:44-08:00
-updated: 2024-01-26T09:02:15-08:00
+updated: 2024-02-01T20:46:03-08:00
 ---
 
 I changed my blogging workflow — again.
 
 <!--more-->
 
-# What?
+## What?
 
 I took all my blog posts since 2000 — since before the site was a blog — put them in [Obsidian](../../../card/Obsidian.md), extracted note cards for recurring content, and smashed the whole thing into a new iteration of [Random Geekery](../../../card/Random%20Geekery.md).
 
-# Why?
+## Why?
 
 I tried sharing [My Public Brain](../../../card/My%20Public%20Brain.md) a couple times. It didn't work out. Maintaining an extra site added personal friction, and I ended up ignoring all of it. I wanted to keep trying, though. My first site [coolnamehere](../../../card/coolnamehere.md) was an organized collection of notes on topics as I learned them. I've mostly been blogging the last decade, but missed the ability to link back to topic notes from my posts.
 
@@ -28,18 +28,18 @@ At the very least, having dedicated topic cards means fewer places to update ext
 
 Storing the whole thing in a [PKM](../../../card/PKM.md) makes it easier to find mentions and follow cross-references, eventually ensuring some kind of consistency in site structure.
 
-# Okay, How?
+## Okay, How?
 
-## Building the vault
+### Building the vault
 
 Most of the details and reasoning are over where I describe [How These Notes are Organized](../../../card/How%20These%20Notes%20are%20Organized.md). Basically I have a private folder for new notes, a private folder for journaling, and a private folder for vault templates. Everything else is public.
 
 The process itself was manual:
 
-* drop all the Markdown from my Hugo site into [Post](../../_index.md)
+* drop all the Markdown from my Hugo site into `post/`
 * arrange posts by year and month so they match permalink expectations, cleaning up and extracting (laughably minimal) new notes for recurring topics as I go; sometimes a post no longer has even personal historical relevance, so I remove it
-* periodically review those new notes, maybe flesh them out a little bit, and move them to public [Card](../../../card/_index.md)
-* Drop in my *Config* files, clean them up a tiny bit, and pinky-promise I'll do more with them later
+* periodically review those new notes, maybe flesh them out a little bit, and move them to public `card/`
+* Drop in my config files, clean them up a tiny bit, and pinky-promise I'll do more with them later
 
 This process of evaluation and refactoring was fundamentally manual, so I limited the plugins to what I needed to mark progress and visually distinguish links.
 
@@ -54,7 +54,7 @@ This process of evaluation and refactoring was fundamentally manual, so I limite
 
 I'll probably add plugins later, but the extra functionality of Templater or Dataview would have distracted me from the core task. It happened with previous note consolidation efforts.
 
-## Building the site
+### Building the site
 
 Initially I pulled the vault into an [Astro](../../../card/Astro.md) site with  [ts-node](https://typestrong.org/ts-node/). It sort of worked. Came into some issues with `ts-node` on very fresh [Node.js](../../../card/Node.js.md) though, and decided to see if someone had already figured out Obsidian export.
 
@@ -64,11 +64,11 @@ Got a Perl script for backlinks and a Python script for processing Obsidian Mark
 
 I pulled in my automated tests from the current site iteration. I really should talk more about those tests at some point. They mostly check for structural issues with `markdownlint` and broken internal links.
 
-# What next
+## What next
 
 Before I have the Python script handle all the processing, I'll revisit the Astro iteration. [remark-obsidian](https://www.npmjs.com/package/remark-obsidian) and [remark-deflist](https://www.npmjs.com/package/remark-definition-list) handled nearly all the special Markdown for me. I mainly need to decide how top-level pages like [now](../../../page/now.md) and [follow](../../../page/follow.md) get treated within Astro's dynamic collection approach.
 
-# What now
+## What now
 
 Budget is constrained, so before the annual hosting bill comes due I'll shift from a paid host to Netlify. My planned usage tier should be free there. I expect to bounce back out again after resolving the current [Job Search](../../../card/Job%20Search.md) to my satisfaction, but maybe not. We'll see.
 

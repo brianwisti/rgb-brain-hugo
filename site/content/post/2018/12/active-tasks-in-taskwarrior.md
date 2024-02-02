@@ -2,6 +2,7 @@
 aliases:
 - /2018/12/01/active-tasks-in-taskwarrior/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2018-12-01 00:00:00-08:00
 series:
 - Taskwarrior Babysteps
@@ -10,12 +11,13 @@ tags:
 - taskwarrior
 - tools
 title: Active Tasks in Taskwarrior
+updated: 2024-02-01 22:05:15-08:00
 ---
 
 ![attachments/img/2018/cover-2018-12-01.png](../../../attachments/img/2018/cover-2018-12-01.png)
 
  > 
- > **[card/tldr](../../../card/tldr.md)**
+ > **[tldr](../../../card/tldr.md)**
 >
  > Use the `start`, `stop`, and `active` [Taskwarrior](../../../card/Taskwarrior.md) commands to manage what you’re doing right now.
 

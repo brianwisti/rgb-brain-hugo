@@ -18,4 +18,4 @@ Exercise in light values
 
 ![attachments/img/2016/cover-2016-12-06.jpg](../../../attachments/img/2016/cover-2016-12-06.jpg)
 
-related:: *inbox/Drawing*
+related:: *Drawing*

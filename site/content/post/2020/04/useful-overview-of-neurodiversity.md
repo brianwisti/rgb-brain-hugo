@@ -24,7 +24,7 @@ Myk Bolkonstky's [Things Every Software Engineer Should Know About Neurodiversit
  > traits together and circling that and calling it a thing isn’t the best way to
  > reason about this. Insurance companies really love it.
 
-Neurodiversity provides an alternate take on traits that are common to [card/ADHD](../../../card/ADHD.md), autism, OCD, and others. Myk’s talk summarizes them better than I could, and better than resources I could find for linking.
+Neurodiversity provides an alternate take on traits that are common to [ADHD](../../../card/ADHD.md), autism, OCD, and others. Myk’s talk summarizes them better than I could, and better than resources I could find for linking.
 
 The talk lasts half an hour including questions. Some occasional audio issues thanks to everyone’s new remote life, but the transcript makes following easier.
 

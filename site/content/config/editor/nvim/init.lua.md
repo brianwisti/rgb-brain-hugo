@@ -4,6 +4,8 @@ aliases:
 - /config/init.lua/
 tags:
 - config
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-02-01T11:28:32-08:00
 ---
 
 A snapshot of my [Neovim](../../../card/Neovim.md) config, literate programming style. 
@@ -282,10 +284,6 @@ use {
 ````
 
 ## Global options
-
-{{% note title="Note to self" %}}
-Some of this can be handled by plugins, particularly `filetype.nvim`.
-{{% /note %}}
 
 ````lua
 opt.autoread = true

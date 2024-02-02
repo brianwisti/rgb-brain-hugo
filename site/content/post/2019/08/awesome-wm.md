@@ -14,6 +14,8 @@ tags:
 - screenshot
 - fiddly-configurations-are-fun
 title: Awesome(wm)
+created: 2024-01-15T15:26:37-08:00
+updated: 2024-02-01T22:07:02-08:00
 ---
 
 ![attachments/img/2019/cover-2019-08-17.jpg](../../../attachments/img/2019/cover-2019-08-17.jpg)
@@ -23,4 +25,4 @@ There's been way too much "it just works (more or less)" in my desktop life late
 
 Disappointingly, it works just fine.
 
-Still, good chance to learn enough *inbox/Lua* to customize my setup. Looks like I'll be revisiting [Kitty terminal](../05/kitty-terminal.md) and a few other tools that have been on the task list for a while.
+Still, good chance to learn enough *Lua* to customize my setup. Looks like I'll be revisiting [kitty-terminal](../05/kitty-terminal.md) and a few other tools that have been on the task list for a while.

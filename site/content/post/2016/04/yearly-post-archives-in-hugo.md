@@ -14,10 +14,10 @@ tags:
 - perl
 - tools
 title: Yearly Post Archives In Hugo
-updated: 2024-01-26 10:17:05-08:00
+updated: 2024-02-01 21:20:52-08:00
 ---
 
-I spent a little time this weekend creating yearly post archives for my [card/Hugo](../../../card/Hugo.md) site.
+I spent a little time this weekend creating yearly post archives for my [Hugo](../../../card/Hugo.md) site.
 
 Hugo already has [pagination](https://gohugo.io/extras/pagination/) functionality, but I dislike this approach in blogs. For one thing, it messes up web search. I find an interesting link which Google claims is on page 12 of some blog, but now I must dig to page 14 or 15 or 23.
 
@@ -28,7 +28,7 @@ Years give me a fixed point to anchor my archive listings to. I could narrow it 
 >
  > Skeptical side-eye from 2024
 
-# Everything On One Page For Each Section
+## Everything On One Page For Each Section
 
 Hugo bases [template selection](https://gohugo.io/templates/list/) on specificity: use the most specific template if available, otherwise use more general-purpose templates. Right now I lean on my `_default` layouts for all content. The `_default/list.ace` template provides the layout for all content collections.
 
@@ -51,7 +51,7 @@ Hugo gives the template a title and a collection of pages — along with numerou
 
 ![screenshot](attachments/img/2016/site-default-listing.png "Default listing applied to Craft section")
 
-# Group Everything By Date
+## Group Everything By Date
 
 For a first step in the process, let’s see what happens when we tell the Pages to [group by date](https://gohugo.io/templates/list/#grouping-by-page-date).
 
@@ -71,7 +71,7 @@ For a first step in the process, let’s see what happens when we tell the Pages
 
 Not too bad. Let’s move on.
 
-# This Year’s Content
+## This Year’s Content
 
 Hold on a second. I can use the [`first`](https://gohugo.io/templates/functions/#first) function to create a list of things published this year. I’ll put that in my `index.ace` layout.
 
@@ -93,7 +93,7 @@ Hold on a second. I can use the [`first`](https://gohugo.io/templates/functions/
 
 No matter how hard I tried, I could not find a way to create a page for *last year* with this technique. Moving on.
 
-# Life Hack: Use Taxonomies!
+## Life Hack: Use Taxonomies!
 
 Hugo does not directly support yearly archive pages. However, this [Hugo community comment](https://discuss.gohugo.io/t/pagination-and-group-by-date/1441/3) shows that somebody solved a very similar problem using [taxonomies](http://gohugo.io/taxonomies/overview/).
 
@@ -114,9 +114,9 @@ year: 2016
 
 This is going to be tedious. Let’s not do this manually, okay?
 
-Here comes the [card/Perl](../../../card/Perl.md).
+Here comes the [Perl](../../../card/Perl.md).
 
-## Automate The Frontmatter
+### Automate The Frontmatter
 
 ````perl
 #!/usr/bin/env perl
@@ -158,7 +158,7 @@ my @files = File::Find::Rule->file()
 add_metadata_to $_ for @files;
 ````
 
-# Summarize Every Year On One Page
+## Summarize Every Year On One Page
 
 My `_default/terms.ace` layout was already set up for categories and tags. The reverse alphabetical order was some whimsical experiment that I forgot to change, but it works perfect for years. Reverse alphabetical looks quite a bit like reverse chronological when things are sorted in [ASCIIbetical](https://en.wiktionary.org/wiki/ASCIIbetical) order.
 
@@ -182,7 +182,7 @@ I put `_default/list.ace` back in its original state, and each year has a simple
 
 ![screenshot](attachments/img/2016/site-single-year.png "Just the stuff I pushed in 2015")
 
-# What Else?
+## What Else?
 
 It would sure be nice to have "next year" / "previous year" links. I can use `GroupBy` functionality to create distinct craft and blog sections for each year’s listing. For that matter, I could see breaking Crafts and Posts listings down into yearly archives.
 

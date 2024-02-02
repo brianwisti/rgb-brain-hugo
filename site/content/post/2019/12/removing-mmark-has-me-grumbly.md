@@ -13,11 +13,13 @@ tags:
 - hugo
 - whinging
 title: Removing mmark has me grumbly
+created: 2024-01-15T15:26:35-08:00
+updated: 2024-02-01T20:46:32-08:00
 ---
 
 So the [Hugo](https://gohugo.io) team is [deprecating](https://github.com/gohugoio/hugo/issues/6486) the [mmark](https://mmark.miek.nl/) Markdown parser. This is an understandable decision. Providing all those options must make Hugo a challenge to maintain and improve.
 
-Well anyways I fixed it — sort of — with some [card/Perl](../../../card/Perl.md).
+Well anyways I fixed it — sort of — with some [Perl](../../../card/Perl.md).
 
 I spent my free time wrestling with trivial site details instead of writing posts and having fun. If it was due to my own misguided experimentation, that would be fine. That happens all the time. But no. I had to convert half my site because of someone else’s decisions.
 

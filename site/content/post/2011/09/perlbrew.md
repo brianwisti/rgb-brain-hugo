@@ -10,15 +10,15 @@ tags:
 - perl
 - coolnamehere
 title: perlbrew
-updated: 2024-01-26T10:10:37-08:00
+updated: 2024-02-01T20:36:22-08:00
 created: 2024-01-15T15:25:33-08:00
 ---
 
 <!--more-->
 
-# Introduction
+## Introduction
 
-You probably already have [card/Perl](../../../card/Perl.md) if you are running Linux or OS X. However, it is usually not the latest version of the language. I prefer to install my own copy. That way I can take advantage of new language  features. Also, the system Perl is often used in administrative scripts. There is always the chance that my experiments will mess something up. It is not easy, but I have done it before.
+You probably already have [Perl](../../../card/Perl.md) if you are running Linux or OS X. However, it is usually not the latest version of the language. I prefer to install my own copy. That way I can take advantage of new language  features. Also, the system Perl is often used in administrative scripts. There is always the chance that my experiments will mess something up. It is not easy, but I have done it before.
 
 Fortunately, there's [perlbrew](https://perlbrew.pl/). perlbrew allows you to install your own personal Perl, which doesn't interfere with other installed versions. Speaking of versions: `perlbrew` lets you install and switch between multiple personal Perls. When Perl 5.16 is released, upgrading will be handled by a couple of quick commands.
 
@@ -37,7 +37,7 @@ $ perlbrew switch perl-5.14.2
 </code></pre>
 </aside>
 
-# Installing Perlbrew
+## Installing Perlbrew
 
 There are a couple of ways to install perlbrew. Some of them only
 apply to specific platforms, while one should work on any UNIX-like
@@ -45,11 +45,11 @@ operating system.
 
 Fortunately, all of the installation techniques are simple.
 
-## Linux Packages
+### Linux Packages
 
 Fresh releases of some Linux distributions have perlbrew available as a package. I only know of a couple right now, but I will expand this if I learn of more.
 
-### Installing `perlbrew` on Fedora Linux
+#### Installing `perlbrew` on Fedora Linux
 
 Current versions of [Fedora Linux](http://fedoraproject.org) already have `perlbrew` available via [`yum`](http://fedoraproject.org/wiki/Yum).
 
@@ -58,7 +58,7 @@ $ su -
 # yum install perlbrew
 ````
 
-### Installing `perlbrew` on Ubuntu 11.10
+#### Installing `perlbrew` on Ubuntu 11.10
 
 If you're on the bleeding edge of Ubuntu development, or are reading  this after October 2011, you'll be happy to know that there is an [Ubuntu 11.10 perlbrew package](https://launchpad.net/ubuntu/oneiric/+package/perlbrew).
 
@@ -67,11 +67,11 @@ If you're on the bleeding edge of Ubuntu development, or are reading  this after
 $ sudo apt-get install perlbrew
 ````
 
-### Installing `perlbrew` on other UNIX-like systems
+#### Installing `perlbrew` on other UNIX-like systems
 
 You will want to have a minimal development environment before you install `perlbrew`.
 
-### Ubuntu
+#### Ubuntu
 
 The `build-essentials` package provides the basic command line tools you will need to build and install Perl via `perlbrew`.
 
@@ -85,7 +85,7 @@ Once `build-essentials` has been installed, you can install `perlbrew`.
 $ curl -L http://xrl.us/perlbrewinstall | bash
 ````
 
-### OS X
+#### OS X
 
 Install [Xcode](https://developer.apple.com/xcode/). It's a simple step, but tends to take a while. Xcode is actually a huge Integrated Development environment. You can try [gcc without Xcode](https://github.com/sorin-ionescu/gcc-without-xcode) if you're not interested in the IDE. I have not tested it yet. I just know that it exists.
 
@@ -97,7 +97,7 @@ $ curl -L http://xrl.us/perlbrewinstall | bash
 
 The official perlbrew page and the [App::perlbrew documentation](https://metacpan.org/module/App::perlbrew) should help you get the details about fiddly bits of installing `perlbrew`.
 
-## Initializing Perlbrew
+### Initializing Perlbrew
 
 Regardless of how you installed perlbrew, now you will want to make sure it is set up for your account.
 
@@ -122,7 +122,7 @@ $ . ~/.bashrc
 
 Now you are ready to install your own Perl.
 
-# Using `perlbrew` To Install Perl
+## Using `perlbrew` To Install Perl
 
 It's probably a good idea to see what Perl versions are available to  install.
 

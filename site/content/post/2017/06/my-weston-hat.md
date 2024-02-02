@@ -11,11 +11,13 @@ tags:
 - hat
 - craft
 title: My Weston Hat
+created: 2024-01-15T15:26:48-08:00
+updated: 2024-02-01T21:57:23-08:00
 ---
 
 ![attachments/img/2017/cover-2017-06-28.jpg](../../../attachments/img/2017/cover-2017-06-28.jpg)
 
-Ended up *inbox/Knitting* this one twice. Tried the large size first, and it ended up way too large for my taste. Frogged and restarted the smaller size, making a new set of mistakes. But the hat fits now and I’m not starting again!
+Ended up *Knitting* this one twice. Tried the large size first, and it ended up way too large for my taste. Frogged and restarted the smaller size, making a new set of mistakes. But the hat fits now and I’m not starting again!
 
 ![Me wearing the Weston](attachments/img/2017/me-wearing-weston-medium.jpg)
 

@@ -20,7 +20,7 @@ Just updated PowerShell via [winget](https://docs.microsoft.com/en-us/windows/pa
 
 Trying to recover a post about [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/index.html) that I accidentally deleted, so I won't sidetrack myself with a detailed follow-up on the last time I really [looked at winget](../../2020/06/winget.md).
 
-Instead, here's the [card/TIL](../../../card/TIL.md):
+Instead, here's the [TIL](../../../card/TIL.md):
 
 `winget upgrade`
 : shows what's out of date

@@ -19,7 +19,7 @@ updated: 2024-01-26T10:21:20-08:00
 ![attachments/img/2021/cover-2021-12-23.png](../../../attachments/img/2021/cover-2021-12-23.png)
 this time you get a screenshot
 
-[card/Astro](../../../card/Astro.md) is great once you get started. A bit funky if you have twenty years of legacy content.
+[Astro](../../../card/Astro.md) is great once you get started. A bit funky if you have twenty years of legacy content.
 
 Rather than do my usual — a screenshot and *maybe* a "lesson learned" post — this time around I made a public [repo](https://github.com/brianwisti/rgb-astro) and [live instance](https://quirky-wozniak-e4e36f.netlify.app) of this in-progress experiment available for your entertainment and edification.
 

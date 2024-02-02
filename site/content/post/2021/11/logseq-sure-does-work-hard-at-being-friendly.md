@@ -10,13 +10,13 @@ tags:
 - logseq
 title: Logseq sure does work hard at being friendly
 created: 2024-01-15T15:26:09-08:00
-updated: 2024-01-26T10:21:23-08:00
+updated: 2024-02-01T20:24:14-08:00
 ---
 
 ![attachments/img/2021/cover-2021-11-14.png](../../../attachments/img/2021/cover-2021-11-14.png)
 This note in Logseq document mode, using the [Bonofix](https://github.com/sansui233/logseq-bonofix-theme) theme
 
-Talking about [card/Logseq](../../../card/Logseq.md), a knowledge management tool roughly equivalent to [card/Obsidian](../../../card/Obsidian.md) or [Org-roam](https://www.orgroam.com).
+Talking about [Logseq](../../../card/Logseq.md), a knowledge management tool roughly equivalent to [Obsidian](../../../card/Obsidian.md) or [Org-roam](https://www.orgroam.com).
 
 There's just so many little affordances. Not even talking about the built-in query language or graph view. Those are full-on features, which other tools match or sometimes exceed. I'm talking about little things like `t t` to toggle between the light and dark mode of your current theme. It's just nice to use even before you get to tweaks and plugins.
 

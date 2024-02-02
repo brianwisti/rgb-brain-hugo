@@ -3,6 +3,7 @@ aliases:
 - /post/2017/emacs-writegood-mode/
 - /2017/08/06/emacs-writegood-mode/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-08-06 00:00:00-07:00
 slug: emacs-writegood-mode
 syndication:
@@ -11,6 +12,7 @@ tags:
 - emacs
 - tools
 title: Emacs Writegood Mode
+updated: 2024-02-01 20:11:37-08:00
 ---
 
 ![attachments/img/2017/cover-2017-08-06.png](../../../attachments/img/2017/cover-2017-08-06.png)
@@ -20,7 +22,7 @@ I rushed through that post about [logging money](../07/logging-money-in-org-mode
  > 
  > **NOTE**
 >
- > [card/Vim](../../../card/Vim.md) users may want to look at [`vim-wordy`](https://github.com/reedes/vim-wordy), a plugin with similar goals to `writegood-mode`.
+ > [Vim](../../../card/Vim.md) users may want to look at [`vim-wordy`](https://github.com/reedes/vim-wordy), a plugin with similar goals to `writegood-mode`.
 
 ## `writegood-mode`
 

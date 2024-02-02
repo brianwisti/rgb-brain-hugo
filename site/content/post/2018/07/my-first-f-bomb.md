@@ -9,9 +9,11 @@ tags:
 - crochet
 - craft
 title: My First F Bomb
+created: 2024-01-15T15:26:44-08:00
+updated: 2024-02-01T21:56:27-08:00
 ---
 
-Took a break this weekend *inbox/Knitting* a quick yarn project.
+Took a break this weekend *Knitting* a quick yarn project.
 
 <!--more-->
 

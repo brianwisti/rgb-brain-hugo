@@ -1,17 +1,17 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Tech Career Skill Development
-updated: 2024-01-26 09:09:29-08:00
+updated: 2024-02-01 21:00:44-08:00
 ---
 
 Mostly for programming because that's me I'm a programmer
 
-# What to learn?
+## What to learn?
 
 [Developer Roadmaps - roadmap.sh](https://roadmap.sh)
 : skill development paths with links to relevant courses
 
-# Where to learn it?
+## Where to learn it?
 
 [Graceful.Dev: Grow Your Programming Practice](https://graceful.dev)
 : Online courses on [Ruby](Ruby.md) and other stuff from Avdi Grimm and friends.

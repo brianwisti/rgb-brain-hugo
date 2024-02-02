@@ -13,9 +13,11 @@ tags:
 - procreate
 - symmetry
 title: Again with the manual symmetry
+created: 2024-01-15T15:26:38-08:00
+updated: 2024-02-01T21:53:12-08:00
 ---
 
-I spent forty hours over the last month or so *inbox/Drawing* this.
+I spent forty hours over the last month or so *Drawing* this.
 
 ![attachments/img/2019/cover-2019-12-15.jpg](../../../attachments/img/2019/cover-2019-12-15.jpg)
 

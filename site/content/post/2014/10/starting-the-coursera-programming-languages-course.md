@@ -33,4 +33,4 @@ I'm nervous. My habits are getting better, but my ratio of Things Started to Thi
 
 Here's hoping.
 
-related:: [card/Tech Career Skill Development](../../../card/Tech%20Career%20Skill%20Development.md)
+related:: [Tech Career Skill Development](../../../card/Tech%20Career%20Skill%20Development.md)

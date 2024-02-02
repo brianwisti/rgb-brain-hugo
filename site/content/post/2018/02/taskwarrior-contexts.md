@@ -12,9 +12,11 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Contexts
+created: 2024-01-15T15:26:46-08:00
+updated: 2024-02-01T20:59:12-08:00
 ---
 
-I manually applied tag filters to keep task listings relevant in my previous [card/Taskwarrior](../../../card/Taskwarrior.md) posts, but [Taskwarrior](https://taskwarrior.org/) provides [contexts](https://taskwarrior.org/docs/context.html) to apply filters automatically. Let’s use those instead.
+I manually applied tag filters to keep task listings relevant in my previous [Taskwarrior](../../../card/Taskwarrior.md) posts, but [Taskwarrior](https://taskwarrior.org/) provides [contexts](https://taskwarrior.org/docs/context.html) to apply filters automatically. Let’s use those instead.
 
 ## What is a context?
 

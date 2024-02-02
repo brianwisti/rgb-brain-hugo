@@ -13,6 +13,8 @@ tags:
 - podcast
 - glue-languages-stick-with-you
 title: I still love when people say nice things about Perl
+created: 2024-01-15T15:26:39-08:00
+updated: 2024-02-01T20:18:32-08:00
 ---
 
 [John Siracusa](https://hypercritical.co/), on the [Diving for Perl](https://www.redhat.com/en/command-line-heroes/season-3/diving-for-perl) episode of the [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) podcast:
@@ -20,9 +22,9 @@ title: I still love when people say nice things about Perl
  > 
  > My hope for Perl 5 is that people don't dismiss it, because despite all the other more popular languages, there are still problems today to which Perl 5 is the best solution. Very often those are sort of glue type problems. If you find yourself ever writing a shell script, and you're like, "Well, I'm not going to use my 'real programming language' for this." Whether it's Python, or Ruby, or whatever. But a shell script can let me connect together a bunch of stuff. Perl is a better tool for that job. It is easier to write a correct Perl script than it is to write a correct shell script.
 
-Having written a few glue tasks with [GNU Coreutils](https://www.gnu.org/software/coreutils/coreutils.html) and some shell scripts, I agree with that point. Even just glueing together Coreutils can be easier with [card/Perl](../../../card/Perl.md).
+Having written a few glue tasks with [GNU Coreutils](https://www.gnu.org/software/coreutils/coreutils.html) and some shell scripts, I agree with that point. Even just glueing together Coreutils can be easier with [Perl](../../../card/Perl.md).
 
-And [card/Raku](../../../card/Raku.md):
+And [Raku](../../../card/Raku.md):
 
  > 
  > That's the great thing about open source, and programming languages. No one's going to make you stop. You can just keep working on Perl 6 the same way you have been.

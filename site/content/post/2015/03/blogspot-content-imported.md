@@ -15,12 +15,12 @@ tags:
 - marginalia
 title: Blogspot Content Imported
 created: 2024-01-15T15:25:25-08:00
-updated: 2024-01-26T10:12:51-08:00
+updated: 2024-02-01T19:56:16-08:00
 ---
 
-I enjoyed importing the [card/coolnamehere](../../../card/coolnamehere.md) content so much last weekend that I decided to import the posts from a neglected [card/Blogger](../../../card/Blogger.md) blog this weekend. [jekyll-import](http://import.jekyllrb.com/docs/blogger/) simplified the actual import process, though I still had a lot of manual cleanup to perform.
+I enjoyed importing the [coolnamehere](../../../card/coolnamehere.md) content so much last weekend that I decided to import the posts from a neglected [Blogger](../../../card/Blogger.md) blog this weekend. [jekyll-import](http://import.jekyllrb.com/docs/blogger/) simplified the actual import process, though I still had a lot of manual cleanup to perform.
 
-The footer now includes links to *All Categories* and *All Posts*. The main category listing in the header was pared back down to the stuff I expect to update. I need to do something with the full post listing. It is unwieldy  now. Time to look up [card/Jekyll](../../../card/Jekyll.md) plugins.
+The footer now includes links to *All Categories* and *All Posts*. The main category listing in the header was pared back down to the stuff I expect to update. I need to do something with the full post listing. It is unwieldy  now. Time to look up [Jekyll](../../../card/Jekyll.md) plugins.
 
 I don’t know what to do with the material still hosted on Blogspot. Do I delete it? Do I make each post redirect here? I’ll figure it out.
 

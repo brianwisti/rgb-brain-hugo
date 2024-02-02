@@ -15,10 +15,10 @@ tags:
 - craft
 title: Zentangle Doodle
 created: 2024-01-15T15:25:52-08:00
-updated: 2024-01-26T10:13:13-08:00
+updated: 2024-02-01T21:21:20-08:00
 ---
 
-Trying to get back into the habit of drawing regularly. This is a [card/Zentangle](../../../card/Zentangle.md) exercise I finished last night.
+Trying to get back into the habit of drawing regularly. This is a [Zentangle](../../../card/Zentangle.md) exercise I finished last night.
 
 <!--more-->
 

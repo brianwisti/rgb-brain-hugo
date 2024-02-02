@@ -14,7 +14,7 @@ tags:
 - now
 title: meanwhile, weather
 created: 2024-01-15T15:26:12-08:00
-updated: 2024-01-26T10:21:21-08:00
+updated: 2024-02-01T20:25:26-08:00
 ---
 
 ![attachments/img/2021/cover-2021-12-30.jpg](../../../attachments/img/2021/cover-2021-12-30.jpg)
@@ -24,6 +24,6 @@ Would you look at that? We got some actual weather.
 
 What else?
 
-Been keeping myself busy with the JavaScript static site generators. Last week's [card/Astro](../../../card/Astro.md) experiment got slow so I've been messing with [card/Eleventy](../../../card/Eleventy.md).
+Been keeping myself busy with the JavaScript static site generators. Last week's [Astro](../../../card/Astro.md) experiment got slow so I've been messing with [Eleventy](../../../card/Eleventy.md).
 
 Probably my last note of the year, so: Happy New Year!

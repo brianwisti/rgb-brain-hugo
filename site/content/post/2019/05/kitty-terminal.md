@@ -13,7 +13,8 @@ tags:
 - kitty
 - tools
 title: Kitty Terminal
-updated: 2019-05-27 00:00:00-07:00
+updated: 2024-02-01T20:21:59-08:00
+created: 2024-01-15T15:26:34-08:00
 ---
 
 ![attachments/img/2019/cover-2019-05-27.png](../../../attachments/img/2019/cover-2019-05-27.png)
@@ -28,7 +29,7 @@ Confused yet? Me too. I barely understand what I’m trying to describe here. Re
 
 By using a special font such as [Fira Code](https://github.com/tonsky/FiraCode) and a capable terminal, all sorts of character transformations happen. For example, the `<` and `=` characters combined as `⇐` — to indicate "less than or equal to" — displays as `⩽`. It means the same thing, but it says it with a single visual character.
 
-We have this rich library of symbols to describe our solutions, but most programming languages use a tiny subset of those symbols. Except [card/Raku](../../../card/Raku.md) of course. Raku sort of does everything.
+We have this rich library of symbols to describe our solutions, but most programming languages use a tiny subset of those symbols. Except [Raku](../../../card/Raku.md) of course. Raku sort of does everything.
 
 ````console
 $ raku -e 'say 1 ≤ 5'
@@ -37,7 +38,7 @@ True
 
 Anyways, back to ligatures. They let you pretend you’re using that rich library of symbols.
 
-Gnome Terminal does not support ligatures, at least not on my system. Konsole from the *inbox/KDE* project does, but adds many KDE-specific dependencies to my system. I wanted to find something a bit more lightweight.
+Gnome Terminal does not support ligatures, at least not on my system. Konsole from the *KDE* project does, but adds many KDE-specific dependencies to my system. I wanted to find something a bit more lightweight.
 
 kitty satisfies that need.
 

@@ -12,9 +12,9 @@ tags:
 - site
 title: Today in Personal Accomplishments
 created: 2024-01-15T15:26:30-08:00
-updated: 2024-01-26T11:03:16-08:00
+updated: 2024-02-01T21:01:52-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-05.png](../../../attachments/img/2020/cover-2020-03-05.png)
 
-Been doing quality assurance on my site. Need to know what I got before any more big changes. Yes, 7.3 seconds is slow for [card/Hugo](../../../card/Hugo.md). It’s all the [card/reStructuredText](../../../card/reStructuredText.md). No plan to change *that*.
+Been doing quality assurance on my site. Need to know what I got before any more big changes. Yes, 7.3 seconds is slow for [Hugo](../../../card/Hugo.md). It’s all the [reStructuredText](../../../card/reStructuredText.md). No plan to change *that*.

@@ -12,11 +12,13 @@ tags:
 - hugo
 - tools
 title: Chronological Taxonomy Listings in Hugo
+created: 2024-01-15T15:26:36-08:00
+updated: 2024-02-01T19:59:05-08:00
 ---
 
 The archive pages now list tags and categories such that the ones with most recent posts come first!
 
-That may not sound impressive or even necessary. [card/Hugo](../../../card/Hugo.md)’s normal [taxonomy](https://gohugo.io/variables/taxonomy/) ordering `.Data.Terms.ByCount` and `.Data.Terms.Alphabetical` are sufficient for normal cases, and taxonomy detail pages already present their posts in a reverse chronology.
+That may not sound impressive or even necessary. [Hugo](../../../card/Hugo.md)’s normal [taxonomy](https://gohugo.io/variables/taxonomy/) ordering `.Data.Terms.ByCount` and `.Data.Terms.Alphabetical` are sufficient for normal cases, and taxonomy detail pages already present their posts in a reverse chronology.
 
 This site isn’t *quite* a normal case. The Random Geekery Blog is almost six years  old, and includes archived content from other sites dating back to 2000. My many obsessions have waxed and waned over the years. Presenting tags by name or by number of posts means we must dig to find out what’s relevant to me lately. I find that frustrating because of the way my brain holds information: fresh topics are near the top, and older stuff is somewhere down below when I need it.
 

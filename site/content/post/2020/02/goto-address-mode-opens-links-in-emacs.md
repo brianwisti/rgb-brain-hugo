@@ -10,12 +10,12 @@ tags:
 - tools
 title: Goto Address Mode Opens Links in Emacs
 created: 2024-01-15T15:26:31-08:00
-updated: 2024-01-26T11:03:21-08:00
+updated: 2024-02-01T20:14:06-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-04.png](../../../attachments/img/2020/cover-2020-02-04.png)
 
-[card/Org](../../../card/Org.md) mode has this nice thing where you can click a link in the [Emacs](../../../card/Emacs.md) buffer to open it in your browser. Turns out that’s not some special org-only behavior. It’s [goto-address-mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Goto-Address-mode.html), a minor mode that activates URLs and email addresses in the current buffer.
+[Org](../../../card/Org.md) mode has this nice thing where you can click a link in the [Emacs](../../../card/Emacs.md) buffer to open it in your browser. Turns out that’s not some special org-only behavior. It’s [goto-address-mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Goto-Address-mode.html), a minor mode that activates URLs and email addresses in the current buffer.
 
 You can manually launch it with `M-x goto-address-mode`. It might be easier to automatically enable it for certain modes. You do that with a [hook](https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html).
 
@@ -27,7 +27,7 @@ I want links to be available when reviewing notes and blog posts. Since I write 
                            (goto-address-mode)))
 ````
 
-Now I can open links from my Markdown and [card/reStructuredText](../../../card/reStructuredText.md) files with a click! Or a `C-c <RET>`.
+Now I can open links from my Markdown and [reStructuredText](../../../card/reStructuredText.md) files with a click! Or a `C-c <RET>`.
 
 **`goto-address-mode` key bindings**
 

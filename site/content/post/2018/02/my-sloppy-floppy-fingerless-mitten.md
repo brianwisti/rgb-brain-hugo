@@ -10,6 +10,8 @@ tags:
 - hugo
 - craft
 title: My Sloppy Floppy Fingerless Mitten
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-02-01T20:27:47-08:00
 ---
 
 I knit a fingerless mitten. Mistakes were made. I also figured out some stuff about Hugo Page Bundles and image processing.
@@ -30,7 +32,7 @@ It isn't all negative. I kept consistent gauge, and the [stretchy bind off](http
 
 ## Hugo?
 
-I wrote this post to learn [image processing](https://gohugo.io/content-management/image-processing/) in [card/Hugo](../../../card/Hugo.md) 0.36. My suggestion: follow the documentation, especially where it says to name your content file `index.md`.
+I wrote this post to learn [image processing](https://gohugo.io/content-management/image-processing/) in [Hugo](../../../card/Hugo.md) 0.36. My suggestion: follow the documentation, especially where it says to name your content file `index.md`.
 
 Maybe I can say a little more about that. I'll just focus on the bits relevant to [Page Resources](https://gohugo.io/content-management/page-resources/), since the rest of it is specific to the details of my site.
 

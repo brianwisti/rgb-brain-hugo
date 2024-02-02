@@ -13,7 +13,7 @@ tags:
 - marginalia
 title: My New New (New) Site
 created: 2024-01-15T15:25:28-08:00
-updated: 2024-01-26T10:11:36-08:00
+updated: 2024-02-01T20:26:52-08:00
 ---
 
 I have been exploring [Emacs](../../../card/Emacs.md) recently. As part of that exploration, I decided to use [o-blog](http://renard.github.io/o-blog/). Why? Well. I want to blog more. I want to use Emacs more. I got tired of my WordPress blog. o-blog sits on top of [Org](../../../card/Org.md), which is the Killer App of Emacs for me. Org mode is amazing. o-blog is nifty, and relatively easy to get started with. I have fiddled with the o-blog templates to suit my tastes. I replaced browser-side Less CSS with a bit of Sass at build time. Eventually I'll port the Wordpress posts to o-blog and maybe the old [coolnamehere](../../../card/coolnamehere.md) pages to something involving org-mode.

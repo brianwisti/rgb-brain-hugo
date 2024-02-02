@@ -3,6 +3,7 @@ aliases:
 - /2019/11/29/directory-listings-with-crystal/
 - /post/2019/11/directory-listings-with-crystal/
 category: post
+created: 2024-01-15 15:26:37-08:00
 date: 2019-11-29 00:00:00-08:00
 description: I swear I'm not reinventing `ls`.
 slug: directory-listings-with-crystal
@@ -14,9 +15,10 @@ tags:
 - files
 - programming
 title: Directory Listings With Crystal
+updated: 2024-02-01 22:15:35-08:00
 ---
 
-Okay, I know how to [summarize one file](summarizing-a-file-with-crystal.md) with [card/Crystal](../../../card/Crystal.md). What about directories?
+Okay, I know how to [summarize one file](summarizing-a-file-with-crystal.md) with [Crystal](../../../card/Crystal.md). What about directories?
 
 <!--more-->
 

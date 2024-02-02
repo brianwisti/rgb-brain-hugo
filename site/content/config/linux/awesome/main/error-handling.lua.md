@@ -1,7 +1,9 @@
 ---
-title: My awesomewm config error-handling.lua
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
+title: My awesomewm config error-handling.lua
+updated: 2024-02-01 11:27:39-08:00
 ---
 
 I'll need to notify about errors.
@@ -13,9 +15,10 @@ local naughty = require("naughty")
 
 Check if awesome encountered an error during startup and fell back to another config.
 
-{{% note %}}
-This code should only ever execute for the fallback config.
-{{% /note %}}
+ > 
+ > **NOTE**
+>
+ > This code should only ever execute for the fallback config.
 
 ````lua
 if awesome.startup_errors then

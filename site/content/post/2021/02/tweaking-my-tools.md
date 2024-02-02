@@ -16,7 +16,7 @@ created: 2024-01-15T15:26:20-08:00
 updated: 2024-01-26T10:22:18-08:00
 ---
 
-Playing a little more with [card/TTY Toolkit](../../../card/TTY%20Toolkit.md) for the site workflow. I wanted to say I'm tightening focus, but with a `require` list like this for one tool?
+Playing a little more with [TTY Toolkit](../../../card/TTY%20Toolkit.md) for the site workflow. I wanted to say I'm tightening focus, but with a `require` list like this for one tool?
 
 ````ruby
 require 'pastel'

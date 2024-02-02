@@ -12,6 +12,8 @@ tags:
 - exploring
 - marginalia
 title: Mount Si
+created: 2024-01-15T15:26:45-08:00
+updated: 2024-02-01T21:56:08-08:00
 ---
 
 ![attachments/img/2018/cover-2018-09-09.jpg](../../../attachments/img/2018/cover-2018-09-09.jpg)
@@ -134,4 +136,4 @@ My feet would have hated me. Besides, because of my timing, I got back to Seattl
 I wore better shoes than at [Island Center Forest](../08/island-center-forest.md), so my feet feel fine today. My knees got more work than usual, but at least I can walk without major discomfort.
 
 One thing is for sure: next time I go walking up a mountain, I bring my
-*inbox/Knitting*!
+*Knitting*!

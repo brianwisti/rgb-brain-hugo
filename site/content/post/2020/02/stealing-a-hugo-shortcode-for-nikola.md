@@ -12,12 +12,12 @@ tags:
 - hugo
 - tools
 title: Stealing a Hugo Shortcode for Nikola
-updated: 2024-01-26 11:03:28-08:00
+updated: 2024-02-01 20:55:55-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-12.png](../../../attachments/img/2020/cover-2020-02-12.png)
 
-I keep waffling on whether to switch from \[Hugo\]\[hugo\] to \[Nikola\]\[nikola\] or some other [card/Static Site Generator](../../../card/Static%20Site%20Generator.md). Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.
+I keep waffling on whether to switch from \[Hugo\]\[hugo\] to \[Nikola\]\[nikola\] or some other [Static Site Generator](../../../card/Static%20Site%20Generator.md). Meanwhile, my Nikola import spare time project continues. Got the basic structure down, and my theme is almost useful. It even improved the Hugo version of the site.
 
  > 
  > **NOTE**
@@ -26,7 +26,7 @@ I keep waffling on whether to switch from \[Hugo\]\[hugo\] to \[Nikola\]\[nikola
  > 
  > And yes. I wrote a [post/2017/04/making-a-mojo-link-checker](../../2017/04/making-a-mojo-link-checker.md) in 2017. No, I haven’t used it since.
 
-# The shortcode
+## The shortcode
 
 Some posts included embedded YouTube videos. Nikola’s [RST extensions](https://getnikola.com/handbook.html#restructuredtext-extensions) include a [youtube directive](https://getnikola.com/handbook.html#youtube), but I needed something for the Markdown files. Well, okay. `media` from the [built-in shortcodes](https://getnikola.com/handbook.html#built-in-shortcodes) would work. I wanted to make a template shortcode, okay?
 
@@ -84,6 +84,6 @@ Not much needed here. It takes the YouTube ID as an argument, picks a host based
 
 It works!
 
-# What Now?
+## What Now?
 
 I’m not sure. The Nikola experiment is fun, but I have ideas for the Hugo flow too.

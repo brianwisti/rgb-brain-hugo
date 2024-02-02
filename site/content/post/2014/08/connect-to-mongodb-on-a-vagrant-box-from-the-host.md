@@ -12,11 +12,11 @@ tags:
 - tools
 title: Connect To MongoDB on a Vagrant box from the host
 created: 2024-01-15T15:25:51-08:00
-updated: 2024-01-26T10:11:52-08:00
+updated: 2024-02-01T22:11:27-08:00
 ---
 
 ![attachments/img/2014/cover-2014-08-06.png](../../../attachments/img/2014/cover-2014-08-06.png)
-[Yesterday](trusty-mongo-mojo-box.md) I finished a little project to set up a reusable Vagrant box for MongoDB and [card/Perl](../../../card/Perl.md) Mojolicious experiments. That project is okay as it is right now, but I would like to get at MongoDB from the host system.
+[Yesterday](trusty-mongo-mojo-box.md) I finished a little project to set up a reusable Vagrant box for MongoDB and [Perl](../../../card/Perl.md) Mojolicious experiments. That project is okay as it is right now, but I would like to get at MongoDB from the host system.
 
 <!--more-->
 

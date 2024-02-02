@@ -12,31 +12,31 @@ tags:
 - site
 - tools
 title: Indieweb h-cards
-updated: 2024-01-26 11:02:50-08:00
+updated: 2024-02-01 20:19:23-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-11.png](../../../attachments/img/2020/cover-2020-04-11.png)
 My h-card as of a few minutes ago
 
-# You did what now?
+## You did what now?
 
-I updated my home page h-card for the [card/IndieWeb](../../../card/IndieWeb.md).
+I updated my home page h-card for the [IndieWeb](../../../card/IndieWeb.md).
 
-## What?
+### What?
 
-[h-card](http://microformats.org/wiki/h-card) is a [microformats2](../../../card/microformats.md) vocabulary to describe people and organizations. I added terms from that vocabulary as HTML classes to elements of a profile section on the front page.
+[h-card](http://microformats.org/wiki/h-card) is a [microformats2](../../../card/microformats2.md) vocabulary to describe people and organizations. I added terms from that vocabulary as HTML classes to elements of a profile section on the front page.
 
-## Why?
+### Why?
 
 It helps identify me for other folks on the IndieWeb. Some have written tools and services that speak h-card. Mostly, the h-card vocabulary gives me a convenient way to organize my biographical details for visitors to this site.
 
-# What are you talking about?
+## What are you talking about?
 
 Describing yourself in a useful way presents a challenge, especially online. Prose has the greatest clarity for human readers — assuming they know the language you write in. Social networks give you a profile page with slots for important details — assuming they include fields for the details *you* consider important.
 
 We can use h-card to identify ourselves and others in the IndieWeb. Officially, it’s a collection of properties for detailing individuals and groups of people. Informally, it’s also the descriptions we create with those properties. I used the h-card vocabulary to create a profile. That profile included details that I consider important.
 
-## A minimal h-card
+### A minimal h-card
 
 I have a name that I commonly use both online and off.
 
@@ -73,7 +73,7 @@ This tells anyone that Brian Wisti — that’s me — considers `https://random
 
 This is sufficient to uniquely identify me online. It’s the form I’d use when referencing someone else online. I could even get away with using that form for my own card.
 
-## A profile card
+### A profile card
 
 Where do I put my card?
 
@@ -81,7 +81,7 @@ I use my site’s root URL, but not everyone identifies so closely with their We
 
 Just make sure the location matches the URL specified in the card itself!
 
-This abbreviated form contains more assumptions than I like. We can assume that "Brian Wisti" is a name. The format calls that an *implied property*. There’s honestly nothing wrong with that. I spend enough time in [card/Python](../../../card/Python.md) that I prefer explicit to implicit when practical.
+This abbreviated form contains more assumptions than I like. We can assume that "Brian Wisti" is a name. The format calls that an *implied property*. There’s honestly nothing wrong with that. I spend enough time in [Python](../../../card/Python.md) that I prefer explicit to implicit when practical.
 
 ````html
 <a class="h-card p-name u-url"
@@ -136,7 +136,7 @@ Okay, that’s actually worth looking at. There’s some CSS styling, but I won�
 
 ![simple h-card screenshot](attachments/img/2020/hcard-photo.png "h-card with bio and photo")
 
-## Linking your card to other services
+### Linking your card to other services
 
 <https://randomgeekery.org> may be my home page, but it’s not the only place folks find me. I routinely post on Mastodon and Twitter. I sometimes peek my head in to see what’s new on Github and LinkedIn. h-card can help integrate with those as well.
 
@@ -167,14 +167,14 @@ My [hackers.town](https://hackers.town/@randomgeek) Mastodon profile has a link 
 ![attachments/img/2020/hackers-town-profile.png](../../../attachments/img/2020/hackers-town-profile.png)
 That's how you get a verified check on Mastodon sites
 
-## RelMeAuth
+### RelMeAuth
 
 [RelMeAuth](https://indieweb.org/RelMeAuth) takes advantage of the relation between your site and [OAuth](https://oauth.net/) providers. If IndieWeb authenticators like [IndieLogin](https://indielogin.com/) and [IndieAuth](https://indieauth.net/) see rel-me links to known providers, they let you verify your site and yourself through those providers.
 
 ![attachments/img/2020/indielogin-auth.png](../../../attachments/img/2020/indielogin-auth.png)
 I can use my Twitter or Github accounts to authenticate
 
-### Specifying my main page
+#### Specifying my main page
 
 New problem. My h-card now includes several `u-url` links that are all me. Which one is the real me? I make that link the `u-uid`.
 
@@ -186,11 +186,11 @@ New problem. My h-card now includes several `u-url` links that are all me. Which
 
 ![screenshot of updated h-card](attachments/img/2020/hcard-relme.png "Now my name links to my `u-uid`")
 
-## Add some details
+### Add some details
 
 This is a reasonable stopping point for a profile h-card. It names, shows, and describes me, including links to find me on assorted social networks. But I’d like to add some more information. Using microformats, of course.
 
-### Where do I live?
+#### Where do I live?
 
 I live in the city of Seattle. My `p-note` already says so. But again: it might be useful to highlight it as a location. Several h-card options describe locations in all the detail you could want — right down to latitude and longitude. But no. I’ll use `p-locality` and *maybe* revisit later if I want more specificity.
 
@@ -200,7 +200,7 @@ I live in the city of Seattle. My `p-note` already says so. But again: it might 
 </span>
 ````
 
-### What interests me?
+#### What interests me?
 
 We all have hobbies, right? With `p-category` I list things we could discuss. Let’s make links out of some that I’ve posted about.
 
@@ -213,7 +213,7 @@ We all have hobbies, right? With `p-category` I list things we could discuss. Le
 </span>
 ````
 
-### What should you call me?
+#### What should you call me?
 
 What about pronouns? That’s one way to specify I’m a person instead of an organization.
 
@@ -274,7 +274,7 @@ Okay so what do I have now?
 
 ![image](attachments/img/2020/hcard-details.png "Some styling distinguishes identity links from details")
 
-## Validate me
+### Validate me
 
 Now my h-card includes all the information I care about. Time to make sure I put it together correctly! h-cards exist in the context of other documents, like my Web page. Validation is less formal: mainly, check that microformats2-aware parsers find your information.
 
@@ -289,7 +289,7 @@ The [IndieWebify.me validator](https://indiewebify.me/validate-h-card/) styles i
 
 It doesn’t accept raw HTML, though. You need to provide a URL, which is less handy for an in-development h-card.
 
-# What about some other h-cards?
+## What about some other h-cards?
 
 I’m pretty much done, other than a plan to incorporate [Fork Awesome](https://forkaweso.me/Fork-Awesome/) for me rel-me links. But that’s a topic for another day, if ever.
 

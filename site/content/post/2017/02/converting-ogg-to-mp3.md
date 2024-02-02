@@ -3,6 +3,7 @@ aliases:
 - /post/2017/converting-ogg-to-mp3/
 - /2017/02/25/converting-ogg-to-mp3/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-02-25 00:00:00-08:00
 slug: converting-ogg-to-mp3
 syndication:
@@ -14,9 +15,10 @@ tags:
 - music
 - programming
 title: Converting OGG To MP3
+updated: 2024-02-01 20:00:19-08:00
 ---
 
-I have ignored my MacBook Pro for a few months. Now my iTunes and   Rhythmbox music libraries are out of sync. The Rhythmbox library includes a handful of [Ogg Vorbis](http://vorbis.com/) files. Because iTunes does not support Ogg by default, I will use [FFmpeg](http://ffmpeg.org/) to convert those files to MP3. For the sake of novelty, [card/Raku](../../../card/Raku.md) is the glue language for the task.
+I have ignored my MacBook Pro for a few months. Now my iTunes and   Rhythmbox music libraries are out of sync. The Rhythmbox library includes a handful of [Ogg Vorbis](http://vorbis.com/) files. Because iTunes does not support Ogg by default, I will use [FFmpeg](http://ffmpeg.org/) to convert those files to MP3. For the sake of novelty, [Raku](../../../card/Raku.md) is the glue language for the task.
 
 I know. I could go digging in the box at the bottom of the back of the closet
 and re-rip those CDs. But the closet is all the way over there. I’m right here. I

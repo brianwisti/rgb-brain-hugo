@@ -18,7 +18,7 @@ updated: 2024-01-26T10:22:22-08:00
 ![attachments/img/2021/cover-2021-02-19.png](../../../attachments/img/2021/cover-2021-02-19.png)
 Okular document viewer with several tabs open including "Programming Crystal"
 
-[Okular](https://okular.kde.org), the *inbox/KDE* document viewer, works on Windows. Not only that, but it's available in the [Microsoft Store](https://www.microsoft.com/en-us/p/okular/9n41msq1wnm8).
+[Okular](https://okular.kde.org), the *KDE* document viewer, works on Windows. Not only that, but it's available in the [Microsoft Store](https://www.microsoft.com/en-us/p/okular/9n41msq1wnm8).
 
 Free, obviously.
 

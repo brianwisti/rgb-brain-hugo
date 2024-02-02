@@ -12,6 +12,8 @@ tags:
 - taskwarrior
 - look-what-i-can-do
 title: Yanick made me do it
+created: 2024-01-15T15:26:33-08:00
+updated: 2024-02-01T21:20:05-08:00
 ---
 
 Inspired by [yenzie](https://twitter.com/yenzie/status/1167437274612736002) to add a point estimate [UDA](https://taskwarrior.org/docs/udas.html) to my [Taskwarrior](../../../card/Taskwarrior.md) tasks.

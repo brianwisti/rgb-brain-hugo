@@ -14,7 +14,7 @@ tags:
 - tmux
 - tools
 title: Naming things in tmux
-updated: 2024-01-26 11:00:00-08:00
+updated: 2024-02-01 20:29:29-08:00
 ---
 
 I got the basics of [tmux](https://github.com/tmux/tmux) down:
@@ -32,9 +32,9 @@ At some point I realized you can have more than one tmux session going at a time
 
 I need to manage everything better.
 
-# Using Tmux commands
+## Using Tmux commands
 
-Although tmux binds keys to commands, it’s easier for me to remember words than keys.  It’s part of why I still use [Taskwarrior](../../../card/Taskwarrior.md) more than [card/Org](../../../card/Org.md).  Because of that, I’ll focus on the tmux commands.
+Although tmux binds keys to commands, it’s easier for me to remember words than keys.  It’s part of why I still use [Taskwarrior](../../../card/Taskwarrior.md) more than [Org](../../../card/Org.md).  Because of that, I’ll focus on the tmux commands.
 
 You can send them directly to `tmux` in an open shell.
 
@@ -52,11 +52,11 @@ If your command produces output, it will display in place of your current window
 
 On to the commands themselves.  I’ve added some highlights along the way, with command full names, aliases, and useful arguments — but not *all* arguments.
 
-# Sessions
+## Sessions
 
 First things first.  Let’s figure out what I have.
 
-## Listing sessions
+### Listing sessions
 
 command
 : `list-sessions`
@@ -81,7 +81,7 @@ Whatever.
 
 Anyways, that number on the start of each entry identifies the session.  It starts at zero, and keeps going up with each new session until you quit all your tmux sessions and start again.  Quitting a session won’t affect the numbering.  `2` is the name of the session, and that stayed true even when I quit session `1`.
 
-## Switching to different sessions
+### Switching to different sessions
 
 command
 : `switch-client`
@@ -126,7 +126,7 @@ We can cycle through sessions without targeting them, too.  A `-n` argument cycl
 
 I don’t think so much about tabbed terminals anymore.  I do forget which session holds work stuff and which holds site stuff, though.
 
-## Renaming sessions
+### Renaming sessions
 
 command
 : `rename-session`
@@ -165,9 +165,9 @@ With several sessions going at once — it happens sometimes — names tell me w
 
 I gave each of my sessions a purpose.  Now.  What’s going on with the windows *inside* the sessions?
 
-# Windows
+## Windows
 
-## Listing windows
+### Listing windows
 
 command
 : `list-windows`
@@ -205,7 +205,7 @@ That’s not very helpful. The named sessions help clarify things somewhat, but 
 
 Let’s fix that.
 
-## Renaming windows
+### Renaming windows
 
 command
 : `rename-window`
@@ -227,7 +227,7 @@ I can rename the windows within my session.
 :renamew -t 3 kexp
 ````
 
-There we go.  I’m writing this post in [card/Neovim](../../../card/Neovim.md), serving my site with [card/Hugo](../../../card/Hugo.md) locally for review, and listening to the [card/KEXP](../../../card/KEXP.md) stream via `mplayer`.
+There we go.  I’m writing this post in [Neovim](../../../card/Neovim.md), serving my site with [Hugo](../../../card/Hugo.md) locally for review, and listening to the [KEXP](../../../card/KEXP.md) stream via `mplayer`.
 
 Heck, I can rename windows in my other session if I like.
 
@@ -254,7 +254,7 @@ So much more I could learn, but this covers enough to call it a post.
 
 Besides, I need to get back to work.
 
-# Resources
+## Resources
 
 Where did I get all this?
 

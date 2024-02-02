@@ -8,9 +8,11 @@ tags:
 - windows
 - tools
 title: Windows Virtual Desktops
+created: 2024-01-15T15:26:43-08:00
+updated: 2024-02-01T21:59:22-08:00
 ---
 
-A short post noting *inbox/Windows* 10 keyboard shortcuts for virtual desktops
+A short post noting *Windows* 10 keyboard shortcuts for virtual desktops
 
 <!--more-->
 

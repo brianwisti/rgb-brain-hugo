@@ -12,18 +12,18 @@ tags:
 - nikola
 - tools
 title: Building a starter blog with Nikola
-updated: 2024-01-26 11:03:35-08:00
+updated: 2024-02-01 22:08:06-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-05.png](../../../attachments/img/2020/cover-2020-01-05.png)
 
-I messed with [card/Nikola](../../../card/Nikola.md) a while back, but ended up going with [card/Hugo](../../../card/Hugo.md). Nikola has evolved in the last couple years, though. Let’s check it out!
+I messed with [Nikola](../../../card/Nikola.md) a while back, but ended up going with [Hugo](../../../card/Hugo.md). Nikola has evolved in the last couple years, though. Let’s check it out!
 
-Nikola is a static site generator written in [card/Python](../../../card/Python.md). Its [features](https://getnikola.com/features) support a flexible workflow while still providing a solid blogging experience "out of the box." You can extend that flexibility further via plugins.
+Nikola is a static site generator written in [Python](../../../card/Python.md). Its [features](https://getnikola.com/features) support a flexible workflow while still providing a solid blogging experience "out of the box." You can extend that flexibility further via plugins.
 
 That focused flexibility intrigues me. [Cleaning](../../2019/12/removing-mmark-has-me-grumbly.md) my site after Hugo [deprecated](https://gohugo.io/news/0.60.0-relnotes/) the [mmark](https://mmark.miek.nl/) format was a chore. My site has too many moving parts for me to casually port it, but I can still play a little.
 
-# Setup
+## Setup
 
 It’s generally a good idea to have a dedicated Python environment for each of your projects. So I’ll set something up with [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv).
 
@@ -38,7 +38,7 @@ Next is Nikola itself. I’ll follow the [suggestion](https://getnikola.com/gett
 $ pip install --upgrade "Nikola[Extras]"
 ````
 
-# Initialize the site
+## Initialize the site
 
 Let’s initialize an empty site.
 
@@ -97,7 +97,7 @@ BLOG_DESCRIPTION = "The Random Geekery Blog, built with Nikola"  # (translatable
 
 The rest of the file lists and explains default configuration. You could learn *almost* everything you need about Nikola from the configuration file. Nevertheless, I plan to keep the [documentation](https://getnikola.com/documentation.html) handy.
 
-## Local Development
+### Local Development
 
 Nikola includes a built-in server to check your site locally. We have no content yet, but let’s take a look anyways.
 
@@ -132,13 +132,13 @@ And now the site title header links to the front page. Perfect for today.
 
 Let’s start blogging!
 
-# Blogging with Nikola
+## Blogging with Nikola
 
 Nikola supports an overwhelming number of options, especially when you start looking at plugins. That works great for someone like me. I constantly get new ideas not quite covered by the expected workflow, regardless of what that flow is.
 
 Of course, "an overwhelming number of options' is not the same as "unopinionated." Unopinionated tools expect you to create your own workflow — or copy someone else’s. Despite its many options, Nikola includes a default workflow.
 
-## Writing a blog post
+### Writing a blog post
 
 The `new_post` command asks you for a title and uses that to create a file from your settings.
 
@@ -174,8 +174,8 @@ How about some filler with Perl and Text::Lorem?
 ...
 ````
 
-Unless you configure it differently, Nikola uses [card/reStructuredText](../../../card/reStructuredText.md) for new posts.
-RestructuredText, or ReST, is a formatting language similar in spirit to [card/Markdown](../../../card/Markdown.md). The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.
+Unless you configure it differently, Nikola uses [reStructuredText](../../../card/reStructuredText.md) for new posts.
+RestructuredText, or ReST, is a formatting language similar in spirit to [Markdown](../../../card/Markdown.md). The syntax looks different, but they share a purpose: simplified writing compared to HTML for everything. And of course Markdown is supported for those who prefer it.
 
 Nikola reads our post’s metadata from ReST comments at the front of the file. I know I will miss something important if I tried summarizing it. Let’s just link to Nikola’s own [metadata documentation](https://getnikola.com/handbook.html#metadata-fields).
 
@@ -220,7 +220,7 @@ But still let’s move on.
 
 The Archive, Tags, and RSS Feed links work, listing posts as expected. The lists aren’t very interesting with only one post though. I’ll see what I can come up with for next time. Oh and I’m not sure I can properly describe how excited I am that Archive automatically generates pages for years. I didn’t have to make a special-purpose taxonomy or anything!
 
-# Adding Pages
+## Adding Pages
 
 Anyways. Blogging is good, but a site needs more than blog posts. Let’s use `nikola new_post -p` to create a page instead of a post.
 
@@ -251,7 +251,7 @@ NAVIGATION_LINKS = {
 
 ![screenshot of /now page](attachments/img/2020/now.png "The Now page")
 
-# What’s left?
+## What’s left?
 
 If this was a really real site, we would build and deploy.
 

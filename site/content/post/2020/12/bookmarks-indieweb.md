@@ -11,6 +11,6 @@ created: 2024-01-15T15:26:22-08:00
 updated: 2024-01-26T10:59:49-08:00
 ---
 
-Not formally part of [card/microformats](../../../card/microformats.md), but I need it for ideas on how to format my bookmarks.
+Not formally part of [microformats2](../../../card/microformats2.md), but I need it for ideas on how to format my bookmarks.
 
 [bookmark — IndieWeb](https://indieweb.org/bookmark)

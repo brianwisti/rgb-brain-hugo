@@ -11,10 +11,10 @@ tags:
 - testing
 - browser-testing
 title: Playwright for Python
-updated: 2024-01-26 10:59:18-08:00
+updated: 2024-02-01 20:36:57-08:00
 ---
 
-There's a [card/Python](../../../card/Python.md) interface to the very handy [Playwright](https://playwright.dev) browser automation library. The 1.9.x releases feel more Pythonic. Naming conventions, stuff like that. Feels much less like just a wrapper.
+There's a [Python](../../../card/Python.md) interface to the very handy [Playwright](https://playwright.dev) browser automation library. The 1.9.x releases feel more Pythonic. Naming conventions, stuff like that. Feels much less like just a wrapper.
 
 Don't forget to install browser drivers whenever you install or upgrade Playwright!
 
@@ -22,7 +22,7 @@ Don't forget to install browser drivers whenever you install or upgrade Playwrig
 $ python -m playwright install
 ````
 
-# With pytest
+## With pytest
 
 The [pytest-playwright](https://github.com/microsoft/playwright-pytest) plugin provides fixtures, marks, and extra `pytest` args for browser testing. So far the only fixture I've used is `page`, the stand-in for a default browser session. Pairs nicely with [pytest-django](https://pytest-django.readthedocs.io/)'s `live_server` fixture.
 

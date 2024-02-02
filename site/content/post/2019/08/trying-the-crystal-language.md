@@ -13,11 +13,13 @@ tags:
 - taskwarrior
 - programming
 title: Trying the Crystal Language
+created: 2024-01-15T15:26:35-08:00
+updated: 2024-02-01T21:03:55-08:00
 ---
 
 ![attachments/img/2019/cover-2019-08-25.png](../../../attachments/img/2019/cover-2019-08-25.png)
 
-[card/Crystal](../../../card/Crystal.md) is a statically typed, compiled programming language that looks a *lot* like [card/Ruby](../../../card/Ruby.md). Let’s try it out! Maybe even work on a [Taskwarrior](../../../card/Taskwarrior.md) thing I’ve been wanting to do.
+[Crystal](../../../card/Crystal.md) is a statically typed, compiled programming language that looks a *lot* like [Ruby](../../../card/Ruby.md). Let’s try it out! Maybe even work on a [Taskwarrior](../../../card/Taskwarrior.md) thing I’ve been wanting to do.
 
 ## Motivation
 

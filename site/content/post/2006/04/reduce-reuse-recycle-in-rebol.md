@@ -11,14 +11,14 @@ tags:
 - coolnamehere
 title: Reduce, Reuse, Recycle in REBOL
 created: 2024-01-15T15:25:43-08:00
-updated: 2024-01-26T09:20:32-08:00
+updated: 2024-02-01T20:46:18-08:00
 ---
 
 I had to share a "Eureka!" moment that I recently experienced about [REBOL](../../../card/REBOL.md). I  never did get around to refining it, but it stands here as a rambling  testament of - well, as a testament of my ability to ramble.  I might end up refining it later, or I might not. I just didn't want the thoughts to disappear in air as thoughts are sometimes known to do.
 
 <!--more-->
 
-# My Baffling Issue
+## My Baffling Issue
 
 There are a lot of `re-` words in Rebol.
 
@@ -42,7 +42,7 @@ These do more or less what you would expect them to. `remove` will remove an ite
 
 That first list of `re-` words was really standing in the way of understanding Rebol. That's because the prefix `re-` doesn't quite mean what you would expect in an English language context. I'm used to the meaning "do this thing again," and that's the way it gets used in words like `resend` and `repeat`. What about `repend` and those others?
 
-# `reduce`
+## `reduce`
 
 The key for those words is in understanding `reduce`. `reduce` takes a series and evaluates every expression in that series. When it's done, it hands you a new list consisting of the results of those evaluations. It's easier to show than explain:
 
@@ -65,7 +65,7 @@ It gets more interesting when your expressions are a little more interesting, bu
 
 Those other four words which have been confusing me for months suddenly make a lot more sense when I realize that the prefix `re-` means "`reduce` these values before doing this other thing."
 
-# `reform`
+## `reform`
 
 `form` takes a value and returns a stringified version of the value.
 
@@ -84,7 +84,7 @@ Now that we know what `reduce` does, we have a good idea what to expect out of `
 It will `reduce` the series, and then `form` a string from the values in the 
 new series.
 
-# `rejoin`
+## `rejoin`
 
 `join` is a little funky. Now that I understand what `rejoin` does, I usually end up using it directly. Here's a breakdown just the same.
 
@@ -102,7 +102,7 @@ new series.
 == "5242"
 ````
 
-# `remold`
+## `remold`
 
 `mold` is somewhat nifty. It will transform its argument into a string that Rebol can evaluate later. Pretty handy for generating code while the program is running!
 
@@ -122,7 +122,7 @@ new series.
 == "[5 24 2]"
 ````
 
-# `repend`
+## `repend`
 
 ````
 >> append example [2 + 3]

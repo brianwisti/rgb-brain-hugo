@@ -23,4 +23,4 @@ Webmentions for [my wedding post](../03/got-married-yesterday.md)
 
 I used Max Böck’s [Webmentions post](https://mxb.dev/blog/using-webmentions-on-static-sites/#webmentions) as a starting point.
 
-And yes, I’m far enough along with the [card/IndieWeb](../../../card/IndieWeb.md) stuff that my study notes would make a decent blog post. Maybe a couple.
+And yes, I’m far enough along with the [IndieWeb](../../../card/IndieWeb.md) stuff that my study notes would make a decent blog post. Maybe a couple.

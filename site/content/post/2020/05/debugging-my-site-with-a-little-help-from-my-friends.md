@@ -15,7 +15,7 @@ tags:
 - yay-for-tests
 title: Debugging My Site With a Little Help From My Friends
 created: 2024-01-15T15:26:33-08:00
-updated: 2024-01-26T11:01:36-08:00
+updated: 2024-02-01T22:15:00-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-08.png](../../../attachments/img/2020/cover-2020-05-08.png)
@@ -32,7 +32,7 @@ updated: 2024-01-26T11:01:36-08:00
  > -- <cite>Me, a few weeks ago</cite>
 
  > 
- > Look honey I added *inbox/Webmention* data to my [Datasette dashboard](datasette-sure-is-nifty.md)!
+ > Look honey I added *Webmention* data to my [Datasette dashboard](datasette-sure-is-nifty.md)!
  > 
  > -- <cite>Me, this morning</cite>
 

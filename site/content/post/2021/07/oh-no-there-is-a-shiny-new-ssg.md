@@ -10,11 +10,11 @@ tags:
 - astro
 title: oh no there is a shiny new SSG
 created: 2024-01-15T15:26:12-08:00
-updated: 2024-01-26T10:21:46-08:00
+updated: 2024-02-01T20:33:23-08:00
 ---
 
-Saw [card/Astro](../../../card/Astro.md) mentioned in my Twitter feed today. Tempting.
+Saw [Astro](../../../card/Astro.md) mentioned in my Twitter feed today. Tempting.
 
-Been looking for a gateway SSG into JavaScript. Something with a little more built-in than [card/Eleventy](../../../card/Eleventy.md), but maybe a bit less than [card/Gatsby](../../../card/Gatsby.md). I think I'll play with Astro — see if it keeps my attention.
+Been looking for a gateway SSG into JavaScript. Something with a little more built-in than [Eleventy](../../../card/Eleventy.md), but maybe a bit less than [Gatsby](../../../card/Gatsby.md). I think I'll play with Astro — see if it keeps my attention.
 
 Will it keep my attention long enough to replace the Hugo version? Precedent says "no." But it should be fun just the same.

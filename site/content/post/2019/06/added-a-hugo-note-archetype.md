@@ -17,11 +17,13 @@ tags:
 - mobile-hotspot
 - my-data-usage-is-gonna-hurt
 title: Added a Hugo note archetype
+created: 2024-01-15T15:26:37-08:00
+updated: 2024-02-01T19:52:59-08:00
 ---
 
 Moved into a new apartment. Waiting for Internet on Tuesday. It's Sunday.
 
-Continuing to work slow but sure on my notes experiment. Today: a [card/Hugo](../../../card/Hugo.md) [archetype](https://gohugo.io/content-management/archetypes/) that includes a full *inbox/ISO 8601* timestamp, via [`dateFormat`](https://gohugo.io/functions/dateformat).
+Continuing to work slow but sure on my notes experiment. Today: a [Hugo](../../../card/Hugo.md) [archetype](https://gohugo.io/content-management/archetypes/) that includes a full *ISO 8601* timestamp, via [`dateFormat`](https://gohugo.io/functions/dateformat).
 
 ````
 ---

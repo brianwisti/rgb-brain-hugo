@@ -23,4 +23,4 @@ Riv screenshot
 
 It works well enough, especially once you build up muscle memory for Riv's leader sequence <kbd>C-e</kbd>. Don't overload it right away though! It includes some insert mode mappings, which can get real confusing if your preferred leader is a space.
 
-Meanwhile I got a lot of [card/Neovim](../../../card/Neovim.md) ideas. Course, I need to get some more practice in with [pynvim](https://pynvim.readthedocs.io/en/latest/) first. And I suppose some more practice with Riv.
+Meanwhile I got a lot of [Neovim](../../../card/Neovim.md) ideas. Course, I need to get some more practice in with [pynvim](https://pynvim.readthedocs.io/en/latest/) first. And I suppose some more practice with Riv.

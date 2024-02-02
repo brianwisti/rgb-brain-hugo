@@ -19,7 +19,7 @@ tags:
 - but-i-warned-you
 - programming
 title: Letting Ruby build Asciidoctor files for Hugo
-updated: 2024-01-26 11:01:21-08:00
+updated: 2024-02-01 20:23:01-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-18.jpg](../../../attachments/img/2020/cover-2020-05-18.jpg)
@@ -30,13 +30,13 @@ actually really proud of myself but this post needs all the disclaimers
 >
  > Normal people: don't do any of this.  The whole post is me compensating for making Hugo do things it's not good at.
  > 
- > Stick with \[Markdown\]\[markdown\] if you use \[Hugo\]\[hugo\].  Use [shortcodes](https://gohugo.io/content-management/shortcodes/) or [render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks) if you want to make things interesting. Experiment with [card/reStructuredText](../../../card/reStructuredText.md) or [card/Asciidoctor](../../../card/Asciidoctor.md) — but anything past a few pages slows builds dramatically.  Move *away* from Hugo if you prefer those formats.  Try \[Nikola\]\[nikola\] for `rst` blogs.  \[Gatsby\]\[gatsby\] has a [plugin](https://www.gatsbyjs.org/packages/gatsby-transformer-asciidoc/?=asciidoctor) to directly transform `adoc` content.  You have options!
+ > Stick with \[Markdown\]\[markdown\] if you use \[Hugo\]\[hugo\].  Use [shortcodes](https://gohugo.io/content-management/shortcodes/) or [render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks) if you want to make things interesting. Experiment with [reStructuredText](../../../card/reStructuredText.md) or [Asciidoctor](../../../card/Asciidoctor.md) — but anything past a few pages slows builds dramatically.  Move *away* from Hugo if you prefer those formats.  Try \[Nikola\]\[nikola\] for `rst` blogs.  \[Gatsby\]\[gatsby\] has a [plugin](https://www.gatsbyjs.org/packages/gatsby-transformer-asciidoc/?=asciidoctor) to directly transform `adoc` content.  You have options!
 
-# Asciidoctor?
+## Asciidoctor?
 
 Asciidoctor is yet another lightweight formatting language, with official implementations in Ruby, JavaScript, and Java.  Processing tools transform it into HTML, PDF, and other formats.  Like Markdown, I find it easy to read and write the format.  Like reStructuredText and \[Org\]\[org\], it provides structures suited for technical and long form writing.  Oh, and clearly labeled hooks for extending if the built-in structures don’t quite meet your needs.
 
-# What’s this got to do with Hugo?
+## What’s this got to do with Hugo?
 
 Hugo shines with Markdown, but you can use other [content formats](https://gohugo.io/content-management/formats/) as well.  It supports Org files directly through [go-org](https://github.com/niklasfasching/go-org).  reStructuredText is supported if you have `rst2html.py` installed. Asciidoc and Asciidoctor are supported if you have their processors installed. And like \[Jekyll\]\[jekyll\], Hugo supports HTML as an HTML authoring language if you tack some front matter onto it.
 
@@ -47,7 +47,7 @@ I enjoy the flexibility.  And that bit about supporting HTML as an authoring lan
 >
  > go-org is nice, but [`ox-hugo`](https://ox-hugo.scripter.co/) excels if you want Hugo support tightly integrated with Org mode.
 
-# So what’s the problem?
+## So what’s the problem?
 
 What’s up with this?
 
@@ -96,11 +96,11 @@ Interesting.  I only updated a single `.adoc` file — this one — but 
 
 Okay.
 
-# Fine I’ll do it myself
+## Fine I’ll do it myself
 
 I could always build the `adoc` files myself instead of making Hugo do it.
 
-## Hang on — is that even worth it?
+### Hang on — is that even worth it?
 
 How long does it take for a single process to build HTML from all the `adoc` files in my site?  Not much point in this idea if Asciidoctor takes 17 seconds on its own.
 
@@ -145,11 +145,11 @@ So yes.  Building them fresh myself is quicker than 17 seconds.  That’s about 
 
 This experiment is worth pursuing further.
 
-# Give it a shot
+## Give it a shot
 
 It will be fiddly, though.  I’m going to end up adding a build step, and complicating Hugo’s normally straightforward site generation process.
 
-## Keep the front matter
+### Keep the front matter
 
 Asciidoctor has its own [document header](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#document-header) rules, but I don’t have to think too much about that.  To better support [static site generators](https://asciidoctor.org/docs/user-manual/#static-website-generators), Asciidoctor can be told what to do with YAML front matter.  I want front matter glued back to output before saving to Hugo’s `content` folder.
 
@@ -184,7 +184,7 @@ Dir["#{SRC_DIR}/**/*.adoc"].each do |filename|
 end
 ````
 
-## What about page resources?
+### What about page resources?
 
 For adoc files, I’ll treat the Asciidoctor content folder as the source of truth.  Cover images and other [page bundle](https://gohugo.io/content-management/page-bundles/) files go with the `adoc`.  `build-adoc` will copy them over when converting files.
 
@@ -204,7 +204,7 @@ Dir["#{SRC_DIR}/**/*.adoc"].each do |filename|
 end
 ````
 
-## Only rebuild new stuff
+### Only rebuild new stuff
 
 I might save a little more time — and disk writes — by limiting my build to updated adoc and supplemental files.
 
@@ -237,7 +237,7 @@ Dir["#{dirname}/*"].each do |supplemental|
 
 If processing a single file was more expensive, I’d use something more careful than a timestamp check.
 
-## Make it official
+### Make it official
 
 Let’s skip the gory details, but I eventually moved all the `adoc` posts, notes, and drafts to their own folder.  Now `build-adoc` officially generates HTML content with YAML front matter for Hugo.
 
@@ -259,7 +259,7 @@ build: adoc ## Build live version of site
     cp etc/htaccess randomgeekery.org
 ````
 
-## What do we have now?
+### What do we have now?
 
 I finished my basic Asciidoctor + Hugo flow. How long does it take to build the site now? Let’s find out.
 
@@ -323,7 +323,7 @@ Less than two seconds.  Then again, load from other system processes can add a s
 
 But it appears to help somewhat.  And again, I get happy when there are fewer disk writes.
 
-# Highlighting code samples
+## Highlighting code samples
 
 So at first, Asciidoctor wasn’t highlighting code samples. I had `:source-highlighter: rouge` in my document header, but it was being ignored. Rather than add preprocessor logic to ensure that the document header gets processed, I specified the same attributes for *every* file converted:
 
@@ -409,7 +409,7 @@ end
  > 
  > Much better.
 
-## *Now* what do we have?
+### *Now* what do we have?
 
 I’m not sure. Let’s find out with a typical `build all`.
 
@@ -455,7 +455,7 @@ I like it for now. Keeps me from getting bored.
 
 But — and this is a big but — I couldn’t recommend this approach for normal  people with things to do. Site generation now has more moving parts, which I must test and maintain if I want to share the least little note\_.
 
-# What now?
+## What now?
 
 Yay, everything works!
 

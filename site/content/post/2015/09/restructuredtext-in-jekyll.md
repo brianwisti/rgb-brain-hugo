@@ -14,7 +14,7 @@ tags:
 - tools
 title: reStructuredText in Jekyll
 created: 2024-01-15T15:25:26-08:00
-updated: 2024-01-26T10:13:18-08:00
+updated: 2024-02-01T20:48:59-08:00
 ---
 
 I can write [Jekyll](../../../card/Jekyll.md) posts with [reStructuredText](../../../card/reStructuredText.md) now.

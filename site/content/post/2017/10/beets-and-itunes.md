@@ -2,6 +2,7 @@
 aliases:
 - /2017/10/01/beets-and-itunes/
 category: post
+created: 2024-01-15 15:26:49-08:00
 date: 2017-10-01 00:00:00-07:00
 description: beets and AppleScript helped me fix my incorrect track information
 slug: beets-and-itunes
@@ -14,6 +15,7 @@ tags:
 - python
 - tools
 title: Beets and iTunes
+updated: 2024-02-01 19:55:30-08:00
 ---
 
 My macOS iTunes music library includes over 21,000 songs. Some of those tracks contain the wrong information. Wrong title, wrong album, wrong artist, wrong year.
@@ -41,7 +43,7 @@ process.
 
 ## Installation and Configuration
 
-beets is written in [card/Python](../../../card/Python.md). It works with both Python 2 and 3, but I had better results with my hooks when using Python 2.
+beets is written in [Python](../../../card/Python.md). It works with both Python 2 and 3, but I had better results with my hooks when using Python 2.
 
 I already installed [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) via [Homebrew](https://brew.sh/). They aren’t strictly needed, but having distinct environments simplifies things when you have several Python-related projects.
 

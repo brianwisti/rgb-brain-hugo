@@ -20,4 +20,4 @@ updated: 2024-01-26T11:03:43-08:00
 
 ![attachments/img/2020/cover-2020-01-24.png](../../../attachments/img/2020/cover-2020-01-24.png)
 
-Finished the [Gatsby.js tutorial](https://www.gatsbyjs.org/tutorial/). Thought I’d dump the live site’s content into the tutorial site. Fiddled a *little* bit with [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/). (It ignored the [card/reStructuredText](../../../card/reStructuredText.md) files, but that’s okay.) I never did change the title.
+Finished the [Gatsby.js tutorial](https://www.gatsbyjs.org/tutorial/). Thought I’d dump the live site’s content into the tutorial site. Fiddled a *little* bit with [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/). (It ignored the [reStructuredText](../../../card/reStructuredText.md) files, but that’s okay.) I never did change the title.

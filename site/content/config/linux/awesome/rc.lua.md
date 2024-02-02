@@ -4,6 +4,8 @@ aliases:
 - /config/awesome/rc.lua/
 tags:
 - config
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-02-01T16:17:50-08:00
 ---
 
 The source code for my [awesome](https://awesomewm.org/) window manager config.
@@ -96,7 +98,7 @@ local lain = require("lain")
 
 ## User preference variables
 
-Refactored to \[`user-variables.lua`\]\[user-variables\].
+Refactored to [user-variables.lua](main/user-variables.lua.md).
 
 ````lua
 RC = {}
@@ -113,10 +115,7 @@ local modkey = RC.vars.modkey
 
 ## Error handling
 
-Refactored out to \[`error-handling.lua`\]\[error-handling\].
-
-\[user-variables\]: {{\< ref "config/linux/awesome/main/user-variables.lua.md" >}}
-\[error-handling\]: {{\< ref "config/linux/awesome/main/error-handling.lua.md" >}}
+Refactored out to [error-handling.lua](main/error-handling.lua.md).
 
 ## Autostart
 
@@ -148,9 +147,7 @@ local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 
 ### Themes
 
-Refactored to \[`theme.lua`\]\[theme\].
-
-\[theme\]: {{\< ref "config/linux/awesome/main/theme.lua.md" >}}
+Refactored to [theme.lua](main/theme.lua.md).
 
 ````lua
 local theme = require("main.theme")
@@ -158,9 +155,7 @@ local theme = require("main.theme")
 
 ### Layouts and tags
 
-Layouts are defined over in \[`layouts.lua`\]\[layouts\].
-
-\[layouts\]: {{\< ref "config/linux/awesome/main/layous.lua.md" >}}
+Layouts are defined over in [layouts.lua](main/layouts.lua.md).
 
 ````lua
 RC.layouts = require("main.layouts")

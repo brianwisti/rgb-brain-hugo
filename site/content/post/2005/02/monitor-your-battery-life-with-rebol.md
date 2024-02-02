@@ -11,7 +11,7 @@ tags:
 - learn
 - coolnamehere
 title: Monitor Your Battery Life With REBOL
-updated: 2024-01-26 09:19:19-08:00
+updated: 2024-02-01 20:26:09-08:00
 ---
 
 One thing you like to keep track of on your laptop is how much juice is left in your battery. There’s nothing quite like being in the middle of some insane hacking session and watching as the computer suddenly gets tired and blacks out on you. Of course, I’ve already got a handy battery monitor in my [KDE](https://kde.org) panel, but what if I’m not in KDE? Okay, okay, there are handy battery monitors for nearly every desktop environment out there. That’s not my point, though.
@@ -22,7 +22,7 @@ My point is that I’d like to explore some basic system stuff using REBOL on an
 >
  > I should mention that if all you want is a command-line printout of your battery information on Linux, you can get that with the command `acpi -b`. Still, reinventing wheels can be fun. Why not give this a shot?
 
-# The Raw Materials
+## The Raw Materials
 
 Text is like water in UNIX-type systems. It is everywhere, and nearly everything can be accessed as a text file. Linux follows this ideal by keeping system information in a number of files in the `/proc/` directory. I could probably find everything I might want to know about the system in that directory, but let’s just focus on the directories which contain battery information.
 
@@ -89,7 +89,7 @@ Oh well, I wasn’t really sure what I’d do with that information anyhow.
 
 Now that we’ve seen what the raw information looks like, let’s work on making a useful utility which processes that information.
 
-# Beginning the Script
+## Beginning the Script
 
 ````rebol
 #!/usr/local/bin/rebol -qs
@@ -130,7 +130,7 @@ It’s time to start looking at REBOL’s `parse` rules.
 
 Tell me not to be scared.
 
-## Playing at Parse
+### Playing at Parse
 
 Each item is on one line. The key is on the left side, then there’s a colon and some whitespace before reaching the actual value. I’d like to get at the information in this file as a hash: a dictionary datatype where values on the right are tied to keys on the left. Let’s use Parse and split along the colon character, like so.
 
@@ -188,7 +188,7 @@ We want to get rid of the leading whitespace for each value.
 
 I need to think for a minute…
 
-Okay, I know how I would do this with a regular expression in [card/Perl](../../../card/Perl.md):
+Okay, I know how I would do this with a regular expression in [Perl](../../../card/Perl.md):
 
 ````perl
 #!/usr/bin/perl
@@ -332,7 +332,7 @@ remaining capacity -- 4299 mAh
 present voltage -- 12540 mV
 ````
 
-## Useful Output
+### Useful Output
 
 Now let’s take this raw data and turn it into output that I can actually do something with. To do that, we need to decide what information we care about and what we don’t.
 
@@ -341,7 +341,7 @@ Now let’s take this raw data and turn it into output that I can actually do so
 * I can’t convert remaining capacity of total capacity in my head. Just show me a percentage remaining.
 * I *certainly* can’t convert present rate and remaining capacity. Show me a time value instead.
 
-### Don’t Show Batteries I Don’t Have
+#### Don’t Show Batteries I Don’t Have
 
 This should be the easiest step. All we need to do is check the value of the "present" key. Should be no problem at all.
 
@@ -357,7 +357,7 @@ foreach [ name info ] batteries [
 ]
 ````
 
-### Show Me If The Computer Is Plugged In
+#### Show Me If The Computer Is Plugged In
 
 We are now officially out of the "print out what we have for debugging purposes" stage. From here on, we will be creating the output we expect to see.
 
@@ -379,7 +379,7 @@ BAT0/ discharging
 
 I like this. It is easy for me to understand this output compared to the raw files.
 
-### Show Me Percentage Of Remaining Battery Capacity
+#### Show Me Percentage Of Remaining Battery Capacity
 
 I will want to know how much power is remaining if the battery is either "charging" or "discharging". I don’t know what `mAh` is – *milliAmp-hours?*. I prefer to see this in terms of what percentage is remaining. A full battery has 100%, and an empty battery has 0%. Seems easy enough, but we don’t have the total capacity listed in the state file. To get this information, we will need to look at the `info` file.
 
@@ -498,7 +498,7 @@ foreach [ name info ] batteries [
 The end result is the same as before, but I’ve made the code easy to read again. This process of writing and refactoring is pretty much standard to my  development style. Well, I’m not the *only* one who writes code like this.
 Anyhow. Let’s move on, shall we?
 
-### Show Me Estimated Time Remaining
+#### Show Me Estimated Time Remaining
 
 In order to calculate the time remaining before the battery runs out, we need to get the remaining charge and the rate that we’re using it up.
 
@@ -621,11 +621,11 @@ wisti grabbag $ cp battery.r ~/bin/check-battery
 
 And now I have one written in REBOL.
 
-# Conclusion
+## Conclusion
 
 This project was an exercise to see how difficult it would be to create a relatively simple utility. It was a challenge until I started getting the hang of Parse. I think Parse is easier to understand than regular expressions, but regular expressions have the advantage that they are familiar to more Linux developers. Still - get Parse out of the way, and creating useful applications in REBOL suddenly becomes very easy.
 
-## Additional Ideas
+### Additional Ideas
 
 There are a number of different things you could do to enhance or refine this script. Here are a couple of ideas.
 

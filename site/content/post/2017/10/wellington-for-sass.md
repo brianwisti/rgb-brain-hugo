@@ -11,9 +11,11 @@ tags:
 - css
 - tools
 title: Wellington for Sass
+created: 2024-01-15T15:26:47-08:00
+updated: 2024-02-01T21:17:48-08:00
 ---
 
-I found [Wellington](https://getwt.io/), a [Sass](http://sass-lang.com/) compiler written in [card/Go](../../../card/Go.md).
+I found [Wellington](https://getwt.io/), a [Sass](http://sass-lang.com/) compiler written in [Go](../../../card/Go.md).
 
 I installed Wellington with [Homebrew](https://brew.sh/) - actually Linuxbrew but that’s a post for another day maybe, once I’m sure this Linuxbrew experiment worked for me.
 

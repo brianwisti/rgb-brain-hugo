@@ -2,6 +2,7 @@
 aliases:
 - /2019/09/05/taskwarrior-editing-refinements/
 category: post
+created: 2024-01-15 15:26:39-08:00
 date: 2019-09-05 00:00:00-07:00
 description: In which I mention more ways to edit Taskwarrior tasks
 series:
@@ -14,12 +15,13 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Editing Refinements
+updated: 2024-02-01 20:59:36-08:00
 ---
 
 ![attachments/img/2019/cover-2019-09-05.png](../../../attachments/img/2019/cover-2019-09-05.png)
 
  > 
- > **[card/tldr](../../../card/tldr.md)**
+ > **[tldr](../../../card/tldr.md)**
 >
  > `edit` and `append` give additional ways to update your [Taskwarrior](../../../card/Taskwarrior.md) tasks. `undo` is there for the errors you catch quickly.
 

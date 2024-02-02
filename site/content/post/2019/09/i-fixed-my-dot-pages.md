@@ -10,9 +10,11 @@ tags:
 - hugo
 - oops
 title: I FIXED MY .Pages
+created: 2024-01-15T15:26:37-08:00
+updated: 2024-02-01T20:18:09-08:00
 ---
 
-Too tired to make it make sense. My site broke under [card/Hugo](../../../card/Hugo.md) .58. No front page listing. I fixed it. Yay!
+Too tired to make it make sense. My site broke under [Hugo](../../../card/Hugo.md) .58. No front page listing. I fixed it. Yay!
 
 Instead of (for notes):
 

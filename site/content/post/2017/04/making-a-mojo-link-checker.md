@@ -13,9 +13,11 @@ tags:
 - mojolicious
 - programming
 title: Making A Mojo Link Checker
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-02-01T20:24:48-08:00
 ---
 
-I wrote a [card/Perl](../../../card/Perl.md) script using utility features in Mojolicious to check all of the links in my site.
+I wrote a [Perl](../../../card/Perl.md) script using utility features in Mojolicious to check all of the links in my site.
 
 Nothing lasts forever. Sites get reorganized, move, or disappear. As my own site has gotten older — some of these pages are over fifteen years old — links from old posts stop working. [link rot](https://en.wikipedia.org/wiki/Link_rot) is a fact of life on the Internet. I want to minimize it here.
 
@@ -23,7 +25,7 @@ Instead of manually checking each of the 245 posts on this site, I chose to writ
 
 ## use Mojo!
 
-[card/Mojolicious](../../../card/Mojolicious.md) is a Perl framework for making Web applications. It also happens to provide [excellent support](http://mojolicious.org/perldoc#REFERENCE) for a wide range of Web-related programming.
+[Mojolicious](../../../card/Mojolicious.md) is a Perl framework for making Web applications. It also happens to provide [excellent support](http://mojolicious.org/perldoc#REFERENCE) for a wide range of Web-related programming.
 
 I mentioned Mojolicious here before. I use it as a part of my daily dev toolkit, even though I *still* haven’t made a real Web app with it.
 

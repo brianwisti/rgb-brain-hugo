@@ -14,15 +14,17 @@ tags:
 - just-when-i-thought-i-was-out
 - they-pull-me-back-in
 title: Saving some links from Perl 6 Weekly
+created: 2024-01-15T15:26:38-08:00
+updated: 2024-02-01T20:51:57-08:00
 ---
 
-Haven't done anything interesting related to [card/Raku](../../../card/Raku.md) for *years*, but I still subscribe to the [Perl 6 Weekly](https://p6weekly.wordpress.com/) blog. Several links caught my eye this week.
+Haven't done anything interesting related to [Raku](../../../card/Raku.md) for *years*, but I still subscribe to the [Perl 6 Weekly](https://p6weekly.wordpress.com/) blog. Several links caught my eye this week.
 
  > 
  > \[!NOTE\] 
  > Now the [Rakudo Weekly](https://rakudoweekly.blog)
 
-* [Jeff Goff](https://twitter.com/DrForr) started a fresh series on [implementing Template Toolkit in Perl 6](http://theperlfisher.com/index.php/2019/07/18/templates-and-a-clean-start/).
+* [Jeff Goff](https://twitter.com/DrForr) started a fresh series on [implementing Template Toolkit in Perl 6](http://theperlfisher.com/index.php/2019/07/18/templates-and-a-clean-start/)
 * Madeleine Goebel is making great progress on a GSOC project [making `perl6` produce executable binaries](https://yakshavingcream.blogspot.com/2019/07/flags-and-syscalls-and-modules-oh-my.html)
 * Andrew Shitov wrote a pleasant baby steps sort of intro on [using NativeCall](https://perl6.online/2019/07/17/108-basic-use-of-nativecall/) for accessing C libraries from Perl 6.
 * Some sort of Chef/Ansible style task runner, called [Sparrow6](https://github.com/melezhik/Sparrow6)

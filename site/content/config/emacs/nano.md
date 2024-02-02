@@ -1,10 +1,11 @@
 ---
+created: 2024-01-24 19:56:31-08:00
 description: Not quite bespoke
 tags:
 - org-config
 - emacs
 title: My NANO-based Emacs config
-updated: '2022-05-08T13:59:25'
+updated: 2024-02-01 16:23:39-08:00
 weight: 5
 ---
 

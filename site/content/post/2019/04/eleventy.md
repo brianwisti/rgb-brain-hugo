@@ -10,6 +10,8 @@ tags:
 - eleventy
 - tools
 title: Eleventy
+created: 2024-01-15T15:26:12-08:00
+updated: 2024-02-01T20:08:48-08:00
 ---
 
 Spring has sprung, and with it comes thoughts of new tools to build a Web site. Okay no the picture has nothing to do with Web sites but isn't it pretty?
@@ -18,9 +20,9 @@ Spring has sprung, and with it comes thoughts of new tools to build a Web site. 
 
 ![attachments/img/2019/cover-2019-04-06.jpg](../../../attachments/img/2019/cover-2019-04-06.jpg)
 
-I use [card/Hugo](../../../card/Hugo.md) to build this site, and have for [a while](../../2015/09/next-hugo.md) now. Hugo builds fast, includes loads of features, and by now has the added benefit of being familiar. It's still fun to see what else people use for their sites, though.
+I use [Hugo](../../../card/Hugo.md) to build this site, and have for [a while](../../2015/09/next-hugo.md) now. Hugo builds fast, includes loads of features, and by now has the added benefit of being familiar. It's still fun to see what else people use for their sites, though.
 
-[card/Eleventy](../../../card/Eleventy.md) caught my eye with its claims at being a simpler static site generator. [card/Node.js](../../../card/Node.js.md) powers Eleventy. That caught my attention because of how much I've been using the platform at work recently.
+[Eleventy](../../../card/Eleventy.md) caught my eye with its claims at being a simpler static site generator. [Node.js](../../../card/Node.js.md) powers Eleventy. That caught my attention because of how much I've been using the platform at work recently.
 
 Aided by the [core documentation](https://www.11ty.io/docs/), I'll make a single page site with a stylesheet. To my mind, that's the ["Hello World"](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) of static site generators. It covers the three core elements: content, layouts, and including files outside of the content/layout flow (stylesheets, images, etc).
 
@@ -45,7 +47,7 @@ Yay, the process works! Now I need content.
 
 ## Content: Read Markdown, write HTML
 
-I can stick with familiar [card/Markdown](../../../card/Markdown.md) content, since Eleventy supports it through [markdown-it](https://markdown-it.github.io/). Throw a couple sentences in `index.md`:
+I can stick with familiar [Markdown](../../../card/Markdown.md) content, since Eleventy supports it through [markdown-it](https://markdown-it.github.io/). Throw a couple sentences in `index.md`:
 
 ````markdown
 # Random Geekery Blog

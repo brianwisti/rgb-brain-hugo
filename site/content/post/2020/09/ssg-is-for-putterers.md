@@ -14,7 +14,7 @@ tags:
 - indieweb
 title: SSG is for putterers
 created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:11-08:00
+updated: 2024-02-01T20:54:07-08:00
 ---
 
 **Kev Quirk on static site generators** — [WordPress Creator Vs The Jamstack](https://kevq.uk/wordpress-creator-vs-the-jamstack/) (2020-05-20)
@@ -24,7 +24,7 @@ updated: 2024-01-26T11:00:11-08:00
  > my side project; but I wish a lot of devs would stop touting about how
  > amazingly simple they are, as it’s just not the case.
 
-I often see "such and such [card/Static Site Generator](../../../card/Static%20Site%20Generator.md) is simple!" tweets, and wonder what exactly they're comparing it to. DIY dentistry perhaps?
+I often see "such and such [Static Site Generator](../../../card/Static%20Site%20Generator.md) is simple!" tweets, and wonder what exactly they're comparing it to. DIY dentistry perhaps?
 
 As much as I love puttering with static site generators, "puttering" is the main charm of an SSG. The hooks to customize are right there on the surface. Heck [Eleventy](../../../card/Eleventy.md) is nothing *but* hooks. And having everything in a git repository is just a developer-focused version of a smart backup plan.
 

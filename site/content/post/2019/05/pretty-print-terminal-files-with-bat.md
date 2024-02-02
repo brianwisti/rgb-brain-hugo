@@ -13,13 +13,15 @@ tags:
 - shell
 - tools
 title: Pretty Print Terminal Files With Bat
+created: 2024-01-15T15:26:35-08:00
+updated: 2024-02-01T20:37:43-08:00
 ---
 
 ![attachments/img/2019/cover-2019-05-24.png](../../../attachments/img/2019/cover-2019-05-24.png)
 
 My work routine lately includes automatic generation of SQL files for database updates. That routine includes quickly skimming them to find obvious errors. I wanted something quicker than reviewing them in my editor, but fancier than the simple plain text of `cat`.
 
-I have the [Pygments](http://pygments.org/) syntax highlighting library for [card/Python](../../../card/Python.md) installed, so I could use `pygmentize` piped to `less` for paging:
+I have the [Pygments](http://pygments.org/) syntax highlighting library for [Python](../../../card/Python.md) installed, so I could use `pygmentize` piped to `less` for paging:
 
 ````sh
 pygmentize -g work.sql | less -NR

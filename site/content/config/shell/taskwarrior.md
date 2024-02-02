@@ -4,6 +4,8 @@ tags:
 - config
 aliases:
 - /config/taskrc
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-02-01T20:58:50-08:00
 ---
 
 How I use [Taskwarrior](../../card/Taskwarrior.md).

@@ -10,6 +10,8 @@ tags:
 - elscreen
 - tools
 title: elscreen
+created: 2024-01-15T15:26:50-08:00
+updated: 2024-02-01T20:11:23-08:00
 ---
 
 I use [ElScreen](https://github.com/knu/elscreen/) every time I open [Emacs](../../../card/Emacs.md). May as well make a quick note about it.
@@ -18,7 +20,7 @@ I use [ElScreen](https://github.com/knu/elscreen/) every time I open [Emacs](../
 
 ![attachments/img/2017/cover-2017-01-11.png](../../../attachments/img/2017/cover-2017-01-11.png)
 
-I admit it. I’m still more of a [card/Vim](../../../card/Vim.md) user. The workflow I’m used to is Vim with some tabs, usually sitting in a [tmux](https://tmux.github.io/) session. When in Emacs I use ElScreen, which basically gives me tmux inside Emacs.
+I admit it. I’m still more of a [Vim](../../../card/Vim.md) user. The workflow I’m used to is Vim with some tabs, usually sitting in a [tmux](https://tmux.github.io/) session. When in Emacs I use ElScreen, which basically gives me tmux inside Emacs.
 
 If you know what that means, great. If not, then pretend ElScreen is a weird way to make emacs a tabbed editor.
 

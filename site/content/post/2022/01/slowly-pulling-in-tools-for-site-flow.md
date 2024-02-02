@@ -23,6 +23,6 @@ Made a [toot](https://hackers.town/@randomgeek/107630284879354154) with [Masto](
 
 The [Mastodon Twitter Crossposter](https://crossposter.masto.donte.com.br/) works great, but waiting for the announcement toot to show up as a tweet was a tedious manual step that I hope to discard. So I figured out how to make a tweet with [twitter-api-v2](https://www.npmjs.com/package/twitter-api-v2).
 
-Those are the pieces I need to get [POSSE](https://indieweb.org/POSSE) syndication working in this [card/Eleventy](../../../card/Eleventy.md) iteration of the site.
+Those are the pieces I need to get [POSSE](https://indieweb.org/POSSE) syndication working in this [Eleventy](../../../card/Eleventy.md) iteration of the site.
 
 Now I just need to staple those pieces together, grab a sharpie, and label it "workflow."

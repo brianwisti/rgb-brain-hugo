@@ -13,11 +13,13 @@ tags:
 - bash
 - tools
 title: Hugo Archetype Templates
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-02-01T20:15:19-08:00
 ---
 
 ![attachments/img/2017/cover-2017-07-01.png](../../../attachments/img/2017/cover-2017-07-01.png)
 
-I try out archetype templates from the [card/Hugo](../../../card/Hugo.md) static site generator, smoothing the
+I try out archetype templates from the [Hugo](../../../card/Hugo.md) static site generator, smoothing the
 whole thing into my workflow with a bash script.
 
 ## Hugo Archetypes

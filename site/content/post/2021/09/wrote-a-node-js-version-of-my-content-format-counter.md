@@ -11,7 +11,7 @@ tags:
 - programming
 title: Wrote a Node.js version of my content format counter
 created: 2024-01-15T15:26:27-08:00
-updated: 2024-01-26T10:21:33-08:00
+updated: 2024-02-01T21:19:25-08:00
 ---
 
 ![attachments/img/2021/cover-2021-09-04.png](../../../attachments/img/2021/cover-2021-09-04.png)
@@ -34,7 +34,7 @@ Bag(html(39) md(542))
 
 Unfortunately, it didn't cover all the content extension once I figured out that Hugo can ignore `*.txt` files, allowing me to try all sorts of [tricks](../08/trying-a-thing-with-neovim.md) with content generation.
 
-So I've had this [card/Ruby](../../../card/Ruby.md) code embedded in my [justfile](../../../card/Just.md).
+So I've had this [Ruby](../../../card/Ruby.md) code embedded in my [justfile](../../../config/justfile.md).
 
 ````ruby
 #!/usr/bin/env ruby
@@ -68,7 +68,7 @@ content/**/*{.md,.md.txt,.rst,.rst.txt,.adoc,.org}
 
 It works! It's great. Nothin wrong with it whatsoever.
 
-But I've been looking at [card/Node.js](../../../card/Node.js.md) recently for assorted reasons, including the possibility of porting this site to one of the many Node-based static site generators.
+But I've been looking at [Node.js](../../../card/Node.js.md) recently for assorted reasons, including the possibility of porting this site to one of the many Node-based static site generators.
 
 So why not try the task in Node.js?
 

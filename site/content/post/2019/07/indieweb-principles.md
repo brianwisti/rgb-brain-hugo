@@ -14,9 +14,11 @@ tags:
 - notes
 - todo
 title: IndieWeb Principles
+created: 2024-01-15T15:26:39-08:00
+updated: 2024-02-01T20:19:37-08:00
 ---
 
-[card/IndieWeb](../../../card/IndieWeb.md) contains most of the philosophy behind my notes project: Own your own data, make what you need, use what you make, longevity, and most important:
+[IndieWeb](../../../card/IndieWeb.md) contains most of the philosophy behind my notes project: Own your own data, make what you need, use what you make, longevity, and most important:
 
  > 
  > Have fun. When the web took off in the 90’s people began designing personal sites with tools such as GeoCities. These spaces had Java applets, garish green background and seventeen animated GIFs. It may have been ugly and badly coded but it was fun. Keep the web weird and interesting.

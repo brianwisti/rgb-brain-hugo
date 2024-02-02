@@ -3,6 +3,7 @@ aliases:
 - /2017/12/16/taskwarrior/
 - /post/2017/12/taskwarrior/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2017-12-16 00:00:00-08:00
 series:
 - Taskwarrior Babysteps
@@ -11,12 +12,13 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior
+updated: 2024-02-01 20:58:58-08:00
 ---
 
 ![attachments/img/2017/cover-2017-12-16.png](../../../attachments/img/2017/cover-2017-12-16.png)
 `task -work` report showing everything but work tasks
 
-I ended up with a mess after half a year trying to use *every feature* of [card/Taskwarrior](../../../card/Taskwarrior.md). It’s time to focus on building solid knowledge one step at a time.
+I ended up with a mess after half a year trying to use *every feature* of [Taskwarrior](../../../card/Taskwarrior.md). It’s time to focus on building solid knowledge one step at a time.
 
 I sat on this draft for a couple weeks. Rather than change task dates to make it look like I wrote this yesterday, I’ll leave `task` output as-is. Otherwise I’ll have to change those details every time I revisit Taskwarrior on the blog.
 
@@ -26,7 +28,7 @@ Taskwarrior helps you manage tasks and ideas from the command line. It provides 
 
  > 
  > \[!NOTE\] What's wrong with Org mode?
- > Nothing at all! [card/Org](../../../card/Org.md) provides similar functionality and more for GNU Emacs users. Taskwarrior focuses narrowly on task management and reporting, while Org is also a time tracker, note-taking tool, markup language for publishing, and more.
+ > Nothing at all! [Org](../../../card/Org.md) provides similar functionality and more for GNU Emacs users. Taskwarrior focuses narrowly on task management and reporting, while Org is also a time tracker, note-taking tool, markup language for publishing, and more.
  > 
  > Taskwarrior works better than Org mode for people that don’t live in Emacs. Wait. [Vim-OrgMode](https://github.com/jceb/vim-orgmode) exists. I should be more general: Taskwarrior works better for people that don’t live in their editor.
  > 

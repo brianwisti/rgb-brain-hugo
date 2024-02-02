@@ -14,7 +14,7 @@ tags:
 - oooh-a-sparkly
 title: Officially Using Statamic For The Site
 created: 2024-01-15T15:26:11-08:00
-updated: 2024-01-26T10:21:52-08:00
+updated: 2024-02-01T20:32:42-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-07.png](../../../attachments/img/2021/cover-2021-05-07.png)
@@ -22,9 +22,9 @@ Hey look it's a Web page, but with Statamic!
 
 Got the [Webmention](https://webmention.io) pingbacks up.  Got the [Plausible](https://plausible.io) token in place.  Got server configuration and deployment working.
 
-Got — server configuration?  Well yeah.  The [card/Statamic](../../../card/Statamic.md) CMS runs on [card/PHP](../../../card/PHP.md).  I *could* generate and push a static site with it, but I want to try some [card/Laravel](../../../card/Laravel.md) stuff.  Been watching [Laracasts](https://laracasts.com/) even.
+Got — server configuration?  Well yeah.  The [Statamic](../../../card/Statamic.md) CMS runs on [PHP](../../../card/PHP.md).  I *could* generate and push a static site with it, but I want to try some [Laravel](../../../card/Laravel.md) stuff.  Been watching [Laracasts](https://laracasts.com/) even.
 
-# What’s different?
+## What’s different?
 
 The visual style, obviously.  But I cycle through those routinely.  This one’s [PaperCSS](https://www.getpapercss.com/) with a few tweaks.
 
@@ -34,7 +34,7 @@ You can search! Just by title or tag for now, but I’ll add more as I figure ou
 
 And also because you can search, I haven’t gotten to the page aliases yet. Lots of broken inbound links, I expect. If this were some kind of professional site, I would’ve waited until I had those in place. But it’s not. So I don’t.
 
-# Anything else?
+## Anything else?
 
 From your perspective, that’s about it.  It’s pretty much the same site.
 
@@ -42,7 +42,7 @@ From my perspective, so much!  I get an awesome control panel to manage and edit
 
 Okay that’s not new for the site.  It’s new compared to when I tried this with WordPress though.
 
-# What’s different from stock Statamic Solo?
+## What’s different from stock Statamic Solo?
 
 The styling is set up with [SASS](https://sass-lang.com/) instead of the starter’s default of [Tailwind](https://tailwindcss.com/).  Probably shift back once I figure out an approach to content styling that I prefer to Tailwind Prose.
 
@@ -50,7 +50,7 @@ I don’t entirely trust server-side for a blog.  Nothing to do with Statamic or
 
 With that in mind, I added [2FA](https://statamic.com/addons/jrc9designstudio/2fa) for two factor authentication and [Gitamic](https://statamic.com/addons/simonhamp/gitamic) for Git integration.  Both are paid add-ons.  Much as I love open source software, I love knowing that good developers get a good dinner even more.  Sponsorship and patronage only go so far — on my monthly budget, at least.
 
-# What’s next?
+## What’s next?
 
 There’s still some basic deployment stuff to figure out.  Metadata for sharing, or what the boring kids call "SEO." Ugh.  I ain’t optimizing *nothin’*, least of all some search engine’s job.
 

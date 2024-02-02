@@ -11,11 +11,10 @@ tags:
 - coolnamehere
 title: REBOL
 created: 2024-01-15T15:25:46-08:00
-updated: 2024-01-26T09:18:49-08:00
+updated: 2024-02-01T20:43:30-08:00
 ---
 
-This is unusual. I’ve come across the first language that I don’t want
-to tell you about. I don’t know *why* I want to keep [REBOL](../../../card/REBOL.md) a secret. It has been very useful even in the limited roles that I have given it so far. The language is consistent and pleasant to work with. It has a richness of datatypes that just can’t be matched by other languages. The GUI library View is surprisingly straightforward for simple tasks, and there are excellent libraries like RebGUI to make it just as easy for more elaborate interfaces.
+This is unusual. I’ve come across the first language that I don’t want to tell you about. I don’t know *why* I want to keep [REBOL](../../../card/REBOL.md) a secret. It has been very useful even in the limited roles that I have given it so far. The language is consistent and pleasant to work with. It has a richness of datatypes that just can’t be matched by other languages. The GUI library View is surprisingly straightforward for simple tasks, and there are excellent libraries like RebGUI to make it just as easy for more elaborate interfaces.
 
 Maybe I just want to think of REBOL as my secret weapon. Languages aren’t like that, though, so my conscience tells me that I must at least mention it to you before burying myself back in the routine of my day.
 
@@ -25,13 +24,13 @@ Give REBOL a look-see. You might like it.
 
 Oh, there is a random bit of trivia that amused and unnerved me when I first discovered it. REBOL Technologies is based in Ukiah, California, where I spent those vitally important early childhood years. I was only there from age six to age eight, but a lot of my thoughts, beliefs, etcetera were established among the redneck hippies of northern California. And now there’s this cool language coming from the same town. Freaky.
 
-# REBOL Links
+## REBOL Links
 
 The Rebol community is incredibly active for its small size. To me, this says a lot about Rebol’s potential in the future, and I would like to do what I can to encourage others to at least take a look at the language and some of the sites devoted to Rebol out on the Web. There are more links than these, but I’m pointing out the ones that I have been using or referring to a lot.
 
 * <http://www.rebol.com/>
 
-## Tutorials
+### Tutorials
 
 * <http://musiclessonz.com/rebol_tutorial.html> - An *excellent*   introduction to REBOL and REBOL/View. More thorough than any of my meanderings and updated more frequently, too.
 * <http://www.plain.at/vpavlu/REBOL/tutorial/>
@@ -39,14 +38,14 @@ The Rebol community is incredibly active for its small size. To me, this says a 
 * <http://rebol.com/docs/core23/rebolcore.html>
 * <http://rebol.com/docs/easy-vid.html>
 
-## Community
+### Community
 
 * <http://www.rebol.org/>
 * <http://compkarori.com/vanilla/display/rebol-main>
 * <http://www.reboltalk.com/>
 * <http://www.rebolplanet.com/>
 
-## Applications created with REBOL
+### Applications created with REBOL
 
 * [AltMe](http://www.altme.com/) : An instant messenger
 * <http://www.vanillasite.at/> : A Wiki engine

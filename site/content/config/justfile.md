@@ -1,8 +1,10 @@
 ---
 title: My Config-Generating Justfile
+created: 2024-01-15T17:29:27-08:00
+updated: 2024-02-01T21:55:39-08:00
 ---
 
-Using *inbox/Yarner* to tangle the file that drives the whole process? I should be ashamed of myself. I'm not, but I feel like I should be.
+Using *Yarner* to tangle the file that drives the whole process? I should be ashamed of myself. I'm not, but I feel like I should be.
 
 ## Building everything with Yarner
 

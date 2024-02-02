@@ -12,13 +12,13 @@ tags:
 - css
 - site
 title: Processing Sass in Eleventy
-updated: 2024-01-26 10:20:47-08:00
+updated: 2024-02-01 20:38:01-08:00
 ---
 
 ![attachments/img/2022/cover-2022-01-10.jpg](../../../attachments/img/2022/cover-2022-01-10.jpg)
 relevant pictures are overrated; this dog and cat are cute together
 
-[card/Eleventy](../../../card/Eleventy.md)’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.
+[Eleventy](../../../card/Eleventy.md)’s 1.0 release includes the ability to add your own custom processing based on file extension. Unsurprisingly, I love this feature.
 
 Lots of big ideas, but let’s start small with the officially documented process for processing Sass.
 
@@ -59,7 +59,7 @@ But I also don't want it randomly rebuilding the stylesheet 20 times because it 
 
 I need to think my way through this one.
 
-# Add a SassHandler
+## Add a SassHandler
 
 Keeping with Jérôme Coupé's structural suggestions, I keep my more complex JavaScript logic under `src/_11ty/`.
 
@@ -184,7 +184,7 @@ Again, I've disabled `permalink` so it's on me to ensure the output directory ex
 
 So there it is! Probably not optimal but hey we're all learning something every day.
 
-# Load that SassHandler
+## Load that SassHandler
 
 Then the relevant bits of my `.eleventy.js`:
 
@@ -200,6 +200,6 @@ module.exports = function (eleventyConfig) {
 
 This site still builds and the styles update as expected, so: yay!
 
-# What's next?
+## What's next?
 
 I dunno. Knowing me? Probably [Asciidoctor](https://asciidoctor.org).

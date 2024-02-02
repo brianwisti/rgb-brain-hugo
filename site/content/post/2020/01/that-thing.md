@@ -21,4 +21,4 @@ updated: 2024-01-26T11:03:48-08:00
 
 That thing where you’re doing a thing but need to look up something and get an idea and start a thing but need a thing and you notice a thing and get an idea and start a thing and you notice a thing…
 
-Is that an [card/ADHD](../../../card/ADHD.md) thing? That sounds like an ADHD thing.
+Is that an [ADHD](../../../card/ADHD.md) thing? That sounds like an ADHD thing.

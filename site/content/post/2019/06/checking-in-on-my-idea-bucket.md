@@ -3,6 +3,7 @@ aliases:
 - /note/2019/180/checking-in-on-my-idea-bucket/
 - /note/2019/06/checking-in-on-my-idea-bucket/
 category: note
+created: 2024-01-15 15:26:42-08:00
 date: 2019-06-29 12:52:00-07:00
 slug: checking-in-on-my-idea-bucket
 tags:
@@ -11,7 +12,7 @@ tags:
 - todo
 - forgot-to-post-this-yesterday
 title: Checking in on my idea bucket
-updated: 2019-07-03 09:18:47-07:00
+updated: 2024-02-01 22:10:23-08:00
 ---
 
 $ task '(+learn or +idea)' count

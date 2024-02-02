@@ -19,7 +19,7 @@ updated: 2024-01-26T11:03:26-08:00
 
 Thought I’d try something new and bumped into [Tufte CSS](https://edwardtufte.github.io/tufte-css/). That’s a CSS stylesheet and font set aspiring to the style of Edward Tufte. He wrote the [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi).
 
-Of course, I had to adjust the original CSS for my own quirks. Added more [Fork Awesome](https://forkaweso.me/) icons. Made the [card/reStructuredText](../../../card/reStructuredText.md) elements fit. Tips from a [David Walsh post](https://davidwalsh.name/external-links-css) helped me show external links.
+Of course, I had to adjust the original CSS for my own quirks. Added more [Fork Awesome](https://forkaweso.me/) icons. Made the [reStructuredText](../../../card/reStructuredText.md) elements fit. Tips from a [David Walsh post](https://davidwalsh.name/external-links-css) helped me show external links.
 
 One of the main goals was to get my site readable on mobile devices. Alas, Web design is not my strongest skill.
 

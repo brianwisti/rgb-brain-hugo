@@ -9,13 +9,15 @@ tags:
 - site
 - tools
 title: Using Hugo Data Templates
+created: 2024-01-15T15:26:45-08:00
+updated: 2024-02-01T21:14:51-08:00
 ---
 
-I put my frequently used links in a [card/Hugo](../../../card/Hugo.md) data template to cut down on copying and pasting between posts.
+I put my frequently used links in a [Hugo](../../../card/Hugo.md) data template to cut down on copying and pasting between posts.
 
 ## Motive
 
-I often create several *inbox/Knitting* or *inbox/Crochet* projects from the same book, or reference the same tutorial for a technique that I find tricky. Today, linking to
+I often create several *Knitting* or *Crochet* projects from the same book, or reference the same tutorial for a technique that I find tricky. Today, linking to
 those references in a post involves copying and pasting the URL from
 somewhere else – usually the blog post for a previous project. This is
 tedious at best, and becomes downright troublesome if and when the link
@@ -23,7 +25,7 @@ for that reference changes.
 
 Hugo [data templates](https://gohugo.io/templates/data-templates/) could fix all that.
 
-Data templates are written in [card/YAML](../../../card/YAML.md), [card/TOML](../../../card/TOML.md), or *inbox/JSON* format and saved to your site’s `data` folder. Your data templates and their contents become available to Hugo via the `$.Site.Data` variable. Organize your data templates however you like, and make them as complex as you want.
+Data templates are written in [YAML](../../../card/YAML.md), [TOML](../../../card/TOML.md), or *JSON* format and saved to your site’s `data` folder. Your data templates and their contents become available to Hugo via the `$.Site.Data` variable. Organize your data templates however you like, and make them as complex as you want.
 
 ## My data template for links
 

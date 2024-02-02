@@ -10,7 +10,7 @@ created: 2024-01-15T15:26:52-08:00
 updated: 2024-01-26T10:19:24-08:00
 ---
 
-In the middle of [Avoiding Toxic Productivity Advice for ADHD: Find What Actually Works](https://www.youtube.com/watch?v=JsT3KPYJFl4) and suddenly I and my [card/ADHD](../../../card/ADHD.md) are directly attacked:
+In the middle of [Avoiding Toxic Productivity Advice for ADHD: Find What Actually Works](https://www.youtube.com/watch?v=JsT3KPYJFl4) and suddenly I and my [ADHD](../../../card/ADHD.md) are directly attacked:
 
 ![attachments/img/2022-07-23-eat-the-frog-first.png](../../../attachments/img/2022-07-23-eat-the-frog-first.png)
 I feel seen.

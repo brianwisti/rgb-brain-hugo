@@ -18,7 +18,7 @@ updated: 2024-01-26T11:02:35-08:00
 
 Sorry, I couldn’t fit this in a tweet.
 
-[Yanick](http://techblog.babyl.ca/)'s concerned about [card/Perl](../../../card/Perl.md)'s [CPAN](https://cpan.org).
+[Yanick](http://techblog.babyl.ca/)'s concerned about [Perl](../../../card/Perl.md)'s [CPAN](https://cpan.org).
 
 {{\< tweet user="yenzie" id="1254874808774516738" >}}
 

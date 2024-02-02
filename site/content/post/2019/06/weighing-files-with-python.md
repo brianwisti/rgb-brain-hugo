@@ -2,6 +2,7 @@
 aliases:
 - /2019/06/01/weighing-files-with-python/
 category: post
+created: 2024-01-15 15:26:40-08:00
 date: 2019-06-01 00:00:00-07:00
 description: I want to optimize this site's file sizes, but first I should see if
   I need to.
@@ -15,6 +16,7 @@ tags:
 - files
 - programming
 title: Weighing Files With Python
+updated: 2024-02-01 21:16:14-08:00
 ---
 
 ![attachments/img/2019/cover-2019-06-01.png](../../../attachments/img/2019/cover-2019-06-01.png)
@@ -70,7 +72,7 @@ I *do* have an issue with the CDN not promptly updating some files when I upload
 
 ## Measuring file sizes
 
-I could just pick an arbitrary threshold and find every file bigger than that with a [card/Perl](../../../card/Perl.md) one-liner using [File::Find::Rule](https://metacpan.org/pod/File::Find::Rule)'s [procedural](https://metacpan.org/pod/distribution/File-Find-Rule/lib/File/Find/Rule/Procedural.pod) flavor.
+I could just pick an arbitrary threshold and find every file bigger than that with a [Perl](../../../card/Perl.md) one-liner using [File::Find::Rule](https://metacpan.org/pod/File::Find::Rule)'s [procedural](https://metacpan.org/pod/distribution/File-Find-Rule/lib/File/Find/Rule/Procedural.pod) flavor.
 
 ````
 $ perl -MFile::Find::Rule -E 'say for find(file => size => "> 6M" => in => "public");'
@@ -85,7 +87,7 @@ public/2018/09/30/cougar-mountain/tall-stump.jpg
 public/2018/09/30/cougar-mountain/cover.jpg
 ````
 
-Or maybe find the median between my biggest and smallest files, flagging everything bigger than the median. I promised [card/Python](../../../card/Python.md) in the tags, so let’s move away from Perl.
+Or maybe find the median between my biggest and smallest files, flagging everything bigger than the median. I promised [Python](../../../card/Python.md) in the tags, so let’s move away from Perl.
 
 **`median.py`**
 

@@ -12,11 +12,13 @@ tags:
 - hat
 - craft
 title: Basic Hat With Picot Edge
+created: 2024-01-15T15:26:44-08:00
+updated: 2024-02-01T22:07:52-08:00
 ---
 
 ![attachments/img/2018/cover-2018-11-20.jpg](../../../attachments/img/2018/cover-2018-11-20.jpg)
 
-This hat is another round of the "basic hat" from Ann Budd’s [The Knitter’s Handy Book of Patterns](https://www.goodreads.com/book/show/85015.Knitters_Handy_Book_Of_Patterns). This time I used a picot edge, which adds texture to the hemmed edge from [last time](basic-hat-with-hemmed-edge.md).
+This hat is another round of the "basic hat" from Ann Budd’s [The Knitter’s Handy Book of Patterns](https://www.goodreads.com/book/show/85015.Knitters_Handy_Book_Of_Patterns). This time I used a picot edge, which adds texture to [basic-hat-with-hemmed-edge](basic-hat-with-hemmed-edge.md).
 
 The picot edge was so satisfying that I decided to add a couple more new techniques. First was the Roman stitch on the hat body, which came from [A Treasury of Knitting Patterns](https://www.goodreads.com/book/show/129506.A_Treasury_of_Knitting_Patterns). The pattern instructions from the book are for knitting flat. I adapted them for knitting in the round.
 

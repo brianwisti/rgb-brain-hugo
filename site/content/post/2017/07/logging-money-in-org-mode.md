@@ -3,6 +3,7 @@ aliases:
 - /post/2017/logging-money-in-org-mode/
 - /2017/07/31/logging-money-in-org-mode/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-07-31 00:00:00-07:00
 slug: logging-money-in-org-mode
 tags:
@@ -11,11 +12,12 @@ tags:
 - budgeting
 - tools
 title: Logging Money In Org Mode
+updated: 2024-02-01 20:23:17-08:00
 ---
 
 ![attachments/img/2017/cover-2017-07-31.png](../../../attachments/img/2017/cover-2017-07-31.png)
 
-I am setting up Emacs [card/Org](../../../card/Org.md) to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
+I am setting up Emacs [Org](../../../card/Org.md) to track how I use my money. This is a healthy habit, which I applied in the past with a little paper notebook. This needs to be as easy as that little notebook, or I will never use it.
 
  > 
  > **2020-03-01**

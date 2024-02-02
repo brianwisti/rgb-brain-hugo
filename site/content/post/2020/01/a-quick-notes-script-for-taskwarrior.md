@@ -10,18 +10,18 @@ tags:
 - python
 - programming
 title: A Quick Notes Script for Taskwarrior
-updated: 2024-01-26 11:03:33-08:00
+updated: 2024-02-01 22:02:53-08:00
 ---
 
 ![attachments/img/2020/cover-2020-01-12.png](../../../attachments/img/2020/cover-2020-01-12.png)
 
-I need more than annotations for my [Taskwarrior](../../../card/Taskwarrior.md) tasks. Let’s write some [card/Python](../../../card/Python.md)!
+I need more than annotations for my [Taskwarrior](../../../card/Taskwarrior.md) tasks. Let’s write some [Python](../../../card/Python.md)!
 
 People with blogs need to keep in mind that most people do not know how  blogs work. A little bit of explanatory text can go a long way towards making your site easier to follow.
 
 I plan to work on that today, but — well — there’s another problem too.
 
-# What’s the problem?
+## What’s the problem?
 
 What tasks am I working on right now? Let’s get the [active](../../2018/12/active-tasks-in-taskwarrior.md) task report.
 
@@ -31,11 +31,11 @@ $ task active
 ID  Started    Active Age P Project Tags        Due        Description
 232 2020-01-12 2min   2h  H         taskwarrior 2020-01-12 quick and easy notes script
 220 2020-01-12 51min  2w    Site    content     2020-01-11 describe RSS and link to
-                                                           tools in Follow page
-                                                             2019-12-28 reference
-                                                           https://twitter.com/brianwi-
-                                                           sti/status/1210771041783447-
-                                                           553
+														   tools in Follow page
+															 2019-12-28 reference
+														   https://twitter.com/brianwi-
+														   sti/status/1210771041783447-
+														   553
 ````
 
 This is a mess. My task descriptions can get verbose. That makes my reports look busy. Annotations give additional information, but at the cost of cluttering the report even more.
@@ -61,13 +61,13 @@ I want some way of adding and reviewing information about a particular task with
  > 
  > **NOTE**
 >
- > Honestly [card/Org](../../../card/Org.md) provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.
+ > Honestly [Org](../../../card/Org.md) provides all this functionality and more. Someday I may even get comfortable enough to prefer it. But right now? Taskwarrior and shell tools are easier for me.
 
-# What I need today
+## What I need today
 
 I need the ability to open a text file with notes for a specific task. I shouldn’t have to find or name the file myself. If the file doesn’t exist yet, it should be created.
 
-# What I don’t need today
+## What I don’t need today
 
 Things I’m sure will be useful at some point, but I don’t need *today*.
 
@@ -79,13 +79,13 @@ Things I’m sure will be useful at some point, but I don’t need *today*.
 * Configuration. For now, everything’s hard-coded in the script.
   Except `$EDITOR`.
 
-# Let’s get to it.
+## Let’s get to it.
 
-I’m not good at Python for quick glue tasks. Maybe [card/Perl](../../../card/Perl.md)? I need to learn how to do this in Python at some point. Let’s try anyways.
+I’m not good at Python for quick glue tasks. Maybe [Perl](../../../card/Perl.md)? I need to learn how to do this in Python at some point. Let’s try anyways.
 
 That will be today’s learning experience.
 
-## Writing notes
+### Writing notes
 
  > 
  > Given a task, open `$EDITOR` in a Markdown file for that task. The task can be indicated via ID, UUID, or a filter that returns a single task
@@ -191,7 +191,7 @@ Sweet. It worked!
  > exec($ENV{EDITOR}, $notes_file);
  > ````
 
-# Generalize for any task
+## Generalize for any task
 
 I learned what I needed to learn. Next is cleaning up and accepting command line arguments.
 
@@ -253,11 +253,11 @@ I know. I didn’t want task metadata yet. It quickly became obvious that I woul
  > 
  > **WARNING**
 >
- > Remember to `flush` your filehandles before handing control over to external processes like [card/Vim](../../../card/Vim.md). Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!
+ > Remember to `flush` your filehandles before handing control over to external processes like [Vim](../../../card/Vim.md). Python takes care of files and buffers on its own schedule. Launching an external process interrupts Python’s schedule. So let Python know!
 
 Also threw in some error checking after the first time I tried writing notes for a nonexistent task.
 
-# What’s Next?
+## What’s Next?
 
 * Keeping that description header current
 * Adding other task data?

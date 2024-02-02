@@ -8,10 +8,12 @@ tags:
 - site
 - marginalia
 title: Comments One More Time
+created: 2024-01-15T15:26:13-08:00
+updated: 2024-02-01T22:11:03-08:00
 ---
 
 Trying to add Disqus comments once again. I adjusted permalinks, since the old `/:section/:year/:title/` structure seemed to confuse Disqus. Here’s hoping. I assigned aliases to content so that old links should work.
 
-I know. I’m fickle about comments. I want them, then I don’t want them. I’d switch to WordPress but I’d have to untangle all the [card/Hugo](../../../card/Hugo.md) specifics that I’ve adopted over the last couple years.
+I know. I’m fickle about comments. I want them, then I don’t want them. I’d switch to WordPress but I’d have to untangle all the [Hugo](../../../card/Hugo.md) specifics that I’ve adopted over the last couple years.
 
 Oh heck a week from now marks [two years](../../2015/09/next-hugo.md) since I switched to Hugo. Either it got easier to use or I got used to it. And every time I’m ready to look elsewhere they add something new.

@@ -12,22 +12,22 @@ tags:
 - mastodon
 - programming
 title: Tooting with Python
-updated: 2024-01-26 10:21:40-08:00
+updated: 2024-02-01 21:02:00-08:00
 ---
 
-# What?
+## What?
 
 Let's set up a [Mastodon](https://joinmastodon.org) application with Python to read and post toots.
 
-## How?
+### How?
 
-[card/Python](../../../card/Python.md) is the [second best](https://twitter.com/glyph/status/1426414435275448324) tool for any job in 2021, which makes it an excellent glue language.  I've been centering my site workflow around it. That means the [Mastodon.py](https://mastodonpy.readthedocs.io/en/stable/) library, which I have dabbled with once or twice before.
+[Python](../../../card/Python.md) is the [second best](https://twitter.com/glyph/status/1426414435275448324) tool for any job in 2021, which makes it an excellent glue language.  I've been centering my site workflow around it. That means the [Mastodon.py](https://mastodonpy.readthedocs.io/en/stable/) library, which I have dabbled with once or twice before.
 
-## Why?
+### Why?
 
-Because I've let the [card/IndieWeb](../../../card/IndieWeb.md) social aspects of this site go stale and one step to fixing that is restoring POSSE automation. The first part of *that* is making sure I remember how to automate posting to Mastodon.
+Because I've let the [IndieWeb](../../../card/IndieWeb.md) social aspects of this site go stale and one step to fixing that is restoring POSSE automation. The first part of *that* is making sure I remember how to automate posting to Mastodon.
 
-# Ok fine; get on with it
+## Ok fine; get on with it
 
 Course, you're going to need an account at a Mastodon instance.  I have my
 account on [one](https://hackers.town/@randomgeek) of many. You can find one suitable for your tastes at
@@ -40,7 +40,7 @@ account on [one](https://hackers.town/@randomgeek) of many. You can find one sui
  > 
  > It's fun. You should try it out maybe. You can even host your own instance if you're hard-core into DIY.
 
-## Registering your application
+### Registering your application
 
 I have 2FA enabled, so it turned out to be easier for me to set up the application in account preferences (under the "Development" section).
 
@@ -54,7 +54,7 @@ I entered an application name, added my Website for "Application website," and s
 
 That's enough to cover today's play.  I'm not creating my own full-fledged Mastodon client so I don't need every permission.
 
-## Connecting your application
+### Connecting your application
 
 ````python
 import json
@@ -156,7 +156,7 @@ if __name__ == "__main__":
 
 So anyways, we verified that our connection works. Let's take a look at what that connection provides.
 
-## The instance
+### The instance
 
 Mastodon.py provides methods specifically for [reading instance details](https://mastodonpy.readthedocs.io/en/stable/#reading-data-instances). For example, [`instance_health`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance_health) tells of if a quick health check succeeded.
 
@@ -173,7 +173,7 @@ else:
 <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 </pre>
 
-### Instance details
+#### Instance details
 
 Most of the querying methods return a dictionary or a list of dictionaries. [`Mastodon.instance`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance) returns an [instance dict](https://mastodonpy.readthedocs.io/en/stable/#instance-dicts).
 
@@ -257,7 +257,7 @@ Writing data to instance.json
 <span style="font-weight: bold">}</span>
 </pre>
 
-## Reading the timelines
+### Reading the timelines
 
 Mastodon's [timeline methods](https://mastodonpy.readthedocs.io/en/stable/#reading-data-timelines) provide different views of recent post activity, both public and private.  To simplify demonstration on this public blog post, I'll stick to [`timeline_public`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.timeline_public).
 
@@ -331,7 +331,7 @@ Nice. Looks like `content` is in HTML format. Need to remember that if I ever ma
 
 But I'm ready to start tooting.
 
-## Writing
+### Writing
 
 Mastodon [write methods](https://mastodonpy.readthedocs.io/en/stable/#writing-data-statuses) let us add toots, polls, replies, reblogs, faves. All that good stuff.
 
@@ -364,7 +364,7 @@ if __name__ == "__main__":
 
 Okay my brain is fading. Should probably put away the keyboard soon.
 
-# Wrap it up
+## Wrap it up
 
 Am I done?
 

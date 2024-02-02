@@ -9,6 +9,8 @@ tags:
 - amigurumi
 - craft
 title: Crochet Ball Faces
+created: 2024-01-15T15:26:43-08:00
+updated: 2024-02-01T22:12:45-08:00
 ---
 
 I still aspire to learn [amigurumi](https://en.wikipedia.org/wiki/Amigurumi).
@@ -17,4 +19,4 @@ I still aspire to learn [amigurumi](https://en.wikipedia.org/wiki/Amigurumi).
 
 <!--more-->
 
-This time I crocheted two balls, referencing the [same video](https://youtu.be/mJ47MLlrLzw) as my [other](../../2015/03/amigurumi-ball-thing.md) crochet ball. Today I put faces on them. My first projects with googly eyes or embroidery floss. I must assume I will improve at both.
+This time I crocheted two balls, referencing the [same video](https://youtu.be/mJ47MLlrLzw) as my [amigurumi-ball-thing](../../2015/03/amigurumi-ball-thing.md). Today I put faces on them. My first projects with googly eyes or embroidery floss. I must assume I will improve at both.

@@ -13,11 +13,13 @@ tags:
 - files
 - programming
 title: Summarizing A File With Crystal
+created: 2024-01-15T15:26:40-08:00
+updated: 2024-02-01T20:56:46-08:00
 ---
 
 ![attachments/img/2019/cover-2019-11-17.png](../../../attachments/img/2019/cover-2019-11-17.png)
 
-Okay, I don’t have a lot of time here. We’re on a tight schedule. But hey tests are running so I’ll write a tiny bit of [card/Crystal](../../../card/Crystal.md).
+Okay, I don’t have a lot of time here. We’re on a tight schedule. But hey tests are running so I’ll write a tiny bit of [Crystal](../../../card/Crystal.md).
 
 How would I print a quick summary of a file? Besides [`ls`](http://www.man7.org/linux/man-pages/man1/ls.1.html), of course. I mean how would I print a quick summary of a file using Crystal?
 

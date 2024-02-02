@@ -15,20 +15,20 @@ tags:
 - site
 - tools
 title: trying a thing with neovim
-updated: 2024-01-26 10:21:39-08:00
+updated: 2024-02-01 21:03:02-08:00
 ---
 
 But will it even work?
 
 Oh right I need to `:UpdateRemotePlugins` first.
 
-# Test \[PASSED\]
+## Test \[PASSED\]
 
 It worked!
 
-## What did I just do?
+### What did I just do?
 
-I used a [remote plugin](https://neovim.io/doc/user/remote_plugin.html) in [card/Neovim](../../../card/Neovim.md) to transform my [card/reStructuredText](../../../card/reStructuredText.md) into an HTML source document, simplifying [card/Hugo](../../../card/Hugo.md)'s site-building duties.
+I used a [remote plugin](https://neovim.io/doc/user/remote_plugin.html) in [Neovim](../../../card/Neovim.md) to transform my [reStructuredText](../../../card/reStructuredText.md) into an HTML source document, simplifying [Hugo](../../../card/Hugo.md)'s site-building duties.
 
 I won't make you wait around for a proper post. Hugo lets you use reStructuredText.  But Hugo's way is slow and hard to customize. Not their fault. reStructuredText is not their focus.
 
@@ -37,11 +37,11 @@ Still — why not format it ahead of time?
  > 
  > **Answer**
 >
- > Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using [card/Pelican](../../../card/Pelican.md) or [card/Nikola](../../../card/Nikola.md)?
+ > Because it took a lot of work to figure this out? And most folks are perfectly happy with Markdown? And bloggers who prefer reStructuredText are probably using [Pelican](../../../card/Pelican.md) or [Nikola](../../../card/Nikola.md)?
 
 Shush, me.
 
-## The Implementation
+### The Implementation
 
 Start with `content/whatever/index.rst.txt`.
 
@@ -60,7 +60,7 @@ With the code down below in my Neovim python3 — that's *python3* not *python* 
 
 The remote plugin transforms it to HTML, copying my YAML frontmatter as is. So what Hugo sees is updated HTML with frontmatter, and builds that into the site templates nice and quick.
 
-### The Code
+#### The Code
 
 ````python{title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"}
 """Give my reStructuredText posts in Hugo a little boost."""
@@ -116,7 +116,7 @@ If you grab a copy for your own nefarious plans — a similar template could get
 
 * run `:UpdateRemotePlugins` and restart Neovim when you make changes to the plugin file
 
-## Libraries Used
+### Libraries Used
 
 * [Docutils](https://docutils.sourceforge.io/) of course, for transforming the reStructuredText
 * Docutils takes advantage of the fact that I have [Pygments](https://pygments.org/) installed, for syntax highlighting

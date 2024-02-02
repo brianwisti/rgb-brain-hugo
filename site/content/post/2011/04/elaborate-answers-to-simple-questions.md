@@ -12,15 +12,12 @@ tags:
 - blogspot
 title: Elaborate Answers To Simple Questions
 created: 2024-01-15T15:25:32-08:00
-updated: 2024-01-26T10:10:25-08:00
+updated: 2024-02-01T20:08:03-08:00
 ---
 
-Use `string` methods instead of importing `string`. Build email messages
-with the standard [email](http://docs.python.org.library.email.html)
-library.
+Use `string` methods instead of importing `string`. Build email messages with the standard [email](http://docs.python.org.library.email.html)library.
 
-I saw an email last night from somebody with a simple
-[Python](../../../card/Python.md) question.
+I saw an email last night from somebody with a simple [Python](../../../card/Python.md) question.
 
  > 
  > Hi,
@@ -57,22 +54,16 @@ I saw an email last night from somebody with a simple
  > ````
  > C:\Python27>python.exe c:\ROUGH\addingsubtofrm.py
  > Traceback (most recent call last):
- >   File "c:\ROUGH\addingsubtofrm.py", line 12, in <module>
+ >   File "c:\ROUGH\addingsubtofrm.py", line 12, in `<module>`
  >     body = string.join(("From: %s" % From,
  > AttributeError: 'module' object has no attribute 'join'
  > ````
  > 
  > …​
 
-For some reason, I do not get any error when I try to run her code with
-Python 2.7.1 on Windows XP. That’s okay, though. I can still help a
-little bit on the style.
+For some reason, I do not get any error when I try to run her code with Python 2.7.1 on Windows XP. That’s okay, though. I can still help a little bit on the style.
 
-Although `join` is part of the
-[string](http://docs.python.org/library/string.html) module, it is also
-directly attached to strings. So instead of using `string.join(items, separator)`, you could use `separator.join(items)`. That’s considered
-the standard way to join a list of items into a single string these
-days.
+Although `join` is part of the [string](http://docs.python.org/library/string.html) module, it is also directly attached to strings. So instead of using `string.join(items, separator)`, you could use `separator.join(items)`. That’s considered the standard way to join a list of items into a single string these days.
 
 ````python
 Subject = "Testmail"
@@ -87,14 +78,9 @@ body = "\r\n".join(("From: %s" % From,
 print body
 ````
 
-This probably answers her question, but I am apparently in the mood to
-spend a lot of time writing about Python basics. Sounds like blog gold
-to me.
+This probably answers her question, but I am apparently in the mood to spend a lot of time writing about Python basics. Sounds like blog gold to me.
 
-There’s a problem with `body` if you want to use it for an actual email
-message. There needs to be a blank line between the headers and the
-body. One way to do that is to use `join` twice: once to build the
-header block and again to create a properly laid-out email message.
+There’s a problem with `body` if you want to use it for an actual email message. There needs to be a blank line between the headers and the body. One way to do that is to use `join` twice: once to build the header block and again to create a properly laid-out email message.
 
 ````python
 Subject = "Testmail"
@@ -114,10 +100,7 @@ body = "\r\n\r\n".join((header_block, text))
 print body
 ````
 
-The header block still looks a little clumsy. I am sure there is a
-prettier way to generate it. When I look at how the header block is
-printed, I realize that it looks a lot like a Python dictionary. Does
-the code look any clearer if I use a dictionary?
+The header block still looks a little clumsy. I am sure there is a prettier way to generate it. When I look at how the header block is printed, I realize that it looks a lot like a Python dictionary. Does the code look any clearer if I use a dictionary?
 
 ````python
 headers = {
@@ -140,12 +123,9 @@ body = "\r\n\r\n".join((header_block, text))
 print body
 ````
 
-Well, no. Not really. I think I’m actually typing *more* than I was
-before, and it’s not really any easier to read. It’s all that `"From: %s" % headers['From']"` nonsense.
+Well, no. Not really. I think I’m actually typing *more* than I was before, and it’s not really any easier to read. It’s all that `"From: %s" % headers['From']"` nonsense.
 
-`join` takes a sequence. I do not have to hand it a literal like we have
-been doing so far. Let’s build a list of header lines, and *then* join
-them.
+`join` takes a sequence. I do not have to hand it a literal like we have been doing so far. Let’s build a list of header lines, and *then* join them.
 
 ````python
 headers = {
@@ -172,18 +152,9 @@ body = "\r\n\r\n".join((header_block, text))
 print body
 ````
 
-It is easier to read, even if it is a little longer. We are building a
-list of header lines by stepping through each of the key/value pairs
-that make up the `headers` dictionary. Oh, and don’t worry about what
-order the items are printed in. That order doesn’t matter in email
-messages.
+It is easier to read, even if it is a little longer. We are building a list of header lines by stepping through each of the key/value pairs that make up the `headers` dictionary. Oh, and don’t worry about what order the items are printed in. That order doesn’t matter in email messages.
 
-One thing — and this is a little thing — is that it takes us four lines
-of code to build the list. Like I said, it’s a little thing. But
-building lists like this is so common that Python provides powerful
-tools called [list
-comprehensions](http://docs.python.org/tutorial/datastructures.html#list-comprehensions),
-which can reduce those four lines into one.
+One thing — and this is a little thing — is that it takes us four lines of code to build the list. Like I said, it’s a little thing. But building lists like this is so common that Python provides powerful tools called [list comprehensions](http://docs.python.org/tutorial/datastructures.html#list-comprehensions), which can reduce those four lines into one.
 
 ````python
 headers = {
@@ -205,12 +176,7 @@ body = "\r\n\r\n".join((header_block, text))
 print body
 ````
 
-All right. Now if this were an *actual* email, there are some missing
-headers. There are probably also some details missing that are related
-to email handling. Rather than try to figure out what’s missing, I’m
-going to suggest that you use the
-[email](http://docs.python.org.library.email.html) library that comes
-standard with Python.
+All right. Now if this were an *actual* email, there are some missing headers. There are probably also some details missing that are related to email handling. Rather than try to figure out what’s missing, I’m going to suggest that you use the [email](http://docs.python.org.library.email.html) library that comes standard with Python.
 
 ````python
 from email.mime.text import MIMEText
@@ -243,5 +209,4 @@ Subject: Testmail
 Test
 ````
 
-There you go. If your end goal is generating emails, use the Python
-email library.
+There you go. If your end goal is generating emails, use the Python email library.

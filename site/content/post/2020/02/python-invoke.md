@@ -14,18 +14,18 @@ tags:
 - hugo
 - tools
 title: Python Invoke
-updated: 2024-01-26 11:03:25-08:00
+updated: 2024-02-01 20:39:33-08:00
 ---
 
-# The problem
+## The problem
 
 I manage my site with [make](https://www.gnu.org/software/make/manual/make.html) and a hodgepodge of shell scripts. This approach sort of collapsed under its own weight the other day. I needed to update the "ask Hugo to create a new post or note" scripts to accommodate a change in folder layout. I wrote one of the scripts in bash, and the other in Perl. All of it managed by `make`, with a string of `.PHONY` targets.
 
 Not that there’s anything wrong with that.
 
-# A solution: Invoke
+## A solution: Invoke
 
-But I want to try a more unified approach. I also decided that 2020 is my year of [card/Python](../../../card/Python.md).
+But I want to try a more unified approach. I also decided that 2020 is my year of [Python](../../../card/Python.md).
 
 <aside class="admonition">
 
@@ -33,7 +33,7 @@ Don’t hold me to that "year of Python" thing. I get distracted.
 
 </aside>
 
-I could use the *inbox/Pyinvoke* tool created by [Jeff Forcier](http://bitprophet.org/) for this unified approach.
+I could use the *Pyinvoke* tool created by [Jeff Forcier](http://bitprophet.org/) for this unified approach.
 
 Invoke gives you a task runner and support library for managing those tasks. It works a bit like Make, except that you define tasks with Python. Decorate some functions in a `tasks.py` file and you’re ready to go!
 
@@ -41,7 +41,7 @@ I like Invoke’s approach to little annoyances like options and external comman
 
 Let’s get started.
 
-## Installing it
+### Installing it
 
 Mercifully simple. Do you have [Homebrew](https://brew.sh/)? Use that.
 
@@ -61,7 +61,7 @@ No matter how I installed Invoke, I couldn’t get it to run in any environment 
 
 Thought I’d mention it in case you saw similar issues.
 
-## The tasks.py file
+### The tasks.py file
 
 Tasks are defined in a `tasks.py` file. Seems reasonable so far. Import the [task decorator](http://docs.pyinvoke.org/en/stable/api/tasks.html#invoke.tasks.task) to use Invoke’s powers.
 
@@ -69,7 +69,7 @@ Tasks are defined in a `tasks.py` file. Seems reasonable so far. Import the [tas
 from invoke import task
 ````
 
-## A "Hello World" task
+### A "Hello World" task
 
 There’s not *much* boilerplate to a task, but there’s still a little.
 
@@ -101,7 +101,7 @@ Available tasks:
 
 I strongly prefer Invoke’s built-in behavior to my `sed` one-liner.
 
-### Documenting the task
+#### Documenting the task
 
 This list could be more helpful, though. We know what the `hello` task does because I wrote it a few minutes ago. What about in a few months, when I have dozens of tasks?
 
@@ -137,7 +137,7 @@ Nice.
 >
  > Since Invoke only uses the docstring’s first line for the summary, keep it short and to the point. Deep dives and technical explanations can go in following paragraphs. But you should be doing that anyways. It’s a good documentation habit.
 
-### Task parameters
+#### Task parameters
 
 Your task is a Python function. Add arguments to your function and you’ve added [parameters](http://docs.pyinvoke.org/en/stable/getting-started.html#task-parameters) to the task.
 
@@ -198,7 +198,7 @@ Options:
   -n STRING, --name=STRING   Who or what is being greeted
 ````
 
-### Optional parameters
+#### Optional parameters
 
 Right now, the `name` option is required. Invoke gets confused when we skip it.
 
@@ -247,7 +247,7 @@ And that’s why I prefer explicit invocations. But if you must know:
 * Parameters without defaults *can* be specified by position rather than name.
 * Parameters with defaults *must* be specified by name.
 
-### Running multiple tasks
+#### Running multiple tasks
 
 Thankfully Invoke supports another useful feature of Make: requesting more than one task at a time.
 
@@ -275,7 +275,7 @@ Creating the world
 Hello, Enobarbus!
 ````
 
-### Pre-tasks
+#### Pre-tasks
 
 If we find ourselves running the same tasks in the same sequence all the time, we may be describing a dependency. Invoke lets us make the dependency explicit.
 
@@ -303,7 +303,7 @@ Hello, world!
 
 Pre-tasks can be chained: if `setup` had its own dependencies, they would be called before `setup`. Invoke’s documentation on [how tasks run](http://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html#how-tasks-run) explains task dependencies much better than I could.
 
-### Setting the default task
+#### Setting the default task
 
 We have default parameters. What about default tasks?
 
@@ -346,7 +346,7 @@ $ invoke --name Rapunzel
 No idea what '--name' is!
 ````
 
-## A useful task
+### A useful task
 
 Here’s what we have for our "Hello World" `tasks.py` file.
 
@@ -442,7 +442,7 @@ Technically a [Runner](http://docs.pyinvoke.org/en/stable/api/runners.html#invok
 
 *Now* I feel like I can post this.
 
-# What’s next?
+## What’s next?
 
 How about the rest of the workflow? Let me get back to you on that. I need to reread my Makefile.
 

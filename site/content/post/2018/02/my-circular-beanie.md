@@ -9,9 +9,11 @@ tags:
 - hat
 - craft
 title: My Circular Beanie
+created: 2024-01-15T15:26:49-08:00
+updated: 2024-02-01T21:56:17-08:00
 ---
 
-I made myself a snug beanie hat by *inbox/Knitting* in the round.
+I made myself a snug beanie hat by *Knitting* in the round.
 
 ![attachments/img/2018/cover-2018-02-07.jpg](../../../attachments/img/2018/cover-2018-02-07.jpg)
 

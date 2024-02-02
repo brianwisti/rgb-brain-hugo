@@ -14,15 +14,15 @@ tags:
 - node-js
 - site
 title: Building my Eleventy site
-updated: 2024-01-26 10:20:52-08:00
+updated: 2024-02-01 19:57:43-08:00
 ---
 
 ![attachments/img/2022/cover-2022-01-03.jpg](../../../attachments/img/2022/cover-2022-01-03.jpg)
 sometimes the tools break
 
-Not a huge post. I'm using this [card/Eleventy](../../../card/Eleventy.md) incarnation of the site as a way to learn a few [card/Node.js](../../../card/Node.js.md) topics, and many of those concepts are still sinking in.
+Not a huge post. I'm using this [Eleventy](../../../card/Eleventy.md) incarnation of the site as a way to learn a few [Node.js](../../../card/Node.js.md) topics, and many of those concepts are still sinking in.
 
-# So how am I building this thing?
+## So how am I building this thing?
 
 We know it's Eleventy. But what did I find to get a decent web nerd workflow?
 
@@ -32,11 +32,11 @@ You may *not* know better choices. If you come wandering in from some search eng
 
 So let's go down the list.
 
-## `yarn` to run everything
+### `yarn` to run everything
 
 I opted to drive this with [Yarn](https://yarnpkg.com.) For my beginner brain it looks equivalent to [npm](https://docs.npmjs.com/cli/v8) but I find Yarn's usage and invocation more pleasant.
 
-## `package.json` to tell Yarn what I want it to do
+### `package.json` to tell Yarn what I want it to do
 
 Everybody seems to treat the [`scripts`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#scripts) block of a [`package.json`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) pretty
 much the same as the targets of a `Makefile` so I embraced that.
@@ -70,35 +70,35 @@ Build, develop, clean, upload. All the basics are there. I don't think `package.
  > 
  > `site:img` is part of that noise to be honest, but it's mentioned prominently in other entries. Basically I preprocess my images with [eleventy-img](https://www.11ty.dev/docs/plugins/image/). We'll talk more about that another day maybe.
 
-## `ts-node` to execute TypeScript code
+### `ts-node` to execute TypeScript code
 
-In the process of learning [card/TypeScript](../../../card/TypeScript.md), and I'm very much a "learn by doing" sort of person. "Doing" here means "typing the code and making it run." I'll learn the compilation framework of `tsc` soon enough, but [ts-node](https://typestrong.org/ts-node/) lets me execute my TypeScript code immediately.
+In the process of learning [TypeScript](../../../card/TypeScript.md), and I'm very much a "learn by doing" sort of person. "Doing" here means "typing the code and making it run." I'll learn the compilation framework of `tsc` soon enough, but [ts-node](https://typestrong.org/ts-node/) lets me execute my TypeScript code immediately.
 
 I like that.
 
-## `sass` to make things pretty — eventually
+### `sass` to make things pretty — eventually
 
 I'm sure I'll get deeper into [Tailwind](https://tailwindcss.com) or [Windi](https://windicss.org) eventually, but for now it's still easier to write my styles in [Sass](https://sass-lang.com).
 
 And yes I know my styles are rough right now. Decided if I let myself linger and wait for the perfect layout I'd never push the update. But I'll get to it.
 
-## `npm-run-all` so I can do *two* things with *one* command
+### `npm-run-all` so I can do *two* things with *one* command
 
 The only thing I couldn't figure out how to do with `package.json` was run two tasks with a single command. That's apparently because it doesn't do that on its own. `package.json` is not a `Makefile`.
 
 Have no fear. [`npm-run-all`](https://github.com/mysticatea/npm-run-all) is here. It's a CLI application focused on letting you run multiple `package.json` script commands, sequentially or in parallel.
 
-## `rsync` to share it when I'm ready
+### `rsync` to share it when I'm ready
 
 This is a static site served by [Apache](https://httpd.apache.org). It doesn't need some continuous integration / deployment pipeline. I have files. [rsync](https://rsync.samba.org) uploads them with a quickness.
 
 `rsync` has been part of my toolkit for years. I'll replace it when I don't need it anymore.
 
-## `rimraf` to clean up after myself
+### `rimraf` to clean up after myself
 
 Everyone else is using [`rimraf`](https://github.com/isaacs/rimraf) to clean build and intermediate files. I don't know enough to choose any different.
 
-# That's all the important stuff anyways
+## That's all the important stuff anyways
 
 I wanted to go over everything, but there's just too much. A lot of the ideas are still cooking. Expect more on every blogger's favorite topic: "how I built my blog."
 

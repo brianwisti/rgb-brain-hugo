@@ -2,6 +2,7 @@
 aliases:
 - /2018/10/14/trying-beorg/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-10-14 00:00:00-07:00
 description: The beorg iOS app has me playing with Org mode again
 slug: trying-beorg
@@ -9,6 +10,7 @@ tags:
 - orgconfig
 - tools
 title: Trying Beorg
+updated: 2024-02-01 21:03:15-08:00
 ---
 
 This is not a review. This is me, excitedly sharing screenshots of the shiny thing I am playing with.
@@ -22,8 +24,7 @@ This is not a review. This is me, excitedly sharing screenshots of the shiny thi
  > 
  > You can also contribute directly to feature development by making a contribution in Settings.
 
-Does [beorg](https://beorgapp.com/) support your favorite [card/Org](../../../card/Org.md) feature? I have no idea. But I can add,
-schedule, edit, and save tasks.
+Does [beorg](https://beorgapp.com/) support your favorite [Org](../../../card/Org.md) feature? I have no idea. But I can add, schedule, edit, and save tasks.
 
 You *could* manage everything on your phone, but synchronization is an important feature for me. Synchronizing org files via [Dropbox](https://www.dropbox.com/) – or [WebDAV](https://en.wikipedia.org/wiki/WebDAV) if that’s more your thing – works in both directions. I prefer [Syncthing](https://syncthing.net/) but I’ll take what I can get. Who knows? Maybe I’ll figure out WebDAV later.
 

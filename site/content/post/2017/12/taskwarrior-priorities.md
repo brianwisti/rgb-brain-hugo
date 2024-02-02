@@ -10,12 +10,14 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Priorities
+created: 2024-01-15T15:26:47-08:00
+updated: 2024-02-01T20:59:55-08:00
 ---
 
 ![attachments/img/2017/cover-2017-12-25.png](../../../attachments/img/2017/cover-2017-12-25.png)
 `task` report with a column for priority levels
 
-Merry Christmas! Time to organize my [card/Taskwarrior](../../../card/Taskwarrior.md) tasks.
+Merry Christmas! Time to organize my [Taskwarrior](../../../card/Taskwarrior.md) tasks.
 
 My more focused approach to Taskwarrior is working well. I add a task when I get an idea, and mark it `done` sometime after I finish. Annotations let me add noteworthy details. Tags and projects help both for organizing tasks and describing them. A task bubbles up to the top of `task next` as I add more information to it.
 

@@ -4,7 +4,7 @@ aliases:
 category: post
 date: 2018-02-19 00:00:00-08:00
 description: |
-  I'm not done reading a book until I finish the exercises. Taskwarrior can help me remember.
+  "I'm not done reading a book until I finish the exercises. Taskwarrior can help me remember."
 series:
 - Taskwarrior Babysteps
 slug: setting-task-dependencies-in-taskwarrior
@@ -12,6 +12,8 @@ tags:
 - taskwarrior
 - tools
 title: Setting Task Dependencies in Taskwarrior
+created: 2024-01-15T15:26:47-08:00
+updated: 2024-02-01T20:53:16-08:00
 ---
 
 ![attachments/img/2018/cover-2018-02-19.png](../../../attachments/img/2018/cover-2018-02-19.png)
@@ -19,6 +21,7 @@ title: Setting Task Dependencies in Taskwarrior
 I recently realized I could track my reading in [Taskwarrior](../../../card/Taskwarrior.md), since I use it to track so many other things.
 
 <!--more-->
+
 
 ````
 $ task +readlist

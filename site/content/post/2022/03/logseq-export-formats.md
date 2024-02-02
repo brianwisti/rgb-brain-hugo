@@ -9,7 +9,7 @@ syndication:
 tags:
 - logseq
 title: Logseq's Export Formats
-updated: 2024-01-26 10:20:33-08:00
+updated: 2024-02-01 20:23:55-08:00
 ---
 
 ![attachments/img/2022/cover-2022-03-13.png](../../../attachments/img/2022/cover-2022-03-13.png)
@@ -18,16 +18,13 @@ Not the biggest graph but still cumbersome to export one by one
  > 
  > **NOTE**
 >
- > Trying an experiment where I write a post about [card/Logseq](../../../card/Logseq.md) *in* Logseq. Not a big
- > deal on its own, but it should make publishing the post more interesting.
- > 
- > Won't make myself go into Document Mode for this one, though. Keep the outline nodes handy so I can have my tangents and side thoughts, then munge it into a readable post.
+ > Trying an experiment where I write a post about [Logseq](../../../card/Logseq.md) *in* Logseq. Not a big deal on its own, but it should make publishing the post more interesting. Won't make myself go into Document Mode for this one, though. Keep the outline nodes handy so I can have my tangents and side thoughts, then munge it into a readable post.
 
 The Logseq knowledge management tool has been getting a lot of my attention lately. Not for the first time, but I have been more ambitious this time around. So I was thinking yesterday about parsing Logseq's Markdown pages. And while that's certainly in the realm of possibility, it's not strictly necessary.
 
-See, my short term goal is publishing some of my [card/PKM](../../../card/PKM.md) *graph* — what Logseq calls the combined pages, blocks, and metadata — to Random Geekery. Not all of it, because there's work and personal stuff mixed in there with the broad notes. But that's not the important bit. The important bit is Logseq directly supports exporting its graph.
+See, my short term goal is publishing some of my [PKM](../../../card/PKM.md) *graph* — what Logseq calls the combined pages, blocks, and metadata — to Random Geekery. Not all of it, because there's work and personal stuff mixed in there with the broad notes. But that's not the important bit. The important bit is Logseq directly supports exporting its graph.
 
-# What we're working with
+## What we're working with
 
 Logseq can store pages in Markdown or [org](https://orgmode.org/) format. I have been using the Markdown format for this graph.
 
@@ -48,11 +45,11 @@ As the screenshot shows, it's not quite the Markdown we're used to.
 
 So that's what a Logseq page looks like. We *could* tweak a Markdown processor to handle each little variation, but it might be easier by working with an exported copy of the graph in some more widely consistent format.
 
-# Exports available
+## Exports available
 
 So what are our options?
 
-## Export public pages
+### Export public pages
 
 Exports all of your public pages to HTML, with a styled, interactive interface for viewing them. Only problem with that is — well— I don't have any public pages.
 
@@ -60,7 +57,7 @@ Exports all of your public pages to HTML, with a styled, interactive interface f
 
 I have 594 pages in this graph. I wouldn't be surprised if I had over 600 by the end of the end of the day. — *note: 610 by 3pm, when I'm getting ready to publish* — I'm not going to go through each of those, split private from public content, and then mark which of those 600 pages are public. That's a kind of tediousness I don't enjoy.
 
-## Export as standard Markdown (no block properties)
+### Export as standard Markdown (no block properties)
 
 Takes a bit, but eventually drops a zip file containing mostly mundane Markdown.
 
@@ -72,7 +69,7 @@ Course, there's still a fair chunk for me to parse.
 * those double bracket `[[links]]`
 * plus I lose all my properties. Headings are just list items, and images have no caption. So yeah, "standard Markdown" is not an option for me.
 
-## Export as OPML
+### Export as OPML
 
 [OPML](https://indieweb.org/OPML) sounds like a pretty good fit for exporting from an outliner. It is an *Outline Processor Markup Language* after all.
 
@@ -82,7 +79,7 @@ Is it my imagination, or is there *less* useful information here than in the sta
 
 Moving on.
 
-## Export as EDN
+### Export as EDN
 
 Logseq queries make heavy use of [EDN](https://github.com/edn-format/edn). Maybe someday I'll learn it.
 
@@ -94,13 +91,13 @@ I'm a little disappointed that the note syntax doesn't automatically transform t
 
 There's even [edn_format](https://github.com/swaroopch/edn_format), a Python library to load EDN objects into data structures much like with YAML, TOML, and JSON. Good to know!
 
-## Export as JSON
+### Export as JSON
 
 This has pretty much the same structure as the EDN export, with the same benefits and limitations I saw with that. OTOH you don't need to install an extra library to parse it, so there's that.
 
 ![JSON view of the graph focusing on highlights of this page](attachments/img/2022/Screenshot_from_2022-03-13_08-47-22_1647186468168_0.png)
 
-## Export as Roam JSON
+### Export as Roam JSON
 
 Well of course [Roam](https://roamresearch.com/) has its own JSON format.
 
@@ -108,11 +105,11 @@ Well of course [Roam](https://roamresearch.com/) has its own JSON format.
 
 Too bad it holds so much less useful information than Logseq's main JSON export.
 
-# Which export do I like
+## Which export do I like
 
 All things considered, the regular JSON export is probably my best bet. It and EDN both contain the most information about any given block. JSON has the advantage of being widely supported by libraries and CLI tools.
 
-# What next?
+## What next?
 
 The very next step was turning the page I wrote into the post you're reading. I may eventually turn my notes for that experience into its own post. Other than that, I'll probably take a look at the structure of my Logseq graph to see what bits I might want to make public and how.
 

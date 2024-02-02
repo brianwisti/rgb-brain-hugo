@@ -12,12 +12,12 @@ tags:
 - programming
 title: Creating a reStructuredText kbd Role
 created: 2024-01-15T15:26:10-08:00
-updated: 2024-01-26T10:21:36-08:00
+updated: 2024-02-01T20:49:33-08:00
 ---
 
-Today's the day I learn how to create custom roles in [card/reStructuredText](../../../card/reStructuredText.md). There's already [documentation](https://docutils.sourceforge.io/docs/howto/rst-roles.html) on how to do this. I'm just applying it for my specific case.
+Today's the day I learn how to create custom roles in [reStructuredText](../../../card/reStructuredText.md). There's already [documentation](https://docutils.sourceforge.io/docs/howto/rst-roles.html) on how to do this. I'm just applying it for my specific case.
 
-# Prologue: Setup
+## Prologue: Setup
 
 Install some stuff if you want to play along.
 
@@ -88,7 +88,7 @@ Some variation of this is bound to work for you.
 
 Let's get started!
 
-# What even is a role?
+## What even is a role?
 
 First, we need the background. There's this thing called *interpreted text*. It's a reserved bit of functionality for specially marked text. Folks coming to reStructuredText from Markdown mostly know it as the weird reason they have to use double backticks for `code`.
 
@@ -131,7 +131,7 @@ Now that Docutils knows about the role, it can turn it into HTML.
 
 It still doesn't have any inherent *meaning*, but I can put some style rules on it so that anything I label with the `:term:` role shows up a little differently.
 
-# Inline roles in your document
+## Inline roles in your document
 
 If I want the term to stand out a little more, I can adjust my role definition.
 
@@ -149,7 +149,7 @@ You can inherit from any role. That makes it a nice way to create aliases or sli
 
 But I want to get fancy. Let's look at defining reStructuredText roles in Python.
 
-# Defining roles in your code
+## Defining roles in your code
 
 Defining a role has two main steps. Okay, three. Because first we need to import some libraries.
 
@@ -215,7 +215,7 @@ I don't need my inline `role` directive anymore, so I remove it. Registering `ro
 
 Okay, now I basically know how to implement a reStructuredText role. Let's keep going.
 
-## `:tag:` references
+### `:tag:` references
 
 I link to tags on this site frequently. Since I'm the main audience for this site, it's mostly to give me a shortcut to related content. But hey it may help *you* find related content to if you happen to click through.
 
@@ -240,7 +240,7 @@ roles.register_canonical_role('tag', role_reference_tag)
 
 I thought about putting the `#` in CSS, but not every `p-category` is a tag. I can always change my mind later, maybe make a distinct `tag` CSS class.
 
-It looks similar to `:term:`, except because I'm referencing something I use a `reference` node and give it a link to that tag's page as `refuri`.  The `p-category` class is a [card/microformats](../../../card/microformats.md) thing for [card/IndieWeb](../../../card/IndieWeb.md). I also decided to prefix my tag text with the traditional octothorpe used to mark tags out in the wild.
+It looks similar to `:term:`, except because I'm referencing something I use a `reference` node and give it a link to that tag's page as `refuri`.  The `p-category` class is a [microformats2](../../../card/microformats2.md) thing for [IndieWeb](../../../card/IndieWeb.md). I also decided to prefix my tag text with the traditional octothorpe used to mark tags out in the wild.
 
 ````rst
 :tag:`microformats`
@@ -254,7 +254,7 @@ Oh yes that is *much* nicer to read than a standard reStructuredText link.
 
 There's my `p-category` class, along with an unsurprising `reference` — since it's a clear way to indicate the reference node I used — and a slightly confusing `external` class. Pretty sure that means "external to the document."
 
-## A `:kbd:` role
+### A `:kbd:` role
 
 Something I need rather often is a way to indicate keyboard input. <kbd>Control</kbd> <kbd>c</kbd>, stuff like that.
 
@@ -278,7 +278,7 @@ def role_kbd(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
 Well that was easy. A bit verbose, but okay. That's not the real problem though.
 
-## There's a perfectly good `<kbd>` element
+### There's a perfectly good `<kbd>` element
 
 This blog is HTML, right? Can't I just use the [`kbd`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd) element in my role?
 
@@ -303,7 +303,7 @@ def role_raw_kbd(name, rawtext, text, lineno, inliner, options={}, content=[]):
 roles.register_canonical_role('raw-kbd', role_raw_kbd)
 ````
 
-Better pull in the [html](https://docs.python.org/3/library/html.html) standard library and escape that text. Otherwise I'd feel awful silly when talking about indenting with `>>` in [card/Vim](../../../card/Vim.md) or something and it breaks the whole page.
+Better pull in the [html](https://docs.python.org/3/library/html.html) standard library and escape that text. Otherwise I'd feel awful silly when talking about indenting with `>>` in [Vim](../../../card/Vim.md) or something and it breaks the whole page.
 
 ````rst
 :raw-kbd:`>>`
@@ -319,7 +319,7 @@ And there we go. An honest to goodness `<kbd>` element. And `:raw-kbd:` will be 
 
 Figuring out a role for keyboard input was the reason I started writing this post — though my favorite new role is `:tag:`. Anyways, I think this is a good spot to stop writing and start editing.
 
-# Wrap it up
+## Wrap it up
 
 …pardon me while I copy those role functions back into my Neovim plugin…
 
@@ -329,4 +329,4 @@ Cool.
 
 Roles are just a first step in customizing Docutils output. No idea when I'll get to the rest. You can learn more for yourself with Docutils and heavily customized publishing environments like [Sphinx](https://www.sphinx-doc.org/en/master/).
 
-Me, I'm just having a grand time embedding this whole authoring flow in the middle of my [card/Hugo](../../../card/Hugo.md) site. May want to think about a new theme though if I'm going to continue with Hugo. Perhaps borrow from Alexander Carlton's [Hugo B-side](https://www.fisodd.com/code/b-side/).
+Me, I'm just having a grand time embedding this whole authoring flow in the middle of my [Hugo](../../../card/Hugo.md) site. May want to think about a new theme though if I'm going to continue with Hugo. Perhaps borrow from Alexander Carlton's [Hugo B-side](https://www.fisodd.com/code/b-side/).

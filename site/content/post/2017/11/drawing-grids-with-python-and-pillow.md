@@ -8,13 +8,15 @@ tags:
 - python
 - programming
 title: Drawing Grids With Python and Pillow
+created: 2024-01-15T15:26:47-08:00
+updated: 2024-02-01T20:06:14-08:00
 ---
 
 ![attachments/img/2017/cover-2017-11-24.png](../../../attachments/img/2017/cover-2017-11-24.png)
 
-Hey I used [card/Python](../../../card/Python.md) and [Pillow](https://python-pillow.org/) to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.
+Hey I used [Python](../../../card/Python.md) and [Pillow](https://python-pillow.org/) to make grids for my drawing. Read on to watch my brain while I figured it out. Apologies for the minimal editing and the ridiculous number of images.
 
-I enjoy *inbox/Drawing*. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids. Not much in the way of simple grid-based repetition though.
+I enjoy *Drawing*. Many of my sketches have repeated elements, like Zentangle or Celtic inspired patterns. Okay, I don’t have many examples on the site. Sure there’s plenty of repetition based on symmetry tools in the drawing apps I use, and a little bit taking advantage of perspective grids. Not much in the way of simple grid-based repetition though.
 
 Templates exist, but I want custom templates to fit the size of my workspace. I started exploring the Pillow library recently, so let’s use that to make custom grids for my drawings.
 

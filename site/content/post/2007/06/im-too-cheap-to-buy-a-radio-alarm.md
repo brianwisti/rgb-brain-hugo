@@ -26,7 +26,7 @@ Yes, one issue is that the alarm clocks are battery powered. We live in a small,
 
 But I have found a solution, or at least something which is not so easily circumvented. I've turned our beautiful iMac G4 into a glorified radio alarm. Turns out that it was actually quite simple. First I needed an application that plays music. Right, that would be iTunes. Next, I need a radio station that both of us like. Why not just use a playlist? I don't know, I guess I actually wanted this to be a <span style="font-style: italic;">radio</span> alarm. I'm odd. I do crazy things. I stash timepieces under my pillow, and blog in the middle of the night. Really, a radio station feed is not the strangest idea I've had.
 
-Should I use our local [NPR](http://npr.org/)affiliate? No, I don't think so. Light jazz mixed with news and traffic reports are *not* going to make us jump out of bed all energized. I decided to use my favorite college station, [card/KEXP](../../../card/KEXP.md). The morning DJ is good, and
+Should I use our local [NPR](http://npr.org/)affiliate? No, I don't think so. Light jazz mixed with news and traffic reports are *not* going to make us jump out of bed all energized. I decided to use my favorite college station, [KEXP](../../../card/KEXP.md). The morning DJ is good, and
 the morning selection is fantastic unless it's Winter and his [SAD](http://www.sada.org.uk/)has kicked in.
 
 I've got my app, I've got my radio station feed. Now a little AppleScript to automate the process of firing up and playing the station. I haven't experimented much with AppleScript, but there's no time like the present for putting a simple script together:

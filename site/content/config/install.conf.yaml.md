@@ -2,9 +2,11 @@
 title: My Dotbot config
 tags:
 - config
+created: 2024-01-15T17:29:23-08:00
+updated: 2024-02-01T21:55:10-08:00
 ---
 
-After *Yarner* extracts code and Markdown from my [Config](_index.md) sources, *inbox/Dotbot* creates symlinks from generated code files to their expected locations in my home folder.
+After *Yarner* extracts code and Markdown from my config sources, *Dotbot* creates symlinks from generated code files to their expected locations in my home folder.
 
 I adjust my defaults to allow creation of parent directories when they do not already exist.
 

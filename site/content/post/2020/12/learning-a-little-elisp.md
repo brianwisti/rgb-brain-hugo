@@ -97,7 +97,7 @@ When we have a question about ELisp functions, we don’t need to look everythin
 
 ## ELisp in Org Babel
 
-This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my *Config* smarter.  For example, only tangle a section if it’s relevant for that machine.
+This is great and all, but I am less concerned about live evaluation of ELisp. Org mode is more interesting to me.  I could make my [Config](../../../config/_index.md) smarter.  For example, only tangle a section if it’s relevant for that machine.
 
 And, of course, really handy for blogging about ELisp.
 

@@ -10,6 +10,8 @@ tags:
 - hugo
 - programming
 title: Crafts Are Now Posts
+created: 2024-01-15T15:26:53-08:00
+updated: 2024-02-01T22:12:22-08:00
 ---
 
 I turned the craft section into a Craft category — then a tag years later. Drawing, Knitting, and Crochet became tags. The rest of this post is just notes about that.
@@ -20,7 +22,7 @@ I turned the craft section into a Craft category — then a tag years later. Dra
 
 I want to improve the organization of my site content.
 
-I created the *inbox/Crafting* pages in 2015 as a [Jekyll collection](../../2015/07/making-a-jekyll-collection.md). This kept them out of the site RSS feed, which made sense to me at the time. Craft pages were nothing like posts.
+I created the *Crafting* pages in 2015 as a [Jekyll collection](../../2015/07/making-a-jekyll-collection.md). This kept them out of the site RSS feed, which made sense to me at the time. Craft pages were nothing like posts.
 
 [Switching to Hugo](../../2015/09/next-hugo.md) resulted in turning the Jekyll collection into its own section, with a layout that prominently featured an image of the finished project. I liked the layout so much that I incorporated it into posts. The only differences between craft and post content were their URLs and the folders I saved them in.
 
@@ -39,7 +41,7 @@ $ find content/craft/ -name '*.md' | wc -l
 51
 ````
 
-51 items is not bad, but it is more than I want to update manually. Time for a little code. Today I choose [card/Ruby](../../../card/Ruby.md).
+51 items is not bad, but it is more than I want to update manually. Time for a little code. Today I choose [Ruby](../../../card/Ruby.md).
 
 ### Transform front matter in Craft content
 
@@ -54,7 +56,7 @@ For every markdown file in `content/craft`:
 * Oops I have some word case inconsistencies ("Knitting", "knitting"). Fix those.
 * Rewrite the file with the new front matter.
 
-I use [card/YAML](../../../card/YAML.md) for front matter. Ruby includes a [core library](http://ruby-doc.org/stdlib-2.5.1/libdoc/yaml/rdoc/YAML.html) for handling YAML. [Find.find](http://ruby-doc.org/stdlib-2.5.1/libdoc/find/rdoc/Find.html#method-c-find) helps me find the markdown content files. This means I do not need to install extra libraries!
+I use [YAML](../../../card/YAML.md) for front matter. Ruby includes a [core library](http://ruby-doc.org/stdlib-2.5.1/libdoc/yaml/rdoc/YAML.html) for handling YAML. [Find.find](http://ruby-doc.org/stdlib-2.5.1/libdoc/find/rdoc/Find.html#method-c-find) helps me find the markdown content files. This means I do not need to install extra libraries!
 
 ````ruby{title="migrate-craft.rb"}
 require 'find'

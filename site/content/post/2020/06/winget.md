@@ -14,10 +14,10 @@ tags:
 - tools
 title: winget
 created: 2024-01-15T15:26:25-08:00
-updated: 2024-01-26T11:00:31-08:00
+updated: 2024-02-01T21:18:10-08:00
 ---
 
-[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is a command line package manager for *inbox/Windows* 10, open-sourced under the [MIT License](https://github.com/microsoft/winget-cli/blob/master/LICENSE).  Roughly equivalent to `apt` or `brew`.  If you already know and love [Chocolatey](https://chocolatey.org/), you’re fine.  Stick with that for now. `winget` shows promise though.
+[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is a command line package manager for *Windows* 10, open-sourced under the [MIT License](https://github.com/microsoft/winget-cli/blob/master/LICENSE).  Roughly equivalent to `apt` or `brew`.  If you already know and love [Chocolatey](https://chocolatey.org/), you’re fine.  Stick with that for now. `winget` shows promise though.
 
 The other night I installed [Strawberry Perl](https://strawberryperl.com) and played with [Image::ExifTool](https://metacpan.org/release/Image-ExifTool) a tiny bit.
 
@@ -27,14 +27,14 @@ Exciting!
 
 Well, not *work* work. The new job doesn’t start until tomorrow, and is mostly Python.
 
-# How do I get Winget?
+## How do I get Winget?
 
 `winget` is still in preview.  You can get it as part of the [Windows Insider](https://insider.windows.com/) program, like me.  Slow Ring should be fine.  If you don’t feel like taking the risk on a preview release of Windows, you can grab it from the [winget-cli repository](https://github.com/microsoft/winget-cli).
 
-# Finding and installing stuff with `winget`
+## Finding and installing stuff with `winget`
 
 One goal when in Windows is to *use* Windows, and not just spend all day hiding
-in WSL.  If I want to use Windows, I need [card/Perl](../../../card/Perl.md).
+in WSL.  If I want to use Windows, I need [Perl](../../../card/Perl.md).
 
 Hey, I’ll allow myself a few crutches here and there.
 
@@ -91,6 +91,6 @@ Internet, point your browser at http://www.perl.org/, the Perl Home Page.
 
 Now what about all the other package manger functionality?
 
-# What about updating, listing, uninstalling, etc?
+## What about updating, listing, uninstalling, etc?
 
 Um.  Well.  I mentioned `winget` is in preview, right?  Check the development [roadmap](https://github.com/microsoft/winget-cli/blob/master/doc/windows-package-manager-v1-roadmap.md).

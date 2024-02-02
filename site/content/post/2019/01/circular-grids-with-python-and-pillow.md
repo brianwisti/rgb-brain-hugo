@@ -9,11 +9,13 @@ tags:
 - python
 - programming
 title: Circular Grids With Python and Pillow
+created: 2024-01-15T15:26:47-08:00
+updated: 2024-02-01T22:10:52-08:00
 ---
 
 ![attachments/img/2019/cover-2019-01-23.png](../../../attachments/img/2019/cover-2019-01-23.png)
 
-A while back, I wrote about [drawing grids](../../2017/11/drawing-grids-with-python-and-pillow.md)  with [card/Python](../../../card/Python.md) and [Pillow](https://python-pillow.org/). I no longer use that code so much, since Procreate now includes square grids in its drawing aid tools.
+A while back, I wrote about [drawing grids](../../2017/11/drawing-grids-with-python-and-pillow.md)  with [Python](../../../card/Python.md) and [Pillow](https://python-pillow.org/). I no longer use that code so much, since Procreate now includes square grids in its drawing aid tools.
 
 One idea sitting in my [Taskwarrior](../../../card/Taskwarrior.md) queue for a full year now would still be useful, though. A circle template could help me break out of the square grid with my Celtic and Tangle drawings.
 

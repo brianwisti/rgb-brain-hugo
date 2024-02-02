@@ -13,6 +13,8 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 0e - Parrot Namespaces
+created: 2024-01-15T15:25:51-08:00
+updated: 2024-02-01T20:35:38-08:00
 ---
 
 Where was I? In the [previous Babystep](../08/parrot-babysteps-0d-the-space-trade-project.md), I started working out some rough ideas for a version of the old school [Star Trader](https://en.wikipedia.org/wiki/Star_Trader) game written in Parrot PIR. I made a quick description and sketched up a list of the  features that would need to be created. One of those features was an interactive shell to be used in developing and hacking on that Space Trade game. I wrote a simple shell that could be extended, making it easier to expand the capabilities of the shell in the future - or even use the shell in some completely unforeseen future application. 

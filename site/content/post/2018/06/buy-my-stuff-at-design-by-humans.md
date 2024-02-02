@@ -11,10 +11,11 @@ tags:
 - buy-me
 - craft
 title: Buy My Stuff At Design by Hümans
-updated: 2018-06-26 00:00:00-07:00
+updated: 2024-02-01T19:57:58-08:00
+created: 2024-01-15T15:26:45-08:00
 ---
 
-I opened a [store](https://www.designbyhumans.com/shop/randomgeek/) on the Design by Hümans site! I also made [card/Hugo](../../../card/Hugo.md)  warn me when I forget purchase links.
+I opened a [store](https://www.designbyhumans.com/shop/randomgeek/) on the Design by Hümans site! I also made [Hugo](../../../card/Hugo.md)  warn me when I forget purchase links.
 
 ![attachments/img/2018/cover-2018-06-12.png](../../../attachments/img/2018/cover-2018-06-12.png)
 

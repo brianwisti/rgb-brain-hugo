@@ -18,4 +18,4 @@ updated: 2024-01-26T11:00:12-08:00
 ![attachments/img/2020/cover-2020-09-19.png](../../../attachments/img/2020/cover-2020-09-19.png)
 cover images work!
 
-Forced myself to take a couple hours out of a ridiculous work schedule to putter on the site. Trying out something with [card/Eleventy](../../../card/Eleventy.md) and the [eleventy-base-blog](https://github.com/11ty/eleventy-base-blog) starter.
+Forced myself to take a couple hours out of a ridiculous work schedule to putter on the site. Trying out something with [Eleventy](../../../card/Eleventy.md) and the [eleventy-base-blog](https://github.com/11ty/eleventy-base-blog) starter.

@@ -2,6 +2,7 @@
 aliases:
 - /2019/05/05/showing-post-word-count-in-neovim/
 category: post
+created: 2024-01-15 15:26:39-08:00
 date: 2019-05-05 00:00:00-07:00
 slug: showing-post-word-count-in-neovim
 syndication:
@@ -12,9 +13,10 @@ tags:
 - pandoc
 - programming
 title: Showing Post Word Count in (neo)vim
+updated: 2024-02-01 20:53:38-08:00
 ---
 
-A couple shell pipes. A little Vimscript. Now [card/Neovim](../../../card/Neovim.md) tells me (roughly) how many words my post has!
+A couple shell pipes. A little Vimscript. Now [Neovim](../../../card/Neovim.md) tells me (roughly) how many words my post has!
 
 <!--more-->
 
@@ -28,7 +30,7 @@ Since I implied a number in that question, I have a metric I can use. Word count
 
 But how to get the word count of a post? The approach I used a few years ago required enough extra thought that I eventually forgot all about it until editing this post!
 
-[card/Hugo](../../../card/Hugo.md) includes word count and reading time in [page variables](https://gohugo.io/variables/page/), so I could put the variable in the post template, then keep the server running and browser open while I type. In fact, that's exactly what I've been doing!
+[Hugo](../../../card/Hugo.md) includes word count and reading time in [page variables](https://gohugo.io/variables/page/), so I could put the variable in the post template, then keep the server running and browser open while I type. In fact, that's exactly what I've been doing!
 
 ````
 <p>About {{ .Page.ReadingTime }} minutes to read ({{ .Page.WordCount }} words)</p>
@@ -47,7 +49,7 @@ Something *in* my editor would be better.
 
 What if I stripped the Markdown components out, leaving plain text? That's exactly what I want to count! Okay, so how do I go about that? I already know that I'll mess something up if I write my own solution. Maybe one of the tools I already use?
 
-Let's see. My posts are formatted with [mmark](https://mmark.nl/), a Markdown parser with its own [extensions](https://mmark.nl/) to the [card/Markdown](../../../card/Markdown.md) foundation. Near as I can tell, mmark does not support generating plain text from its input.  But [Pandoc](https://pandoc.org/) can. Pandoc can do anything. Except parse mmark.
+Let's see. My posts are formatted with [mmark](https://mmark.nl/), a Markdown parser with its own [extensions](https://mmark.nl/) to the [Markdown](../../../card/Markdown.md) foundation. Near as I can tell, mmark does not support generating plain text from its input.  But [Pandoc](https://pandoc.org/) can. Pandoc can do anything. Except parse mmark.
 
 Well maybe it could if I wrestled with the extensions a little. But I don't want to do that today. mmark can turn Markdown into HTML. Pandoc can turn HTML into plain text!
 

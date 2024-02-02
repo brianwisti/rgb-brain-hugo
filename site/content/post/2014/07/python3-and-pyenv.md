@@ -11,14 +11,14 @@ tags:
 - tools
 title: Python3 and pyvenv
 created: 2024-01-15T15:26:15-08:00
-updated: 2024-01-26T10:11:48-08:00
+updated: 2024-02-01T20:40:00-08:00
 ---
 
-I have been spending much of my coding time in [card/Python](../../../card/Python.md) recently. This site is built in [card/Pelican](../../../card/Pelican.md). Many lines of Python have been written for work. I have even been poking at [Google App Engine](https://developers.google.com/appengine/docs/python/) in what spare time is available. The only disappointment is that all of these have been in Python 2. I would prefer to be using [Python 3](https://wiki.python.org/moin/Python2orPython3). There is a little free time today, so I will set up a nice Python 3 workspace.
+I have been spending much of my coding time in [Python](../../../card/Python.md) recently. This site is built in [Pelican](../../../card/Pelican.md). Many lines of Python have been written for work. I have even been poking at [Google App Engine](https://developers.google.com/appengine/docs/python/) in what spare time is available. The only disappointment is that all of these have been in Python 2. I would prefer to be using [Python 3](https://wiki.python.org/moin/Python2orPython3). There is a little free time today, so I will set up a nice Python 3 workspace.
 
 <!--more-->
 
-One of the interesting things about Python is how it handles personal workspaces. Popular tools in other languages, such as [rbenv](http://rbenv.org/) for [card/Ruby](../../../card/Ruby.md) and [perlbrew](http://perlbrew.pl/) for [card/Perl](../../../card/Perl.md), focus on a complete localized installation for any version you care to use. Python tools assume a system standard version, and focus on making a snapshot for your projects. That works *sort of* like [Bundler](http://bundler.io/). Once you have your snapshot loaded, you use [pip](http://pip.readthedocs.org/) to install the exact libraries needed by your projects. That works very much like Bundler.
+One of the interesting things about Python is how it handles personal workspaces. Popular tools in other languages, such as [rbenv](http://rbenv.org/) for [Ruby](../../../card/Ruby.md) and [perlbrew](http://perlbrew.pl/) for [Perl](../../../card/Perl.md), focus on a complete localized installation for any version you care to use. Python tools assume a system standard version, and focus on making a snapshot for your projects. That works *sort of* like [Bundler](http://bundler.io/). Once you have your snapshot loaded, you use [pip](http://pip.readthedocs.org/) to install the exact libraries needed by your projects. That works very much like Bundler.
 
 The tool of choice for making virtual environments in Python 3 is [pyvenv](https://docs.python.org/dev/library/venv.html). pyvenv actually comes with the standard installation of Python 3.3 or greater. That is good news. Python 2's [virtualenv](http://virtualenv.readthedocs.org/) was not hard to install, but it was not available by default. You still had to *install* it.
 

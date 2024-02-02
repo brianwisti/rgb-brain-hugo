@@ -17,13 +17,13 @@ tags:
 - sortof
 - programming
 title: Tangling code from Hugo content with Raku
-updated: 2024-01-26 11:00:20-08:00
+updated: 2024-02-01 20:58:43-08:00
 ---
 
 ![attachments/img/2020/cover-2020-07-08.jpg](../../../attachments/img/2020/cover-2020-07-08.jpg)
 You know what else I can tangle? Yarn!
 
-I spend a while using [card/Raku](../../../card/Raku.md) to extract code from a [card/Hugo](../../../card/Hugo.md) post.
+I spend a while using [Raku](../../../card/Raku.md) to extract code from a [Hugo](../../../card/Hugo.md) post.
 
 <!--more-->
 
@@ -35,7 +35,7 @@ I spend a while using [card/Raku](../../../card/Raku.md) to extract code from a 
 
 Let's say I have a file.  The one you're reading, perhaps.  Well, its original Markdown content.
 
-It has a [card/Hugo](../../../card/Hugo.md) shortcode in it.
+It has a [Hugo](../../../card/Hugo.md) shortcode in it.
 
 ````html
 {{</* code file="hello.py" */>}}
@@ -62,13 +62,13 @@ I *could* use Hugo's [readFile](https://gohugo.io/functions/readfile/) function 
 >
  > Actual shortcode logic left as an exercise for the reader.
 
-But that still breaks up the writing flow a little bit.  I'm writing the code over here, and writing *about* it over there.  It's a tiny complaint, but working with [card/Org](../../../card/Org.md) has spoiled me.  I get to write the code in the same document that I'm writing about it in.  Everything stays in sync, more or less.
+But that still breaks up the writing flow a little bit.  I'm writing the code over here, and writing *about* it over there.  It's a tiny complaint, but working with [Org](../../../card/Org.md) has spoiled me.  I get to write the code in the same document that I'm writing about it in.  Everything stays in sync, more or less.
 
 What I want is to write about `hello.py` here, and with a command have `hello.py` appear on my filesystem, containing the Python code I've been describing.
 
 And I want to do it without disturbing Hugo. Let it turn Markdown into HTML.
 
-# Tangling
+## Tangling
 
 This process is called "tangling," and it's popular in the admittedly small
 world of [Literate Programming](http://literateprogramming.com/).  The code is interleaved
@@ -120,7 +120,7 @@ shortcode =>
 
 I can grab the named capture `filename` of my matched `shortcode` regex with `$/<shortcode><filename>` — or `~$<shortcode><filename>`, depending on your preferred syntax.
 
-This is all possible in languages like Perl with assorted flags, but I haven't seen parsing treated so well by default since maybe [card/REBOL](../../../card/REBOL.md).
+This is all possible in languages like Perl with assorted flags, but I haven't seen parsing treated so well by default since maybe [REBOL](../../../card/REBOL.md).
 
 Anyways, let's run this thing.
 
@@ -139,7 +139,7 @@ Sweet.
 
 Except — this Markdown file I'm writing.  It has *two* file code blocks now.  I want to tangle both of them.
 
-# Multiple output files
+## Multiple output files
 
 This requires a couple changes, since I'm writing code about Hugo shortcodes in a Hugo post.
 
@@ -257,7 +257,7 @@ $ bat tangle.raku
 
 Unfortunately, I'm not quite done yet.
 
-# Multiple fragments
+## Multiple fragments
 
 I'm not done yet because I don't like to describe my code a full file at a time.  I'd rather talk about this bit here, explain that bit over there, then mash it all up in the end.
 
@@ -266,7 +266,7 @@ Consistency counts, so I need to pick a syntax.  Well — you've been reading al
  > 
  > **NOTE**
 >
- > On a US keyboard using [card/Vim](../../../card/Vim.md) or [card/Neovim](../../../card/Neovim.md), `«` is a [digraph](https://vimhelp.org/digraph.txt.html#digraph.txt) which can be entered via <kbd>Control-k</kbd> followed by <kbd>\<\<</kbd>.  Or if you've set up a [Compose](https://en.wikipedia.org/wiki/Compose_key) key, it's <kbd>Compose</kbd> followed by <kbd>\<\<</kbd> in any editor.
+ > On a US keyboard using [Vim](../../../card/Vim.md) or [Neovim](../../../card/Neovim.md), `«` is a [digraph](https://vimhelp.org/digraph.txt.html#digraph.txt) which can be entered via <kbd>Control-k</kbd> followed by <kbd>\<\<</kbd>.  Or if you've set up a [Compose](https://en.wikipedia.org/wiki/Compose_key) key, it's <kbd>Compose</kbd> followed by <kbd>\<\<</kbd> in any editor.
  > 
  > `»` is the same, but <kbd>\>></kbd> instead.
  > 
@@ -276,7 +276,7 @@ Consistency counts, so I need to pick a syntax.  Well — you've been reading al
 
 Let's go back to the Python code because it's still so small.
 
-Say I want to demonstrate the delightful [card/Rich](../../../card/Rich.md) terminal library for Python.
+Say I want to demonstrate the delightful [Rich](../../../card/Rich.md) terminal library for Python.
 
 ````python{title="import-libraries"}
  from rich import print
@@ -320,7 +320,7 @@ print(Panel(md))
 
 I *might* spend some time talking about the `code` shortcode in another post, but I dislike Go's templating enough that this does not sound like fun.
 
-## Rounding up fragments to tangle
+### Rounding up fragments to tangle
 
 Recognizing an additional parameter doesn't make my regular expression *that* much more complicated, but I can see things getting  ore complex.  I could even find a better pattern later.  Let's give the params their own named regex for some encapsulation.
 
@@ -371,7 +371,7 @@ for $markdown.match(/<shortcode>/, :global) -> $block {
 }
 ````
 
-## Tangling my fragments
+### Tangling my fragments
 
 Let's see here.  I know before I can write any files, I need to make sure everything's tangled Trying to keep fragments easy to identify.  They sit on a line by themselves, possibly with some leading whitespace.
 
@@ -426,7 +426,7 @@ The idea of the thing is clear enough.  Find and recursively `tangle` each fragm
 
 I flailed while tangling fragments.  Lots of complaints from Raku about the difference between a `Match` and a `String`.  There *must* be better ways. But the most important thing?  I got it to work eventually.
 
-## Writing tangled files
+### Writing tangled files
 
 After all that, writing the tangled files felt easy.
 
@@ -526,7 +526,7 @@ Okay.  Now I'm done.
 
 I *could* have done this in Python.  There are decent parsing libraries out there.  But Raku did this on its own, without pulling in any extra — without pulling in *any* libraries.
 
-# Done? You barely started!
+## Done? You barely started!
 
 My tangle script is no competition for Org mode's Babel.
 

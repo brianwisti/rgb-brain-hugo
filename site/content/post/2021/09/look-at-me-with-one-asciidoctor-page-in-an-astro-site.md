@@ -12,12 +12,12 @@ tags:
 - astro-dot-build
 title: Look at me with one Asciidoctor page in an Astro site
 created: 2024-01-15T15:26:10-08:00
-updated: 2024-01-26T10:21:37-08:00
+updated: 2024-02-01T20:24:27-08:00
 ---
 
 ![attachments/img/2021/cover-2021-09-18.png](../../../attachments/img/2021/cover-2021-09-18.png)
 
-I wanted [card/Asciidoctor](../../../card/Asciidoctor.md) in [card/Astro](../../../card/Astro.md). It took some fiddling, but not as much
+I wanted [Asciidoctor](../../../card/Asciidoctor.md) in [Astro](../../../card/Astro.md). It took some fiddling, but not as much
 as expected. It's a good start.
 
 I won't bore you with the details. Maybe later when there are more details to bore you with.

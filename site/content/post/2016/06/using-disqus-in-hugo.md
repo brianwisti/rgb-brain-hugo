@@ -19,7 +19,7 @@ All right fine. Some visitor may want to leave a comment about one or another of
 
 <!--more-->
 
-I used the [documented steps](http://gohugo.io/extras/comments/) for adding [Disqus](https://disqus.com/) comments to [card/Hugo](../../../card/Hugo.md). Though Hugo provides a usable internal template for Disqus, using it as-is will result in a record-keeping headache if you test your site locally.
+I used the [documented steps](http://gohugo.io/extras/comments/) for adding [Disqus](https://disqus.com/) comments to [Hugo](../../../card/Hugo.md). Though Hugo provides a usable internal template for Disqus, using it as-is will result in a record-keeping headache if you test your site locally.
 
 * You look at the page locally
 * The Disqus code is loaded

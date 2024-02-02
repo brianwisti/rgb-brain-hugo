@@ -15,14 +15,14 @@ tags:
 - joplin
 - shell
 title: My Raku script for Journaling in Joplin
-updated: 2024-01-26 10:21:55-08:00
+updated: 2024-02-01 20:27:41-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-22.png](../../../attachments/img/2021/cover-2021-05-22.png)
 
-# Setting the scene
+## Setting the scene
 
-So yesterday I wrote a couple of [one-liners](cli-journaling-in-joplin-with-raku.md) for managing journal entries in the [card/Joplin](../../../card/Joplin.md) note-taking application, with help from [card/Raku](../../../card/Raku.md).
+So yesterday I wrote a couple of [one-liners](cli-journaling-in-joplin-with-raku.md) for managing journal entries in the [Joplin](../../../card/Joplin.md) note-taking application, with help from [Raku](../../../card/Raku.md).
 
 I made one for writing:
 
@@ -49,9 +49,9 @@ They don't work great, though.  Mainly the one-liner for reading.  It dumps ever
 
 I can fix the overwhelming.  I can't properly fix the slow until I learn more about the [Joplin API](https://joplinapp.org/api/overview/).  At least I can make the experience less awful.
 
-# Make it less awful
+## Make it less awful
 
-## Less hard-coding please
+### Less hard-coding please
 
 First things first.  I might change the name of my journal notebook.  You might want a daily diary rather than a giant stack of entries.
 
@@ -62,7 +62,7 @@ constant $entry-window = "minute";
 
 Focusing on daily journals? Set `$entry-window` to `"day"`.
 
-## Adding an entry
+### Adding an entry
 
 ````raku
 sub add-entry() {
@@ -91,7 +91,7 @@ $ date --iso=minute
 
 It wouldn't take excessive effort to make them match, but I'm just not concerned about it at the moment.
 
-### Use a `MAIN` sub
+#### Use a `MAIN` sub
 
 Well, we went and put the logic for adding an entry into a function.  We want to call that function at some point, right?
 
@@ -116,7 +116,7 @@ Okay, fine.  It works.  So far it's neither tidier nor more readable than the in
 
 The problem was reading the entries.
 
-## Read all the entries?
+### Read all the entries?
 
 Back in our one-liner, collecting entries and reading them got smushed together.  They're two distinct actions, though.
 
@@ -136,7 +136,7 @@ Right.  Now we have subs for writing, and subs for reading.  How do we want to g
 
 Nope!  Well — we *could*.  But we don't need to.  Raku has [multi-dispatch](https://docs.raku.org/language/functions#Multi-dispatch)!
 
-### Use multiple `MAIN` subs!
+#### Use multiple `MAIN` subs!
 
 We replace the initial `MAIN` definition with these:
 
@@ -197,9 +197,9 @@ Nice.  Of course, at this point I'm being handed 142 lines of text, and it's tak
 
 Things are about to improve!
 
-## I just want today
+### I just want today
 
-I've been carefully using *inbox/ISO 8601* format for my entries.  That means I can filter to a specific date — or year, month, hour, etc — by constructing a date fragment and grabbing each entry that starts with the fragment.
+I've been carefully using *ISO 8601* format for my entries.  That means I can filter to a specific date — or year, month, hour, etc — by constructing a date fragment and grabbing each entry that starts with the fragment.
 
 ````raku
 sub filtered-entries(Str $date-funnel) {
@@ -267,7 +267,7 @@ sys     0m0.502s
 
 It works.  It's — it's not *fast* by any means, but 3.8 seconds is much faster than 12.  Again, there's an API waiting for when I'm bored of abusing Joplin's command line conveniences.
 
-## And maybe yesterday
+### And maybe yesterday
 
 Most of my deep dives into the journal will be from inside the Joplin app.  A quick glance at yesterday's notes could still be useful.
 
@@ -317,10 +317,10 @@ screenshots? People love screenshots.
 Maybe they do. Maybe they don't. *I* love screenshots.
 ````
 
-## What about formatting?
+### What about formatting?
 
-Honestly?  I'm not going to worry about it right now.  Piping to [card/Rich](../../../card/Rich.md)
-or [card/Glow](../../../card/Glow.md) suffices when I want it pretty.
+Honestly?  I'm not going to worry about it right now.  Piping to [Rich](../../../card/Rich.md)
+or [Glow](../../../card/Glow.md) suffices when I want it pretty.
 
 <pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
 ║                          <span style="font-weight: bold">2021-05-22T08:12:00-07:00</span>                           ║
@@ -360,7 +360,7 @@ joys of hyperfocus.
 Better stretch my legs and get back to the official task list after.
 </pre>
 
-# The complete script
+## The complete script
 
 ````raku
 #!/usr/bin/env raku
