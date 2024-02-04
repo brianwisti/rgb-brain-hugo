@@ -18,7 +18,7 @@ updated: 2024-02-01T20:54:32-08:00
 ![attachments/img/2022/cover-2022-01-01.jpg](../../../attachments/img/2022/cover-2022-01-01.jpg)
 A baby possum!
 
-Finally ported enough of my site to [Eleventy](../../../card/Eleventy.md) that I feel like making it live. It's only been two and a half years since I started [thinking](../../2019/04/eleventy.md) about this. Why rush into things, right?
+Finally ported enough of my site to [Eleventy](../../../card/Eleventy.md) that I feel like making it live. It's only been two and a half years since I started [thinking](../../2019/04/ooh-eleventy.md) about this. Why rush into things, right?
 
 <!--more-->
 

@@ -17,7 +17,7 @@ tags:
 - tools
 title: Taskwarrior Custom Reports
 created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T20:59:21-08:00
+updated: 2024-02-02T10:07:21-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-30.png](../../../attachments/img/2020/cover-2020-04-30.png)
@@ -43,7 +43,7 @@ In case you forgot, or haven’t been following from the [beginning](../../2017/
  > 
  > I get more done quicker by flagging a few tasks as important, a few more tasks as less important, and the rest as "whatever."
  > 
- > I still use \[\[post/2018/12/active-tasks-in-taskwarrior|`start`\]\] to remember what I’m doing right now though. I’m not completely weird.
+ > I still use \[\[active-tasks-in-taskwarrior|`start`\]\] to remember what I’m doing right now though. I’m not completely weird.
 
 Time for me to figure out `or` in Taskwarrior.
 

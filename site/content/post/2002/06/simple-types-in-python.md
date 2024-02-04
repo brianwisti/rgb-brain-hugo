@@ -13,10 +13,10 @@ tags:
 - learn
 - coolnamehere
 title: Simple Types in Python
-updated: 2024-01-26 09:18:04-08:00
+updated: 2024-02-02 10:00:40-08:00
 ---
 
-Ok, it’s been over a year since the first step of my [post/2001/01/python-babysteps-tutorial](../../2001/01/python-babysteps-tutorial.md). It’s about time to dig a little deeper.
+Ok, it’s been over a year since the first step of my [python-babysteps-tutorial](../../2001/01/python-babysteps-tutorial.md). It’s about time to dig a little deeper.
 
 In this step, we will take our first look at variables and types in the [Python](../../../card/Python.md) language. We will use variables for storing and retrieving information. We will also tiptoe into the wild and woolly world of types, which computer languages rely on for tasks such as telling the difference between numbers and words.
 
@@ -29,7 +29,7 @@ You’re not expected to be some kind of expert to work through this tutorial. I
 
 For the rest of us non-experts, let’s take the first steps into real, live programming!
 
-# Variables
+## Variables
 
 Your program needs something to work with. You need names and addresses for your mailing list program, you need debits and credits for your accounting program, and you need weapons and critters for your fast-paced arcade game.
 
@@ -65,7 +65,7 @@ You can change the value of a variable any time by using `=`.
 7
 ````
 
-## Identifiers aka Variable Names
+### Identifiers aka Variable Names
 
 Python gives us a lot of freedom in creating variable names, also known as *identifiers*. As long as they start with a letter or underscore (`_`), and are followed by letters, numbers, or underscores, you’re generally good to go. Case is important, so `number`, `NUMBER`, and `Number` are three different names. The biggest restriction is that you can’t use an identifier that is already used by Python. This means no variables named `print`, for example.
 
@@ -97,11 +97,11 @@ I use underscores in my own code. I don’t really care which one you use, but s
 
 The sad truth is that you are going to encounter plenty of otherwise great code that is downright mean about variable names. It’s just something we have to live with.
 
-## Literals aka Plain Old Values
+### Literals aka Plain Old Values
 
 Let’s throw in another fancy technical term, since it’ll help us understand types in the next section. *Literal* is a fancy name for a plain old value. In the statement `number = 5`, `5` is the literal. Most often, you’ll see literals being used in assigning a value to your variables. There are different ways to write literals, depending on what type of variable you are assigning to.
 
-# Types
+## Types
 
 I’ve used the word "type" a few times already, but haven’t explained what a type is. That’s because I’ve been stalling. It’s a broad concept and the best definition I could think of is circular:
 
@@ -144,7 +144,7 @@ The last line is the exception itself. It tells us what kind of problem was foun
 
 We won’t really understand what to do with an exception for a while, but the basic idea is clear. Python uses exceptions to warn us that we are heading towards the path of madness.
 
-## Numbers
+### Numbers
 
 Nothing illustrates the idea of types as clearly as the number. Most of us know what a number is, and can understand the sorts of things we do with numbers: add them, subtract them, ignore them when they’re written on a bill, and so on. We know how to compare numbers to determine which is greater. Things get a little murky when we start talking about the String type or the HttpServer type, but we know what numbers are. Lucky for us, so does Python.
 
@@ -164,7 +164,7 @@ imaginary numbers
 
 Amazingly enough, Python takes care of telling one from the other, and we don’t need to worry about it most of the time. Just feed it a literal, and it’ll try to do the right thing. Each of these types do have their own rules, though, and these rules will bite us if we try to treat Python numbers exactly the same as the numbers in our checkbook.
 
-## Numeric Literals: How To Describe Numbers
+### Numeric Literals: How To Describe Numbers
 
 ````
 >>> 1
@@ -229,7 +229,7 @@ I guess imaginary numbers don’t make it into everyday math that much, but they
 
 Now that I’ve made a complete fool of myself, let’s move along quickly to look at some things we can do to numbers.
 
-## Numeric Operations: Some Things You Can Do With Numbers
+### Numeric Operations: Some Things You Can Do With Numbers
 
 The Python shell does make a handy calculator. You can do all of the handy four-function operations, plus we get a nifty *exponent* operator and *modulus* operator at no extra charge.
 

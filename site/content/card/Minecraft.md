@@ -68,5 +68,5 @@ Individual mods that I found interesting, though I generally see them in the con
 # Related
 
 * [Welcome to the Minecraft Official Site | Minecraft](https://www.minecraft.net/en-us)
-* *Minetest*
+* [Minetest](Minetest.md)
 * [Vintage Story](Vintage%20Story.md)

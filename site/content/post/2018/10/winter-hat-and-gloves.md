@@ -10,6 +10,8 @@ tags:
 - gloves
 - craft
 title: Winter Hat and Gloves
+created: 2024-01-15T15:26:46-08:00
+updated: 2024-02-02T10:02:40-08:00
 ---
 
 I made  myself a hat and gloves in matching colors for winter.
@@ -18,7 +20,7 @@ I made  myself a hat and gloves in matching colors for winter.
 
 ![attachments/img/2018/cover-2018-10-27.jpg](../../../attachments/img/2018/cover-2018-10-27.jpg)
 
-The gloves use the same [Son of Stitch 'n Bitch](https://www.goodreads.com/book/show/170305.Son_of_Stitch_n_Bitch) pattern as the [purple beer gloves](../08/beer-gloves.md) I knitted this summer. This pair turned out much better. Learning through repetition! However, that Loops & Threads "Impeccable" yarn is far too stiff for gloves. I would prefer a sportweight blend to this worsted weight acrylic for things that need to move with my hands.
+The gloves use the same [Son of Stitch 'n Bitch](https://www.goodreads.com/book/show/170305.Son_of_Stitch_n_Bitch) pattern as the [beer-gloves](../08/beer-gloves.md) I knitted this summer. This pair turned out much better. Learning through repetition! However, that Loops & Threads "Impeccable" yarn is far too stiff for gloves. I would prefer a sportweight blend to this worsted weight acrylic for things that need to move with my hands.
 
 I lost the label for the hat yarn but it's probably Patons North America Classic Wool Worsted. So soft and cozy on my head. I accidentally changed tension once I picked up speed, resulting in an interesting gauge effect along the bottom ribbing, but that is already becoming less pronounced with wear. You can also see twisted stiches where I recovered a row but mounted those stitches incorrectly. This happened plenty of times in the past, but I wanted to remember these little mistakes for future projects.
 

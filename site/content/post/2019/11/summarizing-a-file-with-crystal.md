@@ -14,7 +14,7 @@ tags:
 - programming
 title: Summarizing A File With Crystal
 created: 2024-01-15T15:26:40-08:00
-updated: 2024-02-01T20:56:46-08:00
+updated: 2024-02-02T10:01:37-08:00
 ---
 
 ![attachments/img/2019/cover-2019-11-17.png](../../../attachments/img/2019/cover-2019-11-17.png)
@@ -81,7 +81,7 @@ Size:     3.19 MB
 Modified: 2019-11-13 16:11:12 UTC
 ````
 
-I grabbed the logic from [post/2019/06/weighing-files-with-python](../06/weighing-files-with-python.md) to get a description of the size in kilobytes, megabytes, or gigabytes. That is easier for my brain to understand than the [`UInt64`](https://crystal-lang.org/api/UInt64.html) integer byte count provided by [`File::Info.size`](https://crystal-lang.org/api/File/Info.html#size:UInt64-instance-method).
+I grabbed the logic from [weighing-files-with-python](../06/weighing-files-with-python.md) to get a description of the size in kilobytes, megabytes, or gigabytes. That is easier for my brain to understand than the [`UInt64`](https://crystal-lang.org/api/UInt64.html) integer byte count provided by [`File::Info.size`](https://crystal-lang.org/api/File/Info.html#size:UInt64-instance-method).
 
 Yes, the whole thing is more clever than the situation requires, but I *am* trying to  learn the language here. Using a [`Proc`](https://crystal-lang.org/api/Proc.html) was one way to basically copy and paste the logic from my earlier post and reformat for Crystal. Sure, I could have — and probably should have — defined a new, separate method. At the same time, Procs are great to show that there’s this bit of behavior you want to encapsulate, but you don’t plan to use anywhere else.
 

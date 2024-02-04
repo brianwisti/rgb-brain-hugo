@@ -9,7 +9,7 @@ syndication:
 tags:
 - second-brain
 title: 'New experiment: online brains'
-updated: 2024-01-26 10:18:36-08:00
+updated: 2024-02-04 06:32:21-08:00
 ---
 
 ![attachments/img/2023/cover-2023-03-09.jpg](../../../attachments/img/2023/cover-2023-03-09.jpg)
@@ -22,6 +22,6 @@ I did just enough to have something I could publish
 
 Decided to start putting my raw notes online. Okay not *raw* raw. Still gonna be some filtering for content. But ye gods it is raw in the sense of being very rough.
 
-I set up a new [Dendron](https://dendron.so) vault, used [Astro](../../../card/Astro.md) to build a site from it, and [Netlify](https://netlify.com) to host the site. Netlify is synced up to the repo. Since [GitDoc](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gitdoc) is enabled to commit and push every minute, my brain should stay fresh with minimal effort on my part.
+I set up a new [Dendron](../../../card/Dendron.md) vault, used [Astro](../../../card/Astro.md) to build a site from it, and [Netlify](https://netlify.com) to host the site. Netlify is synced up to the repo. Since [GitDoc](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.gitdoc) is enabled to commit and push every minute, my brain should stay fresh with minimal effort on my part.
 
 That seems like a good thing, generally.

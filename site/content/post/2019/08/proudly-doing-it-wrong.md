@@ -14,6 +14,8 @@ tags:
 - no-i-know
 - i-ll-fix-it
 title: Proudly doing it wrong
+created: 2024-01-15T15:26:40-08:00
+updated: 2024-02-02T09:55:58-08:00
 ---
 
 ![attachments/img/2019/cover-2019-08-11.png](../../../attachments/img/2019/cover-2019-08-11.png)

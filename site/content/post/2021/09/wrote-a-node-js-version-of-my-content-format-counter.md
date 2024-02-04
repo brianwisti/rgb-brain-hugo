@@ -11,7 +11,7 @@ tags:
 - programming
 title: Wrote a Node.js version of my content format counter
 created: 2024-01-15T15:26:27-08:00
-updated: 2024-02-01T21:19:25-08:00
+updated: 2024-02-02T10:02:25-08:00
 ---
 
 ![attachments/img/2021/cover-2021-09-04.png](../../../attachments/img/2021/cover-2021-09-04.png)
@@ -34,7 +34,7 @@ Bag(html(39) md(542))
 
 Unfortunately, it didn't cover all the content extension once I figured out that Hugo can ignore `*.txt` files, allowing me to try all sorts of [tricks](../08/trying-a-thing-with-neovim.md) with content generation.
 
-So I've had this [Ruby](../../../card/Ruby.md) code embedded in my [justfile](../../../config/justfile.md).
+So I've had this [Ruby](../../../card/Ruby.md) code embedded in my *justfile*.
 
 ````ruby
 #!/usr/bin/env ruby

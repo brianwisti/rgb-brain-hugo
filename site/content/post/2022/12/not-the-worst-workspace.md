@@ -10,7 +10,7 @@ tags:
 - now
 title: Not the worst workspace
 created: 2024-01-15T15:26:28-08:00
-updated: 2024-01-26T10:18:59-08:00
+updated: 2024-02-02T09:54:09-08:00
 ---
 
 ![woman in pool visible over laptop screen; palm trees and ocean is in the background](attachments/img/2022/cover-2022-12-14.jpg "sitting by the pool near the beach while she's in the pool")

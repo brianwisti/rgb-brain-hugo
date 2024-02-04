@@ -13,6 +13,8 @@ tags:
 - tools
 - smeghead
 title: Smug mode activated
+created: 2024-01-15T15:26:40-08:00
+updated: 2024-02-02T10:00:47-08:00
 ---
 
 I checked the site at [Fit on a Floppy](https://fitonafloppy.website).

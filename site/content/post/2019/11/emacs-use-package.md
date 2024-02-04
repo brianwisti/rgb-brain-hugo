@@ -11,7 +11,7 @@ tags:
 - packages
 - tools
 title: Emacs use-package
-updated: 2024-02-01 20:11:30-08:00
+updated: 2024-02-02 09:41:12-08:00
 ---
 
 I admit it. My [Emacs](../../../card/Emacs.md) usage is intermittent at best. But I do use Emacs *sometimes*. Still haven’t found anything to match [Org](../../../card/Org.md) for taking notes or writing posts.

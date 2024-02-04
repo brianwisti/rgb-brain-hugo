@@ -11,13 +11,13 @@ tags:
 - rich
 - tools
 title: Extracting Rich Output for fun and profit
-updated: 2024-01-26 10:21:42-08:00
+updated: 2024-02-02 09:41:28-08:00
 ---
 
 ![attachments/img/2021/cover-2021-08-24.png](../../../attachments/img/2021/cover-2021-08-24.png)
 a screenshot of the HTML that I created to show I don't need screenshots
 
-Somewhere in the middle of [post/2021/08/tooting-with-python](tooting-with-python.md), I mentioned I how I get [Rich](https://rich.readthedocs.io) output into a post.  That approach was a little clumsy though. I want to run my code and paste its output into whatever draft I'm editing.
+Somewhere in the middle of [tooting-with-python](tooting-with-python.md), I mentioned I how I get [Rich](https://rich.readthedocs.io) output into a post.  That approach was a little clumsy though. I want to run my code and paste its output into whatever draft I'm editing.
 
 So I'll figure that one out now.
 
@@ -29,7 +29,7 @@ So I'll figure that one out now.
  > 
 Yeah let's do that instead. Much less to remember.
 
-# What are we printing?
+## What are we printing?
 
 How about a [Table](https://rich.readthedocs.io/en/stable/tables.html) of the most popular pages on my site? I use [Plausible](https://plausible.io) for stats, and I've been meaning to play with their [API](https://plausible.io/docs/stats-api). But I'm here to talk about Rich, not Plausible. Let's use a static copy of API results so everyone's using the same data.
 
@@ -95,7 +95,7 @@ Here's a screenshot, so you know what this produces in my own terminal.
 
 Okay. Now let's start talking about exporting output.
 
-# `xclip` is usually good enough
+## `xclip` is usually good enough
 
 This post focuses on the "blog writing and pretty reports" situations. For everyday sharing, all I need is a legibly formatted data dump. [`xclip`](https://github.com/astrand/xclip) works for those situations.
 
@@ -133,7 +133,7 @@ I don't see anything on my screen, of course, because I piped everything to `xcl
 
 Let's pull that clipboard management into the script with Al Sweigart's [Pyperclip](https://pypi.org/project/pyperclip/) library.
 
-# Let Rich and Pyperclip handle the clipboard
+## Let Rich and Pyperclip handle the clipboard
 
 Pyperclip gives our code access to the system clipboard, letting us copy and paste from Python.  The Rich [Console](https://rich.readthedocs.io/en/stable/reference/console.html) can [`capture`](https://rich.readthedocs.io/en/stable/console.html#capturing-output) the characters it would have printed, and hand them to us when needed. Sounds like a great team.
 
@@ -186,7 +186,7 @@ Uh. Oops? `console` captured *exactly* what it would have printed, including ter
 
 Rich supports [exporting](https://rich.readthedocs.io/en/stable/console.html#exporting) output beyond a raw dump, though.
 
-# Let Rich get you some HTML
+## Let Rich get you some HTML
 
  > 
  > **NOTE**
@@ -257,6 +257,6 @@ If you're curious about the exported HTML, here's a chunk of it:
 
 Anyways, this was just another thing I wanted to get down before I forgot again.
 
-# What else?
+## What else?
 
 There are a few more pieces that tie it into my particular workflow, but this covers what you'd need to export output from your own Rich programs for easy blogging or information sharing.

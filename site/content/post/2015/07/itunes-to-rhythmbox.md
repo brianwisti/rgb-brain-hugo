@@ -15,10 +15,10 @@ tags:
 - tools
 title: iTunes to Rhythmbox
 created: 2024-01-15T15:25:26-08:00
-updated: 2024-01-26T10:13:00-08:00
+updated: 2024-02-02T09:48:05-08:00
 ---
 
-I nearly wrote a script that transfers my [2015-03-16-ruby-itunes-ratings-fun|iTunes ratings](../03/ruby-itunes-ratings-fun.md) to [Rhythmbox](https://wiki.gnome.org/Apps/Rhythmbox). Instead I used Edgar Salgado’s version of [iTunesToRhythm](https://github.com/esalgado/iTunesToRhythm).
+I nearly wrote a script that transfers my iTunes logic from *2015-03-16-ruby-itunes-ratings-fun* to [Rhythmbox](https://wiki.gnome.org/Apps/Rhythmbox). Instead I used Edgar Salgado’s version of [iTunesToRhythm](https://github.com/esalgado/iTunesToRhythm).
 
 See, I have been spending most of my time lately in [GNOME 3](https://www.gnome.org/gnome-3/) on [openSUSE](https://www.opensuse.org) Linux. All of my music is copied over and loaded into [Rhythmbox](https://wiki.gnome.org/Apps/Rhythmbox), but I wanted to continue my quest to rate all of my music. I spent roughly an hour starting my own solution before realizing that this was probably a solved problem.
 

@@ -15,7 +15,7 @@ tags:
 - site
 - tools
 title: Making a Jekyll Collection
-updated: 2024-02-01T20:24:42-08:00
+updated: 2024-02-02T09:49:15-08:00
 created: 2024-01-15T15:25:26-08:00
 ---
 

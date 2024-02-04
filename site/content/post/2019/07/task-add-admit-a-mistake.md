@@ -12,9 +12,11 @@ tags:
 - taskwarrior
 - oops
 title: task add 'admit a mistake'
+created: 2024-01-15T15:26:42-08:00
+updated: 2024-02-02T10:07:45-08:00
 ---
 
-My [glance](../06/checking-in-on-my-idea-bucket.md) at the Idea Bucket only worked by luck. The `+LATEST` virtual tag is for the latest task in the system, not just the latest in the filter. I want the `newest` report, which lists tasks by freshness, then `limit:` to control the number of tasks reported.
+[checking-in-on-my-idea-bucket](../06/checking-in-on-my-idea-bucket.md) only worked by luck. The `+LATEST` virtual tag is for the latest task in the system, not just the latest in the filter. I want the `newest` report, which lists tasks by freshness, then `limit:` to control the number of tasks reported.
 
 ````
 $ task '(+idea or +learn)' newest limit:1

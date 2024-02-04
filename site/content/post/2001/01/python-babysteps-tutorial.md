@@ -13,14 +13,14 @@ tags:
 - learn
 - coolnamehere
 title: Python Babysteps Tutorial
-updated: 2024-01-26 09:16:51-08:00
+updated: 2024-02-02 09:56:58-08:00
 ---
 
 This is my original Python Babysteps tutorial, which has existed in more or less the same form since 2001. 
 
-I got a good start on [post/2011/06/python-2x-babysteps](../../2011/06/python-2x-babysteps.md)
+I got a good start on [python-2x-babysteps](../../2011/06/python-2x-babysteps.md)
 
-# Introduction
+## Introduction
 
 If you have never programmed before in your life, then do I have the perfect programming language for you. It’s called Python, and it is easy to learn, flexible, and loaded with capabilities that you never thought would be so easy to use. Imagine your thrill when you write a complete program in just a few lines!
 
@@ -34,11 +34,11 @@ If anybody has any suggestions or comments about this tutorial, please [send me 
 
 I hope you enjoy this!
 
-# Installing Python
+## Installing Python
 
 Before you can *use* Python, you need to *get* Python.
 
-## Which Version of Python?
+### Which Version of Python?
 
  > 
  > **NOTE**
@@ -63,11 +63,11 @@ The ActiveState version has the benefit of being from a real, live company. You 
 
 Python 2.6, on the other hand, is the "official" version. It comes with a standard set of tools which are available on every platform that Python can support. Instead of PythonWin, Python 2.6 comes with IDLE: a cross-platform graphical environment for developing your Python programs. IDLE works pretty much the same for you whether you are sitting in front of Windows, Linux, or OS X.
 
-# Installing Python 2.6
+## Installing Python 2.6
 
 Now that you have decided which version of Python you are going to use, you need to get it and put it on your machine.
 
-## Linux
+### Linux
 
 Your distribution probably has some version of Python available, but I prefer to get mine from [ActiveState](https://activestate.com). It’s easy enough to install, and is usually more up-to-date than what ships with most Linux distributions. There are also fewer concerns about figuring out whether you installed the `idle` or `pydoc` packages. You just install ActivePython and get to work.
 
@@ -124,7 +124,7 @@ $ which idle
 
 There you go. ActivePython 2.6 has been installed on our Linux machine.
 
-## Windows
+### Windows
 
 Now I am going to describe installation in the Windows environment. It’s even easier to install Python for Windows (short version: download and run the installer, click "Next" until done).
 
@@ -150,7 +150,7 @@ Eventually, you are presented with a little progress bar while the installer put
 
 Guess what? You are now a proud owner of Python 2.6! All that’s left is learning how to program.
 
-# Using Python
+## Using Python
 
 There are already a lot of online tutorials for learning Python. Maybe that’s because Python is as fun to teach as it is to learn. Anyways, I am not going to try and tell you that *my* rough little article is the best introduction you’ll ever find.
 
@@ -175,7 +175,7 @@ It’s a pretty standard and dry user manual, but should hold answers to any que
 
 In the next couple of sections, I’ll help you with the basics of using IDLE. We’ll use the shell for some simple code, and make & run our own little Python script. That’s right, you’ll be creating your own  programs within the next few minutes!
 
-# How to use IDLE
+## How to use IDLE
 
 Starting IDLE under Windows is a matter of finding it in your Start menu.
 
@@ -192,7 +192,7 @@ If you happen to have IDLE in your environment’s equivalent of a Start menu, t
 
 IDLE will start with something that looks like some sort of command line interface — kind of like a colorful DOS box or XTerm. That is the shell, and it allows you to perform the next step:
 
-## Using the IDLE Shell (*Writing Code!*)
+### Using the IDLE Shell (*Writing Code!*)
 
 Let’s see, how do we run Python code in the IDLE shell?
 
@@ -274,7 +274,7 @@ What if we wanted to be able to get that warm fuzzy feeling any time? It’s onl
 
 Let’s find out how to do just that.
 
-# How to Make Your Own Python Program
+## How to Make Your Own Python Program
 
 Even though the IDLE shell is pretty neat, and *very* useful for figuring out whether a code idea will work, it’s not any good for actual programs.
 
@@ -390,7 +390,7 @@ Finally, you might want to know how to *leave* IDLE. The menu command 'File|Exit
 
 And you know what? You know how to use the IDLE shell, as well as how to edit, save, and run your very own Python scripts. You’re a programmer now! Okay, there’s still plenty more to learn, but you are ready to start exploring.
 
-## What Next?
+### What Next?
 
 This was just the quickest introduction to Python. Hopefully you are warmed up and ready for more. Now you should start one of the recommended tutorials at the [Python BeginnersGuide](https://wiki.python.org/moin/BeginnersGuide).
 
@@ -404,7 +404,7 @@ I have a few favorites of my own.
 * How To Think Like a Computer Scientist In Python
   <http://openbookproject.net/thinkcs/python/english2e/>
 
-## Quick Reference: Using IDLE
+### Quick Reference: Using IDLE
 
 |To Do This|Use This Menu Command|
 |----------|---------------------|

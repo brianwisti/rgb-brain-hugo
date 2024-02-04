@@ -15,7 +15,7 @@ tags:
 - tools
 title: Setting up Raku with Rakubrew
 created: 2024-01-15T15:26:41-08:00
-updated: 2024-01-26T11:01:14-08:00
+updated: 2024-02-02T10:00:18-08:00
 ---
 
 I was avoiding Rakudobrew for some now-forgotten technical reason.  Probably couldn’t get a particular Perl 6 release to build.  But I’m tired of one-off scripts or distribution packages that don’t quite match my expectations. What’s new in the Perl 6 language manager world?
@@ -120,7 +120,7 @@ $ rakubrew switch moar-2020.05.1
 Switching to moar-2020.05.1
 ````
 
-And what can Raku tell me about itself?  I’ll recycle my one-liner from [a little bit ago](../../2019/11/building-rakudo-and-moarvm-on-linux.md).
+And what can Raku tell me about itself?  I’ll recycle my one-liner from [building-rakudo-and-moarvm-on-linux](../../2019/11/building-rakudo-and-moarvm-on-linux.md).
 
 ````text
 $ raku -e 'say "Yo, World! This is $*PERL - specifically: { ($*PERL, $*VM, $*DISTRO).map({ $_.gist })}"'

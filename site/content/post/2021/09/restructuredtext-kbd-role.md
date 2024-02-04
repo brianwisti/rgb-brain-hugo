@@ -12,7 +12,7 @@ tags:
 - programming
 title: Creating a reStructuredText kbd Role
 created: 2024-01-15T15:26:10-08:00
-updated: 2024-02-01T20:49:33-08:00
+updated: 2024-02-02T09:59:30-08:00
 ---
 
 Today's the day I learn how to create custom roles in [reStructuredText](../../../card/reStructuredText.md). There's already [documentation](https://docutils.sourceforge.io/docs/howto/rst-roles.html) on how to do this. I'm just applying it for my specific case.

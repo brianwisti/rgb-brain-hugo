@@ -9,6 +9,8 @@ tags:
 - marginalia
 - now
 title: Interviewed About Facebook
+created: 2024-01-15T15:26:45-08:00
+updated: 2024-02-02T09:47:15-08:00
 ---
 
 ![attachments/img/2018/cover-2018-03-27.jpeg](../../../attachments/img/2018/cover-2018-03-27.jpeg)
