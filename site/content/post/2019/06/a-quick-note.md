@@ -1,5 +1,5 @@
 ---
-redirects:
+aliases:
 - /note/2019/0001-hey/
 - /note/2019/172/a-quick-note/
 - /note/2019/06/a-quick-note/

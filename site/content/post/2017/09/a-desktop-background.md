@@ -1,5 +1,5 @@
 ---
-redirects:
+aliases:
 - /craft/2017/a-desktop-background/
 - /2017/09/03/a-desktop-background/
 category: post

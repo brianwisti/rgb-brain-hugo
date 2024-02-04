@@ -1,9 +1,9 @@
 ---
-title: My awesome config
-redirects:
+aliases:
 - /config/awesome/
 tags:
 - config
+title: My awesome config
 ---
 
 It's not like I know what I'm doing or anything. But at least I'm having fun.

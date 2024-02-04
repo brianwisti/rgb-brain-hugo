@@ -1,5 +1,5 @@
 ---
-redirects:
+aliases:
 - /note/2020/33/added-dark-mode-for-the-site/
 - /note/2020/02/added-dark-mode-for-the-site/
 category: note

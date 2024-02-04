@@ -1,9 +1,9 @@
 ---
+aliases:
+- /2018/12/01/active-tasks-in-taskwarrior/
 category: post
 created: 2024-01-15 15:26:47-08:00
 date: 2018-12-01 00:00:00-08:00
-redirects:
-- /2018/12/01/active-tasks-in-taskwarrior/
 series:
 - Taskwarrior Babysteps
 slug: active-tasks-in-taskwarrior

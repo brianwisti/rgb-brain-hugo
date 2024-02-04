@@ -1,5 +1,5 @@
 ---
-redirects:
+aliases:
 - /note/2019/0003/
 - /note/2019/174/added-a-hugo-note-archetype/
 - /note/2019/06/added-a-hugo-note-archetype/

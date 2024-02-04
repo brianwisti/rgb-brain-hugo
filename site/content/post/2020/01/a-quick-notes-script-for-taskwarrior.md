@@ -1,9 +1,9 @@
 ---
+aliases:
+- /2020/01/12/a-quick-notes-script-for-taskwarrior/
 category: post
 created: 2024-01-15 15:26:43-08:00
 date: 2020-01-12 00:00:00-08:00
-redirects:
-- /2020/01/12/a-quick-notes-script-for-taskwarrior/
 slug: a-quick-notes-script-for-taskwarrior
 tags:
 - taskwarrior

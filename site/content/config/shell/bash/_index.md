@@ -1,10 +1,10 @@
 ---
-title: My GNU Bash Config
-redirects:
+aliases:
 - /config/bash/
 tags:
 - config
 - bash
+title: My GNU Bash Config
 ---
 
 I tend to use GNU Bash as my login shell, thanks to its stability.

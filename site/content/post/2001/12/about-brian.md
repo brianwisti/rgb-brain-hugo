@@ -1,5 +1,5 @@
 ---
-redirects:
+aliases:
 - /coolnamehere/2001/12/29_about-brian.html
 - /post/2001/about-brian/
 - /2001/12/29/about-brian/
