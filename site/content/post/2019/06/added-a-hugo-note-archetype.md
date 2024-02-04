@@ -4,6 +4,7 @@ aliases:
 - /note/2019/174/added-a-hugo-note-archetype/
 - /note/2019/06/added-a-hugo-note-archetype/
 category: note
+created: 2024-01-15 15:26:37-08:00
 date: 2019-06-23 19:55:11-07:00
 slug: added-a-hugo-note-archetype
 syndication:
@@ -17,8 +18,7 @@ tags:
 - mobile-hotspot
 - my-data-usage-is-gonna-hurt
 title: Added a Hugo note archetype
-created: 2024-01-15T15:26:37-08:00
-updated: 2024-02-01T19:52:59-08:00
+updated: 2024-02-01 19:52:59-08:00
 ---
 
 Moved into a new apartment. Waiting for Internet on Tuesday. It's Sunday.

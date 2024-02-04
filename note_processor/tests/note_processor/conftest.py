@@ -98,6 +98,10 @@ def vault_resource(faker):
 def vault_note(post, md_path):
     return VaultNote(md_path, post)
 
+@pytest.fixture
+def vault_note_with_redirects(post, md_path, faker):
+    post.metadata["aliases"] = [faker.word() for _ in range(3)]
+    return VaultNote(md_path, post)
 
 @pytest.fixture
 def note_link(faker, vault_note, md_path):

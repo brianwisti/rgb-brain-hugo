@@ -129,6 +129,13 @@ class TestNoteLinkPattern:
             assert link_text == link.link_text
             assert link_path == str(link.target.path)
 
+class TestVaultNoteAliases:
+    def test_default(self, vault_note):
+        assert "aliases" not in vault_note.meta
+    
+    def test_with_redirects(self, vault_note_with_redirects):
+        assert "aliases" in vault_note_with_redirects.meta
+        assert "redirects" not in vault_note_with_redirects.meta
 
 class TestVaultNoteTitle:
     def test_title_get(self, vault_note: VaultNote):

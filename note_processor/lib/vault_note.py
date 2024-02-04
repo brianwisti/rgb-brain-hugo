@@ -5,6 +5,7 @@ import re
 import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import cast
 
 import frontmatter
 
@@ -81,7 +82,7 @@ class VaultNote(VaultResource):
     internal_links: list[NoteLink] = field(init=False, default_factory=list)
 
     def __post_init__(self):
-        self.__ensure_title()
+        self.__adjust_frontmatter()
         self.__find_links()
         self.__adjust_content()
 
@@ -115,15 +116,8 @@ class VaultNote(VaultResource):
         """Return a VaultNote by processing the file at a given path."""
         logging.debug("VaultNote.from_path %s", path)
         post = frontmatter.loads(path.read_text(encoding="utf-8"))
-        is_dirty = False
-        updated_content = re.sub(CALLOUT_BLOCK, callout_title, post.content)
 
-        if updated_content != post.content:
-            post.content = updated_content
-            logging.debug("updated content")
-            is_dirty = True
-
-        return cls(path=path, note=post, is_dirty=is_dirty)
+        return cls(path=path, note=post)
 
     def add_link(self, resource: VaultResource, link_text: str):
         """Remembers a vault link from this note."""
@@ -155,15 +149,28 @@ class VaultNote(VaultResource):
             logging.debug("updated content")
             self.is_dirty = True
 
-    def __ensure_title(self):
-        """Ensure that the note has a title.
+    def __adjust_frontmatter(self):
+        """Ensure that note has correct frontmatter for Hugo.
 
-        If frontmatter has no title field, add one from the note's filename.
-        Changing the title will mark the note as dirty.
+        This method will update the note's metadata and mark it as dirty if
+        any changes are made.
         """
+
+        # Obsidian assumes filename is title unless we say otherwise.
         if "title" not in self.meta:
-            self.meta["title"] = self.path.stem
             self.is_dirty = True
+            self.meta["title"] = self.path.stem
+
+        # Hugo "aliases" are "redirects" in my Obsidian setup.
+        if "redirects" in self.meta:
+            self.is_dirty = True
+            redirects = cast(list[str], self.meta.pop("redirects"))
+
+            if "aliases" in self.meta:
+                aliases = cast(list[str], self.meta["aliases"])
+                self.meta["aliases"] = aliases + redirects
+            else:
+                self.meta["aliases"] = redirects
 
     def __find_links(self):
         """Find all internal links in the note's content."""

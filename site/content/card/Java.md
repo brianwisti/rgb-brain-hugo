@@ -6,7 +6,7 @@ updated: 2024-02-04T07:37:07-08:00
 
 Enterprise object-oriented [Programming Language](Programming%20Language.md).
 
-On my system, mostly managing with *SDKMAN*.
+On my system, mostly managing with [SDKMAN](SDKMAN.md).
 
 ## JDK Distributions
 
