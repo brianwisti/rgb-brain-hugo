@@ -4,14 +4,14 @@ redirects:
 - /post/2011/glance-at-client-side-frameworks/
 - /2011/03/16/a-glance-at-client-side-frameworks/
 category: post
+created: 2024-01-15 15:25:31-08:00
 date: 2011-03-16 00:00:00-07:00
 slug: a-glance-at-client-side-frameworks
 tags:
 - javascript
 - blogspot
 title: A Glance at Client-Side Frameworks
-created: 2024-01-15T15:25:31-08:00
-updated: 2024-01-26T10:10:23-08:00
+updated: 2024-01-26 10:10:23-08:00
 ---
 
 I was one of those lucky suckers who got a [Google CR-48 netbook](http://www.google.com/chromeos/pilot-program-cr48.html) a few months back.

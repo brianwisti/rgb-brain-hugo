@@ -4,17 +4,19 @@ redirects:
 - /post/2015/adding-suggested-posts/
 - /2015/09/14/added-suggested-posts/
 category: post
+created: 2024-01-15 15:25:27-08:00
 date: 2015-09-14 00:00:00-07:00
-description: |
-  'I started writing about PNWPHP but got distracted and added "Suggested Reading" to my posts instead.'
+description: '''I started writing about PNWPHP but got distracted and added "Suggested
+  Reading" to my posts instead.''
+
+  '
 slug: added-suggested-posts
 tags:
 - jekyll
 - site
 - tools
 title: Added Suggested Posts
-created: 2024-01-15T15:25:27-08:00
-updated: 2024-01-26T10:13:16-08:00
+updated: 2024-01-26 10:13:16-08:00
 ---
 
 I started writing about [PNWPHP](http://www.pnwphp.com/) but got distracted and added "Suggested Reading" to my posts instead.

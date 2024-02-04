@@ -4,6 +4,7 @@ redirects:
 - /post/2008/adding-categories-to-python-blogger/
 - /2008/01/02/adding-categories-to-the-python-blogger-client/
 category: post
+created: 2024-01-15 15:25:38-08:00
 date: 2008-01-02 00:00:00-08:00
 slug: adding-categories-to-the-python-blogger-client
 tags:
@@ -12,8 +13,7 @@ tags:
 - python
 - blogspot
 title: Adding Categories to the Python Blogger Client
-created: 2024-01-15T15:25:38-08:00
-updated: 2024-01-26T09:22:54-08:00
+updated: 2024-01-26 09:22:54-08:00
 ---
 
 # Update 2009-06-09

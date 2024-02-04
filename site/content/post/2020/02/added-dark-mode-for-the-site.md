@@ -3,6 +3,7 @@ redirects:
 - /note/2020/33/added-dark-mode-for-the-site/
 - /note/2020/02/added-dark-mode-for-the-site/
 category: note
+created: 2024-01-15 15:26:31-08:00
 date: 2020-02-02 19:45:13-08:00
 slug: added-dark-mode-for-the-site
 syndication:
@@ -12,8 +13,7 @@ tags:
 - site
 - css
 title: Added dark mode for the site
-created: 2024-01-15T15:26:31-08:00
-updated: 2024-01-26T11:03:19-08:00
+updated: 2024-01-26 11:03:19-08:00
 ---
 
 Got tired of blowing my eyeballs out during evening work.

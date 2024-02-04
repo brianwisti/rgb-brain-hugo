@@ -4,14 +4,14 @@ redirects:
 - /post/2001/about-brian/
 - /2001/12/29/about-brian/
 category: post
+created: 2024-01-15 15:25:49-08:00
 date: 2001-12-29 00:00:00-08:00
 description: The coolnamehere 'about' page
 slug: about-brian
 tags:
 - coolnamehere
 title: About Brian
-created: 2024-01-15T15:25:49-08:00
-updated: 2024-01-26T09:17:21-08:00
+updated: 2024-01-26 09:17:21-08:00
 ---
 
 ![Photo of Brian](/attachments/img/2001-brian-greenlake.jpg)

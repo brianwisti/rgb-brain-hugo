@@ -2,6 +2,7 @@
 redirects:
 - /note/2022/02/added-nano-based-emacs-config/
 category: note
+created: 2024-01-15 15:26:06-08:00
 date: 2022-02-19 23:30:00-08:00
 slug: added-nano-based-emacs-config
 syndication:
@@ -11,8 +12,7 @@ tags:
 - emacs
 - it-keeps-me-out-of-trouble
 title: Added an Emacs config based off of nano-emacs
-created: 2024-01-15T15:26:06-08:00
-updated: 2024-01-26T10:20:35-08:00
+updated: 2024-01-26 10:20:35-08:00
 ---
 
 ![attachments/img/2022/cover-2022-02-19.png](../../../attachments/img/2022/cover-2022-02-19.png)

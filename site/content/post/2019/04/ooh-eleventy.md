@@ -1,5 +1,8 @@
 ---
+aliases: 
+- /post/2019/04/eleventy
 category: post
+created: 2024-01-15 15:26:12-08:00
 date: 2019-04-06 00:00:00-07:00
 slug: eleventy
 syndication:
@@ -10,9 +13,7 @@ tags:
 - eleventy
 - tools
 title: Eleventy
-created: 2024-01-15T15:26:12-08:00
-updated: 2024-02-02T10:10:48-08:00
-redirects: /post/2019/04/eleventy
+updated: 2024-02-02 10:10:48-08:00
 ---
 
 Spring has sprung, and with it comes thoughts of new tools to build a Web site. Okay no the picture has nothing to do with Web sites but isn't it pretty?
