@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /2018/02/08/a-couple-crochet-hats/
 category: post
 date: 2018-02-08 00:00:00-08:00

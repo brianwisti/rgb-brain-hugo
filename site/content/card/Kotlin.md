@@ -1,16 +1,20 @@
 ---
 title: Kotlin
 created: 2024-01-18T21:46:09-08:00
-updated: 2024-02-01T20:22:13-08:00
+updated: 2024-02-04T05:24:02-08:00
 ---
 
 A general purpose [Programming Language](Programming%20Language.md)  for the *JVM* and beyond.
 
-````kotlin
-fun main(args: Array<String>) {
-	println("Hello, World!")
-}
+````sh
+sdk install kotlin
 ````
+
+## Kotlin Native
+
+LLVM backend for compiling Kotlin code to native binaries.
+
+[Kotlin Native | Kotlin Documentation](https://kotlinlang.org/docs/native-overview.html)
 
 ## Related
 

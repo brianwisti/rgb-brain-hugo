@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2022/02/added-nano-based-emacs-config/
 category: note
 date: 2022-02-19 23:30:00-08:00

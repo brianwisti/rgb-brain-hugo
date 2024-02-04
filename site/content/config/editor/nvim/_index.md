@@ -1,6 +1,6 @@
 ---
 title: My Neovim config
-aliases:
+redirects:
 - /config/neovim/
 tags:
 - config

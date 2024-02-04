@@ -3,12 +3,14 @@ aliases:
 - /post/2017/maybe-ration-my-time-in-hot-take-land/
 - /2017/03/13/maybe-ration-my-time-in-hot-take-land/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2017-03-13 00:00:00-07:00
 slug: maybe-ration-my-time-in-hot-take-land
 tags:
 - personal
 - marginalia
 title: Maybe Ration My Time In Hot Take Land
+updated: 2024-02-02 09:49:29-08:00
 ---
 
 I dunno, folks. Over the years I have seen so much [outrage](http://www.geekwire.com/2017/trump-supporters-voice-real-outrage-fake-resistanceradio-promoting-amazon-tv-series/) -- sincere or feigned -- on social media. Then there’s the [echo chamber](https://arstechnica.com/science/2017/03/the-social-media-echo-chamber-is-real/) problem. Yeah. Nice thing about an RSS feed is that I’m guaranteed to see everything I subscribe to, but there’s no personal insult in unsubscribing.

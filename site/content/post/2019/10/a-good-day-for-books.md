@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2019/285/a-good-day-for-books/
 - /note/2019/10/a-good-day-for-books/
 category: note

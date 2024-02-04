@@ -1,6 +1,6 @@
 ---
 title: My Nushell config
-aliases:
+redirects:
 - /config/nushell/
 - /config/nushell/config.nu/
 - /config/nushell/env.nu/

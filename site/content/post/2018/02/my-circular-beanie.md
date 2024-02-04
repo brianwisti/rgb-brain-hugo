@@ -10,7 +10,7 @@ tags:
 - craft
 title: My Circular Beanie
 created: 2024-01-15T15:26:49-08:00
-updated: 2024-02-01T21:56:17-08:00
+updated: 2024-02-02T09:50:07-08:00
 ---
 
 I made myself a snug beanie hat by *Knitting* in the round.
@@ -19,6 +19,6 @@ I made myself a snug beanie hat by *Knitting* in the round.
 
 <!--more-->
 
-I knit a [ski beanie](../../2017/11/my-ski-beanie.md) back in November, using a pattern from [Son of Stitch 'n Bitch](https://www.goodreads.com/book/show/170305.Son_of_Stitch_n_Bitch). The hat fit loose. I thought this might be because the pattern is knit flat. I produce a tighter gauge when knitting in the round. Would adapting the same hat to circular knitting produce a better fit?
+I knit [my-ski-beanie](../../2017/11/my-ski-beanie.md) back in November, using a pattern from [Son of Stitch 'n Bitch](https://www.goodreads.com/book/show/170305.Son_of_Stitch_n_Bitch). The hat fit loose. I thought this might be because the pattern is knit flat. I produce a tighter gauge when knitting in the round. Would adapting the same hat to circular knitting produce a better fit?
 
 Yes – quite a bit! The yarn thickness and needle size were the same as the previous attempt. If I were to try this experiment again I might use the next needle size up. A perfect fit would be somewhere in between this and the beanie from November.

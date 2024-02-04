@@ -17,7 +17,7 @@ tags:
 - site
 - tools
 title: h-entry Microformat for Indieweb Posts
-updated: 2024-02-01 20:14:48-08:00
+updated: 2024-02-02 09:45:42-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)

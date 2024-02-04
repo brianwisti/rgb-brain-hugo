@@ -1,6 +1,6 @@
 ---
 title: My GNU Bash Config
-aliases:
+redirects:
 - /config/bash/
 tags:
 - config

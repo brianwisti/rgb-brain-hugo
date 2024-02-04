@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2020/09/accidental-renaissance-the-rolling-contest/
 category: note
 date: 2020-09-19 22:57:36-07:00

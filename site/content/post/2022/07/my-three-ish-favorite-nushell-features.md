@@ -11,7 +11,7 @@ tags:
 - nushell
 - hugo
 title: My Three(ish) Favorite Nushell Features
-updated: 2024-02-01 20:27:58-08:00
+updated: 2024-02-02 09:53:20-08:00
 ---
 
 ![attachments/img/2022/cover-2022-07-04.png](../../../attachments/img/2022/cover-2022-07-04.png)
@@ -21,7 +21,7 @@ Been using the [Nushell](https://www.nushell.sh) cross-platform user shell more 
 
 <!--more-->
 
-Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when setting up [Nushell on Windows](../04/trying-nushell-on-windows.md). I want to try again, and think through the process a little more this time.
+Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when [trying-nushell-on-windows](../04/trying-nushell-on-windows.md). I want to try again, and think through the process a little more this time.
 
 This post, and any that may follow on the topic, won't be any kind of deep dive or contrast with other shells. Oh sure. I'll point out things that surprise me. But I use maybe 20% of a shell's features for 80% of my needs, and a Web search for the rest. Check the Nushell book's [Coming from Bash](https://www.nushell.sh/book/coming_from_bash.html) page if you want a more explicit comparison.
 

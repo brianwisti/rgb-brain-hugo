@@ -15,14 +15,14 @@ tags:
 - joplin
 - shell
 title: My Raku script for Journaling in Joplin
-updated: 2024-02-01 20:27:41-08:00
+updated: 2024-02-02 09:52:47-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-22.png](../../../attachments/img/2021/cover-2021-05-22.png)
 
 ## Setting the scene
 
-So yesterday I wrote a couple of [one-liners](cli-journaling-in-joplin-with-raku.md) for managing journal entries in the [Joplin](../../../card/Joplin.md) note-taking application, with help from [Raku](../../../card/Raku.md).
+So yesterday I wrote a couple of online-liners for [cli-journaling-in-joplin-with-raku](cli-journaling-in-joplin-with-raku.md), managing journal entries in the [Joplin](../../../card/Joplin.md) note-taking application with help from [Raku](../../../card/Raku.md).
 
 I made one for writing:
 

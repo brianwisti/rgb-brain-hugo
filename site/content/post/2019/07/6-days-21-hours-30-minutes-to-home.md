@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2019/194/6-days-21-hours-30-minutes-to-home/
 category: note
 date: 2019-07-13 15:04:09-07:00

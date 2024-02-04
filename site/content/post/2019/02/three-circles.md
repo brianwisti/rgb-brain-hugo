@@ -10,6 +10,8 @@ tags:
 - buy-me
 - craft
 title: Three Circles
+created: 2024-01-15T15:26:35-08:00
+updated: 2024-02-02T10:03:39-08:00
 ---
 
 That [circle template](../01/circular-grids-with-python-and-pillow.md) I mentioned a couple weeks ago? Well, I made it so I could draw stuff like this!

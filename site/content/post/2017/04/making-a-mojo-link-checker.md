@@ -14,7 +14,7 @@ tags:
 - programming
 title: Making A Mojo Link Checker
 created: 2024-01-15T15:26:13-08:00
-updated: 2024-02-01T20:24:48-08:00
+updated: 2024-02-02T09:49:22-08:00
 ---
 
 I wrote a [Perl](../../../card/Perl.md) script using utility features in Mojolicious to check all of the links in my site.

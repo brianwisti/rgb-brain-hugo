@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /blogspot/2011/03/16_glance-at-client-side-frameworks.html
 - /post/2011/glance-at-client-side-frameworks/
 - /2011/03/16/a-glance-at-client-side-frameworks/

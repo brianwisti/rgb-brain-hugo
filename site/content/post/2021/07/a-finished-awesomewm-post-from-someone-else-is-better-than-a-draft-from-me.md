@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2021/07/a-finished-awesomewm-post-from-someone-else-is-better-than-a-draft-from-me/
 category: note
 date: 2021-07-27 00:00:00-07:00

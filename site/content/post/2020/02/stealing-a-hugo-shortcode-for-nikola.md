@@ -12,7 +12,7 @@ tags:
 - hugo
 - tools
 title: Stealing a Hugo Shortcode for Nikola
-updated: 2024-02-01 20:55:55-08:00
+updated: 2024-02-02 10:01:21-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-12.png](../../../attachments/img/2020/cover-2020-02-12.png)
@@ -24,7 +24,7 @@ I keep waffling on whether to switch from \[Hugo\]\[hugo\] to \[Nikola\]\[nikola
 >
  > `nikola check -l` looks for broken internal links on your build output. It found a few in the imported files. I fixed them.
  > 
- > And yes. I wrote a [post/2017/04/making-a-mojo-link-checker](../../2017/04/making-a-mojo-link-checker.md) in 2017. No, I haven’t used it since.
+ > And yes. I wrote [making-a-mojo-link-checker](../../2017/04/making-a-mojo-link-checker.md) in 2017. No, I haven’t used it since.
 
 ## The shortcode
 

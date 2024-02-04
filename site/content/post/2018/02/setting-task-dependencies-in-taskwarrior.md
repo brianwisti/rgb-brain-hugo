@@ -13,7 +13,7 @@ tags:
 - tools
 title: Setting Task Dependencies in Taskwarrior
 created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T20:53:16-08:00
+updated: 2024-02-02T10:00:04-08:00
 ---
 
 ![attachments/img/2018/cover-2018-02-19.png](../../../attachments/img/2018/cover-2018-02-19.png)
@@ -37,7 +37,7 @@ ID Age   P Tag                    Description                        Urg
 75 16min   home readlist          Sink Reflections                    0.9
 ````
 
-I use [Priority](../../2017/12/taskwarrior-priorities.md) to show what I’m reading right now. The highest priority goes to the book which I intend to finish next.
+I use [taskwarrior-priorities](../../2017/12/taskwarrior-priorities.md) to show what I’m reading right now. The highest priority goes to the book which I intend to finish next.
 
 [Forge Your Future with OpenSource](https://pragprog.com/book/vbopens/forge-your-future-with-open-source) is my current main read. The book guides you through making your first open source community contributions. It includes exercises to help you make your best contribution.
 

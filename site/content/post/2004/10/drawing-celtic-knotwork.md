@@ -13,7 +13,7 @@ tags:
 - celtic
 - coolnamehere
 title: Drawing Celtic Knotwork
-updated: 2024-01-26 09:18:44-08:00
+updated: 2024-02-02 09:40:07-08:00
 ---
 
 > 
@@ -27,7 +27,7 @@ updated: 2024-01-26 09:18:44-08:00
 
 Thanks to everybody for the positive feedback on the first MIRE. I still have your attention, so I’ll move on to my next exercise. This one is a little more involved than the first, but bear with me - the results should be worth it.
 
-# The Problem
+## The Problem
 
 I have been a big fan of Celtic knotwork for many years, and have been drawing it myself as an occasional distraction for most of that time. I don’t think I’m very good at it, but I’ve occasionally made myself proud. Heck, I’ve even designed a couple tattoos for folks, making a few bucks in the process. Any time you can profit from your hobbies is good. Any time somebody likes your work so much that they want it embedded in their skin with a sharp needle is also good.
 
@@ -35,11 +35,11 @@ My preferred technique has always been manual and therefore labor-intensive. You
 
 Any time a geek hears the phrase "simple and repetitive," the geek’s mind turns to ways of automating the task being described. Well, *this* geek’s mind does. I wonder how hard it would be to write a [Ruby](../../../card/Ruby.md) program which could, given some dimensions by the user, create a simple knotwork panel of the desired size and then write that panel to an image file?
 
-# Finding a Solution
+## Finding a Solution
 
 As it turns out, somebody else has already solved a fair chunk of the problem. Andy Sloss’s book [How to Draw Celtic Knotwork: A Practical Guide](https://www.goodreads.com/book/show/2762386-how-to-draw-celtic-knotwork) provides a detailed overview of his approach, which essentially boils down to arranging a set of image tiles on a grid so that the end result looks like an attractive knotwork image. He’s even gone so far as to provide each of the tiles that can be used in his system.
 
-## The Plan
+### The Plan
 
 This project is a little more complicated than the last MIRE, so I want to step through it a little more carefully. Actually, it’s not more complicated. It’s just that less of the work has already been done for me. Instead of jumping right into creating bitmap images on the fly, I’m going to use [ASCII art](http://en.wikipedia.org/wiki/ASCII_art) to create my knotwork at first.
 
@@ -111,7 +111,7 @@ You don’t quite see it? Well, squint a little and tilt your head a bit. Still 
 
 Okay, let’s find a way to automate this process.
 
-## Turning the Plan Into Code
+### Turning the Plan Into Code
 
 This works, doesn’t it?
 
@@ -191,7 +191,7 @@ end
 
 Now I know each of the major objects in this program, and the duties that they must fill. It’s time to blaze through the highlights of writing the code. For convenience, we can put the application code and the testing code in the same file for now.
 
-## Building a Tile
+### Building a Tile
 
 The simplest element of our description is the Tile. I decided that a Tile would be a two dimensional chunk of characters that would let you set or get any point in that space. Remember that this isn’t the only way we could have done things. You could also describe the lines and curves in the tile, or the colors, transparency, and whatever else the crazy kids are coming up with these days. This is my first drawing program, though, and I want to keep it as simple as I can. So I’m going with the bitmap idea. The tile images in the Sloss book are provided in different sizes. Let’s go with 9x9. It’s small and manageable without being too small to see.
 
@@ -319,7 +319,7 @@ This is — *2020 note: my early attempt at* — [Test-Driven Development](http:
 
 Now that the Tile is pretty much doing everything I want it to, let’s move on to the Grid.
 
-## Putting the Tile in a Grid
+### Putting the Tile in a Grid
 
 I want to hurry on to making pictures, so let’s rush through the Grid part.
 
@@ -437,7 +437,7 @@ end
 
 There, that’s another fifteen minutes of coding done. Yes, the combination of TDD and Ruby makes it about this easy to write a program.
 
-## Using the Grid to Make a KnotworkPanel
+### Using the Grid to Make a KnotworkPanel
 
 Things get a little more complex now, because we’re on to creating a KnotworkPanel. Every KnotworkPanel uses a specific set of predefined tiles — *thanks again to Andy Sloss for going to the trouble of defining them* — which I will store as class variables. I would probably store them in a different file if I wanted to include *every* Tile defined in Sloss’s book, but that’s more than I want to chew on today.
 
@@ -731,7 +731,7 @@ Yeah, that works. Let’s move on.
  > `KnotworkPanel.new(3, 3)`. Man, that’s ugly. Let’s make fixing that an exercise
  > at the end of the article, okay?
 
-## Creating an Image of the KnotworkPanel
+### Creating an Image of the KnotworkPanel
 
 I bet you feel really cheated by now. I’ve been going on for all this time about Celtic knotwork and drawing pictures with the computer. All you’ve seen is a bunch of dots and crosses that kind of look like a picture if you go cross-eyed for a second. You can cheer up, folks, because you’ve finished the boring part. Now we want to make a real live picture!
 
@@ -790,7 +790,7 @@ Thanks to all the work we did building Tiles and Grids and ASCII art KnotworkPan
 
 Cool, eh?
 
-## Building KnotworkPanels of Any Size
+### Building KnotworkPanels of Any Size
 
 Now the program does what I want it to. But if I hand this script off to somebody else and say "This program will make knotwork panels of any size," one of their first questions will be how to set the size. "Go in and edit the code" won’t cut it. Let’s haul out our trusty [OptParse](http://www.ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html) library again.
 
@@ -869,7 +869,7 @@ Hmm … took a few seconds this time. If I cared about performance, I might go i
  > 
  > [you have been warned](/attachments/img/2004/panel-100x75.png)
 
-## Cleaning Up
+### Cleaning Up
 
 Okay, it’s done! That is to say, it does all the things I want it to for now. There’s a *lot* more stuff that I would like to do with this program, but it’s important to know when to stop and take a breath. Let’s just go back and clean up the code a little bit. Not actually change any functionality or user interface, so Me From The Future is just going to have to wait. I only want to make it easier to read the code that I have already written.
 
@@ -885,7 +885,7 @@ require './knotwork/knotwork_panel.rb'
 main
 ````
 
-# Conclusion
+## Conclusion
 
 Okay, so that’s about it. We’ve gone from an idea to a program that creates png formatted images of Celtic-style knotwork panels. Not bad at all. There are a lot of other things we could do with this program, though.
 

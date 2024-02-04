@@ -10,7 +10,7 @@ tags:
 - site
 - tools
 title: Tweaking a Nikola Theme
-updated: 2024-02-01 21:05:23-08:00
+updated: 2024-02-02 10:06:46-08:00
 ---
 
 I adjusted the default [Nikola](https://getnikola.com) theme to show cover images!
@@ -131,8 +131,8 @@ Can I find anything interesting in the base template?
 
 ````mako
 ${template_hooks['page_header']()}
-<%block name="extra_header"></%block>
-<%block name="content"></%block>
+ <%block name="extra_header"></%block>
+  <%block name="content"></%block>
 ````
 
 Over here on the live site, I put cover images above the main content. `extra_header` looks promising. Where to set it? I prefer to make my changes in the most relevant template instead of the most general. 

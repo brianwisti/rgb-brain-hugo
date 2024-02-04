@@ -11,6 +11,8 @@ syndication:
 tags:
 - site
 title: Passing Tests Is Now Required to Push
+created: 2024-01-15T15:26:30-08:00
+updated: 2024-02-02T09:54:42-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-08.png](../../../attachments/img/2020/cover-2020-03-08.png)
@@ -18,4 +20,4 @@ A failing test
 
 Push the site, that is.
 
-Building on work from [the other day](today-in-personal-accomplishments.md). Course, I don’t know what test coverage is. I know it ain’t 100% of what I want to check.
+Building on work from [today-in-personal-accomplishments](today-in-personal-accomplishments.md). Course, I don’t know what test coverage is. I know it ain’t 100% of what I want to check.

@@ -18,7 +18,7 @@ tags:
 - oops
 - i-fixed-it
 title: Joplin CLI Batch Processing With Raku
-updated: 2024-02-01 20:20:46-08:00
+updated: 2024-02-02 09:48:23-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-24.jpg](../../../attachments/img/2021/cover-2021-05-24.jpg)
@@ -166,7 +166,7 @@ I like friendly. Let's see how `Temp::Path` does.
 
 ### Try `Temp::Path`
 
-Need to install it, of course.  [`zef`](https://github.com/ugexe/zef) handles Raku modules.  I set that up a while back with \[\[post/2020/05/setting-up-raku-with-rakubrew|`rakubrew`\]\].
+Need to install it, of course.  [`zef`](https://github.com/ugexe/zef) handles Raku modules.  I set that up a while back in [setting-up-raku-with-rakubrew](../../2020/05/setting-up-raku-with-rakubrew.md).
 
 ````sh
 zef install Temp::Path

@@ -12,7 +12,7 @@ tags:
 - marginalia
 title: Summer Reading
 created: 2024-01-15T15:26:50-08:00
-updated: 2024-02-01T20:57:40-08:00
+updated: 2024-02-02T10:02:02-08:00
 ---
 
 What have I been doing with my spare time? I’ve been reading books. Not too  much. Mostly tech.
@@ -48,7 +48,7 @@ I sort of wanted to learn an unfamiliar language, though.
 
 ## Go In Action
 
-Just a couple chapters into [this one](https://www.manning.com/books/go-in-action). The author could use \[\[post/2017/08/emacs-writegood-mode|`writegood-mode`\]\]. Still, [Go](../../../card/Go.md) is a widely used language. I feel a certain moral responsibility to learn it. Of course, that’s how I felt about Java for the first 15 years of my career. Never really learned Java. My bad attitude about Java may be leaking over to my attitude about studying Go. I better keep an eye on that, and see how I feel at the end of *Go In Action*.
+Just a couple chapters into [this one](https://www.manning.com/books/go-in-action). The author could use [emacs-writegood-mode](emacs-writegood-mode.md). Still, [Go](../../../card/Go.md) is a widely used language. I feel a certain moral responsibility to learn it. Of course, that’s how I felt about Java for the first 15 years of my career. Never really learned Java. My bad attitude about Java may be leaking over to my attitude about studying Go. I better keep an eye on that, and see how I feel at the end of *Go In Action*.
 
 ## Intermission
 

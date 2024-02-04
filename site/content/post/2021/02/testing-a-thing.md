@@ -14,11 +14,10 @@ tags:
 - site
 title: testing a thing
 created: 2024-01-15T15:26:28-08:00
-updated: 2024-02-01T21:01:17-08:00
+updated: 2024-02-02T10:04:14-08:00
 ---
 
-Sometime [last year](../../2020/05/letting-ruby-build-asciidoctor-files-for-hugo.md) I had half of a great idea for better [Asciidoctor](../../../card/Asciidoctor.md)
-handling in [Hugo](../../../card/Hugo.md). I *might* have the other half now:
+Sometime [last year](../../2020/05/letting-ruby-build-asciidoctor-files-for-hugo.md) I had half of a great idea for better [Asciidoctor](../../../card/Asciidoctor.md) handling in [Hugo](../../../card/Hugo.md). I *might* have the other half now:
 
 * keep my content in the content folder.
 * Use `adoc.txt` for the extension so Hugo ignores it.

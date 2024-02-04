@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /tools/2015/09/14_adding-suggested-posts.html
 - /post/2015/adding-suggested-posts/
 - /2015/09/14/added-suggested-posts/

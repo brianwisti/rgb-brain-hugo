@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Tech Career Skill Development
-updated: 2024-02-01 21:00:44-08:00
+updated: 2024-02-03 13:01:17-08:00
 ---
 
 Mostly for programming because that's me I'm a programmer
@@ -27,3 +27,11 @@ Mostly for programming because that's me I'm a programmer
 
 [Coursera](https://www.coursera.org/)
 : free and paid course offerings across multiple tracks
+
+## Project-oriented learning
+
+* [CodeCrafters | Advanced programming challenges](https://codecrafters.io/)
+* 
+  * [Build your own X](Build%20your%20own%20X.md) (public domain)
+* [Projectbook](https://projectbook.code.brettchalupa.com/) — "The Great Big List of Software Project Ideas" (CC  BY-NC-SA)
+* [GitHub - practical-tutorials/project-based-learning: Curated list of project-based tutorials](https://github.com/practical-tutorials/project-based-learning) (MIT License)

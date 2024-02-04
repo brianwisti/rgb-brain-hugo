@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /note/2019/255/a-microsoft-linux-conference/
 - /note/2019/09/a-microsoft-linux-conference/
 category: note

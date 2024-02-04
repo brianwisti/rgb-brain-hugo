@@ -1,5 +1,5 @@
 ---
-aliases:
+redirects:
 - /blogspot/2008/01/02_adding-categories-to-python-blogger.html
 - /post/2008/adding-categories-to-python-blogger/
 - /2008/01/02/adding-categories-to-the-python-blogger-client/

@@ -15,7 +15,7 @@ tags:
 - tools
 title: Saving some MyST Markdown blogging links for later
 created: 2024-01-15T15:26:12-08:00
-updated: 2024-02-01T20:52:35-08:00
+updated: 2024-02-02T09:59:50-08:00
 ---
 
 Got distracted by a note from [@choldgraf](https://twitter.com/choldgraf) about [MyST](https://myst-parser.readthedocs.io/en/latest/), a Markdown flavor aimed at technical writing, in a [Twitter conversation](https://twitter.com/willmcgugan/status/1433735471323099139) that was not specifically about MyST.

@@ -19,7 +19,7 @@ tags:
 - but-i-warned-you
 - programming
 title: Letting Ruby build Asciidoctor files for Hugo
-updated: 2024-02-01 20:23:01-08:00
+updated: 2024-02-02 09:48:36-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-18.jpg](../../../attachments/img/2020/cover-2020-05-18.jpg)

@@ -12,7 +12,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Projects
-updated: 2024-02-01 21:00:03-08:00
+updated: 2024-02-02 10:04:34-08:00
 ---
 
 ![attachments/img/2019/cover-2019-02-16.png](../../../attachments/img/2019/cover-2019-02-16.png)

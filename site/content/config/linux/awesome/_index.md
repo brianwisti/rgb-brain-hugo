@@ -1,6 +1,6 @@
 ---
 title: My awesome config
-aliases:
+redirects:
 - /config/awesome/
 tags:
 - config
