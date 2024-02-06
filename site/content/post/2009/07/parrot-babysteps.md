@@ -4,6 +4,7 @@ aliases:
 - /post/2009/parrot-babysteps/
 - /2009/07/10/parrot-babysteps/
 category: post
+created: 2024-01-15 15:25:36-08:00
 date: 2009-07-10 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps
-created: 2024-01-15T15:25:36-08:00
-updated: 2024-01-26T09:42:09-08:00
+updated: 2024-01-26 09:42:09-08:00
 ---
 
 This is the introduction to Parrot Babysteps, my archived [Parrot](../../../card/Parrot.md) PIR tutorial.

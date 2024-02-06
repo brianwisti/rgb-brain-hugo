@@ -2,6 +2,7 @@
 aliases:
 - /note/2022/01/slowly-pulling-in-tools-for-site-flow/
 category: note
+created: 2024-01-15 15:26:12-08:00
 date: 2022-01-16 20:30:00-08:00
 slug: slowly-pulling-in-tools-for-site-flow
 syndication:
@@ -13,8 +14,7 @@ tags:
 - posse
 - site
 title: Slowly pulling in tools for site flow
-created: 2024-01-15T15:26:12-08:00
-updated: 2024-01-26T10:20:44-08:00
+updated: 2024-01-26 10:20:44-08:00
 ---
 
 Made a [toot](https://hackers.town/@randomgeek/107630284879354154) with [Masto](https://www.npmjs.com/package/masto). Kinda need that for content syndication.

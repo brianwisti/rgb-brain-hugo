@@ -3,17 +3,19 @@ aliases:
 - /craft/2016/my-twin-rib-socks/
 - /2016/01/30/my-twin-rib-socks/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2016-01-30 00:00:00-08:00
-description: |
-  Took me a couple months because I started a pair for my mom in the middle of making this pair.
+description: 'Took me a couple months because I started a pair for my mom in the middle
+  of making this pair.
+
+  '
 slug: my-twin-rib-socks
 tags:
 - knitting
 - socks
 - craft
 title: My Twin Rib Socks
-created: 2024-01-15T15:26:51-08:00
-updated: 2024-01-26T10:16:59-08:00
+updated: 2024-01-26 10:16:59-08:00
 ---
 
 ![attachments/img/2016/cover-2016-01-30.jpg](../../../attachments/img/2016/cover-2016-01-30.jpg)

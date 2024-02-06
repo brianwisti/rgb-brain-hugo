@@ -3,6 +3,7 @@ aliases:
 - /craft/2015/amicable-socks/
 - /2015/05/20/amicable-socks/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-05-20 00:00:00-07:00
 description: Because I made them for my ex, and we split on friendly terms
 slug: amicable-socks
@@ -11,8 +12,7 @@ tags:
 - socks
 - craft
 title: Amicable Socks
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-02-01T21:53:28-08:00
+updated: 2024-02-01 21:53:28-08:00
 ---
 
 ![attachments/img/2015/cover-2015-05-20.jpg](../../../attachments/img/2015/cover-2015-05-20.jpg)

@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/06/csv-and-data-tables-in-hugo/
 category: post
+created: 2024-01-15 15:26:53-08:00
 date: 2020-06-06 17:40:07-07:00
 description: Am I reinventing reStructuredText with shortcodes? Don't judge me.
 slug: csv-and-data-tables-in-hugo
@@ -16,8 +17,7 @@ tags:
 - and-a-dog
 - tools
 title: CSV and Data Tables in Hugo
-created: 2024-01-15T15:26:53-08:00
-updated: 2024-02-01T22:13:51-08:00
+updated: 2024-02-01 22:13:51-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-06.jpg](../../../attachments/img/2020/cover-2020-06-06.jpg)

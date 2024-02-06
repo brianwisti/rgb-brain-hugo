@@ -4,6 +4,7 @@ aliases:
 - /craft/2015/zentangle-doodle/
 - /2015/08/01/zentangle-doodle/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-08-01 00:00:00-07:00
 description: Trying to get back into the habit of drawing regularly.
 slug: zentangle-doodle
@@ -14,8 +15,7 @@ tags:
 - zentangle
 - craft
 title: Zentangle Doodle
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-02-01T21:21:20-08:00
+updated: 2024-02-01 21:21:20-08:00
 ---
 
 Trying to get back into the habit of drawing regularly. This is a [Zentangle](../../../card/Zentangle.md) exercise I finished last night.

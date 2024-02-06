@@ -4,14 +4,14 @@ aliases:
 - /post/2011/moose/
 - /2011/08/23/moose/
 category: post
+created: 2024-01-15 15:25:32-08:00
 date: 2011-08-23 00:00:00-07:00
 slug: moose
 tags:
 - perl
 - coolnamehere
 title: Moose
-created: 2024-01-15T15:25:32-08:00
-updated: 2024-02-01T20:26:15-08:00
+updated: 2024-02-01 20:26:15-08:00
 ---
 
 I have been dabbling a lot with [Moose](https://metacpan.org/module/Moose), a solid framework

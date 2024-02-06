@@ -3,6 +3,7 @@ aliases:
 - /craft/2015/quick-garter-scarf/
 - /2015/04/04/quick-garter-stitch-scarf/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-04-04 00:00:00-07:00
 slug: quick-garter-stitch-scarf
 tags:
@@ -10,8 +11,7 @@ tags:
 - scarf
 - craft
 title: Quick Garter Stitch Scarf
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-01-26T10:12:55-08:00
+updated: 2024-01-26 10:12:55-08:00
 ---
 
 ![attachments/img/2015/cover-2015-04-04.jpg](../../../attachments/img/2015/cover-2015-04-04.jpg)

@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/07/oh-no-there-is-a-shiny-new-ssg/
 category: note
+created: 2024-01-15 15:26:12-08:00
 date: 2021-07-11 00:00:00-07:00
 slug: oh-no-there-is-a-shiny-new-ssg
 tags:
@@ -9,8 +10,7 @@ tags:
 - ssg
 - astro
 title: oh no there is a shiny new SSG
-created: 2024-01-15T15:26:12-08:00
-updated: 2024-02-01T20:33:23-08:00
+updated: 2024-02-01 20:33:23-08:00
 ---
 
 Saw [Astro](../../../card/Astro.md) mentioned in my Twitter feed today. Tempting.

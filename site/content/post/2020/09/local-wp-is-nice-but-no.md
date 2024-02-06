@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/09/local-wp-is-nice-but-no/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-09-30 22:57:23-07:00
 slug: local-wp-is-nice-but-no
 syndication:
@@ -11,12 +12,10 @@ tags:
 - wordpress
 - i-like-my-mess
 title: Local WP is nice, but no.
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:09-08:00
+updated: 2024-01-26 11:00:09-08:00
 ---
 
-
- > 
+> 
  > I just figured why you give me so much trouble.
  > 
  > -- <cite>Fezzik, The Princess Bride</cite>

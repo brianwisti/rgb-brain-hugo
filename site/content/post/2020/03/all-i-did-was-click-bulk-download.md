@@ -3,6 +3,7 @@ aliases:
 - /note/2020/62/all-i-did-was-click-bulk-download/
 - /note/2020/03/all-i-did-was-click-bulk-download/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-03-02 11:52:58-08:00
 slug: all-i-did-was-click-bulk-download
 syndication:
@@ -12,8 +13,7 @@ tags:
 - surprise
 - now
 title: All I Did Was Click Bulk Download
-created: 2024-01-15T15:26:30-08:00
-updated: 2024-01-26T11:03:09-08:00
+updated: 2024-01-26 11:03:09-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-02.png](../../../attachments/img/2020/cover-2020-03-02.png)

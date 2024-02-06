@@ -1,9 +1,11 @@
 ---
-title: My autorun.sh for awesome
 aliases:
 - /config/awesome/autorun.sh/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
+title: My autorun.sh for awesome
+updated: 2024-02-05 16:22:22-08:00
 ---
 
 This goes to `autorun.sh`.

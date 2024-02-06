@@ -2,6 +2,7 @@
 aliases:
 - /2019/01/23/circular-grids-with-python-and-pillow/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2019-01-23 00:00:00-08:00
 description: I want a circular grid for drawing. Let's make one with Python!
 slug: circular-grids-with-python-and-pillow
@@ -9,8 +10,7 @@ tags:
 - python
 - programming
 title: Circular Grids With Python and Pillow
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T22:10:52-08:00
+updated: 2024-02-01 22:10:52-08:00
 ---
 
 ![attachments/img/2019/cover-2019-01-23.png](../../../attachments/img/2019/cover-2019-01-23.png)

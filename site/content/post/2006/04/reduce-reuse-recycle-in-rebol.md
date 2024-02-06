@@ -4,14 +4,14 @@ aliases:
 - /post/2006/reduce-reuse-recycle/
 - /2006/04/30/reduce-reuse-recycle-in-rebol/
 category: post
+created: 2024-01-15 15:25:43-08:00
 date: 2006-04-30 00:00:00-07:00
 slug: reduce-reuse-recycle-in-rebol
 tags:
 - rebol
 - coolnamehere
 title: Reduce, Reuse, Recycle in REBOL
-created: 2024-01-15T15:25:43-08:00
-updated: 2024-02-01T20:46:18-08:00
+updated: 2024-02-01 20:46:18-08:00
 ---
 
 I had to share a "Eureka!" moment that I recently experienced about [REBOL](../../../card/REBOL.md). I  never did get around to refining it, but it stands here as a rambling  testament of - well, as a testament of my ability to ramble.  I might end up refining it later, or I might not. I just didn't want the thoughts to disappear in air as thoughts are sometimes known to do.

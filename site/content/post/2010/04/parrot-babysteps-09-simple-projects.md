@@ -4,6 +4,7 @@ aliases:
 - /post/2010/09-simple-projects/
 - /2010/04/29/parrot-babysteps-09-simple-projects/
 category: post
+created: 2024-01-15 15:25:33-08:00
 date: 2010-04-29 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 09 - Simple Projects
-updated: 2024-01-26T10:09:42-08:00
-created: 2024-01-15T15:25:33-08:00
+updated: 2024-01-26 10:09:42-08:00
 ---
 
 # Introduction

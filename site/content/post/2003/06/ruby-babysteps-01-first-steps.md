@@ -4,6 +4,7 @@ aliases:
 - /post/2003/01-first-steps/
 - /2003/06/23/ruby-babysteps-01-first-steps/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2003-06-23 00:00:00-07:00
 slug: ruby-babysteps-01-first-steps
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Ruby Babysteps 01 - First Steps
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-01-26T09:18:18-08:00
+updated: 2024-01-26 09:18:18-08:00
 ---
 
 [Ruby](../../../card/Ruby.md) is an exciting language with a huge number of features that appeal to advanced programmers. You should not let that intimidate you, though. The language is very easy to get started with, and you can work your way into the more arcane corners.

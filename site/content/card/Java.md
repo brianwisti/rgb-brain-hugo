@@ -1,7 +1,7 @@
 ---
 title: Java
 created: 2024-01-15T15:26:18-08:00
-updated: 2024-02-04T07:37:07-08:00
+updated: 2024-02-04T15:18:01-08:00
 ---
 
 Enterprise object-oriented [Programming Language](Programming%20Language.md).
@@ -53,6 +53,10 @@ Gradle or Maven
 
 ### Maven
 
+````sh
+sdk install maven
+````
+
 [Maven – Introduction](https://maven.apache.org/what-is-maven.html)
 
 * reduce details needed for build process
@@ -60,7 +64,13 @@ Gradle or Maven
 * Standardize project definitions
 * encourage better development practices
 
+`pom.xml` → Project Object Model
+
 ### Gradle
+
+````sh
+sdk install gradle
+````
 
 [Gradle | Gradle vs Maven Comparison](https://gradle.org/maven-vs-gradle/)
 

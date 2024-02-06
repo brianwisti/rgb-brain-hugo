@@ -4,6 +4,7 @@ aliases:
 - /post/2009/02-user-input/
 - /2009/05/05/perl-5-babysteps-02-user-input/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2009-05-05 00:00:00-07:00
 slug: perl-5-babysteps-02-user-input
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Perl 5 Babysteps 02 - User Input
-created: 2024-01-15T15:25:35-08:00
-updated: 2024-01-26T09:41:23-08:00
+updated: 2024-01-26 09:41:23-08:00
 ---
 
 Having a [Perl](../../../card/Perl.md) program that displays the exact same message every time you run is nice when it comes to being consistent, but not so entertaining as a program. "What does it do?" "It prints out my name." "Oh." Let's make things a little more interesting. We could change the value  of `$name` in the code, but it might be a little tiresome to do this before  showing it to each new person. How about making the program ask for a name? User interaction - a neat idea.

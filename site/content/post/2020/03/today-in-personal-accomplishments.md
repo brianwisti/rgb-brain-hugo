@@ -3,6 +3,7 @@ aliases:
 - /note/2020/65/today-in-personal-accomplishments/
 - /note/2020/03/today-in-personal-accomplishments/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-03-05 20:23:19-08:00
 slug: today-in-personal-accomplishments
 syndication:
@@ -11,8 +12,7 @@ syndication:
 tags:
 - site
 title: Today in Personal Accomplishments
-created: 2024-01-15T15:26:30-08:00
-updated: 2024-02-01T21:01:52-08:00
+updated: 2024-02-01 21:01:52-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-05.png](../../../attachments/img/2020/cover-2020-03-05.png)

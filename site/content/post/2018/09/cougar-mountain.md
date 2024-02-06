@@ -2,9 +2,12 @@
 aliases:
 - /2018/09/30/cougar-mountain/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-09-30 00:00:00-07:00
-description: |
-  Last weekend I wandered the trails of Cougar Mountain Regional Wildland Park
+description: 'Last weekend I wandered the trails of Cougar Mountain Regional Wildland
+  Park
+
+  '
 series:
 - sauntering
 slug: cougar-mountain
@@ -12,8 +15,7 @@ tags:
 - exploring
 - marginalia
 title: Cougar Mountain
-created: 2024-01-15T15:26:44-08:00
-updated: 2024-02-01T22:12:00-08:00
+updated: 2024-02-01 22:12:00-08:00
 ---
 
 ![attachments/img/2018/cover-2018-09-30.jpg](../../../attachments/img/2018/cover-2018-09-30.jpg)

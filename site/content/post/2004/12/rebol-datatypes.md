@@ -4,14 +4,14 @@ aliases:
 - /post/2004/rebol-datatypes/
 - /2004/12/26/rebol-datatypes/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2004-12-26 00:00:00-08:00
 slug: rebol-datatypes
 tags:
 - rebol
 - coolnamehere
 title: REBOL Datatypes
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-02-01T20:44:48-08:00
+updated: 2024-02-01 20:44:48-08:00
 ---
 
 One of [REBOL](../../../card/REBOL.md)’s strengths is the rich selection of native datatypes. This selection is part of what makes it so easy to express solutions to your problems, because there is less mental mapping to make as you use or create an abstract type to represent an important concept. Learning this selection is also one of the challenges for those who are trying to master the language. I am facing that challenge right now, so I decided to make this table of native REBOL

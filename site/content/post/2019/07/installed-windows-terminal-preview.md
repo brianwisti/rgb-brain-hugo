@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/205/installed-windows-terminal-preview/
 category: note
+created: 2024-01-15 15:26:37-08:00
 date: 2019-07-24 09:33:53-07:00
 slug: installed-windows-terminal-preview
 syndication:
@@ -13,8 +14,7 @@ tags:
 - terminal
 - the-most-important-app
 title: Installed Windows Terminal Preview
-created: 2024-01-15T15:26:37-08:00
-updated: 2024-02-01T21:55:21-08:00
+updated: 2024-02-01 21:55:21-08:00
 ---
 
 *Windows* partition is [Fast Ring](https://insider.windows.com/en-us/how-to-overview/) now, but that took the full night. All

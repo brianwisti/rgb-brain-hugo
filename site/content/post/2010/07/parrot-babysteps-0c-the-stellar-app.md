@@ -4,6 +4,7 @@ aliases:
 - /post/2010/0c-the-stellar-app/
 - /2010/07/15/parrot-babysteps-0c-the-stellar-app/
 category: post
+created: 2024-01-15 15:25:34-08:00
 date: 2010-07-15 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -14,8 +15,7 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 0c - The Stellar App
-created: 2024-01-15T15:25:34-08:00
-updated: 2024-01-26T10:10:01-08:00
+updated: 2024-01-26 10:10:01-08:00
 ---
 
 Our search journey continues. We have accomplished the hard 

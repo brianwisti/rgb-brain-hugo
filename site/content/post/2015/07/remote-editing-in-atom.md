@@ -4,6 +4,7 @@ aliases:
 - /post/2015/remote-editing-in-atom/
 - /2015/07/16/remote-editing-in-atom/
 category: post
+created: 2024-01-15 15:25:26-08:00
 date: 2015-07-16 00:00:00-07:00
 description: I am slowly learning more about how to use Atom for real work.
 slug: remote-editing-in-atom
@@ -12,8 +13,7 @@ tags:
 - editors
 - tools
 title: Remote Editing In Atom
-created: 2024-01-15T15:25:26-08:00
-updated: 2024-01-26T10:13:03-08:00
+updated: 2024-01-26 10:13:03-08:00
 ---
 
 I am slowly learning more about how to use [Atom](https://atom.io) for real work. First requirement: my "real work" almost exclusively takes place on a virtual machine. Atom alone cannot handle editing those files. [remote-atom](https://atom.io/packages/remote-atom) to the rescue!

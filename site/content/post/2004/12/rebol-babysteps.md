@@ -4,6 +4,7 @@ aliases:
 - /post/2005/learn-rebol/
 - /2004/12/25/rebol-babysteps/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2004-12-25 00:00:00-08:00
 series:
 - REBOL Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-01-26T09:18:50-08:00
+updated: 2024-01-26 09:18:50-08:00
 ---
 
 Right. Here is this language that you’ve never heard of: [REBOL](../../../card/REBOL.md). I think we should learn how to use it together, sort of a "Babysteps" approach. You and I can add REBOL to our steadily expanding toolkit of programming languages.

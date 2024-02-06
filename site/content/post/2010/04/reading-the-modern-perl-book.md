@@ -4,14 +4,14 @@ aliases:
 - /post/2010/reading-modern-perl-book/
 - /2010/04/06/reading-the-modern-perl-book/
 category: post
+created: 2024-01-15 15:25:33-08:00
 date: 2010-04-06 00:00:00-07:00
 slug: reading-the-modern-perl-book
 tags:
 - perl
 - blogspot
 title: Reading the Modern Perl Book
-created: 2024-01-15T15:25:33-08:00
-updated: 2024-01-26T10:09:44-08:00
+updated: 2024-01-26 10:09:44-08:00
 ---
 
 I'm in the Perl phase of my language obsession rotation. I've created a handy

@@ -1,10 +1,12 @@
 ---
-title: My Nushell environment file
 aliases:
 - /config/nushell/env.nu/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
 - nushell
+title: My Nushell environment file
+updated: 2024-02-05 16:22:37-08:00
 ---
 
 ## Set up my prompt

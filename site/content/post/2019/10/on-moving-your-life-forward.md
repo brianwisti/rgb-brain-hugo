@@ -3,6 +3,7 @@ aliases:
 - /note/2019/303/on-moving-your-life-forward/
 - /note/2019/10/on-moving-your-life-forward/
 category: note
+created: 2024-01-15 15:26:47-08:00
 date: 2019-10-30 17:49:52-07:00
 slug: on-moving-your-life-forward
 syndication:
@@ -16,8 +17,7 @@ tags:
 - strike-that
 - reverse-it
 title: On moving your life forward
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-02T09:54:30-08:00
+updated: 2024-02-02 09:54:30-08:00
 ---
 
 From [Art of Manliness: Stop Living Life “Paycheck to Paycheck”](https://www.artofmanliness.com/articles/sunday-firesides-stop-living-life-paycheck-to-paycheck/):

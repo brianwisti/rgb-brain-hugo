@@ -4,6 +4,7 @@ aliases:
 - /post/2007/jruby/
 - /2007/10/29/jruby/
 category: post
+created: 2024-01-15 15:26:18-08:00
 date: 2007-10-29 00:00:00-07:00
 slug: jruby
 tags:
@@ -11,8 +12,7 @@ tags:
 - java
 - coolnamehere
 title: JRuby
-created: 2024-01-15T15:26:18-08:00
-updated: 2024-02-01T20:21:38-08:00
+updated: 2024-02-01 20:21:38-08:00
 ---
 
 There is more than one way to experiment with [Ruby](../../../card/Ruby.md). [JRuby](http://jruby.org/) is a mature version of Ruby written for the Java Virtual Machine. This gives you a great deal of platform independence, since JRuby will comfortably run anywhere that [Java](../../../card/Java.md) runs. It also provides you with access to Java’s *huge* [standard library](http://www.java.com/en/download/index.jsp). I thought I would take a little time to examine the JRuby implementation, which is nearing a 1.0 release.

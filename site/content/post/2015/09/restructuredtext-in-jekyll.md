@@ -4,6 +4,7 @@ aliases:
 - /post/2015/restructuredtext-in-jekyll/
 - /2015/09/08/restructuredtext-in-jekyll/
 category: post
+created: 2024-01-15 15:25:26-08:00
 date: 2015-09-08 00:00:00-07:00
 description: I can write Jekyll posts with reStructuredText now.
 slug: restructuredtext-in-jekyll
@@ -13,8 +14,7 @@ tags:
 - site
 - tools
 title: reStructuredText in Jekyll
-created: 2024-01-15T15:25:26-08:00
-updated: 2024-02-01T20:48:59-08:00
+updated: 2024-02-01 20:48:59-08:00
 ---
 
 I can write [Jekyll](../../../card/Jekyll.md) posts with [reStructuredText](../../../card/reStructuredText.md) now.

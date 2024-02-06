@@ -3,6 +3,7 @@ aliases:
 - /coolnamehere/2009/07/11_02-variables-and-types.html
 - /post/2009/02-variables-and-types/
 category: post
+created: 2024-01-15 15:25:36-08:00
 date: 2009-07-11 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -12,8 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 02 - Variables and Types
-created: 2024-01-15T15:25:36-08:00
-updated: 2024-01-26T09:54:37-08:00
+updated: 2024-01-26 09:54:37-08:00
 ---
 
 I've always felt that learning the core types of a platform is boring. Once you've learned a few languages, you know the difference between an integer and a floating point number, what a string is, and have a general idea for how you work with each of them. You mainly care about the details of how you work with them in your new platform. It is important to learn these details, though.

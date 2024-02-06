@@ -4,14 +4,14 @@ aliases:
 - /post/2014/perl-subref-signatures/
 - /2014/06/25/perl-5.20-signatures-in-subroutine-references/
 category: post
+created: 2024-01-15 15:25:28-08:00
 date: 2014-06-25 00:00:00-07:00
 slug: perl-520-signatures-in-subroutine-references
 tags:
 - perl
 - programming
 title: Perl 5.20 Signatures in Subroutine References
-created: 2024-01-15T15:25:28-08:00
-updated: 2024-01-26T10:11:42-08:00
+updated: 2024-01-26 10:11:42-08:00
 ---
 
 [Perl](../../../card/Perl.md) 5.20 has experimental support for function signatures. That's  good news. I just thought to check if signatures can be used in subroutine references. They can.

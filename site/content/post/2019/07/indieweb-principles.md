@@ -3,6 +3,7 @@ aliases:
 - /note/2019/203/indieweb-principles/
 - /note/2019/07/indieweb-principles/
 category: note
+created: 2024-01-15 15:26:39-08:00
 date: 2019-07-22 00:30:02-07:00
 slug: indieweb-principles
 syndication:
@@ -14,8 +15,7 @@ tags:
 - notes
 - todo
 title: IndieWeb Principles
-created: 2024-01-15T15:26:39-08:00
-updated: 2024-02-01T20:19:37-08:00
+updated: 2024-02-01 20:19:37-08:00
 ---
 
 [IndieWeb](../../../card/IndieWeb.md) contains most of the philosophy behind my notes project: Own your own data, make what you need, use what you make, longevity, and most important:

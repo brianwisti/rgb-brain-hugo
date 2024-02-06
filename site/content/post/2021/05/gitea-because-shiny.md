@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/05/gitea-because-shiny/
 category: note
+created: 2024-01-15 15:26:18-08:00
 date: 2021-05-30 00:00:00-07:00
 slug: gitea-because-shiny
 syndication:
@@ -12,8 +13,7 @@ tags:
 - git
 - so-pretty
 title: I installed Gitea because it is shiny not because it is needed
-created: 2024-01-15T15:26:18-08:00
-updated: 2024-01-26T10:21:57-08:00
+updated: 2024-01-26 10:21:57-08:00
 ---
 
 ![attachments/img/2021/cover-2021-05-30.png](../../../attachments/img/2021/cover-2021-05-30.png)

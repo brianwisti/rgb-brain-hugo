@@ -3,6 +3,7 @@ aliases:
 - /note/2020/68/passing-tests-is-now-required-to-push/
 - /note/2020/03/passing-tests-is-now-required-to-push/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-03-08 23:50:55-07:00
 slug: passing-tests-is-now-required-to-push
 syndication:
@@ -11,8 +12,7 @@ syndication:
 tags:
 - site
 title: Passing Tests Is Now Required to Push
-created: 2024-01-15T15:26:30-08:00
-updated: 2024-02-02T09:54:42-08:00
+updated: 2024-02-02 09:54:42-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-08.png](../../../attachments/img/2020/cover-2020-03-08.png)

@@ -2,6 +2,7 @@
 aliases:
 - /2017/10/31/wellington-for-sass/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2017-10-31 00:00:00-07:00
 slug: wellington-for-sass
 syndication:
@@ -11,8 +12,7 @@ tags:
 - css
 - tools
 title: Wellington for Sass
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T21:17:48-08:00
+updated: 2024-02-01 21:17:48-08:00
 ---
 
 I found [Wellington](https://getwt.io/), a [Sass](http://sass-lang.com/) compiler written in [Go](../../../card/Go.md).

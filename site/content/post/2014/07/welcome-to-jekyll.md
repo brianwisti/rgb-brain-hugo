@@ -5,6 +5,7 @@ aliases:
 - /2014/07/26/welcome-to-jekyll/
 - /post/2014/07/welcome-to-jekyll/
 category: post
+created: 2024-01-15 15:25:29-08:00
 date: 2014-07-26 00:00:00-07:00
 slug: welcome-to-jekyll
 tags:
@@ -13,8 +14,7 @@ tags:
 - ruby
 - programming
 title: Welcome to Jekyll!
-created: 2024-01-15T15:25:29-08:00
-updated: 2024-02-01T21:17:29-08:00
+updated: 2024-02-01 21:17:29-08:00
 ---
 
 Just don't even ask. I am in a highly fickle phase with the Web site.

@@ -4,6 +4,7 @@ aliases:
 - /post/2008/updating-coolnameheres-design/
 - /2008/02/01/updating-coolnameheres-design/
 category: post
+created: 2024-01-15 15:25:39-08:00
 date: 2008-02-01 00:00:00-08:00
 description: One time when I revamped my old site
 slug: updating-coolnameheres-design
@@ -11,8 +12,7 @@ tags:
 - site
 - blogspot
 title: Updating coolnamehere's design
-created: 2024-01-15T15:25:39-08:00
-updated: 2024-01-26T09:40:59-08:00
+updated: 2024-01-26 09:40:59-08:00
 ---
 
 It’s time to revamp [coolnamehere](../../../card/coolnamehere.md).

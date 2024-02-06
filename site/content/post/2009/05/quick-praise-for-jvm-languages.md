@@ -3,13 +3,13 @@ aliases:
 - /blogspot/2009/05/15_quick-praise-for-jvm-languages.html
 - /post/2009/quick-praise-for-jvm-languages/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2009-05-15 00:00:00-07:00
 slug: quick-praise-for-jvm-languages
 tags:
 - blogspot
 title: Quick Praise for JVM languages
-created: 2024-01-15T15:25:35-08:00
-updated: 2024-01-26T09:41:25-08:00
+updated: 2024-01-26 09:41:25-08:00
 ---
 
 I've been digging a lot into the [Java](../../../card/Java.md) world in the last few months at work. Not Java specifically, because the language still bugs me. Why does Java bug me? Honestly at this point my disdain for Java is more a habit than anything based on reality. I just don't enjoy the language.

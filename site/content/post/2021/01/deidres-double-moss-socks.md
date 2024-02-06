@@ -2,6 +2,7 @@
 aliases:
 - /post/2021/01/deidres-double-moss-socks/
 category: post
+created: 2024-01-15 15:26:20-08:00
 date: 2021-01-01 00:00:00-08:00
 description: I'm just glad I finished them
 slug: deidres-double-moss-socks
@@ -13,8 +14,7 @@ tags:
 - socks
 - craft
 title: Deidre's Double Moss Socks
-created: 2024-01-15T15:26:20-08:00
-updated: 2024-01-26T10:59:28-08:00
+updated: 2024-01-26 10:59:28-08:00
 ---
 
 ![attachments/img/2021/cover-2021-01-01.jpg](../../../attachments/img/2021/cover-2021-01-01.jpg)

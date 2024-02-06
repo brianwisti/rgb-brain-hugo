@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/02/testing-a-thing/
 category: note
+created: 2024-01-15 15:26:28-08:00
 date: 2021-02-14 18:29:10-08:00
 slug: testing-a-thing
 syndication:
@@ -13,8 +14,7 @@ tags:
 - hugo
 - site
 title: testing a thing
-created: 2024-01-15T15:26:28-08:00
-updated: 2024-02-02T10:04:14-08:00
+updated: 2024-02-02 10:04:14-08:00
 ---
 
 Sometime [last year](../../2020/05/letting-ruby-build-asciidoctor-files-for-hugo.md) I had half of a great idea for better [Asciidoctor](../../../card/Asciidoctor.md) handling in [Hugo](../../../card/Hugo.md). I *might* have the other half now:

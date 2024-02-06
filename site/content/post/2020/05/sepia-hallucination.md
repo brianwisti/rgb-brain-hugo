@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/sepia-hallucination/
 category: note
+created: 2024-01-15 15:26:28-08:00
 date: 2020-05-17 00:31:47-07:00
 slug: sepia-hallucination
 syndication:
@@ -11,8 +12,7 @@ tags:
 - art
 - watch
 title: Sepia Hallucination
-created: 2024-01-15T15:26:28-08:00
-updated: 2024-01-26T11:01:14-08:00
+updated: 2024-01-26 11:01:14-08:00
 ---
 
 via [aeon](https://aeon.co/videos/when-a-decomposing-century-old-film-becomes-a-haunting-meditation-on-memory):

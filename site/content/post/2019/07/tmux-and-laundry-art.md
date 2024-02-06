@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/196/tmux-and-laundry-art/
 category: note
+created: 2024-01-15 15:26:41-08:00
 date: 2019-07-15 17:25:36-07:00
 slug: tmux-and-laundry-art
 syndication:
@@ -16,8 +17,7 @@ tags:
 - and-a-proper-timestamp
 - life-is-good
 title: tmux and laundry art
-created: 2024-01-15T15:26:41-08:00
-updated: 2024-02-01T21:58:52-08:00
+updated: 2024-02-01 21:58:52-08:00
 ---
 
 I made a [toot](https://hackers.town/@randomgeek/102448275832514625) and then I realized it's the sort of thing that should be a note here for the next time I forget.

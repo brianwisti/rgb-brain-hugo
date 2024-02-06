@@ -2,6 +2,7 @@
 aliases:
 - /2018/02/17/my-sloppy-floppy-fingerless-mitten/
 category: post
+created: 2024-01-15 15:26:13-08:00
 date: 2018-02-17 00:00:00-08:00
 slug: my-sloppy-floppy-fingerless-mitten
 tags:
@@ -10,8 +11,7 @@ tags:
 - hugo
 - craft
 title: My Sloppy Floppy Fingerless Mitten
-created: 2024-01-15T15:26:13-08:00
-updated: 2024-02-01T20:27:47-08:00
+updated: 2024-02-01 20:27:47-08:00
 ---
 
 I knit a fingerless mitten. Mistakes were made. I also figured out some stuff about Hugo Page Bundles and image processing.

@@ -5,6 +5,7 @@ aliases:
 - /2015/03/28/blogspot-content-imported/
 - /post/2015/03/blogspot-content-imported/
 category: post
+created: 2024-01-15 15:25:25-08:00
 date: 2015-03-28 00:00:00-07:00
 description: More new old pages
 slug: blogspot-content-imported
@@ -14,8 +15,7 @@ tags:
 - site
 - marginalia
 title: Blogspot Content Imported
-created: 2024-01-15T15:25:25-08:00
-updated: 2024-02-01T19:56:16-08:00
+updated: 2024-02-01 19:56:16-08:00
 ---
 
 I enjoyed importing the [coolnamehere](../../../card/coolnamehere.md) content so much last weekend that I decided to import the posts from a neglected [Blogger](../../../card/Blogger.md) blog this weekend. [jekyll-import](http://import.jekyllrb.com/docs/blogger/) simplified the actual import process, though I still had a lot of manual cleanup to perform.

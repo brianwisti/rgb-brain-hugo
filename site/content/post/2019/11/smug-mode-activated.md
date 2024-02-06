@@ -3,6 +3,7 @@ aliases:
 - /note/2019/326/smug-mode-activated/
 - /note/2019/11/smug-mode-activated/
 category: note
+created: 2024-01-15 15:26:40-08:00
 date: 2019-11-22 16:50:39-08:00
 slug: smug-mode-activated
 syndication:
@@ -13,8 +14,7 @@ tags:
 - tools
 - smeghead
 title: Smug mode activated
-created: 2024-01-15T15:26:40-08:00
-updated: 2024-02-02T10:00:47-08:00
+updated: 2024-02-02 10:00:47-08:00
 ---
 
 I checked the site at [Fit on a Floppy](https://fitonafloppy.website).

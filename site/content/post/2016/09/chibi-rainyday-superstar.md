@@ -3,6 +3,7 @@ aliases:
 - /craft/2016/chibi-rainyday-superstar/
 - /2016/09/01/chibi-rainyday-superstar/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2016-09-01 00:00:00-07:00
 slug: chibi-rainyday-superstar
 tags:
@@ -12,8 +13,7 @@ tags:
 - buy-me
 - craft
 title: Chibi Rainyday Superstar
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-01-26T10:17:12-08:00
+updated: 2024-01-26 10:17:12-08:00
 ---
 
 I was so unhappy with my attempts to draw realistic pictures of my friend Rainy that I went in the complete opposite direction and drew her in sort of a [chibi](https://en.wikipedia.org/wiki/Chibi_(term)) style.

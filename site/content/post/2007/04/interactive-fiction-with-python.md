@@ -4,6 +4,7 @@ aliases:
 - /post/2007/interactive-fiction-with-python/
 - /2007/04/18/interactive-fiction-with-python/
 category: post
+created: 2024-01-15 15:25:40-08:00
 date: 2007-04-18 00:00:00-07:00
 series:
 - Python Interactive Fiction
@@ -12,8 +13,7 @@ tags:
 - python
 - coolnamehere
 title: Interactive Fiction with Python
-created: 2024-01-15T15:25:40-08:00
-updated: 2024-01-26T09:21:55-08:00
+updated: 2024-01-26 09:21:55-08:00
 ---
 
 The idea for this article came from a coolnamehere reader named Laura. Thanks, Laura! I was looking for good [Python](../../../card/Python.md) ideas.

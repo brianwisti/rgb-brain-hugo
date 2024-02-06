@@ -4,14 +4,14 @@ aliases:
 - /post/2009/in-which-brian-whinges-about-perl-5/
 - /2009/07/02/in-which-brian-whinges-about-the-perl-5-release-schedule/
 category: post
+created: 2024-01-15 15:25:36-08:00
 date: 2009-07-02 00:00:00-07:00
 slug: in-which-brian-whinges-about-the-perl-5-release-schedule
 tags:
 - perl
 - coolnamehere
 title: In Which Brian Whinges About The Perl 5 Release Schedule
-created: 2024-01-15T15:25:36-08:00
-updated: 2024-01-26T09:41:30-08:00
+updated: 2024-01-26 09:41:30-08:00
 ---
 
 # Update: 2015-03-27

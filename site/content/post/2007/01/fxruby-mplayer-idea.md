@@ -4,13 +4,13 @@ aliases:
 - /post/2007/fxruby-mplayer-idea/
 - /2007/01/30/fxruby-mplayer-idea/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2007-01-30 00:00:00-08:00
 slug: fxruby-mplayer-idea
 tags:
 - blogspot
 title: FXRuby MPlayer Idea
-created: 2024-01-15T15:25:51-08:00
-updated: 2024-01-26T09:20:44-08:00
+updated: 2024-01-26 09:20:44-08:00
 ---
 
 ![attachments/img/2007/cover-2007-01-30.png](../../../attachments/img/2007/cover-2007-01-30.png)

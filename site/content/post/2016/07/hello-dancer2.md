@@ -3,6 +3,7 @@ aliases:
 - /post/2016/dancer2-hello/
 - /2016/07/11/hello-dancer2/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2016-07-11 00:00:00-07:00
 description: Some simple first steps with the Perl 5 Dancer2 web framework
 slug: hello-dancer2
@@ -14,8 +15,7 @@ tags:
 - learn
 - programming
 title: Hello Dancer2
-created: 2024-01-15T15:26:51-08:00
-updated: 2024-02-01T20:14:54-08:00
+updated: 2024-02-01 20:14:54-08:00
 ---
 
 The [PerlDancer](https://github.com/PerlDancer/) team’s [Dancer2](https://metacpan.org/pod/Dancer2) project is a [Perl](../../../card/Perl.md) framework for writing Web applications with less [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_code) than other Web frameworks. I am slowly exploring what it offers. Feel free to follow along.

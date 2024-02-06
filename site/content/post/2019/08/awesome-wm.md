@@ -3,6 +3,7 @@ aliases:
 - /note/2019/229/awesomewm/
 - /note/2019/08/awesome-wm/
 category: note
+created: 2024-01-15 15:26:37-08:00
 date: 2019-08-17 16:29:10-07:00
 slug: awesome-wm
 syndication:
@@ -14,8 +15,7 @@ tags:
 - screenshot
 - fiddly-configurations-are-fun
 title: Awesome(wm)
-created: 2024-01-15T15:26:37-08:00
-updated: 2024-02-01T22:07:02-08:00
+updated: 2024-02-01 22:07:02-08:00
 ---
 
 ![attachments/img/2019/cover-2019-08-17.jpg](../../../attachments/img/2019/cover-2019-08-17.jpg)

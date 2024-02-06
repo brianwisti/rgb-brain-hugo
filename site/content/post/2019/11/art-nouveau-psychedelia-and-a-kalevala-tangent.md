@@ -18,8 +18,7 @@ tags:
 title: Art Nouveau, Psychedelia, and a Kalevala tangent
 ---
 
-
- > 
+> 
  > No object was too mundane to be beautiful.
 
 Probably my favorite comment about [Art Nouveau](https://en.wikipedia.org/wiki/Art_Nouveau).

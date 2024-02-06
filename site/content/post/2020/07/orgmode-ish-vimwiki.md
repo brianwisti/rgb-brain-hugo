@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/07/orgmode-ish-vimwiki/
 category: note
+created: 2024-01-15 15:26:25-08:00
 date: 2020-07-03 23:51:27-07:00
 slug: orgmode-ish-vimwiki
 syndication:
@@ -12,8 +13,7 @@ tags:
 - taskwarrior
 - orgmode
 title: OrgMode-ish VimWiki
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-02-01T20:34:07-08:00
+updated: 2024-02-01 20:34:07-08:00
 ---
 
 ![attachments/img/2020/cover-2020-07-03.png](../../../attachments/img/2020/cover-2020-07-03.png)

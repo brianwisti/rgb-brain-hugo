@@ -4,6 +4,7 @@ aliases:
 - /post/2004/02-getting-started-with-view/
 - /2004/12/26/rebol-babysteps-02-getting-started-with-view/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2004-12-26 00:00:00-08:00
 series:
 - REBOL Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 02 Getting Started With View
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-02-02T09:59:04-08:00
+updated: 2024-02-02 09:59:04-08:00
 ---
 
 I’m sure you thought that getting started was fun, but it really didn’t do anything to show off [REBOL](../../../card/REBOL.md). I’d like to go through almost exactly the same process, but this time focussing my attention on [REBOL/View](http://www.rebol.com/prod-view.html). So let’s give it a try!

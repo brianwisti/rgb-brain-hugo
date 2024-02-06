@@ -4,14 +4,14 @@ aliases:
 - /post/2008/lots-of-nifty-newness-for-church-site/
 - /2008/02/14/lots-of-nifty-newness-for-the-church-site/
 category: post
+created: 2024-01-15 15:25:39-08:00
 date: 2008-02-14 00:00:00-08:00
 slug: lots-of-nifty-newness-for-the-church-site
 tags:
 - wordpress
 - blogspot
 title: Lots of Nifty Newness for the Church Site
-created: 2024-01-15T15:25:39-08:00
-updated: 2024-01-26T09:41:09-08:00
+updated: 2024-01-26 09:41:09-08:00
 ---
 
 I volunteered a little while ago to be the maintainer for the [Green Lake United Methodist Church](https://greenlakeumc.org). One limitation of the site is the fact that the Webmaster was a barrier to getting new content online. It’s a common problem, and had nothing to do with the maliciousness of the Webmaster. It’s just the simple fact that the Web dude is the only person who can post content. If the office manager wants to post the Worship schedule, she has to ask the Webmaster. If the pastor wants to present a message, she has to talk to the Webmaster. And it goes on and on. Eventually the Webmaster implodes, because you can only handle being the bottleneck for so long. The pressure becomes especially great when there is time-sensitive information that needs to be posted. You end up with a site that looks essentially static for months at a time.

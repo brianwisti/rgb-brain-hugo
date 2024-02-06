@@ -4,6 +4,7 @@ aliases:
 - /2017/06/28/my-weston-hat/
 - /post/2017/06/my-weston-hat/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-06-28 00:00:00-07:00
 slug: my-weston-hat
 tags:
@@ -11,8 +12,7 @@ tags:
 - hat
 - craft
 title: My Weston Hat
-created: 2024-01-15T15:26:48-08:00
-updated: 2024-02-01T21:57:23-08:00
+updated: 2024-02-01 21:57:23-08:00
 ---
 
 ![attachments/img/2017/cover-2017-06-28.jpg](../../../attachments/img/2017/cover-2017-06-28.jpg)

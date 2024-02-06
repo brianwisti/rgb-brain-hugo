@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/debugging-my-site-with-a-little-help-from-my-friends/
 category: note
+created: 2024-01-15 15:26:33-08:00
 date: 2020-05-08 20:25:00-07:00
 slug: debugging-my-site-with-a-little-help-from-my-friends
 syndication:
@@ -14,8 +15,7 @@ tags:
 - before-i-pushed-it
 - yay-for-tests
 title: Debugging My Site With a Little Help From My Friends
-created: 2024-01-15T15:26:33-08:00
-updated: 2024-02-01T22:15:00-08:00
+updated: 2024-02-01 22:15:00-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-08.png](../../../attachments/img/2020/cover-2020-05-08.png)

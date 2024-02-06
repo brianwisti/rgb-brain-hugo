@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/10/i-added-this-note-from-org-mode/
 category: note
+created: 2024-01-15 15:26:23-08:00
 date: 2020-10-24 18:26:00-07:00
 slug: i-added-this-note-from-org-mode
 syndication:
@@ -11,8 +12,7 @@ tags:
 - emacs
 - orgmode
 title: I added this note from org mode
-created: 2024-01-15T15:26:23-08:00
-updated: 2024-02-01T20:18:04-08:00
+updated: 2024-02-01 20:18:04-08:00
 ---
 
 Trying an experiment with setting up a [capture template](https://orgmode.org/manual/Capture-templates.html) so [ox-hugo](https://ox-hugo.scripter.co/) can add short notes to the site from [Org](../../../card/Org.md).

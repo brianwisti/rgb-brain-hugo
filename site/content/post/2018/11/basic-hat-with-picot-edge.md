@@ -2,6 +2,7 @@
 aliases:
 - /2018/11/20/basic-hat-with-picot-edge/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-11-20 00:00:00-08:00
 description: I continue building my hat knitting knowledge!
 slug: basic-hat-with-picot-edge
@@ -12,8 +13,7 @@ tags:
 - hat
 - craft
 title: Basic Hat With Picot Edge
-created: 2024-01-15T15:26:44-08:00
-updated: 2024-02-01T22:07:52-08:00
+updated: 2024-02-01 22:07:52-08:00
 ---
 
 ![attachments/img/2018/cover-2018-11-20.jpg](../../../attachments/img/2018/cover-2018-11-20.jpg)

@@ -2,6 +2,7 @@
 aliases:
 - /post/2021/02/got-different-benchmarks-from-programming-crystal/
 category: post
+created: 2024-01-15 15:26:20-08:00
 date: 2021-02-21 20:13:07-08:00
 description: just a note, but too long to post as a note
 slug: got-different-benchmarks-from-programming-crystal
@@ -14,8 +15,7 @@ tags:
 - not-quite-errata
 - programming
 title: Got different benchmarks from Programming Crystal
-created: 2024-01-15T15:26:20-08:00
-updated: 2024-01-26T10:22:23-08:00
+updated: 2024-01-26 10:22:23-08:00
 ---
 
 Finally reading [Programming Crystal](https://pragprog.com/titles/crystal/programming-crystal/), by Ivo Balbaert and [Simon St.  Laurent](http://simonstl.com/).  Good stuff.  The [Crystal](../../../card/Crystal.md) language has advanced some since the book came out, but nearly all the code runs as-is.

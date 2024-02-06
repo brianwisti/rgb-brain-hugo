@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/10/checking-out-playwright-for-python/
 category: note
+created: 2024-01-15 15:26:23-08:00
 date: 2020-10-13 00:24:11-07:00
 slug: checking-out-playwright-for-python
 syndication:
@@ -11,8 +12,7 @@ tags:
 - python
 - browser-testing
 title: Checking out Playwright for Python
-created: 2024-01-15T15:26:23-08:00
-updated: 2024-01-26T11:00:04-08:00
+updated: 2024-01-26 11:00:04-08:00
 ---
 
 From [Announcing Playwright for Python: Reliable end-to-end testing for the web](https://devblogs.microsoft.com/python/announcing-playwright-for-python-reliable-end-to-end-testing-for-the-web/):

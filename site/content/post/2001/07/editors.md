@@ -4,14 +4,14 @@ aliases:
 - /post/2001/editors/
 - /2001/07/11/editors/
 category: post
+created: 2024-01-15 15:25:48-08:00
 date: 2001-07-11 00:00:00-07:00
 slug: editors
 tags:
 - editors
 - coolnamehere
 title: Editors
-created: 2024-01-15T15:25:48-08:00
-updated: 2024-01-26T09:17:07-08:00
+updated: 2024-01-26 09:17:07-08:00
 ---
 
 # Choose your weapon

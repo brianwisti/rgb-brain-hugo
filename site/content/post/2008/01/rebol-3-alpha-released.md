@@ -4,14 +4,14 @@ aliases:
 - /post/2008/rebol-3-alpha-released/
 - /2008/01/08/rebol-3-alpha-released/
 category: post
+created: 2024-01-15 15:25:38-08:00
 date: 2008-01-08 00:00:00-08:00
 slug: rebol-3-alpha-released
 tags:
 - rebol
 - blogspot
 title: REBOL 3 alpha released
-created: 2024-01-15T15:25:38-08:00
-updated: 2024-01-26T09:40:54-08:00
+updated: 2024-01-26 09:40:54-08:00
 ---
 
 I just saw Petr Krenzelok's giddy announcement on the [REBOL](../../../card/REBOL.md) mailing list that a public alpha of REBOL 3 is available today. I've been waiting to see this for a while and can't even begin to describe how excited I am. 

@@ -3,6 +3,7 @@ aliases:
 - /note/2019/308/i-got-business-stickers/
 - /note/2019/11/i-got-business-stickers/
 category: note
+created: 2024-01-15 15:26:40-08:00
 date: 2019-11-04 19:30:00-08:00
 slug: i-got-business-stickers
 syndication:
@@ -14,8 +15,7 @@ tags:
 - now
 - look-what-i-can-do
 title: I got business stickers
-created: 2024-01-15T15:26:40-08:00
-updated: 2024-02-02T09:46:10-08:00
+updated: 2024-02-02 09:46:10-08:00
 ---
 
 ![attachments/img/2019/cover-2019-11-04.jpg](../../../attachments/img/2019/cover-2019-11-04.jpg)

@@ -4,14 +4,14 @@ aliases:
 - /post/2008/php-extract-and-compact-functions/
 - /2008/01/30/phps-extract-and-compact-functions/
 category: post
+created: 2024-01-15 15:25:38-08:00
 date: 2008-01-30 00:00:00-08:00
 slug: phps-extract-and-compact-functions
 tags:
 - php
 - blogspot
 title: PHPs extract and compact functions
-created: 2024-01-15T15:25:38-08:00
-updated: 2024-01-26T09:40:51-08:00
+updated: 2024-01-26 09:40:51-08:00
 ---
 
 I've been brushing up on my [PHP](../../../card/PHP.md) basics lately. Why? Well, it never hurts to revisit things you think you already know. There is a good chance you will discover something you didn't know after all. For example: this time I learned about [PHP](http://php.net)'s `extract` and `compact` functions.

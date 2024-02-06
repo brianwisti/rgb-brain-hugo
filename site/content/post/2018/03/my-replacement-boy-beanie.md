@@ -2,6 +2,7 @@
 aliases:
 - /2018/03/18/my-replacement-boy-beanie/
 category: post
+created: 2024-01-15 15:26:46-08:00
 date: 2018-03-18 00:00:00-07:00
 slug: my-replacement-boy-beanie
 tags:
@@ -9,8 +10,7 @@ tags:
 - hat
 - craft
 title: My Replacement Boy Beanie
-created: 2024-01-15T15:26:46-08:00
-updated: 2024-02-02T09:52:59-08:00
+updated: 2024-02-02 09:52:59-08:00
 ---
 
 I crocheted another "Boy Beanie" from [Stitch 'n Bitch Crochet](https://www.goodreads.com/book/show/57512.Stitch_n_Bitch_Crochet). This time I followed the pattern!

@@ -5,6 +5,7 @@ aliases:
 - /2013/11/25/my-own-ruby-fibers-babystep/
 - /post/2013/11/my-own-ruby-fibers-babystep/
 category: post
+created: 2024-01-15 15:25:31-08:00
 date: 2013-11-25 00:00:00-08:00
 slug: my-own-ruby-fibers-babystep
 tags:
@@ -13,8 +14,7 @@ tags:
 - site
 - programming
 title: My Own Ruby Fibers Babystep
-created: 2024-01-15T15:25:31-08:00
-updated: 2024-02-02T09:50:24-08:00
+updated: 2024-02-02 09:50:24-08:00
 ---
 
 My adventures [rereading-the-pickaxe](rereading-the-pickaxe.md) have reached the chapter on [Ruby](../../../card/Ruby.md) Fibers. Interesting stuff. Thought I would extrapolate from their initial example. My old static pages started from a MANIFEST file that looked something like this:

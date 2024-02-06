@@ -2,6 +2,7 @@
 aliases:
 - /2018/03/27/interviewed-about-facebook/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-03-27 00:00:00-07:00
 slug: interviewed-about-facebook
 tags:
@@ -9,8 +10,7 @@ tags:
 - marginalia
 - now
 title: Interviewed About Facebook
-created: 2024-01-15T15:26:45-08:00
-updated: 2024-02-02T09:47:15-08:00
+updated: 2024-02-02 09:47:15-08:00
 ---
 
 ![attachments/img/2018/cover-2018-03-27.jpeg](../../../attachments/img/2018/cover-2018-03-27.jpeg)

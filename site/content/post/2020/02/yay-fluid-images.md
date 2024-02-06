@@ -3,14 +3,14 @@ aliases:
 - /note/2020/41/yay-fluid-images/
 - /note/2020/02/yay-fluid-images/
 category: note
+created: 2024-01-15 15:26:27-08:00
 date: 2020-02-10 21:52:16-08:00
 slug: yay-fluid-images
 tags:
 - site
 - hugo
 title: Yay Fluid Images
-created: 2024-01-15T15:26:27-08:00
-updated: 2024-01-26T11:03:30-08:00
+updated: 2024-01-26 11:03:30-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-10.jpg](../../../attachments/img/2020/cover-2020-02-10.jpg)

@@ -4,6 +4,7 @@ aliases:
 - /post/2014/and-now-pelican/
 - /2014/06/23/and-now-pelican/
 category: post
+created: 2024-01-15 15:26:15-08:00
 date: 2014-06-23 00:00:00-07:00
 description: I know. I'm fickle.
 slug: and-now-pelican
@@ -13,8 +14,7 @@ tags:
 - site
 - marginalia
 title: And now, Pelican!
-created: 2024-01-15T15:26:15-08:00
-updated: 2024-02-01T19:53:48-08:00
+updated: 2024-02-01 19:53:48-08:00
 ---
 
 I’m not sure why, but I wasn’t *quite* comfortable with [o-blog](https://github.com/renard/o-blog). It works well enough, but decided it was time to poke around with [Jekyll](../../../card/Jekyll.md) again.

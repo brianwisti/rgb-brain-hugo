@@ -4,6 +4,7 @@ aliases:
 - /post/2004/01-getting-started/
 - /2004/12/26/rebol-babysteps-01-getting-started/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2004-12-26 00:00:00-08:00
 series:
 - REBOL Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 01 Getting Started
-updated: 2024-02-01T20:44:00-08:00
-created: 2024-01-15T15:25:46-08:00
+updated: 2024-02-01 20:44:00-08:00
 ---
 
 [REBOL](../../../card/REBOL.md) is the "Relative Expression-Based Object Language", developed by Carl Sassenrath. Who is Carl Sassenrath? Why, he’s one of the people responsible for the amazing operating system which powered the Amiga computer. What’s the Amiga? Why, the Amiga was only the incredibly robust and cool computer — released by the same company that brought the world’s first personal computer, Commodore. What’s Commodore? Stop bothering me, kid. Take it from a relative old-timer: Amiga put a *heck* of a lot of power into a consumer-affordable personal computer. It wasn’t really matched by other computers for a good five or ten years. Nowadays, I look at [REBOL](http://www.rebol.com/) and it feels like the first language I’ve come across to take lessons from past languages and apply them in a new context, rather than just reimplement them with different syntax.

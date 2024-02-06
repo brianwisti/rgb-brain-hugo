@@ -4,6 +4,7 @@ aliases:
 - /post/2015/atom-works-on-opensuse/
 - /2015/07/13/atom-works-on-opensuse/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-07-13 00:00:00-07:00
 slug: atom-works-on-opensuse
 tags:
@@ -11,8 +12,7 @@ tags:
 - atom-editor
 - tools
 title: Atom Works on openSUSE
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-02-01T22:06:48-08:00
+updated: 2024-02-01 22:06:48-08:00
 ---
 
 ![attachments/img/2015/cover-2015-07-13.png](../../../attachments/img/2015/cover-2015-07-13.png)

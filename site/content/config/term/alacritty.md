@@ -1,9 +1,11 @@
 ---
-title: My Alacritty Config
 aliases:
 - /config/alacritty.yml/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
+title: My Alacritty Config
+updated: 2024-02-05 16:22:12-08:00
 ---
 
 Setting to my preferred font and SpaceDuck colors.

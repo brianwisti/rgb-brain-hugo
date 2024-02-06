@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/02/tweaking-my-tools/
 category: note
+created: 2024-01-15 15:26:20-08:00
 date: 2021-02-16 14:40:03-08:00
 slug: tweaking-my-tools
 syndication:
@@ -12,8 +13,7 @@ tags:
 - ruby
 - site
 title: Tweaking my tools
-created: 2024-01-15T15:26:20-08:00
-updated: 2024-01-26T10:22:18-08:00
+updated: 2024-01-26 10:22:18-08:00
 ---
 
 Playing a little more with [TTY Toolkit](../../../card/TTY%20Toolkit.md) for the site workflow. I wanted to say I'm tightening focus, but with a `require` list like this for one tool?

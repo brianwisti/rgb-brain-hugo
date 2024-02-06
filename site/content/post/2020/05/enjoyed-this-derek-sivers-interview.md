@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/enjoyed-this-derek-sivers-interview/
 category: note
+created: 2024-01-15 15:26:26-08:00
 date: 2020-05-24 14:29:03-07:00
 slug: enjoyed-this-derek-sivers-interview
 syndication:
@@ -10,8 +11,7 @@ syndication:
 tags:
 - listen
 title: Enjoyed this Derek Sivers interview
-created: 2024-01-15T15:26:26-08:00
-updated: 2024-01-26T11:01:35-08:00
+updated: 2024-01-26 11:01:35-08:00
 ---
 
 I'm not a money podcast person, but this episode was worth an hour of my time.

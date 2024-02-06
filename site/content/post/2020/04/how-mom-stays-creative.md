@@ -3,6 +3,7 @@ aliases:
 - /note/2020/111/how-mom-stays-creative/
 - /note/2020/04/how-mom-stays-creative/
 category: note
+created: 2024-01-15 15:26:26-08:00
 date: 2020-04-20 21:20:00-07:00
 slug: how-mom-stays-creative
 syndication:
@@ -14,8 +15,7 @@ tags:
 - mom
 - bad-image-captions
 title: How Mom stays creative
-created: 2024-01-15T15:26:26-08:00
-updated: 2024-01-26T11:02:46-08:00
+updated: 2024-01-26 11:02:46-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-20.jpg](../../../attachments/img/2020/cover-2020-04-20.jpg)

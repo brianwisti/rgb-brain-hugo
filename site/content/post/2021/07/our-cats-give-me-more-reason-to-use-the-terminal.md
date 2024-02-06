@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/07/our-cats-give-me-more-reason-to-use-the-terminal/
 category: note
+created: 2024-01-15 15:26:09-08:00
 date: 2021-07-05 00:00:00-07:00
 slug: our-cats-give-me-more-reason-to-use-the-terminal
 syndication:
@@ -12,8 +13,7 @@ tags:
 - kitties
 - cuteness
 title: Our cats give me more reason to use the terminal
-created: 2024-01-15T15:26:09-08:00
-updated: 2024-02-01T20:34:22-08:00
+updated: 2024-02-01 20:34:22-08:00
 ---
 
 ![attachments/img/2021/cover-2021-07-05.jpg](../../../attachments/img/2021/cover-2021-07-05.jpg)

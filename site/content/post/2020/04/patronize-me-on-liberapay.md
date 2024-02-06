@@ -3,6 +3,7 @@ aliases:
 - /note/2020/117/patronize-me-on-liberapay/
 - /note/2020/04/patronize-me-on-liberapay/
 category: note
+created: 2024-01-15 15:26:29-08:00
 date: 2020-04-26 21:15:00-07:00
 slug: patronize-me-on-liberapay
 syndication:
@@ -14,8 +15,7 @@ tags:
 - money
 - filthy-lucre
 title: Patronize Me on Liberapay
-updated: 2024-01-26T11:02:53-08:00
-created: 2024-01-15T15:26:29-08:00
+updated: 2024-01-26 11:02:53-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-26.png](../../../attachments/img/2020/cover-2020-04-26.png)

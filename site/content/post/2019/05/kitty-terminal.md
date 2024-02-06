@@ -2,8 +2,10 @@
 aliases:
 - /2019/05/27/kitty-terminal/
 category: post
+created: 2024-01-15 15:26:34-08:00
 date: 2019-05-27 00:00:00-07:00
-description: I installed kitty for font ligatures in terminals on Linux, but it does other stuff too.
+description: I installed kitty for font ligatures in terminals on Linux, but it does
+  other stuff too.
 slug: kitty-terminal
 syndication:
   mastodon: https://hackers.town/@randomgeek/102167342505236721
@@ -13,8 +15,7 @@ tags:
 - kitty
 - tools
 title: Kitty Terminal
-updated: 2024-02-01T20:21:59-08:00
-created: 2024-01-15T15:26:34-08:00
+updated: 2024-02-01 20:21:59-08:00
 ---
 
 ![attachments/img/2019/cover-2019-05-27.png](../../../attachments/img/2019/cover-2019-05-27.png)

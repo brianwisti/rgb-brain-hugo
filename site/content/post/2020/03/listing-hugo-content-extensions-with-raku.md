@@ -2,6 +2,7 @@
 aliases:
 - /2020/03/31/listing-hugo-content-extensions-with-raku/
 category: post
+created: 2024-01-15 15:26:27-08:00
 date: 2020-03-31 14:33:29-07:00
 description: Twenty seconds to write a one-liner, and two days to think about it
 slug: listing-hugo-content-extensions-with-raku
@@ -15,8 +16,7 @@ tags:
 - site
 - programming
 title: Listing Hugo Content Extensions With Raku
-created: 2024-01-15T15:26:27-08:00
-updated: 2024-02-02T09:49:09-08:00
+updated: 2024-02-02 09:49:09-08:00
 ---
 
 ![attachments/img/2020/cover-2020-03-31.jpg](../../../attachments/img/2020/cover-2020-03-31.jpg)

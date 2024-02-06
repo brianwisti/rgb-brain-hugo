@@ -3,6 +3,7 @@ aliases:
 - /post/2016/all-the-hugo-themes/
 - /2016/01/02/all-the-hugo-themes/
 category: post
+created: 2024-01-15 15:26:12-08:00
 date: 2016-01-02 00:00:00-08:00
 description: Using Python to preview my Hugo site with many themes
 slug: all-the-hugo-themes
@@ -11,8 +12,7 @@ tags:
 - python
 - programming
 title: All The Hugo Themes
-created: 2024-01-15T15:26:12-08:00
-updated: 2024-02-01T19:53:27-08:00
+updated: 2024-02-01 19:53:27-08:00
 ---
 
 ![attachments/img/2016/cover-2016-01-02.png](../../../attachments/img/2016/cover-2016-01-02.png)

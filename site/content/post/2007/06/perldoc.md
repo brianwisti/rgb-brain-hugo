@@ -4,6 +4,7 @@ aliases:
 - /post/2007/perldoc/
 - /2007/06/16/perldoc/
 category: post
+created: 2024-01-15 15:25:41-08:00
 date: 2007-06-16 00:00:00-07:00
 slug: perldoc
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Perldoc
-created: 2024-01-15T15:25:41-08:00
-updated: 2024-01-26T09:22:10-08:00
+updated: 2024-01-26 09:22:10-08:00
 ---
 
 I have heard first-time [Perl](../../../card/Perl.md) programmers complain about the lack of documentation. This is understandable. They don't know all the nifty stuff that comes with the standard Perl distribution. 

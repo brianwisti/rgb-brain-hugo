@@ -3,6 +3,7 @@ aliases:
 - /note/2020/119/how-many-recent-authors-on-cpan/
 - /note/2020/04/how-many-recent-authors-on-cpan/
 category: note
+created: 2024-01-15 15:26:27-08:00
 date: 2020-04-28 11:40:00-07:00
 slug: how-many-recent-authors-on-cpan
 syndication:
@@ -12,8 +13,7 @@ tags:
 - perl
 - gist
 title: How many recent authors on CPAN?
-created: 2024-01-15T15:26:27-08:00
-updated: 2024-01-26T11:02:35-08:00
+updated: 2024-01-26 11:02:35-08:00
 ---
 
 Sorry, I couldn’t fit this in a tweet.

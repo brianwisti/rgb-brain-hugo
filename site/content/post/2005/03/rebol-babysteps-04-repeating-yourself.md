@@ -4,6 +4,7 @@ aliases:
 - /post/2005/04-repeating-yourself/
 - /2005/03/07/rebol-babysteps-04-repeating-yourself/
 category: post
+created: 2024-01-15 15:25:44-08:00
 date: 2005-03-07 00:00:00-08:00
 series:
 - REBOL Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 04 Repeating Yourself
-created: 2024-01-15T15:25:44-08:00
-updated: 2024-02-01T20:44:23-08:00
+updated: 2024-02-01 20:44:23-08:00
 ---
 
 Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with [REBOL](../../../card/REBOL.md). We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.

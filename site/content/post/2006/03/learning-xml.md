@@ -4,6 +4,7 @@ aliases:
 - /post/2006/learning-xml/
 - /2006/03/17/learning-xml/
 category: post
+created: 2024-01-15 15:25:43-08:00
 date: 2006-03-17 00:00:00-08:00
 slug: learning-xml
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Learning XML
-created: 2024-01-15T15:25:43-08:00
-updated: 2024-01-26T09:20:25-08:00
+updated: 2024-01-26 09:20:25-08:00
 ---
 
 A mountain of standards and specifications have piled on top of [XML](../../../card/XML.md) over the  years, but the core language is still pretty easy to get started in. Because it  is a markup language rather than a programming language, there aren't as many  new concepts to learn. If you've learned HTML in the past, then XML will be  familiar.

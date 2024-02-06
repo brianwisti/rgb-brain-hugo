@@ -3,9 +3,12 @@ aliases:
 - /2020/04/30/taskwarrior-custom-reports/
 - /post/2020/04/taskwarrior-custom-reports/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2020-04-30 01:02:43-07:00
-description: |
-  I made a priority task to cut down on the priority tasks, and here we are
+description: 'I made a priority task to cut down on the priority tasks, and here we
+  are
+
+  '
 series:
 - Taskwarrior Babysteps
 slug: taskwarrior-custom-reports
@@ -16,8 +19,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Custom Reports
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-02T10:07:21-08:00
+updated: 2024-02-02 10:07:21-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-30.png](../../../attachments/img/2020/cover-2020-04-30.png)

@@ -4,6 +4,7 @@ aliases:
 - /post/2014/mongo-vagrant-connect/
 - /2014/08/06/connect-to-mongodb-on-a-vagrant-box-from-the-host/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2014-08-06 00:00:00-07:00
 slug: connect-to-mongodb-on-a-vagrant-box-from-the-host
 tags:
@@ -11,8 +12,7 @@ tags:
 - mongodb
 - tools
 title: Connect To MongoDB on a Vagrant box from the host
-created: 2024-01-15T15:25:51-08:00
-updated: 2024-02-01T22:11:27-08:00
+updated: 2024-02-01 22:11:27-08:00
 ---
 
 ![attachments/img/2014/cover-2014-08-06.png](../../../attachments/img/2014/cover-2014-08-06.png)

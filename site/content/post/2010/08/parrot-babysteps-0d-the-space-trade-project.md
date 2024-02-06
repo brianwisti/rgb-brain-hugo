@@ -3,6 +3,7 @@ aliases:
 - /coolnamehere/2010/08/02_0d-the-spacetrade-project.html
 - /post/2010/0d-the-spacetrade-project/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2010-08-02 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -12,8 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 0d - The SpaceTrade Project
-created: 2024-01-15T15:25:51-08:00
-updated: 2024-01-26T10:10:11-08:00
+updated: 2024-01-26 10:10:11-08:00
 ---
 
 I might be done with the [Stellar](../07/parrot-babysteps-0c-the-stellar-app.md) application for the moment, but I don't think I'm done with the space theme in [Parrot](../../../card/Parrot.md) yet. 

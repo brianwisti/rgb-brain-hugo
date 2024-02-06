@@ -4,14 +4,14 @@ aliases:
 - /post/2013/fickle/
 - /2013/07/23/fickle/
 category: post
+created: 2024-01-15 15:25:31-08:00
 date: 2013-07-23 00:00:00-07:00
 slug: fickle
 tags:
 - site
 - marginalia
 title: Fickle
-created: 2024-01-15T15:25:31-08:00
-updated: 2024-01-26T10:11:10-08:00
+updated: 2024-01-26 10:11:10-08:00
 ---
 
 I've got a pretty nice flow here. It's easy to make quick posts and have a mini blog along with the lengthy stuff - whenever I get around to those. 

@@ -4,14 +4,14 @@ aliases:
 - /post/2013/an-emacs-newbie/
 - /2013/12/26/an-emacs-newbie/
 category: post
+created: 2024-01-15 15:25:31-08:00
 date: 2013-12-26 00:00:00-08:00
 slug: an-emacs-newbie
 tags:
 - emacs
 - marginalia
 title: An Emacs Newbie
-created: 2024-01-15T15:25:31-08:00
-updated: 2024-01-26T10:11:20-08:00
+updated: 2024-01-26 10:11:20-08:00
 ---
 
 Right. I am going to attempt to follow Ryan Macklin's [suggestion](http://ryanmacklin.com/2013/12/getting-back-on-the-creative-horse/) to write  at least 250 words per day. They don’t have to be good words. Fortunately, I have this blog sitting here.

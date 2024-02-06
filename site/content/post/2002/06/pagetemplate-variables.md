@@ -4,14 +4,14 @@ aliases:
 - /post/2002/variables/
 - /2002/06/02/pagetemplate-variables/
 category: post
+created: 2024-01-15 15:25:48-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetemplate-variables
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Variables
-created: 2024-01-15T15:25:48-08:00
-updated: 2024-01-26T09:18:01-08:00
+updated: 2024-01-26 09:18:01-08:00
 ---
 
 The major directives require *variables*, which are just names for the

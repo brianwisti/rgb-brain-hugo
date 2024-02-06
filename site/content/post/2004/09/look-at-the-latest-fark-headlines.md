@@ -4,6 +4,7 @@ aliases:
 - /post/2004/look-at-the-latest-fark-headlines/
 - /2004/09/17/look-at-the-latest-fark-headlines/
 category: post
+created: 2024-01-15 15:26:14-08:00
 date: 2004-09-17 00:00:00-07:00
 slug: look-at-the-latest-fark-headlines
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Look at the Latest Fark Headlines
-created: 2024-01-15T15:26:14-08:00
-updated: 2024-01-26T09:18:39-08:00
+updated: 2024-01-26 09:18:39-08:00
 ---
 
 # The Problem

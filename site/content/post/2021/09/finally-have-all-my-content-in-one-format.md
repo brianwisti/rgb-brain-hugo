@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/09/finally-have-all-my-content-in-one-format/
 category: note
+created: 2024-01-15 15:26:11-08:00
 date: 2021-09-16 00:00:00-07:00
 slug: finally-have-all-my-content-in-one-format
 syndication:
@@ -11,10 +12,8 @@ tags:
 - site
 - asciidoctor
 title: finally have all my content in one format
-created: 2024-01-15T15:26:11-08:00
-updated: 2024-02-01T20:12:23-08:00
+updated: 2024-02-01 20:12:23-08:00
 ---
-
 
 ````
 content/**/*{.md,.md.txt,.rst,.rst.txt,.adoc,.adoc.txt,.org}

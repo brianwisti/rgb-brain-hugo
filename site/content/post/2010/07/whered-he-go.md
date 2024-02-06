@@ -4,13 +4,13 @@ aliases:
 - /post/2010/whered-he-go/
 - /2010/07/27/whered-he-go/
 category: post
+created: 2024-01-15 15:25:34-08:00
 date: 2010-07-27 00:00:00-07:00
 slug: whered-he-go
 tags:
 - blogspot
 title: Where'd He Go?
-created: 2024-01-15T15:25:34-08:00
-updated: 2024-01-26T10:10:08-08:00
+updated: 2024-01-26 10:10:08-08:00
 ---
 
 I haven't updated this blog in a while, and to be honest I don't really plan to. I tend to dump my thoughts of the moment on

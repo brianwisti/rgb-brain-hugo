@@ -4,6 +4,7 @@ aliases:
 - /post/2009/04-adding-command-line-arguments/
 - /2009/09/17/parrot-babysteps-04-adding-command-line-arguments/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-09-17 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 04 - Adding Command Line Arguments
-created: 2024-01-15T15:25:37-08:00
-updated: 2024-01-26T09:57:36-08:00
+updated: 2024-01-26 09:57:36-08:00
 ---
 
 # Introduction

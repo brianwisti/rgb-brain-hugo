@@ -4,14 +4,14 @@ aliases:
 - /post/2002/if-else-and-elsif/
 - /2002/06/02/pagetemplate-if-else-and-elsif/
 category: post
+created: 2024-01-15 15:25:48-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetempalte-if-else-and-elsif
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - If, Else, and Elsif
-created: 2024-01-15T15:25:48-08:00
-updated: 2024-01-26T09:17:49-08:00
+updated: 2024-01-26 09:17:49-08:00
 ---
 
 # If

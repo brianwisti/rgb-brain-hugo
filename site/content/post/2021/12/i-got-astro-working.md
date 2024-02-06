@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/12/i-got-astro-working/
 category: note
+created: 2024-01-15 15:26:09-08:00
 date: 2021-12-23 00:00:00-08:00
 slug: i-got-astro-working
 syndication:
@@ -12,8 +13,7 @@ tags:
 - ssg
 - site
 title: I got Astro working!
-created: 2024-01-15T15:26:09-08:00
-updated: 2024-01-26T10:21:20-08:00
+updated: 2024-01-26 10:21:20-08:00
 ---
 
 ![attachments/img/2021/cover-2021-12-23.png](../../../attachments/img/2021/cover-2021-12-23.png)

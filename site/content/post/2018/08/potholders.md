@@ -2,6 +2,7 @@
 aliases:
 - /2018/08/26/potholders/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-08-26 00:00:00-07:00
 description: Yes, they look like that on purpose.
 slug: potholders
@@ -9,8 +10,7 @@ tags:
 - crochet
 - craft
 title: Potholders
-created: 2024-01-15T15:26:44-08:00
-updated: 2024-02-01T21:57:40-08:00
+updated: 2024-02-01 21:57:40-08:00
 ---
 
 A friend asked me to *Crochet* a potholder based on an image she saw online. I tracked the image down to its source: the "ManHandle Pot Holder" on Margaret Calver’s [ayarnnut](https://www.etsy.com/shop/ayarnnut) Etsy store.

@@ -3,6 +3,7 @@ aliases:
 - /coolnamehere/2009/10/02_06-files-and-hashes.html
 - /post/2009/06-files-and-hashes/
 category: post
+created: 2024-01-15 15:25:51-08:00
 date: 2009-10-02 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 06 - Files and Hashes
-created: 2024-01-15T15:25:51-08:00
-updated: 2024-01-26T09:58:30-08:00
+updated: 2024-01-26 09:58:30-08:00
 ---
 
 ![attachments/img/2009/cover-2009-10-02.jpg](../../../attachments/img/2009/cover-2009-10-02.jpg)

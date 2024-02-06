@@ -3,6 +3,7 @@ aliases:
 - /coolnamehere/2009/12/09_nqp-not-quite-perl.html
 - /post/2009/nqp-not-quite-perl/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-12-09 00:00:00-08:00
 slug: nqp-not-quite-perl
 tags:
@@ -10,8 +11,7 @@ tags:
 - perl
 - coolnamehere
 title: NQP - Not Quite Perl
-created: 2024-01-15T15:25:37-08:00
-updated: 2024-01-26T09:58:44-08:00
+updated: 2024-01-26 09:58:44-08:00
 ---
 
 [Parrot](../../../card/Parrot.md) is more than just PIR and PASM. I'm not talking about the

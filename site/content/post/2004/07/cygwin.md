@@ -4,13 +4,13 @@ aliases:
 - /post/2004/cygwin/
 - /2004/07/08/cygwin/
 category: post
+created: 2024-01-15 15:25:45-08:00
 date: 2004-07-08 00:00:00-07:00
 slug: cygwin
 tags:
 - coolnamehere
 title: Cygwin
-created: 2024-01-15T15:25:45-08:00
-updated: 2024-01-26T09:18:36-08:00
+updated: 2024-01-26 09:18:36-08:00
 ---
 
 ## Unix for the Windows World

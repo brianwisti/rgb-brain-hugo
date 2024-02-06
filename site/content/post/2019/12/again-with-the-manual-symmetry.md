@@ -3,6 +3,7 @@ aliases:
 - /note/2019/349/again-with-the-manual-symmetry/
 - /note/2019/12/again-with-the-manual-symmetry/
 category: note
+created: 2024-01-15 15:26:38-08:00
 date: 2019-12-15 12:37:51-08:00
 slug: again-with-the-manual-symmetry
 syndication:
@@ -13,8 +14,7 @@ tags:
 - procreate
 - symmetry
 title: Again with the manual symmetry
-created: 2024-01-15T15:26:38-08:00
-updated: 2024-02-01T21:53:12-08:00
+updated: 2024-02-01 21:53:12-08:00
 ---
 
 I spent forty hours over the last month or so *Drawing* this.

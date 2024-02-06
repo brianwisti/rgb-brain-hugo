@@ -3,6 +3,7 @@ aliases:
 - /post/2015/half-a-life/
 - /2015/10/02/half-a-life/
 category: post
+created: 2024-01-15 15:25:27-08:00
 date: 2015-10-02 00:00:00-07:00
 description: Brian ponders midlife and plutoids
 slug: half-a-life
@@ -10,8 +11,7 @@ tags:
 - space
 - marginalia
 title: Half a Life
-created: 2024-01-15T15:25:27-08:00
-updated: 2024-01-26T10:13:20-08:00
+updated: 2024-01-26 10:13:20-08:00
 ---
 
 Scientists discovered Pluto had a moon when I was six years old. This is what they had to work with.

@@ -2,6 +2,7 @@
 aliases:
 - /2019/05/20/chronological-taxonomy-listings-in-hugo/
 category: post
+created: 2024-01-15 15:26:36-08:00
 date: 2019-05-20 00:00:00-07:00
 slug: chronological-taxonomy-listings-in-hugo
 syndication:
@@ -12,8 +13,7 @@ tags:
 - hugo
 - tools
 title: Chronological Taxonomy Listings in Hugo
-created: 2024-01-15T15:26:36-08:00
-updated: 2024-02-01T19:59:05-08:00
+updated: 2024-02-01 19:59:05-08:00
 ---
 
 The archive pages now list tags and categories such that the ones with most recent posts come first!

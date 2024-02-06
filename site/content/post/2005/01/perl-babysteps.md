@@ -4,6 +4,7 @@ aliases:
 - /post/2005/perl-babysteps/
 - /2005/01/04/perl-babysteps/
 category: post
+created: 2024-01-15 15:25:43-08:00
 date: 2005-01-04 00:00:00-08:00
 slug: perl-babysteps
 tags:
@@ -11,8 +12,7 @@ tags:
 - learn
 - coolnamehere
 title: Perl Babysteps
-created: 2024-01-15T15:25:43-08:00
-updated: 2024-01-26T09:19:08-08:00
+updated: 2024-01-26 09:19:08-08:00
 ---
 
 Let’s admit it. Perl is *everywhere*. It powers most of the Internet, in one form or another. What? Your site doesn’t use Perl and CGI? Well, what about the administrative scripts that keep it running smoothly when everyone is snug in their beds? Even a fair chunk of Microsoft IIS servers rely on Perl for administrative tasks. I’m not saying that Perl is being used on every site on the Internet, including yours. I’m saying that Perl is probably being used on any random site you happen to look at on the Internet, including yours.

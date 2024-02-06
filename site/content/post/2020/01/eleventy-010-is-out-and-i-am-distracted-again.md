@@ -4,6 +4,7 @@ aliases:
 - /note/2020/01/eleventy-0.10.0-is-out-and-i-am-distracted-again/
 - /note/2020/01/eleventy-010-is-out-and-i-am-distracted-again/
 category: note
+created: 2024-01-15 15:26:31-08:00
 date: 2020-01-07 21:19:30-08:00
 slug: eleventy-010-is-out-and-i-am-distracted-again
 tags:
@@ -12,8 +13,7 @@ tags:
 - possum
 - the-logo-makes-the-project
 title: Eleventy 0.10.0 is out and I am distracted again
-created: 2024-01-15T15:26:31-08:00
-updated: 2024-02-01T20:10:42-08:00
+updated: 2024-02-01 20:10:42-08:00
 ---
 
 Making note of this [tweet](https://twitter.com/eleven_ty/status/1214681563507699713) for later.

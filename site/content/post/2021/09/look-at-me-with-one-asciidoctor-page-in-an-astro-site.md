@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/09/look-at-me-with-one-asciidoctor-page-in-an-astro-site/
 category: note
+created: 2024-01-15 15:26:10-08:00
 date: 2021-09-18 00:00:00-07:00
 slug: look-at-me-with-one-asciidoctor-page-in-an-astro-site
 syndication:
@@ -11,8 +12,7 @@ tags:
 - asciidoctor
 - astro-dot-build
 title: Look at me with one Asciidoctor page in an Astro site
-created: 2024-01-15T15:26:10-08:00
-updated: 2024-02-01T20:24:27-08:00
+updated: 2024-02-01 20:24:27-08:00
 ---
 
 ![attachments/img/2021/cover-2021-09-18.png](../../../attachments/img/2021/cover-2021-09-18.png)

@@ -3,6 +3,7 @@ aliases:
 - /note/2020/105/useful-overview-of-neurodiversity/
 - /note/2020/04/useful-overview-of-neurodiversity/
 category: note
+created: 2024-01-15 15:26:31-08:00
 date: 2020-04-14 14:11:00-07:00
 slug: useful-overview-of-neurodiversity
 syndication:
@@ -13,8 +14,7 @@ tags:
 - mental-health
 - neurodiversity
 title: Useful Overview of Neurodiversity
-created: 2024-01-15T15:26:31-08:00
-updated: 2024-01-26T11:03:02-08:00
+updated: 2024-01-26 11:03:02-08:00
 ---
 
 Myk Bolkonstky's [Things Every Software Engineer Should Know About Neurodiversity](https://egghead.io/lessons/egghead-things-every-software-engineer-should-know-about-neurodiversity):

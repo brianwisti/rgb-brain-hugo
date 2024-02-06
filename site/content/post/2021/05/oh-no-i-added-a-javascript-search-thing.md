@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/05/oh-no-i-added-a-javascript-search-thing/
 category: note
+created: 2024-01-15 15:26:11-08:00
 date: 2021-05-14 00:00:00-07:00
 slug: oh-no-i-added-a-javascript-search-thing
 syndication:
@@ -12,8 +13,7 @@ tags:
 - javascript
 - hyperscript
 title: oh no i added a javascript search thing
-created: 2024-01-15T15:26:11-08:00
-updated: 2024-02-01T20:33:04-08:00
+updated: 2024-02-01 20:33:04-08:00
 ---
 
 And a touch of [\_hyperscript](https://hyperscript.org/).

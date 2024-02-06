@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/clearing-the-tracks-as-we-go-is-part-of-the-fun/
 category: note
+created: 2024-01-15 15:26:29-08:00
 date: 2020-05-10 17:31:00-07:00
 slug: clearing-the-tracks-as-we-go-is-part-of-the-fun
 syndication:
@@ -13,8 +14,7 @@ tags:
 - indieweb-is-like-boatmurdered
 - losing-is-fun
 title: Clearing the tracks as we go is part of the fun
-created: 2024-01-15T15:26:29-08:00
-updated: 2024-01-26T11:01:38-08:00
+updated: 2024-01-26 11:01:38-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-10.jpg](../../../attachments/img/2020/cover-2020-05-10.jpg)

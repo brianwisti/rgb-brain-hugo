@@ -4,6 +4,7 @@ aliases:
 - /post/2007/xcbxlibunlock-issues-java-on-fedora/
 - /2007/11/26/xcb_xlib_unlock-issues-java-on-fedora/
 category: post
+created: 2024-01-15 15:25:41-08:00
 date: 2007-11-26 00:00:00-08:00
 slug: xcb-xlib-unlock-issues-java-on-fedora
 tags:
@@ -12,8 +13,7 @@ tags:
 - i-fixed-it
 - blogspot
 title: xcb_xlib_unlock issues - Java on Fedora
-created: 2024-01-15T15:25:41-08:00
-updated: 2024-01-26T09:22:24-08:00
+updated: 2024-01-26 09:22:24-08:00
 ---
 
 I decided to install the Sun JDK on my new Fedora install today on *Linux*. Tried downloading the JDK/NetBeans self-installing bundle. It didn't work. I got an error in xcb_xlib:xcb_xlib_unlock - something about a failed assertion. While running the installer. Drat.

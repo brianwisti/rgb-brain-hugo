@@ -4,6 +4,7 @@ aliases:
 - /post/2010/0a-the-stellar-project/
 - /2010/06/02/parrot-babysteps-0a-the-stellar-project/
 category: post
+created: 2024-01-15 15:25:33-08:00
 date: 2010-06-02 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -14,8 +15,7 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 0a - The Stellar Project
-created: 2024-01-15T15:25:33-08:00
-updated: 2024-01-26T10:09:49-08:00
+updated: 2024-01-26 10:09:49-08:00
 ---
 
 We just learned how to create and test [simple Parrot projects](/post/2010/04/parrot-babysteps-09-simple-projects). The next step

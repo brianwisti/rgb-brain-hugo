@@ -3,6 +3,7 @@ aliases:
 - /post/2017/summer-reading/
 - /2017/08/17/summer-reading/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-08-17 00:00:00-07:00
 slug: summer-reading
 syndication:
@@ -11,8 +12,7 @@ tags:
 - books
 - marginalia
 title: Summer Reading
-created: 2024-01-15T15:26:50-08:00
-updated: 2024-02-02T10:02:02-08:00
+updated: 2024-02-02 10:02:02-08:00
 ---
 
 What have I been doing with my spare time? I’ve been reading books. Not too  much. Mostly tech.

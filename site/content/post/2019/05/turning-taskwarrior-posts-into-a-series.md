@@ -2,6 +2,7 @@
 aliases:
 - /2019/05/12/turning-taskwarrior-posts-into-a-series/
 category: post
+created: 2024-01-15 15:26:37-08:00
 date: 2019-05-12 00:00:00-07:00
 description: There's a new taxonomy for posts that are written in a particular order!
 slug: turning-taskwarrior-posts-into-a-series
@@ -14,8 +15,7 @@ tags:
 - site
 - tools
 title: Turning Taskwarrior Posts Into a Series
-created: 2024-01-15T15:26:37-08:00
-updated: 2024-02-01T21:05:03-08:00
+updated: 2024-02-01 21:05:03-08:00
 ---
 
 ![attachments/img/2019/cover-2019-05-12.jpg](../../../attachments/img/2019/cover-2019-05-12.jpg)

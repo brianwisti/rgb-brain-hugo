@@ -2,6 +2,7 @@
 aliases:
 - /2019/03/19/garden-mandala/
 category: post
+created: 2024-01-15 15:26:34-08:00
 date: 2019-03-19 00:00:00-07:00
 slug: garden-mandala
 syndication:
@@ -13,8 +14,7 @@ tags:
 - buy-me
 - craft
 title: Garden Mandala
-created: 2024-01-15T15:26:34-08:00
-updated: 2024-02-02T09:41:40-08:00
+updated: 2024-02-02 09:41:40-08:00
 ---
 
 A Samsung Note 9 means my phone drawing has been upgraded.

@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/09/work-break-with-eleventy/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-09-19 13:10:16-07:00
 slug: work-break-with-eleventy
 syndication:
@@ -11,8 +12,7 @@ tags:
 - eleventy
 - site
 title: Work Break with Eleventy
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:12-08:00
+updated: 2024-01-26 11:00:12-08:00
 ---
 
 ![attachments/img/2020/cover-2020-09-19.png](../../../attachments/img/2020/cover-2020-09-19.png)

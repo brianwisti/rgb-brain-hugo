@@ -2,6 +2,7 @@
 aliases:
 - /2018/02/07/my-circular-beanie/
 category: post
+created: 2024-01-15 15:26:49-08:00
 date: 2018-02-07 00:00:00-08:00
 slug: my-circular-beanie
 tags:
@@ -9,8 +10,7 @@ tags:
 - hat
 - craft
 title: My Circular Beanie
-created: 2024-01-15T15:26:49-08:00
-updated: 2024-02-02T09:50:07-08:00
+updated: 2024-02-02 09:50:07-08:00
 ---
 
 I made myself a snug beanie hat by *Knitting* in the round.

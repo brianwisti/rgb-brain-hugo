@@ -3,6 +3,7 @@ aliases:
 - /note/2020/113/why-do-i-blog/
 - /note/2020/04/why-do-i-blog/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-04-22 13:00:00-07:00
 slug: why-do-i-blog
 syndication:
@@ -16,8 +17,7 @@ tags:
 - but-not-a-proper-indieweb-reply
 - sorry
 title: Why Do I Blog?
-created: 2024-01-15T15:26:30-08:00
-updated: 2024-01-26T11:03:03-08:00
+updated: 2024-01-26 11:03:03-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-22.jpg](../../../attachments/img/2020/cover-2020-04-22.jpg)

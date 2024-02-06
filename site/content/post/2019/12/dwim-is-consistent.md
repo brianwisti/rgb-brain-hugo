@@ -3,6 +3,7 @@ aliases:
 - /2019/12/27/dwim-is-consistent/
 - /post/2019/12/dwim-is-consistent/
 category: post
+created: 2024-01-15 15:26:34-08:00
 date: 2019-12-27 00:00:00-08:00
 slug: dwim-is-consistent
 syndication:
@@ -14,8 +15,7 @@ tags:
 - dwim
 - programming
 title: DWIM is consistent
-created: 2024-01-15T15:26:34-08:00
-updated: 2024-02-01T20:06:29-08:00
+updated: 2024-02-01 20:06:29-08:00
 ---
 
 Moshe Zadka has been [writing](https://opensource.com/users/moshez) a mostly excellent exploration of the [Zen of  Python](https://www.python.org/dev/peps/pep-0020/) for [Opensource.com](https://opensource.com). Not sure I approve of this take on guessing, from [The importance of consistency in your Python code](https://opensource.com/article/19/12/zen-python-consistency):

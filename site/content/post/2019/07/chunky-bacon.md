@@ -3,6 +3,7 @@ aliases:
 - /note/2019/185/chunky-bacon/
 - /note/2019/07/chunky-bacon/
 category: note
+created: 2024-01-15 15:26:42-08:00
 date: 2019-07-04 13:41:24-07:00
 slug: chunky-bacon
 syndication:
@@ -15,8 +16,7 @@ tags:
 - drawing
 - chunky-bacon
 title: Chunky Bacon
-created: 2024-01-15T15:26:42-08:00
-updated: 2024-02-01T19:59:15-08:00
+updated: 2024-02-01 19:59:15-08:00
 ---
 
 ![attachments/img/2019/cover-2019-07-04.png](../../../attachments/img/2019/cover-2019-07-04.png)

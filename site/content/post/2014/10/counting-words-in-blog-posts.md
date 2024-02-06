@@ -4,6 +4,7 @@ aliases:
 - /post/2014/counting-words/
 - /2014/10/02/counting-words-in-blog-posts/
 category: post
+created: 2024-01-15 15:25:30-08:00
 date: 2014-10-02 00:00:00-07:00
 description: Using Ruby to track my verbosity
 slug: counting-words-in-blog-posts
@@ -11,8 +12,7 @@ tags:
 - ruby
 - programming
 title: Counting Words in Blog Posts
-created: 2024-01-15T15:25:30-08:00
-updated: 2024-02-01T20:00:59-08:00
+updated: 2024-02-01 20:00:59-08:00
 ---
 
 I want to write at least 250 words per day. This is not a 30 day challenge. It is just something I want to do. I write more than 250 words daily when you count social network posts and chat text. Wouldn't it be nice if some of those words were organized around a single idea?

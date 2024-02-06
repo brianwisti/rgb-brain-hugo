@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/06/working-on-breadcrumbs/
 category: note
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-11 22:38:43-07:00
 slug: working-on-breadcrumbs
 syndication:
@@ -13,8 +14,7 @@ tags:
 - site
 - now
 title: Working on Breadcrumbs
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-01-26T11:00:33-08:00
+updated: 2024-01-26 11:00:33-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-11.jpg](../../../attachments/img/2020/cover-2020-06-11.jpg)

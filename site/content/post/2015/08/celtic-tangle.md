@@ -4,6 +4,7 @@ aliases:
 - /craft/2015/celtic-tangle/
 - /2015/08/01/celtic-tangle/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-08-01 00:00:00-07:00
 slug: celtic-tangle
 tags:
@@ -12,8 +13,7 @@ tags:
 - celtic
 - craft
 title: Celtic Tangle
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-01-26T10:13:10-08:00
+updated: 2024-01-26 10:13:10-08:00
 ---
 
 Another [Zentangle](../../../card/Zentangle.md) practice. This time I mixed in a couple of minor Celtic design elements.

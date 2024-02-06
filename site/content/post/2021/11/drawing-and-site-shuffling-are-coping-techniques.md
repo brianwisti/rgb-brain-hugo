@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/11/drawing-and-site-shuffling-are-coping-techniques/
 category: note
+created: 2024-01-15 15:26:09-08:00
 date: 2021-11-07 00:00:00+00:00
 slug: drawing-and-site-shuffling-are-coping-techniques
 syndication:
@@ -13,8 +14,7 @@ tags:
 - symmetry
 - site
 title: Drawing and site shuffling are coping techniques
-created: 2024-01-15T15:26:09-08:00
-updated: 2024-01-26T10:21:24-08:00
+updated: 2024-01-26 10:21:24-08:00
 ---
 
 ![attachments/img/2021/cover-2021-11-07.jpg](../../../attachments/img/2021/cover-2021-11-07.jpg)

@@ -3,6 +3,7 @@ aliases:
 - /note/2020/56/that-is-just-embarrassing/
 - /note/2020/02/that-is-just-embarrassing/
 category: note
+created: 2024-01-15 15:26:28-08:00
 date: 2020-02-25 21:41:36-08:00
 slug: that-is-just-embarrassing
 syndication:
@@ -13,8 +14,7 @@ tags:
 - oops
 - i-fixed-it
 title: That Is Just Embarrassing
-created: 2024-01-15T15:26:28-08:00
-updated: 2024-02-02T10:04:20-08:00
+updated: 2024-02-02 10:04:20-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-25.png](../../../attachments/img/2020/cover-2020-02-25.png)

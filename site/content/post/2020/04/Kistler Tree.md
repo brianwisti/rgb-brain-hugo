@@ -3,6 +3,7 @@ aliases:
 - /note/2020/109/kistler-tree/
 - /note/2020/04/kistler-tree/
 category: note
+created: 2024-01-15 15:25:59-08:00
 date: 2020-04-18 20:25:00-07:00
 slug: kistler-tree
 syndication:
@@ -13,8 +14,7 @@ tags:
 - procreate
 - art-attack
 title: Kistler Tree
-created: 2024-01-15T15:25:59-08:00
-updated: 2024-01-26T09:01:53-08:00
+updated: 2024-01-26 09:01:53-08:00
 ---
 
 Found this in my image folder the other day. It’s from working through [Mark Kistler](https://markkistler.com/)'s book *You can Draw in 30 Days* last year. I like it. Sure I kinda already know I can draw. But it’s good to refresh yourself every so often.

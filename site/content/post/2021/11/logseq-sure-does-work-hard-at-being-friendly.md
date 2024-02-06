@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/11/logseq-sure-does-work-hard-at-being-friendly/
 category: note
+created: 2024-01-15 15:26:09-08:00
 date: 2021-11-14 00:00:00+00:00
 slug: logseq-sure-does-work-hard-at-being-friendly
 syndication:
@@ -9,8 +10,7 @@ syndication:
 tags:
 - logseq
 title: Logseq sure does work hard at being friendly
-created: 2024-01-15T15:26:09-08:00
-updated: 2024-02-01T20:24:14-08:00
+updated: 2024-02-01 20:24:14-08:00
 ---
 
 ![attachments/img/2021/cover-2021-11-14.png](../../../attachments/img/2021/cover-2021-11-14.png)

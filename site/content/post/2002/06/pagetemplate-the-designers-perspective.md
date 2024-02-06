@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2002/06/02_the-designers-perspective.html
 - /post/2002/the-designers-perspective/
 category: post
+created: 2024-01-15 15:25:47-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetemplate-the-designers-perspective
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - The Designer's Perspective
-created: 2024-01-15T15:25:47-08:00
-updated: 2024-01-26T09:17:56-08:00
+updated: 2024-01-26 09:17:56-08:00
 ---
 
 # Who Are You?

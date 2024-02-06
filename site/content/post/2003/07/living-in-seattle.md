@@ -4,6 +4,7 @@ aliases:
 - /post/2003/living-in-seattle/
 - /2003/07/11/living-in-seattle/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2003-07-11 00:00:00-07:00
 description: circa 2003, at least.
 slug: living-in-seattle
@@ -13,8 +14,7 @@ tags:
 - exploring
 - coolnamehere
 title: Living in Seattle
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-01-26T09:18:20-08:00
+updated: 2024-01-26 09:18:20-08:00
 ---
 
 Seattle is a city. It may not be as big as Los Angeles or New York, but it is still a city. You do not have an excuse to be bored, even if you are flat broke. My wife and I have lived in Seattle since 1999, and it still feels like we are scraping the surface of what this area has to

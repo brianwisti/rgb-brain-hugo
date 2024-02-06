@@ -4,6 +4,7 @@ aliases:
 - /post/2008/pagetemplate-for-site-generation-part-2/
 - /2008/01/07/pagetemplate-for-site-generation-part-2/
 category: post
+created: 2024-01-15 15:25:38-08:00
 date: 2008-01-07 00:00:00-08:00
 slug: pagetemplate-for-site-generation-part-2
 tags:
@@ -11,8 +12,7 @@ tags:
 - ruby
 - blogspot
 title: PageTemplate for Site Generation Part 2
-created: 2024-01-15T15:25:38-08:00
-updated: 2024-01-26T09:23:00-08:00
+updated: 2024-01-26 09:23:00-08:00
 ---
 
 I've got my [Ruby](../../../card/Ruby.md) code [filtering Markdown](pagetemplate-for-site-generation.md) and now I want to stuff that filtered content into an HTML page. I could just use `maruku#to_html_document`, but I need the ability to add details like a title and site-related links.

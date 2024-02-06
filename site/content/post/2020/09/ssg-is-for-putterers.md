@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/09/ssg-is-for-putterers/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-09-20 10:29:56-07:00
 slug: ssg-is-for-putterers
 syndication:
@@ -13,8 +14,7 @@ tags:
 - puttering
 - indieweb
 title: SSG is for putterers
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-02-01T20:54:07-08:00
+updated: 2024-02-01 20:54:07-08:00
 ---
 
 **Kev Quirk on static site generators** — [WordPress Creator Vs The Jamstack](https://kevq.uk/wordpress-creator-vs-the-jamstack/) (2020-05-20)

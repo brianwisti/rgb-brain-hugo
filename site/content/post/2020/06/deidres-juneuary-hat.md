@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/06/deidres-juneuary-hat/
 category: note
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-24 15:02:53-07:00
 slug: deidres-juneuary-hat
 syndication:
@@ -11,8 +12,7 @@ tags:
 - knitting
 - hat
 title: Deidre's Juneuary Hat
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-01-26T11:00:23-08:00
+updated: 2024-01-26 11:00:23-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-24.jpg](../../../attachments/img/2020/cover-2020-06-24.jpg)

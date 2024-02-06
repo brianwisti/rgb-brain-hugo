@@ -2,6 +2,7 @@
 aliases:
 - /2020/04/21/getting-file-info-from-the-shell/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2020-04-21 15:11:17-07:00
 description: I could right click for properties but the mouse is way over there
 slug: getting-file-info-from-the-shell
@@ -14,8 +15,7 @@ tags:
 - exiftool
 - tools
 title: Getting File Info From The Shell
-created: 2024-01-15T15:26:48-08:00
-updated: 2024-02-02T09:42:17-08:00
+updated: 2024-02-02 09:42:17-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-21.jpg](../../../attachments/img/2020/cover-2020-04-21.jpg)

@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/06/so-chemacs-is-kinda-cool/
 category: note
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-25 22:33:35-07:00
 slug: so-chemacs-is-kinda-cool
 syndication:
@@ -11,8 +12,7 @@ tags:
 - emacs
 - orgconfig
 title: so chemacs is kinda cool
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-01-26T11:00:27-08:00
+updated: 2024-01-26 11:00:27-08:00
 ---
 
 ![attachments/img/2020/cover-2020-06-25.png](../../../attachments/img/2020/cover-2020-06-25.png)

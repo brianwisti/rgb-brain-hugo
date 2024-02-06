@@ -3,6 +3,7 @@ aliases:
 - /note/2019/358/removing-mmark-has-me-grumbly/
 - /note/2019/12/removing-mmark-has-me-grumbly/
 category: note
+created: 2024-01-15 15:26:35-08:00
 date: 2019-12-24 23:42:30-08:00
 slug: removing-mmark-has-me-grumbly
 syndication:
@@ -13,8 +14,7 @@ tags:
 - hugo
 - whinging
 title: Removing mmark has me grumbly
-created: 2024-01-15T15:26:35-08:00
-updated: 2024-02-01T20:46:32-08:00
+updated: 2024-02-01 20:46:32-08:00
 ---
 
 So the [Hugo](https://gohugo.io) team is [deprecating](https://github.com/gohugoio/hugo/issues/6486) the [mmark](https://mmark.miek.nl/) Markdown parser. This is an understandable decision. Providing all those options must make Hugo a challenge to maintain and improve.

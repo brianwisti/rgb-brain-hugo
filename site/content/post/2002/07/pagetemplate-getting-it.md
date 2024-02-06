@@ -4,14 +4,14 @@ aliases:
 - /post/2002/getting-it/
 - /2002/07/11/pagetemplate-getting-it/
 category: post
+created: 2024-01-15 15:25:48-08:00
 date: 2002-07-11 00:00:00-07:00
 slug: pagetemplate-getting-it
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Getting It
-created: 2024-01-15T15:25:48-08:00
-updated: 2024-01-26T09:18:10-08:00
+updated: 2024-01-26 09:18:10-08:00
 ---
 
 We have tried to make installing PageTemplate as easy as possible. There

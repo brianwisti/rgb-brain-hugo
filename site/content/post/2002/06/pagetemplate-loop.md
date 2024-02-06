@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2002/06/02_loop.html
 - /post/2002/loop/
 category: post
+created: 2024-01-15 15:25:50-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetemplate-loop
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Loop
-created: 2024-01-15T15:25:50-08:00
-updated: 2024-02-01T16:15:25-08:00
+updated: 2024-02-01 16:15:25-08:00
 ---
 
 ## Loop Basics

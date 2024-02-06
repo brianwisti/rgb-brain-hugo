@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/my-therapist-would-love-this-if-i-had-one/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-05-09 23:10:00-07:00
 slug: my-therapist-would-love-this-if-i-had-one
 syndication:
@@ -13,8 +14,7 @@ tags:
 - cabin-fever
 - covid-lockdown-nights
 title: My Therapist Would Love This if I Had One
-created: 2024-01-15T15:26:30-08:00
-updated: 2024-01-26T11:01:20-08:00
+updated: 2024-01-26 11:01:20-08:00
 ---
 
 Screaming frog? Angry Pac-Man? No idea.

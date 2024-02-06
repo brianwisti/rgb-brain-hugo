@@ -4,6 +4,7 @@ aliases:
 - /post/2014/duplicate-files/
 - /2014/12/13/finding-and-removing-duplicate-files/
 category: post
+created: 2024-01-15 15:25:30-08:00
 date: 2014-12-13 00:00:00-08:00
 description: Perl CPAN modules to simplify file cleanup
 slug: finding-and-removing-duplicate-files
@@ -14,8 +15,7 @@ tags:
 - files
 - programming
 title: Finding and Removing Duplicate Files
-created: 2024-01-15T15:25:30-08:00
-updated: 2024-02-01T20:12:28-08:00
+updated: 2024-02-01 20:12:28-08:00
 ---
 
 [Perl](../../../card/Perl.md) CPAN modules to simplify file cleanup

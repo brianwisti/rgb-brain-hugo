@@ -4,13 +4,13 @@ aliases:
 - /post/2012/oh-yeah-ryan-davis-is-awesome/
 - /2012/08/20/oh-yeah-ryan-davis-is-awesome/
 category: post
+created: 2024-01-15 15:25:49-08:00
 date: 2012-08-20 00:00:00-07:00
 slug: oh-yeah-ryan-davis-is-awesome
 tags:
 - blogspot
 title: Oh yeah, Ryan Davis is awesome
-created: 2024-01-15T15:25:49-08:00
-updated: 2024-01-26T10:10:47-08:00
+updated: 2024-01-26 10:10:47-08:00
 ---
 
 Found out about a talk from Ryan Davis at Cascadia RubyConf because of an [incensed reaction](http://gilesbowkett.blogspot.com/2012/08/ryan-davis-you-are-idiot-liar-or-fool.html) to it from Giles Bowkett on *his* blog. Thing is, I like the talk. I even like the bits that Bowkett doesn't. Of course, I wasn't one of the folks specifically mentioned, and he was. So there's going to be a different perspective there.

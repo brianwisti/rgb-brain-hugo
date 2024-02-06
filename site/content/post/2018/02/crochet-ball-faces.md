@@ -2,6 +2,7 @@
 aliases:
 - /2018/02/28/crochet-ball-faces/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2018-02-28 00:00:00-08:00
 slug: crochet-ball-faces
 tags:
@@ -9,8 +10,7 @@ tags:
 - amigurumi
 - craft
 title: Crochet Ball Faces
-created: 2024-01-15T15:26:43-08:00
-updated: 2024-02-01T22:12:45-08:00
+updated: 2024-02-01 22:12:45-08:00
 ---
 
 I still aspire to learn [amigurumi](https://en.wikipedia.org/wiki/Amigurumi).

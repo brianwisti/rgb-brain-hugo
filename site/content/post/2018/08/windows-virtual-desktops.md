@@ -2,14 +2,14 @@
 aliases:
 - /2018/08/30/windows-virtual-desktops/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2018-08-30 00:00:00-07:00
 slug: windows-virtual-desktops
 tags:
 - windows
 - tools
 title: Windows Virtual Desktops
-created: 2024-01-15T15:26:43-08:00
-updated: 2024-02-01T21:59:22-08:00
+updated: 2024-02-01 21:59:22-08:00
 ---
 
 A short post noting *Windows* 10 keyboard shortcuts for virtual desktops

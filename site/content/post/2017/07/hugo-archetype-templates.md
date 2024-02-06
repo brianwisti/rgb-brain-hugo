@@ -3,6 +3,7 @@ aliases:
 - /post/2017/hugo-archetype-templates/
 - /2017/07/01/hugo-archetype-templates/
 category: post
+created: 2024-01-15 15:26:13-08:00
 date: 2017-07-01 00:00:00-07:00
 slug: hugo-archetype-templates
 syndication:
@@ -13,8 +14,7 @@ tags:
 - bash
 - tools
 title: Hugo Archetype Templates
-created: 2024-01-15T15:26:13-08:00
-updated: 2024-02-01T20:15:19-08:00
+updated: 2024-02-01 20:15:19-08:00
 ---
 
 ![attachments/img/2017/cover-2017-07-01.png](../../../attachments/img/2017/cover-2017-07-01.png)

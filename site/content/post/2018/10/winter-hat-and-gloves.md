@@ -2,6 +2,7 @@
 aliases:
 - /2018/10/27/winter-hat-and-gloves/
 category: post
+created: 2024-01-15 15:26:46-08:00
 date: 2018-10-27 00:00:00-07:00
 slug: winter-hat-and-gloves
 tags:
@@ -10,8 +11,7 @@ tags:
 - gloves
 - craft
 title: Winter Hat and Gloves
-created: 2024-01-15T15:26:46-08:00
-updated: 2024-02-02T10:02:40-08:00
+updated: 2024-02-02 10:02:40-08:00
 ---
 
 I made  myself a hat and gloves in matching colors for winter.

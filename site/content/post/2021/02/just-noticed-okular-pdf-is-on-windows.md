@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/02/just-noticed-okular-pdf-is-on-windows/
 category: note
+created: 2024-01-15 15:26:20-08:00
 date: 2021-02-19 11:37:37-08:00
 slug: just-noticed-okular-pdf-is-on-windows
 syndication:
@@ -11,8 +12,7 @@ tags:
 - windows
 - tools
 title: Just noticed Okular PDF is on Windows
-created: 2024-01-15T15:26:20-08:00
-updated: 2024-01-26T10:22:22-08:00
+updated: 2024-01-26 10:22:22-08:00
 ---
 
 ![attachments/img/2021/cover-2021-02-19.png](../../../attachments/img/2021/cover-2021-02-19.png)

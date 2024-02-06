@@ -5,6 +5,7 @@ aliases:
 - /2014/05/27/elisp-functions-described-in-the-emacs-tutorial/
 - /post/2014/05/elisp-functions-described-in-the-emacs-tutorial/
 category: post
+created: 2024-01-15 15:25:28-08:00
 date: 2014-05-27 00:00:00-07:00
 slug: elisp-functions-described-in-the-emacs-tutorial
 tags:
@@ -13,8 +14,7 @@ tags:
 - tutorial
 - tools
 title: Elisp Functions Described in the Emacs Tutorial
-created: 2024-01-15T15:25:28-08:00
-updated: 2024-02-02T09:40:45-08:00
+updated: 2024-02-02 09:40:45-08:00
 ---
 
 The [other day](the-emacs-tutorial-as-elisp-tour.md) I talked some sort of nonsense about organizing my notes into some sort of coherent blog post. Heck with that. Life is too short. Instead I will just dump them here and hope somebody finds them useful. Maybe later I can do something with it. For now it's just supplemental material for the official [Emacs](../../../card/Emacs.md) tutorial.

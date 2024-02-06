@@ -5,6 +5,7 @@ aliases:
 - /2015/07/19/making-a-jekyll-collection/
 - /post/2015/07/making-a-jekyll-collection/
 category: post
+created: 2024-01-15 15:25:26-08:00
 date: 2015-07-19 00:00:00-07:00
 description: In which I try out Jekyll's experimental Collections
 slug: making-a-jekyll-collection
@@ -15,8 +16,7 @@ tags:
 - site
 - tools
 title: Making a Jekyll Collection
-updated: 2024-02-02T09:49:15-08:00
-created: 2024-01-15T15:25:26-08:00
+updated: 2024-02-02 09:49:15-08:00
 ---
 
 [Jekyll](../../../card/Jekyll.md) currently generates the HTML for my site. I am curious about the experimental [collections](http://jekyllrb.com/docs/collections/) feature, and whether it could be useful for me.

@@ -4,14 +4,14 @@ aliases:
 - /post/2009/perl-hacks-in-my-workspace/
 - /2009/09/21/perl-hacks-in-my-workspace/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-09-21 00:00:00-07:00
 slug: perl-hacks-in-my-workspace
 tags:
 - perl
 - coolnamehere
 title: Perl Hacks In My Workspace
-created: 2024-01-15T15:25:37-08:00
-updated: 2024-01-26T09:58:25-08:00
+updated: 2024-01-26 09:58:25-08:00
 ---
 
 Looking at some specific hacks from the O'Reilly [Perl Hacks](http://oreilly.com/catalog/9780596526740/) book for my own [Perl](../../../card/Perl.md) workflow. It should be obvious from the tone and content that this is not intended to replace any of the  original material or take credit for anything in the book. 

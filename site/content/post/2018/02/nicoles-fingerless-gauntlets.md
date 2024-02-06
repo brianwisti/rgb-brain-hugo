@@ -2,6 +2,7 @@
 aliases:
 - /2018/02/02/nicoles-fingerless-gauntlets/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2018-02-02 00:00:00-08:00
 slug: nicoles-fingerless-gauntlets
 tags:
@@ -9,8 +10,7 @@ tags:
 - gloves
 - craft
 title: Nicole's Fingerless Gauntlets
-created: 2024-01-15T15:26:51-08:00
-updated: 2024-02-02T09:53:46-08:00
+updated: 2024-02-02 09:53:46-08:00
 ---
 
 Still catching up with the backlog of finished knitting. Finished these a couple weeks ago.

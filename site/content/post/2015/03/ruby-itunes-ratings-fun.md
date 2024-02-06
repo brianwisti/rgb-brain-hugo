@@ -4,6 +4,7 @@ aliases:
 - /post/2015/ruby-itunes-ratings-fun/
 - /2015/03/16/ruby-itunes-ratings-fun/
 category: post
+created: 2024-01-15 15:25:25-08:00
 date: 2015-03-16 00:00:00-07:00
 description: Using Ruby to summarize my iTunes music ratings
 slug: ruby-itunes-ratings-fun
@@ -16,8 +17,7 @@ tags:
 - music
 - programming
 title: Ruby iTunes Ratings Fun
-created: 2024-01-15T15:25:25-08:00
-updated: 2024-02-01T20:51:28-08:00
+updated: 2024-02-01 20:51:28-08:00
 ---
 
 I use the [plist](https://github.com/bleything/plist) and [gruff](https://github.com/topfunky/gruff) gems to summarize my iTunes music ratings with [Ruby](../../../card/Ruby.md)

@@ -4,14 +4,14 @@ aliases:
 - /post/2002/the-programmers-perspective/
 - /2002/06/02/pagetemplate-the-programmers-perspective/
 category: post
+created: 2024-01-15 15:26:02-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetemplate-the-programmers-perspective
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - The Programmer's Perspective
-created: 2024-01-15T15:26:02-08:00
-updated: 2024-02-01T20:34:55-08:00
+updated: 2024-02-01 20:34:55-08:00
 ---
 
 Using [pagetemplate](pagetemplate.md) within [Ruby](../../../card/Ruby.md) applications.

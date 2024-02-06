@@ -3,6 +3,7 @@ aliases:
 - /note/2019/297/bookmarking-the-kexp-livestream-links/
 - /note/2019/10/bookmarking-the-kexp-livestream-links/
 category: note
+created: 2024-01-15 15:26:23-08:00
 date: 2019-10-24 07:53:13-07:00
 slug: bookmarking-the-kexp-livestream-links
 syndication:
@@ -13,8 +14,7 @@ tags:
 - from-a-more-civilized-age
 - kexp
 title: Bookmarking the KEXP livestream links
-created: 2024-01-15T15:26:23-08:00
-updated: 2024-02-01T19:56:30-08:00
+updated: 2024-02-01 19:56:30-08:00
 ---
 
 ![attachments/img/2019/cover-2019-10-24.jpg](../../../attachments/img/2019/cover-2019-10-24.jpg)

@@ -3,6 +3,7 @@ aliases:
 - /note/2019/299/couple-decades-now/
 - /note/2019/10/couple-decades-now/
 category: note
+created: 2024-01-15 15:26:34-08:00
 date: 2019-10-26 08:13:24-07:00
 slug: couple-decades-now
 syndication:
@@ -14,8 +15,7 @@ tags:
 - time-is-an-illusion
 - lunchtime-doubly-so
 title: Couple decades now
-created: 2024-01-15T15:26:34-08:00
-updated: 2024-02-01T20:01:12-08:00
+updated: 2024-02-01 20:01:12-08:00
 ---
 
 ![attachments/img/2019/cover-2019-10-26.jpg](../../../attachments/img/2019/cover-2019-10-26.jpg)

@@ -1,14 +1,15 @@
 ---
-title: My Nushell config file
 aliases:
 - /config/nushell/config.nu/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
 - nushell
+title: My Nushell config file
+updated: 2024-02-05 16:22:30-08:00
 ---
 
-Been taking a closer look at the [default config](https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_config.nu),
-mainly so I can understand what I want to change.
+Been taking a closer look at the [default config](https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_config.nu), mainly so I can understand what I want to change.
 
 ````nushell
 // ==> Define completions module.

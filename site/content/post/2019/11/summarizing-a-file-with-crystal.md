@@ -2,8 +2,10 @@
 aliases:
 - /2019/11/17/summarizing-a-file-with-crystal/
 category: post
+created: 2024-01-15 15:26:40-08:00
 date: 2019-11-17 00:00:00-08:00
-description: Been busy, but let's take a minute to summarize a file's details with [Crystal](https://crystal-lang.org/)
+description: Been busy, but let's take a minute to summarize a file's details with
+  [Crystal](https://crystal-lang.org/)
 slug: summarizing-a-file-with-crystal
 syndication:
   mastodon: https://hackers.town/@randomgeek/103152258645062862
@@ -13,8 +15,7 @@ tags:
 - files
 - programming
 title: Summarizing A File With Crystal
-created: 2024-01-15T15:26:40-08:00
-updated: 2024-02-02T10:01:37-08:00
+updated: 2024-02-02 10:01:37-08:00
 ---
 
 ![attachments/img/2019/cover-2019-11-17.png](../../../attachments/img/2019/cover-2019-11-17.png)

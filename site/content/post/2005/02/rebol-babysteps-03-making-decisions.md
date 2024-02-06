@@ -4,6 +4,7 @@ aliases:
 - /post/2005/03-making-decisions/
 - /2005/02/27/rebol-babysteps-03-making-decisions/
 category: post
+created: 2024-01-15 15:25:43-08:00
 date: 2005-02-27 00:00:00-08:00
 series:
 - REBOL Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: REBOL Babysteps - 03 Making Decisions
-created: 2024-01-15T15:25:43-08:00
-updated: 2024-02-01T20:44:08-08:00
+updated: 2024-02-01 20:44:08-08:00
 ---
 
 In [rebol-babysteps-01-getting-started](../../2004/12/rebol-babysteps-01-getting-started.md) I gave you a first cautious glance at the [REBOL](../../../card/REBOL.md) programming language. In [rebol-babysteps-02-getting-started-with-view](../../2004/12/rebol-babysteps-02-getting-started-with-view.md) I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test. Here are a few uses for a simple selection structure.

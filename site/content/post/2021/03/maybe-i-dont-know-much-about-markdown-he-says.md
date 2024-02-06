@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/03/maybe-i-dont-know-much-about-markdown-he-says/
 category: note
+created: 2024-01-15 15:26:19-08:00
 date: 2021-03-07 15:40:29-08:00
 slug: maybe-i-dont-know-much-about-markdown-he-says
 syndication:
@@ -11,8 +12,7 @@ tags:
 - links
 - markdown
 title: Maybe I don't know much about Markdown, he says
-created: 2024-01-15T15:26:19-08:00
-updated: 2024-01-26T10:22:06-08:00
+updated: 2024-01-26 10:22:06-08:00
 ---
 
 John Gruber, the creator of [Markdown](../../../card/Markdown.md), [commenting](https://daringfireball.net/linked/2021/03/05/snell-ios-markdown-editors) on Markdown editors and their trend towards hiding the syntax:

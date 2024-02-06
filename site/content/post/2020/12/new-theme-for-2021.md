@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/12/new-theme-for-2021/
 category: note
+created: 2024-01-15 15:26:22-08:00
 date: 2020-12-07 07:16:55-08:00
 slug: new-theme-for-2021
 syndication:
@@ -12,8 +13,7 @@ tags:
 - spring-cleaning-for-websites
 - site
 title: New theme for 2021
-created: 2024-01-15T15:26:22-08:00
-updated: 2024-01-26T10:59:43-08:00
+updated: 2024-01-26 10:59:43-08:00
 ---
 
 ![attachments/img/2020/cover-2020-12-07.png](../../../attachments/img/2020/cover-2020-12-07.png)

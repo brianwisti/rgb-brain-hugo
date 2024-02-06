@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/05/setting-up-raku-with-rakudobrew/
 category: post
+created: 2024-01-15 15:26:41-08:00
 date: 2020-05-19 16:38:00-07:00
 description: Rakudobrew changed its name since last I looked
 slug: setting-up-raku-with-rakubrew
@@ -14,8 +15,7 @@ tags:
 - rakubrew
 - tools
 title: Setting up Raku with Rakubrew
-created: 2024-01-15T15:26:41-08:00
-updated: 2024-02-02T10:00:18-08:00
+updated: 2024-02-02 10:00:18-08:00
 ---
 
 I was avoiding Rakudobrew for some now-forgotten technical reason.  Probably couldn’t get a particular Perl 6 release to build.  But I’m tired of one-off scripts or distribution packages that don’t quite match my expectations. What’s new in the Perl 6 language manager world?

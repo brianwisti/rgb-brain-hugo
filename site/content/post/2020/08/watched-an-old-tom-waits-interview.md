@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/08/watched-an-old-tom-waits-interview/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-08-09 23:09:41-07:00
 slug: watched-an-old-tom-waits-interview
 syndication:
@@ -10,8 +11,7 @@ syndication:
 tags:
 - watch
 title: Watched an old Tom Waits interview
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:15-08:00
+updated: 2024-01-26 11:00:15-08:00
 ---
 
 It's a work of art in its own right. Promoting 1999's "Glitter and Doom" tour.

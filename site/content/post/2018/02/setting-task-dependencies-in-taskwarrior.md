@@ -2,9 +2,12 @@
 aliases:
 - /2018/02/19/setting-task-dependencies-in-taskwarrior/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2018-02-19 00:00:00-08:00
-description: |
-  "I'm not done reading a book until I finish the exercises. Taskwarrior can help me remember."
+description: '"I''m not done reading a book until I finish the exercises. Taskwarrior
+  can help me remember."
+
+  '
 series:
 - Taskwarrior Babysteps
 slug: setting-task-dependencies-in-taskwarrior
@@ -12,8 +15,7 @@ tags:
 - taskwarrior
 - tools
 title: Setting Task Dependencies in Taskwarrior
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-02T10:00:04-08:00
+updated: 2024-02-02 10:00:04-08:00
 ---
 
 ![attachments/img/2018/cover-2018-02-19.png](../../../attachments/img/2018/cover-2018-02-19.png)

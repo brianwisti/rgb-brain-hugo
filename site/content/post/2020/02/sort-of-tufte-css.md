@@ -3,6 +3,7 @@ aliases:
 - /2020/02/23/sort-of-tufte-css/
 - /post/2020/02/sort-of-tufte-css/
 category: post
+created: 2024-01-15 15:26:28-08:00
 date: 2020-02-23 00:02:03-08:00
 description: I tried something new with my site style.
 slug: sort-of-tufte-css
@@ -11,8 +12,7 @@ tags:
 - site
 - tools
 title: Sort of Tufte CSS
-created: 2024-01-15T15:26:28-08:00
-updated: 2024-01-26T11:03:26-08:00
+updated: 2024-01-26 11:03:26-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-23.png](../../../attachments/img/2020/cover-2020-02-23.png)

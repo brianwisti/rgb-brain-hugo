@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2004/06/05_read-more-perl.html
 - /post/2004/read-more-perl/
 category: post
+created: 2024-01-15 15:26:15-08:00
 date: 2004-06-05 00:00:00-07:00
 slug: read-more-perl
 tags:
 - perl
 - coolnamehere
 title: Read More Perl
-created: 2024-01-15T15:26:15-08:00
-updated: 2024-02-01T20:42:57-08:00
+updated: 2024-02-01 20:42:57-08:00
 ---
 
 This was originally a [meditation](http://perlmonks.org/?node_id=349236) on [Perl](../../../card/Perl.md) that I wrote at wrote at [Perlmonks](http://perlmonks.org). 

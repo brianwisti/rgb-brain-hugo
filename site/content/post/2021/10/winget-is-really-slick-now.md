@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/10/winget-is-pretty-slick-now/
 category: note
+created: 2024-01-15 15:26:25-08:00
 date: 2021-10-16 00:00:00-07:00
 slug: winget-is-pretty-slick-now
 syndication:
@@ -12,8 +13,7 @@ tags:
 - package-manager
 - respect-the-command-line
 title: winget is pretty slick now
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-02-02T10:02:59-08:00
+updated: 2024-02-02 10:02:59-08:00
 ---
 
 Just updated PowerShell via [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/), Microsoft's command line package manager. And Firefox. And Volta. And HeidiSQL. And Alacritty. And Go. And some other stuff.

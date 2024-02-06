@@ -2,6 +2,7 @@
 aliases:
 - /2018/05/26/crafts-are-now-posts/
 category: post
+created: 2024-01-15 15:26:53-08:00
 date: 2018-05-26 00:00:00-07:00
 slug: crafts-are-now-posts
 tags:
@@ -10,8 +11,7 @@ tags:
 - hugo
 - programming
 title: Crafts Are Now Posts
-created: 2024-01-15T15:26:53-08:00
-updated: 2024-02-01T22:12:22-08:00
+updated: 2024-02-01 22:12:22-08:00
 ---
 
 I turned the craft section into a Craft category — then a tag years later. Drawing, Knitting, and Crochet became tags. The rest of this post is just notes about that.

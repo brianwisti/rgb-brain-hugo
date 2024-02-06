@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2002/06/02_other-features.html
 - /post/2002/other-features/
 category: post
+created: 2024-01-15 15:25:48-08:00
 date: 2002-06-02 00:00:00-07:00
 slug: pagetemplate-other-features
 tags:
 - pagetemplate
 - coolnamehere
 title: PageTemplate - Other Features
-created: 2024-01-15T15:25:48-08:00
-updated: 2024-01-26T09:17:54-08:00
+updated: 2024-01-26 09:17:54-08:00
 ---
 
 PageTemplate has a number of other features for the designer, and I

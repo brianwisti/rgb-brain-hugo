@@ -4,6 +4,7 @@ aliases:
 - /post/2009/01-getting-started/
 - /2009/07/12/parrot-babysteps-01-getting-started/
 category: post
+created: 2024-01-15 15:25:36-08:00
 date: 2009-07-12 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 01 - Getting Started
-created: 2024-01-15T15:25:36-08:00
-updated: 2024-01-26T09:52:02-08:00
+updated: 2024-01-26 09:52:02-08:00
 ---
 
 # Introduction

@@ -4,14 +4,14 @@ aliases:
 - /post/2015/use-cpan-outdated/
 - /2015/07/09/use-cpan-outdated/
 category: post
+created: 2024-01-15 15:25:26-08:00
 date: 2015-07-09 00:00:00-07:00
 slug: use-cpan-outdated
 tags:
 - perl
 - tools
 title: Use cpan-outdated
-created: 2024-01-15T15:25:26-08:00
-updated: 2024-02-01T21:13:32-08:00
+updated: 2024-02-01 21:13:32-08:00
 ---
 
 Thought I'd share [TOKUHIROM](https://metacpan.org/author/TOKUHIROM)'s [cpan-outdated](https://metacpan.org/pod/distribution/cpan-outdated/script/cpan-outdated) tool, which simplifies the task of keeping your installed Perl 5 modules up to date. It simply lists available updates to [Perl](../../../card/Perl.md) modules you have installed. That functionality is available in the CPAN shell with the `r` command, but it is hard to beat the convenience of the `cpan-outdated` command line tool.

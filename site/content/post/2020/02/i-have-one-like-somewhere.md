@@ -3,14 +3,14 @@ aliases:
 - /note/2020/49/i-have-one-like-somewhere/
 - /note/2020/02/i-have-one-like-somewhere/
 category: note
+created: 2024-01-15 15:26:29-08:00
 date: 2020-02-18 21:41:44-08:00
 slug: i-have-one-like-somewhere
 tags:
 - indieweb
 - site
 title: I have one like somewhere
-created: 2024-01-15T15:26:29-08:00
-updated: 2024-02-01T21:54:35-08:00
+updated: 2024-02-01 21:54:35-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-18.png](../../../attachments/img/2020/cover-2020-02-18.png)

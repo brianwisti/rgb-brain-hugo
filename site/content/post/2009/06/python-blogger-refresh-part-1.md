@@ -3,6 +3,7 @@ aliases:
 - /blogspot/2009/06/09_python-blogger-refresh-part-1.html
 - /post/2009/python-blogger-refresh-part-1/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2009-06-09 00:00:00-07:00
 series:
 - Python Blogger Refresh
@@ -14,8 +15,7 @@ tags:
 - python
 - blogspot
 title: Python Blogger Refresh, Part 1
-created: 2024-01-15T15:25:35-08:00
-updated: 2024-01-26T09:41:26-08:00
+updated: 2024-01-26 09:41:26-08:00
 ---
 
 <!--more-->

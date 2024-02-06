@@ -2,6 +2,7 @@
 aliases:
 - /note/2022/01/thinking-about-hugo-again/
 category: note
+created: 2024-01-15 15:26:06-08:00
 date: 2022-01-26 23:50:00-08:00
 slug: thinking-about-hugo-again
 syndication:
@@ -12,8 +13,7 @@ tags:
 - sitejs
 - a-foolish-consistency
 title: Thinking about Hugo again but maybe with Site.js
-created: 2024-01-15T15:26:06-08:00
-updated: 2024-01-26T10:20:40-08:00
+updated: 2024-01-26 10:20:40-08:00
 ---
 
 Goodness I may dislike that templating language, but it's hard to match anything against [Hugo](../../../card/Hugo.md)'s 700ms average build time on a cleaned-up version of my site.

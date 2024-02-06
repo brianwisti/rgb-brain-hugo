@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/12/something-new-to-color/
 category: note
+created: 2024-01-15 15:26:21-08:00
 date: 2020-12-18 23:15:00-08:00
 slug: something-new-to-color
 syndication:
@@ -13,8 +14,7 @@ tags:
 - color-me
 - procreate
 title: Something new to color
-created: 2024-01-15T15:26:21-08:00
-updated: 2024-01-26T10:59:41-08:00
+updated: 2024-01-26 10:59:41-08:00
 ---
 
 ![attachments/img/2020/cover-2020-12-18.jpg](../../../attachments/img/2020/cover-2020-12-18.jpg)

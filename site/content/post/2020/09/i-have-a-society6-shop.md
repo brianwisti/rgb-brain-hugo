@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/09/i-have-a-society6-shop/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-09-24 17:59:09-07:00
 slug: i-have-a-society6-shop
 syndication:
@@ -12,8 +13,7 @@ tags:
 - drawing
 - monetize-the-hobbies-but-not-too-much
 title: I have a society6 shop
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:08-08:00
+updated: 2024-01-26 11:00:08-08:00
 ---
 
 ![attachments/img/2020/cover-2020-09-24.png](../../../attachments/img/2020/cover-2020-09-24.png)

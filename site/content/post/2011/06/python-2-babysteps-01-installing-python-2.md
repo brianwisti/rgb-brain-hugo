@@ -4,6 +4,7 @@ aliases:
 - /2011/06/16/python-2-babysteps-01-installing-python-2/
 - /post/2011/06/python-2-babysteps-01-installing-python-2/
 category: post
+created: 2024-01-15 15:25:32-08:00
 date: 2011-06-16 00:00:00-07:00
 description: Think of it as Step Zero for the other Python tutorials.
 slug: python-2-babysteps-01-installing-python-2
@@ -12,8 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Python 2 Babysteps 01 Installing Python 2
-updated: 2024-02-01T20:39:05-08:00
-created: 2024-01-15T15:25:32-08:00
+updated: 2024-02-01 20:39:05-08:00
 ---
 
 ## Installation

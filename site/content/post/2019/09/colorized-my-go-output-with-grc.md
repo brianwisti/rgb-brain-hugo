@@ -2,6 +2,7 @@
 aliases:
 - /2019/09/08/colorized-my-go-output-with-grc/
 category: post
+created: 2024-01-15 15:26:38-08:00
 date: 2019-09-08 00:00:00-07:00
 description: In which I spent Sunday having fun learning stuff
 slug: colorized-my-go-output-with-grc
@@ -13,8 +14,7 @@ tags:
 - shell
 - tools
 title: Colorized my go output with grc
-created: 2024-01-15T15:26:38-08:00
-updated: 2024-02-01T19:59:53-08:00
+updated: 2024-02-01 19:59:53-08:00
 ---
 
 Enjoying myself with [Go](../../../card/Go.md) as I go through [Learn Go with Tests](https://github.com/quii/learn-go-with-tests) by [Chris James](https://quii.dev/).

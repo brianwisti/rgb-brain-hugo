@@ -3,14 +3,14 @@ aliases:
 - /post/2015/bob-ross-css/
 - /2015/11/29/bob-ross-css/
 category: post
+created: 2024-01-15 15:26:13-08:00
 date: 2015-11-29 00:00:00-08:00
 slug: using-bob-ross-css
 tags:
 - css
 - tools
 title: Bob Ross CSS
-created: 2024-01-15T15:26:13-08:00
-updated: 2024-01-26T10:13:24-08:00
+updated: 2024-01-26 10:13:24-08:00
 ---
 
 Note to self: use the [Bob Ross CSS](https://gist.github.com/thomaspark/41f381048adcceb6d261) that [Thomas Park](http://thomaspark.co/2015/11/bob-ross-color-palette-in-css/) conveniently worked out.

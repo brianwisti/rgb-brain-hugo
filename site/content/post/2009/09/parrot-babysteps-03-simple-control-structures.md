@@ -4,6 +4,7 @@ aliases:
 - /post/2009/03-simple-control-structures/
 - /2009/09/11/parrot-babysteps-03-simple-control-structures/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-09-11 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 03 - Simple Control Structures
-created: 2024-01-15T15:25:37-08:00
-updated: 2024-01-26T09:57:32-08:00
+updated: 2024-01-26 09:57:32-08:00
 ---
 
 I won't spend a whole lot of time on what control structures *are* and more time on how to implement them in [Parrot](../../../card/Parrot.md).

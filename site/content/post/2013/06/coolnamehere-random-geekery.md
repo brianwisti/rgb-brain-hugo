@@ -3,6 +3,7 @@ aliases:
 - /marginalia/2013/06/05_coolnamehere-random-geekery.html
 - /post/2013/coolnamehere-random-geekery/
 category: post
+created: 2024-01-15 15:25:30-08:00
 date: 2013-06-05 00:00:00-07:00
 description: Marking a change in domain name
 slug: coolnamehere-random-geekery
@@ -10,8 +11,7 @@ tags:
 - site
 - marginalia
 title: coolnamehere -> Random Geekery
-created: 2024-01-15T15:25:30-08:00
-updated: 2024-01-26T10:11:05-08:00
+updated: 2024-01-26 10:11:05-08:00
 ---
 
 So I used to have another site. I also used to have a Yahoo email account. The domain name was registered under a Network Solutions account using the Yahoo account. All was well for years.

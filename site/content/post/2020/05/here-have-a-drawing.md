@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/05/here-have-a-drawing/
 category: note
+created: 2024-01-15 15:26:26-08:00
 date: 2020-05-28 16:49:33-07:00
 slug: here-have-a-drawing
 syndication:
@@ -12,8 +13,7 @@ tags:
 - linea-sketch
 - symmetry
 title: Here have a drawing
-created: 2024-01-15T15:26:26-08:00
-updated: 2024-01-26T11:01:28-08:00
+updated: 2024-01-26 11:01:28-08:00
 ---
 
 ![attachments/img/2020/cover-2020-05-28.jpg](../../../attachments/img/2020/cover-2020-05-28.jpg)

@@ -3,6 +3,7 @@ aliases:
 - /post/2017/elscreen/
 - /2017/01/11/elscreen/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-01-11 00:00:00-08:00
 slug: elscreen
 tags:
@@ -10,8 +11,7 @@ tags:
 - elscreen
 - tools
 title: elscreen
-created: 2024-01-15T15:26:50-08:00
-updated: 2024-02-01T20:11:23-08:00
+updated: 2024-02-01 20:11:23-08:00
 ---
 
 I use [ElScreen](https://github.com/knu/elscreen/) every time I open [Emacs](../../../card/Emacs.md). May as well make a quick note about it.

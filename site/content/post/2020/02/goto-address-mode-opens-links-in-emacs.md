@@ -2,6 +2,7 @@
 aliases:
 - /2020/02/04/goto-address-mode-opens-links-in-emacs/
 category: post
+created: 2024-01-15 15:26:31-08:00
 date: 2020-02-04 23:27:00-08:00
 description: Use `goto-address-mode` to make links in Emacs buffers clickable
 slug: goto-address-mode-opens-links-in-emacs
@@ -9,8 +10,7 @@ tags:
 - emacs
 - tools
 title: Goto Address Mode Opens Links in Emacs
-created: 2024-01-15T15:26:31-08:00
-updated: 2024-02-01T20:14:06-08:00
+updated: 2024-02-01 20:14:06-08:00
 ---
 
 ![attachments/img/2020/cover-2020-02-04.png](../../../attachments/img/2020/cover-2020-02-04.png)

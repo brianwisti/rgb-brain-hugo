@@ -4,14 +4,14 @@ aliases:
 - /post/2007/perl-510-beta-everywhere/
 - /2007/12/05/perl-5.10-beta-everywhere/
 category: post
+created: 2024-01-15 15:25:42-08:00
 date: 2007-12-05 00:00:00-08:00
 slug: perl-510-beta-everywhere
 tags:
 - perl
 - blogspot
 title: Perl 5.10 beta Everywhere
-created: 2024-01-15T15:25:42-08:00
-updated: 2024-01-26T09:22:32-08:00
+updated: 2024-01-26 09:22:32-08:00
 ---
 
 I decided to install [Perl](../../../card/Perl.md) 5.10 on all my machines after the thrill of installing ActivePerl 5.10 beta on my Windows VM last night. Yes yes, it is true that strange things will thrill me.

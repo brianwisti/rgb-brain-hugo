@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/115/the-seattle-freeze-is-a-hundred-years-old/
 category: note
+created: 2024-01-15 15:26:30-08:00
 date: 2020-04-24 07:45:00-07:00
 slug: the-seattle-freeze-is-a-hundred-years-old
 syndication:
@@ -11,8 +12,7 @@ tags:
 - seattle
 - history
 title: The Seattle Freeze Is a Hundred Years Old
-updated: 2024-01-26T11:03:01-08:00
-created: 2024-01-15T15:26:30-08:00
+updated: 2024-01-26 11:03:01-08:00
 ---
 
 ![attachments/img/2020/cover-2020-04-24.jpg](../../../attachments/img/2020/cover-2020-04-24.jpg)

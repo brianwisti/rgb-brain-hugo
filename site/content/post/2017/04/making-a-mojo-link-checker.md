@@ -3,6 +3,7 @@ aliases:
 - /post/2017/making-a-mojo-link-checker/
 - /2017/04/11/making-a-mojo-link-checker/
 category: post
+created: 2024-01-15 15:26:13-08:00
 date: 2017-04-11 00:00:00-07:00
 slug: making-a-mojo-link-checker
 syndication:
@@ -13,8 +14,7 @@ tags:
 - mojolicious
 - programming
 title: Making A Mojo Link Checker
-created: 2024-01-15T15:26:13-08:00
-updated: 2024-02-02T09:49:22-08:00
+updated: 2024-02-02 09:49:22-08:00
 ---
 
 I wrote a [Perl](../../../card/Perl.md) script using utility features in Mojolicious to check all of the links in my site.

@@ -2,14 +2,14 @@
 aliases:
 - /2017/11/24/drawing-grids-with-python-and-pillow/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2017-11-24 00:00:00-08:00
 slug: drawing-grids-with-python-and-pillow
 tags:
 - python
 - programming
 title: Drawing Grids With Python and Pillow
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T20:06:14-08:00
+updated: 2024-02-01 20:06:14-08:00
 ---
 
 ![attachments/img/2017/cover-2017-11-24.png](../../../attachments/img/2017/cover-2017-11-24.png)

@@ -1,9 +1,11 @@
 ---
-title: My Kitty Terminal Settings
 aliases:
 - /config/kitty.conf/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
+title: My Kitty Terminal Settings
+updated: 2024-02-05 16:22:55-08:00
 ---
 
 I don't use it as often as WezTerm these days, but it's still nice.

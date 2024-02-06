@@ -4,6 +4,7 @@ aliases:
 - /post/2014/coursera-proglang/
 - /2014/10/03/starting-the-coursera-programming-languages-course/
 category: post
+created: 2024-01-15 15:26:52-08:00
 date: 2014-10-03 00:00:00-07:00
 description: A quick confession about learning how to learn
 slug: starting-the-coursera-programming-languages-course
@@ -11,8 +12,7 @@ tags:
 - personal
 - marginalia
 title: Starting The Coursera Programming Languages Course
-created: 2024-01-15T15:26:52-08:00
-updated: 2024-01-26T10:12:03-08:00
+updated: 2024-01-26 10:12:03-08:00
 ---
 
 I signed up for the Coursera [Programming Languages](https://www.coursera.org/course/proglang) course. I may even complete it. See, I signed up for a Scala course earlier this year, but did not get past the first video. That made me sad. Scala is one of those things that I would like to learn.

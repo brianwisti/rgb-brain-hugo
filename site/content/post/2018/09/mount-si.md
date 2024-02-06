@@ -3,6 +3,7 @@ aliases:
 - /2018/09/09/mount-si/
 - /post/2018/09/mount-si/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-09-09 00:00:00-07:00
 description: I sauntered up the main trail of Mount Si this weekend.
 series:
@@ -12,8 +13,7 @@ tags:
 - exploring
 - marginalia
 title: Mount Si
-created: 2024-01-15T15:26:45-08:00
-updated: 2024-02-02T09:49:43-08:00
+updated: 2024-02-02 09:49:43-08:00
 ---
 
 ![attachments/img/2018/cover-2018-09-09.jpg](../../../attachments/img/2018/cover-2018-09-09.jpg)

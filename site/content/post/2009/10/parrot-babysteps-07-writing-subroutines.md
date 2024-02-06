@@ -4,6 +4,7 @@ aliases:
 - /post/2009/07-writing-subroutines/
 - /2009/10/06/parrot-babysteps-07-writing-subroutines/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-10-06 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 07 - Writing Subroutines
-created: 2024-01-15T15:25:37-08:00
-updated: 2024-01-26T09:58:34-08:00
+updated: 2024-01-26 09:58:34-08:00
 ---
 
 # Introduction

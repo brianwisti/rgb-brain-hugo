@@ -2,6 +2,7 @@
 aliases:
 - /2018/11/10/using-hugo-data-templates/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-11-10 00:00:00-08:00
 slug: using-hugo-data-templates
 tags:
@@ -9,8 +10,7 @@ tags:
 - site
 - tools
 title: Using Hugo Data Templates
-created: 2024-01-15T15:26:45-08:00
-updated: 2024-02-01T21:14:51-08:00
+updated: 2024-02-01 21:14:51-08:00
 ---
 
 I put my frequently used links in a [Hugo](../../../card/Hugo.md) data template to cut down on copying and pasting between posts.

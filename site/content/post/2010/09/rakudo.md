@@ -5,14 +5,14 @@ aliases:
 - /2010/09/08/rakudo/
 - /post/2010/09/rakudo/
 category: post
+created: 2024-01-15 15:25:34-08:00
 date: 2010-09-08 00:00:00-07:00
 slug: rakudo
 tags:
 - raku-lang
 - coolnamehere
 title: Rakudo
-created: 2024-01-15T15:25:34-08:00
-updated: 2024-02-01T20:42:23-08:00
+updated: 2024-02-01 20:42:23-08:00
 ---
 
 The [Perl](../../../card/Perl.md) world has evolved over the years. Once upon a time, it was a simple glue language that made life easier for system administrators. It's grown up a lot since then, and now powers much of the Internet. The language has added new features, and the [CPAN](http://cpan.org) has made a dizzying number of libraries available.

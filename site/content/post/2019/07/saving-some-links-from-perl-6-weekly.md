@@ -3,6 +3,7 @@ aliases:
 - /note/2019/204/saving-some-links-from-perl-6-weekly/
 - /note/2019/07/saving-some-links-from-perl-6-weekly/
 category: note
+created: 2024-01-15 15:26:38-08:00
 date: 2019-07-23 08:09:30-07:00
 slug: saving-some-links-from-perl-6-weekly
 syndication:
@@ -14,8 +15,7 @@ tags:
 - just-when-i-thought-i-was-out
 - they-pull-me-back-in
 title: Saving some links from Perl 6 Weekly
-created: 2024-01-15T15:26:38-08:00
-updated: 2024-02-01T20:51:57-08:00
+updated: 2024-02-01 20:51:57-08:00
 ---
 
 Haven't done anything interesting related to [Raku](../../../card/Raku.md) for *years*, but I still subscribe to the [Perl 6 Weekly](https://p6weekly.wordpress.com/) blog. Several links caught my eye this week.

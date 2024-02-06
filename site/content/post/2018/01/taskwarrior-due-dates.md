@@ -2,6 +2,7 @@
 aliases:
 - /2018/01/02/taskwarrior-due-dates/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2018-01-02 00:00:00-08:00
 series:
 - Taskwarrior Babysteps
@@ -10,8 +11,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Due Dates
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T20:59:29-08:00
+updated: 2024-02-01 20:59:29-08:00
 ---
 
 ![attachments/img/2018/cover-2018-01-02.png](../../../attachments/img/2018/cover-2018-01-02.png)

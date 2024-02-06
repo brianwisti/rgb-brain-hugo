@@ -4,6 +4,7 @@ aliases:
 - /post/2015/coolnamehere-ported/
 - /2015/03/23/coolnamehere-content-update/
 category: post
+created: 2024-01-15 15:25:52-08:00
 date: 2015-03-23 00:00:00-07:00
 description: The really old pages are now really old posts
 slug: coolnamehere-content-update
@@ -13,8 +14,7 @@ tags:
 - site
 - marginalia
 title: coolnamehere Content Update
-created: 2024-01-15T15:25:52-08:00
-updated: 2024-02-01T20:00:35-08:00
+updated: 2024-02-01 20:00:35-08:00
 ---
 
 I got bored of the old [coolnamehere](../../../card/coolnamehere.md)  pages effectively sitting outside of the site because of the way [Jekyll](../../../card/Jekyll.md) — and pretty much every other static blogging system — treats pages as secondary to posts. It makes sense, anyways. Once you stop bikeshedding about where to put content in your elaborate directory structure, it gets easier to add stuff.

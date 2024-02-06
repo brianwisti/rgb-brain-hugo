@@ -1,10 +1,10 @@
 ---
 title: Kotlin
 created: 2024-01-18T21:46:09-08:00
-updated: 2024-02-04T05:24:02-08:00
+updated: 2024-02-04T15:19:14-08:00
 ---
 
-A general purpose [Programming Language](Programming%20Language.md)  for the *JVM* and beyond.
+A general purpose [Programming Language](Programming%20Language.md), interoperable with [Java](Java.md)
 
 ````sh
 sdk install kotlin

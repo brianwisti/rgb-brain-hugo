@@ -4,6 +4,7 @@ aliases:
 - /post/2007/python-loves-blogger/
 - /2007/12/28/python-loves-blogger-part-1/
 category: post
+created: 2024-01-15 15:25:42-08:00
 date: 2007-12-28 00:00:00-08:00
 slug: python-loves-blogger-part-1
 tags:
@@ -11,8 +12,7 @@ tags:
 - python
 - blogspot
 title: Python Loves Blogger (Part 1)
-created: 2024-01-15T15:25:42-08:00
-updated: 2024-01-26T09:22:33-08:00
+updated: 2024-01-26 09:22:33-08:00
 ---
 
 I've revisited the code for Blogger posting with Python. Start [here](../../2009/06/python-blogger-refresh-part-1.md) to see the new starting point.

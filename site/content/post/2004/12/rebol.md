@@ -4,14 +4,14 @@ aliases:
 - /post/2004/rebol/
 - /2004/12/22/rebol/
 category: post
+created: 2024-01-15 15:25:46-08:00
 date: 2004-12-22 00:00:00-08:00
 slug: rebol
 tags:
 - rebol
 - coolnamehere
 title: REBOL
-created: 2024-01-15T15:25:46-08:00
-updated: 2024-02-01T20:43:30-08:00
+updated: 2024-02-01 20:43:30-08:00
 ---
 
 This is unusual. I’ve come across the first language that I don’t want to tell you about. I don’t know *why* I want to keep [REBOL](../../../card/REBOL.md) a secret. It has been very useful even in the limited roles that I have given it so far. The language is consistent and pleasant to work with. It has a richness of datatypes that just can’t be matched by other languages. The GUI library View is surprisingly straightforward for simple tasks, and there are excellent libraries like RebGUI to make it just as easy for more elaborate interfaces.

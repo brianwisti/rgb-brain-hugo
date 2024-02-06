@@ -2,6 +2,7 @@
 aliases:
 - /2018/11/11/basic-hat-with-hemmed-edge/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-11-11 00:00:00-08:00
 description: I made another hat! This time I learned how to make a hemmed edge.
 slug: basic-hat-with-hemmed-edge
@@ -10,8 +11,7 @@ tags:
 - hat
 - craft
 title: Basic Hat With Hemmed Edge
-created: 2024-01-15T15:26:44-08:00
-updated: 2024-02-01T22:07:28-08:00
+updated: 2024-02-01 22:07:28-08:00
 ---
 
 ![attachments/img/2018/cover-2018-11-11.jpg](../../../attachments/img/2018/cover-2018-11-11.jpg)

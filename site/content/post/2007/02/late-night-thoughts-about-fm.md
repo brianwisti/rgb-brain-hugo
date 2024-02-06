@@ -3,14 +3,14 @@ aliases:
 - /blogspot/2007/02/03_late-night-thoughts-about-fm.html
 - /post/2007/late-night-thoughts-about-fm/
 category: post
+created: 2024-01-15 15:25:40-08:00
 date: 2007-02-03 00:00:00-08:00
 slug: late-night-thoughts-about-fm
 tags:
 - blogspot
 - now
 title: Late Night Thoughts About FM
-created: 2024-01-15T15:25:40-08:00
-updated: 2024-01-26T09:21:42-08:00
+updated: 2024-01-26 09:21:42-08:00
 ---
 
 FM. FXRuby Media. Or f-m, as known on Rubyforge. I probably should have gone for fmm or something like that, but these things are always more obvious when it is too late.

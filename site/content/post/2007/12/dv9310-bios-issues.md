@@ -4,14 +4,14 @@ aliases:
 - /post/2007/now-that-both-of-my-machines-are/
 - /2007/12/29/dv9310-bios-issues/
 category: post
+created: 2024-01-15 15:25:42-08:00
 date: 2007-12-29 00:00:00-08:00
 slug: dv9310-bios-issues
 tags:
 - i-fixed-it
 - blogspot
 title: dv9310 bios issues
-created: 2024-01-15T15:25:42-08:00
-updated: 2024-01-26T09:22:27-08:00
+updated: 2024-01-26 09:22:27-08:00
 ---
 
 I turned an offhand comment about how I fixed my problem into more of a step-by-step guide, in case some poor soul is in the same spot and finds me via Google.

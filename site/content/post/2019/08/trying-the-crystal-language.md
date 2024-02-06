@@ -2,6 +2,7 @@
 aliases:
 - /2019/08/25/trying-the-crystal-language/
 category: post
+created: 2024-01-15 15:26:35-08:00
 date: 2019-08-25 00:00:00-07:00
 description: In which I use Crystal for a simple shell task
 slug: trying-the-crystal-language
@@ -13,8 +14,7 @@ tags:
 - taskwarrior
 - programming
 title: Trying the Crystal Language
-created: 2024-01-15T15:26:35-08:00
-updated: 2024-02-01T21:03:55-08:00
+updated: 2024-02-01 21:03:55-08:00
 ---
 
 ![attachments/img/2019/cover-2019-08-25.png](../../../attachments/img/2019/cover-2019-08-25.png)

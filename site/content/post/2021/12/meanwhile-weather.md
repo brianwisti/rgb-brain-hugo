@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/12/meanwhile-weather/
 category: note
+created: 2024-01-15 15:26:12-08:00
 date: 2021-12-30 00:00:00-08:00
 slug: meanwhile-weather
 syndication:
@@ -13,8 +14,7 @@ tags:
 - ok-just-outside-seattle
 - now
 title: meanwhile, weather
-created: 2024-01-15T15:26:12-08:00
-updated: 2024-02-01T20:25:26-08:00
+updated: 2024-02-01 20:25:26-08:00
 ---
 
 ![attachments/img/2021/cover-2021-12-30.jpg](../../../attachments/img/2021/cover-2021-12-30.jpg)

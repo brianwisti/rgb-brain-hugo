@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2010/10/05_ruby-and-the-hyg-star-catalog.html
 - /post/2010/ruby-and-the-hyg-star-catalog/
 category: post
+created: 2024-01-15 15:25:35-08:00
 date: 2010-10-05 00:00:00-07:00
 slug: ruby-and-the-hyg-star-catalog
 tags:
 - ruby
 - coolnamehere
 title: Ruby and the HYG Star Catalog
-created: 2024-01-15T15:25:35-08:00
-updated: 2024-02-01T21:58:06-08:00
+updated: 2024-02-01 21:58:06-08:00
 ---
 
 One of my big projects over the last year has been a [Parrot Babysteps](../../2009/07/parrot-babysteps.md) tutorial. One of the more interesting tasks in that tutorial was [reading a CSV file in Parrot](../../2009/10/parrot-babysteps-06-files-and-hashes.md). I used the [HYG Star Catalog](http://www.astronexus.com/node/34) as a sample [CSV](../../../card/CSV.md) file that was large enough to present some interesting data. This was fun in [Parrot](../../../card/Parrot.md), but obviously I thought quite a bit about how I would tackle the problem in a higher level language such as [Ruby](../../../card/Ruby.md). Today seems like a good day to find out.

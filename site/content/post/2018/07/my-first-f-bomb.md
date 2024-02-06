@@ -2,6 +2,7 @@
 aliases:
 - /2018/07/01/my-first-f-bomb/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-07-01 00:00:00-07:00
 slug: my-first-f-bomb
 tags:
@@ -9,8 +10,7 @@ tags:
 - crochet
 - craft
 title: My First F Bomb
-created: 2024-01-15T15:26:44-08:00
-updated: 2024-02-01T21:56:27-08:00
+updated: 2024-02-01 21:56:27-08:00
 ---
 
 Took a break this weekend *Knitting* a quick yarn project.

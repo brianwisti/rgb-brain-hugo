@@ -1,11 +1,11 @@
 ---
-title: My rc.lua for awesome
 aliases:
 - /config/awesome/rc.lua/
+created: 2024-01-15 17:29:21-08:00
 tags:
 - config
-created: 2024-01-15T17:29:21-08:00
-updated: 2024-02-01T16:17:50-08:00
+title: My rc.lua for awesome
+updated: 2024-02-05 16:23:21-08:00
 ---
 
 The source code for my [awesome](https://awesomewm.org/) window manager config.

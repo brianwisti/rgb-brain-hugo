@@ -4,6 +4,7 @@ aliases:
 - /post/2007/02-tying-the-scenes-together/
 - /2007/04/20/python-interactive-fiction-02-tying-the-scenes-together/
 category: post
+created: 2024-01-15 15:25:40-08:00
 date: 2007-04-20 00:00:00-07:00
 series:
 - Python Interactive Fiction
@@ -13,8 +14,7 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 02 Tying the Scenes Together
-created: 2024-01-15T15:25:40-08:00
-updated: 2024-01-26T09:22:01-08:00
+updated: 2024-01-26 09:22:01-08:00
 ---
 
 This is the second part of an [ongoing series](interactive-fiction-with-python.md) about using [Python](../../../card/Python.md) to create interactive fiction.  I hope to show you one fun use of Python while teaching you more about the basics of this language.  We started by defining how our game was going to work and creating a set of scenes for play. [Next](python-interactive-fiction-01-handling-a-single-round.md) we wrote the code to handle a single round of the game. Today we are going to tie all of our scenes together to make a complete, playable game of interactive fiction. We are going to approach it from an experimental view, playing with different approaches until we find one that makes us happy. Well, one that makes *me* happy.

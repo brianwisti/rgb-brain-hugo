@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/11/found-the-micro-editor/
 category: note
+created: 2024-01-15 15:26:22-08:00
 date: 2020-11-30 20:41:49-08:00
 slug: found-the-micro-editor
 syndication:
@@ -11,8 +12,7 @@ tags:
 - shell
 - life-doesn-t-have-to-be-hard
 title: Found the micro editor
-created: 2024-01-15T15:26:22-08:00
-updated: 2024-01-26T10:59:59-08:00
+updated: 2024-01-26 10:59:59-08:00
 ---
 
 ![attachments/img/2020/cover-2020-11-30.png](../../../attachments/img/2020/cover-2020-11-30.png)

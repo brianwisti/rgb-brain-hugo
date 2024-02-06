@@ -3,6 +3,7 @@ aliases:
 - /note/2020/3/noncommercial-only-licenses-are-hard/
 - /note/2020/01/noncommercial-only-licenses-are-hard/
 category: note
+created: 2024-01-15 15:26:32-08:00
 date: 2020-01-03 21:06:35-08:00
 slug: noncommercial-only-licenses-are-hard
 tags:
@@ -10,8 +11,7 @@ tags:
 - legal
 - quagmire
 title: Noncommercial-only licenses are hard
-created: 2024-01-15T15:26:32-08:00
-updated: 2024-01-26T11:03:41-08:00
+updated: 2024-01-26 11:03:41-08:00
 ---
 
 [Christopher Lemmer Webber](https://dustycloud.org) makes a fair point:

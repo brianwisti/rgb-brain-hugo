@@ -2,6 +2,7 @@
 aliases:
 - /note/2021/08/pared-down-to-the-base-blog/
 category: note
+created: 2024-01-15 15:26:13-08:00
 date: 2021-08-21 00:00:00-07:00
 slug: pared-down-to-the-base-blog
 syndication:
@@ -10,8 +11,7 @@ tags:
 - ssg
 - site
 title: pared down to the base blog
-created: 2024-01-15T15:26:13-08:00
-updated: 2024-02-01T20:35:28-08:00
+updated: 2024-02-01 20:35:28-08:00
 ---
 
 ![attachments/img/2021/cover-2021-08-21.png](../../../attachments/img/2021/cover-2021-08-21.png)

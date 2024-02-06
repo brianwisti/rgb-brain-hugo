@@ -5,6 +5,7 @@ aliases:
 - /2011/07/18/rake/
 - /post/2011/07/rake/
 category: post
+created: 2024-01-15 15:25:32-08:00
 date: 2011-07-18 00:00:00-07:00
 slug: rake
 tags:
@@ -12,8 +13,7 @@ tags:
 - site
 - coolnamehere
 title: Rake
-created: 2024-01-15T15:25:32-08:00
-updated: 2024-02-01T20:41:15-08:00
+updated: 2024-02-01 20:41:15-08:00
 ---
 
 [Rake](https://ruby.github.io/rake/) is a simple build program. 

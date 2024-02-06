@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/08/slow-city-doodle/
 category: note
+created: 2024-01-15 15:26:24-08:00
 date: 2020-08-01 19:16:41-07:00
 slug: slow-city-doodle
 syndication:
@@ -11,8 +12,7 @@ tags:
 - drawing
 - infinite-painter
 title: Slow City Doodle
-created: 2024-01-15T15:26:24-08:00
-updated: 2024-01-26T11:00:14-08:00
+updated: 2024-01-26 11:00:14-08:00
 ---
 
 ![attachments/img/2020/cover-2020-08-01.jpg](../../../attachments/img/2020/cover-2020-08-01.jpg)

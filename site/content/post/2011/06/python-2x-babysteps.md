@@ -5,14 +5,14 @@ aliases:
 - /2011/06/07/python-2.x-babysteps/
 - /post/2011/06/python-2x-babysteps/
 category: post
+created: 2024-01-15 15:25:32-08:00
 date: 2011-06-07 00:00:00-07:00
 slug: python-2x-babysteps
 tags:
 - python
 - coolnamehere
 title: Python 2.x Babysteps
-updated: 2024-02-01T20:39:15-08:00
-created: 2024-01-15T15:25:32-08:00
+updated: 2024-02-01 20:39:15-08:00
 ---
 
 ## Introduction

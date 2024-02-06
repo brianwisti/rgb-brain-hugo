@@ -4,6 +4,7 @@ aliases:
 - /post/2008/pagetemplate-for-site-generation/
 - /2008/01/06/pagetemplate-for-site-generation/
 category: post
+created: 2024-01-15 15:25:38-08:00
 date: 2008-01-06 00:00:00-08:00
 slug: pagetemplate-for-site-generation
 tags:
@@ -11,8 +12,7 @@ tags:
 - ruby
 - blogspot
 title: PageTemplate for Site Generation
-created: 2024-01-15T15:25:38-08:00
-updated: 2024-01-26T09:22:57-08:00
+updated: 2024-01-26 09:22:57-08:00
 ---
 
 So I was looking at my [Python Blogger client](../../2007/12/python-loves-blogger-part-1.md) and I tried implementing the same thing in [Ruby](../../../card/Ruby.md). [gdata-ruby](https://code.google.com/p/gdata-ruby-util/) confusion stymied me. I still don't know whether library issues or my own ignorance blocked me.

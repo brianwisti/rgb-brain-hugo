@@ -2,6 +2,7 @@
 aliases:
 - /2017/12/25/taskwarrior-priorities/
 category: post
+created: 2024-01-15 15:26:47-08:00
 date: 2017-12-25 00:00:00-08:00
 series:
 - Taskwarrior Babysteps
@@ -10,8 +11,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Priorities
-created: 2024-01-15T15:26:47-08:00
-updated: 2024-02-01T20:59:55-08:00
+updated: 2024-02-01 20:59:55-08:00
 ---
 
 ![attachments/img/2017/cover-2017-12-25.png](../../../attachments/img/2017/cover-2017-12-25.png)

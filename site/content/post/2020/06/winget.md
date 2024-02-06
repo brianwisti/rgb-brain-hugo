@@ -2,6 +2,7 @@
 aliases:
 - /post/2020/06/winget/
 category: post
+created: 2024-01-15 15:26:25-08:00
 date: 2020-06-14 15:30:00-07:00
 description: Trying out another windows package manager
 slug: winget
@@ -13,8 +14,7 @@ tags:
 - package-manager
 - tools
 title: winget
-created: 2024-01-15T15:26:25-08:00
-updated: 2024-02-01T21:18:10-08:00
+updated: 2024-02-01 21:18:10-08:00
 ---
 
 [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is a command line package manager for *Windows* 10, open-sourced under the [MIT License](https://github.com/microsoft/winget-cli/blob/master/LICENSE).  Roughly equivalent to `apt` or `brew`.  If you already know and love [Chocolatey](https://chocolatey.org/), you’re fine.  Stick with that for now. `winget` shows promise though.

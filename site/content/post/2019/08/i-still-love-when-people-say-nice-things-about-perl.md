@@ -3,6 +3,7 @@ aliases:
 - /note/2019/218/i-still-love-when-people-say-nice-things-about-perl/
 - /note/2019/08/i-still-love-when-people-say-nice-things-about-perl/
 category: note
+created: 2024-01-15 15:26:39-08:00
 date: 2019-08-06 17:46:19-07:00
 slug: i-still-love-when-people-say-nice-things-about-perl
 syndication:
@@ -13,8 +14,7 @@ tags:
 - podcast
 - glue-languages-stick-with-you
 title: I still love when people say nice things about Perl
-created: 2024-01-15T15:26:39-08:00
-updated: 2024-02-01T20:18:32-08:00
+updated: 2024-02-01 20:18:32-08:00
 ---
 
 [John Siracusa](https://hypercritical.co/), on the [Diving for Perl](https://www.redhat.com/en/command-line-heroes/season-3/diving-for-perl) episode of the [Command Line Heroes](https://www.redhat.com/en/command-line-heroes) podcast:

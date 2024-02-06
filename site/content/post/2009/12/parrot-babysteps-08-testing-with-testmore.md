@@ -4,6 +4,7 @@ aliases:
 - /post/2009/08-testing-with-test-more/
 - /2009/12/16/parrot-babysteps-08-testing-with-testmore/
 category: post
+created: 2024-01-15 15:25:37-08:00
 date: 2009-12-16 00:00:00-08:00
 series:
 - Parrot Babysteps
@@ -13,8 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 08 - Testing With Test::More
-updated: 2024-01-26T10:08:40-08:00
-created: 2024-01-15T15:25:37-08:00
+updated: 2024-01-26 10:08:40-08:00
 ---
 
 Co-written by [Jonathan "Duke" Leto](http://leto.net), [Parrot](../../../card/Parrot.md) core developer and author of [Tapir](http://github.com/leto/tapir).
