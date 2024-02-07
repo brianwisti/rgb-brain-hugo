@@ -1,7 +1,7 @@
 ---
 title: Kotlin
 created: 2024-01-18T21:46:09-08:00
-updated: 2024-02-04T15:19:14-08:00
+updated: 2024-02-05T21:37:46-08:00
 ---
 
 A general purpose [Programming Language](Programming%20Language.md), interoperable with [Java](Java.md)
@@ -15,6 +15,18 @@ sdk install kotlin
 LLVM backend for compiling Kotlin code to native binaries.
 
 [Kotlin Native | Kotlin Documentation](https://kotlinlang.org/docs/native-overview.html)
+
+## kish
+
+Kotlin Interactive Shell
+
+A Kotlin REPL
+
+````sh
+sdk install ki
+````
+
+[GitHub - Kotlin/kotlin-interactive-shell: Kotlin Language Interactive Shell](https://github.com/Kotlin/kotlin-interactive-shell)
 
 ## Related
 

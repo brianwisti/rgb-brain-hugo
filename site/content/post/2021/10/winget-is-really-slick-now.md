@@ -13,12 +13,12 @@ tags:
 - package-manager
 - respect-the-command-line
 title: winget is pretty slick now
-updated: 2024-02-02 10:02:59-08:00
+updated: 2024-02-07 12:54:12-08:00
 ---
 
-Just updated PowerShell via [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/), Microsoft's command line package manager. And Firefox. And Volta. And HeidiSQL. And Alacritty. And Go. And some other stuff.
+Just updated PowerShell via [Winget](../../../card/Winget.md), Microsoft's command line package manager. And Firefox. And Volta. And HeidiSQL. And Alacritty. And Go. And some other stuff.
 
-Trying to recover a post about [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/index.html) that I accidentally deleted, so I won't sidetrack myself with a detailed follow-up on the last time I really [looked at winget](../../2020/06/winget.md).
+Trying to recover a post about [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/index.html) that I accidentally deleted, so I won't sidetrack myself with a detailed follow-up on the last time I really [looked at winget](../../2020/06/winget-preview.md).
 
 Instead, here's the [TIL](../../../card/TIL.md):
 

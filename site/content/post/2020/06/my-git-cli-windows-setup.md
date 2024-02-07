@@ -15,14 +15,14 @@ tags:
 - powershell
 - tools
 title: My Git CLI Windows setup
-updated: 2024-02-01 21:56:45-08:00
+updated: 2024-02-07 12:55:05-08:00
 ---
 
 For the sake of continuous learning — and so I could use a couple work-related applications that don’t work even with [WINE](https://winehq.org) — I decided to spend more time in *Windows*.  Let’s see if I can comfortably use *Git* from [PowerShell](https://docs.microsoft.com/en-us/powershell/).  I’ll use the [OpenSSH for Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse) server for key management, since it’s already available on my system.
 
 ## Setting up Git
 
-[winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/) knows about several Git-related packages, so my installation command needs to be specific.
+[Winget](../../../card/Winget.md) knows about several Git-related packages, so my installation command needs to be specific.
 
 ````text
 winget install –exact Git.Git

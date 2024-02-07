@@ -12,7 +12,7 @@ tags:
 - shell
 title: Trying Nushell on Windows
 created: 2024-01-15T15:26:32-08:00
-updated: 2024-02-01T21:03:34-08:00
+updated: 2024-02-06T16:55:23-08:00
 ---
 
 ![attachments/img/2022/cover-2022-04-22.png](../../../attachments/img/2022/cover-2022-04-22.png)
@@ -30,7 +30,7 @@ Right. I have also been spending more time in Windows recently. No big deal. I b
 
 ## Installing Nushell with Winget
 
-The quickstart on the Nushell suggests using [winget](https://www.nushell.sh/book/installation.html). Lucky me, I happen to have played with that recently enough to remember it's there.
+The Nushell [documentation](https://www.nushell.sh/book/installation.html) suggests using [Winget](../../../card/Winget.md). Lucky me, I happen to have played with that recently enough to remember it's there.
 
 ````
 $ winget install nushell

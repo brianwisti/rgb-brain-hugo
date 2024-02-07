@@ -114,7 +114,7 @@ class VaultNote(VaultResource):
     @classmethod
     def from_path(cls: type["VaultNote"], path: Path):
         """Return a VaultNote by processing the file at a given path."""
-        logging.debug("VaultNote.from_path %s", path)
+        logging.info("VaultNote.from_path %s", path)
         post = frontmatter.loads(path.read_text(encoding="utf-8"))
 
         return cls(path=path, note=post)

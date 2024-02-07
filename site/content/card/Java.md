@@ -1,7 +1,7 @@
 ---
 title: Java
 created: 2024-01-15T15:26:18-08:00
-updated: 2024-02-04T15:18:01-08:00
+updated: 2024-02-05T21:44:24-08:00
 ---
 
 Enterprise object-oriented [Programming Language](Programming%20Language.md).
@@ -70,6 +70,12 @@ sdk install maven
 
 ````sh
 sdk install gradle
+````
+
+````sh
+mkdir project
+cd project
+gradle init
 ````
 
 [Gradle | Gradle vs Maven Comparison](https://gradle.org/maven-vs-gradle/)
