@@ -15,7 +15,7 @@
   --color-text: #f7f7f7;
   --color-text-secondary: #aaa;
   --font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  --font-size-base: 18px;
+  --font-size-base: 1rem;
   --hover-brightness: 1.2;
   --justify-important: center;
   --justify-normal: left;
@@ -31,19 +31,6 @@
   --width-card-medium: 460px;
   --width-card-wide: 800px;
   --width-content: 1080px; }
-
-@media (prefers-color-scheme: light) {
-  :root[color-mode="user"] {
-    --color-accent: #118bee15;
-    --color-bg: #fff;
-    --color-bg-secondary: #e9e9e9;
-    --color-link: #118bee;
-    --color-secondary: #920de9;
-    --color-secondary-accent: #920de90b;
-    --color-shadow: #f4f4f4;
-    --color-table: #118bee;
-    --color-text: #000;
-    --color-text-secondary: #999; } }
 
 html {
   scroll-behavior: smooth; }
@@ -95,8 +82,7 @@ hr {
 
 section {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: var(--justify-important); }
+  flex-wrap: wrap; }
   section pre {
     overflow: auto; }
   section aside {
@@ -473,6 +459,29 @@ a[href^="/post"]:before {
 a[href^="/config"]:before {
   content: "🔨 "; }
 
+a#skip-link {
+  padding: .375rem;
+  position: absolute;
+  top: -3.2rem;
+  left: 0;
+  color: var(--color-bg-secondary);
+  border-right: 0.0625rem solid var(--color-secondary-accent);
+  border-bottom: 0.0625rem solid var(--color-secondary-accent);
+  border-bottom-right-radius: .5rem;
+  background: var(--color-link);
+  -webkit-transition: top 1s ease-out;
+  transition: top 1s ease-out;
+  z-index: 100; }
+  a#skip-link:focus {
+    position: absolute;
+    left: 0;
+    top: 0;
+    outline-color: transparent;
+    -webkit-transition: top .25s ease-in;
+    transition: top .25s ease-in; }
+  @media (prefers-reduced-motion: reduce) {
+    a#skip-link {
+      transition-duration: 0.001ms !important; } }
 .breadcrumb {
   font-size: small;
   border-top: thin solid var(--color-bg-secondary);

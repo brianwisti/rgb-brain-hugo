@@ -1,49 +1,46 @@
+{{ define "content-header" -}}
+        <h1>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h1>
+        {{ if eq .Section "post" }}
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
+                {{ .Date.Format .Site.Params.DateForm }}
+            </time>
+        {{ end }}
+        {{ range .Params.tags }}
+            <a class="p-category" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+        {{ end }}
+
+        {{ $Site := .Site }}
+        {{ if .Params.series }}
+            <p>
+                Series: <a href="{{ $Site.BaseURL }}series/{{ .Params.series | urlize }}">{{ .Params.series }}</a>
+            </p>
+        {{ end }}
+        {{- $cover_image := .Page.Params.cover_image -}}
+
+        {{ with $cover_image }}
+            {{- $image := $.Resources.GetMatch .path -}}
+            {{- $caption := .caption -}}
+            {{- with $image -}}
+            {{- $resized := .Resize "1280x" -}}
+            <figure>
+                <img src="{{ $resized.RelPermalink }}" class="u-photo">
+                <figcaption class="text-small align-right pb-1 pr-2">
+                {{ with $cover_image.caption }} {{ . | markdownify }} {{ end }}
+                <a href="{{ $image.RelPermalink }}" target="_blank" rel="noopener noreferrer">
+                (view full size)
+                </a>
+                </figcaption>
+            </figure>
+            {{- else -}}
+            <div class="alert alert-warning">No image '<tt>{{ .path }}</tt>'</div>
+            {{- end -}}
+        {{ end }}
+{{- end }}
+
 {{ define "main" -}}
     <article>
-        <header>
-            <h1>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-            </h1>
-            <footer>
-                {{ if eq .Section "post" }}
-                    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
-                        {{ .Date.Format .Site.Params.DateForm }}
-                    </time>
-                {{ end }}
-            </footer>
-                {{ range .Params.tags }}
-                    <a class="p-category" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">
-                        <b>{{ . }}</b>
-                    </a>
-                {{ end }}
-            
-            {{ $Site := .Site }}
-            {{ if .Params.series }}
-                <p>
-                    Series: <a href="{{ $Site.BaseURL }}series/{{ .Params.series | urlize }}">{{ .Params.series }}</a>
-                </p>
-            {{ end }}
-            {{- $cover_image := .Page.Params.cover_image -}}
-
-            {{ with $cover_image }}
-                {{- $image := $.Resources.GetMatch .path -}}
-                {{- $caption := .caption -}}
-                {{- with $image -}}
-                {{- $resized := .Resize "1280x" -}}
-                <figure>
-                    <img src="{{ $resized.RelPermalink }}" class="u-photo">
-                    <figcaption class="text-small align-right pb-1 pr-2">
-                    {{ with $cover_image.caption }} {{ . | markdownify }} {{ end }}
-                    <a href="{{ $image.RelPermalink }}" target="_blank" rel="noopener noreferrer">
-                    (view full size)
-                    </a>
-                    </figcaption>
-                </figure>
-                {{- else -}}
-                <div class="alert alert-warning">No image '<tt>{{ .path }}</tt>'</div>
-                {{- end -}}
-            {{ end }}
-        </header>
         {{ .Content }}
         {{ $page := . }}
         {{ $backlinks := slice }}
