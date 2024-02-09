@@ -4,7 +4,7 @@ aliases:
 - /post/2001/python-babysteps-tutorial/
 - /2001/01/17/python-babysteps-tutorial/
 category: post
-created: 2024-01-15 15:26:02-08:00
+created: 2024-01-15 15:24:06-08:00
 date: 2001-01-17 00:00:00-08:00
 description: Before the basics
 slug: python-babysteps-tutorial
@@ -13,10 +13,10 @@ tags:
 - learn
 - coolnamehere
 title: Python Babysteps Tutorial
-updated: 2024-02-02 09:56:58-08:00
+updated: 2024-02-09 08:32:37-08:00
 ---
 
-This is my original Python Babysteps tutorial, which has existed in more or less the same form since 2001. 
+This is my original [Python](../../../card/Python.md) Babysteps tutorial, which has existed in more or less the same form since 2001. 
 
 I got a good start on [python-2x-babysteps](../../2011/06/python-2x-babysteps.md)
 

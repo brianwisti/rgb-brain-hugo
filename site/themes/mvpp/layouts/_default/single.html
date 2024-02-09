@@ -7,8 +7,12 @@
                 {{ .Date.Format .Site.Params.DateForm }}
             </time>
         {{ end }}
-        {{ range .Params.tags }}
-            <a class="p-category" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+        {{ with .Params.tags}}
+        <p>Tags: 
+            {{ range . }}
+                <a class="p-category" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+        </p>
         {{ end }}
 
         {{ $Site := .Site }}
