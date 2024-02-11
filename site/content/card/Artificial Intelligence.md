@@ -1,7 +1,7 @@
 ---
 created: 2024-01-19 15:56:40-08:00
 title: Artificial Intelligence
-updated: 2024-02-01 06:34:35-08:00
+updated: 2024-02-10 06:57:44-08:00
 ---
 
 Currently a buzzword on par with "crypto" and "Web" and "electric" in times past, but also a useful collection of technologies for better understanding and processing complex situations with a computer.

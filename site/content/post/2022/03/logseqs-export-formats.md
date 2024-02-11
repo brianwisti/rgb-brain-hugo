@@ -1,4 +1,6 @@
 ---
+aliases:
+- post/2022/03/logseq-export-formats
 category: post
 created: 2024-01-15 15:26:06-08:00
 date: 2022-03-13
@@ -9,7 +11,7 @@ syndication:
 tags:
 - logseq
 title: Logseq's Export Formats
-updated: 2024-02-09 11:02:38-08:00
+updated: 2024-02-09 11:28:33-08:00
 ---
 
 ![attachments/img/2022/cover-2022-03-13.png](../../../attachments/img/2022/cover-2022-03-13.png)

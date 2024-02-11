@@ -13,7 +13,7 @@ title: Cygwin
 updated: 2024-01-26 09:18:36-08:00
 ---
 
-## Unix for the Windows World
+Unix for the Windows World
 
 Okay, so you’re a geek. Or you’d like to be. All of your cool friends are running *Linux* — or maybe even [FreeBSD](http://www.freebsd.org/). You’d like to install something with a distinctly geeky UNIX flavor. There’s a problem, though. You’ve got a PC, it runs *Windows*, and your parents / spouse / girlfriend / boyfriend / children will cause you great pain — or at least a great headache — if you do anything to endanger their comfortable environment. Chopping your hard drive in half to put a new operating system on it will probably end in tears. What to do?
 
