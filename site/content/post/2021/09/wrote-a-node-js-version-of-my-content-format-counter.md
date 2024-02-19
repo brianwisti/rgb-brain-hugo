@@ -34,7 +34,7 @@ Bag(html(39) md(542))
 
 Unfortunately, it didn't cover all the content extension once I figured out that Hugo can ignore `*.txt` files, allowing me to try all sorts of [tricks](../08/trying-a-thing-with-neovim.md) with content generation.
 
-So I've had this [Ruby](../../../card/Ruby.md) code embedded in my *justfile*.
+So I've had this [Ruby](../../../card/Ruby.md) code embedded in my [justfile](../../../config/justfile.md).
 
 ````ruby
 #!/usr/bin/env ruby

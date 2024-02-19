@@ -1,7 +1,7 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Job Search
-updated: 2024-01-31 11:34:50-08:00
+updated: 2024-02-17 12:55:27-08:00
 ---
 
 Resources for remote tech work that won't make me hate my life.
@@ -24,6 +24,7 @@ Not particularly well-vetted, as I've mostly glanced at these.
 
 ## Job Boards and Search Engines
 
+* [Workplace personalization at scale. Employee productivity at its peak.](https://www.inclusively.com)
 * [FlexJobs Best Remote Jobs, Work from Home Jobs, Online Jobs & More](https://www.flexjobs.com/)
   * requires money
 * [https://glassdoor.com](https://glassdoor.com)

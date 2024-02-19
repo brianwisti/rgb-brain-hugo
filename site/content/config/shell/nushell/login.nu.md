@@ -3,6 +3,8 @@ title: My Nushell login settings
 tags:
 - config
 - nushell
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-02-09T21:17:44-08:00
 ---
 
 For my occasional experiments using Nu as my login shell.
