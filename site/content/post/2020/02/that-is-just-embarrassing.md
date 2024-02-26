@@ -20,6 +20,6 @@ updated: 2024-02-02 10:04:20-08:00
 ![attachments/img/2020/cover-2020-02-25.png](../../../attachments/img/2020/cover-2020-02-25.png)
 Where's the rest of the post?
 
-Got a *Pyinvoke* `test` task for the site. Because of that, I found a post about [Jekyll collections](../../2015/07/making-a-jekyll-collection.md) that got truncated — before the current repo existed.
+Got a [Pyinvoke](../../../card/Pyinvoke.md) `test` task for the site. Because of that, I found a post about [Jekyll collections](../../2015/07/making-a-jekyll-collection.md) that got truncated — before the current repo existed.
 
 Fixed it though. Got the missing content from an [old copy](https://web.archive.org/web/20160318224730/http://randomgeekery.org/post/2015/making-a-jekyll-collection). Yay for Internet Archive!

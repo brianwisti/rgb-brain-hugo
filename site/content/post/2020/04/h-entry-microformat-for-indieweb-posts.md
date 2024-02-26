@@ -177,7 +177,7 @@ Yep, that’s a post header all right. What about validation? Did I get the micr
 
 ## Examining my microformats locally
 
-I know I can [validate](https://indiewebify.me/validate-h-entry) my h-entry at IndieWebify or copy and paste to <https://microformats.io>, but I want to look at this stuff from the shell. Preferably with a single command. *Ideally* with something I can stash in my *Pyinvoke* `tasks.py` file.
+I know I can [validate](https://indiewebify.me/validate-h-entry) my h-entry at IndieWebify or copy and paste to <https://microformats.io>, but I want to look at this stuff from the shell. Preferably with a single command. *Ideally* with something I can stash in my [Pyinvoke](../../../card/Pyinvoke.md) `tasks.py` file.
 
 [mfpy](https://github.com/microformats/mf2py) and [mf2util](https://mf2util.readthedocs.io/en/latest/) provide microformats2 handling for [Python](../../../card/Python.md) code.
 

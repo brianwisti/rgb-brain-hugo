@@ -18,4 +18,4 @@ as of build time, anyways
 
 Been meaning to get *Webmention* integration for a *while*. Went the easy way, using [webmention.io](https://webmention.io) and [brid.gy](https://brid.gy). Easier than writing everything myself.
 
-For now it’s just like counts, with a *Pyinvoke* task checking my mentions feed at Hugo build time. More stuff is planned, but first I decide how much information to show and from which sources. Not every tweet reply is intended as a blog comment.
+For now it’s just like counts, with a [Pyinvoke](../../../card/Pyinvoke.md) task checking my mentions feed at Hugo build time. More stuff is planned, but first I decide how much information to show and from which sources. Not every tweet reply is intended as a blog comment.

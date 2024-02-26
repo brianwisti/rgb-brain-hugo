@@ -10,7 +10,7 @@ Integrated development and IT Operations as primary responsibility, with focus o
 
 Gives a context for some of the bigger tech changes over the last couple decades
 
-* A whole-ass *Microservice* architecture is more complicated than a monolith, but its individual components are easier to update, deploy, or phase out completely.
+* A whole-ass [Microservice](Microservice.md) architecture is more complicated than a monolith, but its individual components are easier to update, deploy, or phase out completely.
 * You can use an orchestrator like *Kubernetes* to configure, fire up, and tear down *Container* collections as a matter of routine, whereas doing the same with a monolith requires greater planning and communication.
 * *Terraform* and similar *Infrastructure as Code* tools, using a structured language to describe architecture, and *Git* or whatever version control system you prefer to see the changing needs over time (and roll back if you screw up)
 

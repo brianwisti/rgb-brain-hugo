@@ -33,7 +33,7 @@ Don’t hold me to that "year of Python" thing. I get distracted.
 
 </aside>
 
-I could use the *Pyinvoke* tool created by [Jeff Forcier](http://bitprophet.org/) for this unified approach.
+I could use the [Pyinvoke](../../../card/Pyinvoke.md) tool created by [Jeff Forcier](http://bitprophet.org/) for this unified approach.
 
 Invoke gives you a task runner and support library for managing those tasks. It works a bit like Make, except that you define tasks with Python. Decorate some functions in a `tasks.py` file and you’re ready to go!
 
