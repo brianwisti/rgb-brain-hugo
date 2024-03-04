@@ -2,10 +2,12 @@
 created: 2024-03-03 21:08:06-08:00
 date: 2024-03-03
 description: Time for more interesting titles than "Snapshot"
+syndication:
+  mastodon: https://hackers.town/@randomgeek/112035769879350883
 tags:
 - snapshot
 title: Snapshot — HomeOps and Knowledge Garden
-updated: 2024-03-03 21:20:32-08:00
+updated: 2024-03-03 21:30:14-08:00
 ---
 
 # Snapshot — HomeOps and Knowledge Garden
