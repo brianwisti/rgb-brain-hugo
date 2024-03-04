@@ -62,4 +62,4 @@ via [Kat Talley on LinkedIn](https://www.linkedin.com/posts/kat-talley-%F0%9F%9B
 * [Working Nomads](https://www.workingnomads.com/jobs)
 * [FlexJobs](https://www.flexjobs.com)
 * [the muse](https://www.themuse.com)
-* *Brian Wisti*
+* *../jot/Brian Wisti*
