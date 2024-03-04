@@ -7,7 +7,7 @@ syndication:
 tags:
 - snapshot
 title: Snapshot — HomeOps and Knowledge Garden
-updated: 2024-03-03 21:30:14-08:00
+updated: 2024-03-03 21:33:46-08:00
 ---
 
 # Snapshot — HomeOps and Knowledge Garden
@@ -17,6 +17,9 @@ Staying pretty good with the weekly rhythm, but getting tired of seeing "YYYY-MM
 ## Jots
 
 ### HomeOps
+
+![Pasted image 20240303213317.png](../../../attachments/Pasted%20image%2020240303213317.png)
+My rule: if you do not provide a bio, one will be provided for you
 
 Helped *MrsGeek* put together a single-page "link in bio" site like one might see on Linktree and elsewhere. Seemed silly for her to pay a subscription price for something when she's already got tech support right here.
 
