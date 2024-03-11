@@ -1,10 +1,12 @@
 ---
 created: 2024-03-11 08:32:12-07:00
 date: 2024-03-11
+syndication:
+  mastodon: https://hackers.town/@randomgeek/112078556631361749
 tags:
 - snapshot
 title: Snapshot — I Hate Daylight Savings Time
-updated: 2024-03-11 11:19:32-07:00
+updated: 2024-03-11 11:51:47-07:00
 ---
 
 ## Jots
