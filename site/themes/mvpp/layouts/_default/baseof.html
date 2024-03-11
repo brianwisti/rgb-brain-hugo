@@ -24,15 +24,13 @@
                 {{ with .Site.Params.slogan }}{{. | safeHTML}}{{end}}
             </p>
         </header>
-        <section>
-            <header>
-                {{ partial "breadcrumb-trail.html" . }}
-                {{ block "content-header" . }}{{- end }}
-            </header>
-            <main id="content-main">
-                {{ block "main" . -}}{{- end }}
-            </main>
-        </section>
+        <main id="content-main">
+          <header>
+              {{ partial "breadcrumb-trail.html" . }}
+              {{ block "content-header" . }}{{- end }}
+          </header>
+          {{ block "main" . -}}{{- end }}
+        </main>
         <footer>
             <p>
                 built with <a target="_blank" href="https://gohugo.io">Hugo</a> |
