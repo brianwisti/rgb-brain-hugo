@@ -30,6 +30,7 @@ We're definitely going with an iterative approach, but iteration one is already 
 ### Knowledge Garden
 
 ![initial version of this post in Logseq](../../../attachments/Pasted%20image%2020240303211110.png)
+
 Been doing all of my capturing in [Logseq](../../../card/Logseq.md), and more of my processing lately too. I still work most easily with outlines, even for structured longform writing. So of course I'll see how it would work as the source for [My Public Brain](../../../card/My%20Public%20Brain.md). The hard part is getting it out there in a structure that I like. Might be time to revisit [logseqs-export-formats](../../2022/03/logseqs-export-formats.md). Meanwhile the published notes continue to use [Obsidian](../../../card/Obsidian.md) for the foreseeable future.
 
 ## Plan

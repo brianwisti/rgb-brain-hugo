@@ -199,7 +199,7 @@ Sorry, I got sleepy. Is it done? I should have put a `break` in that code after 
 
 ### Creating a Database
 
-I would imagine that stuffing these values into a database should make simple questions like "show me the star named 'Sol'" or "count the stars within 10 light years" pretty straightforward. We can use a lightweight database such as *SQLite*. There may be nearly 120,000 stars in the catalog, but that is trivial for SQLite. I have heard anecdotal reports of it being used for tables with millions of rows. 
+I would imagine that stuffing these values into a database should make simple questions like "show me the star named 'Sol'" or "count the stars within 10 light years" pretty straightforward. We can use a lightweight database such as [SQLite](../../../card/SQLite.md). There may be nearly 120,000 stars in the catalog, but that is trivial for SQLite. I have heard anecdotal reports of it being used for tables with millions of rows. 
 
 First, I want to install `sqlite3`.
 

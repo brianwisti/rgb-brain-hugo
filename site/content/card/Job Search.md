@@ -1,8 +1,10 @@
 ---
 created: 2024-01-15 15:26:52-08:00
 title: Job Search
-updated: 2024-02-25 18:50:48-08:00
+updated: 2024-03-05 11:20:07-08:00
 ---
+
+# Job Search
 
 Resources for remote tech work that won't make me hate my life.
 
@@ -43,6 +45,7 @@ Not particularly well-vetted, as I've mostly glanced at these.
 
 * [People-First Jobs — Remote, flexible jobs at companies with a people-first culture](https://peoplefirstjobs.com)
 * [Pyjama Jobs Club | Tomas Ondrejka | Substack](https://pyjamajobsclub.substack.com/?r=3akf2&utm_campaign=subscribe-page-share-screen&utm_medium=web)
+* [4 Day Week Jobs (32hrs @ 100% salary) - 4dayweek.io](https://4dayweek.io)
 
 ## General Suggestions
 

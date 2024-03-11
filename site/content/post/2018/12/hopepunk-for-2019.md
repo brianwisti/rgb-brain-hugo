@@ -2,13 +2,14 @@
 aliases:
 - /2018/12/31/hopepunk-for-2019/
 category: post
-date: 2018-12-31 00:00:00-08:00
+created: 2024-01-15 15:26:42-08:00
+date: 2018-12-31
 slug: hopepunk-for-2019
 tags:
 - personal
 - marginalia
 title: Hopepunk for 2019
-updated: 2019-02-16 00:00:00-08:00
+updated: 2024-03-11 11:22:26-07:00
 ---
 
 Writing these late night thoughts is as close as I get to making resolutions.

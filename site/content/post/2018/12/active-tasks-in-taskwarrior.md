@@ -3,7 +3,7 @@ aliases:
 - /2018/12/01/active-tasks-in-taskwarrior/
 category: post
 created: 2024-01-15 15:26:47-08:00
-date: 2018-12-01 00:00:00-08:00
+date: 2018-12-01
 series:
 - Taskwarrior Babysteps
 slug: active-tasks-in-taskwarrior
@@ -11,7 +11,7 @@ tags:
 - taskwarrior
 - tools
 title: Active Tasks in Taskwarrior
-updated: 2024-02-01 22:05:15-08:00
+updated: 2024-03-11 11:22:22-07:00
 ---
 
 ![attachments/img/2018/cover-2018-12-01.png](../../../attachments/img/2018/cover-2018-12-01.png)
