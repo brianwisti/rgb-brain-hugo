@@ -4,7 +4,7 @@ title: SQLite
 updated: 2024-02-01 21:58:27-08:00
 ---
 
-A lightweight embeddable *SQL* engine ideal for small use cases.
+A lightweight embeddable [SQL](SQL.md) engine ideal for small use cases.
 
 Small for computers, that is. It can still handle data that is huge by human brain standards.
 

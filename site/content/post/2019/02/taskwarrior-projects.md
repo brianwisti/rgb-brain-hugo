@@ -2,7 +2,7 @@
 aliases:
 - /2019/02/16/taskwarrior-projects/
 category: post
-created: 2024-01-15 15:26:46-08:00
+created: 2024-01-15 15:32:50-07:52
 date: 2019-02-16 00:00:00-08:00
 description: Use Taskwarrior projects to organize closely related tasks!
 series:
@@ -12,7 +12,7 @@ tags:
 - taskwarrior
 - tools
 title: Taskwarrior Projects
-updated: 2024-02-02 10:04:34-08:00
+updated: 2024-03-20 06:55:01-07:00
 ---
 
 ![attachments/img/2019/cover-2019-02-16.png](../../../attachments/img/2019/cover-2019-02-16.png)

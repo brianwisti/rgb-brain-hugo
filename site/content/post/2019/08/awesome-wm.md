@@ -25,4 +25,4 @@ There's been way too much "it just works (more or less)" in my desktop life late
 
 Disappointingly, it works just fine.
 
-Still, good chance to learn enough *Lua* to customize my setup. Looks like I'll be revisiting [kitty-terminal](../05/kitty-terminal.md) and a few other tools that have been on the task list for a while.
+Still, good chance to learn enough [Lua](../../../card/Lua.md) to customize my setup. Looks like I'll be revisiting [kitty-terminal](../05/kitty-terminal.md) and a few other tools that have been on the task list for a while.

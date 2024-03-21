@@ -3,7 +3,18 @@ tags:
 - term
 title: Lightweight Text Formatting Language
 created: 2024-01-15T15:26:14-08:00
-updated: 2024-01-26T09:07:22-08:00
+updated: 2024-03-21T04:40:55-07:00
 ---
 
-More structure than unadorned text, less structure than XML. Generally intended to simplify writing and editing complex documents in a text editor.
+A readable format for plain text that can be parsed and transformed by computer programs
+
+I usually need it to become HTML, or parsed to extract useful data
+
+## Languages
+
+The ones I spend the most time with.
+
+* [Markdown](Markdown.md)
+* [reStructuredText](reStructuredText.md)
+* [Asciidoctor](Asciidoctor.md)
+* [Org](Org.md)

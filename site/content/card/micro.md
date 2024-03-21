@@ -4,7 +4,7 @@ title: micro
 updated: 2024-01-26 09:07:41-08:00
 ---
 
-A friendly CUA-ish terminal text editor, extensible in *Lua*.
+A friendly CUA-ish terminal text editor, extensible in [Lua](Lua.md).
 
 # Related
 
