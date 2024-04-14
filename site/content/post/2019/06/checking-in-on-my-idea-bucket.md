@@ -32,4 +32,4 @@ ID  Tags             Description
  > 
  > **NOTE**
 >
- > [Oops](../07/task-add-admit-a-mistake.md): This was bad Taskwarrior usage. Use `newest` and `limit`.
+ > [Oops](../07/task%20add%20'admit%20a%20mistake'.md): This was bad Taskwarrior usage. Use `newest` and `limit`.

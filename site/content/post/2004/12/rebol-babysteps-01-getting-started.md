@@ -17,7 +17,7 @@ title: REBOL Babysteps - 01 Getting Started
 updated: 2024-02-01 20:44:00-08:00
 ---
 
-[REBOL](../../../card/REBOL.md) is the "Relative Expression-Based Object Language", developed by Carl Sassenrath. Who is Carl Sassenrath? Why, he’s one of the people responsible for the amazing operating system which powered the Amiga computer. What’s the Amiga? Why, the Amiga was only the incredibly robust and cool computer — released by the same company that brought the world’s first personal computer, Commodore. What’s Commodore? Stop bothering me, kid. Take it from a relative old-timer: Amiga put a *heck* of a lot of power into a consumer-affordable personal computer. It wasn’t really matched by other computers for a good five or ten years. Nowadays, I look at [REBOL](http://www.rebol.com/) and it feels like the first language I’ve come across to take lessons from past languages and apply them in a new context, rather than just reimplement them with different syntax.
+[REBOL](rebol.md) is the "Relative Expression-Based Object Language", developed by Carl Sassenrath. Who is Carl Sassenrath? Why, he’s one of the people responsible for the amazing operating system which powered the Amiga computer. What’s the Amiga? Why, the Amiga was only the incredibly robust and cool computer — released by the same company that brought the world’s first personal computer, Commodore. What’s Commodore? Stop bothering me, kid. Take it from a relative old-timer: Amiga put a *heck* of a lot of power into a consumer-affordable personal computer. It wasn’t really matched by other computers for a good five or ten years. Nowadays, I look at [REBOL](http://www.rebol.com/) and it feels like the first language I’ve come across to take lessons from past languages and apply them in a new context, rather than just reimplement them with different syntax.
 
 So why would you want to learn REBOL? Because REBOL makes it frighteningly easy to create programs that accomplish complex tasks. For example, here’s one way you can download the HTML source of a Web page – for example <https://randomgeekery.org/> – and view it in a text editing area with REBOL/View:
 
@@ -348,8 +348,7 @@ Cool, eh? Now you can share this script with all of your Rebol friends just by s
 
 ## Wrapping Up
 
-There you have it. You’ve learned how to write a simple script. Heck,
-I’ve even snuck in a couple of Rebol’s many datatypes while you weren’t looking. You’re well on the way to becoming a real Rebol programmer!
+There you have it. You’ve learned how to write a simple script. Heck, I’ve even snuck in a couple of Rebol’s many datatypes while you weren’t looking. You’re well on the way to becoming a real Rebol programmer!
 
 There is a lot of documentation available for REBOL, especially considering that the REBOL community is fairly small. RT keeps the official manuals available for free, and there are loads of script libraries and how-to guides written by the users themselves.
 

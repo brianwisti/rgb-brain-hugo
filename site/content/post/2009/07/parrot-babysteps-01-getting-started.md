@@ -151,8 +151,7 @@ If you're not using Vim on Windows, you can just move on to the next section. As
    * `skeleton.pir` → `vimfiles\skeleton.pir`
 1. Open `vimfiles\ftdetect\filetype_parrot.vim` and execute the following:
    * `:4s/\.vim/vimfiles`
-   * Or yeah, you can move to where it says `.vim` and manually replace that 
-     with `vimfiles` if that's how you like to do things.
+   * Or yeah, you can move to where it says `.vim` and manually replace that with `vimfiles` if that's how you like to do things.
 
 The steps may be a little more involved than just "click and run", but it's worth it for me. I *like* having Vim support.
 
@@ -310,8 +309,7 @@ The type names match up to the Parrot types, of course:
 * `string` for strings
 * `pmc` for PMCs
 
-Variables created with the `.local` directive can be treated the same as a
-register variable.
+Variables created with the `.local` directive can be treated the same as a register variable.
 
 ````
 # example-01-04.pir

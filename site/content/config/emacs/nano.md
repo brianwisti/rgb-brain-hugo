@@ -21,8 +21,7 @@ This is more or less my vanilla-ish [Emacs](../../card/Emacs.md) playground. I s
  > 
  > That last is particularly likely. I keep getting reminded that outsmarting yourself is a major hazard of Emacs configuration.
  > 
- > I'll add `org-pymacs-nodejs-todoist-roam-lsp-mode` later. Maybe. I
- > may not even need it.
+ > I'll add `org-pymacs-nodejs-todoist-roam-lsp-mode` later. Maybe. I may not even need it.
 
 ## Foundations {#foundations}
 
@@ -116,8 +115,7 @@ Boilerplate from the `straight.el` documentation.
 
 #### Integrate with `use-package` {#integrate-with-use-package}
 
-I tried to avoid [use-package](https://jwiegley.github.io/use-package/) here for a more "minimal" setup. That did not work.
-Since `straight.el` plays nice with `use-package`, let's let it do that.
+I tried to avoid [use-package](https://jwiegley.github.io/use-package/) here for a more "minimal" setup. That did not work. Since `straight.el` plays nice with `use-package`, let's let it do that.
 
 <a id="code-snippet--integrate straight with use-package"></a>
 

@@ -7,7 +7,7 @@ from pathlib import Path
 
 from rich.logging import RichHandler
 
-from note_processor.lib.vault_note import VaultNote
+from lib.vault_note import VaultNote
 
 SITE_DIR = Path("site")
 CONTENT_DIR = SITE_DIR / "content"

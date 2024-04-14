@@ -2,6 +2,8 @@
 title: Random Geekery
 tags:
 - meta
+created: 2024-01-12T05:42:39-08:00
+updated: 2024-03-27T04:49:11-07:00
 ---
 
 My brain, more or less. Also a blog.

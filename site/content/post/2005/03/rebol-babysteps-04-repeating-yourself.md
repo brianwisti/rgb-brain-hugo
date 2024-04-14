@@ -17,7 +17,7 @@ title: REBOL Babysteps - 04 Repeating Yourself
 updated: 2024-02-01 20:44:23-08:00
 ---
 
-Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with [REBOL](../../../card/REBOL.md). We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.
+Now we know how to do things, and we know how to choose whether or not we will do something. We’re getting close to having some real skills with [REBOL](../../2004/12/rebol.md). We just need to get the understanding of one more concept before we reach the first little plateau of programming knowledge. We need to learn how to do a task more than once. Well, besides just running the script again, but that doesn’t really count.
 
 ## Simple Loops
 

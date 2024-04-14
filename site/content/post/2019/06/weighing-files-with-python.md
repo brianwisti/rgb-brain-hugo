@@ -2,10 +2,9 @@
 aliases:
 - /2019/06/01/weighing-files-with-python/
 category: post
-created: 2024-01-15 15:26:40-08:00
+created: 2024-01-15 15:29:50-07:52
 date: 2019-06-01 00:00:00-07:00
-description: I want to optimize this site's file sizes, but first I should see if
-  I need to.
+description: Before optimizing site file sizes, I should see if I need to.
 slug: weighing-files-with-python
 syndication:
   mastodon: https://hackers.town/@randomgeek/102199106551447993
@@ -16,7 +15,7 @@ tags:
 - files
 - programming
 title: Weighing Files With Python
-updated: 2024-02-01 21:16:14-08:00
+updated: 2024-04-01 15:12:10-07:00
 ---
 
 ![attachments/img/2019/cover-2019-06-01.png](../../../attachments/img/2019/cover-2019-06-01.png)
@@ -231,7 +230,7 @@ I can and do make excuses –
 * "So many factors are beyond my control that there’s no point worrying about it."
 * "Everybody else’s site is even worse!"
 
-– but no. The first two are lies from my ego, the last two are *terrible* arguments from my apathy.
+but no. The first two are lies from my ego, the last two are *terrible* arguments from my apathy.
 
 I know my thresholds. Let’s teach FileWeight about them so it can report the news.
 

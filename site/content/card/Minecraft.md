@@ -3,7 +3,7 @@ tags:
 - media/game
 title: Minecraft
 created: 2024-01-15T15:26:39-08:00
-updated: 2024-02-09T20:26:25-08:00
+updated: 2024-03-21T15:04:27-07:00
 ---
 
 That big voxel survival game.
@@ -50,6 +50,10 @@ pasted highlights:
 [Wuselcraft Create All Around - Minecraft Modpacks - CurseForge](https://www.curseforge.com/minecraft/modpacks/wuselcraft-create-all-around)
 
 ### Cottage Witch: Recast
+
+### Better Adventures+
+
+[Better Adventures+ - Minecraft Modpacks - CurseForge](https://www.curseforge.com/minecraft/modpacks/better-adventures-plus)
 
 ## Mods
 

@@ -46,5 +46,4 @@ If you *are* a Parrot expert, you may find my approach simplistic to the point o
 
 # How?
 
-Do you want to learn about Parrot? Go ahead! The [official documents](http://docs.parrot.org/parrot/latest/html/index.html) are the best place to get current and complete information, but I think that my own little foray into the platform 
-could help you get your feet wet.
+Do you want to learn about Parrot? Go ahead! The [official documents](http://docs.parrot.org/parrot/latest/html/index.html) are the best place to get current and complete information, but I think that my own little foray into the platform could help you get your feet wet.

@@ -17,8 +17,7 @@ title: Living in Seattle
 updated: 2024-01-26 09:18:20-08:00
 ---
 
-Seattle is a city. It may not be as big as Los Angeles or New York, but it is still a city. You do not have an excuse to be bored, even if you are flat broke. My wife and I have lived in Seattle since 1999, and it still feels like we are scraping the surface of what this area has to
-offer after ten years.
+Seattle is a city. It may not be as big as Los Angeles or New York, but it is still a city. You do not have an excuse to be bored, even if you are flat broke. My wife and I have lived in Seattle since 1999, and it still feels like we are scraping the surface of what this area has to offer after ten years.
 
 This page exists to guide folks around Seattle, with pointers to some trivia and favorite locations in town. You may find something new or forgotten in these pages. You might not agree with my opinions. That is okay. Go ahead and tell me all about it. Many ways to contact me are on the top of this page.
 

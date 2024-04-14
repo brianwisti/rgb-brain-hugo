@@ -120,7 +120,7 @@ shortcode =>
 
 I can grab the named capture `filename` of my matched `shortcode` regex with `$/<shortcode><filename>` — or `~$<shortcode><filename>`, depending on your preferred syntax.
 
-This is all possible in languages like Perl with assorted flags, but I haven't seen parsing treated so well by default since maybe [REBOL](../../../card/REBOL.md).
+This is all possible in languages like Perl with assorted flags, but I haven't seen parsing treated so well by default since maybe [REBOL](../../2004/12/rebol.md).
 
 Anyways, let's run this thing.
 

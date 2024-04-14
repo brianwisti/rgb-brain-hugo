@@ -95,7 +95,6 @@ module completions {
     --ipv6(-6)                                 # use IPv6 addresses only
   ]
 }
-
 ````
 
 ## Theme

@@ -14,7 +14,7 @@ title: REBOL Datatypes
 updated: 2024-02-01 20:44:48-08:00
 ---
 
-One of [REBOL](../../../card/REBOL.md)’s strengths is the rich selection of native datatypes. This selection is part of what makes it so easy to express solutions to your problems, because there is less mental mapping to make as you use or create an abstract type to represent an important concept. Learning this selection is also one of the challenges for those who are trying to master the language. I am facing that challenge right now, so I decided to make this table of native REBOL
+One of [REBOL](rebol.md)’s strengths is the rich selection of native datatypes. This selection is part of what makes it so easy to express solutions to your problems, because there is less mental mapping to make as you use or create an abstract type to represent an important concept. Learning this selection is also one of the challenges for those who are trying to master the language. I am facing that challenge right now, so I decided to make this table of native REBOL
 datatypes and how they are expressed.
 
 You can find the full description of all datatypes, along with detailed information about usage, at the following url:

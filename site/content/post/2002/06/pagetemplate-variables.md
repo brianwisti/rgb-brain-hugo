@@ -14,15 +14,11 @@ title: PageTemplate - Variables
 updated: 2024-01-26 09:18:01-08:00
 ---
 
-The major directives require *variables*, which are just names for the
-value your want inserted, checked, or otherwise accessed. It’s a good
-idea to use variable names that make sense(`name` for a person’s name,
-`title` for the title of the page, etc.).
+The major directives require *variables*, which are just names for the value your want inserted, checked, or otherwise accessed. It’s a good idea to use variable names that make sense(`name` for a person’s name, `title` for the title of the page, etc.).
 
 # Value Substitution
 
-Substitution is the easiest concept to master. When PageTemplate comes
-across a value directive, it replaces that directive with some text.
+Substitution is the easiest concept to master. When PageTemplate comes across a value directive, it replaces that directive with some text.
 
 ## Syntax
 

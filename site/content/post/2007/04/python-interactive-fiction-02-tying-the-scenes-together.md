@@ -4,7 +4,7 @@ aliases:
 - /post/2007/02-tying-the-scenes-together/
 - /2007/04/20/python-interactive-fiction-02-tying-the-scenes-together/
 category: post
-created: 2024-01-15 15:25:40-08:00
+created: 2024-01-15 15:23:44-08:00
 date: 2007-04-20 00:00:00-07:00
 series:
 - Python Interactive Fiction
@@ -14,14 +14,14 @@ tags:
 - interactive-fiction
 - coolnamehere
 title: Python Interactive Fiction - 02 Tying the Scenes Together
-updated: 2024-01-26 09:22:01-08:00
+updated: 2024-04-14 09:43:55-07:00
 ---
 
 This is the second part of an [ongoing series](interactive-fiction-with-python.md) about using [Python](../../../card/Python.md) to create interactive fiction.  I hope to show you one fun use of Python while teaching you more about the basics of this language.  We started by defining how our game was going to work and creating a set of scenes for play. [Next](python-interactive-fiction-01-handling-a-single-round.md) we wrote the code to handle a single round of the game. Today we are going to tie all of our scenes together to make a complete, playable game of interactive fiction. We are going to approach it from an experimental view, playing with different approaches until we find one that makes us happy. Well, one that makes *me* happy.
 
 <!--more-->
 
-# Specifying a scene
+## Specifying a scene
 
 `ifiction.py` already does a good job of describing a scene, but we want to describe any one of several scenes. That won't happen unless we have an effective way to store all of the scenes and get at a specific one.  It's immediately obvious that we can't have a separate variable for each scene along with a separate list for each scene's available actions. That will become clumsy far too quickly. Let's think this through.
 
@@ -296,7 +296,7 @@ Oh, that's no good at all. Of course we can't use `mountain_scene` before we tel
 
 Python has a wonderful type for collecting things where the order doesn't matter. That type is called a *dictionary*, and it will be the subject of the next section.
 
-## Dictionaries
+### Dictionaries
 
 A dictionary is also the most perfectly named type. We have to think about what strings, integers, and arrays are, but a *dictionary* is easy.  You know how to use a dictionary, right? You want to know the meaning of a word, so you look it up by name, and there is the definition. The dictionary type works the same way. It uses *keys* instead of indexes. You look up values in a dictionary using their keys. Hey, we haven't gone to the console recently, and now's the perfect time.
 

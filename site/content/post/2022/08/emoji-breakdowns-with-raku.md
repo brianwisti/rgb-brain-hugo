@@ -8,8 +8,11 @@ syndication:
 tags:
 - raku-lang
 title: Emoji Breakdowns With Raku
+banner: attachments/img/2022/cover-2022-08-14.png
+banner_alt: console display of female surfer emoji broken down into its different code points
+banner_y: 0.3
 created: 2024-01-15T15:26:03-08:00
-updated: 2024-01-26T10:19:11-08:00
+updated: 2024-04-01T09:54:21-07:00
 ---
 
 ![console display of female surfer emoji broken down into its different code points](attachments/img/2022/cover-2022-08-14.png "If you think that's weird, you should see what all these emoji have done to my neovim session.")
@@ -69,7 +72,7 @@ bsh ❯ rakumoji 🦋
  BUTTERFLY  129419     1F98B    🦋
 ````
 
-# Why?
+## Why?
 
 So I'm doing a thing with a CSS stylesheet involving display of emojis. You don't want the emoji in a stylesheet though. More portable to use code points, the numeric value or values a computer uses to identify the character.
 

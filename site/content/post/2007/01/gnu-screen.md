@@ -22,8 +22,7 @@ Sometimes it's helpful to have multiple consoles open during a *Linux* session. 
 
 # Where To Find `screen`
 
-`screen` is part of the [GNU](http://www.gnu.org/) project. You can find more info at the [GNU Screen project page](https://savannah.gnu.org/projects/screen/). It's also on many distributions, so search with your package manager before 
-you download and install the source package.
+`screen` is part of the [GNU](http://www.gnu.org/) project. You can find more info at the [GNU Screen project page](https://savannah.gnu.org/projects/screen/). It's also on many distributions, so search with your package manager before you download and install the source package.
 
 # How To Use `screen`
 

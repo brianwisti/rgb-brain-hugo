@@ -38,11 +38,9 @@ There’s probably a quick way to do it in Windows as well, but here’s what I 
 1. Select "System"
 1. Select "Advanced system settings"
 1. Select "Environment Variables" button.
-1. Select "Path" from System Variables if you have admin privileges,
-   otherwise from User variables.
+1. Select "Path" from System Variables if you have admin privileges, otherwise from User variables.
 1. Click "Edit".
-1. At the beginning of the "Variable value" field, put the location of
-   your `jruby\bin` folder: `C:\jruby\bin;C:\Ruby\bin;%PATH%`
+1. At the beginning of the "Variable value" field, put the location of your `jruby\bin` folder: `C:\jruby\bin;C:\Ruby\bin;%PATH%`
 1. Click "Ok" until all those lovely dialog boxes go away.
 
 Now you should be able to access the JRuby commands from any console. The Windows command prompt is accessible via the Start Menu, under Accessories.

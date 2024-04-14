@@ -23,8 +23,7 @@ This material follows pretty much the same steps as the Parrot book chapter on [
 
 # Sequence
 
-As usual for many programming languages, the the sequence control structure is 
-implemented in Parrot as a pattern of one instruction following another.
+As usual for many programming languages, the the sequence control structure is implemented in Parrot as a pattern of one instruction following another.
 
 ````
 # example-03-01.pir
@@ -163,9 +162,7 @@ I admit it. This example is all about making me feel good. One greeting is prepa
 
 ### Conditionals
 
-The conditional in an `if` operation is checked to see if it looks false. The
-conditional can be a simple variable, in which case the value of the variable
-is examined. False looks a little different for each of the types.
+The conditional in an `if` operation is checked to see if it looks false. The conditional can be a simple variable, in which case the value of the variable is examined. False looks a little different for each of the types.
 
 |For This Type|False looks like this|
 |-------------|---------------------|

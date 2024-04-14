@@ -2,7 +2,7 @@
 aliases:
 - /2019/05/24/pretty-print-terminal-files-with-bat/
 category: post
-created: 2024-01-15 15:26:35-08:00
+created: 2024-01-15 15:24:39-08:00
 date: 2019-05-24 00:00:00-07:00
 description: '`bat` is like a fancier `cat` for displaying file contents.
 
@@ -15,7 +15,7 @@ tags:
 - shell
 - tools
 title: Pretty Print Terminal Files With Bat
-updated: 2024-02-01 20:37:43-08:00
+updated: 2024-04-14 09:44:34-07:00
 ---
 
 ![attachments/img/2019/cover-2019-05-24.png](../../../attachments/img/2019/cover-2019-05-24.png)
