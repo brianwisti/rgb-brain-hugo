@@ -2,10 +2,12 @@
 created: 2024-04-14 08:30:14-07:00
 date: 2024-04-14
 description: oops didn't mean to skip a whole month
+syndication:
+  mastodon: https://hackers.town/@randomgeek/112270645096144254
 tags:
 - snapshot
 title: Snapshot – Vacation Time
-updated: 2024-04-14 09:55:24-07:00
+updated: 2024-04-14 10:02:40-07:00
 ---
 
 ## Jots
