@@ -2,11 +2,14 @@
 created: 2024-04-26 13:41:26-07:00
 date: 2024-04-28
 description: I didn't just break down a one-liner this time, but I also did that
+syndication:
+  mastodon: https://hackers.town/@randomgeek/112351149757759978
 tags:
 - second-brain
 - logseq
+- nushell
 title: Generating a Plugins Page for my Logseq Graph
-updated: 2024-04-28 15:10:01-07:00
+updated: 2024-04-28 15:15:19-07:00
 ---
 
 ## What?
