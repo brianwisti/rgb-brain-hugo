@@ -3,6 +3,7 @@ aliases:
 - /note/2019/306/watched-netflix-explained-remembered-bowie/
 - /note/2019/11/watched-netflix-explained-remembered-bowie/
 category: note
+created: 2024-01-15 15:26:41-08:00
 date: 2019-11-02 20:03:21-07:00
 slug: watched-netflix-explained-remembered-bowie
 syndication:
@@ -13,6 +14,7 @@ tags:
 - bowie
 - the-internet-is-an-alien-life-form
 title: Watched Netflix Explained; remembered Bowie
+updated: 2024-05-01 22:44:37-07:00
 ---
 
 We watched the "Code" episode of Netflix's [explained](https://www.netflix.com/title/80216752).There's only so much that can be covered in 24 minutes, but I enjoyed the high level overview of concepts, history, and issues they presented within their constraints.

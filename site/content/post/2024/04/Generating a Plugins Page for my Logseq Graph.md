@@ -9,7 +9,7 @@ tags:
 - logseq
 - nushell
 title: Generating a Plugins Page for my Logseq Graph
-updated: 2024-04-28 15:15:19-07:00
+updated: 2024-04-30 10:06:35-07:00
 ---
 
 ## What?
@@ -22,9 +22,7 @@ I wrote a [Nushell](../../../card/Nushell.md) script that updates *My Logseq Wor
 
 ## How?
 
-Everything we need to know can be determined by looking at the plugin files and reading some *JSON*.
-
-I'm going to use Nushell for this task, but just about anything should do the job. The same basic logic will work in any language with support for loading and processing JSON.
+Everything we need to know can be determined by looking at the plugin files and reading some [JSON](../../../card/JSON.md). I'm going to use Nushell for this task, but just about anything should do the job. The same basic logic will work in any language with support for loading and processing JSON.
 
 ### The `~/.logseq/` Folder
 
@@ -49,7 +47,7 @@ I need to use all those details to generate summary strings for every plugin. So
  > 
  > **NOTE**
 >
- > I use the `heading` property rather than Markdown header markers, since Logseq renders it in a more predictable fashion when you zoom to a specific section.
+ > I use the `heading` property rather than Markdown header markers. That way a section header looks like a level one header when I zoom into that section.
 
 Because I only have a couple dozen plugins installed and I'm only working with local data, I won't worry about optimizing performance. I can set up everything I need with a few loops. 
 
@@ -90,6 +88,8 @@ let everything = (
 	}
 )
 ````
+
+#### Breaking down that series of pipes
 
 A piped sequence felt like the clearest way to assemble this, but let's look at it piecemeal so we understand what's going on at each step of the process.
 
@@ -158,6 +158,10 @@ We're relying the presence or absence of a `themes` field in package info to det
 
 What's that look like? Wait — in order to make sense of this view, we should grab the [`last`](https://www.nushell.sh/commands/docs/last.html) row and [`transpose`](https://www.nushell.sh/commands/docs/transpose.html) it so that each column becomes a record field.
 
+````nu
+$everything | last 1 | transpose
+````
+
 ![Pasted image 20240427220042.png](../../../attachments/Pasted%20image%2020240427220042.png)
 
 This is still messy. Nushell doesn't care — I went through a few iterations pretty much ignoring the extra bulk — but I'm trying to write coherent code for you. Let's select only those new columns for extracted details.
@@ -195,11 +199,15 @@ let everything = $everything | each { |it|
 }
 ````
 
-That'll look a little clunky as a table. Let's transpose the last row.
+That'll look a little clunky as a table. Let's transpose the last row again.
+
+````nu
+$everything | last 1 | transpose
+````
 
 ![Pasted image 20240428133729.png](../../../attachments/Pasted%20image%2020240428133729.png)
 
-Now we know what `$everything` looks like. Let's move on.
+Now we know what `$everything` looks like, or at least the structure we end up with for each row. Let's move on.
 
 ### Transform to Active Plugin and Theme Lists
 
@@ -209,11 +217,11 @@ I only want to summarize the themes and plugins I currently have enabled. [`wher
 let active = $everything | where disabled == false
 ````
 
-I want to show themes and plugins in different sections, so let's make different lists for each.
+I want to show themes and plugins in different sections, so let's make different tables for each.
 
 ````nu
-let themes = $active | where is-theme == true | get block
-let plugins = $active | where is-theme == false | get block
+let themes = $active | where is-theme == true
+let plugins = $active | where is-theme == false
 ````
 
 ### Save to a New Page
@@ -233,10 +241,10 @@ let page_text = [
 	$"\t- My currently installed [[Logseq]] plugins as of [[($now)]]"
 	"- Plugins"
 	"  heading:: true"
-	($plugins | to text)
+	($plugins | get block | to text)
 	"- Themes"
 	"  heading:: true"
-	($themes | to text)
+	($themes | get block | to text)
 ] | str join "\n"
 ````
 

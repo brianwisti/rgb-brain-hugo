@@ -16,9 +16,9 @@
         {{ end }}
 
         {{ $Site := .Site }}
-        {{ if .Params.series }}
+        {{ range .Params.series }}
             <p>
-                Series: <a href="{{ $Site.BaseURL }}series/{{ .Params.series | urlize }}">{{ .Params.series }}</a>
+                Series: <a href="{{ $Site.BaseURL }}series/{{ . | urlize }}">{{ . }}</a>
             </p>
         {{ end }}
         {{- $cover_image := .Page.Params.cover_image -}}

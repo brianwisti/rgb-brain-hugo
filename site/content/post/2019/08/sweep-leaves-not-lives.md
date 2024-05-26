@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/222/sweep-leaves-not-lives/
 category: note
+created: 2024-01-15 15:26:38-08:00
 date: 2019-08-10 09:38:46-07:00
 slug: sweep-leaves-not-lives
 syndication:
@@ -13,6 +14,7 @@ tags:
 - art
 - homelessness
 title: Sweep Leaves Not Lives
+updated: 2024-05-01 22:43:34-07:00
 ---
 
 ![attachments/img/2019/cover-2019-08-10.jpg](../../../attachments/img/2019/cover-2019-08-10.jpg)

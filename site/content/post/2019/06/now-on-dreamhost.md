@@ -3,12 +3,14 @@ aliases:
 - /2019/06/16/now-on-dreamhost/
 - /post/2019/06/now-on-dreamhost/
 category: post
+created: 2024-01-15 15:26:39-08:00
 date: 2019-06-16 00:00:00-07:00
 slug: now-on-dreamhost
 tags:
 - site
 - marginalia
 title: Now on Dreamhost
+updated: 2024-05-01 22:43:13-07:00
 ---
 
 The site’s moved from [AWS](https://aws.amazon.com) to [Dreamhost](https://dreamhost.com)!

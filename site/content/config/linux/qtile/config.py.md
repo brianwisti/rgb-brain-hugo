@@ -2,6 +2,8 @@
 title: My Qtile config.py
 tags:
 - config
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-05-01T22:39:19-07:00
 ---
 
 This is the entry point for a Qtile session.

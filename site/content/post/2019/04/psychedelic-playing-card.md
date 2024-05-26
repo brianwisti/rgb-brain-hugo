@@ -3,6 +3,7 @@ aliases:
 - /2019/04/14/psychedelic-playing-card/
 - /post/2019/04/psychedelic-playing-card/
 category: post
+created: 2024-01-15 15:26:34-08:00
 date: 2019-04-14 00:00:00-07:00
 slug: psychedelic-playing-card
 syndication:
@@ -14,6 +15,7 @@ tags:
 - symmetry
 - craft
 title: Psychedelic Playing Card
+updated: 2024-05-01 22:42:47-07:00
 ---
 
 That cover image is kinda fuzzy. Better click on the original link image to see it properly.

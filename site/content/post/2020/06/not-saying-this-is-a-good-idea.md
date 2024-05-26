@@ -2,6 +2,7 @@
 aliases:
 - /note/2020/06/not-saying-this-is-a-good-idea/
 category: note
+created: 2024-01-15 15:26:26-08:00
 date: 2020-06-02 14:45:01-07:00
 slug: not-saying-this-is-a-good-idea
 syndication:
@@ -13,6 +14,7 @@ tags:
 - wsl
 - emacs
 title: Not saying this is a good idea
+updated: 2024-05-01 22:46:42-07:00
 ---
 
 ![attachments/img/2020/cover-2020-06-02.png](../../../attachments/img/2020/cover-2020-06-02.png)

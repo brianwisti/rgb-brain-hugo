@@ -3,6 +3,7 @@ aliases:
 - /note/2019/325/art-nouveau-psychedelia-and-a-kalevala-tangent/
 - /note/2019/11/art-nouveau-psychedeilia-and-a-kalevala-tangent/
 category: note
+created: 2024-01-15 15:26:35-08:00
 date: 2019-11-21 16:01:50-08:00
 slug: art-nouveau-psychedeilia-and-a-kalevala-tangent
 syndication:
@@ -16,6 +17,7 @@ tags:
 - thanks-to-mom
 - kalevala
 title: Art Nouveau, Psychedelia, and a Kalevala tangent
+updated: 2024-05-01 22:44:28-07:00
 ---
 
 > 

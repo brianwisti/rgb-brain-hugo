@@ -25,7 +25,7 @@ for that reference changes.
 
 Hugo [data templates](https://gohugo.io/templates/data-templates/) could fix all that.
 
-Data templates are written in [YAML](../../../card/YAML.md), [TOML](../../../card/TOML.md), or *JSON* format and saved to your site’s `data` folder. Your data templates and their contents become available to Hugo via the `$.Site.Data` variable. Organize your data templates however you like, and make them as complex as you want.
+Data templates are written in [YAML](../../../card/YAML.md), [TOML](../../../card/TOML.md), or [JSON](../../../card/JSON.md) format and saved to your site’s `data` folder. Your data templates and their contents become available to Hugo via the `$.Site.Data` variable. Organize your data templates however you like, and make them as complex as you want.
 
 ## My data template for links
 

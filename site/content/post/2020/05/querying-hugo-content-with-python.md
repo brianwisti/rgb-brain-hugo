@@ -419,7 +419,7 @@ Yep. Datasette is pretty nifty. I’m not missing `q` at all. And I’m *really*
 That was fun! Still got a lot ahead of me.
 
 * Figuring out the quickest way to refresh the database
-* Adding those IndieWeb tables, so I can review *Webmention* updates
+* Adding those IndieWeb tables, so I can review [Webmention](../../../card/Webmention.md) updates
 * New [Pyinvoke](../../../card/Pyinvoke.md) tasks to build, query, and explore the database
 * Fixing those tasks that still call out to my old and busted `query` Python
 * Make my Datasette site dashboard pretty

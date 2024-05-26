@@ -3,6 +3,7 @@ aliases:
 - /2017/12/15/knotwork-practice/
 - /post/2017/12/knotwork-practice/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-12-15 00:00:00-08:00
 slug: knotwork-practice
 syndication:
@@ -14,6 +15,7 @@ tags:
 - zentangle
 - craft
 title: Knotwork Practice
+updated: 2024-05-01 22:46:10-07:00
 ---
 
 ![attachments/img/2017/cover-2017-12-15.jpg](../../../attachments/img/2017/cover-2017-12-15.jpg)

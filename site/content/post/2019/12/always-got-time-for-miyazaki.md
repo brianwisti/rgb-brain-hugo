@@ -3,6 +3,7 @@ aliases:
 - /note/2019/348/always-got-time-for-miyazaki/
 - /note/2019/12/always-got-time-for-miyazaki/
 category: note
+created: 2024-01-15 15:26:39-08:00
 date: 2019-12-14 02:00:00-08:00
 slug: always-got-time-for-miyazaki
 syndication:
@@ -12,6 +13,7 @@ tags:
 - watch
 - art
 title: Always got time for Miyazaki
+updated: 2024-05-01 22:43:46-07:00
 ---
 
 kaptainkristian demonstrates how sound, animation pacing, background

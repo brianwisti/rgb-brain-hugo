@@ -20,7 +20,7 @@ updated: 2024-02-02 10:03:15-08:00
 ---
 
 ![attachments/img/2020/cover-2020-11-10.jpg](../../../attachments/img/2020/cover-2020-11-10.jpg)
-A spiderweb! For *Webmention*! Get it? Okay, yeah. Sorry.
+A spiderweb! For [Webmention](../../../card/Webmention.md)! Get it? Okay, yeah. Sorry.
 
 So I hosed a local copy of my mentions feed the other month.  What’s my "mentions feed," I hear you wondering?
 

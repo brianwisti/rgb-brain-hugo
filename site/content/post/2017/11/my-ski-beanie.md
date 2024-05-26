@@ -2,6 +2,7 @@
 aliases:
 - /2017/11/19/my-ski-beanie/
 category: post
+created: 2024-01-15 15:26:49-08:00
 date: 2017-11-19 00:00:00-08:00
 slug: my-ski-beanie
 tags:
@@ -9,6 +10,7 @@ tags:
 - hat
 - craft
 title: My Ski Beanie
+updated: 2024-05-01 22:46:21-07:00
 ---
 
 ![attachments/img/2017/cover-2017-11-19.jpg](../../../attachments/img/2017/cover-2017-11-19.jpg)

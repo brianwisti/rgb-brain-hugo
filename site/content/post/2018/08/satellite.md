@@ -2,6 +2,7 @@
 aliases:
 - /2018/08/11/satellite/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-08-11 00:00:00-07:00
 slug: satellite
 tags:
@@ -11,6 +12,7 @@ tags:
 - buy-me
 - craft
 title: Satellite
+updated: 2024-05-02 07:33:00-07:00
 ---
 
 This one took a while.

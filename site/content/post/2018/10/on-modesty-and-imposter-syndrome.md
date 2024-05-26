@@ -2,6 +2,7 @@
 aliases:
 - /2018/10/21/on-modesty-and-imposter-syndrome/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-10-21 00:00:00-07:00
 description: Take a deep breath. Relax. You got this.
 slug: on-modesty-and-imposter-syndrome
@@ -9,6 +10,7 @@ tags:
 - personal
 - marginalia
 title: On Modesty And Imposter Syndrome
+updated: 2024-05-02 07:32:33-07:00
 ---
 
 ![attachments/img/2018/cover-2018-10-21.jpg](../../../attachments/img/2018/cover-2018-10-21.jpg)

@@ -3,6 +3,7 @@ aliases:
 - /note/2019/311/some-manual-symmetry-with-linea-sketch/
 - /note/2019/11/some-manual-symmetry-with-linea-sketch/
 category: note
+created: 2024-01-15 15:26:40-08:00
 date: 2019-11-07 07:27:55-08:00
 slug: some-manual-symmetry-with-linea-sketch
 syndication:
@@ -13,6 +14,7 @@ tags:
 - symmetry
 - linea-sketch
 title: Some manual symmetry with Linea Sketch
+updated: 2024-05-01 22:44:18-07:00
 ---
 
 ![attachments/img/2019/cover-2019-11-07.jpg](../../../attachments/img/2019/cover-2019-11-07.jpg)

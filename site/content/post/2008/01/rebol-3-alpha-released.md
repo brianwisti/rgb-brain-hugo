@@ -14,7 +14,7 @@ title: REBOL 3 alpha released
 updated: 2024-01-26 09:40:54-08:00
 ---
 
-I just saw Petr Krenzelok's giddy announcement on the [REBOL](../../../card/REBOL.md) mailing list that a public alpha of REBOL 3 is available today. I've been waiting to see this for a while and can't even begin to describe how excited I am. 
+I just saw Petr Krenzelok's giddy announcement on the [REBOL](../../2004/12/rebol.md) mailing list that a public alpha of REBOL 3 is available today. I've been waiting to see this for a while and can't even begin to describe how excited I am. 
 
 <!--more-->
 

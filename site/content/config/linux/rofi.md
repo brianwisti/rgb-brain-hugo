@@ -2,6 +2,8 @@
 title: My rofi config
 tags:
 - config
+created: 2024-01-15T17:29:21-08:00
+updated: 2024-05-01T22:38:44-07:00
 ---
 
 Grabbing directly from the EndeavourOS defaults.

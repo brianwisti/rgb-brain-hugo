@@ -6,7 +6,7 @@ updated: 2024-01-26 09:08:52-08:00
 
 \#process
 
-Oops I had `.envrc` in my *Git* repo.  Fixing it with `git-filter-repo`.
+Oops I had `.envrc` in my [Git](Git.md) repo.  Fixing it with `git-filter-repo`.
 
 ````shell
 git clone URL ~/tmp/

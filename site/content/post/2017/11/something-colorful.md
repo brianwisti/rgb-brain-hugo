@@ -2,6 +2,7 @@
 aliases:
 - /2017/11/07/something-colorful/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-11-07 00:00:00-08:00
 slug: something-colorful
 syndication:
@@ -11,6 +12,7 @@ tags:
 - infinite-painter
 - craft
 title: Something Colorful
+updated: 2024-05-01 22:46:29-07:00
 ---
 
 ![attachments/img/2017/cover-2017-11-07.jpg](../../../attachments/img/2017/cover-2017-11-07.jpg)

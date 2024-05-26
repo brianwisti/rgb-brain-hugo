@@ -2,6 +2,7 @@
 aliases:
 - /2019/08/22/chaotic-symmetry/
 category: post
+created: 2024-01-15 15:26:36-08:00
 date: 2019-08-22 00:00:00-07:00
 description: In which I spend a month on a fifteen minute doodle
 slug: chaotic-symmetry
@@ -13,6 +14,7 @@ tags:
 - infinite-painter
 - craft
 title: Chaotic Symmetry
+updated: 2024-05-01 22:43:41-07:00
 ---
 
 I wish I drew this one larger. Then again, I thought it was going to be a quick bedtime sketch. Ended up spending probably around 40 hours on it.

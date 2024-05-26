@@ -3,12 +3,14 @@ aliases:
 - /post/2017/taking-os-x-screenshots/
 - /2017/05/26/taking-os-x-screenshots/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-05-26 00:00:00-07:00
 slug: taking-os-x-screenshots
 tags:
 - os-x
 - tools
 title: Taking OS X Screenshots
+updated: 2024-05-01 22:45:50-07:00
 ---
 
 Notes on saving screenshots in OS X, so I don’t have to look it up again.

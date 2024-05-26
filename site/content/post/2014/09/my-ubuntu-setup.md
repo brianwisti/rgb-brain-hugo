@@ -21,7 +21,7 @@ I installed [Ubuntu](http://ubuntu.com) 14.04 on a partition of my laptop today.
 * [ack](http://beyondgrep.com/) because I prefer it over grep for searching file contents.
 * [Emacs](../../../card/Emacs.md) because it's become my default text editor.
 * [Google Chrome](https://chrome.google.com)
-* *Git*
+* [Git](../../../card/Git.md)
 * [curl](http://curl.haxx.se/)
 * [BitTorrent Sync](http://getsync.com/) because me and my free range artisanal lifestyle are too cool for Dropbox.
 * [Unity Tweak Tool](https://apps.ubuntu.com/cat/applications/unity-tweak-tool/)

@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/176/internet-connected/
 category: note
+created: 2024-01-15 15:26:36-08:00
 date: 2019-06-25 18:52:17-07:00
 slug: internet-connected
 syndication:
@@ -10,6 +11,7 @@ syndication:
 tags:
 - now
 title: Internet Connected!
+updated: 2024-05-01 22:43:08-07:00
 ---
 
 We have Internet at the new apartment. That means we're officially moved in.

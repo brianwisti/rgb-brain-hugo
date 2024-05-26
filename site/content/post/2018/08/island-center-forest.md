@@ -2,6 +2,7 @@
 aliases:
 - /2018/08/19/island-center-forest/
 category: post
+created: 2024-01-15 15:26:45-08:00
 date: 2018-08-19 00:00:00-07:00
 series:
 - sauntering
@@ -10,6 +11,7 @@ tags:
 - exploring
 - marginalia
 title: Island Center Forest
+updated: 2024-05-02 07:32:55-07:00
 ---
 
 [Island Center Forest](https://www.wta.org/go-hiking/hikes/island-center-forest) contains roughly ten miles of trails. I walked about six of them yesterday. Today my feet hurt.

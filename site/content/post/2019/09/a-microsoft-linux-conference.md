@@ -3,6 +3,7 @@ aliases:
 - /note/2019/255/a-microsoft-linux-conference/
 - /note/2019/09/a-microsoft-linux-conference/
 category: note
+created: 2024-01-15 15:26:37-08:00
 date: 2019-09-12 14:43:18-07:00
 slug: a-microsoft-linux-conference
 syndication:
@@ -16,6 +17,7 @@ tags:
 - well-i-never
 - bound-to-happen-eventually
 title: A Microsoft Linux Conference?
+updated: 2024-05-01 22:42:30-07:00
 ---
 
 From [OMG! Ubuntu](https://www.omgubuntu.co.uk/2019/09/microsoft-linux-conference-wslconf-march-2020):

@@ -4,12 +4,14 @@ aliases:
 - /post/2015/pandoc/
 - /2015/07/23/pandoc/
 category: post
+created: 2024-01-15 15:25:25-08:00
 date: 2015-07-23 00:00:00-07:00
 slug: pandoc
 tags:
 - pandoc
 - tools
 title: Pandoc
+updated: 2024-05-02 07:33:06-07:00
 ---
 
 I could use [Pandoc](http://pandoc.org/) to build HTML from my site

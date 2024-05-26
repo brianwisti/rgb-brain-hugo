@@ -73,7 +73,7 @@ The visitor may briefly see a blank page.  Browsers visiting the old URL see the
 
 ## Now for today’s problem
 
-Now my *Webmention* feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
+Now my [Webmention](../../../card/Webmention.md) feed is busted.  The syndication links all point to the old URL.  Visitors get corrected, but Webmention senders don’t.  [Brid.gy](https://brid.gy/) — a lovely service which forwards social network reactions to your webmention handler — saw nothing to forward to!
 
 ![Bridgy dashboard showing "No webmention support" in responses to my old URL](attachments/img/2020/bridgy.png)
 

@@ -31,7 +31,7 @@ Like [h-card](indieweb-h-cards.md), [h-entry](https://microformats.org/wiki/h-en
  > \[!NOTE\] But I want to try Webmentions!
  > You totally can!
  > 
- > I plan to examine *Webmention* — the mechanism behind replies, likes, reposts, etc. They’re the fun conversation part of [IndieWeb](../../../card/IndieWeb.md) after all. But I need to make sure that when I get to the conversation I have a clear understanding of who is taking part — the h-cards — and where the discussions take place — the h-entries.
+ > I plan to examine [Webmention](../../../card/Webmention.md) — the mechanism behind replies, likes, reposts, etc. They’re the fun conversation part of [IndieWeb](../../../card/IndieWeb.md) after all. But I need to make sure that when I get to the conversation I have a clear understanding of who is taking part — the h-cards — and where the discussions take place — the h-entries.
  > 
  > But you don’t need to wait for me. There are fine tutorials out there to walk you through the process. <https://IndieWebify.me> in particular tells you everything you need to know.
 

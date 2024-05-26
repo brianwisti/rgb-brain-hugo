@@ -2,6 +2,7 @@
 aliases:
 - /2018/04/27/stocking-cap/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2018-04-27 00:00:00-07:00
 description: I knitted myself a slightly silly stocking cap which I quite enjoy.
 slug: stocking-cap
@@ -10,6 +11,7 @@ tags:
 - hat
 - craft
 title: Stocking Cap
+updated: 2024-05-02 07:31:52-07:00
 ---
 
 ![attachments/img/2018/cover-2018-04-27.jpg](../../../attachments/img/2018/cover-2018-04-27.jpg)

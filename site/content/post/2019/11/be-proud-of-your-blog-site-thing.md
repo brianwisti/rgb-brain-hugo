@@ -3,6 +3,7 @@ aliases:
 - /note/2019/314/be-proud-of-your-blog-site-thing/
 - /note/2019/11/be-proud-of-your-blog-site-thing/
 category: note
+created: 2024-01-15 15:26:38-08:00
 date: 2019-11-10 20:47:45-08:00
 slug: be-proud-of-your-blog-site-thing
 syndication:
@@ -14,6 +15,7 @@ tags:
 - the-old-ways-die-hard
 - read-my-twitter-masterpiece-though
 title: Be proud of your blog site thing
+updated: 2024-05-01 22:44:23-07:00
 ---
 
 From [Happy 20th to This Blog!](https://inessential.com/2019/11/07/happy_20th_to_this_blog_):

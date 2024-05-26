@@ -2,6 +2,7 @@
 aliases:
 - /2019/05/06/teabagging-a-monsto/
 category: post
+created: 2024-01-15 15:26:38-08:00
 date: 2019-05-06 00:00:00-07:00
 description: Yeah I know. That's not what "teabagging" is.
 slug: teabagging-a-monsto
@@ -13,6 +14,7 @@ tags:
 - procreate
 - craft
 title: Teabagging a Monsto
+updated: 2024-05-01 22:43:29-07:00
 ---
 
 > 

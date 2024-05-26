@@ -21,7 +21,7 @@ Staying pretty good with the weekly rhythm, but getting tired of seeing "YYYY-MM
 ![Pasted image 20240303213317.png](../../../attachments/Pasted%20image%2020240303213317.png)
 My rule: if you do not provide a bio, one will be provided for you
 
-Helped *MrsGeek* put together a single-page "link in bio" site like one might see on Linktree and elsewhere. Seemed silly for her to pay a subscription price for something when she's already got tech support right here.
+Helped [MrsGeek](../../../card/MrsGeek.md) put together a single-page "link in bio" site like one might see on Linktree and elsewhere. Seemed silly for her to pay a subscription price for something when she's already got tech support right here.
 
 I settled on [Eleventy](../../../card/Eleventy.md) because I like it, with [Tailwind CSS](../../../card/Tailwind%20CSS.md) for a little resume-driven development. [marcamos/jet](https://github.com/marcamos/jet) provided the starting point. I shuffled a few pieces for long-term project structure. Hosted on Netlify because it's way easier than thinking.
 
@@ -31,7 +31,7 @@ We're definitely going with an iterative approach, but iteration one is already 
 
 ![initial version of this post in Logseq](../../../attachments/Pasted%20image%2020240303211110.png)
 
-Been doing all of my capturing in [Logseq](../../../card/Logseq.md), and more of my processing lately too. I still work most easily with outlines, even for structured longform writing. So of course I'll see how it would work as the source for [My Public Brain](../../../card/My%20Public%20Brain.md). The hard part is getting it out there in a structure that I like. Might be time to revisit [logseqs-export-formats](../../2022/03/logseqs-export-formats.md). Meanwhile the published notes continue to use [Obsidian](../../../card/Obsidian.md) for the foreseeable future.
+Been doing all of my capturing in [Logseq](../../../card/Logseq.md), and more of my processing lately too. I still work most easily with outlines, even for structured longform writing. So of course I'll see how it would work as the source for [My Public Brain](../../../card/My%20Public%20Brain.md). The hard part is getting it out there in a structure that I like. Might be time to revisit [Logseqs Export Formats](Logseqs%20Export%20Formats.md). Meanwhile the published notes continue to use [Obsidian](../../../card/Obsidian.md) for the foreseeable future.
 
 ## Plan
 

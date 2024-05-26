@@ -32,7 +32,7 @@ updated: 2024-02-01 22:15:00-08:00
  > -- <cite>Me, a few weeks ago</cite>
 
  > 
- > Look honey I added *Webmention* data to my [Datasette dashboard](datasette-sure-is-nifty.md)!
+ > Look honey I added [Webmention](../../../card/Webmention.md) data to my [Datasette dashboard](datasette-sure-is-nifty.md)!
  > 
  > -- <cite>Me, this morning</cite>
 

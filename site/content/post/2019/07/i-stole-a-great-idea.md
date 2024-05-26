@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/184/i-stole-a-great-idea/
 category: note
+created: 2024-01-15 15:26:42-08:00
 date: 2019-07-03 18:10:51-07:00
 slug: i-stole-a-great-idea
 syndication:
@@ -10,6 +11,7 @@ syndication:
 tags:
 - site
 title: I Stole A Great Idea
+updated: 2024-05-01 22:40:32-07:00
 ---
 
 ![attachments/img/2019/cover-2019-07-03.jpg](../../../attachments/img/2019/cover-2019-07-03.jpg)

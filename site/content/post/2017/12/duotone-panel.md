@@ -2,6 +2,7 @@
 aliases:
 - /2017/12/19/duotone-panel/
 category: post
+created: 2024-01-15 15:26:49-08:00
 date: 2017-12-19 00:00:00-08:00
 slug: duotone-panel
 syndication:
@@ -13,6 +14,7 @@ tags:
 - zentangle
 - craft
 title: Duotone Panel
+updated: 2024-05-01 22:46:04-07:00
 ---
 
 ![attachments/img/2017/cover-2017-12-19.jpg](../../../attachments/img/2017/cover-2017-12-19.jpg)

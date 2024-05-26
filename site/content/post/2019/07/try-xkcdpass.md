@@ -2,6 +2,7 @@
 aliases:
 - /2019/07/30/try-xkcdpass/
 category: post
+created: 2024-01-15 15:26:34-08:00
 date: 2019-07-30 07:36:11-07:00
 description: In which I suggest a password generator
 slug: try-xkcdpass
@@ -13,6 +14,7 @@ tags:
 - security
 - tools
 title: Try xkcdpass
+updated: 2024-05-01 22:41:29-07:00
 ---
 
 ![attachments/img/2019/cover-2019-07-30.png](../../../attachments/img/2019/cover-2019-07-30.png)

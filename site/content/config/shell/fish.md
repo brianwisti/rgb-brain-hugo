@@ -2,6 +2,8 @@
 title: My fish config
 tags:
 - config
+created: 2024-01-24T19:56:35-08:00
+updated: 2024-05-01T22:39:06-07:00
 ---
 
 ## `config.fish`

@@ -3,6 +3,7 @@ aliases:
 - /note/2019/287/slow-walkers-have-inferior-brains/
 - /note/2019/10/slow-walkers-have-inferior-brains/
 category: note
+created: 2024-01-15 15:26:36-08:00
 date: 2019-10-14 07:08:51-07:00
 slug: slow-walkers-have-inferior-brains
 syndication:
@@ -13,6 +14,7 @@ tags:
 - okay-not-their-exact-phrasing
 - look-ma-i-made-a-clickbait-title
 title: Slow walkers have inferior brains
+updated: 2024-05-01 22:43:24-07:00
 ---
 
 Here's an interesting correlation from

@@ -2,6 +2,7 @@
 aliases:
 - /note/2019/10/we-went-to-the-mall-later-i-bought-an-app/
 category: note
+created: 2024-01-15 15:26:38-08:00
 date: 2019-10-05 23:30:39-07:00
 slug: we-went-to-the-mall-later-i-bought-an-app
 syndication:
@@ -16,6 +17,7 @@ tags:
 - notebooks
 - yeah-those
 title: We went to the mall. Later, I bought an app.
+updated: 2024-05-01 22:43:18-07:00
 ---
 
 ![attachments/img/2019/cover-2019-10-05.png](../../../attachments/img/2019/cover-2019-10-05.png)

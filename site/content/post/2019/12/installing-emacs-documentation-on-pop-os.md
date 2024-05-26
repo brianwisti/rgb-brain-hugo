@@ -2,6 +2,7 @@
 aliases:
 - /2019/12/01/installing-emacs-documentation-on-pop_os/
 category: post
+created: 2024-01-15 15:26:40-08:00
 date: 2019-12-01 11:11:00-08:00
 description: Apt spells "emacs core docs" as "emacs-common-non-dfsg".
 slug: installing-emacs-documentation-on-pop-os
@@ -14,6 +15,7 @@ tags:
 - info
 - tools
 title: Installing Emacs Documentation on POP!_os
+updated: 2024-05-01 22:44:06-07:00
 ---
 
 ![attachments/img/2019/cover-2019-12-01.png](../../../attachments/img/2019/cover-2019-12-01.png)

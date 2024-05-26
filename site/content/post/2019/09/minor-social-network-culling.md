@@ -3,6 +3,7 @@ aliases:
 - /note/2019/267/minor-social-network-culling/
 - /note/2019/09/minor-social-network-culling/
 category: note
+created: 2024-01-15 15:26:35-08:00
 date: 2019-09-24 21:25:13-07:00
 slug: minor-social-network-culling
 syndication:
@@ -14,6 +15,7 @@ tags:
 - drawing
 - because-just-cranky-is-boring
 title: minor social network culling
+updated: 2024-05-01 22:42:00-07:00
 ---
 
 ![attachments/img/2019/cover-2019-09-24.jpg](../../../attachments/img/2019/cover-2019-09-24.jpg)

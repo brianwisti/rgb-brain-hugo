@@ -2,6 +2,7 @@
 aliases:
 - /2018/02/08/a-couple-crochet-hats/
 category: post
+created: 2024-01-15 15:26:46-08:00
 date: 2018-02-08 00:00:00-08:00
 slug: a-couple-crochet-hats
 tags:
@@ -9,6 +10,7 @@ tags:
 - hat
 - craft
 title: A Couple Crochet Hats
+updated: 2024-05-02 07:32:26-07:00
 ---
 
 I crocheted two hats from [Stitch 'N Bitch Crochet](https://www.goodreads.com/book/show/57512.Stitch_n_Bitch_Crochet) over the last week or so.

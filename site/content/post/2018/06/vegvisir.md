@@ -2,6 +2,7 @@
 aliases:
 - /2018/06/13/vegvisir/
 category: post
+created: 2024-01-15 15:26:44-08:00
 date: 2018-06-13 00:00:00-07:00
 slug: vegvisir
 tags:
@@ -10,6 +11,7 @@ tags:
 - buy-me
 - craft
 title: Vegvisir
+updated: 2024-05-02 07:32:03-07:00
 ---
 
 I wanted to see my own take on the [Vegvísir](https://norse-mythology.org/vegvisir/), an Icelandic symbol also called a "Nordic Compass".

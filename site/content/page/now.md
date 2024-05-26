@@ -3,7 +3,7 @@ aliases:
 - /now
 created: 2024-01-15 15:25:53-08:00
 title: Now
-updated: 2024-02-05 16:23:07-08:00
+updated: 2024-05-26 07:09:36-07:00
 ---
 
 > 
@@ -15,23 +15,24 @@ updated: 2024-02-05 16:23:07-08:00
 
 ## Where I am now
 
-Living in [Federal Way](https://www.cityoffederalway.com), a suburb between Seattle and Tacoma. Been here over almost two years and frankly I still haven't gotten used to the suburbs.
+En route from [Federal Way](https://www.cityoffederalway.com), a suburb between Seattle and Tacoma, to [Tucson](https://www.visittucson.org), in Arizona's Sonora Desert. This will be an interesting shift after living in the Puget Sound area most of my life.
+
+We agreed it was time for a *major* change, for a lot of reasons. Biggest two boil down to cost of living and the inevitable changes of an area over decades. I love Seattle and I've missed it since the day we moved to the suburbs a few years ago, but the Seattle in my mind? With Sit 'n' Spin, art theaters, and a general inclination towards letting California have all the billionaires? That city hasn't existed for a long time.
 
 ## Who I am around now
 
-Let's see. There are four humans and five critters. I am happily married to [one of](https://hackers.town/@IamMrsGeek) the humans. The other two are pretty cool.
-
-The critters? Two dogs, three cats.
+Let's see. There's [MrsGeek](../card/MrsGeek.md), the dogs Aka and Hoku, and the cats Barry and Jack.
 
 ## What I am doing now
 
-Looking for work. Check out my [LinkedIn Profile](https://www.linkedin.com/in/brianwisti/) if you're looking for a remote or hybrid mostly backend senior dev with reasonably strong [Python](../card/Python.md) skills, based near Seattle.
+Moving. Looking for work, though that is at a slower pace until we move.
+
+Check out my [LinkedIn Profile](https://www.linkedin.com/in/brianwisti/) if you're looking for a remote or hybrid mostly backend senior dev with reasonably strong [Python](../card/Python.md) skills, based in Tucson.
 
 ## What else?
 
 * getting old; better than the alternative, but complaints range from perpetually blocked ear to fingernail ridges
-* studying enterprise technologies like [Kotlin](https://kotlinlang.org) and [Kubernetes](https://kubernetes.io) for greater confidence answering "yes" when someone asks if I know them
-* using [Obsidian](../card/Obsidian.md) for notes
+* using [Obsidian](../card/Obsidian.md) for public notes, but spending most of my time in [Logseq](../card/Logseq.md).
 * puttering with new ways to organize this site
 
 ## Want more?

@@ -18,6 +18,15 @@ markup:
   goldmark:
     extensions:
       footnote: true
+      passthrough:
+        delimiters:
+          block:
+            - - $$
+              - $$
+          inline:
+            - - $
+              - $
+        enable: true
     renderer:
       unsafe: true
   highlight:
@@ -34,6 +43,8 @@ output:
     - "HTML"
   tag:
     - "HTML"
+params:
+  math: true
 related:
   includeNewer: true
   indices:

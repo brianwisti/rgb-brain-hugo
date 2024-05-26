@@ -3,6 +3,7 @@ aliases:
 - /note/2019/198/ubuntu-wsl/
 - /note/2019/07/ubuntu-wsl/
 category: note
+created: 2024-01-15 15:26:40-08:00
 date: 2019-07-17 15:14:10-07:00
 slug: ubuntu-wsl
 syndication:
@@ -12,6 +13,7 @@ tags:
 - wsl
 - remember-this-for-me
 title: ubuntu-wsl
+updated: 2024-05-01 22:41:48-07:00
 ---
 
 And when I *do* get home and start playing with [WSL](../../../card/WSL.md) 2, I'll make sure to install the [ubuntu-wsl](https://packages.ubuntu.com/bionic-updates/ubuntu-wsl) package.

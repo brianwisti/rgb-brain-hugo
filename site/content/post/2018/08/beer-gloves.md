@@ -2,6 +2,7 @@
 aliases:
 - /2018/08/04/beer-gloves/
 category: post
+created: 2024-01-15 15:26:46-08:00
 date: 2018-08-04 00:00:00-07:00
 slug: beer-gloves
 tags:
@@ -9,6 +10,7 @@ tags:
 - gloves
 - craft
 title: Beer Gloves
+updated: 2024-05-02 07:32:50-07:00
 ---
 
 I knitted a pair of the fingerless Beer Gloves from [Son of Stitch 'n Bitch](https://www.goodreads.com/book/show/170305.Son_of_Stitch_n_Bitch). This involved a couple new techniques and several new mistakes.

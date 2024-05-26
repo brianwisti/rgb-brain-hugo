@@ -3,6 +3,7 @@ aliases:
 - /2018/06/10/two-weeks-without-cigarettes/
 - /post/2018/06/two-weeks-without-cigarettes/
 category: post
+created: 2024-01-15 15:26:46-08:00
 date: 2018-06-10 00:00:00-07:00
 slug: two-weeks-without-cigarettes
 syndication:
@@ -11,6 +12,7 @@ tags:
 - personal
 - marginalia
 title: Two Weeks Without Cigarettes
+updated: 2024-05-02 07:32:17-07:00
 ---
 
 I stopped smoking cigarettes two weeks ago. For now I [vape](https://www.merriam-webster.com/dictionary/vape) instead. Time to put down some notes about what other habits I had to adjust.

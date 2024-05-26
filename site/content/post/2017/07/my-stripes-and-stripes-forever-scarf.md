@@ -3,6 +3,7 @@ aliases:
 - /craft/2017/my-stripes-and-stripes-scarf/
 - /2017/07/06/my-stripes-and-stripes-forever-scarf/
 category: post
+created: 2024-01-15 15:26:50-08:00
 date: 2017-07-06 00:00:00-07:00
 slug: my-stripes-and-stripes-forever-scarf
 syndication:
@@ -12,6 +13,7 @@ tags:
 - scarf
 - craft
 title: My Stripes (And Stripes) Forever Scarf
+updated: 2024-05-01 22:44:55-07:00
 ---
 
 ![attachments/img/2017/cover-2017-07-06.jpg](../../../attachments/img/2017/cover-2017-07-06.jpg)

@@ -3,6 +3,7 @@ aliases:
 - /note/2019/271/do-not-shop-on-first-coffee/
 - /note/2019/09/do-not-shop-on-first-coffee/
 category: note
+created: 2024-01-15 15:26:33-08:00
 date: 2019-09-28 10:02:01-07:00
 slug: do-not-shop-on-first-coffee
 syndication:
@@ -14,6 +15,7 @@ tags:
 - music
 - now
 title: Do not shop on first coffee
+updated: 2024-05-01 22:42:23-07:00
 ---
 
 ![attachments/img/2019/cover-2019-09-28.jpg](../../../attachments/img/2019/cover-2019-09-28.jpg)

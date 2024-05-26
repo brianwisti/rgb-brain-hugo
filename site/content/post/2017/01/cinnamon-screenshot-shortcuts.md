@@ -2,6 +2,7 @@
 aliases:
 - /post/2017/cinnamon-screenshot-shortcuts/
 category: post
+created: 2024-01-15 15:26:51-08:00
 date: 2017-01-01 00:00:00-08:00
 slug: cinnamon-screenshot-shortcuts
 tags:
@@ -9,6 +10,7 @@ tags:
 - cinnamon
 - tools
 title: Cinnamon Screenshot Shortcuts
+updated: 2024-05-01 22:45:21-07:00
 ---
 
 ![attachments/img/2017/cover-2017-01-01.png](../../../attachments/img/2017/cover-2017-01-01.png)

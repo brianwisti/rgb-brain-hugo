@@ -2,6 +2,7 @@
 aliases:
 - /2018/07/08/fauntleroy-park/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2018-07-08 00:00:00-07:00
 series:
 - sauntering
@@ -11,6 +12,7 @@ tags:
 - sauntering
 - marginalia
 title: Fauntleroy Park
+updated: 2024-05-01 22:47:12-07:00
 ---
 
 Today I explored [Fauntleroy Park](http://fauntleroywatershed.org/), a 28 acre park in West Seattle with some nice trails.

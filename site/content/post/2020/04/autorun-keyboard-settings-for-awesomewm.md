@@ -3,6 +3,7 @@ aliases:
 - /2020/04/12/autorun-keyboard-settings-for-awesomewm/
 - /post/2020/04/autorun-keyboard-settings-for-awesomewm/
 category: post
+created: 2024-01-15 15:26:31-08:00
 date: 2020-04-12 13:40:03-07:00
 description: Getting Control and Escape keys where I want them
 slug: autorun-keyboard-settings-for-awesomewm
@@ -15,6 +16,7 @@ tags:
 - awesomewm
 - tools
 title: Autorun Keyboard Settings for Awesomewm
+updated: 2024-05-01 22:46:35-07:00
 ---
 
 I like my Caps Lock key to not be a Caps Lock key. Act as Escape when I tap on it. Act as Control when I press it with another key. And never ever enable SHOUT MODE.

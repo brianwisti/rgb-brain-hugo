@@ -2,6 +2,7 @@
 aliases:
 - /2018/06/29/theme-change-and-pieces-section/
 category: post
+created: 2024-01-15 15:26:43-08:00
 date: 2018-06-29 00:00:00-07:00
 slug: theme-change-and-pieces-section
 tags:
@@ -10,6 +11,7 @@ tags:
 - drawing
 - marginalia
 title: Theme Change and Pieces Section
+updated: 2024-05-02 07:32:11-07:00
 ---
 
 Yeah I switched the theme back — with some changes. May take a bit for the CDN to catch up. Also still experimenting with how to organize things I want to sell.

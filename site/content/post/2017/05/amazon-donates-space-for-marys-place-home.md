@@ -3,11 +3,13 @@ aliases:
 - /post/2017/amazon-donates-space-for-marys-place-home/
 - /2017/05/11/amazon-donates-space-for-marys-place-home/
 category: post
+created: 2024-01-15 15:26:49-08:00
 date: 2017-05-11 00:00:00-07:00
 slug: amazon-donates-space-for-marys-place-home
 tags:
 - marginalia
 title: Amazon Donates Space For Mary's Place Home
+updated: 2024-05-01 22:45:55-07:00
 ---
 
 My [main hobby project](https://github.com/brianwisti/marysplace-rails) is for [Mary's Place](http://www.marysplaceseattle.org), a local homeless shelter network in Seattle. It was immensely satisfying to see their director’s face when I visited Amazon this morning.

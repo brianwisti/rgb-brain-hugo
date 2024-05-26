@@ -14,7 +14,7 @@ updated: 2024-04-14 10:02:40-07:00
 
 Been exploring alternate ways to process and publish these notes, with [Logseq](../../../card/Logseq.md) and [Org](../../../card/Org.md) as the leading options. Meanwhile I shouldn't let the site itself get too dusty. Weekly snapshots were getting boring but monthly might have been a little overkill on spacing things out.
 
-We're going on vacation! Well, *MrsGeek* is on vacation. I get to go along too, because she likes me. Got somebody to look after the house and the critters while we check out casinos, shows, and some funky art exhibits in Vegas.
+We're going on vacation! Well, [MrsGeek](../../../card/MrsGeek.md) is on vacation. I get to go along too, because she likes me. Got somebody to look after the house and the critters while we check out casinos, shows, and some funky art exhibits in Vegas.
 
 It's like [Primus](https://song.link/i/927512016) says:
 

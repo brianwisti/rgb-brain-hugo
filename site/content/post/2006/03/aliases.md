@@ -4,12 +4,14 @@ aliases:
 - /post/2006/aliases/
 - /2006/03/01/aliases/
 category: post
+created: 2024-01-24 19:56:36-08:00
 date: 2006-03-01 00:00:00-08:00
 slug: aliases
 tags:
 - ruby
 - blogspot
 title: Aliases
+updated: 2024-05-01 22:40:17-07:00
 ---
 
 Here's my [TIL](../../../card/TIL.md) for [Ruby](../../../card/Ruby.md). When you override a method in a subclass, you also need to redeclare any aliases for that method. Seems pretty obvious when you think about it. I didn't think about it, though, and it caught me up for a few minutes.

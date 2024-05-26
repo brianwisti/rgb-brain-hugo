@@ -3,6 +3,7 @@ aliases:
 - /note/2019/192/make-publish/
 - /note/2019/07/make-publish/
 category: note
+created: 2024-01-15 15:26:41-08:00
 date: 2019-07-11 21:17:44-07:00
 slug: make-publish
 syndication:
@@ -14,6 +15,7 @@ tags:
 - for-now
 - futzing-is-too-a-word
 title: make publish
+updated: 2024-05-01 22:41:00-07:00
 ---
 
 The Note list pages are paginated now, at least until I come up with a

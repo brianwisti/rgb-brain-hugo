@@ -3,6 +3,7 @@ aliases:
 - /post/2017/geekish-update/
 - /2017/03/28/geekish-update/
 category: post
+created: 2024-01-15 15:26:48-08:00
 date: 2017-03-28 00:00:00-07:00
 slug: geekish-update
 tags:
@@ -11,6 +12,7 @@ tags:
 - marginalia
 - now
 title: Geekish Update
+updated: 2024-05-01 22:46:16-07:00
 ---
 
 ![attachments/img/2017/cover-2017-03-28.jpg](../../../attachments/img/2017/cover-2017-03-28.jpg)

@@ -3,8 +3,9 @@ tags:
 - org-config
 - emacs
 title: Emacs Doom config
-updated: 2022-02-19 22:45:44-08:00
+updated: 2024-05-01T22:38:56-07:00
 weight: 10
+created: 2024-01-24T19:56:28-08:00
 ---
 
 This is the config of a mostly-[Vim](../../card/Vim.md) user who occasionally uses [Emacs](../../card/Emacs.md), and mostly for [Org](../../card/Org.md).

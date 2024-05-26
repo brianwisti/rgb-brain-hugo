@@ -3,6 +3,7 @@ aliases:
 - /note/2019/197/wanting-wsl-2/
 - /note/2019/07/wanting-wsl-2/
 category: note
+created: 2024-01-15 15:26:41-08:00
 date: 2019-07-16 14:42:12-07:00
 slug: wanting-wsl-2
 syndication:
@@ -15,6 +16,7 @@ tags:
 - break-my-computer
 - never-mind-i-ll-do-it-myself
 title: Wanting WSL 2
+updated: 2024-05-01 22:40:44-07:00
 ---
 
 Been impatiently waiting for the general release of [WSL](../../../card/WSL.md) 2 -- the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about). What's interesting about WSL 2?

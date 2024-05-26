@@ -3,6 +3,7 @@ aliases:
 - /note/2019/353/i-got-her-a-card-for-her-birthday/
 - /note/2019/12/i-got-her-a-card-for-her-birthday/
 category: note
+created: 2024-01-15 15:26:37-08:00
 date: 2019-12-19 21:46:08-08:00
 slug: i-got-her-a-card-for-her-birthday
 syndication:
@@ -13,6 +14,7 @@ tags:
 - life
 - with-my-sweetheart
 title: I got her a card for her birthday
+updated: 2024-05-01 22:43:59-07:00
 ---
 
 A paraphrased conversation:

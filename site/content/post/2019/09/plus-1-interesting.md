@@ -4,6 +4,7 @@ aliases:
 - /note/2019/09/-1-interesting/
 - /note/2019/09/plus-1-interesting/
 category: note
+created: 2024-01-15 15:26:40-08:00
 date: 2019-09-04 20:27:03-07:00
 slug: plus-1-interesting
 syndication:
@@ -16,6 +17,7 @@ tags:
 - i-lost-my-first-account-in-the-slashdot-brownouts
 - now-i-just-yell-at-the-cloud
 title: '[+1 Interesting]'
+updated: 2024-05-01 22:42:36-07:00
 ---
 
 As a fan of [Slashdot](https://slashdot.org) and [Everything2](https://everything2.com/) — and actual user of [PerlMonks](https://perlmonks.org/) — in years past, I'm sure the next half hour will be chock full of nostalgia for me.
