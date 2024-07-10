@@ -13,7 +13,7 @@ tags:
 - tools
 title: Joplin Terminal Basics
 created: 2024-01-15T15:26:19-08:00
-updated: 2024-02-01T20:21:20-08:00
+updated: 2024-07-07T08:50:13-07:00
 ---
 
 ![attachments/img/2021/cover-2021-04-15.png](../../../attachments/img/2021/cover-2021-04-15.png)

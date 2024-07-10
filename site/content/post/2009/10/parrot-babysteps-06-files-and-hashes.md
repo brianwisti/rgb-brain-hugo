@@ -70,29 +70,29 @@ To count stars, we can read each line of the file and count the number of lines 
 .loadlib 'io_ops'
 
 .sub 'main' :main
-    .local string filename
-    .local pmc    data_file
-    .local int    star_count
-    .local string current_line
+	.local string filename
+	.local pmc    data_file
+	.local int    star_count
+	.local string current_line
 
-    filename = 'hygxyz.csv'
-    star_count = 0
-    data_file = open filename, 'r'
+	filename = 'hygxyz.csv'
+	star_count = 0
+	data_file = open filename, 'r'
 
-    # Avoid counting the header line as a star
-    current_line = readline data_file
+	# Avoid counting the header line as a star
+	current_line = readline data_file
 
   NEXT_STAR:
-    unless data_file goto SHOW_STAR_COUNT
-    current_line = readline data_file
-    star_count += 1
-    goto NEXT_STAR
+	unless data_file goto SHOW_STAR_COUNT
+	current_line = readline data_file
+	star_count += 1
+	goto NEXT_STAR
 
   SHOW_STAR_COUNT:
-    close data_file
-    print 'There are '
-    print star_count
-    say ' stars in the HYG catalog.'
+	close data_file
+	print 'There are '
+	print star_count
+	say ' stars in the HYG catalog.'
 
 .end
 ````
@@ -165,47 +165,47 @@ All right. I'm manually counting commas in HYG. It looks like "ProperName" is th
 .loadlib 'io_ops'
 
 .sub 'main' :main
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    star_data
-    .local string star_name
-    .local int    star_count
-    .local int    named_count
-    .local int    unnamed_count
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    star_data
+	.local string star_name
+	.local int    star_count
+	.local int    named_count
+	.local int    unnamed_count
 
-    filename = 'hygxyz.csv'
-    star_count = 0
-    named_count = 0
-    unnamed_count = 0
-    data_file = open filename, 'r'
+	filename = 'hygxyz.csv'
+	star_count = 0
+	named_count = 0
+	unnamed_count = 0
+	data_file = open filename, 'r'
 
-    # Avoid counting the header line as a star
-    current_line = readline data_file
+	# Avoid counting the header line as a star
+	current_line = readline data_file
 
   NEXT_STAR:
-    unless data_file goto SHOW_STAR_COUNT
-    current_line = readline data_file
-    star_count += 1
-    star_data = split ',', current_line
-    star_name = star_data[6]
-    if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
-    goto NEXT_STAR
+	unless data_file goto SHOW_STAR_COUNT
+	current_line = readline data_file
+	star_count += 1
+	star_data = split ',', current_line
+	star_name = star_data[6]
+	if star_name goto COUNT_NAMED_STAR
+	unnamed_count += 1
+	goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
-    goto NEXT_STAR
+	named_count += 1
+	goto NEXT_STAR
 
   SHOW_STAR_COUNT:
-    close data_file
-    print 'There are '
-    print star_count
-    say ' stars in the HYG catalog.'
-    print named_count
-    say ' of them have proper names.'
-    print unnamed_count
-    say ' of them do not have proper names.'
+	close data_file
+	print 'There are '
+	print star_count
+	say ' stars in the HYG catalog.'
+	print named_count
+	say ' of them have proper names.'
+	print unnamed_count
+	say ' of them do not have proper names.'
 
 .end
 ````
@@ -239,66 +239,66 @@ Only 87 of them have names? Huh. I thought there would be more than that. It's p
 .loadlib 'io_ops'
 
 .sub 'main' :main
-    .const string DELIMITER  = ','
-    .const string NAME_FIELD = 'ProperName'
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local string current_field
-    .local int    name_index
-    .local pmc    star_data
-    .local string star_name
-    .local int    star_count
-    .local int    named_count
-    .local int    unnamed_count
+	.const string DELIMITER  = ','
+	.const string NAME_FIELD = 'ProperName'
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local string current_field
+	.local int    name_index
+	.local pmc    star_data
+	.local string star_name
+	.local int    star_count
+	.local int    named_count
+	.local int    unnamed_count
 
-    filename      = 'hygxyz.csv'
-    name_index    = 0
-    star_count    = 0
-    named_count   = 0
-    unnamed_count = 0
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	filename      = 'hygxyz.csv'
+	name_index    = 0
+	star_count    = 0
+	named_count   = 0
+	unnamed_count = 0
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
   FIND_NAME_INDEX:
-    if name_index >= field_count goto NAME_INDEX_ERROR
-    current_field = field_names[name_index]
-    if current_field == NAME_FIELD goto NEXT_STAR
-    name_index += 1
-    goto FIND_NAME_INDEX
+	if name_index >= field_count goto NAME_INDEX_ERROR
+	current_field = field_names[name_index]
+	if current_field == NAME_FIELD goto NEXT_STAR
+	name_index += 1
+	goto FIND_NAME_INDEX
 
   NAME_INDEX_ERROR:
-    say 'Went through available fields without finding name index!'
-    goto END
+	say 'Went through available fields without finding name index!'
+	goto END
 
   NEXT_STAR:
-    unless data_file goto SHOW_STAR_COUNT
-    current_line = readline data_file
-    star_count += 1
-    star_data = split DELIMITER, current_line
-    star_name = star_data[name_index]
-    if star_name goto COUNT_NAMED_STAR
-    unnamed_count += 1
-    goto NEXT_STAR
+	unless data_file goto SHOW_STAR_COUNT
+	current_line = readline data_file
+	star_count += 1
+	star_data = split DELIMITER, current_line
+	star_name = star_data[name_index]
+	if star_name goto COUNT_NAMED_STAR
+	unnamed_count += 1
+	goto NEXT_STAR
 
   COUNT_NAMED_STAR:
-    named_count += 1
-    goto NEXT_STAR
+	named_count += 1
+	goto NEXT_STAR
 
   SHOW_STAR_COUNT:
-    close data_file
-    print 'There are '
-    print star_count
-    say ' stars in the HYG catalog.'
-    print named_count
-    say ' of them have proper names.'
-    print unnamed_count
-    say ' of them do not have proper names.'
-    goto END
+	close data_file
+	print 'There are '
+	print star_count
+	say ' stars in the HYG catalog.'
+	print named_count
+	say ' of them have proper names.'
+	print unnamed_count
+	say ' of them do not have proper names.'
+	goto END
 
   END:
 .end
@@ -366,37 +366,37 @@ I want to get a lot more information from this data, but in order to do that I'l
 .loadlib 'io_ops'
 
 .sub 'main' :main
-    .const string DELIMITER  = ','
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local int    current_field_index
-    .local string current_field_name
-    .local string current_field_value
-    .local pmc    star_data
+	.const string DELIMITER  = ','
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local int    current_field_index
+	.local string current_field_name
+	.local string current_field_value
+	.local pmc    star_data
 
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
-    current_line = readline data_file
-    star_data = split DELIMITER, current_line
-    close data_file
-    current_field_index = 0
+	current_line = readline data_file
+	star_data = split DELIMITER, current_line
+	close data_file
+	current_field_index = 0
 
   DISPLAY_NEXT_FIELD:
-    if current_field_index >= field_count goto END
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    print current_field_name
-    print ': '
-    say current_field_value
-    current_field_index += 1
-    goto DISPLAY_NEXT_FIELD
+	if current_field_index >= field_count goto END
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	print current_field_name
+	print ': '
+	say current_field_value
+	current_field_index += 1
+	goto DISPLAY_NEXT_FIELD
 
   END:
 
@@ -409,14 +409,14 @@ In order to display the field names and values together, we step through the hea
 
 ````
   DISPLAY_NEXT_FIELD:
-    if current_field_index >= field_count goto END
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    print current_field_name
-    print ': '
-    say current_field_value
-    current_field_index += 1
-    goto DISPLAY_NEXT_FIELD
+	if current_field_index >= field_count goto END
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	print current_field_name
+	print ': '
+	say current_field_value
+	current_field_index += 1
+	goto DISPLAY_NEXT_FIELD
 ````
 
 What does the HYG data for Sol look like?
@@ -471,43 +471,43 @@ Perl has the builtin [`chomp`](http://perldoc.perl.org/functions/chomp.html) fun
 
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
-    .local pmc    chomp
+	load_bytecode 'String/Utils.pbc'
+	.local pmc    chomp
 
-    .const string DELIMITER  = ','
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local int    current_field_index
-    .local string current_field_name
-    .local string current_field_value
-    .local pmc    star_data
+	.const string DELIMITER  = ','
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local int    current_field_index
+	.local string current_field_name
+	.local string current_field_value
+	.local pmc    star_data
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    close data_file
-    current_field_index = 0
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	close data_file
+	current_field_index = 0
 
   DISPLAY_NEXT_FIELD:
-    if current_field_index >= field_count goto END
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    print current_field_name
-    print ': '
-    say current_field_value
-    current_field_index += 1
-    goto DISPLAY_NEXT_FIELD
+	if current_field_index >= field_count goto END
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	print current_field_name
+	print ': '
+	say current_field_value
+	current_field_index += 1
+	goto DISPLAY_NEXT_FIELD
 
   END:
 
@@ -592,55 +592,55 @@ One way to do that is with a [Hash](http://docs.parrot.org/parrot/latest/html/sr
 
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
+	load_bytecode 'String/Utils.pbc'
 
-    .const string DELIMITER  = ','
-    .local pmc    chomp
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local int    current_field_index
-    .local string current_field_name
-    .local string current_field_value
-    .local pmc    star_data
-    .local pmc    star
+	.const string DELIMITER  = ','
+	.local pmc    chomp
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local int    current_field_index
+	.local string current_field_name
+	.local string current_field_value
+	.local pmc    star_data
+	.local pmc    star
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    close data_file
-    current_field_index = 0
-    star = new 'Hash'
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	close data_file
+	current_field_index = 0
+	star = new 'Hash'
 
   ASSIGN_NEXT_FIELD:
-    if current_field_index >= field_count goto DISPLAY_STAR_DETAILS
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    star[current_field_name] = current_field_value
-    current_field_index += 1
-    goto ASSIGN_NEXT_FIELD
+	if current_field_index >= field_count goto DISPLAY_STAR_DETAILS
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	star[current_field_name] = current_field_value
+	current_field_index += 1
+	goto ASSIGN_NEXT_FIELD
 
   DISPLAY_STAR_DETAILS:
-    $S0 = star['ProperName']
-    $S1 = star['Spectrum']
-    $S2 = star['Distance']
-    print "<Name: "
-    print $S0
-    print ", Spectrum: "
-    print $S1
-    print ", Distance: "
-    print $S2
-    say ">"
+	$S0 = star['ProperName']
+	$S1 = star['Spectrum']
+	$S2 = star['Distance']
+	print "<Name: "
+	print $S0
+	print ", Spectrum: "
+	print $S1
+	print ", Distance: "
+	print $S2
+	say ">"
 
   END:
 
@@ -705,106 +705,106 @@ Now that we have a Hash to describe characteristics of our own Sun, we can build
 
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
+	load_bytecode 'String/Utils.pbc'
 
-    .const string DELIMITER  = ','
-    .local pmc    chomp
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local int    current_field_index
-    .local string current_field_name
-    .local string current_field_value
-    .local pmc    star_data
-    .local pmc    star
-    .local string star_name
-    .local string star_spectrum
-    .local string star_distance
-    .local pmc    sol
-    .local string sol_spectrum
-    .local int    matching_count
-    .local int    unnamed_match_count
+	.const string DELIMITER  = ','
+	.local pmc    chomp
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local int    current_field_index
+	.local string current_field_name
+	.local string current_field_value
+	.local pmc    star_data
+	.local pmc    star
+	.local string star_name
+	.local string star_spectrum
+	.local string star_distance
+	.local pmc    sol
+	.local string sol_spectrum
+	.local int    matching_count
+	.local int    unnamed_match_count
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    current_field_index = 0
-    sol = new 'Hash'
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	current_field_index = 0
+	sol = new 'Hash'
 
   ASSIGN_NEXT_SOL_FIELD:
-    if current_field_index >= field_count goto FIND_MATCHING_STARS
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    sol[current_field_name] = current_field_value
-    current_field_index += 1
-    goto ASSIGN_NEXT_SOL_FIELD
+	if current_field_index >= field_count goto FIND_MATCHING_STARS
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	sol[current_field_name] = current_field_value
+	current_field_index += 1
+	goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
-    sol_spectrum = sol['Spectrum']
-    matching_count = 0
-    unnamed_match_count = 0
-    # We want to show Sol's details as well as other matches.
-    star = sol
-    goto DISPLAY_STAR_DETAILS
+	sol_spectrum = sol['Spectrum']
+	matching_count = 0
+	unnamed_match_count = 0
+	# We want to show Sol's details as well as other matches.
+	star = sol
+	goto DISPLAY_STAR_DETAILS
 
   LOAD_NEXT_STAR:
-    unless data_file goto END
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    current_field_index = 0
-    star = new 'Hash'
+	unless data_file goto END
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	current_field_index = 0
+	star = new 'Hash'
 
   ASSIGN_NEXT_STAR_FIELD:
-    if current_field_index >= field_count goto EXAMINE_STAR
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    star[current_field_name] = current_field_value
-    current_field_index += 1
-    goto ASSIGN_NEXT_STAR_FIELD
+	if current_field_index >= field_count goto EXAMINE_STAR
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	star[current_field_name] = current_field_value
+	current_field_index += 1
+	goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
-    star_spectrum = star['Spectrum']
-    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
+	star_spectrum = star['Spectrum']
+	if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+	goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
-    star_name = star['ProperName']
-    if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
+	matching_count += 1
+	star_name = star['ProperName']
+	if star_name goto DISPLAY_STAR_DETAILS
+	unnamed_match_count += 1
+	goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
-    star_name = star['ProperName']
-    star_spectrum = star['Spectrum']
-    star_distance = star['Distance']
-    print "<Name: "
-    print star_name
-    print ", Spectrum: "
-    print star_spectrum
-    print ", Distance: "
-    print star_distance
-    say ">"
-    goto LOAD_NEXT_STAR
+	star_name = star['ProperName']
+	star_spectrum = star['Spectrum']
+	star_distance = star['Distance']
+	print "<Name: "
+	print star_name
+	print ", Spectrum: "
+	print star_spectrum
+	print ", Distance: "
+	print star_distance
+	say ">"
+	goto LOAD_NEXT_STAR
 
   END:
-    close data_file
-    print matching_count
-    print " stars exactly matched Sol's spectrum "
-    say sol_spectrum
-    print unnamed_match_count
-    say ' have no proper name'
+	close data_file
+	print matching_count
+	print " stars exactly matched Sol's spectrum "
+	say sol_spectrum
+	print unnamed_match_count
+	say ' have no proper name'
 
 .end
 ````
@@ -813,20 +813,20 @@ We look at each star as we go, checking to see if it exactly matches Sol's. I kn
 
 ````
   EXAMINE_STAR:
-    star_spectrum = star['Spectrum']
-    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
+	star_spectrum = star['Spectrum']
+	if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+	goto LOAD_NEXT_STAR
 ````
 
 We're remembering stars with the same spectrum, but will only be displaying those with proper names. We'll just count the others.
 
 ````
   REMEMBER_MATCH:
-    matching_count += 1
-    star_name = star['ProperName']
-    if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
+	matching_count += 1
+	star_name = star['ProperName']
+	if star_name goto DISPLAY_STAR_DETAILS
+	unnamed_match_count += 1
+	goto LOAD_NEXT_STAR
 ````
 
 You may have noticed that I reassign some variables with the same value they probably already had. This may not be efficient, but it's for my own sanity. I want to be certain about the values held in those variables. I am also pretending these little labelled regions are like distinct blocks of code. It's a lie, but a useful one. 
@@ -849,11 +849,11 @@ DISPLAY_STAR_DETAILS:
 On the other hand, this program does take a couple of seconds to run on my machine now.
 
 ````
- $ parrot example-06-07.pir
- <Name: Sol, Spectrum: G2V, Distance: 0.000004848>
- <Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049>
- 568 stars exactly matched Sol's spectrum G2V
- 567 have no proper name
+$ parrot example-06-07.pir
+<Name: Sol, Spectrum: G2V, Distance: 0.000004848>
+<Name: Rigel Kentaurus A, Spectrum: G2V, Distance: 1.34749097181049>
+568 stars exactly matched Sol's spectrum G2V
+567 have no proper name
 ````
 
 Those are disappointing results. It looks like we have many neighbors that look like our Sun, but only one with a name. I would love to use one of the alternate references if available, such as the [Gliese](http://www.ari.uni-heidelberg.de/datenbanken/aricns/gliese.htm) or [Bayer-Flamsteed](http://www.skyviewcafe.com/bayer_flamsteed.html) designations. I don't think that's practical with how we're writing our Parrot application today.

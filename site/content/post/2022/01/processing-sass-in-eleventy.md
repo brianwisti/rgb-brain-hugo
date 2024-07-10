@@ -1,6 +1,6 @@
 ---
 category: post
-created: 2024-01-15 15:26:13-08:00
+created: 2024-01-15 16:26:13-07:00
 date: 2022-01-10 01:00:00-08:00
 description: Specifically, building `main.scss` when `_base.scss` changes
 slug: processing-sass-in-eleventy
@@ -12,7 +12,7 @@ tags:
 - css
 - site
 title: Processing Sass in Eleventy
-updated: 2024-02-01 20:38:01-08:00
+updated: 2024-06-25 07:59:37-07:00
 ---
 
 ![attachments/img/2022/cover-2022-01-10.jpg](../../../attachments/img/2022/cover-2022-01-10.jpg)
@@ -136,7 +136,7 @@ Yes this does look a lot like what Eleventy would do on its own. Since I turned 
  > 
  > **NOTE**
 >
- > Common sense sugests these should be defined in a config file somewhere. I'm still getting the hang of Eleventy, though. Common sense won't be an option for some time.
+ > Common sense suggests these should be defined in a config file somewhere. I'm still getting the hang of Eleventy, though. Common sense won't be an option for some time.
 
 I figure the easiest way to avoid extra recompilation is by watching the clock. If it hasn't been long enough since the last build, skip it. Five seconds is a completely arbitrary value for "long enough" but it seems to be working.
 

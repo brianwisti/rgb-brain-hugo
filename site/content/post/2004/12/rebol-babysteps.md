@@ -17,7 +17,7 @@ title: REBOL Babysteps
 updated: 2024-01-26 09:18:50-08:00
 ---
 
-Right. Here is this language that you’ve never heard of: [REBOL](rebol.md). I think we should learn how to use it together, sort of a "Babysteps" approach. You and I can add REBOL to our steadily expanding toolkit of programming languages.
+Right. Here is this language that you’ve never heard of: [REBOL](../../../card/REBOL.md). I think we should learn how to use it together, sort of a "Babysteps" approach. You and I can add REBOL to our steadily expanding toolkit of programming languages.
 
 And remember to just ignore people when they ask you “Why should I learn REBOL (or Perl, or Python, or Ruby) instead of Perl (or Python, or Ruby, or Java)?” You and I are the sort of people who learn a language *in addition* to the ones we already know, not *instead of* the one we were taught in college.
 

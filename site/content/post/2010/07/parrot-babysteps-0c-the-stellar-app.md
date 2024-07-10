@@ -4,7 +4,7 @@ aliases:
 - /post/2010/0c-the-stellar-app/
 - /2010/07/15/parrot-babysteps-0c-the-stellar-app/
 category: post
-created: 2024-01-15 15:25:34-08:00
+created: 2024-01-15 16:24:40-07:00
 date: 2010-07-15 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -15,26 +15,16 @@ tags:
 - space
 - coolnamehere
 title: Parrot Babysteps 0c - The Stellar App
-updated: 2024-01-26 10:10:01-08:00
+updated: 2024-06-24 18:55:31-07:00
 ---
 
-Our search journey continues. We have accomplished the hard 
-part: [checking a single star](/post/2010/06/parrot-babysteps-0b-subroutine-params) to see if it has the traits we're looking for.
-Today we just have to use that logic to search a set of stars. First we'll
-examine a handpicked selection. Guess what happens after that? We finally get
-back into the full [HYG Catalog](http://www.astronexus.com) and search for stars from the command line.
-That's right. After all this work, `stellar` grows up and becomes an
-application.
+Our search journey continues. We have accomplished the hard part: checking a single star to see if it has the traits we're looking for. Today we just have to use that logic to search a set of stars. First we'll examine a handpicked selection. Guess what happens after that? We finally get back into the full [HYG Catalog](http://www.astronexus.com) and search for stars from the command line. That's right. After all this work, `stellar` grows up and becomes an application.
 
-# Note
+## Note
 
-There are easier ways to get searches out of a large CSV file. If
-that was really all I wanted to do, I could use a higher level language like
-[Perl](/tags/perl/) or [Python](/tags/python/) to feed the CSV into a [SQLite](http://sqlite.org) database and directly
-query the database. However, we are not building a SQL database. We are learning
-how to do interesting things with [Parrot](../../../card/Parrot.md).
+There are easier ways to get searches out of a large CSV file. If that was really all I wanted to do, I could use a higher level language like [Perl](../../../card/Perl.md) or [Python](../../../card/Python.md) to feed the CSV into a [SQLite](../../../card/SQLite.md) database and directly query the database. However, we are not building a SQL database. We are learning how to do interesting things with [Parrot](../../../card/Parrot.md).
 
-# Building a Catalog and Searching It
+## Building a Catalog and Searching It
 
 The first thing that's tripping me up is how to set up the catalog itself. You
 know the "set of stars" I was talking about? The easy way to do this from a test
@@ -62,7 +52,7 @@ slow because my code overall is simplistic. Maybe I can revisit this idea after
 learning more about Parrot.
 </aside>
 
-## Searching The Catalog
+### Searching The Catalog
 
 I do not want to dig right into searching the full 119,617 entries of the real
 catalog. Instead, let's set up a small test catalog and write some tests.
@@ -94,29 +84,29 @@ that use it.
 .include 'lib/stellar.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
+	.include 'test_more.pir'
 
-    plan(5)
+	plan(5)
 
-    .local string csv_filename 
-    .local pmc    matches
-    .local pmc    star
-    
-    csv_filename = 'data/test-catalog.csv'
-    matches = search_catalog(csv_filename, 'ProperName', 'Sol')
-    is(matches, 1, 'There should be one star named "Sol"')
-    star = matches[0]
-    $S0 = star['ProperName']
-    is($S0, 'Sol', 'That star should be Sol')
+	.local string csv_filename 
+	.local pmc    matches
+	.local pmc    star
+	
+	csv_filename = 'data/test-catalog.csv'
+	matches = search_catalog(csv_filename, 'ProperName', 'Sol')
+	is(matches, 1, 'There should be one star named "Sol"')
+	star = matches[0]
+	$S0 = star['ProperName']
+	is($S0, 'Sol', 'That star should be Sol')
 
-    matches = search_catalog(csv_filename, 'Spectrum', 'G2V')
-    is(matches, 2, 'There are two G2V stars in the test catalog')
+	matches = search_catalog(csv_filename, 'Spectrum', 'G2V')
+	is(matches, 2, 'There are two G2V stars in the test catalog')
 
-    matches = search_catalog(csv_filename, 'Spectrum', 'K3V')
-    is(matches, 1, 'There should be one K3V star in the test catalog')
+	matches = search_catalog(csv_filename, 'Spectrum', 'K3V')
+	is(matches, 1, 'There should be one K3V star in the test catalog')
 
-    matches = search_catalog(csv_filename, 'Spectrum', 'G2V', 'ColorIndex', '0.566')
-    is(matches, 1, 'There should be one G2V star with Spectrum G2V and ColorIndex 0.566')
+	matches = search_catalog(csv_filename, 'Spectrum', 'G2V', 'ColorIndex', '0.566')
+	is(matches, 1, 'There should be one G2V star with Spectrum G2V and ColorIndex 0.566')
 .end
 ````
 
@@ -124,7 +114,7 @@ I am deliberately keeping the tests simple right now. The goal is to make sure
 the basic functionality works rather than to guarantee behavior for every little
 detail. Tests can be added for those details as they become important.
 
-The actual `search_catalog` sub borrows quite a bit from [step 07](/post/2009/10/parrot-babysteps-07-writing-subroutines). 
+The actual `search_catalog` sub borrows quite a bit from \[step 07\]\[\]. 
 
 ````
 # example-0c-01/lib/stellar.pir
@@ -133,39 +123,39 @@ The actual `search_catalog` sub borrows quite a bit from [step 07](/post/2009/10
 
 # ...
 .sub search_catalog
-    .param string filename
-    .param pmc    conditions :slurpy
-    .local pmc    chomp
-    .local pmc    matches
-    .local pmc    catalog
-    .local string current_line
-    .local pmc    current_star
-    .local pmc    is_match
+	.param string filename
+	.param pmc    conditions :slurpy
+	.local pmc    chomp
+	.local pmc    matches
+	.local pmc    catalog
+	.local string current_line
+	.local pmc    current_star
+	.local pmc    is_match
 
-    load_bytecode 'String/Utils.pbc'
-    chomp = get_global ['String';'Utils'], 'chomp'
+	load_bytecode 'String/Utils.pbc'
+	chomp = get_global ['String';'Utils'], 'chomp'
 
-    matches = new 'ResizablePMCArray'
+	matches = new 'ResizablePMCArray'
 
-    catalog = open filename, 'r'
-    current_line = readline catalog # Ignore header line
+	catalog = open filename, 'r'
+	current_line = readline catalog # Ignore header line
 
   READ_LINE:
-    unless catalog goto RETURN_MATCHES
-    current_line = readline catalog
-    current_line = chomp(current_line)
-    current_star = extract_from_csv_line(current_line)
-    is_match = check_star(current_star, conditions :flat)
-    if is_match goto REMEMBER_MATCH
-    goto READ_LINE
+	unless catalog goto RETURN_MATCHES
+	current_line = readline catalog
+	current_line = chomp(current_line)
+	current_star = extract_from_csv_line(current_line)
+	is_match = check_star(current_star, conditions :flat)
+	if is_match goto REMEMBER_MATCH
+	goto READ_LINE
 
   REMEMBER_MATCH:
-    push matches, current_star
-    goto READ_LINE
+	push matches, current_star
+	goto READ_LINE
 
   RETURN_MATCHES:
-    close catalog
-    .return(matches)
+	close catalog
+	.return(matches)
 .end
 ````
 
@@ -179,7 +169,7 @@ the fastest approach, but it works.
 It works well enough that I am ready to add real data and some way for people
 to use it!
 
-## Searching From The Command Line
+### Searching From The Command Line
 
 Now that we know `stellar` can read a CSV and return results, it's time to work
 on that empty `main` that has been sitting in `stellar.pir`. Oh yeah - we will
@@ -193,34 +183,34 @@ like, but make sure that you set the path appropriately in `main`.
 .loadlib 'io_ops'
 
 .sub 'main' :main
-    .param pmc    conditions
-    .local string csv_file
-    .local pmc    matches
-    .local pmc    matches_iter
-    .local pmc    star
-    .local string summary
-    .local int    match_count
+	.param pmc    conditions
+	.local string csv_file
+	.local pmc    matches
+	.local pmc    matches_iter
+	.local pmc    star
+	.local string summary
+	.local int    match_count
 
-    $S0 = shift conditions # ignore my own filename
-    csv_file = 'data/hygxyz.csv'
-    matches = search_catalog(csv_file, conditions :flat)
-    matches_iter = iter matches
+	$S0 = shift conditions # ignore my own filename
+	csv_file = 'data/hygxyz.csv'
+	matches = search_catalog(csv_file, conditions :flat)
+	matches_iter = iter matches
 
   NEXT_MATCH:
-    star = shift matches_iter
-    summary = summarize_star(star)
-    say summary
-    if matches_iter goto NEXT_MATCH
+	star = shift matches_iter
+	summary = summarize_star(star)
+	say summary
+	if matches_iter goto NEXT_MATCH
 
-    match_count = matches
-    print match_count
-    say " matches."
+	match_count = matches
+	print match_count
+	say " matches."
 .end
 ````
 
 Here is the result of all that work we have done setting up the project and 
 support code. The main subroutine in `stellar` is downright civilized 
-compared to what we had for [step 07](/post/2009/10/parrot-babysteps-07-writing-subroutines). All we do is search based on the
+compared to what we had for \[step 07\]\[\]. All we do is search based on the
 command line parameters and display each of the matches.
 
 ````
@@ -234,23 +224,13 @@ $ parrot lib/stellar.pir Spectrum G2V ColorIndex 0.656
 
 Hey, this thing is almost useful!
 
-# Conclusion
+## Conclusion
 
 `stellar` has reached a major milestone. When I started fiddling with the [HYG
-Database](http://astronexus.com/node/34), I wanted to write a command-line Parrot tool that could look up
-stars based on specific fields. This step gives us that ability. I admit that
-a lot more could be done. For example, it only does exact matches. You can
-easily find a star that is `108.108108108108` light years away, but not
-stars that are roughly `108` light years away. And forget about finding
-stars within 20 light years.
+Database](http://astronexus.com/node/34), I wanted to write a command-line Parrot tool that could look up stars based on specific fields. This step gives us that ability. I admit that a lot more could be done. For example, it only does exact matches. You can easily find a star that is `108.108108108108` light years away, but not stars that are roughly `108` light years away. And forget about finding stars within 20 light years.
 
-I am going to take a little break from the `stellar` project, though. 
-[Rakudo Star](http://rakudo.org) is almost out, and I want to play with that.
+I am going to take a little break from the `stellar` project, though.  [Rakudo Star](http://rakudo.org) is almost out, and I want to play with that.
 
-You can add to `stellar` yourself. Make it faster. Make it
-object-oriented. Make it a library. Rewrite it in LOLCODE. Have fun. Just
-remember to give [David Nash](http://astronexus.com/node/10) credit for creating the HYG Database. 
-We have been having all of this fun because he took the time to put that
-catalog together.
+You can add to `stellar` yourself. Make it faster. Make it object-oriented. Make it a library. Rewrite it in LOLCODE. Have fun. Just remember to give [David Nash](http://astronexus.com/node/10) credit for creating the HYG Database.  We have been having all of this fun because he took the time to put that catalog together.
 
 Enjoy yourself!

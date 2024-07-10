@@ -5,39 +5,38 @@ aliases:
 - /2003/06/23/ruby-babysteps-01-first-steps/
 category: post
 created: 2024-01-15 15:25:46-08:00
-date: 2003-06-23 00:00:00-07:00
-slug: ruby-babysteps-01-first-steps
+date: 2003-06-12
 tags:
 - ruby
 - learn
 - coolnamehere
 title: Ruby Babysteps 01 - First Steps
-updated: 2024-01-26 09:18:18-08:00
+updated: 2024-06-16 21:22:46-07:00
 ---
 
 [Ruby](../../../card/Ruby.md) is an exciting language with a huge number of features that appeal to advanced programmers. You should not let that intimidate you, though. The language is very easy to get started with, and you can work your way into the more arcane corners.
 
 This page is intended to provide the non-programmer with a gentle introduction to the Ruby programming language. When you are done with it, you should feel ready to learn more. You won’t be any kind of expert, but you will be able find the information you need to go farther. Beginners and experts alike should feel free to send suggestions about how to improve this tutorial.
 
-# Installing Ruby
+## Installing Ruby
 
 Of course, if you want to use Ruby, you have to install it. To be honest, installation used to be the trickiest part of dealing with Ruby. It’s a lot easier to install it these days, depending on your operating system.
 
-## Linux
+### Linux
 
 As with all things Linux, getting Ruby depends on your distribution. See if it is already installed on your system. If not, check to see if it’s available on your distribution discs. If that fails as well, you might as well move on to the world of compiling software yourself. See a little further below for details.
 
-## Mac OS X
+### Mac OS X
 
 OS X users have it good. Sort of. A fairly recent Ruby is already available on the Developer Disk for OS X, so you don’t need to mess with any of that other stuff to get started. It’s likely that you will want to later on, but you’ve got enough to get you started. Definitely more than you’ll be needing with this tutorial!
 
 See below if you are willing to enter the world of compiling your own software. It is not as bad as it sounds, trust me.
 
-## Windows
+### Windows
 
 Users of Microsoft Windows are definitely not used to compiling their own software. Fortunately, the [RubyInstaller](http://rubyinstaller.org/) project provides an installer for Windows users.
 
-## Installing From Source
+### Installing From Source
 
 Okay, so there’s no “grab and install” version of Ruby available for your computer. If you are the adventurous sort, and have a C compiler handy, you might as well use the traditional UNIX approach: build it yourself!
 
@@ -51,7 +50,7 @@ Okay, so there’s no “grab and install” version of Ruby available for your 
 * exit the `su` session.
 * Start playing with Ruby!
 
-# Creating Ruby Programs
+## Creating Ruby Programs
 
 You’ll probably want to start writing programs at this point. Well, now that you have installed Ruby, all you need to do is fire up a text editor and start writing code.
 
@@ -63,7 +62,7 @@ Here are a couple of my favorite popular choices:
 
 Look around a bit and pick the one that feels most comfortable to you. If you change your mind later, nobody should hold it against you.
 
-## Hello, World
+### Hello, World
 
 It is traditional to start programming by creating a program that displays a simple phrase, such as “Hello, World!” I am not about to argue with tradition. Type the following into your text editor:
 
@@ -181,7 +180,7 @@ Generally, you call an object’s methods by tagging a dot and the method name a
 
 For now, though, you’ve learned enough to get started, and now I want you to play around with what you’ve learned and enjoy yourself a little bit.
 
-# Conclusion
+## Conclusion
 
 Congratulations! You have just begun learning Ruby. You just wrote a complete program which gets input from a user, and prints output which includes a modified version of their input! Stop for a minute and think about that. Of course there’s a lot more to learn, but it’s well within your abilities. There is an ever-growing abundance of resources for the “Ruby Newbie”, and you should take advantage of as many of them as possible!
 

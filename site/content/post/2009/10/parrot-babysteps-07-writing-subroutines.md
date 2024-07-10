@@ -26,11 +26,7 @@ spaghetti. Even though it had barely 100 lines of code, it was becoming a bigger
 challenge to figure out what was going on or how to add new features.
 
 Today we're going to streamline the code somewhat by wrapping that complexity
-in subroutines.  The [Parrot](../../../card/Parrot.md) Book has a [sizable chapter discussing subroutines](http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html).
-I won't be spending much time exploring the depths of subroutines, because
-that would take me far beyond what is appropriate for a babystep. However, a
-quick glance at the chapter should suggest that Parrot subroutines are quite 
-powerful and worth deeper exploration on your own.
+in subroutines.  The [Parrot](../../../card/Parrot.md) Book has a [sizable chapter discussing subroutines](http://docs.parrot.org/parrot/latest/html/docs/book/pir/ch06_subroutines.pod.html). I won't be spending much time exploring the depths of subroutines, because that would take me far beyond what is appropriate for a babystep. However, a quick glance at the chapter should suggest that Parrot subroutines are quite powerful and worth deeper exploration on your own.
 
 # Subroutines
 
@@ -45,121 +41,120 @@ Our first function will encapsulate the display of star highlights.
 
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
+	load_bytecode 'String/Utils.pbc'
 
-    .const string DELIMITER  = ','
-    .local pmc    chomp
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local int    field_count
-    .local int    current_field_index
-    .local string current_field_name
-    .local string current_field_value
-    .local pmc    star_data
-    .local pmc    star
-    .local string star_name
-    .local string star_spectrum
-    .local pmc    sol
-    .local string sol_spectrum
-    .local int    matching_count
-    .local int    unnamed_match_count
+	.const string DELIMITER  = ','
+	.local pmc    chomp
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local int    field_count
+	.local int    current_field_index
+	.local string current_field_name
+	.local string current_field_value
+	.local pmc    star_data
+	.local pmc    star
+	.local string star_name
+	.local string star_spectrum
+	.local pmc    sol
+	.local string sol_spectrum
+	.local int    matching_count
+	.local int    unnamed_match_count
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
-    field_count   = field_names
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
+	field_count   = field_names
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    current_field_index = 0
-    sol = new 'Hash'
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	current_field_index = 0
+	sol = new 'Hash'
 
   ASSIGN_NEXT_SOL_FIELD:
-    if current_field_index >= field_count goto FIND_MATCHING_STARS
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    sol[current_field_name] = current_field_value
-    current_field_index += 1
-    goto ASSIGN_NEXT_SOL_FIELD
+	if current_field_index >= field_count goto FIND_MATCHING_STARS
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	sol[current_field_name] = current_field_value
+	current_field_index += 1
+	goto ASSIGN_NEXT_SOL_FIELD
 
   FIND_MATCHING_STARS:
-    sol_spectrum = sol['Spectrum']
-    matching_count = 0
-    unnamed_match_count = 0
-    # We want to show Sol's details as well as other matches.
-    say_star_details(sol)
+	sol_spectrum = sol['Spectrum']
+	matching_count = 0
+	unnamed_match_count = 0
+	# We want to show Sol's details as well as other matches.
+	say_star_details(sol)
 
   LOAD_NEXT_STAR:
-    unless data_file goto END
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    current_field_index = 0
-    star = new 'Hash'
+	unless data_file goto END
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	current_field_index = 0
+	star = new 'Hash'
 
   ASSIGN_NEXT_STAR_FIELD:
-    if current_field_index >= field_count goto EXAMINE_STAR
-    current_field_name = field_names[current_field_index]
-    current_field_value = star_data[current_field_index]
-    star[current_field_name] = current_field_value
-    current_field_index += 1
-    goto ASSIGN_NEXT_STAR_FIELD
+	if current_field_index >= field_count goto EXAMINE_STAR
+	current_field_name = field_names[current_field_index]
+	current_field_value = star_data[current_field_index]
+	star[current_field_name] = current_field_value
+	current_field_index += 1
+	goto ASSIGN_NEXT_STAR_FIELD
 
   EXAMINE_STAR:
-    star_spectrum = star['Spectrum']
-    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
+	star_spectrum = star['Spectrum']
+	if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+	goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
-    star_name = star['ProperName']
-    if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
+	matching_count += 1
+	star_name = star['ProperName']
+	if star_name goto DISPLAY_STAR_DETAILS
+	unnamed_match_count += 1
+	goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
-    say_star_details(star)
-    goto LOAD_NEXT_STAR
+	say_star_details(star)
+	goto LOAD_NEXT_STAR
 
   END:
-    close data_file
-    print matching_count
-    print " stars exactly matched Sol's spectrum "
-    say sol_spectrum
-    print unnamed_match_count
-    say ' have no proper name'
+	close data_file
+	print matching_count
+	print " stars exactly matched Sol's spectrum "
+	say sol_spectrum
+	print unnamed_match_count
+	say ' have no proper name'
 
 .end
 
 .sub say_star_details
-    .param pmc star
+	.param pmc star
 
-    .local string star_name
-    .local string star_spectrum
-    .local string star_distance
+	.local string star_name
+	.local string star_spectrum
+	.local string star_distance
 
-    star_name = star['ProperName']
-    star_spectrum = star['Spectrum']
-    star_distance = star['Distance']
+	star_name = star['ProperName']
+	star_spectrum = star['Spectrum']
+	star_distance = star['Distance']
 
-    print "<Name: "
-    print star_name
-    print ", Spectrum: "
-    print star_spectrum
-    print ", Distance: "
-    print star_distance
-    say ">"
+	print "<Name: "
+	print star_name
+	print ", Spectrum: "
+	print star_spectrum
+	print ", Distance: "
+	print star_distance
+	say ">"
 .end
 ````
 
-To create a subroutine that will get used by your `:main` sub, all
-you need to do is declare a `.sub`.
+To create a subroutine that will get used by your `:main` sub, all you need to do is declare a `.sub`.
 
 ````
 .sub say_star_details
@@ -175,7 +170,7 @@ that the `.param` directive declares a parameter for your subroutine.
 
 ````
 .sub say_star_details
-    .param pmc star
+	.param pmc star
 .end
 ````
 
@@ -185,23 +180,23 @@ variables needed to make it work.
 
 ````
 .sub say_star_details
-    .param pmc star
+	.param pmc star
 
-    .local string star_name
-    .local string star_spectrum
-    .local string star_distance
+	.local string star_name
+	.local string star_spectrum
+	.local string star_distance
 
-    star_name = star['ProperName']
-    star_spectrum = star['Spectrum']
-    star_distance = star['Distance']
+	star_name = star['ProperName']
+	star_spectrum = star['Spectrum']
+	star_distance = star['Distance']
 
-    print "<Name: "
-    print star_name
-    print ", Spectrum: "
-    print star_spectrum
-    print ", Distance: "
-    print star_distance
-    say ">"
+	print "<Name: "
+	print star_name
+	print ", Spectrum: "
+	print star_spectrum
+	print ", Distance: "
+	print star_distance
+	say ">"
 .end
 ````
 
@@ -256,114 +251,111 @@ subroutine for transforming a line from the text file into star data?
 
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
+	load_bytecode 'String/Utils.pbc'
 
-    .const string DELIMITER  = ','
-    .local pmc    chomp
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local pmc    star_data
-    .local pmc    star
-    .local string star_name
-    .local string star_spectrum
-    .local pmc    sol
-    .local string sol_spectrum
-    .local int    matching_count
-    .local int    unnamed_match_count
+	.const string DELIMITER  = ','
+	.local pmc    chomp
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local pmc    star_data
+	.local pmc    star
+	.local string star_name
+	.local string star_spectrum
+	.local pmc    sol
+	.local string sol_spectrum
+	.local int    matching_count
+	.local int    unnamed_match_count
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    sol = extract_star_details(field_names, star_data)
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	sol = extract_star_details(field_names, star_data)
 
   FIND_MATCHING_STARS:
-    sol_spectrum = sol['Spectrum']
-    matching_count = 0
-    unnamed_match_count = 0
-    # We want to show Sol's details as well as other matches.
-    say_star_details(sol)
+	sol_spectrum = sol['Spectrum']
+	matching_count = 0
+	unnamed_match_count = 0
+	# We want to show Sol's details as well as other matches.
+	say_star_details(sol)
 
   LOAD_NEXT_STAR:
-    unless data_file goto END
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data    = split DELIMITER, current_line
-    star         = extract_star_details(field_names, star_data)
+	unless data_file goto END
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data    = split DELIMITER, current_line
+	star         = extract_star_details(field_names, star_data)
 
   EXAMINE_STAR:
-    star_spectrum = star['Spectrum']
-    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
+	star_spectrum = star['Spectrum']
+	if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+	goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
-    star_name = star['ProperName']
-    unless star_name goto LOAD_NEXT_STAR
-    if star_name goto DISPLAY_STAR_DETAILS
-    unnamed_match_count += 1
-    goto LOAD_NEXT_STAR
+	matching_count += 1
+	star_name = star['ProperName']
+	unless star_name goto LOAD_NEXT_STAR
+	if star_name goto DISPLAY_STAR_DETAILS
+	unnamed_match_count += 1
+	goto LOAD_NEXT_STAR
 
   DISPLAY_STAR_DETAILS:
-    say_star_details(star)
-    goto LOAD_NEXT_STAR
+	say_star_details(star)
+	goto LOAD_NEXT_STAR
 
   END:
-    close data_file
-    print matching_count
-    print " stars exactly matched Sol's spectrum "
-    say sol_spectrum
-    print unnamed_match_count
-    say ' have no proper name'
+	close data_file
+	print matching_count
+	print " stars exactly matched Sol's spectrum "
+	say sol_spectrum
+	print unnamed_match_count
+	say ' have no proper name'
 
 .end
 
 .sub extract_star_details
-    .param pmc headers
-    .param pmc values
+	.param pmc headers
+	.param pmc values
 
-    .local pmc star
-    .local int header_count
-    .local string current_header
-    .local string current_value
-    .local int current_index
+	.local pmc star
+	.local int header_count
+	.local string current_header
+	.local string current_value
+	.local int current_index
 
-    current_index = 0
-    header_count = headers
-    star = new 'Hash'
+	current_index = 0
+	header_count = headers
+	star = new 'Hash'
 
   ASSIGN_NEXT_STAR_FIELD:
-    if current_index >= header_count goto RETURN_STAR
-    current_header = headers[current_index]
-    current_value = values[current_index]
-    star[current_header] = current_value
-    current_index += 1
-    goto ASSIGN_NEXT_STAR_FIELD
+	if current_index >= header_count goto RETURN_STAR
+	current_header = headers[current_index]
+	current_value = values[current_index]
+	star[current_header] = current_value
+	current_index += 1
+	goto ASSIGN_NEXT_STAR_FIELD
 
 
   RETURN_STAR:
-    .return(star)
+	.return(star)
 .end
 
 .sub say_star_details
-    # ...
+	# ...
 .end
 ````
 
-The code is starting to get a little long, so I am adopting the habit
-of replacing subroutine blocks with `# ...` when the code is unchanged from
-the previous example.
+The code is starting to get a little long, so I am adopting the habit of replacing subroutine blocks with `# ...` when the code is unchanged from the previous example.
 
-Most of the code in our new `extract_star_details` subroutine looks familiar, but we do
-have one noteworthy addition:
+Most of the code in our new `extract_star_details` subroutine looks familiar, but we do have one noteworthy addition:
 
 ````
 .return(star)
@@ -381,129 +373,129 @@ name is available.
 # example-07-03
 .sub 'main' :main
 
-    load_bytecode 'String/Utils.pbc'
+	load_bytecode 'String/Utils.pbc'
 
-    .const string DELIMITER  = ','
-    .local pmc    chomp
-    .local string filename
-    .local pmc    data_file
-    .local string current_line
-    .local pmc    field_names
-    .local pmc    star_data
-    .local pmc    star
-    .local string star_spectrum
-    .local pmc    sol
-    .local string sol_spectrum
-    .local int    matching_count
+	.const string DELIMITER  = ','
+	.local pmc    chomp
+	.local string filename
+	.local pmc    data_file
+	.local string current_line
+	.local pmc    field_names
+	.local pmc    star_data
+	.local pmc    star
+	.local string star_spectrum
+	.local pmc    sol
+	.local string sol_spectrum
+	.local int    matching_count
 
-    chomp         = get_global ['String';'Utils'], 'chomp'
-    filename      = 'hygxyz.csv'
-    data_file     = open filename, 'r'
-    current_line  = readline data_file
-    current_line  = chomp(current_line)
-    field_names   = split DELIMITER, current_line
+	chomp         = get_global ['String';'Utils'], 'chomp'
+	filename      = 'hygxyz.csv'
+	data_file     = open filename, 'r'
+	current_line  = readline data_file
+	current_line  = chomp(current_line)
+	field_names   = split DELIMITER, current_line
 
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data = split DELIMITER, current_line
-    sol = extract_star_details(field_names, star_data)
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data = split DELIMITER, current_line
+	sol = extract_star_details(field_names, star_data)
 
   FIND_MATCHING_STARS:
-    sol_spectrum = sol['Spectrum']
-    matching_count = 0
-    # We want to show Sol's details as well as other matches.
-    say_star_details(sol)
+	sol_spectrum = sol['Spectrum']
+	matching_count = 0
+	# We want to show Sol's details as well as other matches.
+	say_star_details(sol)
 
   LOAD_NEXT_STAR:
-    unless data_file goto END
-    current_line = readline data_file
-    current_line = chomp(current_line)
-    star_data    = split DELIMITER, current_line
-    star         = extract_star_details(field_names, star_data)
+	unless data_file goto END
+	current_line = readline data_file
+	current_line = chomp(current_line)
+	star_data    = split DELIMITER, current_line
+	star         = extract_star_details(field_names, star_data)
 
   EXAMINE_STAR:
-    star_spectrum = star['Spectrum']
-    if star_spectrum == sol_spectrum goto REMEMBER_MATCH
-    goto LOAD_NEXT_STAR
+	star_spectrum = star['Spectrum']
+	if star_spectrum == sol_spectrum goto REMEMBER_MATCH
+	goto LOAD_NEXT_STAR
 
   REMEMBER_MATCH:
-    matching_count += 1
-    say_star_details(star)
-    goto LOAD_NEXT_STAR
+	matching_count += 1
+	say_star_details(star)
+	goto LOAD_NEXT_STAR
 
   END:
-    close data_file
-    print matching_count
-    print " stars exactly matched Sol's spectrum "
-    say sol_spectrum
+	close data_file
+	print matching_count
+	print " stars exactly matched Sol's spectrum "
+	say sol_spectrum
 .end
 
 .sub extract_star_details
-    # ...
+	# ...
 .end
 
 .sub say_star_details
-    .param pmc star
+	.param pmc star
 
-    .local string star_name
-    .local string star_spectrum
-    .local string star_distance
+	.local string star_name
+	.local string star_spectrum
+	.local string star_distance
 
-    star_name = star['ProperName']
-    star_spectrum = star['Spectrum']
-    star_distance = star['Distance']
+	star_name = star['ProperName']
+	star_spectrum = star['Spectrum']
+	star_distance = star['Distance']
 
-    if star_name goto DISPLAY_DETAILS
+	if star_name goto DISPLAY_DETAILS
 
   TRY_GLIESE:
-    .local string gliese_number
-    gliese_number = star['Gliese']
-    unless gliese_number goto TRY_BAYER_FLAMSTEED
-    star_name = 'Gliese ' . gliese_number
-    goto DISPLAY_DETAILS
+	.local string gliese_number
+	gliese_number = star['Gliese']
+	unless gliese_number goto TRY_BAYER_FLAMSTEED
+	star_name = 'Gliese ' . gliese_number
+	goto DISPLAY_DETAILS
 
   TRY_BAYER_FLAMSTEED:
-    .local string bayer_flamsteed
-    bayer_flamsteed = star['BayerFlamsteed']
-    unless bayer_flamsteed goto TRY_HR
-    star_name = "BF " . bayer_flamsteed
-    goto DISPLAY_DETAILS
+	.local string bayer_flamsteed
+	bayer_flamsteed = star['BayerFlamsteed']
+	unless bayer_flamsteed goto TRY_HR
+	star_name = "BF " . bayer_flamsteed
+	goto DISPLAY_DETAILS
 
   TRY_HR:
-    .local string hr_id
-    hr_id = star['HR']
-    unless hr_id goto TRY_HD
-    star_name = "HR " . hr_id
-    goto DISPLAY_DETAILS
+	.local string hr_id
+	hr_id = star['HR']
+	unless hr_id goto TRY_HD
+	star_name = "HR " . hr_id
+	goto DISPLAY_DETAILS
 
   TRY_HD:
-    .local string hd_id
-    hd_id = star['HD']
-    unless hd_id goto USE_STAR_ID
-    star_name = "HD " . hd_id
-    goto DISPLAY_DETAILS
+	.local string hd_id
+	hd_id = star['HD']
+	unless hd_id goto USE_STAR_ID
+	star_name = "HD " . hd_id
+	goto DISPLAY_DETAILS
 
   TRY_HIP:
-    .local string hip_id
-    hip_id = star['HIP']
-    unless hip_id goto USE_STAR_ID
-    star_name = "HIP " . hip_id
-    goto DISPLAY_DETAILS
+	.local string hip_id
+	hip_id = star['HIP']
+	unless hip_id goto USE_STAR_ID
+	star_name = "HIP " . hip_id
+	goto DISPLAY_DETAILS
 
   USE_STAR_ID:
-    .local string star_id
-    star_id = star['StarID']
-    star_name = "HYG " . star_id
-    goto DISPLAY_DETAILS
+	.local string star_id
+	star_id = star['StarID']
+	star_name = "HYG " . star_id
+	goto DISPLAY_DETAILS
 
   DISPLAY_DETAILS:
-    print "<Name: "
-    print star_name
-    print ", Spectrum: "
-    print star_spectrum
-    print ", Distance: "
-    print star_distance
-    say ">"
+	print "<Name: "
+	print star_name
+	print ", Spectrum: "
+	print star_spectrum
+	print ", Distance: "
+	print star_distance
+	say ">"
 .end
 ````
 

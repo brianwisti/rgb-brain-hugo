@@ -23,8 +23,7 @@ I've revisited the code for Blogger posting with Python. Start [here](../../2009
 
 I want the ability to post to my blogs from the command line. That's because I prefer to do *everything* from the command line, but that's not really the point. The point is that I want an excuse to write a new quick script and satisfy that constant urge to gain some new superpower. Okay, so blogging's not a superpower. Hush.
 
-I'm writing this into a text file via [Vim](../../../card/Vim.md). It is written in a format known as [Markdown](../../../card/Markdown.md),
-because I hate writing HTML by hand these days. It will eventually manifest as an HTML formatted post on my Blogger account.
+I'm writing this into a text file via [Vim](../../../card/Vim.md). It is written in a format known as [Markdown](../../../card/Markdown.md), because I hate writing HTML by hand these days. It will eventually manifest as an HTML formatted post on my Blogger account.
 
 All of the hard work is going to be done with [Python](../../../card/Python.md). Why Python? Mainly because the \[Google Blogger API\]\[\] is supported rather well by Python. They love their snake-based languages at Google, and it shows in the \[GData Python Client\]\[\] library.
 

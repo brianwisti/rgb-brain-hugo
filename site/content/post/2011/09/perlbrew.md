@@ -4,14 +4,14 @@ aliases:
 - /post/2011/perlbrew/
 - /2011/09/05/perlbrew/
 category: post
-created: 2024-01-15 15:25:33-08:00
+created: 2024-01-15 16:23:37-07:00
 date: 2011-09-05 00:00:00-07:00
 slug: perlbrew
 tags:
 - perl
 - coolnamehere
 title: perlbrew
-updated: 2024-02-01 20:36:22-08:00
+updated: 2024-07-10 06:05:58-07:00
 ---
 
 <!--more-->

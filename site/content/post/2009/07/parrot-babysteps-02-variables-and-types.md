@@ -3,7 +3,7 @@ aliases:
 - /coolnamehere/2009/07/11_02-variables-and-types.html
 - /post/2009/02-variables-and-types/
 category: post
-created: 2024-01-15 15:25:36-08:00
+created: 2024-01-15 16:23:40-07:00
 date: 2009-07-11 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -13,18 +13,18 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 02 - Variables and Types
-updated: 2024-01-26 09:54:37-08:00
+updated: 2024-07-10 06:06:54-07:00
 ---
 
 I've always felt that learning the core types of a platform is boring. Once you've learned a few languages, you know the difference between an integer and a floating point number, what a string is, and have a general idea for how you work with each of them. You mainly care about the details of how you work with them in your new platform. It is important to learn these details, though.
 
 We already looked at variables when we wrote the simple "Hello, World" program in [parrot-babysteps-01-getting-started](parrot-babysteps-01-getting-started.md).  We looked at the different variable types and the registers that [Parrot](../../../card/Parrot.md) uses to hold them. Today we're going to dive a  little deeper into variables and types so that you can get the basic idea of what  you can do with variables in Parrot. I won't be digging *too* deep, though. In particular, I will be talking as little about PMCs as I can. It's just too much for where we're at today.
 
-# Variable Names
+## Variable Names
 
 Names become important when you're using variables. Good names add documentation by telling people who look at your code what a given variable is going to be used for. Parrot has two naming schemes: one for register variables, and another for everything else.
 
-## Register Variable Names
+### Register Variable Names
 
 Register variable rules are easy to remember. First comes the register being used, then one or more digits. 
 
@@ -68,7 +68,7 @@ I've already said that I prefer `.local` variables. They're more explicit than u
 
 It does get confusing as your program grows larger or if you are like me and can quickly forget what you were using a variable for. That's when `.local` variables become valuable.
 
-## `.local` Variable Names
+### `.local` Variable Names
 
 Local variables are more complicated than register variables, but they have additional features which make them useful. I've already talked about how the names can be made meaningful. They also only exist in the subroutine where they are defined, which is a lifesaver in large programs. The format of a local variable declaration makes it easy to understand when you will be using it and what you plan to use it for.
 
@@ -113,7 +113,7 @@ Reiterating some [old guidelines](../../2002/06/simple-types-in-python.md) for v
 
 I break these guidelines sometimes, but at least I think about it before I do.
 
-### Assignment
+#### Assignment
 
 Remember that declaring a local variable and assigning a value to it are two different actions, and require two separate instructions.
 
@@ -127,7 +127,7 @@ Remember that declaring a local variable and assigning a value to it are two dif
 .end
 ````
 
-# `.const` Variables
+## `.const` Variables
 
 Actually, that earlier guideline about constant variables reminded me: Parrot has a directive for declaring and assigning a value for a local constant variable. Use the `.const` directive when you want a variable that won't somehow change in value after you've created it.
 
@@ -169,15 +169,15 @@ This is where developers experienced with other languages should see the low-lev
 
 I think we've got a solid grip on declaration and basic usage of both local and register variables. On to the types.
 
-# Variable Types
+## Variable Types
 
 You know what the types are: integers, numbers, strings, and polymorphic containers. You also know the rough outline of what they look like.
 
-## Numeric Types
+### Numeric Types
 
 When you need to do math, it's time for integers and numbers. 
 
-### Integers
+#### Integers
 
 Integers are whole numbers such as `3`, `94`, and `-48183`. They are signed, which means that you can create positive or negative values. Each integer takes up the same amount of memory. How much memory do they take up? Well, that depends on your system and how Parrot was compiled. 32-bit Parrot uses 4 bytes for integers, while it's presumably 8 bytes on 64-bit Parrot. The [`sysinfo`](http://docs.parrot.org/parrot/latest/html/src/dynoplibs/sys.ops.html)   opcode can tell us for sure.
 
@@ -234,7 +234,7 @@ $ parrot example-02-05.pir
 
 That wasn't as fulfilling as I'd hoped. Perhaps my life is not complete after all. I might as well move on to floating point numbers.
 
-### Numbers
+#### Numbers
 
 The Number type is used by Parrot to represent [floating point values](http://en.wikipedia.org/wiki/Floating_point). These are more or less the same as the decimal numbers you may be more familiar with. 
 
@@ -272,7 +272,7 @@ $N1 = 6.0221415e+23
 
 What can you do with numbers?
 
-### Numeric Operators and Opcodes
+#### Numeric Operators and Opcodes
 
 Operators in PIR provide a convenient and fairly readable shorthand for opcode instructions. It's generally easier for me to remember `sum = a + b` than `add sum, a, b`. If the second option is more readable for you, that's great! It's not for me.
 
@@ -344,17 +344,17 @@ Radius: 10
 Area: 314.15926
 ````
 
-### Type Conversion
+#### Type Conversion
 
 I'm not sure if you noticed, but I didn't bother converting the user input to a number before assigning it to `radius`. Oh, you noticed? You get a gold star.
 
 The `=` operator takes care of such conversions automatically, allowing you to do things like get a string of input text from the user and treat it as the radius of a circle without having an intermediate step of using a temporary string variable to hold the user input. Actually, the more I think about what it would take to convert a string to an integer or floating point number, the happier I am that Parrot does it for me. PIR isn't exactly a [low level language](https://en.wikipedia.org/wiki/Low-level_programming_language), even though it is lower than what I'm used to.
 
-### Opcodes For Integers
+#### Opcodes For Integers
 
 I won't be playing with them much today, but I thought you should know that there are many [math-related](https://docs.parrot.org/parrot/latest/html/src/ops/math.ops.html) opcodes.
 
-### Hypotenuse Finder
+#### Hypotenuse Finder
 
 Here's a little program to find the hypotenuse of a triangle. Maybe you remember the [Pythagorean theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem) from school:
 
@@ -407,11 +407,11 @@ We've learned a lot about how math works in Parrot. We've seen some operators an
 
 Let's move on from numbers to take a closer look at strings.
 
-## Strings
+### Strings
 
 We have been using [strings](http://en.wikipedia.org/wiki/String_%28computer_science%29) since the first step, but I haven't spent much time describing them. That is because I have found them a little hard to explain. I can't stall any longer, though.
 
-### Basics
+#### Basics
 
 A string is basically a sequence of characters tied together and treated like a single thing. There is [a *lot* more](http://en.wikipedia.org/wiki/String_%28computer_science%29) to strings.
 
@@ -481,7 +481,7 @@ Isn't it a lovely day?
 
 So that's the basics of quoting. Now what about escapes?
 
-### Backslash Escapes
+#### Backslash Escapes
 
 Backslash escapes make it possible for you to include normally unprintable characters in a string. For example, they allow tabs and quotation marks to be part of your string:
 
@@ -518,7 +518,7 @@ There are more escape sequences, but I tend to ignore them.
 
 Single quoted strings only escape `\\` and `\'`. Everything else is passed through unchanged.
 
-### String Operators
+#### String Operators
 
 We've already worked with the major string operators, but here they are to review.
 
@@ -528,11 +528,11 @@ We've already worked with the major string operators, but here they are to revie
 |`.`|`concat`|concatenate two strings|
 |`.=`|`concat`|concatenate and assign|
 
-### Opcodes For Strings
+#### Opcodes For Strings
 
 You will almost definitely want to explore the [string opcodes](http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html).
 
-### Playing With String
+#### Playing With String
 
 We have already been doing some interesting things with strings. Well *I* think getting user input and converting it to numbers is interesting. The opcodes open up the possibilities for some more interesting statistics and transformations. 
 
@@ -576,10 +576,10 @@ Title case: Brian
 
 Still, I think this shows that there is good reason to study those [string opcodes](http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html).
 
-## PMCs
+### PMCs
 
 Uh, no. I'm not ready to describe polymorphic containers yet. You've already been using a PMC to get user input, and that's quite complex enough for the moment. Eventually we'll explore the [PMCs](http://docs.parrot.org/parrot/latest/html/pmc.html) - what's already available, how to use them, and how to define our own. Right now we're just getting into the basics of how to make code run. As always, I encourage you to strike out on your own and explore the Parrot documentation if you want to get ahead of what I've covered. I won't be offended. I'll be quite pleased, in fact.
 
-# Summary
+## Summary
 
 We got the basics of variable handling and simple types out of the way. Thank goodness. Types can be confusing, but now you know about integers, floating point numbers, and strings. You understand the differences between them. You know how you would use them in your own programs. If you use the opcodes available, you can get an incredible amount of power in your Parrot programs. But so far, Parrot is nothing more than an awkward calculator for you. You will want to look at labels and branching statements to start getting something interesting out of Parrot.

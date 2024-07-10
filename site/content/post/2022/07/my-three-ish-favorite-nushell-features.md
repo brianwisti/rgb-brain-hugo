@@ -1,4 +1,5 @@
 ---
+banner: attachments/img/2022/cover-2022-07-04.png
 category: post
 created: 2024-01-15 15:26:06-08:00
 date: 2022-07-04 18:00:00-07:00
@@ -11,7 +12,7 @@ tags:
 - nushell
 - hugo
 title: My Three(ish) Favorite Nushell Features
-updated: 2024-02-02 09:53:20-08:00
+updated: 2024-06-20 07:44:18-07:00
 ---
 
 ![attachments/img/2022/cover-2022-07-04.png](../../../attachments/img/2022/cover-2022-07-04.png)

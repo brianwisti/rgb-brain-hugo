@@ -2,17 +2,14 @@
 aliases:
 - /note/2021/02/just-noticed-okular-pdf-is-on-windows/
 category: note
-created: 2024-01-15 15:26:20-08:00
+created: 2024-01-15 16:23:26-07:00
 date: 2021-02-19 11:37:37-08:00
 slug: just-noticed-okular-pdf-is-on-windows
-syndication:
-  dev-to: https://dev.to/brianwisti/note-just-noticed-okular-pdf-is-on-windows-31jh
-  mastodon: https://randomgeekery.org/blog/2021/just-noticed-okular-pdf-is-on-windows/
 tags:
 - windows
 - tools
 title: Just noticed Okular PDF is on Windows
-updated: 2024-01-26 10:22:22-08:00
+updated: 2024-07-10 06:03:16-07:00
 ---
 
 ![attachments/img/2021/cover-2021-02-19.png](../../../attachments/img/2021/cover-2021-02-19.png)

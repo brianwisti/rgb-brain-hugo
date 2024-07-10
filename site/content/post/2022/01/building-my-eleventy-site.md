@@ -38,8 +38,7 @@ I opted to drive this with [Yarn](https://yarnpkg.com.) For my beginner brain it
 
 ### `package.json` to tell Yarn what I want it to do
 
-Everybody seems to treat the [`scripts`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#scripts) block of a [`package.json`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) pretty
-much the same as the targets of a `Makefile` so I embraced that.
+Everybody seems to treat the [`scripts`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#scripts) block of a [`package.json`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) pretty much the same as the targets of a `Makefile` so I embraced that.
 
 Here are my core scripts / tasks:
 

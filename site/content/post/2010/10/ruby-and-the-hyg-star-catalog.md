@@ -3,14 +3,14 @@ aliases:
 - /coolnamehere/2010/10/05_ruby-and-the-hyg-star-catalog.html
 - /post/2010/ruby-and-the-hyg-star-catalog/
 category: post
-created: 2024-01-15 15:25:35-08:00
+created: 2024-01-15 16:24:59-07:00
 date: 2010-10-05 00:00:00-07:00
 slug: ruby-and-the-hyg-star-catalog
 tags:
 - ruby
 - coolnamehere
 title: Ruby and the HYG Star Catalog
-updated: 2024-02-01 21:58:06-08:00
+updated: 2024-07-10 06:04:33-07:00
 ---
 
 One of my big projects over the last year has been a [Parrot Babysteps](../../2009/07/parrot-babysteps.md) tutorial. One of the more interesting tasks in that tutorial was [reading a CSV file in Parrot](../../2009/10/parrot-babysteps-06-files-and-hashes.md). I used the [HYG Star Catalog](http://www.astronexus.com/node/34) as a sample [CSV](../../../card/CSV.md) file that was large enough to present some interesting data. This was fun in [Parrot](../../../card/Parrot.md), but obviously I thought quite a bit about how I would tackle the problem in a higher level language such as [Ruby](../../../card/Ruby.md). Today seems like a good day to find out.
@@ -97,8 +97,7 @@ nil, "9.10", "1.84501631012894", "F5", "0.482", "282.43485", "0.00449", "5.36884
 "-2.574e-06"]
 ````
 
-The default behavior for `csv` is reasonable. It split up the fields correctly, and set the empty fields to `nil`. Next we need to deal with the fact that the first row is supposed to be the header, providing names for
-fields in the corresponding columns.
+The default behavior for `csv` is reasonable. It split up the fields correctly, and set the empty fields to `nil`. Next we need to deal with the fact that the first row is supposed to be the header, providing names for fields in the corresponding columns.
 
 ````ruby
 require 'csv'
@@ -317,12 +316,12 @@ Yes indeed. That was much faster. Let's close with something a little bit fancie
 ruby-1.9.2-p0 > DB[:stars].filter(:Spectrum.like('G%')).filter('ProperName not null').order(:Distance).each { |row|
 ruby-1.9.2-p0 >     printf("%20s\t%4.2f\t%s\n", row[:ProperName], row[:Distance], row[:Spectrum])
 ruby-1.9.2-p0 ?>  }
-              Sol    0.00    G2V
+			  Sol    0.00    G2V
 Rigel Kentaurus A    1.35    G2V
-        82 G. Eri    6.06    G8V
+		82 G. Eri    6.06    G8V
  Groombridge 1830    9.16    G8Vp
-     Vindemiatrix    31.35   G8IIIvar
-            Nihal    48.80   G5II
+	 Vindemiatrix    31.35   G8IIIvar
+			Nihal    48.80   G5II
 => #<Sequel::SQLite::Dataset: "SELECT * FROM `stars` WHERE ((Spectrum like 'G%') AND (ProperName not null))">
 ````
 

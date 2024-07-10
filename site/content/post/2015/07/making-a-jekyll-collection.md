@@ -227,8 +227,7 @@ The “Jekyll collections” part of this blog post is done. I talked about buil
 I know. I mentioned an aesthetic issue earlier. You want to *see* the knitting projects in those summaries. I will gloss over the details. They deserve a blog post of their own.
 
 * Make thumbnails for each of my craft pictures.
-* Add a `thumbnail` item with a thumbnail path to the Front Matter for
-  each project.
+* Add a `thumbnail` item with a thumbnail path to the Front Matter for each project.
 * Include a thumbnail pic in the project summary.
 * Fiddle a bunch with CSS for the summary and craft index views.
 

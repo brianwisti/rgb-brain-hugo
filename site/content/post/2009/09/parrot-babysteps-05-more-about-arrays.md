@@ -4,7 +4,7 @@ aliases:
 - /post/2009/05-more-about-arrays/
 - /2009/09/29/parrot-babysteps-05-more-about-arrays/
 category: post
-created: 2024-01-15 15:25:37-08:00
+created: 2024-01-15 16:25:01-07:00
 date: 2009-09-29 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -14,14 +14,14 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 05 - More About Arrays
-updated: 2024-01-26 09:58:02-08:00
+updated: 2024-07-10 06:07:12-07:00
 ---
 
-# Introduction
+## Introduction
 
 We started looking at arrays in the [last step](parrot-babysteps-04-adding-command-line-arguments.md). We're going to take a closer look today, exploring different ways of looking at [Parrot](../../../card/Parrot.md) arrays to build an averaging calculator. We'll start with no array at all, to build the basic flow of our program and to demonstrate that an array is not always needed. Then we'll move on to more interesting stuff, with array indexing, stack opcodes, and iterators.
 
-# Building the Basic Flow
+## Building the Basic Flow
 
 Our averaging program is going to get its input from the user, and will take an
 arbitrary quantity of Numbers. Basically, it will keep accepting Numbers until the
@@ -83,7 +83,7 @@ Notice that the string is converted to a number using normal Perl rules: if it
 doesn't have any numbers, it's treated as zero. We could put in some error
 checking to chastise the user for bad input, but I don't feel like it right now.
 
-# Averaging With No Arrays
+## Averaging With No Arrays
 
 I would like to point something out before we start digging into array features.
 We don't *need* to use arrays when calculating something like an average. Here's 
@@ -147,7 +147,7 @@ I'm not sure what it'll show them.
 Anyways - I wrote this version because I felt like it. Let's start writing 
 code that uses arrays, okay?
 
-# Stacks - Pushing and Popping
+## Stacks - Pushing and Popping
 
 The [stack](http://en.wikipedia.org/wiki/Stack_(data_structure)) is one of
 the fundamental data structures. The mental image is straightforward: you have
@@ -253,7 +253,7 @@ Enter a number (or "quit" to quit): quit
 33670
 ````
 
-## `shift` and `unshift` - The Bottom of the Stack
+### `shift` and `unshift` - The Bottom of the Stack
 
 While `push` and `pop` work on the end of an array, Parrot also provides `unshift`
 and `shift` which handle corresponding functionality on the front of an array.
@@ -271,38 +271,38 @@ but my language skills aren't adequate for the task.
 ````
 # example-05-04
 .sub 'main' :main
-    .const string PROMPT      = 'Enter a number (or "quit" to quit): '
-    .const string EXIT_STRING = 'quit'
-    .local string user_input
-    .local num    latest_number
-    .local num    total
-    .local int    number_count
-    .local pmc    numbers
-    .local num    average
-    .local pmc    stdin
+	.const string PROMPT      = 'Enter a number (or "quit" to quit): '
+	.const string EXIT_STRING = 'quit'
+	.local string user_input
+	.local num    latest_number
+	.local num    total
+	.local int    number_count
+	.local pmc    numbers
+	.local num    average
+	.local pmc    stdin
 
-    stdin = getstdin
-    numbers = new 'ResizableFloatArray'
+	stdin = getstdin
+	numbers = new 'ResizableFloatArray'
 
   GET_INPUT:
-    user_input = stdin.'readline_interactive'(PROMPT)
-    if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
-    latest_number = user_input
-    unshift numbers, latest_number
-    goto GET_INPUT
+	user_input = stdin.'readline_interactive'(PROMPT)
+	if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
+	latest_number = user_input
+	unshift numbers, latest_number
+	goto GET_INPUT
 
   SETUP_CALCULATE_SUM:
-    total = 0
-    number_count = 0
+	total = 0
+	number_count = 0
 
   CALCULATE_SUM:
-    latest_number = shift numbers
-    total += latest_number
-    number_count += 1
-    if numbers goto CALCULATE_SUM
+	latest_number = shift numbers
+	total += latest_number
+	number_count += 1
+	if numbers goto CALCULATE_SUM
 
-    average = total / number_count
-    say average
+	average = total / number_count
+	say average
 
 .end
 ````
@@ -310,10 +310,9 @@ but my language skills aren't adequate for the task.
 Which is better? I'll be honest with you. I don't really know. I stick to pushing
 and popping because it's easier to visualize.
 
-However, when you combine `push` and `shift` you get a whole new structure called
-a queue.
+However, when you combine `push` and `shift` you get a whole new structure called a queue.
 
-# Queues
+## Queues
 
 A [queue](http://en.wikipedia.org/wiki/Queue_(data_structure)) is yet another way of looking at your array when you are concerned about order. Stacks are LIFO: when you pop an item from the stack, you're getting the last item that was pushed. Queues are FIFO: when you shift an item from the queue, you get the first item that was pushed. Okay - the technical term for placing an item in the queue is *enqueue* and for grabbing an item is *dequeue*. Pushing and shifting refer to the opcodes we're using. Use whatever term you're happier with.
 
@@ -325,62 +324,62 @@ between a queue and a stack:
 ````
 # example-05-05
 .sub 'main' :main
-    .const string PROMPT      = 'Enter a number (or "quit" to quit): '
-    .const string EXIT_STRING = 'quit'
-    .local pmc    stdin
-    .local string user_input
-    .local num    latest_number
-    .local pmc    stack
-    .local int    stack_count
-    .local num    stack_popped
-    .local num    stack_sum
-    .local num    stack_average
-    .local pmc    queue
-    .local int    queue_count
-    .local num    queue_dequeued
-    .local num    queue_sum
-    .local num    queue_average
+	.const string PROMPT      = 'Enter a number (or "quit" to quit): '
+	.const string EXIT_STRING = 'quit'
+	.local pmc    stdin
+	.local string user_input
+	.local num    latest_number
+	.local pmc    stack
+	.local int    stack_count
+	.local num    stack_popped
+	.local num    stack_sum
+	.local num    stack_average
+	.local pmc    queue
+	.local int    queue_count
+	.local num    queue_dequeued
+	.local num    queue_sum
+	.local num    queue_average
 
-    stdin = getstdin
-    stack = new 'ResizableFloatArray'
-    queue = new 'ResizableFloatArray'
+	stdin = getstdin
+	stack = new 'ResizableFloatArray'
+	queue = new 'ResizableFloatArray'
 
   GET_INPUT:
-    user_input = stdin.'readline_interactive'(PROMPT)
-    if user_input == EXIT_STRING goto SETUP_SUM_CALCULATIONS
-    latest_number = user_input
-    push stack, latest_number  # Push onto the stack
-    push queue, latest_number  # Enqueue onto the queue
-    goto GET_INPUT
+	user_input = stdin.'readline_interactive'(PROMPT)
+	if user_input == EXIT_STRING goto SETUP_SUM_CALCULATIONS
+	latest_number = user_input
+	push stack, latest_number  # Push onto the stack
+	push queue, latest_number  # Enqueue onto the queue
+	goto GET_INPUT
 
   SETUP_SUM_CALCULATIONS:
-    stack_count = 0
-    stack_sum   = 0
-    queue_count = 0
-    queue_sum   = 0
+	stack_count = 0
+	stack_sum   = 0
+	queue_count = 0
+	queue_sum   = 0
 
   CALCULATE_STACK_SUM:
-    stack_popped = pop stack
-    print "Popped: "
-    say stack_popped
-    stack_sum += stack_popped
-    stack_count += 1
-    if stack goto CALCULATE_STACK_SUM
+	stack_popped = pop stack
+	print "Popped: "
+	say stack_popped
+	stack_sum += stack_popped
+	stack_count += 1
+	if stack goto CALCULATE_STACK_SUM
 
   CALCULATE_QUEUE_SUM:
-    queue_dequeued = shift queue
-    print "Dequeued: "
-    say queue_dequeued
-    queue_sum += queue_dequeued
-    queue_count += 1
-    if queue goto CALCULATE_QUEUE_SUM
+	queue_dequeued = shift queue
+	print "Dequeued: "
+	say queue_dequeued
+	queue_sum += queue_dequeued
+	queue_count += 1
+	if queue goto CALCULATE_QUEUE_SUM
 
-    stack_average = stack_sum / stack_count
-    queue_average = queue_sum / queue_count
-    print "Stack average: "
-    say stack_average
-    print "Queue average: "
-    say queue_average
+	stack_average = stack_sum / stack_count
+	queue_average = queue_sum / queue_count
+	print "Stack average: "
+	say stack_average
+	print "Queue average: "
+	say queue_average
 
 .end
 ````
@@ -411,11 +410,12 @@ That output could fill up the screen if I had a lot of values. I might want to
 fine-tune the debug output. Then again, I might want to just move on to the next
 subject.
 
-# Accessing by Index
+## Accessing by Index
 
 Stacks and queues are a practical solution to a wide range of collection-handling
 problems. They do have one shortcoming, though. Both of them are destructive.
 When you `pop` or `shift` a value from an array, you are actually removing that value.
+
 There is nothing left after you haved popped or shifted the last value. Sometimes
 that is okay, but sometimes you want to use the array for some other calculation.
 Those are the situations where you want a way to access the contents of the array
@@ -430,49 +430,49 @@ step through the array by incrementing an index.
 ````
 # example-05-06
 .sub 'main' :main
-    .const string PROMPT      = 'Enter a number (or "quit" to quit): '
-    .const string EXIT_STRING = 'quit'
-    .local string user_input
-    .local num    latest_number
-    .local num    total
-    .local int    number_count
-    .local int    number_index
-    .local pmc    numbers
-    .local num    average
-    .local pmc    stdin
+	.const string PROMPT      = 'Enter a number (or "quit" to quit): '
+	.const string EXIT_STRING = 'quit'
+	.local string user_input
+	.local num    latest_number
+	.local num    total
+	.local int    number_count
+	.local int    number_index
+	.local pmc    numbers
+	.local num    average
+	.local pmc    stdin
 
-    stdin = getstdin
-    numbers = new 'ResizableFloatArray'
+	stdin = getstdin
+	numbers = new 'ResizableFloatArray'
 
   GET_INPUT:
-    user_input = stdin.'readline_interactive'(PROMPT)
-    if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
-    latest_number = user_input
-    push numbers, latest_number
-    goto GET_INPUT
+	user_input = stdin.'readline_interactive'(PROMPT)
+	if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
+	latest_number = user_input
+	push numbers, latest_number
+	goto GET_INPUT
 
   SETUP_CALCULATE_SUM:
-    total = 0
-    number_count = numbers
-    number_index = 0
+	total = 0
+	number_count = numbers
+	number_index = 0
 
   CALCULATE_SUM:
-    if number_index >= number_count goto CALCULATE_AVERAGE
-    latest_number = numbers[number_index]
-    total += latest_number
-    number_index += 1
-    goto CALCULATE_SUM
+	if number_index >= number_count goto CALCULATE_AVERAGE
+	latest_number = numbers[number_index]
+	total += latest_number
+	number_index += 1
+	goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
-    average = total / number_count
-    
+	average = total / number_count
+	
   DISPLAY_VALUES:
-    print "Values entered: "
-    say number_count
-    print "Sum of values:  "
-    say total
-    print "Average:        "
-    say average
+	print "Values entered: "
+	say number_count
+	print "Sum of values:  "
+	say total
+	print "Average:        "
+	say average
 .end
 ````
 
@@ -496,55 +496,55 @@ own code. The sooner I can see if I need to move on, the happier I'll be. I
 could even test if we've somehow gone below zero if I was feeling especially
 paranoid. I won't do that today, though. You're welcome.
 
-# Using an Iterator
+## Using an Iterator
 
 We're nearly done. There is only one more way of traversing arrays that I want to look at. Parrot [Iterators](http://docs.parrot.org/parrot/devel/html/src/pmc/iterator.pmc.html) allow you to step through the contents of an array without doing anything to the array itself, while ignoring the details of array indexing.
 
 ````
 # example-05-07
 .sub 'main' :main
-    .const string PROMPT      = 'Enter a number (or "quit" to quit): '
-    .const string EXIT_STRING = 'quit'
-    .local string user_input
-    .local num    latest_number
-    .local num    total
-    .local int    number_count
-    .local pmc    numbers
-    .local pmc    numbers_iterator
-    .local num    average
-    .local pmc    stdin
+	.const string PROMPT      = 'Enter a number (or "quit" to quit): '
+	.const string EXIT_STRING = 'quit'
+	.local string user_input
+	.local num    latest_number
+	.local num    total
+	.local int    number_count
+	.local pmc    numbers
+	.local pmc    numbers_iterator
+	.local num    average
+	.local pmc    stdin
 
-    stdin = getstdin
-    numbers = new 'ResizableFloatArray'
+	stdin = getstdin
+	numbers = new 'ResizableFloatArray'
 
   GET_INPUT:
-    user_input = stdin.'readline_interactive'(PROMPT)
-    if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
-    latest_number = user_input
-    push numbers, latest_number
-    goto GET_INPUT
+	user_input = stdin.'readline_interactive'(PROMPT)
+	if user_input == EXIT_STRING goto SETUP_CALCULATE_SUM
+	latest_number = user_input
+	push numbers, latest_number
+	goto GET_INPUT
 
   SETUP_CALCULATE_SUM:
-    total = 0
-    numbers_iterator = iter numbers
+	total = 0
+	numbers_iterator = iter numbers
 
   CALCULATE_SUM:
-    unless numbers_iterator goto CALCULATE_AVERAGE
-    latest_number = shift numbers_iterator
-    total += latest_number
-    goto CALCULATE_SUM
+	unless numbers_iterator goto CALCULATE_AVERAGE
+	latest_number = shift numbers_iterator
+	total += latest_number
+	goto CALCULATE_SUM
 
   CALCULATE_AVERAGE:
-    number_count = numbers
-    average = total / number_count
+	number_count = numbers
+	average = total / number_count
 
   DISPLAY_VALUES:
-    print "Values entered: "
-    say number_count
-    print "Sum of values:  "
-    say total
-    print "Average:        "
-    say average
+	print "Values entered: "
+	say number_count
+	print "Sum of values:  "
+	say total
+	print "Average:        "
+	say average
 
 .end
 ````
@@ -563,6 +563,6 @@ Sum of values:  50
 Average:        12.5
 ````
 
-# Conclusion
+## Conclusion
 
 We had already taken a glance at arrays when we worked with the command line. Today we dove a little deeper, looking into different ways we can access the contents of an array. Now you understand how to treat a 'ResizableFloatArray' like a stack, a queue, a plain old array, or an iterable collection. These principles should work for other array types as well. Parrot has many array PMCs, and you can find them on the list of core PMCs [here](http://docs.parrot.org/parrot/devel/html/pmc.html).

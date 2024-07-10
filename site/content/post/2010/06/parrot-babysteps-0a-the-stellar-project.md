@@ -46,19 +46,19 @@ for anything more elaborate.
 ````
 # example-0a-01/setup.pir
 .sub 'main' :main
-    .param pmc args
-    $S0 = shift args # Ignore my own filename
-    load_bytecode 'distutils.pbc'
+	.param pmc args
+	$S0 = shift args # Ignore my own filename
+	load_bytecode 'distutils.pbc'
 
-    # Find out what command the user has issued
-    .local string directive
-    directive = shift args
+	# Find out what command the user has issued
+	.local string directive
+	directive = shift args
 
-    # Used by the test mode
-    .local string prove_exec
-    prove_exec = get_parrot()
+	# Used by the test mode
+	.local string prove_exec
+	prove_exec = get_parrot()
 
-    setup(directive, 'prove_exec' => prove_exec)
+	setup(directive, 'prove_exec' => prove_exec)
 .end
 ````
 
@@ -100,26 +100,26 @@ In that spirit, I will name the first test story `01-extract-details.t`.
 .include 'lib/stellar.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string sol_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star_fields
-    .local pmc    star
+	.include 'test_more.pir'
+	.local string header_string
+	.local string sol_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star_fields
+	.local pmc    star
 
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    sol_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    delimiter = ","
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	sol_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	delimiter = ","
 
-    header_fields = split delimiter, header_string
-    star_fields = split delimiter, sol_string
-    star = extract_star_details(header_fields, star_fields)
+	header_fields = split delimiter, header_string
+	star_fields = split delimiter, sol_string
+	star = extract_star_details(header_fields, star_fields)
 
-    plan(1)
+	plan(1)
 
-    $S0 = star['Proper Name']
-    is($S0, 'Sol', 'ProperName should be Sol')
+	$S0 = star['Proper Name']
+	is($S0, 'Sol', 'ProperName should be Sol')
 .end
 ````
 
@@ -157,29 +157,29 @@ earlier step.
 # stellar/lib/stellar.pir
 
 .sub extract_star_details
-    .param pmc    headers
-    .param pmc    values
+	.param pmc    headers
+	.param pmc    values
 
-    .local pmc    star
-    .local int    header_count
-    .local string current_header
-    .local string current_value
-    .local int    current_index
+	.local pmc    star
+	.local int    header_count
+	.local string current_header
+	.local string current_value
+	.local int    current_index
 
-    current_index = 0
-    header_count = headers
-    star = new 'Hash'
+	current_index = 0
+	header_count = headers
+	star = new 'Hash'
 
   ASSIGN_NEXT_STAR_FIELD:
-    if current_index >= header_count goto RETURN_STAR
-    current_header = headers[current_index]
-    current_value = values[current_index]
-    star[current_header] = current_value
-    current_index += 1
-    goto ASSIGN_NEXT_STAR_FIELD
+	if current_index >= header_count goto RETURN_STAR
+	current_header = headers[current_index]
+	current_value = values[current_index]
+	star[current_header] = current_value
+	current_index += 1
+	goto ASSIGN_NEXT_STAR_FIELD
 
   RETURN_STAR:
-    .return(star)
+	.return(star)
 .end
 ````
 
@@ -218,9 +218,9 @@ Okay, *now* we can fix the typo.
 #!parrot
 # t/01-extract-details.t
 .sub 'main' :main
-    ...
-    $S0 = star['ProperName']
-    is($S0, 'Sol', 'ProperName should be Sol')
+	...
+	$S0 = star['ProperName']
+	is($S0, 'Sol', 'ProperName should be Sol')
 .end
 ````
 
@@ -266,28 +266,28 @@ summary of a star, this test story will focus on asking for that string.
 ````
 # t/02-summarize-star.t
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string sol_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star_fields
-    .local pmc    star
-    .local string summary
+	.include 'test_more.pir'
+	.local string header_string
+	.local string sol_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star_fields
+	.local pmc    star
+	.local string summary
 
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    sol_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    delimiter = ","
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	sol_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	delimiter = ","
 
-    plan(1)
+	plan(1)
 
-    header_fields = split delimiter, header_string
-    star_fields = split delimiter, sol_string
-    star = extract_star_details(header_fields, star_fields)
+	header_fields = split delimiter, header_string
+	star_fields = split delimiter, sol_string
+	star = extract_star_details(header_fields, star_fields)
 
-    summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
-    $S0 = summarize_star(star)
-    is($S0, summary, "Sol's summary should include basic details")
+	summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
+	$S0 = summarize_star(star)
+	is($S0, summary, "Sol's summary should include basic details")
 .end
 ````
 
@@ -301,70 +301,70 @@ involve a little more work than the simple copy and paste for
 # ...
 
 .sub summarize_star
-    .param pmc star
+	.param pmc star
 
-    .local string star_name
-    .local string star_spectrum
-    .local string star_distance
-    .local string summary
+	.local string star_name
+	.local string star_spectrum
+	.local string star_distance
+	.local string summary
 
-    star_name = star['ProperName']
-    star_spectrum = star['Spectrum']
-    star_distance = star['Distance']
+	star_name = star['ProperName']
+	star_spectrum = star['Spectrum']
+	star_distance = star['Distance']
 
-    if star_name goto PREPARE_SUMMARY
+	if star_name goto PREPARE_SUMMARY
 
   TRY_GLIESE:
-    .local string gliese_number
-    gliese_number = star['Gliese']
-    unless gliese_number goto TRY_BAYER_FLAMSTEED
-    star_name = 'Gliese ' . gliese_number
-    goto PREPARE_SUMMARY
+	.local string gliese_number
+	gliese_number = star['Gliese']
+	unless gliese_number goto TRY_BAYER_FLAMSTEED
+	star_name = 'Gliese ' . gliese_number
+	goto PREPARE_SUMMARY
 
   TRY_BAYER_FLAMSTEED:
-    .local string bayer_flamsteed
-    bayer_flamsteed = star['BayerFlamsteed']
-    unless bayer_flamsteed goto TRY_HR
-    star_name = "BF " . bayer_flamsteed
-    goto PREPARE_SUMMARY
+	.local string bayer_flamsteed
+	bayer_flamsteed = star['BayerFlamsteed']
+	unless bayer_flamsteed goto TRY_HR
+	star_name = "BF " . bayer_flamsteed
+	goto PREPARE_SUMMARY
 
   TRY_HR:
-    .local string hr_id
-    hr_id = star['HR']
-    unless hr_id goto TRY_HD
-    star_name = "HR " . hr_id
-    goto PREPARE_SUMMARY
+	.local string hr_id
+	hr_id = star['HR']
+	unless hr_id goto TRY_HD
+	star_name = "HR " . hr_id
+	goto PREPARE_SUMMARY
 
   TRY_HD:
-    .local string hd_id
-    hd_id = star['HD']
-    unless hd_id goto USE_STAR_ID
-    star_name = "HD " . hd_id
-    goto PREPARE_SUMMARY
+	.local string hd_id
+	hd_id = star['HD']
+	unless hd_id goto USE_STAR_ID
+	star_name = "HD " . hd_id
+	goto PREPARE_SUMMARY
 
   TRY_HIP:
-    .local string hip_id
-    hip_id = star['HIP']
-    unless hip_id goto USE_STAR_ID
-    star_name = "HIP " . hip_id
-    goto PREPARE_SUMMARY
+	.local string hip_id
+	hip_id = star['HIP']
+	unless hip_id goto USE_STAR_ID
+	star_name = "HIP " . hip_id
+	goto PREPARE_SUMMARY
 
   USE_STAR_ID:
-    .local string star_id
-    star_id = star['StarID']
-    star_name = "HYG " . star_id
-    goto PREPARE_SUMMARY
+	.local string star_id
+	star_id = star['StarID']
+	star_name = "HYG " . star_id
+	goto PREPARE_SUMMARY
 
   PREPARE_SUMMARY:
-    summary = "<Name: "
-    summary .= star_name
-    summary .= ", Spectrum: "
-    summary .= star_spectrum
-    summary .= ", Distance: "
-    summary .= star_distance
-    summary .= ">"
+	summary = "<Name: "
+	summary .= star_name
+	summary .= ", Spectrum: "
+	summary .= star_spectrum
+	summary .= ", Distance: "
+	summary .= star_distance
+	summary .= ">"
 
-    .return(summary)
+	.return(summary)
 .end
 ````
 
@@ -380,42 +380,42 @@ of those stars that don't have proper names?
 .include 'lib/stellar.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string star_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star_fields
-    .local pmc    star
-    .local string summary
+	.include 'test_more.pir'
+	.local string header_string
+	.local string star_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star_fields
+	.local pmc    star
+	.local string summary
 
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    delimiter = ","
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	delimiter = ","
 
-    plan(3)
+	plan(3)
 
-    header_fields = split delimiter, header_string
+	header_fields = split delimiter, header_string
 
-    summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
-    star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    star_fields = split delimiter, star_string
-    star = extract_star_details(header_fields, star_fields)
-    $S0 = summarize_star(star)
-    is($S0, summary, "Sol's summary should include basic details")
+	summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
+	star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	star_fields = split delimiter, star_string
+	star = extract_star_details(header_fields, star_fields)
+	$S0 = summarize_star(star)
+	is($S0, summary, "Sol's summary should include basic details")
 
-    summary = "<Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427>"
-    star_string = "117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05"
-    star_fields = split delimiter, star_string
-    star = extract_star_details(header_fields, star_fields)
-    $S0 = summarize_star(star)
-    is($S0, summary, "HD identifier can be used if ProperName is unavailable")
+	summary = "<Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427>"
+	star_string = "117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05"
+	star_fields = split delimiter, star_string
+	star = extract_star_details(header_fields, star_fields)
+	$S0 = summarize_star(star)
+	is($S0, summary, "HD identifier can be used if ProperName is unavailable")
 
-    summary = "<Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713>"
-    star_string = "117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05"
-    star_fields = split delimiter, star_string
-    star = extract_star_details(header_fields, star_fields)
-    $S0 = summarize_star(star)
-    is($S0, summary, "HYG identifier can be used if ProperName is unavailable")
+	summary = "<Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713>"
+	star_string = "117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05"
+	star_fields = split delimiter, star_string
+	star = extract_star_details(header_fields, star_fields)
+	$S0 = summarize_star(star)
+	is($S0, summary, "HYG identifier can be used if ProperName is unavailable")
 .end
 ````
 
@@ -440,39 +440,39 @@ Let's make a new test story for that.
 ````
 # example-0a-04/t/03-extract-from-csv.t
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string star_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star_fields
-    .local pmc    star
-    .local string summary
+	.include 'test_more.pir'
+	.local string header_string
+	.local string star_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star_fields
+	.local pmc    star
+	.local string summary
 
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    delimiter = ","
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	delimiter = ","
 
-    plan(3)
+	plan(3)
 
-    header_fields = split delimiter, header_string
+	header_fields = split delimiter, header_string
 
-    summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
-    star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    star = extract_from_csv_line(star_string, header_fields, delimiter)
-    $S0 = summarize_star(star)
-    is($S0, summary, "Sol's summary should include basic details")
+	summary = "<Name: Sol, Spectrum: G2V, Distance: 0.000004848>"
+	star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	star = extract_from_csv_line(star_string, header_fields, delimiter)
+	$S0 = summarize_star(star)
+	is($S0, summary, "Sol's summary should include basic details")
 
-    summary = "<Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427>"
-    star_string = "117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05"
-    star = extract_from_csv_line(star_string, header_fields, delimiter)
-    $S0 = summarize_star(star)
-    is($S0, summary, "HD identifier can be used if ProperName is unavailable")
+	summary = "<Name: HD 224693, Spectrum: G2V, Distance: 94.0733772342427>"
+	star_string = "117952,118319,224693,,,,,23.99826083,-22.42818030,94.0733772342427,148.74,27.53,,8.23,3.36266632261649,G2V,0.639,86.95751,-0.03959,-35.89135,4.82e-06,6.7829e-05,1.1605e-05"
+	star = extract_from_csv_line(star_string, header_fields, delimiter)
+	$S0 = summarize_star(star)
+	is($S0, summary, "HD identifier can be used if ProperName is unavailable")
 
-    summary = "<Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713>"
-    star_string = "117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05"
-    star = extract_from_csv_line(star_string, header_fields, delimiter)
-    $S0 = summarize_star(star)
-    is($S0, summary, "HYG identifier can be used if ProperName is unavailable")
+	summary = "<Name: HYG 117782, Spectrum: G2V, Distance: 139.275766016713>"
+	star_string = "117782,118149,,,,,,23.96625102,15.95292997,139.275766016713,-46.50,-53.88,,9.59,3.8706222212115,G2V,0.648,133.90672,-1.18315,38.2796,9.72e-06,-3.1482e-05,-3.4977e-05"
+	star = extract_from_csv_line(star_string, header_fields, delimiter)
+	$S0 = summarize_star(star)
+	is($S0, summary, "HYG identifier can be used if ProperName is unavailable")
 .end
 ````
 
@@ -484,16 +484,16 @@ The code to make this work is simple enough.
 # ...
 
 .sub extract_from_csv_line
-    .param string star_string
-    .param pmc    header_fields
-    .param string delimiter
-    .local pmc    star_fields
-    .local pmc    star
+	.param string star_string
+	.param pmc    header_fields
+	.param string delimiter
+	.local pmc    star_fields
+	.local pmc    star
 
-    star_fields = split delimiter, star_string
-    star = extract_star_details(header_fields, star_fields)
+	star_fields = split delimiter, star_string
+	star = extract_star_details(header_fields, star_fields)
 
-    .return(star)
+	.return(star)
 .end
 ````
 

@@ -38,7 +38,7 @@ macOS? No problem.
 $ brew install rakudo
 ````
 
-*Linux*?
+[Linux](../../../card/Linux.md)?
 
 ````
 $ brew install rakudo

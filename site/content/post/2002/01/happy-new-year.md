@@ -4,15 +4,15 @@ tags:
 - coolnamehere
 date: 2002-01-03
 created: 2024-04-03T14:24:32-07:00
-updated: 2024-04-03T14:28:15-07:00
+updated: 2024-06-15T08:15:51-07:00
 ---
 
 Hey there, Happy New Year! 2002 seems to be off to a friendly start for me. There isn't any new content today, because I've been busy with other things. "Like what?" you ask, or maybe not. For starters, I toyed with the idea of redoing this site with [Zope](https://web.archive.org/web/20050206183943/http://www.zope.org/). I'm still toying, but that means giving up a lot of hard-won tricks with [WebMake](https://web.archive.org/web/20050206183943/http://webmake.taint.org/). We'll see where that goes.
 
 I used to have a warning on the front page. I still do, but now it only shows up if your browser doesn't:
 
-* Support the CSS "@import" directive, and
-* Support the "display: none" CSS attribute
+* Support the CSS `@import` directive, and
+* Support the `display: none` CSS attribute
 
 It's a cheap and dirty trick, but it should work quite nicely. Now people who don't have to worry about it won't have to see a warning about somebody else's browser.
 

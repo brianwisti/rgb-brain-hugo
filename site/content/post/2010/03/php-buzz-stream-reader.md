@@ -55,11 +55,7 @@ of those.
 
 # How?
 
-Let me throw an immediate disclaimer by saying that 80% of what I want
-is already implemented in the [Google Buzz
-Widget](http://www.moretechtips.net/2010/02/google-buzz-widget-jquery-plugin.html),
-a jQuery plugin which displays the contents of your Buzz stream. I tried
-it out, and it worked like a charm.
+Let me throw an immediate disclaimer by saying that 80% of what I want is already implemented in the [Google Buzz Widget](http://www.moretechtips.net/2010/02/google-buzz-widget-jquery-plugin.html), a jQuery plugin which displays the contents of your Buzz stream. I tried it out, and it worked like a charm.
 
 ````html
 <script type="text/javascript"
@@ -100,7 +96,7 @@ on that host is [PHP](http://php.net). I’m not a huge fan of the
 language, but I am pragmatic. If the most convenient tool available is
 PHP, then that’s what I’ll use.
 
-If they had [mod\_perlite](http://modperlite.org), it would be a
+If they had [mod_perlite](http://modperlite.org), it would be a
 significantly different story. Oh well. Let’s begin.
 
 # Start!

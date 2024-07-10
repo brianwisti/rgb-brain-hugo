@@ -14,7 +14,7 @@ title: REBOL
 updated: 2024-02-01 20:43:30-08:00
 ---
 
-This is unusual. I’ve come across the first language that I don’t want to tell you about. I don’t know *why* I want to keep [REBOL](rebol.md) a secret. It has been very useful even in the limited roles that I have given it so far. The language is consistent and pleasant to work with. It has a richness of datatypes that just can’t be matched by other languages. The GUI library View is surprisingly straightforward for simple tasks, and there are excellent libraries like RebGUI to make it just as easy for more elaborate interfaces.
+This is unusual. I’ve come across the first language that I don’t want to tell you about. I don’t know *why* I want to keep [REBOL](../../../card/REBOL.md) a secret. It has been very useful even in the limited roles that I have given it so far. The language is consistent and pleasant to work with. It has a richness of datatypes that just can’t be matched by other languages. The GUI library View is surprisingly straightforward for simple tasks, and there are excellent libraries like RebGUI to make it just as easy for more elaborate interfaces.
 
 Maybe I just want to think of REBOL as my secret weapon. Languages aren’t like that, though, so my conscience tells me that I must at least mention it to you before burying myself back in the routine of my day.
 

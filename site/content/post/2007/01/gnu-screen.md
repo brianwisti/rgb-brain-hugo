@@ -14,7 +14,7 @@ title: GNU screen
 updated: 2024-01-26 09:20:46-08:00
 ---
 
-Sometimes it's helpful to have multiple consoles open during a *Linux* session. The best example I can think of is when you are logged in to a machine via `ssh`. There are other ways, of course. You could try to log in to the server with '-X' so that X11 applications can run on the remote host but display on your computer. That's not always easy, though. The administrator of the server may not allow X11 forwarding. Your machine may not allow or even understand X11 requests. You could log in to multiple `ssh` sessions. This is what I did for several years. It works, but it's not the most convenient approach, since it clutters up your desktop. `screen` is a better option.
+Sometimes it's helpful to have multiple consoles open during a [Linux](../../../card/Linux.md) session. The best example I can think of is when you are logged in to a machine via `ssh`. There are other ways, of course. You could try to log in to the server with '-X' so that X11 applications can run on the remote host but display on your computer. That's not always easy, though. The administrator of the server may not allow X11 forwarding. Your machine may not allow or even understand X11 requests. You could log in to multiple `ssh` sessions. This is what I did for several years. It works, but it's not the most convenient approach, since it clutters up your desktop. `screen` is a better option.
 
 <!--more-->
 

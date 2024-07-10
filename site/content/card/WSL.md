@@ -6,7 +6,7 @@ updated: 2024-01-26 09:10:11-08:00
 
 Windows Subsystem for Linux
 
-Either a heavyweight container or a lightweight VM. Either way, it's how I do *Linux* when on *Windows*.
+Either a heavyweight container or a lightweight VM. Either way, it's how I do [Linux](Linux.md) when on *Windows*.
 
 # CLI Usage
 

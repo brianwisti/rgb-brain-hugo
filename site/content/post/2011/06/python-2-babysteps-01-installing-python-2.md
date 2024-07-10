@@ -4,7 +4,7 @@ aliases:
 - /2011/06/16/python-2-babysteps-01-installing-python-2/
 - /post/2011/06/python-2-babysteps-01-installing-python-2/
 category: post
-created: 2024-01-15 15:25:32-08:00
+created: 2024-01-15 16:23:36-07:00
 date: 2011-06-16 00:00:00-07:00
 description: Think of it as Step Zero for the other Python tutorials.
 slug: python-2-babysteps-01-installing-python-2
@@ -13,7 +13,7 @@ tags:
 - learn
 - coolnamehere
 title: Python 2 Babysteps 01 Installing Python 2
-updated: 2024-02-01 20:39:05-08:00
+updated: 2024-07-10 06:05:41-07:00
 ---
 
 ## Installation
@@ -277,7 +277,7 @@ To edit a Python script in IDLE, simply go to the "File" menu and select "New Wi
 
 In your new window, enter this code:
 
-````
+````python
 # hello.py
 #  Get the user's name and print a friendly hello
 name = raw_input("Please enter your name: ")

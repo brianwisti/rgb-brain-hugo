@@ -17,7 +17,7 @@ title: REBOL Babysteps - 03 Making Decisions
 updated: 2024-02-01 20:44:08-08:00
 ---
 
-In [rebol-babysteps-01-getting-started](../../2004/12/rebol-babysteps-01-getting-started.md) I gave you a first cautious glance at the [REBOL](../../2004/12/rebol.md) programming language. In [rebol-babysteps-02-getting-started-with-view](../../2004/12/rebol-babysteps-02-getting-started-with-view.md) I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test. Here are a few uses for a simple selection structure.
+In [rebol-babysteps-01-getting-started](../../2004/12/rebol-babysteps-01-getting-started.md) I gave you a first cautious glance at the [REBOL](../../../card/REBOL.md) programming language. In [rebol-babysteps-02-getting-started-with-view](../../2004/12/rebol-babysteps-02-getting-started-with-view.md) I extended that glance to a peek at the excellent REBOL/View GUI library. Let’s continue learning how to program with Rebol. Today I want to get you started with some structured programming by introducing you to selection structures. Selection structures make it possible to decide whether or not to do something based on a test. Here are a few uses for a simple selection structure.
 
 * Tell me if a file exists.
 * Stop me from continuing the program if I give the wrong password.

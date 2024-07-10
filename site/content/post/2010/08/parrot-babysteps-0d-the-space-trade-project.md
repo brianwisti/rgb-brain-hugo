@@ -86,19 +86,19 @@ The `setup.pir` script will start out the same as the one used for Stellar.
 ````
 # example-0d-01/setup.pir
 .sub 'main' :main
-    .param pmc args
-    $S0 = shift args # Ignore my own filename
-    load_bytecode 'distutils.pbc'
+	.param pmc args
+	$S0 = shift args # Ignore my own filename
+	load_bytecode 'distutils.pbc'
 
-    # find out what command the user has issued.
-    .local string directive
-    directive = shift args
+	# find out what command the user has issued.
+	.local string directive
+	directive = shift args
 
-    # Used by test mode
-    .local string prove_exec
-    prove_exec = get_parrot()
+	# Used by test mode
+	.local string prove_exec
+	prove_exec = get_parrot()
 
-    setup(directive, 'prove_exec' => prove_exec)
+	setup(directive, 'prove_exec' => prove_exec)
 .end
 ````
 
@@ -139,42 +139,42 @@ What is the smallest amount of code I can use to get this end result and still f
 ````
 # example-0d-01/lib/spacetrade.pir
 .sub 'main' :main
-    run_shell()
+	run_shell()
 .end
 
 .sub run_shell
-    .local string input
-    .local pmc    stdin
-    .const string PROMPT     = '> '
-    .const string QUICK_HELP = "Type ':help' for help, and ':quit' to quit."
+	.local string input
+	.local pmc    stdin
+	.const string PROMPT     = '> '
+	.const string QUICK_HELP = "Type ':help' for help, and ':quit' to quit."
 
-    stdin = getstdin
+	stdin = getstdin
 
-    say "Welcome to SpaceTrade!"
-    say QUICK_HELP
+	say "Welcome to SpaceTrade!"
+	say QUICK_HELP
 
   READLINE:
-    input = stdin.'readline_interactive'(PROMPT)
-    if input == ':quit' goto EXIT
-    if input == ':help' goto SHOW_USAGE
-    goto SHOW_ERROR
+	input = stdin.'readline_interactive'(PROMPT)
+	if input == ':quit' goto EXIT
+	if input == ':help' goto SHOW_USAGE
+	goto SHOW_ERROR
 
   SHOW_USAGE:
-    say "COMMANDS"
-    say ":help    This view"
-    say ":quit    Exit the shell"
-    goto READLINE
+	say "COMMANDS"
+	say ":help    This view"
+	say ":quit    Exit the shell"
+	goto READLINE
 
   SHOW_ERROR:
-    .local string error_message
-    error_message = "Unknown command: "
-    error_message .= input
-    say error_message
-    say QUICK_HELP
-    goto READLINE
+	.local string error_message
+	error_message = "Unknown command: "
+	error_message .= input
+	say error_message
+	say QUICK_HELP
+	goto READLINE
 
   EXIT:
-    say "Goodbye!"
+	say "Goodbye!"
 .end
 ````
 
@@ -193,23 +193,23 @@ The idea is that I could have a simple structure that stores information about a
 .include 'lib/spacetrade.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
+	.include 'test_more.pir'
 
-    plan(1)
+	plan(1)
 
-    .local pmc    commands
-    .local string expected
-    .local string output
+	.local pmc    commands
+	.local string expected
+	.local string output
 
-    commands = new 'Hash'
-    commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
-    expected = "Dude!"
-    output = evaluate_command(commands, ':dude')
-    is(output, expected, 'User command ":dude" should result in string "Dude!"')
+	commands = new 'Hash'
+	commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+	expected = "Dude!"
+	output = evaluate_command(commands, ':dude')
+	is(output, expected, 'User command ":dude" should result in string "Dude!"')
 .end
 
 .sub say_dude
-    .return("Dude!")
+	.return("Dude!")
 .end
 ````
 
@@ -219,21 +219,21 @@ The first sub that's needed is `register_command`, which will add a `:dude` entr
 # example-0d-02/lib/spacetrade.pir
 
 .sub register_command
-    .param pmc    commands
-    .param string name
-    .param string sub_name
-    .param string explanation
+	.param pmc    commands
+	.param string name
+	.param string sub_name
+	.param string explanation
 
-    .local pmc    command
-    .local pmc    callback
+	.local pmc    command
+	.local pmc    callback
 
-    command = new 'Hash'
-    command['sub_name'] = sub_name
-    command['explanation'] = explanation
-    commands[name] = command
+	command = new 'Hash'
+	command['sub_name'] = sub_name
+	command['explanation'] = explanation
+	commands[name] = command
 
   RETURN_COMMANDS:
-    .return(commands)
+	.return(commands)
 .end
 ````
 
@@ -244,18 +244,18 @@ You can probably figure out what I expect to happen from the test code. I have a
 ````
 # example-0d-02/lib/spacetrade.pir
 .sub evaluate_command
-    .param pmc    commands
-    .param string name
+	.param pmc    commands
+	.param string name
 
-    .local string sub_name
-    .local pmc    command_sub
-    .local string output
+	.local string sub_name
+	.local pmc    command_sub
+	.local string output
 
-    sub_name = commands[name;'sub_name']
-    command_sub = get_global sub_name
-    output = command_sub()
+	sub_name = commands[name;'sub_name']
+	command_sub = get_global sub_name
+	output = command_sub()
 
-    .return(output)
+	.return(output)
 .end
 ````
 
@@ -284,28 +284,28 @@ Okay, let's add the tests.
 ````
 # example-0d-03/t/01-shell-metacommands.t
 .sub 'main' :main
-    .include 'test_more.pir'
+	.include 'test_more.pir'
 
-    plan(3)
+	plan(3)
 
-    .local pmc    commands
-    .local string expected
-    .local string output
+	.local pmc    commands
+	.local string expected
+	.local string output
 
-    commands = new 'Hash'
-    commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
-    expected = "Dude!"
-    output = evaluate_command(commands, ':dude')
-    is(output, expected, 'User command ":dude" should result in string "Dude!"')
+	commands = new 'Hash'
+	commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+	expected = "Dude!"
+	output = evaluate_command(commands, ':dude')
+	is(output, expected, 'User command ":dude" should result in string "Dude!"')
 
-    expected = "Unknown command: :sweet"
-    output = evaluate_command(commands, ':sweet')
-    is(output, expected, 'Shell should warn about unknown commands')
+	expected = "Unknown command: :sweet"
+	output = evaluate_command(commands, ':sweet')
+	is(output, expected, 'Shell should warn about unknown commands')
 
-    commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
-    expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
-    output = evaluate_command(commands, ':whats-mine-say')
-    is(output, expected, 'Shell should warn about invalid commands')
+	commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
+	expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
+	output = evaluate_command(commands, ':whats-mine-say')
+	is(output, expected, 'Shell should warn about invalid commands')
 .end
 
 # ...
@@ -319,31 +319,31 @@ Okay, let's add the tests.
 # ...
 
 .sub evaluate_command
-    .param pmc    commands
-    .param string name
+	.param pmc    commands
+	.param string name
 
-    .local string sub_name
-    .local pmc    command_sub
-    .local string output
+	.local string sub_name
+	.local pmc    command_sub
+	.local string output
 
-    sub_name = commands[name;'sub_name']
-    unless sub_name goto UNKNOWN_COMMAND
-    command_sub = get_global sub_name
-    if_null command_sub, INVALID_COMMAND
-    output = command_sub()
-    goto RETURN_OUTPUT
+	sub_name = commands[name;'sub_name']
+	unless sub_name goto UNKNOWN_COMMAND
+	command_sub = get_global sub_name
+	if_null command_sub, INVALID_COMMAND
+	output = command_sub()
+	goto RETURN_OUTPUT
 
   UNKNOWN_COMMAND:
-    output = "Unknown command: " . name
-    goto RETURN_OUTPUT
+	output = "Unknown command: " . name
+	goto RETURN_OUTPUT
 
   INVALID_COMMAND:
-    output = "Invalid command: " . name
-    output .= " points to nonexistent sub "
-    output .= sub_name
+	output = "Invalid command: " . name
+	output .= " points to nonexistent sub "
+	output .= sub_name
 
   RETURN_OUTPUT:
-    .return(output)
+	.return(output)
 .end
 
 # ...
@@ -366,46 +366,46 @@ This ends up working pretty much the same as the earlier code did, and it's a bi
 .include 'lib/spacetrade.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
+	.include 'test_more.pir'
 
-    plan(5)
+	plan(5)
 
-    .local pmc    commands
-    .local string expected
-    .local string output
+	.local pmc    commands
+	.local string expected
+	.local string output
 
-    commands = new 'Hash'
-    commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
-    expected = "Dude!"
-    output = evaluate_command(commands, ':dude')
-    is(output, expected, 'User command ":dude" should result in string "Dude!"')
+	commands = new 'Hash'
+	commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+	expected = "Dude!"
+	output = evaluate_command(commands, ':dude')
+	is(output, expected, 'User command ":dude" should result in string "Dude!"')
 
-    expected = "Unknown command: :sweet"
-    output = evaluate_command(commands, ':sweet')
-    is(output, expected, 'Shell should warn about unknown commands')
+	expected = "Unknown command: :sweet"
+	output = evaluate_command(commands, ':sweet')
+	is(output, expected, 'Shell should warn about unknown commands')
 
-    commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
-    expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
-    output = evaluate_command(commands, ':whats-mine-say')
-    is(output, expected, 'Shell should warn about invalid commands')
+	commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
+	expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
+	output = evaluate_command(commands, ':whats-mine-say')
+	is(output, expected, 'Shell should warn about invalid commands')
 
-    commands = register_default_commands()
+	commands = register_default_commands()
 
-    expected =<<'EXPECTED'
+	expected =<<'EXPECTED'
 COMMANDS
 :help    This view
 :quit    Exit the shell
 EXPECTED
-    output = evaluate_command(commands, ':help')
-    is(output, expected, ':help should be a registered default command')
+	output = evaluate_command(commands, ':help')
+	is(output, expected, ':help should be a registered default command')
 
-    expected = ''
-    output = evaluate_command(commands, ':quit')
-    is(output, expected, ':quit should be a registered default command that returns an empty string')
+	expected = ''
+	output = evaluate_command(commands, ':quit')
+	is(output, expected, ':quit should be a registered default command that returns an empty string')
 .end
 
 .sub say_dude
-    .return("Dude!")
+	.return("Dude!")
 .end
 ````
 
@@ -414,31 +414,31 @@ The test code that has already been written shows a clear path for registering d
 ````
 example-0d-04/lib/spacetrade.pir
 .sub register_default_commands
-    .local pmc commands
+	.local pmc commands
 
-    commands = new 'Hash'
-    commands = register_command(commands, ':help', 'default_help', 'This view')
-    commands = register_command(commands, ':quit', 'default_quit', 'Exit the shell')
+	commands = new 'Hash'
+	commands = register_command(commands, ':help', 'default_help', 'This view')
+	commands = register_command(commands, ':quit', 'default_quit', 'Exit the shell')
 
-    .return(commands)
+	.return(commands)
 .end
 
 .sub default_help
-    .local string output
+	.local string output
 
-    output =<<'OUTPUT'
+	output =<<'OUTPUT'
 COMMANDS
 :help    This view
 :quit    Exit the shell
 OUTPUT
 
-    .return(output)
+	.return(output)
 .end
 
 .sub default_quit
-    .local string output
-    output = ''
-    .return(output)
+	.local string output
+	output = ''
+	.return(output)
 .end
 ````
 
@@ -451,56 +451,56 @@ The problem is that I had to cheat on `default_help`. See, the way that I set up
 .include 'lib/spacetrade.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
+	.include 'test_more.pir'
 
-    plan(6)
+	plan(6)
 
-    .local pmc    commands
-    .local string expected
-    .local string output
+	.local pmc    commands
+	.local string expected
+	.local string output
 
-    commands = register_default_commands()
+	commands = register_default_commands()
 
-    expected =<<'EXPECTED'
+	expected =<<'EXPECTED'
 COMMANDS
 :help    This view
 :quit    Exit the shell
 EXPECTED
-    output = evaluate_command(commands, ':help')
-    is(output, expected, ':help should be a registered default command')
+	output = evaluate_command(commands, ':help')
+	is(output, expected, ':help should be a registered default command')
 
-    expected = ''
-    output = evaluate_command(commands, ':quit')
-    is(output, expected, ':quit should be a registered default command that returns an empty string')
+	expected = ''
+	output = evaluate_command(commands, ':quit')
+	is(output, expected, ':quit should be a registered default command that returns an empty string')
 
-    commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+	commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
 
-    expected =<<'EXPECTED'
+	expected =<<'EXPECTED'
 COMMANDS
 :dude    Say "Dude!"
 :help    This view
 :quit    Exit the shell
 EXPECTED
-    output = evaluate_command(commands, ':help')
-    is(output, expected, ':help should reflect registered commands')
+	output = evaluate_command(commands, ':help')
+	is(output, expected, ':help should reflect registered commands')
 
-    expected = "Dude!"
-    output = evaluate_command(commands, ':dude')
-    is(output, expected, 'User command ":dude" should result in string "Dude!"')
+	expected = "Dude!"
+	output = evaluate_command(commands, ':dude')
+	is(output, expected, 'User command ":dude" should result in string "Dude!"')
 
-    expected = "Unknown command: :sweet"
-    output = evaluate_command(commands, ':sweet')
-    is(output, expected, 'Shell should warn about unknown commands')
+	expected = "Unknown command: :sweet"
+	output = evaluate_command(commands, ':sweet')
+	is(output, expected, 'Shell should warn about unknown commands')
 
-    commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
-    expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
-    output = evaluate_command(commands, ':whats-mine-say')
-    is(output, expected, 'Shell should warn about invalid commands')
+	commands = register_command(commands, ':whats-mine-say', 'whats_mine_say', "What's mine say?")
+	expected = "Invalid command: :whats-mine-say points to nonexistent sub whats_mine_say"
+	output = evaluate_command(commands, ':whats-mine-say')
+	is(output, expected, 'Shell should warn about invalid commands')
 
 .end
 
 .sub say_dude
-    .return("Dude!")
+	.return("Dude!")
 .end
 ````
 
@@ -509,62 +509,62 @@ How am I supposed to do this? Let's start by rewriting `default_help` the way it
 ````
 # example-0d-05/lib/spacetrade.pir
 .sub default_help
-    .param pmc    commands
-    .local string output
-    .local pmc    command_iter
-    .local pmc    command_keys
-    .local string key
+	.param pmc    commands
+	.local string output
+	.local pmc    command_iter
+	.local pmc    command_keys
+	.local string key
 
-    command_keys = new 'ResizablePMCArray'
-    command_iter = iter commands
+	command_keys = new 'ResizablePMCArray'
+	command_iter = iter commands
 
   NEXT_COMMAND:
-    unless command_iter goto PREPARE_OUTPUT
-    key = shift command_iter
-    push command_keys, key
-    goto NEXT_COMMAND
+	unless command_iter goto PREPARE_OUTPUT
+	key = shift command_iter
+	push command_keys, key
+	goto NEXT_COMMAND
 
   PREPARE_OUTPUT:
-    output = "COMMANDS\n"
-    command_keys.'sort'()
+	output = "COMMANDS\n"
+	command_keys.'sort'()
 
-    .local string command_name
-    .local string command_explanation
-    .local string command_summary
-    command_iter = iter command_keys
+	.local string command_name
+	.local string command_explanation
+	.local string command_summary
+	command_iter = iter command_keys
 
   NEXT_SUMMARY:
-    unless command_iter goto RETURN_OUTPUT
-    command_name = shift command_iter
-    command_explanation = commands[command_name;'explanation']
-    command_summary = command_name . '    '
-    command_summary .= command_explanation
-    command_summary .= "\n"
-    output .= command_summary
-    goto NEXT_SUMMARY
+	unless command_iter goto RETURN_OUTPUT
+	command_name = shift command_iter
+	command_explanation = commands[command_name;'explanation']
+	command_summary = command_name . '    '
+	command_summary .= command_explanation
+	command_summary .= "\n"
+	output .= command_summary
+	goto NEXT_SUMMARY
 
   RETURN_OUTPUT:
-    .return(output)
+	.return(output)
 .end
 ````
 
 A little explanation about `default_help` couldn't hurt. Hashes use their own special tricks to make storing their elements more effective, which means you have no guarantee of getting them in any particular order. I want to see the commands in alphabetical order, so I will have to handle the ordering myself. I did that by first building a list of keys.
 
 ````
-    command_keys = new 'ResizablePMCArray'
-    command_iter = iter commands
+	command_keys = new 'ResizablePMCArray'
+	command_iter = iter commands
 
   NEXT_COMMAND:
-    unless command_iter goto PREPARE_OUTPUT
-    key = shift command_iter
-    push command_keys, key
-    goto NEXT_COMMAND
+	unless command_iter goto PREPARE_OUTPUT
+	key = shift command_iter
+	push command_keys, key
+	goto NEXT_COMMAND
 ````
 
 Once that list was constructed, it needed to be put in some sort of order. Luckily, the Array PMCs come with a prepackaged `sort()` method - a special subroutine that works directly with the elements of the array.
 
 ````
-    command_keys.'sort'()
+command_keys.'sort'()
 ````
 
 The default sort behavior works for me. In this case they will be sorted more or less alphabetically.
@@ -577,31 +577,31 @@ Now, I could add a lot of code to `evaluate_command` that will magically determi
 # ...
 
 .sub evaluate_command
-    .param pmc    commands
-    .param string name
+	.param pmc    commands
+	.param string name
 
-    .local string sub_name
-    .local pmc    command_sub
-    .local string output
+	.local string sub_name
+	.local pmc    command_sub
+	.local string output
 
-    sub_name = commands[name;'sub_name']
-    unless sub_name goto UNKNOWN_COMMAND
-    command_sub = get_global sub_name
-    if_null command_sub, INVALID_COMMAND
-    output = command_sub(commands)
-    goto RETURN_OUTPUT
+	sub_name = commands[name;'sub_name']
+	unless sub_name goto UNKNOWN_COMMAND
+	command_sub = get_global sub_name
+	if_null command_sub, INVALID_COMMAND
+	output = command_sub(commands)
+	goto RETURN_OUTPUT
 
   UNKNOWN_COMMAND:
-    output = "Unknown command: " . name
-    goto RETURN_OUTPUT
+	output = "Unknown command: " . name
+	goto RETURN_OUTPUT
 
   INVALID_COMMAND:
-    output = "Invalid command: " . name
-    output .= " points to nonexistent sub "
-    output .= sub_name
+	output = "Invalid command: " . name
+	output .= " points to nonexistent sub "
+	output .= sub_name
 
   RETURN_OUTPUT:
-    .return(output)
+	.return(output)
 .end
 ````
 
@@ -628,28 +628,28 @@ A lot of work has gone into making the shell easier to use for me and people who
 # example-0d-05/lib/spacetrade.pir
 
 .sub run_shell
-    .local pmc    commands
-    .local string input
-    .local string output
-    .local pmc    stdin
-    .const string PROMPT     = '> '
-    .const string QUICK_HELP = "Type ':help' for help, and ':quit' to quit."
+	.local pmc    commands
+	.local string input
+	.local string output
+	.local pmc    stdin
+	.const string PROMPT     = '> '
+	.const string QUICK_HELP = "Type ':help' for help, and ':quit' to quit."
 
-    commands = register_default_commands()
-    stdin = getstdin
+	commands = register_default_commands()
+	stdin = getstdin
 
-    say "Welcome to SpaceTrade!"
-    say QUICK_HELP
+	say "Welcome to SpaceTrade!"
+	say QUICK_HELP
 
   READLINE:
-    input = stdin.'readline_interactive'(PROMPT)
-    output = evaluate_command(commands, input)
-    unless output goto EXIT
-    say output
-    goto READLINE
+	input = stdin.'readline_interactive'(PROMPT)
+	output = evaluate_command(commands, input)
+	unless output goto EXIT
+	say output
+	goto READLINE
 
   EXIT:
-    say "Goodbye!"
+	say "Goodbye!"
 .end
 ````
 

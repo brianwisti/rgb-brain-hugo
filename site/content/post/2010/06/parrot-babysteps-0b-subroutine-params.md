@@ -4,7 +4,7 @@ aliases:
 - /post/2010/0b-subroutine-params/
 - /2010/06/15/parrot-babysteps-0b-subroutine-params/
 category: post
-created: 2024-01-15 15:25:33-08:00
+created: 2024-01-15 16:24:57-07:00
 date: 2010-06-15 00:00:00-07:00
 series:
 - Parrot Babysteps
@@ -14,7 +14,7 @@ tags:
 - learn
 - coolnamehere
 title: Parrot Babysteps 0b - Subroutine Params
-updated: 2024-01-26 10:09:51-08:00
+updated: 2024-07-10 06:04:16-07:00
 ---
 
 It's time to treat the star database like a database. Well, it's time to treat
@@ -34,7 +34,7 @@ First I am going to describe what is being built, then I'm going to work on the
 very important detail of examining a single star. We'll have to wait until the
 next Baby Step before we start searching the catalog.
 
-# Thinking Through The Problem
+## Thinking Through The Problem
 
 We could start by creating a simple search function, testing every line in the
 HYG Catalog and verifying the results by hand. That will obviously not work.
@@ -64,11 +64,11 @@ The conditions would need to allow for ranges or approximate matches.
 Luckily, this code is not indented for use in the real world. I can be as clumsy
 as I want, as long as my program gives the right answer.
 
-# Writing Code
+## Writing Code
 
 Now we're ready to go back to the `stellar` project and write some code.
 
-## Testing a Condition
+### Testing a Condition
 
 Our first approach to checking a star's details will be to check a single field.
 The star `ProperName` is a good field to start with:
@@ -78,27 +78,27 @@ The star `ProperName` is a good field to start with:
 .include 'lib/stellar.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string star_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star
+	.include 'test_more.pir'
+	.local string header_string
+	.local string star_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star
 
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    delimiter = ","
-    star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	delimiter = ","
+	star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
 
-    plan(2)
+	plan(2)
 
-    header_fields = split delimiter, header_string
-    star = extract_from_csv_line(star_string, header_fields, delimiter)
-    $S0 = 'Sol'
+	header_fields = split delimiter, header_string
+	star = extract_from_csv_line(star_string, header_fields, delimiter)
+	$S0 = 'Sol'
 
-    $I0 = check_star_proper_name(star, 'Sol')
-    ok($I0, 'Sol should have ProperName of "Sol"')
-    $I0 = check_star_proper_name(star, 'Arcturus')
-    nok($I0, 'Sol should not have ProperName of "Arcturus"')
+	$I0 = check_star_proper_name(star, 'Sol')
+	ok($I0, 'Sol should have ProperName of "Sol"')
+	$I0 = check_star_proper_name(star, 'Arcturus')
+	nok($I0, 'Sol should not have ProperName of "Arcturus"')
 .end
 ````
 
@@ -111,14 +111,14 @@ than necessary, to be honest:
 # ...
 
 .sub check_star_proper_name
-    .param pmc    star
-    .param string desired_value
-    .local string actual_value
-    .local int    check_result
+	.param pmc    star
+	.param string desired_value
+	.local string actual_value
+	.local int    check_result
 
-    actual_value = star['ProperName']
-    check_result = desired_value == actual_value
-    .return(check_result)
+	actual_value = star['ProperName']
+	check_result = desired_value == actual_value
+	.return(check_result)
 .end
 ````
 
@@ -127,7 +127,7 @@ value held in the `star`. I rely on Parrot to do the right thing when comparing
 `desired_value` with `actual_value`. [Remember](/post/2009/07/parrot-babysteps-02-variables-and-types) that Parrot automatically
 handles any type conversions, so we can ignore type for now.
 
-## Revisiting the `header_string`
+### Revisiting the `header_string`
 
 I want to stop for a moment and look at my tests. One annoying fact is that
 every single test file includes the full `header_string` and `delimiter`. That
@@ -140,16 +140,16 @@ I *can* make those parameters optional. Let's reopen the test file `03-extract-f
 ````
 # example-0b-02/03-extract-from-csv.t
 .sub main ':main'
-    # ...
-    plan(4)
-    # ...
-    star = extract_from_csv_line(star_string, header_fields)
-    $S0 = summarize_star(star)
-    is($S0, summary, "delimiter should be optional")
+	# ...
+	plan(4)
+	# ...
+	star = extract_from_csv_line(star_string, header_fields)
+	$S0 = summarize_star(star)
+	is($S0, summary, "delimiter should be optional")
 
-    star = extract_from_csv_line(star_string)
-    $S0 = summarize_star(star)
-    is($S0, summary, "header_fields should be optional")
+	star = extract_from_csv_line(star_string)
+	$S0 = summarize_star(star)
+	is($S0, summary, "header_fields should be optional")
 .end
 ````
 
@@ -158,28 +158,28 @@ and `:opt_flag`.
 
 ````
 .sub extract_from_csv_line
-    .param string star_string
-    .param pmc    header_fields     :optional
-    .param int    has_header_fields :opt_flag
-    .param string delimiter         :optional
-    .param int    has_delimiter     :opt_flag
+	.param string star_string
+	.param pmc    header_fields     :optional
+	.param int    has_header_fields :opt_flag
+	.param string delimiter         :optional
+	.param int    has_delimiter     :opt_flag
 
-    if has_delimiter goto CHECK_HEADER_FIELDS
-    delimiter = ','
+	if has_delimiter goto CHECK_HEADER_FIELDS
+	delimiter = ','
   CHECK_HEADER_FIELDS:
-    if has_header_fields goto BEGIN_EXTRACTING
-    .local string header_string
-    header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
-    header_fields = split delimiter, header_string
+	if has_header_fields goto BEGIN_EXTRACTING
+	.local string header_string
+	header_string = "StarID,HIP,HD,HR,Gliese,BayerFlamsteed,ProperName,RA,Dec,Distance,PMRA,PMDec,RV,Mag,AbsMag,Spectrum,ColorIndex,X,Y,Z,VX,VY,VZ"
+	header_fields = split delimiter, header_string
 
   BEGIN_EXTRACTING:
-    .local pmc    star_fields
-    .local pmc    star
+	.local pmc    star_fields
+	.local pmc    star
 
-    star_fields = split delimiter, star_string
-    star = extract_star_details(header_fields, star_fields)
+	star_fields = split delimiter, star_string
+	star = extract_star_details(header_fields, star_fields)
 
-    .return(star)
+	.return(star)
 .end
 ````
 
@@ -193,34 +193,34 @@ parameter was set. The name of the flag doesn't matter.
 ````
 # example-0b-03.pir
 .sub 'main' :main
-    .local string eggs
-    .local string topping 
-    .local string order
+	.local string eggs
+	.local string topping 
+	.local string order
 
-    eggs = 'over easy'
-    topping = "Frank's RedHot"
+	eggs = 'over easy'
+	topping = "Frank's RedHot"
 
-    order = breakfast(eggs, topping)
-    say order
+	order = breakfast(eggs, topping)
+	say order
 
-    order = breakfast(eggs)
-    say order
+	order = breakfast(eggs)
+	say order
 .end
 
 .sub breakfast
-    .param string eggs
-    .param string topping   :optional
-    .param int    has_stuff :opt_flag
+	.param string eggs
+	.param string topping   :optional
+	.param int    has_stuff :opt_flag
 
-    .local string breakfast_order
-    breakfast_order = 'Eggs cooked ' . eggs
+	.local string breakfast_order
+	breakfast_order = 'Eggs cooked ' . eggs
 
-    unless has_stuff goto SERVE_BREAKFAST
-    breakfast_order .= ' topped with '
-    breakfast_order .= topping
+	unless has_stuff goto SERVE_BREAKFAST
+	breakfast_order .= ' topped with '
+	breakfast_order .= topping
 
   SERVE_BREAKFAST:
-    .return(breakfast_order)
+	.return(breakfast_order)
 .end
 ````
 
@@ -239,34 +239,34 @@ parameter in your `.param` directives, or bad things will happen.
 ````
 # example-0b-04.pir
 .sub 'main' :main
-    .local string eggs
-    .local string topping 
-    .local string order
+	.local string eggs
+	.local string topping 
+	.local string order
 
-    eggs = 'over easy'
-    topping = "Frank's RedHot"
+	eggs = 'over easy'
+	topping = "Frank's RedHot"
 
-    order = breakfast(eggs, topping)
-    say order
+	order = breakfast(eggs, topping)
+	say order
 
-    order = breakfast(eggs)
-    say order
+	order = breakfast(eggs)
+	say order
 .end
 
 .sub breakfast
-    .param string eggs
-    .param int    has_stuff :opt_flag
-    .param string topping   :optional
+	.param string eggs
+	.param int    has_stuff :opt_flag
+	.param string topping   :optional
 
-    .local string breakfast_order
-    breakfast_order = 'Eggs cooked ' . eggs
+	.local string breakfast_order
+	breakfast_order = 'Eggs cooked ' . eggs
 
-    unless has_stuff goto SERVE_BREAKFAST
-    breakfast_order .= ' topped with '
-    breakfast_order .= topping
+	unless has_stuff goto SERVE_BREAKFAST
+	breakfast_order .= ' topped with '
+	breakfast_order .= topping
 
   SERVE_BREAKFAST:
-    .return(breakfast_order)
+	.return(breakfast_order)
 .end
 ````
 
@@ -280,28 +280,27 @@ current instr.: 'breakfast' pc 34 (example-0b-04.pir:19)
 called from Sub 'main' pc 26 (example-0b-04.pir:15)
 ````
 
-Back to `stellar`. `extract_from_csv_line` can work the headers out for itself now. Let's clean up
-our test code.
+Back to `stellar`. `extract_from_csv_line` can work the headers out for itself now. Let's clean up our test code.
 
 ````
 # example-0b-05/t/04-check-star.t
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string star_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star
+	.include 'test_more.pir'
+	.local string header_string
+	.local string star_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star
 
-    star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    star = extract_from_csv_line(star_string)
+	star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	star = extract_from_csv_line(star_string)
 
-    plan(2)
+	plan(2)
 
-    $I0 = check_star_proper_name(star, 'Sol')
-    ok($I0, 'Sol should have ProperName of "Sol"')
-    $I0 = check_star_proper_name(star, 'Arcturus')
-    nok($I0, 'Sol should not have ProperName of "Arcturus"')
+	$I0 = check_star_proper_name(star, 'Sol')
+	ok($I0, 'Sol should have ProperName of "Sol"')
+	$I0 = check_star_proper_name(star, 'Arcturus')
+	nok($I0, 'Sol should not have ProperName of "Arcturus"')
 .end
 ````
 
@@ -313,13 +312,13 @@ I have not had enough sleep for that to be practical. Let's check `Spectrum`.
 # example-0b-06/t/04-check-star.t
 
 .sub 'main' :main
-    # ...
-    plan(4)
-    # ...
-    $I0 = check_star_spectrum(star, 'G2V')
-    ok($I0, 'Sol should have Spectrum of "G2V"')
-    $I0 = check_star_spectrum(star, 'K3V')
-    nok($I0, 'Sol should not have Spectrum of "K3V"')
+	# ...
+	plan(4)
+	# ...
+	$I0 = check_star_spectrum(star, 'G2V')
+	ok($I0, 'Sol should have Spectrum of "G2V"')
+	$I0 = check_star_spectrum(star, 'K3V')
+	nok($I0, 'Sol should not have Spectrum of "K3V"')
 .end
 ````
 
@@ -328,39 +327,37 @@ Meanwhile, in `stellar.pir`:
 ````
 # example-0b-06/lib/stellar.pir
 .sub check_star_spectrum
-    .param pmc star
-    .param string desired_value
-    .local string actual_value
-    .local int check_result
+	.param pmc star
+	.param string desired_value
+	.local string actual_value
+	.local int check_result
 
-    actual_value = star['Spectrum']
-    check_result = desired_value == actual_value
-    .return(check_result)
+	actual_value = star['Spectrum']
+	check_result = desired_value == actual_value
+	.return(check_result)
 .end
 ````
 
-This works perfectly, but compare `check_star_spectrum` to
-`check_star_proper_name`. They are almost identical. In fact, the only difference between
-the code for the two subs is which field gets grabbed for `actual_value`.
+This works perfectly, but compare `check_star_spectrum` to `check_star_proper_name`. They are almost identical. In fact, the only difference between the code for the two subs is which field gets grabbed for `actual_value`.
 It seems to me that the same behavior could be described by a single sub.
 
 ````
 # example-0b-06/t/04-check-star.t
 .sub 'main' :main
-    # ...
+	# ...
 
-    plan(8)
+	plan(8)
 
-    # ...
+	# ...
 
-    $I0 = check_star_field(star, 'ProperName', 'Sol')
-    ok($I0, 'Sol should have ProperName of "Sol"')
-    $I0 = check_star_field(star, 'ProperName', 'Arcturus')
-    nok($I0, 'Sol should not have ProperName of "Arcturus"')
-    $I0 = check_star_field(star, 'Spectrum', 'G2V')
-    ok($I0, 'Sol should have Spectrum of "G2V"')
-    $I0 = check_star_field(star, 'Spectrum', 'K3V')
-    nok($I0, 'Sol should not have Spectrum of "K3V"')
+	$I0 = check_star_field(star, 'ProperName', 'Sol')
+	ok($I0, 'Sol should have ProperName of "Sol"')
+	$I0 = check_star_field(star, 'ProperName', 'Arcturus')
+	nok($I0, 'Sol should not have ProperName of "Arcturus"')
+	$I0 = check_star_field(star, 'Spectrum', 'G2V')
+	ok($I0, 'Sol should have Spectrum of "G2V"')
+	$I0 = check_star_field(star, 'Spectrum', 'K3V')
+	nok($I0, 'Sol should not have Spectrum of "K3V"')
 .end
 ````
 
@@ -373,15 +370,15 @@ It seems to me that the same behavior could be described by a single sub.
 # ...
 
 .sub check_star_field
-    .param pmc star
-    .param string field
-    .param string desired_value
-    .local string actual_value
-    .local int check_result
+	.param pmc star
+	.param string field
+	.param string desired_value
+	.local string actual_value
+	.local int check_result
 
-    actual_value = star[field]
-    check_result = desired_value == actual_value
-    .return(check_result)
+	actual_value = star[field]
+	check_result = desired_value == actual_value
+	.return(check_result)
 .end
 ````
 
@@ -392,7 +389,7 @@ stick around but as wrappers that call `check_star_field`. That is entirely
 reasonable. I am comfortable using the general purpose sub as my main checker,
 though. I will delete the specific subs and their tests in my code.
 
-## Testing Multiple Conditions
+### Testing Multiple Conditions
 
 `stellar` does a convincing job of checking a single field in a star. The next
 step is figuring out how to check multiple fields.
@@ -402,37 +399,37 @@ step is figuring out how to check multiple fields.
 .include 'lib/stellar.pir'
 
 .sub 'main' :main
-    .include 'test_more.pir'
-    .local string header_string
-    .local string star_string
-    .local string delimiter
-    .local pmc    header_fields
-    .local pmc    star
+	.include 'test_more.pir'
+	.local string header_string
+	.local string star_string
+	.local string delimiter
+	.local pmc    header_fields
+	.local pmc    star
 
-    star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
-    star = extract_from_csv_line(star_string)
+	star_string = "0,,,,,,Sol,0,0,0.000004848,0,0,0,-26.73,4.85,G2V,0.656,0,0,0,0,0,0"
+	star = extract_from_csv_line(star_string)
 
-    plan(9)
+	plan(9)
 
-    $I0 = check_star_field(star, 'ProperName', 'Sol')
-    ok($I0, 'Sol should have ProperName of "Sol"')
-    $I0 = check_star_field(star, 'ProperName', 'Arcturus')
-    nok($I0, 'Sol should not have ProperName of "Arcturus"')
-    $I0 = check_star_field(star, 'Spectrum', 'G2V')
-    ok($I0, 'Sol should have Spectrum of "G2V"')
-    $I0 = check_star_field(star, 'Spectrum', 'K3V')
-    nok($I0, 'Sol should not have Spectrum of "K3V"')
+	$I0 = check_star_field(star, 'ProperName', 'Sol')
+	ok($I0, 'Sol should have ProperName of "Sol"')
+	$I0 = check_star_field(star, 'ProperName', 'Arcturus')
+	nok($I0, 'Sol should not have ProperName of "Arcturus"')
+	$I0 = check_star_field(star, 'Spectrum', 'G2V')
+	ok($I0, 'Sol should have Spectrum of "G2V"')
+	$I0 = check_star_field(star, 'Spectrum', 'K3V')
+	nok($I0, 'Sol should not have Spectrum of "K3V"')
 
-    $I0 = check_star(star, 'ProperName', 'Sol')
-    ok($I0, 'Sol should have ProperName "Sol"')
-    $I0 = check_star(star, 'ProperName', 'Sol', 'Spectrum', 'G2V')
-    ok($I0, 'Sol should have ProperName "Sol" and Spectrum "G2V"')
-    $I0 = check_star(star, 'ProperName', 'Arcturus', 'Spectrum', 'G2V')
-    nok($I0, 'Sol should not have ProperName "Arcturus" and Spectrum "G2V"')
-    $I0 = check_star(star, 'ProperName', 'Sol', 'Spectrum', 'K3V')
-    nok($I0, 'Sol should not have ProperName "Sol" and Spectrum "K3V"')
-    $I0 = check_star(star, 'ProperName', 'Arcturus', 'Spectrum', 'K3V')
-    nok($I0, 'Sol should not have ProperName "Arcturus" and Spectrum "K3V"')
+	$I0 = check_star(star, 'ProperName', 'Sol')
+	ok($I0, 'Sol should have ProperName "Sol"')
+	$I0 = check_star(star, 'ProperName', 'Sol', 'Spectrum', 'G2V')
+	ok($I0, 'Sol should have ProperName "Sol" and Spectrum "G2V"')
+	$I0 = check_star(star, 'ProperName', 'Arcturus', 'Spectrum', 'G2V')
+	nok($I0, 'Sol should not have ProperName "Arcturus" and Spectrum "G2V"')
+	$I0 = check_star(star, 'ProperName', 'Sol', 'Spectrum', 'K3V')
+	nok($I0, 'Sol should not have ProperName "Sol" and Spectrum "K3V"')
+	$I0 = check_star(star, 'ProperName', 'Arcturus', 'Spectrum', 'K3V')
+	nok($I0, 'Sol should not have ProperName "Arcturus" and Spectrum "K3V"')
 .end
 ````
 
@@ -440,7 +437,7 @@ Yes, I did go through several variations on testing multiple fields. I wanted to
 make sure that `check_star` behaved *exactly* the way I expected. How am I going
 to make those tests succeed?
 
-### `:slurpy` and `:flat` Save the Day
+#### `:slurpy` and `:flat` Save the Day
 
 Parrot gives us two excellent modifiers that simplify the job of checking
 multiple fields. The `:slurpy` param modifier to effectively say "Oh,
@@ -454,27 +451,27 @@ Enough imaginary dialog. Here's what `check_star` looks like.
 ````
 # example-0b-07/lib/stellar.pir
 .sub check_star
-    .param pmc    star
-    .param string field
-    .param string desired_value
-    .param pmc    extra_fields :slurpy
-    .local int    match_result
-    .local int    extra_field_count
+	.param pmc    star
+	.param string field
+	.param string desired_value
+	.param pmc    extra_fields :slurpy
+	.local int    match_result
+	.local int    extra_field_count
 
-    match_result = check_star_field(star, field, desired_value)
+	match_result = check_star_field(star, field, desired_value)
 
-    # We're done if this match fails.
-    unless match_result goto RETURN_RESULT
+	# We're done if this match fails.
+	unless match_result goto RETURN_RESULT
 
-    extra_field_count = extra_fields
-    # We're done if there are no extra fields.
-    unless extra_field_count goto RETURN_RESULT
+	extra_field_count = extra_fields
+	# We're done if there are no extra fields.
+	unless extra_field_count goto RETURN_RESULT
 
-    # Grab the result of checking the extra fields.
-    match_result = check_star(star, extra_fields :flat)
+	# Grab the result of checking the extra fields.
+	match_result = check_star(star, extra_fields :flat)
 
   RETURN_RESULT:
-    .return(match_result)
+	.return(match_result)
 .end
 ````
 
@@ -491,42 +488,33 @@ the same process of testing and looking for extra conditions until it has
 completed the last test. The result of all the completed tests is handed back to
 `check_star`, which then hands it back to us. 
 
-This process of [recursion](http://en.wikipedia.org/wiki/Recursion_(computer_science)) -
-solving a complex problem by breaking it down into small problems - is common in
-many programming languages, so it is supported by Parrot. After all, Parrot is
-supposed to be used for creating new languages. It is not just for
-browsing some guy's star catalog.
+This process of [recursion](http://en.wikipedia.org/wiki/Recursion_(computer_science)) - solving a complex problem by breaking it down into small problems - is common in many programming languages, so it is supported by Parrot. After all, Parrot is supposed to be used for creating new languages. It is not just for browsing some guy's star catalog.
 
-The "[tail call](http://en.wikipedia.org/wiki/Tail_call)" pattern of evaluating a sub and immediately returning its result is so
-common that Parrot provides the `.tailcall` directive to optimize its
-behavior. `.tailcall` essentially tells Parrot to immediately return the result
-of evaluating the sub rather than storing it in memory. It may not do much in a
-case like `check_star`, but you should see a difference in complex problems.
+The "[tail call](http://en.wikipedia.org/wiki/Tail_call)" pattern of evaluating a sub and immediately returning its result is so common that Parrot provides the `.tailcall` directive to optimize its behavior. `.tailcall` essentially tells Parrot to immediately return the result of evaluating the sub rather than storing it in memory. It may not do much in a case like `check_star`, but you should see a difference in complex problems.
 
-Then again, it might help `check_star` immensely. I don't really know about 
-Parrot optimization effects yet.
+Then again, it might help `check_star` immensely. I don't really know about Parrot optimization effects yet.
 
 ````
 # example-0b-08/lib/stellar.pir
 .sub 'main' :main
-    # ...
+	# ...
 
-    # Return the result of checking the extra fields.
-    .tailcall check_star(star, extra_fields :flat)
+	# Return the result of checking the extra fields.
+	.tailcall check_star(star, extra_fields :flat)
 
   RETURN_RESULT:
-    .return(match_result)
+	.return(match_result)
 .end
 ````
 
-# Conclusion
+## Conclusion
 
 We can now examine multiple fields to determine if a star matches a description
 we've provided. Along the way, we explored subroutine parameters. We learned how
 to make a parameter optional. We learned how to grab all of a subroutine's
 params and stuff them into a list. We also learned how to paste the contents of
 a list onto the parameters of a subroutine call. We even dabbled in
-[recursion](http://en.wikipedia.org/wiki/Recursion_(computer_science)), the fine art of breaking a big problem down with small solutions.
+\[recursion\]\[\], the fine art of breaking a big problem down with small solutions.
 
 In our next step, we will use `check_star` to search through sets of stars.
 That's the part I've been looking forward to for a while! 

@@ -4,7 +4,7 @@ title: timedatectl
 updated: 2024-01-26 09:09:33-08:00
 ---
 
-Control system for time and date details on *Linux*
+Control system for time and date details on [Linux](Linux.md)
 
 # Jots
 

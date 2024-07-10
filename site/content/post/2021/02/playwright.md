@@ -18,8 +18,8 @@ There's a [Python](../../../card/Python.md) interface to the very handy [Playwri
 
 Don't forget to install browser drivers whenever you install or upgrade Playwright!
 
-````
-$ python -m playwright install
+````bash
+python -m playwright install
 ````
 
 ## With pytest

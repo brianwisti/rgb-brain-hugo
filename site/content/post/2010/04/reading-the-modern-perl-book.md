@@ -14,11 +14,8 @@ title: Reading the Modern Perl Book
 updated: 2024-01-26 10:09:44-08:00
 ---
 
-I'm in the Perl phase of my language obsession rotation. I've created a handy
-language obsession table you can use to simulate the behavior for your favorite
+I'm in the Perl phase of my language obsession rotation. I've created a handy language obsession table you can use to simulate the behavior for your favorite
 [GURPS](https://sjgames.com/gurps/) Geek campaign.
-
-<!--more-->
 
 Roll 3d6 for the subject.
 
@@ -85,13 +82,9 @@ I don't know why I felt the need to share this. I've already spent more time on
 that silly table than the actual subject I wanted to write about.
 
 So anyways - I'm messing about with Perl. I have been reading chromatic's
-[Modern Perl blog](https://modernperlbooks.com/mt/) for a while - even when I'm not in a Perl cycle. It's
-good, you should try it out. He presents a needed perspective on Perl as
-something more than a musty system administration language.
+[Modern Perl blog](https://modernperlbooks.com/mt/) for a while - even when I'm not in a Perl cycle. It's good, you should try it out. He presents a needed perspective on Perl as something more than a musty system administration language.
 
-chromatic is also writing a book and maintaining the [draft](https://github.com/chromatic/modern_perl_book) on github. I
-finally decided I wanted to read that draft. The README and a tiny bit of Git
-knowledge provide all I need.</p>
+chromatic is also writing a book and maintaining the [draft](https://github.com/chromatic/modern_perl_book) on github. I finally decided I wanted to read that draft. The README and a tiny bit of Git knowledge provide all I need.
 
 ````
 $ git clone git://github.com/chromatic/modern_perl_book.git
@@ -135,10 +128,7 @@ Now I can open the chapters in my favorite Web browser.
 $ elinks build/html/chapter_01.html
 ````
 
-From here, I can pay attention to chromatic's [tweets](https://twitter.com/chromatic_x) — or his [dents](https://identi.ca/chromatic),
-since he seems more active on Identi.ca - or watch the `modern_perl_book`
-repository on github. Whenever he mentions new content, I will refresh and
-rebuild.
+From here, I can pay attention to chromatic's [tweets](https://twitter.com/chromatic_x) — or his [dents](https://identi.ca/chromatic), since he seems more active on Identi.ca - or watch the `modern_perl_book` repository on github. Whenever he mentions new content, I will refresh and rebuild.
 
 ````
 $ git pull
@@ -146,9 +136,7 @@ $ perl build/tools/build_chapters.pl
 $ perl build/tools/build_html.pl
 ````
 
-I don't want to remember three whole commands. Am I taking [Laziness](https://c2.com/cgi/wiki?LazinessImpatienceHubris) too
-far? Perhaps. Nevertheless, here's a Perl script to handle the task. It should
-only rebuild the chapters and HTML if there was an update in the repository.
+I don't want to remember three whole commands. Am I taking [Laziness](https://c2.com/cgi/wiki?LazinessImpatienceHubris) too far? Perhaps. Nevertheless, here's a Perl script to handle the task. It should only rebuild the chapters and HTML if there was an update in the repository.
 
 ````perl
 #!/usr/bin/env perl

@@ -3,25 +3,20 @@ aliases:
 - /blogspot/2008/01/02_adding-categories-to-python-blogger.html
 - /post/2008/adding-categories-to-python-blogger/
 - /2008/01/02/adding-categories-to-the-python-blogger-client/
-category: post
-created: 2024-01-15 15:25:38-08:00
+created: 2024-01-15 16:25:38-07:00
 date: 2008-01-02 00:00:00-08:00
 slug: adding-categories-to-the-python-blogger-client
 tags:
-- blogger
-- gdata
-- python
-- blogspot
+- post
 title: Adding Categories to the Python Blogger Client
-updated: 2024-01-26 09:22:54-08:00
+updated: 2024-06-24 16:06:31-07:00
 ---
 
-# Update 2009-06-09
+## Update 2009-06-09
 
 I've revisited the code for Blogger posting with [Python](../../../card/Python.md). Start with [python-blogger-refresh-part-1](../../2009/06/python-blogger-refresh-part-1.md) to see the new starting point.
 
-<!--more-->
-<h2>The Original Tale</h2>
+## The Original Tale
 
 I've already used my [Python Blogger client](../../2007/12/python-loves-blogger-part-1.md) for a couple of postings, and I've been pretty happy with it so far. It still desperately needs tags, though. Actually, Blogger calls them "labels." Actually actually, the Atom API calls them "categories." Well, whatever they are called it looks like they are pretty easy to add.
 

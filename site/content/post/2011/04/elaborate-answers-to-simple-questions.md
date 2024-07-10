@@ -5,14 +5,14 @@ aliases:
 - /2011/04/14/elaborate-answers-to-simple-questions/
 - /post/2011/04/elaborate-answers-to-simple-questions/
 category: post
-created: 2024-01-15 15:25:32-08:00
+created: 2024-01-15 16:23:36-07:00
 date: 2011-04-14 00:00:00-07:00
 slug: elaborate-answers-to-simple-questions
 tags:
 - python
 - blogspot
 title: Elaborate Answers To Simple Questions
-updated: 2024-02-01 20:08:03-08:00
+updated: 2024-07-10 06:06:15-07:00
 ---
 
 Use `string` methods instead of importing `string`. Build email messages with the standard [email](http://docs.python.org.library.email.html)library.

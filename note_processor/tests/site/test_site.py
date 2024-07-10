@@ -85,7 +85,7 @@ class TestGeneratedMarkup:
         ]
         rich.print(scripts)
 
-        assert any(
+        assert not any(
             script for script in scripts if script == (PLAUSIBLE_DOMAIN, PLAUSIBLE_SRC)
         )
 
